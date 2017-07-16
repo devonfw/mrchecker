@@ -1,0 +1,12 @@
+/test-output/
+/target/
+.metadata/
+*.orig
+/logs/
+.classpath
+.idea/
+.project
+/secretData
+.settings/
+ajcore.*
+*.docx
