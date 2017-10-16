@@ -2,13 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.capgemini.ntc</groupId>
-	<artifactId>allure-test-framework</artifactId>
-	<version>1.0.0</version>
-	<name>AllureTestFramework</name>
-    <description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
+
+    <parent>
+        <artifactId>allure-test-framework</artifactId>
+        <groupId>com.capgemini.ntc</groupId>
+        <version>1.0.0</version>
+    </parent>
+    
+    <artifactId>Allure-AppUnderTests</artifactId>
+    <packaging>jar</packaging>
+    <name>AllureTestFramework - List of Integration Test for Application Under Test </name>    
+    <description>Allure Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
-    <packaging>pom</packaging>
+    
 
     <organization>
         <name>Capgemini  - Nearshore Test Center - Poland</name>
@@ -22,12 +28,7 @@
         </developer>
     </developers>
 
-    <modules>
-        <module>allure-framework-modules</module>
-        <module>Allure-AppUnderTests</module>
-    </modules>
-    
-    
+  
 	<properties>
 		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
@@ -72,6 +73,23 @@
     
     <dependencyManagement>
         <dependencies>
+            
+            <!-- Dependency to other Allure Test Framework modules -->
+            <!-- Test core module-->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>allure-core-module</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
+            <!-- Selenium module -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>allure-selenium-module</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
+            
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>

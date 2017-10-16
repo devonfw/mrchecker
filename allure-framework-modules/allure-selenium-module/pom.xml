@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>allure-framework-modules</artifactId>
+        <groupId>com.capgemini.ntc</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>allure-selenium-module</artifactId>
+    <packaging>jar</packaging>
+    <name>AllureTestFramework - Selenium - Module</name>
+    <description>Allure Test Framework Selenium supports:
+        * Malleable resolution
+            * Remote Web Design
+            * Mobile browsers 
+        * Support for many browsers
+            * Internet Explorer, Edge
+            * Chrome, Firefox
+            * Safari
+        * User friendly actions
+            * elementCheckBox
+            * elementDropdown, etc. 
+        * Ubiquise test execution
+            * locally
+            * against Selenium Grid through Jenkins
+        * Page Object Model architecture
+        * Selenium WebDriver with Java 
+    </description>
+    <url>https://github.com/devonfw/devonfw-testing</url>
+    
+    <organization>
+        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
+    </organization>
+    
+    <developers>
+        <developer>
+            <name>Lukasz Stefaniszyn</name>
+            <email>stefaniszynlukasz@gmail.com</email>
+        </developer>
+    </developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+
+		<!-- Java settings -->
+		<java.compiler.version>1.8</java.compiler.version>
+
+		<!-- Selenium settings -->
+		<selenium.version>3.4.0</selenium.version>
+        
+        <aspectj.version>1.8.4</aspectj.version>
+
+	</properties>
+
+	<dependencies>
+		
+        <!-- Dependency to other Allure Test Framework modules -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-core-module</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+        <!--This dependency is necessary for Selenium plugin. -->
+        <dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+        
+        <!--This dependency is necessary for JUnit plugin. -->
+        <dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-surefire-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+        
+
+	<profiles>
+		<!-- RUN CLASSIC JUNIT TESTS  -->
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<configuration>
+							<testFailureIgnore>true</testFailureIgnore>
+							<parallel>classes</parallel> 
+							<perCoreThreadCount>false</perCoreThreadCount>
+							<threadCount>${thread.count}</threadCount>		
+							<includes>
+								<include>**/*.class</include>
+							</includes>
+							<excludes>
+								<exclude>**/RawTest.*</exclude>
+								<exclude>**/OutboxDocumentTest.*</exclude>
+							</excludes>
+							<argLine>
+							-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+							</argLine>
+							<properties>
+								<property>
+									<name>listener</name>
+									<value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
+								</property>
+							</properties>
+
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.aspectj</groupId>
+								<artifactId>aspectjweaver</artifactId>
+								<version>${aspectj.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+
+	<reporting>
+		<excludeDefaults>true</excludeDefaults>
+		<plugins>
+			<plugin>
+				<groupId>ru.yandex.qatools.allure</groupId>
+				<artifactId>allure-maven-plugin</artifactId>
+				<version>${allure-maven-plugin.version}</version>
+				<configuration>
+					<resultsPattern>target/allure-results</resultsPattern>
+					<reportPath>target/report</reportPath>
+					<reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
+					<reportVersion>${allure-report.version}</reportVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.rat</groupId>
+                <artifactId>apache-rat-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <verbose>true</verbose>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
