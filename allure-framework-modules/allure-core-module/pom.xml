@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>allure-test-framework</artifactId>
+        <artifactId>allure-framework-modules</artifactId>
         <groupId>com.capgemini.ntc</groupId>
         <version>1.0.0</version>
     </parent>

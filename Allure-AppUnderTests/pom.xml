@@ -9,9 +9,9 @@
         <version>1.0.0</version>
     </parent>
     
-    <artifactId>allure-test-framework-app-under-tests</artifactId>
+    <artifactId>Allure-AppUnderTests</artifactId>
     <packaging>jar</packaging>
-    <name>AllureTestFramework</name>    
+    <name>AllureTestFramework - List of Integration Test for Application Under Test </name>    
     <description>Allure Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
     

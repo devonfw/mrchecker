@@ -23,9 +23,8 @@
     </developers>
 
     <modules>
-        <module>allure-core-module</module>
-        <module>allure-selenium-module</module>
-        <module>_app-under-tests</module>
+        <module>allure-framework-modules</module>
+        <module>Allure-AppUnderTests</module>
     </modules>
     
     
