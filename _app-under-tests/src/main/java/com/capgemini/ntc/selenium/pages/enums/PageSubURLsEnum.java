@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.pages.enums;
 
-import com.example.core.enums.SubUrl;
+import com.capgemini.ntc.test.core.enums.SubUrl;
 
 public enum PageSubURLsEnum implements SubUrl {
 

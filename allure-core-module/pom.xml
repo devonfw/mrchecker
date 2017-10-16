@@ -8,10 +8,10 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>allure-test-framework-core</artifactId>
-
-    <name>AllureTestFramework - Core </name>
-    <description>Allure Test Framework Core is reponsible for:
+    <artifactId>allure-core-module</artifactId>
+    <packaging>jar</packaging>
+    <name>AllureTestFramework - Test core - Module</name>
+    <description>Allure Test Framework Core is responsible for:
         * Test report with logs and/or screenshots
         * Test groups/tags
         * Data Driven (inside test case, external file) 

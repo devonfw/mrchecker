@@ -7,9 +7,9 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>allure-test-framework-selenium</artifactId>
-
-    <name>AllureTestFramework - Selenium </name>
+    <artifactId>allure-selenium-module</artifactId>
+    <packaging>jar</packaging>
+    <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:
         * Malleable resolution
             * Remote Web Design
@@ -59,7 +59,7 @@
         <!-- Dependency to other Allure Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>allure-test-framework-core</artifactId>
+            <artifactId>allure-core-module</artifactId>
             <version>${project.version}</version>
         </dependency>
         
