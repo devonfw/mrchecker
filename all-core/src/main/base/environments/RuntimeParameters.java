@@ -1,0 +1,167 @@
+package com.example.core.base.environments;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.openqa.selenium.Dimension;
+
+import com.example.core.enums.ResolutionEnum;
+
+/**
+ * This class stores various system properties
+ * 
+ * @author
+ *
+ */
+public class RuntimeParameters {
+
+	public static boolean maintenanceMode = false;
+	private int IMPLICITYWAITTIMER = 2; // in seconds
+	private final ResolutionEnum defaultResolution = ResolutionEnum.w1600;
+
+	private String env;
+	private String browser;
+	private String browserVersion;
+	private String os;
+	private String seleniumGrid;
+	private String maintenanceParam;
+	private Collection<Object[]> params;
+	private String authenticationType;
+
+	protected RuntimeParameters() {
+		init();
+	}
+
+	/**
+	 * 
+	 * @return environment, e.g. DEV, DEV
+	 */
+	public String getEnv() {
+		return env;
+	}
+
+	/**
+	 * 
+	 * @return browser name, e.g. chrome, firefox
+	 */
+	public String getBrowser() {
+		return browser;
+	}
+
+	/**
+	 * 
+	 * @return browser version, e.g. 2.4
+	 */
+	public String getBrowserVersion() {
+		return browserVersion;
+	}
+
+	/**
+	 * 
+	 * @return operating system, e.g. vista
+	 */
+	public String getOs() {
+		return os;
+	}
+
+	public String getSeleniumGrid() {
+		return seleniumGrid;
+	}
+
+	/**
+	 * 
+	 * @return true if Selenium grid should be used, false otherwise
+	 */
+	public boolean isSeleniumGrid() {
+		return seleniumGrid != null;
+	}
+
+	/**
+	 * 
+	 * @return maximal wait time of implicit wait
+	 */
+	public int getImplicityWaitTimer() {
+		return IMPLICITYWAITTIMER;
+	}
+
+	/**
+	 * 
+	 * @return collection containing all parameters
+	 */
+	public Collection<Object[]> getParams() {
+		return params;
+	}
+	
+	/**
+	 * 
+	 * @return type of authentication; allow options: SSO
+	 */
+	public String getAuthenticationType() {
+		return authenticationType;
+	}
+
+	/**
+	 * 
+	 * @return default dimension
+	 */
+	public Dimension getUsedDimension() {
+		return new Dimension(defaultResolution.getWidth(), defaultResolution.getHeight());
+	}
+
+	private void init() {
+		getParameters();
+		setDefaults();
+		createParamsCollection();
+	}
+
+	private void getParameters() {
+		env = System.getProperty("env");
+		browser = System.getProperty("browser");
+		browserVersion = System.getProperty("browserVersion");
+		seleniumGrid = System.getProperty("seleniumGrid");
+		os = System.getProperty("os");
+		maintenanceParam = "";// System.getProperty("maintenance");
+		authenticationType = System.getProperty("authenticationType");
+	}
+
+	private void setDefaults() {
+
+		if (null != os)
+			os = os.toLowerCase();
+		if (null != browser) {
+			browser = browser.toLowerCase();
+			if (browser.equals("ie")) {
+				browser = "internet explorer";
+			}
+			if (null != browserVersion)
+				browserVersion = browserVersion.toLowerCase();
+		}
+		if (null != env) {
+			env = env.toUpperCase();
+		} else {
+			env = "DEV"; // default test environment DEV
+		}
+
+		if (null == seleniumGrid || seleniumGrid.equals("")) {
+			if (null == browser || browser.equals("")) {
+				browser = "chrome";
+			}
+			if (null == browserVersion || browserVersion.equals("")) {
+				browserVersion = "8.0";
+			}
+			if (null == os || os.equals("")) {
+				os = "windows";
+			}
+		}
+		
+		if(authenticationType == null){
+			authenticationType = "SSO";
+		}
+
+		ParametersManager.environment().set(env);
+	}
+
+	private void createParamsCollection() {
+		params = Arrays.asList(new Object[][] { { browser, browserVersion, os, seleniumGrid, env, maintenanceMode } });
+	}
+}

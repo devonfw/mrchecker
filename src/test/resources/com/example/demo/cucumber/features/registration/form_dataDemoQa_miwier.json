@@ -1,0 +1,18 @@
+[
+  {
+    "username":"incorrect",
+    "password":"password",
+    "errorMsg":"ERROR: Invalid login credentials."},
+  {
+    "username":"incorrect",
+    "password":"",
+    "errorMsg":"ERROR: The password field is empty."},
+  {
+    "username":"",
+    "password":"password",
+    "errorMsg":"ERROR: The username field is empty."},
+  {
+    "username":"",
+    "password":"",
+    "errorMsg":"Please enter your username and password."}
+]
