@@ -47,6 +47,7 @@
 		<allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
 		<report-directory>${pom.basedir}/test-output/</report-directory>
 		<jetty.version>9.2.10.v20150310</jetty.version>
+        <aspectj.version>1.8.4</aspectj.version>
         
         <!-- Cucumber version -->
 		<cucumber.version>1.2.5</cucumber.version>
