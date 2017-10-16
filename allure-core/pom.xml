@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>all</artifactId>
+        <artifactId>allure-test-framework</artifactId>
         <groupId>com.capgemini.ntc</groupId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>all-core</artifactId>
+    <artifactId>allure-test-framework-core</artifactId>
 
     <name>AllureTestFramework - Core </name>
     <description>Allure Test Framework Core is reponsible for:
@@ -33,7 +33,7 @@
         </developer>
     </developers>
 
-    	<properties>
+    <properties>
 		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 		<!-- Java settings -->
@@ -43,6 +43,7 @@
 		<slf4j.version>1.7.21</slf4j.version>
 		<allure.report.directory>${pom.basedir}/target/</allure.report.directory>
 		<allure.version>1.5.4</allure.version>
+        <allure-report.version>1.4.19</allure-report.version>
 		<aspectj.version>1.8.9</aspectj.version>
 		<allure-maven-plugin.version>2.6</allure-maven-plugin.version>
 		<allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
@@ -57,58 +58,44 @@
 		<!-- Tests logger -->
 		<slf4j.version>1.7.21</slf4j.version>
 
-		<!-- Test tools -->
-		<hamcrest.version>1.3</hamcrest.version>
-		<junit.version>4.12</junit.version>
-		<mockito.version>1.8.5</mockito.version>
-		<joda-time.version>2.8.2</joda-time.version>
-		<jsoup.version>1.8.2</jsoup.version>
-
 		<!-- JSON support java 1.8 -->
 		<org.json.version>20160810</org.json.version>
 
-		<!-- Cucumber version -->
-		<cucumber.version>1.2.5</cucumber.version>
-		<cucumber.jvm.parallel.version>4.1.0</cucumber.jvm.parallel.version>
-		<cucumber-reporting.version>3.7.0</cucumber-reporting.version>
-
-		<!-- Hash sensitive data plugins -->
+		<!-- Hashes sensitive data  -->
 		<org.jasypt.version>1.9.2</org.jasypt.version>
-
-
-	</properties>
+	
+        <!-- spring version -->
+		<spring.version>4.3.7.RELEASE</spring.version>
+    
+    </properties>
 
 	<dependencies>
-
+        
+        <!--This dependency is necessary for JUnit plugin. -->
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-surefire-provider</artifactId>
-			<version>${surefire.provider.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-core</artifactId>
-			<version>${hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
-			<version>${hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>${joda-time.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
-			<version>1.1</version>
 		</dependency>
 
 		<dependency>
@@ -122,60 +109,44 @@
 			<version>2.2</version>
 		</dependency>
 
-
-		<!-- slf4j is a simple facade for logging systems allowing the end-user 
-			to plug-in the desired logging system at deployment time -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
 		<!--This dependency is necessary for JUnit plugin. -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>${mockito.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>pl.pragmatists</groupId>
 			<artifactId>JUnitParams</artifactId>
-			<version>1.0.4</version>
 		</dependency>
 
 		<!--This dependency is necessary for Allure report plugin. -->
 		<dependency>
 			<groupId>ru.yandex.qatools.allure</groupId>
 			<artifactId>allure-junit-adaptor</artifactId>
-			<version>${allure.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>ru.yandex.qatools.allure</groupId>
 			<artifactId>allure-report-data</artifactId>
-			<version>${allure.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>ru.yandex.qatools.allure</groupId>
 			<artifactId>allure-maven-plugin</artifactId>
-			<version>${allure-maven-plugin.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>ru.yandex.qatools.allure</groupId>
 			<artifactId>allure-cucumber-jvm-adaptor</artifactId>
-			<version>${allure-cucumber-jvm-adaptor.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectj.version}</version>
 		</dependency>
 
 
@@ -201,46 +172,38 @@
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>${cucumber.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java8</artifactId>
-			<version>${cucumber.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.picocontainer</groupId>
 			<artifactId>picocontainer</artifactId>
-			<version>2.15</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-core</artifactId>
-			<version>${cucumber.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>net.masterthought</groupId>
 			<artifactId>cucumber-reporting</artifactId>
-			<version>${cucumber-reporting.version}</version>
 		</dependency>
 
 

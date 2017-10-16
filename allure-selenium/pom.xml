@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>all</artifactId>
+        <artifactId>allure-test-framework</artifactId>
         <groupId>com.capgemini.ntc</groupId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>all-selenium</artifactId>
+    <artifactId>allure-test-framework-selenium</artifactId>
 
     <name>AllureTestFramework - Selenium </name>
     <description>Allure Test Framework Selenium supports:
@@ -49,6 +49,8 @@
 
 		<!-- Selenium settings -->
 		<selenium.version>3.4.0</selenium.version>
+        
+        <aspectj.version>1.8.4</aspectj.version>
 
 	</properties>
 
@@ -57,14 +59,32 @@
         <!-- Dependency to other Allure Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>all-core</artifactId>
+            <artifactId>allure-test-framework-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         
+        <!--This dependency is necessary for Selenium plugin. -->
         <dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.version}</version>
+		</dependency>
+        
+        <!--This dependency is necessary for JUnit plugin. -->
+        <dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-surefire-provider</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
