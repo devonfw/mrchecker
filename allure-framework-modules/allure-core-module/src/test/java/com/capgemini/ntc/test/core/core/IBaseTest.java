@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.core;
+package com.capgemini.ntc.test.core.core;
 
 public interface IBaseTest {
 

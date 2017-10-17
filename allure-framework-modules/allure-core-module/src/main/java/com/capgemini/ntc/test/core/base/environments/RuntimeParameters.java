@@ -1,11 +1,10 @@
 package com.capgemini.ntc.test.core.base.environments;
 
+import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.openqa.selenium.Dimension;
-
-import com.capgemini.ntc.test.core.enums.ResolutionEnum;
+import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 
 /**
  * This class stores various system properties

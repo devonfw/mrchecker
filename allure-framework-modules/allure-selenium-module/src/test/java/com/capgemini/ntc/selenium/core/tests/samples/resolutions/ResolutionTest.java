@@ -10,9 +10,9 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import com.example.selenium.pages.features.registration.RegistryPage;
+import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.testsuites.testType.TestsResolution;
 import com.capgemini.ntc.selenium.core.testsuites.testType.TestsSelenium;
-import com.capgemini.ntc.test.core.enums.ResolutionEnum;
 import com.capgemini.ntc.test.core.tests.core.BaseTest;
 import com.capgemini.ntc.test.core.tests.testRunners.ParallelParameterized;
 

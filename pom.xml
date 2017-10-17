@@ -23,7 +23,7 @@
     </developers>
 
     <modules>
-        <module>allure-framework-modules</module>
+        <module>Allure-Framework-Modules</module>
         <module>Allure-AppUnderTests</module>
     </modules>
     

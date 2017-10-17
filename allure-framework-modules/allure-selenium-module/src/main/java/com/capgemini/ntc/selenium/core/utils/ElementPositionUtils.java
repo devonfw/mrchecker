@@ -1,14 +1,13 @@
 package com.capgemini.ntc.selenium.core.utils;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.enums.EdgesEnum;
+import com.capgemini.ntc.selenium.core.enums.RelatedPositionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
-import com.capgemini.ntc.test.core.enums.RelatedPositionEnum;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.capgemini.ntc.test.core.enums.EdgesEnum;
 
 /**
  * This class contains utility functions related to the position of elements on the page.

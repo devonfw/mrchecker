@@ -2,8 +2,8 @@ package com.capgemini.ntc.selenium.core.utils;
 
 import org.openqa.selenium.Dimension;
 
-import com.capgemini.ntc.test.core.enums.ResolutionEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.test.core.base.environments.ParametersManager;
 

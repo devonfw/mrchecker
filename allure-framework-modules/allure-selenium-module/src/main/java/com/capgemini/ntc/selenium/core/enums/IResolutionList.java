@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.enums;
+package com.capgemini.ntc.selenium.core.enums;
 
 public interface IResolutionList {
 

@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.core;
+package com.capgemini.ntc.test.core.core;
 
 import java.net.MalformedURLException;
 
@@ -17,7 +17,7 @@ import com.example.selenium.core.newDrivers.NewRemoteWebElement;
 import com.example.selenium.core.utils.WindowUtils;
 import com.capgemini.ntc.test.core.enums.ResolutionEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.test.core.tests.testRunners.ParallelTestClassRunner;
+import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
@@ -38,10 +38,6 @@ public abstract class BaseTest implements IBaseTest {
 
 	@ru.yandex.qatools.allure.annotations.Parameter("Username")
 	private String defaultUsername_lastUsedInTest;
-
-	public static INewWebDriver getDriver() {
-		return DriverManager.getDriver();
-	}
 
 	@BeforeClass
 	public static final void setUpClass() throws MalformedURLException {
