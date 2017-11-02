@@ -22,13 +22,13 @@ public class ButtonTest extends BaseTest {
     @Test
     public void test(){
         // check if element is displayed
-        assertTrue(BaseTest.getDriver().elementButton(ButtonTest.buttonSubmit).isDisplayed());
+        assertTrue(BasePage.getDriver().elementButton(ButtonTest.buttonSubmit).isDisplayed());
 
         // check if element type equals Button
-        assertEquals( "Button" , BaseTest.getDriver().elementButton(ButtonTest.buttonSubmit).getElementTypeName());
+        assertEquals( "Button" , BasePage.getDriver().elementButton(ButtonTest.buttonSubmit).getElementTypeName());
 
         // click on button and verify if url was changed
-        BaseTest.getDriver().elementButton(ButtonTest.buttonSubmit).click();
+        BasePage.getDriver().elementButton(ButtonTest.buttonSubmit).click();
         assertTrue(BasePage.getDriver().getCurrentUrl().contains("&submit="));
     }
 

@@ -1,15 +1,14 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.readFromTable;
+package com.capgemini.ntc.selenium.tests.samples.readFromTable;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-import com.example.core.jsoupHelper.JsoupHelper;
-import com.example.core.logger.BFLogger;
-import com.example.core.tests.core.BaseTest;
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.jsoupHelper.JsoupHelper;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class JsoupTableSearch extends BaseTest {
 	
@@ -19,8 +18,8 @@ public class JsoupTableSearch extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		getDriver().get("http://editablegrid.net/en/");
-		getDriver().waitForPageLoaded();
+		BasePage.getDriver().get("http://editablegrid.net/en/");
+		BasePage.getDriver().waitForPageLoaded();
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class JsoupTableSearch extends BaseTest {
 	@Test
 	public void firstTest(){
 		startTimeMeasure();
-		List<String> valuesNewMethod = JsoupHelper.findTexts(getDriver().findElement(searchArea),firstcolumForAllRows);
+		List<String> valuesNewMethod = JsoupHelper.findTexts(BasePage.getDriver().findElement(searchArea),firstcolumForAllRows);
 		
 		for(String test : valuesNewMethod){
 			BFLogger.logInfo(test);

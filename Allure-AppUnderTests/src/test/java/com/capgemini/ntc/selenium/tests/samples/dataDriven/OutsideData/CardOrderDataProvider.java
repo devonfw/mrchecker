@@ -1,8 +1,8 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.dataDriven.OutsideData;
+package com.capgemini.ntc.selenium.tests.samples.dataDriven.OutsideData;
 
-import com.example.core.tests.TestUtils;
-import com.example.core.tests.utils.MatrixDataContainer;
-import com.example.core.utils.datadriven.JsonDriven;
+import com.capgemini.ntc.selenium.core.utils.TestUtils;
+import com.capgemini.ntc.test.core.utils.MatrixDataContainer;
+import com.capgemini.ntc.test.core.utils.datadriven.JsonDriven;
 
 public class CardOrderDataProvider {
 	private static final String FILENAME = TestUtils

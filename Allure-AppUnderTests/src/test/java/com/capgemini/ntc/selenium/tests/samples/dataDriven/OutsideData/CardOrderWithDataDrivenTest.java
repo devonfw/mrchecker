@@ -1,7 +1,6 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.dataDriven.OutsideData;
+package com.capgemini.ntc.selenium.tests.samples.dataDriven.OutsideData;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,12 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.example.core.tests.core.BaseTest;
-import com.example.core.tests.testRunners.ParallelParameterized;
-import com.example.core.tests.utils.MatrixDataContainer;
+import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.utils.TimeUtills;
-import com.capgemini.ntc.selenium.tests.tests.PageTestUtils;
-import com.capgemini.ntc.selenium.tests.tests.samples.dataDriven.InsideData.CardList;
+import com.capgemini.ntc.selenium.tests.PageTestUtils;
+import com.capgemini.ntc.selenium.tests.samples.dataDriven.InsideData.CardList;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
+import com.capgemini.ntc.test.core.utils.MatrixDataContainer;
 
 import junitparams.Parameters;
 
@@ -36,7 +36,7 @@ public class CardOrderWithDataDrivenTest extends BaseTest {
 	public void checkCardOrderV2(MatrixDataContainer data) {
 		setUpTest(data.getLogin());
 
-		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), 10);
 		TimeUtills.waitSeconds(5);
 		wait.until(ExpectedConditions
 				.presenceOfAllElementsLocatedBy(By.cssSelector("div[class='card-layout--card-wrapper']")));

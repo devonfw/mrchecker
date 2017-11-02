@@ -101,7 +101,7 @@ public class WebElementUtils {
 
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(waitForSelector));
-		BFLogger.logTime(startTime, "hoverOnElement", waitForSelector);
+		BFLogger.logTime(startTime, "hoverOnElement", waitForSelector.toString());
 		return element;
 	}
 
@@ -120,7 +120,7 @@ public class WebElementUtils {
 
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(waitForElement));
-		BFLogger.logTime(startTime, "hoverOnElement", waitForElement);
+		BFLogger.logTime(startTime, "hoverOnElement", waitForElement.toString());
 		return element;
 	}
 
@@ -150,7 +150,7 @@ public class WebElementUtils {
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), tiemout);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(elementToWaitFor));
-		BFLogger.logTime(startTime, "waitForElementVisible", elementToWaitFor);
+		BFLogger.logTime(startTime, "waitForElementVisible", elementToWaitFor.toString());
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class WebElementUtils {
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(elementToWaitFor));
-		BFLogger.logTime(startTime, "waitForElementVisible", elementToWaitFor);
+		BFLogger.logTime(startTime, "waitForElementVisible", elementToWaitFor.toString());
 		return element;
 	}
 
@@ -179,7 +179,7 @@ public class WebElementUtils {
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		Boolean elementInvisibility = wait.until(ExpectedConditions.invisibilityOfElementLocated(elementToWaitFor));
-		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor);
+		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor.toString());
 		return elementInvisibility;
 	}
 
@@ -194,7 +194,7 @@ public class WebElementUtils {
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		Boolean elementInvisibility = wait
 				.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(elementToWaitFor)));
-		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor);
+		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor.toString());
 		return elementInvisibility;
 	}
 
@@ -326,7 +326,7 @@ public class WebElementUtils {
 			leftOffset = sliderElement.getAttribute("style");
 			TimeUtills.waitMiliseconds(100);
 		}
-		BFLogger.logTime(startTime, "waitForAnimationEnd", selector);
+		BFLogger.logTime(startTime, "waitForAnimationEnd", selector.toString());
 	}
 
 	/**

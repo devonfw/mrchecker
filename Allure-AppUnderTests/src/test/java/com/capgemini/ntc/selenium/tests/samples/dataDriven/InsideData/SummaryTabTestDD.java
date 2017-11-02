@@ -1,21 +1,19 @@
 /**
  * 
  */
-package com.capgemini.ntc.selenium.tests.tests.samples.dataDriven.InsideData;
+package com.capgemini.ntc.selenium.tests.samples.dataDriven.InsideData;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.example.core.tests.core.BaseTest;
-import com.example.core.tests.testRunners.ParallelParameterized;
-import com.capgemini.ntc.selenium.tests.tests.PageTestUtils;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.capgemini.ntc.selenium.tests.PageTestUtils;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
 import junitparams.Parameters;
 

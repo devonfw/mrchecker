@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.readFromTable;
+package com.capgemini.ntc.selenium.tests.samples.readFromTable;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -12,12 +12,13 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.example.core.download.MagicGridRow;
+import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
-import com.capgemini.ntc.selenium.tests.tests.PageTestUtils;
-import com.example.core.jsoupHelper.JsoupHelper;
-import com.example.core.logger.BFLogger;
-import com.example.core.tests.core.BaseTest;
+import com.capgemini.ntc.selenium.tests.PageTestUtils;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.download.MagicGridRow;
+import com.capgemini.ntc.test.core.jsoupHelper.JsoupHelper;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class JsoupHelperTest extends BaseTest {
 
@@ -41,7 +42,7 @@ public class JsoupHelperTest extends BaseTest {
 
 	@Override
 	public void setUp() {
-		table = getDriver().findElement(selectorTableBody);
+		table = BasePage.getDriver().findElement(selectorTableBody);
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class JsoupHelperTest extends BaseTest {
 		assertOneValue(valuesNewMethod);
 		assertEquals("Incorrect text was found.", singleText, textNewMethod);
 
-		WebElement searchArea = getDriver().findElement(selectorSingleElementSearchArea);
+		WebElement searchArea = BasePage.getDriver().findElement(selectorSingleElementSearchArea);
 		startTimeMeasure();
 		valuesNewMethod = JsoupHelper.findTexts(searchArea, selectorSingleElement);
 		textNewMethod = valuesNewMethod.get(0);
@@ -70,7 +71,7 @@ public class JsoupHelperTest extends BaseTest {
 
 		BFLogger.logInfo("[OLD METHOD]");
 		startTimeMeasure();
-		List<WebElement> valuesOldMethod = getDriver().findElements(selectorSingleElement);
+		List<WebElement> valuesOldMethod = BasePage.getDriver().findElements(selectorSingleElement);
 		String textOldMethod = valuesOldMethod.get(0).getText();
 		stopTimeMeasure();
 		assertOneValue(valuesOldMethod);
@@ -82,7 +83,7 @@ public class JsoupHelperTest extends BaseTest {
 	public void findTextsReturnsMultipleValuesWhenMultipleExist() {
 		BFLogger.logInfo("[NEW METHODS]");
 		startTimeMeasure();
-		WebElement accountSelector = getDriver().findElement(selectorAccountSelector);
+		WebElement accountSelector = BasePage.getDriver().findElement(selectorAccountSelector);
 		List<String> valuesNewMethodArea = JsoupHelper.findTexts(accountSelector, selectorMultipleAccounts);
 		assertMultipleValues(valuesNewMethodArea);
 		stopTimeMeasure();
@@ -96,7 +97,7 @@ public class JsoupHelperTest extends BaseTest {
 
 		BFLogger.logInfo("[OLD METHOD]");
 		startTimeMeasure();
-		List<WebElement> elements = getDriver().findElements(selectorMultipleAccounts);
+		List<WebElement> elements = BasePage.getDriver().findElements(selectorMultipleAccounts);
 		List<String> valuesOldMethod = new ArrayList<String>();
 		for (WebElement element : elements) {
 			valuesOldMethod.add(element.getText());
@@ -122,7 +123,7 @@ public class JsoupHelperTest extends BaseTest {
 
 		BFLogger.logInfo("[OLD METHOD]");
 		startTimeMeasure();
-		List<WebElement> elements = getDriver().findElements(selectorNotExisting);
+		List<WebElement> elements = BasePage.getDriver().findElements(selectorNotExisting);
 		stopTimeMeasure();
 		assertTrue(elements.isEmpty());
 	}
@@ -183,7 +184,7 @@ public class JsoupHelperTest extends BaseTest {
 		stopTimeMeasure();
 		assertOneValue(valuesNewMethod);
 
-		WebElement searchArea = getDriver().findElement(selectorSingleElementSearchArea);
+		WebElement searchArea = BasePage.getDriver().findElement(selectorSingleElementSearchArea);
 		startTimeMeasure();
 		valuesNewMethod = JsoupHelper.findAttributes(searchArea, selectorSingleElement, attribute);
 		stopTimeMeasure();
@@ -191,7 +192,7 @@ public class JsoupHelperTest extends BaseTest {
 
 		BFLogger.logInfo("[OLD METHOD]");
 		startTimeMeasure();
-		List<WebElement> elements = getDriver().findElements(selectorSingleElement);
+		List<WebElement> elements = BasePage.getDriver().findElements(selectorSingleElement);
 		List<String> valuesOldMethod = new ArrayList<String>();
 		for (WebElement element : elements) {
 			valuesOldMethod.add(element.getAttribute(attribute));
@@ -211,7 +212,7 @@ public class JsoupHelperTest extends BaseTest {
 		stopTimeMeasure();
 		assertMultipleValues(valuesNewMethodPage);
 
-		WebElement searchArea = getDriver().findElement(selectorAccountSelector);
+		WebElement searchArea = BasePage.getDriver().findElement(selectorAccountSelector);
 		startTimeMeasure();
 		List<String> valuesNewMethodArea = JsoupHelper.findAttributes(searchArea, selectorMultipleAccounts, attribute);
 		stopTimeMeasure();
@@ -221,7 +222,7 @@ public class JsoupHelperTest extends BaseTest {
 
 		BFLogger.logInfo("[OLD METHOD]");
 		startTimeMeasure();
-		List<WebElement> elements = getDriver().findElements(selectorMultipleAccounts);
+		List<WebElement> elements = BasePage.getDriver().findElements(selectorMultipleAccounts);
 		List<String> valuesOldMethod = new ArrayList<String>();
 		for (WebElement element : elements) {
 			valuesOldMethod.add(element.getAttribute(attribute));
@@ -241,7 +242,7 @@ public class JsoupHelperTest extends BaseTest {
 		stopTimeMeasure();
 		assertOnlyNullValues(valuesNewMethodPage);
 
-		WebElement searchArea = getDriver().findElement(selectorAccountSelector);
+		WebElement searchArea = BasePage.getDriver().findElement(selectorAccountSelector);
 		startTimeMeasure();
 		List<String> valuesNewMethodArea = JsoupHelper.findAttributes(searchArea, selectorMultipleAccounts, attribute);
 		stopTimeMeasure();
@@ -250,7 +251,7 @@ public class JsoupHelperTest extends BaseTest {
 
 		BFLogger.logInfo("[OLD METHOD]");
 		startTimeMeasure();
-		List<WebElement> elements = getDriver().findElements(selectorMultipleAccounts);
+		List<WebElement> elements = BasePage.getDriver().findElements(selectorMultipleAccounts);
 		List<String> valuesOldMethod = new ArrayList<String>();
 		for (WebElement element : elements) {
 			valuesOldMethod.add(element.getAttribute(attribute));
@@ -270,7 +271,7 @@ public class JsoupHelperTest extends BaseTest {
 		List<WebElement> values = JsoupHelper.findElements(selectorPositionsTableRow, selectorStockSymbol, symbol);
 		rowsNewMethod.clear();
 		for (WebElement element : values) {
-			rowsNewMethod.add(new MagicGridRow(getDriver(), null, element, null));
+			rowsNewMethod.add(new MagicGridRow(BasePage.getDriver(), null, element, null));
 		}
 		stopTimeMeasure();
 		assertMultipleValues(rowsNewMethod);
@@ -279,7 +280,7 @@ public class JsoupHelperTest extends BaseTest {
 		values = JsoupHelper.findElements(selectorPositionsTableRow, symbol);
 		rowsNewMethod.clear();
 		for (WebElement element : values) {
-			rowsNewMethod.add(new MagicGridRow(getDriver(), null, element, null));
+			rowsNewMethod.add(new MagicGridRow(BasePage.getDriver(), null, element, null));
 		}
 		stopTimeMeasure();
 		assertMultipleValues(rowsNewMethod);
@@ -306,7 +307,7 @@ public class JsoupHelperTest extends BaseTest {
 		List<WebElement> values = JsoupHelper.findElements(selectorPositionsTableRow, selectorStockSymbol, symbol);
 		rowsNewMethod.clear();
 		for (WebElement element : values) {
-			rowsNewMethod.add(new MagicGridRow(getDriver(), null, element, null));
+			rowsNewMethod.add(new MagicGridRow(BasePage.getDriver(), null, element, null));
 		}
 		stopTimeMeasure();
 		assertOneValue(values);
@@ -315,7 +316,7 @@ public class JsoupHelperTest extends BaseTest {
 		values = JsoupHelper.findElements(selectorPositionsTableRow, selectorStockSymbol, symbol);
 		rowsNewMethod.clear();
 		for (WebElement element : values) {
-			rowsNewMethod.add(new MagicGridRow(getDriver(), null, element, null));
+			rowsNewMethod.add(new MagicGridRow(BasePage.getDriver(), null, element, null));
 		}
 		stopTimeMeasure();
 		assertOneValue(rowsNewMethod);
@@ -324,7 +325,7 @@ public class JsoupHelperTest extends BaseTest {
 		values = JsoupHelper.findElements(selectorPositionsTableRow, symbol);
 		rowsNewMethod.clear();
 		for (WebElement element : values) {
-			rowsNewMethod.add(new MagicGridRow(getDriver(), null, element, null));
+			rowsNewMethod.add(new MagicGridRow(BasePage.getDriver(), null, element, null));
 		}
 		stopTimeMeasure();
 		assertOneValue(rowsNewMethod);

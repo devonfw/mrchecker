@@ -1,16 +1,15 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.environment;
+package com.capgemini.ntc.selenium.tests.samples.environment;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.example.core.base.environments.EnvironmentServices;
-import com.example.core.base.environments.ParametersManager;
+import com.capgemini.ntc.selenium.core.enums.ServicesURLsEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
-import com.capgemini.ntc.selenium.pages.enums.NetBenefitsPageUrls;
-import com.capgemini.ntc.selenium.pages.enums.ServicesURLsEnum;
-import com.example.core.exceptions.BFInputDataException;
-import com.example.core.logger.BFLogger;
+import com.capgemini.ntc.test.core.base.environments.EnvironmentServices;
+import com.capgemini.ntc.test.core.base.environments.ParametersManager;
+import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class EnvTest {
 
@@ -18,7 +17,7 @@ public class EnvTest {
 
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
-		systemUnderTest = new EnvironmentServices();
+		systemUnderTest = EnvironmentServices.INSTANCE;
 
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
 		String expectedAddress = "https://homepage.company.com/ftgw/dpcs/dma/";
@@ -27,21 +26,21 @@ public class EnvTest {
 
 	@Test(expected = BFComponentStateException.class)
 	public void getServiceAddressShouldThrowExceptionWhenServiceNotFound() {
-		systemUnderTest = new EnvironmentServices();
+		systemUnderTest = EnvironmentServices.INSTANCE;
 
 		systemUnderTest.getServiceAddress("NOT_EXISTING_SERVICE");
 	}
 
 	@Test
 	public void setEnvironmentShouldSucceedWhenEnvironmentExist() {
-		systemUnderTest = new EnvironmentServices();
+		systemUnderTest = EnvironmentServices.INSTANCE;
 
 		systemUnderTest.set("DEV2");
 	}
 
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForSelectedEnvironment() {
-		systemUnderTest = new EnvironmentServices();
+		systemUnderTest = EnvironmentServices.INSTANCE;
 
 		String serviceName = "MY_RESEARCH_URL_VALUE";
 
@@ -63,14 +62,14 @@ public class EnvTest {
 
 	@Test(expected = BFInputDataException.class)
 	public void setEnvironmentShouldThrowExceptionWhenEnvironmentNotFound() {
-		systemUnderTest = new EnvironmentServices();
+		systemUnderTest = EnvironmentServices.INSTANCE;
 
 		systemUnderTest.set("DEV999");
 	}
 
 	@Test
 	public void ServicesURLsEnumIsReturningCorrectAddresses() {
-		systemUnderTest = ParametersManager.environment();
+		systemUnderTest = ParametersManager.INSTANCE.environment();
 
 		systemUnderTest.set("DEV1");
 		String actualAddress = ServicesURLsEnum.WWW_FONT_URL.getAddress();
@@ -84,35 +83,8 @@ public class EnvTest {
 	}
 
 	@Test
-	public void EnumsUsingServicesSubURLSShouldReturnCorrectAddress() {
-		systemUnderTest = ParametersManager.environment();
-
-		String enumAddress = NetBenefitsPageUrls.MAIN_PAGE.toString();
-		String expectedAddress = systemUnderTest.getServiceAddress("SPS_WI_URL");
-		assertEquals(expectedAddress, enumAddress);
-	}
-
-	@Test
 	public void envLogTest() {
 		BFLogger.logEnv("----- test -----");
 	}
 
-	@Test
-	public void EnumsUsingServicesSubURLSShouldReturnCorrectAddressAfterEnvChange() {
-		systemUnderTest = ParametersManager.environment();
-
-		systemUnderTest.set("DEV1");
-		String expectedAddress = systemUnderTest.getServiceAddress("SPS_WI_URL");
-		String enumAddress = NetBenefitsPageUrls.MAIN_PAGE.toString();
-		assertEquals(expectedAddress, enumAddress);
-		enumAddress = NetBenefitsPageUrls.MAIN_PAGE.subURL();
-		assertEquals(expectedAddress, enumAddress);
-
-		systemUnderTest.set("DEV2");
-		expectedAddress = systemUnderTest.getServiceAddress("SPS_WI_URL");
-		enumAddress = NetBenefitsPageUrls.MAIN_PAGE.toString();
-		assertEquals(expectedAddress, enumAddress);
-		enumAddress = NetBenefitsPageUrls.MAIN_PAGE.subURL();
-		assertEquals(expectedAddress, enumAddress);
-	}
 }
