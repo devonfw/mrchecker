@@ -6,29 +6,21 @@ package com.capgemini.ntc.test.core.base.environments;
  * @author
  *
  */
-public class ParametersManager {
-
-	static EnvironmentServices environmentServices;
-	static RuntimeParameters runtimeParameters;
+public enum ParametersManager {
+	
+	INSTANCE;
 
 	/**
 	 * @return {@link EnvironmentServices} singleton
 	 */
-	public static EnvironmentServices environment() {
-		if (environmentServices == null) {
-			environmentServices = new EnvironmentServices();
-		}
-		return environmentServices;
+	public EnvironmentServices environment() {
+		return EnvironmentServices.INSTANCE;
 	}
 
 	/**
 	 * @return {@link RuntimeParameters} singleton
 	 */
-	public static RuntimeParameters parameters() {
-		if (runtimeParameters == null) {
-			runtimeParameters = new RuntimeParameters();
-		}
-		return runtimeParameters;
+	public RuntimeParameters parameters() {
+		return RuntimeParameters.INSTANCE;
 	}
-
 }

@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
-import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
-
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,21 +13,51 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.picocontainer.Startable;
 
+import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
+import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
+import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
+import com.capgemini.ntc.test.core.base.environments.ParametersManager;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.properties.PropertiesManager;
-import static com.capgemini.ntc.test.core.base.environments.ParametersManager.parameters;
 
-public class DriverManager {
 
+public class DriverManager implements Startable {
+
+	private final static PropertiesManager propMan = new PropertiesManager();
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
+	private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
+	private static ParametersManager parametersManager;
 
+	public DriverManager(ParametersManager parametersManager) {
+		DriverManager.parametersManager = parametersManager;
+		
+	}
+	
+	@Override
+	public void start() {
+		DriverManager.getDriver();
+		
+		
+	}
+
+	@Override
+	public void stop() {
+		try {
+			closeDriver();
+			BFLogger.logDebug("Closing Driver in stop()");
+		} catch (Exception e) {
+		}
+	}
+	
+	
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
 		try {
 			closeDriver();
-			System.out.println("Closing Driver");
+			BFLogger.logDebug("Closing Driver in finalize()");
 		} catch (Exception e) {
 		}
 
@@ -51,7 +78,7 @@ public class DriverManager {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
 			try {
-				BFLogger.logDebug("Closing WebDriver for this thread. " + parameters().getBrowser());
+				BFLogger.logDebug("Closing WebDriver for this thread. " + parametersManager.parameters().getBrowser());
 				driver.quit();
 			} catch (UnreachableBrowserException e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
@@ -67,15 +94,15 @@ public class DriverManager {
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static INewWebDriver createDriver() {
-		BFLogger.logDebug("Creating new " + parameters().getBrowser() + " WebDriver.");
+		BFLogger.logDebug("Creating new " + parametersManager.parameters().getBrowser() + " WebDriver.");
 		INewWebDriver driver;
-		if (parameters().isSeleniumGrid()) {
+		if (parametersManager.parameters().isSeleniumGrid()) {
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
 		}
-		driver.manage().timeouts().implicitlyWait(parameters().getImplicityWaitTimer(), TimeUnit.SECONDS);
-		ResolutionUtils.setResolution(driver, parameters().getUsedDimension());
+		driver.manage().timeouts().implicitlyWait(parametersManager.parameters().getImplicityWaitTimer(), TimeUnit.SECONDS);
+		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
 		return driver;
 	}
@@ -95,7 +122,7 @@ public class DriverManager {
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static INewWebDriver setupBrowser() {
-		String browser = parameters().getBrowser();
+		String browser = parametersManager.parameters().getBrowser();
 		switch (browser) {
 			case "chrome":
 				return Driver.CHROME.getDriver();
@@ -184,10 +211,10 @@ public class DriverManager {
 
 			@Override
 			public INewWebDriver getDriver() {
-				final String SELENIUM_GRID_URL = parameters().getSeleniumGrid();
+				final String SELENIUM_GRID_URL = parametersManager.parameters().getSeleniumGrid();
 				BFLogger.logDebug("Connecting to the selenium grid: " + SELENIUM_GRID_URL);
 				DesiredCapabilities capabilities = new DesiredCapabilities();
-				String operatingSystem = parameters().getOs();
+				String operatingSystem = DriverManager.parametersManager.parameters().getOs();
 				// TODO add others os's
 				switch (operatingSystem) {
 					case "windows":
@@ -201,8 +228,8 @@ public class DriverManager {
 						break;
 				}
 
-				capabilities.setVersion(parameters().getBrowserVersion());
-				capabilities.setBrowserName(parameters().getBrowser());
+				capabilities.setVersion(parametersManager.parameters().getBrowserVersion());
+				capabilities.setBrowserName(parametersManager.parameters().getBrowser());
 				NewRemoteWebDriver newRemoteWebDriver = null;
 				try {
 					newRemoteWebDriver = new NewRemoteWebDriver(new URL(SELENIUM_GRID_URL), capabilities);
@@ -214,11 +241,11 @@ public class DriverManager {
 			}
 		};
 
-		private final static PropertiesManager propMan = new PropertiesManager();
-
 		public INewWebDriver getDriver() {
 			return null;
 		}
 
 	}
+
+
 }

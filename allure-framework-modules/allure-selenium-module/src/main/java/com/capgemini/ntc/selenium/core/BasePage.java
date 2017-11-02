@@ -2,26 +2,30 @@ package com.capgemini.ntc.selenium.core;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WindowUtils;
-import com.example.selenium.pages.enums.PageSubURLsEnum;
+import com.capgemini.ntc.test.core.base.environments.EnvironmentServices;
+import com.capgemini.ntc.test.core.base.environments.ParametersManager;
+import com.capgemini.ntc.test.core.base.environments.RuntimeParameters;
+import com.capgemini.ntc.test.core.logger.BFLogger;
+
+
 
 abstract public class BasePage implements IBasePage {
 
-	private static final By selectorH1TopHeading = By.cssSelector("h1.content-body--top-heading");
-	private static final By selectorH1PageTitle = By.id("h1PageTitle");
-	private static final By selectorH2TableTitle = By.cssSelector("table#table-content-text h2");
+
 
 	// in seconds; this value should be used for very shot delay purpose e.g. to
 	// wait for JavaScript take effort on element
@@ -33,17 +37,10 @@ abstract public class BasePage implements IBasePage {
 
 	public static final int MAX_COMPONENT_RELOAD_COUNT = 3;
 
-	private static String defaultPassword = "Password345!";
-
-	private static InheritableThreadLocal<String> defaultUsernames = new InheritableThreadLocal<String>() {
-
-		@Override
-		protected String initialValue() {
-			return "loginName";
-		};
-	};
-
+	private static DriverManager driverManager = null;
 	private static WebDriverWait webDriverWait;
+	
+	
 	private BasePage parent;
 
 	
@@ -91,11 +88,20 @@ abstract public class BasePage implements IBasePage {
 	}
 
 	public static INewWebDriver getDriver() {
-		return DriverManager.getDriver();
-	}
-
-	public static String getDefaultPassword() {
-		return defaultPassword;
+		if (driverManager == null) {
+			
+			pico = 
+			
+			driverManager = new DriverManager(ParametersManager.INSTANCE);
+			EnvironmentServices.INSTANCE;
+			RuntimeParameters.INSTANCE;
+			
+			
+			
+			
+		}
+		return driverManager.getDriver();
+//		return DriverManager.getDriver();
 	}
 
 	public static String getDefaultUsername() {
@@ -268,8 +274,6 @@ abstract public class BasePage implements IBasePage {
 	}
 
 	public static boolean isElementPresent(By cssSelector) {
-		boolean a = (Assert.assertTrue(true)) ? true:false;
-		
 		return !getDriver().findElements(cssSelector).isEmpty();
 	}
 
@@ -287,21 +291,6 @@ abstract public class BasePage implements IBasePage {
 			BasePage.webDriverWait = new WebDriverWait(getDriver(), BasePage.EXPLICITYWAITTIMER);
 		}
 		return BasePage.webDriverWait;
-	}
-
-	/**
-	 * @param title
-	 *            Title of the page displayed in 'h1#PageTitle' or 'h1.content-body--top-heading' elements
-	 * @return true if title is displayed
-	 * @author
-	 */
-	public static boolean isH1PageTitleDisplayed(String title) {
-		return isTitleElementDisplayed(selectorH1PageTitle, title)
-				|| isTitleElementDisplayed(selectorH1TopHeading, title);
-	}
-
-	public static boolean isH2TableTitleDisplayed(String title) {
-		return isTitleElementDisplayed(selectorH2TableTitle, title);
 	}
 
 	private static boolean isTitleElementDisplayed(By selector, String title) {
