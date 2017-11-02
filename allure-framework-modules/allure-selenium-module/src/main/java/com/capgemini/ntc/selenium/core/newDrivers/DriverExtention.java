@@ -49,7 +49,7 @@ public class DriverExtention {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, timeOut);
 		}
-		BFLogger.logTime(startTime, "findDynamicElement", by);
+		BFLogger.logTime(startTime, "findDynamicElement()", by.toString());
 		return element;
 	}
 
@@ -69,7 +69,7 @@ public class DriverExtention {
 		if (elements.isEmpty()) {
 			BFLogger.logError("Not found element : " + by.toString() + ".");
 		}
-		BFLogger.logTime(startTime, "findDynamicElements", by);
+		BFLogger.logTime(startTime, "findDynamicElements()", by.toString());
 		return elements;
 	}
 
@@ -91,7 +91,7 @@ public class DriverExtention {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, BasePage.EXPLICITYWAITTIMER);
 		}
-		BFLogger.logTime(startTime, "waitForElement", by);
+		BFLogger.logTime(startTime, "waitForElement()", by.toString());
 		return element;
 	}
 
@@ -104,7 +104,7 @@ public class DriverExtention {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, BasePage.EXPLICITYWAITTIMER);
 		}
-		BFLogger.logTime(startTime, "waitUntilElementIsClickable", by);
+		BFLogger.logTime(startTime, "waitUntilElementIsClickable()", by.toString());
 		return element;
 	}
 
@@ -118,7 +118,7 @@ public class DriverExtention {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, BasePage.EXPLICITYWAITTIMER);
 		}
-		BFLogger.logTime(startTime, "waitForElementVisible", by);
+		BFLogger.logTime(startTime, "waitForElementVisible()", by.toString());
 		return element;
 	}
 

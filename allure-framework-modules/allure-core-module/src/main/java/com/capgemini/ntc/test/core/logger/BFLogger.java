@@ -1,8 +1,5 @@
 package com.capgemini.ntc.test.core.logger;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 public class BFLogger {
 
 	private static ThreadLocal<BFLoggerInstance> loggers = new ThreadLocal<BFLoggerInstance>() {
@@ -48,14 +45,6 @@ public class BFLogger {
 	public static void logTime(long startTime, String method) {
 		double elapsedTime = (System.currentTimeMillis() - startTime) / 1000d;
 		getLog().logDebug("Waiting for [" + method + "] took [" + elapsedTime + " s]");
-	}
-
-	public static void logTime(long startTime, String method, By selector) {
-		logTime(startTime, method + ": " + selector.toString());
-	}
-
-	public static void logTime(long startTime, String method, WebElement webElement) {
-		logTime(startTime, method + ": " + webElement.toString());
 	}
 
 	public static void logTime(long startTime, String method, String argument) {
