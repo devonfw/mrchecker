@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.testRunners.core;
+package com.capgemini.ntc.test.core.testRunners.core;
 
 import static org.junit.internal.runners.rules.RuleMemberValidator.RULE_METHOD_VALIDATOR;
 

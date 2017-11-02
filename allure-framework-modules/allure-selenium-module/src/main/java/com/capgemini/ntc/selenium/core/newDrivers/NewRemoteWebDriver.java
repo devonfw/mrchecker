@@ -100,7 +100,7 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	 * @throws BFElementNotFoundException
 	 */
 	public WebElement findDynamicElement(By by, int timeOut) throws BFElementNotFoundException {
-		return driverExtention.findDynamicElement(by, timeOut);
+		return driverExtention.findElementDynamic(by, timeOut);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	 * @throws BFElementNotFoundException
 	 */
 	public WebElement findDynamicElement(By by) throws BFElementNotFoundException {
-		return driverExtention.findDynamicElement(by);
+		return driverExtention.findElementDynamic(by);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	 * @author
 	 */
 	public List<WebElement> findDynamicElements(By by, int timeOut) {
-		return driverExtention.findDynamicElements(by, timeOut);
+		return driverExtention.findElementsDynamic(by, timeOut);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	 * @author
 	 */
 	public List<WebElement> findDynamicElements(By by) {
-		return driverExtention.findDynamicElements(by);
+		return driverExtention.findElementsDynamic(by);
 	}
 
 	public WebElement waitForElement(final By selector) {

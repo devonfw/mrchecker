@@ -24,25 +24,55 @@ public class DriverExtention {
 		return driver;
 	}
 
-	public WebElement findElementQuietly(WebElement elementToSearchIn, By searchedBySelector) {
+	
+	public WebElement findElementQuietly(By by) {
+		return this.findElementQuietly(null, by);
+	}
+	
+	public WebElement findElementQuietly(WebElement elementToSearchIn, By by) {
 		WebElement element = null;
-
 		try {
 			if (null == elementToSearchIn) {
-				element = getDriver().findElement(searchedBySelector);
+				element = getDriver().findElement(by);
 			} else {
-				element = new NewRemoteWebElement(elementToSearchIn).findElement(searchedBySelector);
+				element = new NewRemoteWebElement(elementToSearchIn).findElement(by);
 			}
 		} catch (NoSuchElementException e) {
-			BFLogger.logError("Element [" + searchedBySelector.toString() + "] was not found in given element");
+			BFLogger.logError("Element [" + by.toString() + "] was not found in given element");
 		}
 		return element;
 	}
 
-	public WebElement findDynamicElement(final By by, int timeOut) throws BFElementNotFoundException {
+	public WebElement findElementDynamic(By by) throws BFElementNotFoundException {
 		long startTime = System.currentTimeMillis();
-		WebDriverWait wait = webDriverWait(timeOut);
+		return findElementDynamicBasic(by, startTime);
+	}
+
+	public WebElement findElementDynamic(final By by, int timeOut) throws BFElementNotFoundException {
+		long startTime = System.currentTimeMillis();
+		return findElementDynamicBasic(by, startTime, timeOut);
+	}
+
+	
+	public WebElement findElementDynamic(WebElement elementToSearchIn, By by) throws BFElementNotFoundException {
+		long startTime = System.currentTimeMillis();
+		WebElement element;
+		if (null == elementToSearchIn) {
+			element = this.findElementDynamic(by);
+		} else {
+			element = findElementDynamicBasic(by, startTime);
+		}
+		return element;
+	}
+	
+	private WebElement findElementDynamicBasic(By by, long startTime) throws BFElementNotFoundException {
+		int timeOut = BasePage.EXPLICITYWAITTIMER;
+		return this.findElementDynamicBasic(by, startTime, timeOut);
+	}
+
+	private WebElement findElementDynamicBasic(By by, long startTime, int timeOut) throws BFElementNotFoundException {
 		WebElement element = null;
+		WebDriverWait wait = webDriverWait(timeOut);
 		try {
 			element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
 		} catch (TimeoutException | NoSuchElementException e) {
@@ -52,12 +82,9 @@ public class DriverExtention {
 		BFLogger.logTime(startTime, "findDynamicElement()", by.toString());
 		return element;
 	}
+	
 
-	public WebElement findDynamicElement(By by) throws BFElementNotFoundException {
-		return findDynamicElement(by, BasePage.EXPLICITYWAITTIMER);
-	}
-
-	public List<WebElement> findDynamicElements(By by, int timeOut) throws BFElementNotFoundException {
+	public List<WebElement> findElementsDynamic(By by, int timeOut) throws BFElementNotFoundException {
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = webDriverWait(timeOut);
 		List<WebElement> elements = new ArrayList<WebElement>();
@@ -73,8 +100,8 @@ public class DriverExtention {
 		return elements;
 	}
 
-	public List<WebElement> findDynamicElements(By by) throws BFElementNotFoundException {
-		return findDynamicElements(by, BasePage.EXPLICITYWAITTIMER);
+	public List<WebElement> findElementsDynamic(By by) throws BFElementNotFoundException {
+		return findElementsDynamic(by, BasePage.EXPLICITYWAITTIMER);
 	}
 
 	public WebElement waitForElement(final By by) throws BFElementNotFoundException {

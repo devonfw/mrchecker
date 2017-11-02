@@ -8,15 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.Dimension;
 
-import com.example.selenium.core.BasePage;
-import com.example.selenium.core.newDrivers.DriverManager;
-import com.example.selenium.core.newDrivers.INewWebDriver;
-import com.example.selenium.core.newDrivers.NewRemoteWebElement;
-import com.example.selenium.core.utils.WindowUtils;
-import com.capgemini.ntc.test.core.enums.ResolutionEnum;
-import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 
 @RunWith(ParallelTestClassRunner.class)
@@ -27,8 +19,6 @@ public abstract class BaseTest implements IBaseTest {
 	public static String env;
 	public static boolean maintenanceMode = false;
 
-	private final static ResolutionEnum defaultResolution = ResolutionEnum.w1600;
-	private static Dimension usedDimension = new Dimension(defaultResolution.getWidth(), defaultResolution.getHeight());
 
 	@ru.yandex.qatools.allure.annotations.Parameter("Width")
 	public static int windowWidth;
@@ -45,8 +35,7 @@ public abstract class BaseTest implements IBaseTest {
 
 	@AfterClass
 	public static final void tearDownClass() {
-		BFLogger.logInfo(String.format("All clicks took %.2fs", 1.0 * NewRemoteWebElement.dropClickTimer() / 1000));
-		DriverManager.stop();
+//		DriverManager.stop();
 	}
 
 	@After
@@ -62,16 +51,6 @@ public abstract class BaseTest implements IBaseTest {
 
 	@Rule
 	public TestWatcher testWatcher = new BaseTestWatcher(this);
-
-	/* Setting and getting used dymension */
-
-	public static Dimension getUsedDimension() {
-		return usedDimension;
-	}
-
-	public static void setUsedDimension(Dimension defaultDimension) {
-		BaseTest.usedDimension = defaultDimension;
-	}
 
 	
 

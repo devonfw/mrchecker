@@ -47,6 +47,7 @@ public class DriverManager implements Startable {
 		try {
 			closeDriver();
 			BFLogger.logDebug("Closing Driver in stop()");
+			BFLogger.logInfo(String.format("All clicks took %.2fs", 1.0 * NewRemoteWebElement.dropClickTimer() / 1000));
 		} catch (Exception e) {
 		}
 	}
