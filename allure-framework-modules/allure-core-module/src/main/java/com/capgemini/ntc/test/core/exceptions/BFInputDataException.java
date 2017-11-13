@@ -24,7 +24,7 @@ public class BFInputDataException extends AssertionError {
 	}
 
 	private static String generateExceptionMessage(String message) {
-		exceptionMessage = "For user with USER [" + BasePage.getDefaultUsername() + "]: " + message;
+		exceptionMessage =  message;
 		return exceptionMessage;
 	}
 }

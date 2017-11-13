@@ -1,6 +1,5 @@
 package com.capgemini.ntc.test.core.base.environments;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -11,7 +10,7 @@ import java.util.Map;
 
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
-
+import com.google.inject.Inject;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -22,27 +21,30 @@ import org.apache.commons.csv.CSVRecord;
  * possible to change environment before run adding -DenvURL parameter. Default Environment is set to DEV1
  * 
  * @author
- *
  */
-public enum EnvironmentServices {
-	
-	INSTANCE;
-	
-	
-	
 
-	private String testResourcePath = getClass().getClassLoader().getResource("").getPath();
-
-	private final String path = testResourcePath + "/enviroments/environments.csv";
+public enum SpreadsheetEnvironmentService implements EnvironmentService {
+	
+	INSTANCE("");
+	
+	@Inject private String path;
+	
 	private int environmentNumber = 1; // = number of column in CSV file
 	private List<CSVRecord> records;
 	private Map<String, String> services;
-
-	private EnvironmentServices() {
+	
+	
+	
+	private SpreadsheetEnvironmentService(String path) {
+		setPath(path);
 		fetchEnvData();
 		updateServicesMap();
 	}
 
+	protected void setPath(String path) {
+		this.path = path;
+	}
+	
 	private void fetchEnvData() throws BFInputDataException {
 		File csvData = new File(path);
 		try {
@@ -52,7 +54,7 @@ public enum EnvironmentServices {
 			throw new BFInputDataException("Unable to parse" + path + " CSV.");
 		}
 	}
-
+	
 	private void updateServicesMap() {
 		services = new HashMap<String, String>();
 		Iterator<CSVRecord> it = records.iterator();
@@ -60,12 +62,13 @@ public enum EnvironmentServices {
 		while (it.hasNext()) {
 			CSVRecord record = it.next();
 			String key = record.get(0);
-			String value = record.get(environmentNumber).trim();
+			String value = record.get(environmentNumber)
+					.trim();
 			value = formatAddress(value);
 			services.put(key, value);
 		}
 	}
-
+	
 	private String formatAddress(String address) {
 		address = address.replaceAll("\\\\", "/");
 		if (!address.endsWith("/")) {
@@ -73,7 +76,7 @@ public enum EnvironmentServices {
 		}
 		return address;
 	}
-
+	
 	/**
 	 * Sets environment (e.g. "QC1")
 	 * 
@@ -83,7 +86,7 @@ public enum EnvironmentServices {
 		setEnvironmentNumber(environmentName);
 		updateServicesMap();
 	}
-
+	
 	private void setEnvironmentNumber(String environmentName) {
 		CSVRecord header = records.get(0);
 		for (int i = 0; i < header.size(); i++) {
@@ -96,7 +99,7 @@ public enum EnvironmentServices {
 		}
 		throw new BFInputDataException("There is no Environment with name '" + environmentName + "' available");
 	}
-
+	
 	/**
 	 * @param serviceName
 	 * @return address of service for current environment
@@ -105,9 +108,9 @@ public enum EnvironmentServices {
 		String serviceAddress = services.get(serviceName);
 		if (serviceAddress == null) {
 			throw new BFInputDataException(
-					"service " + serviceName + " " +  
-					"retrieve address of" + " " +
-					"not found in available services table");
+					"service " + serviceName + " " +
+							"retrieve address of" + " " +
+							"not found in available services table");
 		}
 		return serviceAddress;
 	}

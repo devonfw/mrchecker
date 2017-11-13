@@ -11,10 +11,10 @@ public enum ParametersManager {
 	INSTANCE;
 
 	/**
-	 * @return {@link EnvironmentServices} singleton
+	 * @return {@link SpreadsheetEnvironmentService} singleton
 	 */
-	public EnvironmentServices environment() {
-		return EnvironmentServices.INSTANCE;
+	public SpreadsheetEnvironmentService environment() {
+		return SpreadsheetEnvironmentService.INSTANCE;
 	}
 
 	/**

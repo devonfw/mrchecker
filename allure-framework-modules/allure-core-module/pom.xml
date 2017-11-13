@@ -69,7 +69,7 @@
 
     <dependencies>
 
-        
+
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
@@ -92,7 +92,7 @@
             <artifactId>commons-csv</artifactId>
         </dependency>
 
-        
+
 
         <!--This dependency is necessary for JUnit plugin. -->
         <dependency>
@@ -111,8 +111,8 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-surefire-provider</artifactId>
         </dependency>
-        
-        
+
+
         <!--This dependency is necessary for Logger. -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -122,10 +122,10 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
         </dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
 
         <!--This dependency is necessary for Allure report plugin. -->
         <dependency>
@@ -211,6 +211,12 @@
         </dependency>
 
 
+        <!--This dependency is necessary for Dependency Injection plugin. -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -267,12 +273,12 @@
 
     </dependencies>
 
-<!-- Build goals/actions -->
-	<build>
-			<plugins>
+    <!-- Build goals/actions -->
+    <build>
+        <plugins>
             <!-- Plugins are taken from parent pom.xml -->
-            </plugins>
+        </plugins>
     </build>
-		
+
 
 </project>

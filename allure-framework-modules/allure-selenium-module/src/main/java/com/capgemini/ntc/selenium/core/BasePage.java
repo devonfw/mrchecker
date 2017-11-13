@@ -3,46 +3,36 @@ package com.capgemini.ntc.selenium.core;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WindowUtils;
-import com.capgemini.ntc.test.core.base.environments.EnvironmentServices;
-import com.capgemini.ntc.test.core.base.environments.ParametersManager;
-import com.capgemini.ntc.test.core.base.environments.RuntimeParameters;
 import com.capgemini.ntc.test.core.logger.BFLogger;
-
-
+import com.google.inject.Guice;
 
 abstract public class BasePage implements IBasePage {
-
-
-
+	
 	// in seconds; this value should be used for very shot delay purpose e.g. to
 	// wait for JavaScript take effort on element
 	public static final int EXPLICITY_SHORT_WAIT_TIME = 1;
-
-	public static final int PROGRESSBARWAITTIMER = 60; 
+	
+	public static final int PROGRESSBARWAITTIMER = 60;
 	// in seconds. timer used in findDynamicElement
 	public static final int EXPLICITYWAITTIMER = 20;
-
+	
 	public static final int MAX_COMPONENT_RELOAD_COUNT = 3;
-
+	
 	private static DriverManager driverManager = null;
 	private static WebDriverWait webDriverWait;
 	
-	
 	private BasePage parent;
-
 	
 	public BasePage() {
 		this(getDriver(), null);
@@ -54,28 +44,29 @@ abstract public class BasePage implements IBasePage {
 	
 	public BasePage(INewWebDriver driver, BasePage parent) {
 		webDriverWait = new WebDriverWait(getDriver(), BasePage.EXPLICITYWAITTIMER);
-
+		
 		this.setParent(parent);
-
+		
 		// If the page is not yet loaded, then load it
 		if (!(this.isLoaded())) { // In this scenario check if
 			this.load();
 		}
-
+		
 	}
-
+	
 	public String getActualPageTitle() {
 		return getDriver().getTitle();
 	}
-
+	
 	public void refreshPage() {
-		getDriver().navigate().refresh();
+		getDriver().navigate()
+				.refresh();
 	}
-
+	
 	public static void navigateBack() {
 		navigateBack(true);
 	}
-
+	
 	/**
 	 * Navigates to previous site (works like pressing browsers 'Back' button)
 	 * 
@@ -83,47 +74,40 @@ abstract public class BasePage implements IBasePage {
 	 *            - wait for progress bars to load if true
 	 */
 	public static void navigateBack(boolean andWait) {
-		getDriver().navigate().back();
+		getDriver().navigate()
+				.back();
 		getDriver().waitForPageLoaded();
 	}
-
+	
 	public static INewWebDriver getDriver() {
 		if (driverManager == null) {
 			
-			pico = 
+			// HollywoodServiceGuice hollywoodService = Guice
+			// .createInjector(new AgentFinderModule())
+			// .getInstance(HollywoodServiceGuice.class);
 			
-			driverManager = new DriverManager(ParametersManager.INSTANCE);
-			EnvironmentServices.INSTANCE;
-			RuntimeParameters.INSTANCE;
-			
-			
-			
-			
+			driverManager = Guice.createInjector(new DriverManagerModule())
+					.getInstance(DriverManager.class);
+			// driverManager = new DriverManager(ParametersManager.INSTANCE);
+			// SpreadsheetEnvironmentService.INSTANCE;
+			// RuntimeParameters.INSTANCE;
 		}
 		return driverManager.getDriver();
-//		return DriverManager.getDriver();
+		// return DriverManager.getDriver();
 	}
-
-	public static String getDefaultUsername() {
-		return defaultUsernames.get();
-	}
-
-	public static void setDefaultUsername(String username) {
-		defaultUsernames.set(username);
-	}
-
+	
 	public static Actions getAction() {
 		return new Actions(getDriver());
 	}
-
+	
 	public void setParent(BasePage parent) {
 		this.parent = parent;
 	}
-
+	
 	public BasePage getParent() {
 		return this.parent;
 	}
-
+	
 	/**
 	 * @param selectorProgressBar
 	 * @param attribute
@@ -131,56 +115,41 @@ abstract public class BasePage implements IBasePage {
 	 * @throws WaitForProgressBarTimeoutException
 	 * @return true, if progress bar occurred and was handled
 	 */
-	/*public static boolean waitForFinishProgressBar(IProgressBar progressBar) throws BFWaitingTimeoutException {
-		long startTime = System.currentTimeMillis();
-
-		int tmp_timeout = BasePage.PROGRESSBARWAITTIMER;
-		boolean progressBarHandled = true;
-		String progressBarName = progressBar.getName();
-		BFLogger.logDebug("Waiting for " + progressBarName + " to load.");
-		try {
-			while (progressBar.isLoading()) {
-				TimeUtills.waitSeconds(1);
-				if (tmp_timeout-- <= 0) {
-					BFLogger.logDebug("Timed out after " + PROGRESSBARWAITTIMER + " seconds waiting for "
-							+ progressBarName + ".");
-					progressBarHandled = false;
-					throw new BFWaitingTimeoutException(progressBarName);
-				}
-			}
-		} catch (BFElementNotFoundException e) {
-			BFLogger.logDebug("There was no " + progressBarName + " to handle.");
-			progressBarHandled = false;
-		}
-
-		BFLogger.logTime(startTime, progressBar.getName());
-
-		return progressBarHandled;
-	}
-*/
+	/*
+	 * public static boolean waitForFinishProgressBar(IProgressBar progressBar) throws BFWaitingTimeoutException { long
+	 * startTime = System.currentTimeMillis(); int tmp_timeout = BasePage.PROGRESSBARWAITTIMER; boolean
+	 * progressBarHandled = true; String progressBarName = progressBar.getName(); BFLogger.logDebug("Waiting for " +
+	 * progressBarName + " to load."); try { while (progressBar.isLoading()) { TimeUtills.waitSeconds(1); if
+	 * (tmp_timeout-- <= 0) { BFLogger.logDebug("Timed out after " + PROGRESSBARWAITTIMER + " seconds waiting for " +
+	 * progressBarName + "."); progressBarHandled = false; throw new BFWaitingTimeoutException(progressBarName); } } }
+	 * catch (BFElementNotFoundException e) { BFLogger.logDebug("There was no " + progressBarName + " to handle.");
+	 * progressBarHandled = false; } BFLogger.logTime(startTime, progressBar.getName()); return progressBarHandled; }
+	 */
 	public abstract String pageTitle();
-
+	
 	public void loadPage(SubUrl subUrl) {
 		this.loadPage(PageSubURLsEnum.WWW_FONT_URL, subUrl);
-
+		
 	}
-
+	
 	public void loadPage(SubUrl baseURL, SubUrl subUrl) {
 		BFLogger.logDebug(getClass().getName() + ": Opening  page: " + baseURL.subURL() + subUrl.subURL());
 		getDriver().get(PageSubURLsEnum.WWW_FONT_URL.subURL() + subUrl);
 		getDriver().waitForPageLoaded();
-
+		
 	}
-
+	
 	public boolean isUrlAndPageTitleAsCurrentPage(SubUrl subUrl) {
 		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.WWW_FONT_URL, subUrl);
 	}
-
+	
 	public boolean isUrlAndPageTitleAsCurrentPage(SubUrl baseURL, SubUrl subUrl) {
 		getDriver().waitForPageLoaded();
 		String pageTitle = this.pageTitle();
-		String url = BasePage.getDriver().getCurrentUrl();
-		String currentPageTitle = BasePage.getDriver().getTitle();
+		String url = BasePage.getDriver()
+				.getCurrentUrl();
+		String currentPageTitle = BasePage.getDriver()
+				.getTitle();
 		if (!url.contains(baseURL.subURL() + subUrl.subURL()) || !pageTitle.equals(currentPageTitle)) {
 			BFLogger.logDebug(getClass().getName() + ": Current loaded page (" + url + ") with pageTitle ("
 					+ currentPageTitle + "). Page to load: (" + baseURL.subURL() + subUrl.subURL()
@@ -189,7 +158,7 @@ abstract public class BasePage implements IBasePage {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Recomended to use. It is method to check is element visible. If element not exists in DOM , method throw
 	 * PiAtElementNotFoundException
@@ -203,9 +172,10 @@ abstract public class BasePage implements IBasePage {
 		if (elements.isEmpty()) {
 			throw new BFElementNotFoundException(cssSelector);
 		}
-		return elements.get(0).isDisplayed();
+		return elements.get(0)
+				.isDisplayed();
 	}
-
+	
 	/**
 	 * It is method to check is element visible. It search element inside parent. If element not exists in DOM , method
 	 * throw PiAtElementNotFoundException
@@ -220,9 +190,10 @@ abstract public class BasePage implements IBasePage {
 		if (elements.isEmpty()) {
 			throw new BFElementNotFoundException(cssSelector);
 		}
-		return elements.get(0).isDisplayed();
+		return elements.get(0)
+				.isDisplayed();
 	}
-
+	
 	/**
 	 * Check if given selector is displayed on the page and it contain a specific text
 	 * 
@@ -237,13 +208,16 @@ abstract public class BasePage implements IBasePage {
 		if (elements.isEmpty()) {
 			throw new BFElementNotFoundException(cssSelector);
 		}
-		boolean retValue = elements.get(0).isDisplayed();
+		boolean retValue = elements.get(0)
+				.isDisplayed();
 		if (retValue && text != null) {
-			retValue = elements.get(0).getText().equals(text);
+			retValue = elements.get(0)
+					.getText()
+					.equals(text);
 		}
 		return retValue;
 	}
-
+	
 	/**
 	 * Check if given selector is displayed on the page
 	 * 
@@ -258,7 +232,7 @@ abstract public class BasePage implements IBasePage {
 			return false;
 		}
 	}
-
+	
 	/**
 	 * Check if given selector is displayed on the page
 	 * 
@@ -272,36 +246,42 @@ abstract public class BasePage implements IBasePage {
 			return false;
 		}
 	}
-
+	
 	public static boolean isElementPresent(By cssSelector) {
-		return !getDriver().findElements(cssSelector).isEmpty();
+		return !getDriver().findElements(cssSelector)
+				.isEmpty();
 	}
-
+	
 	public static boolean isLinkClickable(By selector) {
 		WebElement linkElement = getDriver().findElement(selector);
 		return isLinkClickable(linkElement);
 	}
-
+	
 	public static boolean isLinkClickable(WebElement element) {
-		return !element.getAttribute("href").equals("");
+		return !element.getAttribute("href")
+				.equals("");
 	}
-
+	
 	public static WebDriverWait getWebDriverWait() {
 		if (null == webDriverWait) {
 			BasePage.webDriverWait = new WebDriverWait(getDriver(), BasePage.EXPLICITYWAITTIMER);
 		}
 		return BasePage.webDriverWait;
 	}
-
+	
 	private static boolean isTitleElementDisplayed(By selector, String title) {
 		List<WebElement> pageTitle = getDriver().findElements(selector);
 		boolean resValue = !pageTitle.isEmpty();
 		if (resValue) {
-			resValue = pageTitle.get(0).isDisplayed() && pageTitle.get(0).getText().equals(title);
+			resValue = pageTitle.get(0)
+					.isDisplayed()
+					&& pageTitle.get(0)
+							.getText()
+							.equals(title);
 		}
 		return resValue;
 	}
-
+	
 	/**
 	 * Open link in new tab
 	 * 
@@ -312,5 +292,5 @@ abstract public class BasePage implements IBasePage {
 		js.executeScript("window.open(arguments[0], '_blank');", url);
 		WindowUtils.switchWindow(url, true);
 	}
-
+	
 }

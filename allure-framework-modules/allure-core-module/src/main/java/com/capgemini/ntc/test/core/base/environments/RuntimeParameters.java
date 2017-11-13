@@ -10,7 +10,7 @@ import java.util.Collection;
  *
  */
 public enum RuntimeParameters {
-	INSTANCE(EnvironmentServices.INSTANCE);
+	INSTANCE(SpreadsheetEnvironmentService.INSTANCE);
 
 	public static boolean maintenanceMode = false;
 	private int IMPLICITYWAITTIMER = 2; // in seconds
@@ -23,9 +23,9 @@ public enum RuntimeParameters {
 	private String maintenanceParam;
 	private Collection<Object[]> params;
 	private String authenticationType;
-	private EnvironmentServices environmentServices;
+	private SpreadsheetEnvironmentService environmentServices;
 
-	private RuntimeParameters(EnvironmentServices environmentServices) {
+	private RuntimeParameters(SpreadsheetEnvironmentService environmentServices) {
 		this.environmentServices = environmentServices;
 		init();
 	}

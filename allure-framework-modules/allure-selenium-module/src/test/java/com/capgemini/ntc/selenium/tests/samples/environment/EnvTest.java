@@ -6,18 +6,18 @@ import org.junit.Test;
 
 import com.capgemini.ntc.selenium.core.enums.ServicesURLsEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
-import com.capgemini.ntc.test.core.base.environments.EnvironmentServices;
+import com.capgemini.ntc.test.core.base.environments.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.base.environments.ParametersManager;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class EnvTest {
 
-	EnvironmentServices systemUnderTest;
+	SpreadsheetEnvironmentService systemUnderTest;
 
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
-		systemUnderTest = EnvironmentServices.INSTANCE;
+		systemUnderTest = SpreadsheetEnvironmentService.INSTANCE;
 
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
 		String expectedAddress = "https://homepage.company.com/ftgw/dpcs/dma/";
@@ -26,21 +26,21 @@ public class EnvTest {
 
 	@Test(expected = BFComponentStateException.class)
 	public void getServiceAddressShouldThrowExceptionWhenServiceNotFound() {
-		systemUnderTest = EnvironmentServices.INSTANCE;
+		systemUnderTest = SpreadsheetEnvironmentService.INSTANCE;
 
 		systemUnderTest.getServiceAddress("NOT_EXISTING_SERVICE");
 	}
 
 	@Test
 	public void setEnvironmentShouldSucceedWhenEnvironmentExist() {
-		systemUnderTest = EnvironmentServices.INSTANCE;
+		systemUnderTest = SpreadsheetEnvironmentService.INSTANCE;
 
 		systemUnderTest.set("DEV2");
 	}
 
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForSelectedEnvironment() {
-		systemUnderTest = EnvironmentServices.INSTANCE;
+		systemUnderTest = SpreadsheetEnvironmentService.INSTANCE;
 
 		String serviceName = "MY_RESEARCH_URL_VALUE";
 
@@ -62,7 +62,7 @@ public class EnvTest {
 
 	@Test(expected = BFInputDataException.class)
 	public void setEnvironmentShouldThrowExceptionWhenEnvironmentNotFound() {
-		systemUnderTest = EnvironmentServices.INSTANCE;
+		systemUnderTest = SpreadsheetEnvironmentService.INSTANCE;
 
 		systemUnderTest.set("DEV999");
 	}
