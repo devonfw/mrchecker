@@ -268,8 +268,6 @@ abstract public class BasePage implements IBasePage {
 	}
 
 	public static boolean isElementPresent(By cssSelector) {
-		boolean a = (Assert.assertTrue(true)) ? true:false;
-		
 		return !getDriver().findElements(cssSelector).isEmpty();
 	}
 
