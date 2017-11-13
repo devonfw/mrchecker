@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.dataDriven.InsideData;
+package com.capgemini.ntc.selenium.tests.samples.dataDriven.InsideData;
 
 public class CardList {
 

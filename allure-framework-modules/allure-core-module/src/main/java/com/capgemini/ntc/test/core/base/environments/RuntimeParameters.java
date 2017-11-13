@@ -1,10 +1,7 @@
 package com.capgemini.ntc.test.core.base.environments;
 
-import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.Collection;
-
-import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 
 /**
  * This class stores various system properties
@@ -12,11 +9,11 @@ import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
  * @author
  *
  */
-public class RuntimeParameters {
+public enum RuntimeParameters {
+	INSTANCE(EnvironmentServices.INSTANCE);
 
 	public static boolean maintenanceMode = false;
 	private int IMPLICITYWAITTIMER = 2; // in seconds
-	private final ResolutionEnum defaultResolution = ResolutionEnum.w1600;
 
 	private String env;
 	private String browser;
@@ -26,8 +23,10 @@ public class RuntimeParameters {
 	private String maintenanceParam;
 	private Collection<Object[]> params;
 	private String authenticationType;
+	private EnvironmentServices environmentServices;
 
-	protected RuntimeParameters() {
+	private RuntimeParameters(EnvironmentServices environmentServices) {
+		this.environmentServices = environmentServices;
 		init();
 	}
 
@@ -99,14 +98,6 @@ public class RuntimeParameters {
 		return authenticationType;
 	}
 
-	/**
-	 * 
-	 * @return default dimension
-	 */
-	public Dimension getUsedDimension() {
-		return new Dimension(defaultResolution.getWidth(), defaultResolution.getHeight());
-	}
-
 	private void init() {
 		getParameters();
 		setDefaults();
@@ -157,7 +148,7 @@ public class RuntimeParameters {
 			authenticationType = "SSO";
 		}
 
-		ParametersManager.environment().set(env);
+		environmentServices.set(env);
 	}
 
 	private void createParamsCollection() {

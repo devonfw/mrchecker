@@ -24,7 +24,12 @@ import org.apache.commons.csv.CSVRecord;
  * @author
  *
  */
-public class EnvironmentServices {
+public enum EnvironmentServices {
+	
+	INSTANCE;
+	
+	
+	
 
 	private String testResourcePath = getClass().getClassLoader().getResource("").getPath();
 
@@ -33,7 +38,7 @@ public class EnvironmentServices {
 	private List<CSVRecord> records;
 	private Map<String, String> services;
 
-	public EnvironmentServices() {
+	private EnvironmentServices() {
 		fetchEnvData();
 		updateServicesMap();
 	}

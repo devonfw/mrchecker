@@ -69,11 +69,7 @@
 
     <dependencies>
 
-        <!--This dependency is necessary for JUnit plugin. -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-        </dependency>
+        
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
@@ -96,16 +92,7 @@
             <artifactId>commons-csv</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.2</version>
-        </dependency>
+        
 
         <!--This dependency is necessary for JUnit plugin. -->
         <dependency>
@@ -120,6 +107,25 @@
             <groupId>pl.pragmatists</groupId>
             <artifactId>JUnitParams</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+        </dependency>
+        
+        
+        <!--This dependency is necessary for Logger. -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 
         <!--This dependency is necessary for Allure report plugin. -->
         <dependency>

@@ -9,12 +9,6 @@ import com.capgemini.ntc.test.core.base.environments.ParametersManager;
 
 public class ResolutionUtils {
 
-	/**
-	 * Sets resolution to default
-	 */
-	protected static void setResolutionDefault(INewWebDriver driver) {
-		ResolutionUtils.setResolution(driver, ParametersManager.parameters().getUsedDimension());
-	}
 
 	/**
 	 * Changes resolution of browser to width specified by parameter and height of 900

@@ -1,5 +1,6 @@
-package com.capgemini.ntc.test.core.tests.testRunners.core;
+package com.capgemini.ntc.test.core.testRunners.core;
 
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import org.junit.runners.model.MultipleFailureException;
 import org.junit.runners.model.Statement;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.example.selenium.core.newDrivers.DriverManager;
 
 /**
  * This class replace default RunAfters class. The difference is, that using this one, we avoid having additional tests

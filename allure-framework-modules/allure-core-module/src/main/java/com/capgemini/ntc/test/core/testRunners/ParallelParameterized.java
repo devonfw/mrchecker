@@ -1,6 +1,7 @@
-package com.capgemini.ntc.test.core.tests.testRunners;
+package com.capgemini.ntc.test.core.testRunners;
 
 import java.util.List;
+
 
 import org.junit.runner.Description;
 import org.junit.runner.manipulation.Filter;
@@ -12,7 +13,7 @@ import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.test.core.tests.testRunners.core.ParametrizedTestMethodsFilter;
+import com.capgemini.ntc.test.core.testRunners.core.ParametrizedTestMethodsFilter;
 
 import junitparams.internal.ParameterisedTestClassRunner;
 

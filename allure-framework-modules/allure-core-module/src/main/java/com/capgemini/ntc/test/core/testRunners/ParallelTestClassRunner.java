@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.testRunners;
+package com.capgemini.ntc.test.core.testRunners;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.test.core.tests.testRunners.core.CustomRunAfters;
-import com.example.selenium.core.newDrivers.DriverManager;
+import com.capgemini.ntc.test.core.testRunners.core.CustomRunAfters;
+
 
 /**
  * Use this runner to run Selenium tests in parallel, with separate driver for each thread.

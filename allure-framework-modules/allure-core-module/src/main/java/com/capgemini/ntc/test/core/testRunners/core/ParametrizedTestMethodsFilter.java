@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.testRunners.core;
+package com.capgemini.ntc.test.core.testRunners.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.runner.manipulation.Filter;
 import org.junit.runners.model.FrameworkMethod;
 
-import com.capgemini.ntc.test.core.tests.testRunners.ParallelParameterized;
+import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
 public class ParametrizedTestMethodsFilter {
 	private final ParallelParameterized jUnitParamsRunner;
