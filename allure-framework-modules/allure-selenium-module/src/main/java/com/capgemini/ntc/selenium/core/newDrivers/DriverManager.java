@@ -34,7 +34,7 @@ public class DriverManager implements Startable {
 	@Inject
 	public DriverManager(EnvironmentService environmentService) {
 		DriverManager.parametersManager = ParametersManager.INSTANCE;
-		
+		this.start();
 	}
 	
 	@Override

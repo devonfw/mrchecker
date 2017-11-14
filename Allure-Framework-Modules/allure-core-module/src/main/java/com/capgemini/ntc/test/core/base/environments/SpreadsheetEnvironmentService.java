@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.capgemini.ntc.test.core.base.environments.EnumSingleton.SingletonBuilder;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
@@ -25,25 +26,46 @@ import org.apache.commons.csv.CSVRecord;
 
 public enum SpreadsheetEnvironmentService implements EnvironmentService {
 	
-	INSTANCE("");
+	INSTANCE;
 	
-	@Inject private String path;
+	private String path;
 	
 	private int environmentNumber = 1; // = number of column in CSV file
 	private List<CSVRecord> records;
 	private Map<String, String> services;
 	
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 	
-	
-	private SpreadsheetEnvironmentService(String path) {
+	private void build(SingletonBuilder builder) {
+		this.path = builder.path;
 		setPath(path);
 		fetchEnvData();
 		updateServicesMap();
 	}
-
-	protected void setPath(String path) {
-		this.path = path;
+	
+	
+	public static class SingletonBuilder {
+		
+		private final String path; // Mandatory
+		
+		
+		private SingletonBuilder() {
+			this.path = null;
+		}
+		
+		SingletonBuilder(String path) {
+			this.path = path;
+		}
+		
+		public void build() {
+			SpreadsheetEnvironmentService.INSTANCE.build(this);
+		}
+		
 	}
+	
 	
 	private void fetchEnvData() throws BFInputDataException {
 		File csvData = new File(path);

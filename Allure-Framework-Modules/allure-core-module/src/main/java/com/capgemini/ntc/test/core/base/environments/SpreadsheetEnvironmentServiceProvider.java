@@ -6,14 +6,12 @@ import com.google.inject.Provider;
 public class SpreadsheetEnvironmentServiceProvider implements Provider<EnvironmentService> {
 	
 	public SpreadsheetEnvironmentService get() {
-		SpreadsheetEnvironmentService environmentService = SpreadsheetEnvironmentService.INSTANCE;
-		
 		String path = getClass().getClassLoader()
 				.getResource("")
 				.getPath() + "/enviroments/environments.csv";
 		
-		environmentService.setPath(path);
+		new SpreadsheetEnvironmentService.SingletonBuilder(path).build();
 		BFLogger.logDebug("Reading environment file: " + path);
-		return environmentService;
+		return SpreadsheetEnvironmentService.INSTANCE;
 	}
 }
