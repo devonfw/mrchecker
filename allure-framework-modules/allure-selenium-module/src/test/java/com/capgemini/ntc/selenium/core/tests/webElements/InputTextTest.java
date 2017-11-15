@@ -1,22 +1,19 @@
 package com.capgemini.ntc.selenium.core.tests.webElements;
 
-import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
-import com.example.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.core.testsuites.testType.TestsSelenium;
-import com.capgemini.ntc.test.core.tests.core.BaseTest;
-
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.openqa.selenium.By;
-
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
+import com.capgemini.ntc.test.core.BaseTest;
 
 /**
  * Created by LKURZAJ on 03.03.2017.
  */
-@Category(TestsSelenium.class)
 public class InputTextTest extends BaseTest {
 
     private static By firstNameInputText = By.cssSelector("input[id='name_3_firstname']");

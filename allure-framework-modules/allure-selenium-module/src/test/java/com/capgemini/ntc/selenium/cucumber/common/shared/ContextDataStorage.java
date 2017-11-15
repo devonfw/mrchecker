@@ -1,4 +1,4 @@
-package com.example.selenium.tests.cucumber.common.shared;
+package com.capgemini.ntc.selenium.cucumber.common.shared;
 
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import org.springframework.stereotype.Component;

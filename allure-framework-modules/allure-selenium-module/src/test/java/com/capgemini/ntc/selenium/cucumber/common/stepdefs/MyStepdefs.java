@@ -1,4 +1,4 @@
-package com.example.selenium.tests.cucumber.common.stepdefs;
+package com.capgemini.ntc.selenium.cucumber.common.stepdefs;
 
 import cucumber.api.java8.En;
 

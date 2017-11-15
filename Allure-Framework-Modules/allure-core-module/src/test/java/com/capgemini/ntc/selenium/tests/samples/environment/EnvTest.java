@@ -5,21 +5,28 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.capgemini.ntc.selenium.core.enums.ServicesURLsEnum;
-import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
+import com.capgemini.ntc.test.core.base.environments.Env;
+import com.capgemini.ntc.test.core.base.environments.EnvironmentService;
+import com.capgemini.ntc.test.core.base.environments.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.base.environments.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class EnvTest {
 	
-	SpreadsheetEnvironmentService systemUnderTest;
+	EnvironmentService systemUnderTest;
 	
 	@Before
 	public void setup() {
-		String path = "C:\\Repo\\devonfw-testing\\Allure-Framework-Modules\\allure-selenium-module\\src\\resources\\enviroments\\environments.csv";
-		new SpreadsheetEnvironmentService.SingletonBuilder(path).build();
-		systemUnderTest = SpreadsheetEnvironmentService.INSTANCE;
+		systemUnderTest = new Env.SingletonBuilder().build();
+		
+		
+		
+		//  OR this type to initialize //
+//		String path = "C:\\Repo\\devonfw-testing\\Allure-Framework-Modules\\allure-selenium-module\\src\\resources\\enviroments\\environments.csv";
+//		EnvironmentService envInstance = new SpreadsheetEnvironmentService.SingletonBuilder(path).build();
+//		systemUnderTest = new Env.SingletonBuilder(envInstance).build();
+//		
 	}
 	
 	@Test
@@ -29,7 +36,7 @@ public class EnvTest {
 		assertEquals(expectedAddress, actualAddress);
 	}
 	
-	@Test(expected = BFComponentStateException.class)
+	@Test(expected = BFInputDataException.class)
 	public void getServiceAddressShouldThrowExceptionWhenServiceNotFound() {
 		
 		systemUnderTest.getServiceAddress("NOT_EXISTING_SERVICE");
@@ -72,12 +79,12 @@ public class EnvTest {
 	public void ServicesURLsEnumIsReturningCorrectAddresses() {
 		
 		systemUnderTest.set("DEV1");
-		String actualAddress = ServicesURLsEnum.WWW_FONT_URL.getAddress();
+		String actualAddress = GetEnvironmentParam.WWW_FONT_URL.getAddress();
 		String expectedAddress = "https://myresearchqa1.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
 		systemUnderTest.set("DEV2");
-		actualAddress = ServicesURLsEnum.WWW_FONT_URL.getAddress();
+		actualAddress = GetEnvironmentParam.WWW_FONT_URL.getAddress();
 		expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 	}

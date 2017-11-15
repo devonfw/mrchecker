@@ -1,21 +1,18 @@
 package com.capgemini.ntc.selenium.core.tests.webElements;
 
-import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.core.newDrivers.elementType.TooltipElement;
-import com.example.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.core.testsuites.testType.TestsSelenium;
-import com.capgemini.ntc.test.core.tests.core.BaseTest;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 
-import static org.junit.Assert.assertTrue;
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.TooltipElement;
+import com.capgemini.ntc.test.core.BaseTest;
 
 /**
  * Created by LKURZAJ on 08.03.2017.
  */
-@Category(TestsSelenium.class)
 public class TooltipTest extends BaseTest {
 
     private final static By tooltipSelector = By.cssSelector("div.ui-tooltip");

@@ -1,19 +1,14 @@
-package com.example.selenium.tests.cucumber.common.stepdefs;
+package com.capgemini.ntc.selenium.cucumber.common.stepdefs;
 
 
-import com.example.selenium.pages.enums.PageTitlesEnum;
-import com.example.selenium.pages.features.registration.Hobby;
-import com.example.selenium.pages.features.registration.MaritalStatus;
-import com.example.selenium.pages.features.registration.RegistrationPage;
-import com.example.selenium.tests.cucumber.common.shared.ContextDataStorage;
-import com.capgemini.ntc.test.core.tests.TestUtils;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import com.capgemini.ntc.test.core.unit.TestUtils;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by LKURZAJ on 10.03.2017.

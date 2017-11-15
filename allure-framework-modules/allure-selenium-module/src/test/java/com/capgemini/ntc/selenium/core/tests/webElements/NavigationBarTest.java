@@ -1,22 +1,20 @@
 package com.capgemini.ntc.selenium.core.tests.webElements;
 
-import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.core.newDrivers.elementType.NavigationBarElement;
-import com.example.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.core.testsuites.testType.TestsSelenium;
-import com.capgemini.ntc.test.core.tests.core.BaseTest;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.openqa.selenium.By;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.NavigationBarElement;
+import com.capgemini.ntc.test.core.BaseTest;
 
 /**
  * Created by LKURZAJ on 07.03.2017.
  */
-@Category(TestsSelenium.class)
 public class NavigationBarTest extends BaseTest {
 
     private final static By navigationBarSelector = By.cssSelector("ol#breadcrumbs");

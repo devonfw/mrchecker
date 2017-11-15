@@ -1,26 +1,26 @@
 package com.capgemini.ntc.selenium.core.enums;
 
-
+import com.capgemini.ntc.test.core.base.environments.GetEnvironmentParam;
 
 public enum PageSubURLsEnum implements SubUrl {
 
 	WWW_FONT_URL {
 		@Override
 		public String subURL() {
-			return ServicesURLsEnum.WWW_FONT_URL.getAddress();
+			return GetEnvironmentParam.WWW_FONT_URL.getAddress();
 		}
 	},
 	TOOLS_QA {
 		@Override
 		public String subURL() {
-			return ServicesURLsEnum.TOOLS_QA.getAddress();
+			return GetEnvironmentParam.TOOLS_QA.getAddress();
 		}
 	},
 	
 	WEB_SERVICE {
 		@Override
 		public String subURL() {
-			return ServicesURLsEnum.WEB_SERVICE.getAddress();
+			return GetEnvironmentParam.WEB_SERVICE.getAddress();
 		}
 	},
 	

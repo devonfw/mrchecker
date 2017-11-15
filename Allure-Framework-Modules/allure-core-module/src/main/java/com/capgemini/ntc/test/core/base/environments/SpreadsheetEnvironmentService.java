@@ -37,11 +37,12 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		this.path = path;
 	}
 	
-	private void build(SingletonBuilder builder) {
+	private EnvironmentService build(SingletonBuilder builder) {
 		this.path = builder.path;
 		setPath(path);
 		fetchEnvData();
 		updateServicesMap();
+		return INSTANCE;
 	}
 	
 	
@@ -58,11 +59,38 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 			this.path = path;
 		}
 		
-		public void build() {
-			SpreadsheetEnvironmentService.INSTANCE.build(this);
+		public EnvironmentService build() {
+			return SpreadsheetEnvironmentService.INSTANCE.build(this);
 		}
 		
 	}
+	
+	/**
+	 * Sets environment (e.g. "QC1")
+	 * 
+	 * @param environmentName
+	 */
+	public void set(String environmentName) {
+		setEnvironmentNumber(environmentName);
+		updateServicesMap();
+	}
+	
+	
+	/**
+	 * @param serviceName
+	 * @return address of service for current environment
+	 */
+	public String getServiceAddress(String serviceName) {
+		String serviceAddress = services.get(serviceName);
+		if (serviceAddress == null) {
+			throw new BFInputDataException(
+					"service " + serviceName + " " +
+							"retrieve address of" + " " +
+							"not found in available services table");
+		}
+		return serviceAddress;
+	}
+	
 	
 	
 	private void fetchEnvData() throws BFInputDataException {
@@ -97,15 +125,7 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		return address;
 	}
 	
-	/**
-	 * Sets environment (e.g. "QC1")
-	 * 
-	 * @param environmentName
-	 */
-	public void set(String environmentName) {
-		setEnvironmentNumber(environmentName);
-		updateServicesMap();
-	}
+
 	
 	private void setEnvironmentNumber(String environmentName) {
 		CSVRecord header = records.get(0);
@@ -120,18 +140,5 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		throw new BFInputDataException("There is no Environment with name '" + environmentName + "' available");
 	}
 	
-	/**
-	 * @param serviceName
-	 * @return address of service for current environment
-	 */
-	public String getServiceAddress(String serviceName) {
-		String serviceAddress = services.get(serviceName);
-		if (serviceAddress == null) {
-			throw new BFInputDataException(
-					"service " + serviceName + " " +
-							"retrieve address of" + " " +
-							"not found in available services table");
-		}
-		return serviceAddress;
-	}
+
 }

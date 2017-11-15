@@ -1,25 +1,22 @@
 package com.capgemini.ntc.selenium.core.tests.webElements;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
-import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement;
-import com.example.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.core.testsuites.testType.TestsSelenium;
-import com.capgemini.ntc.test.core.tests.core.BaseTest;
-
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement;
+import com.capgemini.ntc.test.core.BaseTest;
 
 /**
  * Created by LKURZAJ on 28.02.2017.
  */
-@Category(TestsSelenium.class)
 public class RadioButtonTest extends BaseTest{
 
     private RadioButtonElement maritalStatusRadioButton;
