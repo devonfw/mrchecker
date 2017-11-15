@@ -82,10 +82,6 @@ abstract public class BasePage implements IBasePage {
 	public static INewWebDriver getDriver() {
 		if (driverManager == null) {
 			
-			// HollywoodServiceGuice hollywoodService = Guice
-			// .createInjector(new AgentFinderModule())
-			// .getInstance(HollywoodServiceGuice.class);
-			
 			driverManager = Guice.createInjector(new DriverManagerModule())
 					.getInstance(DriverManager.class);
 			// driverManager = new DriverManager(ParametersManager.INSTANCE);

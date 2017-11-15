@@ -40,8 +40,6 @@ public class DriverManager implements Startable {
 	@Override
 	public void start() {
 		DriverManager.getDriver();
-		
-		
 	}
 
 	@Override

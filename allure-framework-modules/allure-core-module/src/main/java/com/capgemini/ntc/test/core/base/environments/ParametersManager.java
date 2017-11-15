@@ -15,8 +15,8 @@ public enum ParametersManager {
 	/**
 	 * @return {@link RuntimeParameters} singleton
 	 */
-	public RuntimeParameters parameters() {
-		return RuntimeParameters.INSTANCE;
+	public SystemRuntimeParameters parameters() {
+		return SystemRuntimeParameters.INSTANCE;
 	}
 
 	/**

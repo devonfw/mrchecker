@@ -8,14 +8,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.capgemini.ntc.test.core.base.environments.EnumSingleton.SingletonBuilder;
-import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
-import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.google.inject.Inject;
-
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+
+import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 /**
  * This class is responsible for handling addresses of services. Addresses depends on currently set Environment. It is
@@ -56,7 +54,7 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 			this.path = null;
 		}
 		
-		SingletonBuilder(String path) {
+		public SingletonBuilder(String path) {
 			this.path = path;
 		}
 		
