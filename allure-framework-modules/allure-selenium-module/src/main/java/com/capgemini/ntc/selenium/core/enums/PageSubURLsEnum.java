@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.core.enums;
 
-import com.capgemini.ntc.test.core.base.environments.GetEnvironmentParam;
+import com.capgemini.ntc.test.core.base.environment.GetEnvironmentParam;
 
 public enum PageSubURLsEnum implements SubUrl {
 

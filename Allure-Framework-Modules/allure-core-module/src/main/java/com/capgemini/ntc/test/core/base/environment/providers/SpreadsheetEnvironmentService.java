@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.base.environments;
+package com.capgemini.ntc.test.core.base.environment.providers;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -22,47 +23,47 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * @author
  */
 
-public enum SpreadsheetEnvironmentService implements EnvironmentService {
+public class SpreadsheetEnvironmentService implements EnvironmentService {
 	
-	INSTANCE;
+	private static EnvironmentService instance;
 	
 	private String path;
-	
-	private int environmentNumber; 
+	private int environmentNumber;
 	private List<CSVRecord> records;
 	private Map<String, String> services;
 	
-	public void setPath(String path) {
+	private SpreadsheetEnvironmentService(String path) {
 		this.path = path;
-	}
-	
-	private EnvironmentService build(SingletonBuilder builder) {
-		this.path = builder.path;
 		this.environmentNumber = 1; // column number taken as a default
-		setPath(path);
 		fetchEnvData();
 		updateServicesMap();
-		return INSTANCE;
 	}
 	
-	public static class SingletonBuilder {
-		
-		private final String path; // Mandatory
-		
-		public SingletonBuilder() {
-			this.path = getClass().getResource("")
-					.getPath() + "/environments/environments.csv";
-		}
-		
-		public SingletonBuilder(String path) {
-			this.path = path;
-		}
-		
-		public EnvironmentService build() {
-			return SpreadsheetEnvironmentService.INSTANCE.build(this);
-		}
-		
+	public static EnvironmentService init() {
+		String path = SpreadsheetEnvironmentService.class.getResource("")
+				.getPath() + "/environments/environments.csv";
+		return init(path);
 	}
+	
+	public static EnvironmentService init(String path) {
+		if (instance == null) {
+			synchronized (SpreadsheetEnvironmentService.class) {
+				if (instance == null) {
+					instance = new SpreadsheetEnvironmentService(path);
+				}
+			}
+		}
+		return instance;
+	}
+	
+	public static EnvironmentService getInstance() {
+		return SpreadsheetEnvironmentService.instance;
+	}
+	
+	public static void delInstance() {
+		SpreadsheetEnvironmentService.instance = null;
+	}
+	
 	
 	/**
 	 * Sets environment (e.g. "QC1")

@@ -9,8 +9,8 @@ import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 
-import com.capgemini.ntc.test.core.base.environments.Env;
-import com.capgemini.ntc.test.core.base.environments.EnvironmentService;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentMain;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 
 @RunWith(ParallelTestClassRunner.class)
@@ -31,7 +31,7 @@ public abstract class BaseTest implements IBaseTest {
 	public BaseTest() {
 		
 		//Environment variables either from environmnets.csv or any other input data. 
-		environmentService = new Env.SingletonBuilder().build();
+		environmentService = new EnvironmentMain.SingletonBuilder().build();
 		
 	}
 

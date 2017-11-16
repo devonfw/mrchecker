@@ -1,21 +1,27 @@
-package com.capgemini.ntc.test.core.base.environments;
+package com.capgemini.ntc.test.core.base.environment;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.google.inject.Inject;
 
-public enum Env {
+public enum EnvironmentMain {
 	
 	INSTANCE;
 	
+	/*HOW TO USE Dependency Injection: 
+	EnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
+			.getInstance(EnvironmentMain.class)
+			.getEnvironmentService();*/
+	
+	
 	private EnvironmentService environmentService;
 	
-	
-
 	public EnvironmentService getEnvironmentService() {
 		return environmentService;
 	}
 	
 	private EnvironmentService build(SingletonBuilder builder) {
 		this.environmentService = builder.environmentService;
+		BFLogger.logDebug("Reading environment from: " + environmentService.dataSource());
 		return environmentService;
 	}
 	
@@ -23,20 +29,16 @@ public enum Env {
 		
 		private final EnvironmentService environmentService; // Mandatory
 		
-		public SingletonBuilder() {
-			this.environmentService = new SpreadsheetEnvironmentServiceProvider().get();
-		}
-		
+		@Inject
 		public SingletonBuilder(EnvironmentService environmentService) {
 			this.environmentService = environmentService;
-			
 		}
 		
+		@Inject
 		public EnvironmentService build() {
 			BFLogger.logDebug("Reading environment from: " + environmentService.dataSource());
-			return Env.INSTANCE.build(this);
+			return EnvironmentMain.INSTANCE.build(this);
 		}
 		
 	}
-	
 }
