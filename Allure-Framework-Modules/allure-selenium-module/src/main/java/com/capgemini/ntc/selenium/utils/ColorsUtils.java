@@ -1,7 +1,8 @@
-package com.capgemini.ntc.test.core.utils;
+package com.capgemini.ntc.selenium.utils;
+
+import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.test.core.enums.ColorsEnum;
-import org.openqa.selenium.WebElement;
 
 public class ColorsUtils {
 

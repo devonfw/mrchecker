@@ -9,7 +9,7 @@ public enum GetEnvironmentParam {
 	WEB_SERVICE;
 
 	public String getAddress() {
-		return DriverManager.getEnvironmentService().getServiceAddress(this.name());
+		return Env.INSTANCE.getEnvironmentService().getServiceAddress(this.name());
 	}
 	
 	

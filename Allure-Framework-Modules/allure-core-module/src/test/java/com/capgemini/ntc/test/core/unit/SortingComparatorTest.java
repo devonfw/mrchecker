@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.utils;
+package com.capgemini.ntc.test.core.unit;
 
 import java.util.Arrays;
 

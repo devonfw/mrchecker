@@ -1,7 +1,6 @@
 package com.capgemini.ntc.test.core.exceptions;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.example.selenium.core.BasePage;
 
 public class BFInputDataException extends AssertionError {
 

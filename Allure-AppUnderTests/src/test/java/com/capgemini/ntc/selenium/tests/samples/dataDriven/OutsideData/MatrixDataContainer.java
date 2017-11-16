@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.utils;
+package com.capgemini.ntc.selenium.tests.samples.dataDriven.OutsideData;
 
 /**
  * @author Entity class for "matrix_official.json" data. As of 10/22/2015, mentioned JSON contains (a lot) more fields

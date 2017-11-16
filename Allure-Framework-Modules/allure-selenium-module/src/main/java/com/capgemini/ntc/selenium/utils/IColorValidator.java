@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.utils;
+package com.capgemini.ntc.selenium.utils;
 
 public interface IColorValidator<T> {
 

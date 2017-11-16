@@ -14,7 +14,6 @@ import com.capgemini.ntc.selenium.tests.PageTestUtils;
 import com.capgemini.ntc.selenium.tests.samples.dataDriven.InsideData.CardList;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
-import com.capgemini.ntc.test.core.utils.MatrixDataContainer;
 
 import junitparams.Parameters;
 

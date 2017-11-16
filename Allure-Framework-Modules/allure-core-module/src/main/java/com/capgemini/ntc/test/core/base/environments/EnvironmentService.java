@@ -1,5 +1,9 @@
 package com.capgemini.ntc.test.core.base.environments;
 
+/**
+ * @author LUSTEFAN
+ *
+ */
 public interface EnvironmentService {
 	
 	
@@ -18,5 +22,11 @@ public interface EnvironmentService {
 	 * @return address of service for current environment from data source
 	 */
 	public String getServiceAddress(String serviceName);
+
+	
+	/**
+	 * @return source from Environment variables are taken. This could be file path 
+	 */
+	public String dataSource();
 	
 }

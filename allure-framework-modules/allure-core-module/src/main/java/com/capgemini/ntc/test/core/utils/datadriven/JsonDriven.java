@@ -4,13 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
+
+import gherkin.deps.com.google.gson.GsonBuilder;
+import gherkin.deps.com.google.gson.JsonArray;
+import gherkin.deps.com.google.gson.JsonParser;
+
+
+
 
 /**
  * @author is an utility to handle JSON deserialization boilerplate for JParamRunner data driven cases. It has no state,
- *         therefore is not instantiable nor extendable.
+ *         therefore is not instantiable nor extendible.
  */
 public final class JsonDriven {
 

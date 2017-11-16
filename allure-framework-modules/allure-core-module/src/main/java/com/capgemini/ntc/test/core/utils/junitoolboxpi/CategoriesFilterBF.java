@@ -1,10 +1,13 @@
-package com.capgemini.ntc.test.core.tests.utils.junitoolboxpi;
+package com.capgemini.ntc.test.core.utils.junitoolboxpi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.junit.experimental.categories.Categories.IncludeCategory;
-import org.junit.experimental.categories.*;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.Description;
 import org.junit.runner.manipulation.Filter;
 

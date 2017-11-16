@@ -1,17 +1,16 @@
 package com.capgemini.ntc.test.core.base.environments;
 
+import java.nio.file.Paths;
+
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Provider;
 
 public class SpreadsheetEnvironmentServiceProvider implements Provider<EnvironmentService> {
 	
 	public SpreadsheetEnvironmentService get() {
-		String path = "C:\\Repo\\devonfw-testing\\Allure-Framework-Modules\\allure-selenium-module\\src\\resources\\enviroments\\environments.csv";
+		String path = System.getProperty("user.dir") + Paths.get("/resources/enviroments/environments.csv");
 		
-		// String path = getClass().getClassLoader()
-		// .getPath() + "/enviroments/environments.csv";
-		
-		BFLogger.logDebug("Reading environment file: " + path);
+//		String path = getClass().getClassLoader().getResource("").getPath() + "/enviroments/environments.csv";
 		new SpreadsheetEnvironmentService.SingletonBuilder(path).build();
 		return SpreadsheetEnvironmentService.INSTANCE;
 	}

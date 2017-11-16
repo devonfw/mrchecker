@@ -1,14 +1,26 @@
-package com.capgemini.ntc.test.core.tests.utils.junitoolboxpi;
+package com.capgemini.ntc.test.core.utils.junitoolboxpi;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.*;
-import org.junit.runner.manipulation.*;
+import org.apache.commons.io.filefilter.AbstractFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.junit.runner.manipulation.Filter;
+import org.junit.runner.manipulation.NoTestsRemainException;
 import org.junit.runners.Suite;
-import org.junit.runners.model.*;
+import org.junit.runners.model.InitializationError;
+import org.junit.runners.model.RunnerBuilder;
 
 public class WildcardPatternSuiteBF extends Suite {
 	private static String javaPackageToSearch = null;

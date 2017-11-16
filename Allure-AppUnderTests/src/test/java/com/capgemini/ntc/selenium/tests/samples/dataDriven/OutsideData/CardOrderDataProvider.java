@@ -1,7 +1,6 @@
 package com.capgemini.ntc.selenium.tests.samples.dataDriven.OutsideData;
 
 import com.capgemini.ntc.selenium.core.utils.TestUtils;
-import com.capgemini.ntc.test.core.utils.MatrixDataContainer;
 import com.capgemini.ntc.test.core.utils.datadriven.JsonDriven;
 
 public class CardOrderDataProvider {

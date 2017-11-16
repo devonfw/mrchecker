@@ -2,6 +2,8 @@ package com.capgemini.ntc.selenium.tests.samples.environment;
 
 import static org.junit.Assert.assertEquals;
 
+import java.nio.file.Paths;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,21 +20,19 @@ public class EnvTest {
 	
 	@Before
 	public void setup() {
-		systemUnderTest = new Env.SingletonBuilder().build();
-		
-		
+//		systemUnderTest = new Env.SingletonBuilder().build();
 		
 		//  OR this type to initialize //
-//		String path = "C:\\Repo\\devonfw-testing\\Allure-Framework-Modules\\allure-selenium-module\\src\\resources\\enviroments\\environments.csv";
-//		EnvironmentService envInstance = new SpreadsheetEnvironmentService.SingletonBuilder(path).build();
-//		systemUnderTest = new Env.SingletonBuilder(envInstance).build();
-//		
+		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/enviroments/environments.csv");
+		EnvironmentService envInstance = new SpreadsheetEnvironmentService.SingletonBuilder(path).build();
+		systemUnderTest = new Env.SingletonBuilder(envInstance).build();
+		
 	}
 	
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
-		String expectedAddress = "https://homepage.company.com/ftgw/dpcs/dma/";
+		String expectedAddress = "https://dma.company.com";
 		assertEquals(expectedAddress, actualAddress);
 	}
 	

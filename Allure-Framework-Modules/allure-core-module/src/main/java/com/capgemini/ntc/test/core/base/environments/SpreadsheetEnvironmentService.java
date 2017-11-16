@@ -51,8 +51,8 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		private final String path; // Mandatory
 		
 		
-		private SingletonBuilder() {
-			this.path = null;
+		public SingletonBuilder() {
+			this.path = getClass().getResource("").getPath() + "/environments/environments.csv";
 		}
 		
 		public SingletonBuilder(String path) {
@@ -138,6 +138,11 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 			}
 		}
 		throw new BFInputDataException("There is no Environment with name '" + environmentName + "' available");
+	}
+
+	@Override
+	public String dataSource() {
+		return path;
 	}
 	
 

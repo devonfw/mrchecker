@@ -9,16 +9,13 @@ import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 
+import com.capgemini.ntc.test.core.base.environments.Env;
+import com.capgemini.ntc.test.core.base.environments.EnvironmentService;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
-	static String browser;
-	static String browserVersion;
-	static String os;
-	public static String env;
-	public static boolean maintenanceMode = false;
-
+	
 
 	@ru.yandex.qatools.allure.annotations.Parameter("Width")
 	public static int windowWidth;
@@ -29,6 +26,17 @@ public abstract class BaseTest implements IBaseTest {
 	@ru.yandex.qatools.allure.annotations.Parameter("Username")
 	private String defaultUsername_lastUsedInTest;
 
+	public EnvironmentService environmentService;
+
+	public BaseTest() {
+		
+		//Environment variables either from environmnets.csv or any other input data. 
+		environmentService = new Env.SingletonBuilder().build();
+		
+	}
+
+	
+	
 	@BeforeClass
 	public static final void setUpClass() throws MalformedURLException {
 	}
@@ -43,6 +51,8 @@ public abstract class BaseTest implements IBaseTest {
 		
 	}
 
+	
+	
 	@Override
 	abstract public void setUp();
 

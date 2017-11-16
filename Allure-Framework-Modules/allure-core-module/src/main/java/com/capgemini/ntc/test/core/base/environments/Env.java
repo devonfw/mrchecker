@@ -1,17 +1,21 @@
 package com.capgemini.ntc.test.core.base.environments;
 
+import com.capgemini.ntc.test.core.logger.BFLogger;
+
 public enum Env {
 	
 	INSTANCE;
 	
 	private EnvironmentService environmentService;
 	
+	
+
 	public EnvironmentService getEnvironmentService() {
 		return environmentService;
 	}
 	
 	private EnvironmentService build(SingletonBuilder builder) {
-		environmentService = builder.environmentService;
+		this.environmentService = builder.environmentService;
 		return environmentService;
 	}
 	
@@ -29,6 +33,7 @@ public enum Env {
 		}
 		
 		public EnvironmentService build() {
+			BFLogger.logDebug("Reading environment from: " + environmentService.dataSource());
 			return Env.INSTANCE.build(this);
 		}
 		
