@@ -32,7 +32,7 @@ public class EnvTest {
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
-		String expectedAddress = "https://dma.company.com";
+		String expectedAddress = "https://dma.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 	}
 	
@@ -72,7 +72,7 @@ public class EnvTest {
 	@Test(expected = BFInputDataException.class)
 	public void setEnvironmentShouldThrowExceptionWhenEnvironmentNotFound() {
 		
-		systemUnderTest.set("DEV999");
+		systemUnderTest.set("DEV99");
 	}
 	
 	@Test

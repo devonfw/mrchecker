@@ -28,31 +28,30 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 	
 	private String path;
 	
-	private int environmentNumber = 1; // = number of column in CSV file
+	private int environmentNumber; 
 	private List<CSVRecord> records;
 	private Map<String, String> services;
 	
-
 	public void setPath(String path) {
 		this.path = path;
 	}
 	
 	private EnvironmentService build(SingletonBuilder builder) {
 		this.path = builder.path;
+		this.environmentNumber = 1; // column number taken as a default
 		setPath(path);
 		fetchEnvData();
 		updateServicesMap();
 		return INSTANCE;
 	}
 	
-	
 	public static class SingletonBuilder {
 		
 		private final String path; // Mandatory
 		
-		
 		public SingletonBuilder() {
-			this.path = getClass().getResource("").getPath() + "/environments/environments.csv";
+			this.path = getClass().getResource("")
+					.getPath() + "/environments/environments.csv";
 		}
 		
 		public SingletonBuilder(String path) {
@@ -75,7 +74,6 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		updateServicesMap();
 	}
 	
-	
 	/**
 	 * @param serviceName
 	 * @return address of service for current environment
@@ -90,8 +88,6 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		}
 		return serviceAddress;
 	}
-	
-	
 	
 	private void fetchEnvData() throws BFInputDataException {
 		File csvData = new File(path);
@@ -125,8 +121,6 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		return address;
 	}
 	
-
-	
 	private void setEnvironmentNumber(String environmentName) {
 		CSVRecord header = records.get(0);
 		for (int i = 0; i < header.size(); i++) {
@@ -139,11 +133,14 @@ public enum SpreadsheetEnvironmentService implements EnvironmentService {
 		}
 		throw new BFInputDataException("There is no Environment with name '" + environmentName + "' available");
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.capgemini.ntc.test.core.base.environments.EnvironmentService#dataSource()
+	 */
 	@Override
 	public String dataSource() {
 		return path;
 	}
 	
-
 }
