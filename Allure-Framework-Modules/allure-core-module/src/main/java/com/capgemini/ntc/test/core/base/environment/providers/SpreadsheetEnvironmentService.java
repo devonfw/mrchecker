@@ -15,6 +15,7 @@ import org.apache.commons.csv.CSVRecord;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.google.inject.Singleton;
 
 /**
  * This class is responsible for handling addresses of services. Addresses depends on currently set Environment. It is
@@ -23,6 +24,7 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * @author
  */
 
+@Singleton
 public class SpreadsheetEnvironmentService implements EnvironmentService {
 	
 	private static EnvironmentService instance;

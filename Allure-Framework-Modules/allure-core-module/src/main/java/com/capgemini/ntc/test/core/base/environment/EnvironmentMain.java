@@ -3,14 +3,15 @@ package com.capgemini.ntc.test.core.base.environment;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
 
+
 public enum EnvironmentMain {
 	
 	INSTANCE;
 	
 	/*HOW TO USE Dependency Injection: 
 	EnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
-			.getInstance(EnvironmentMain.class)
-			.getEnvironmentService();*/
+				.getInstance(EnvironmentMain.SingletonBuilder.class)
+				.build();*/
 	
 	
 	private EnvironmentService environmentService;
@@ -34,7 +35,7 @@ public enum EnvironmentMain {
 			this.environmentService = environmentService;
 		}
 		
-		@Inject
+		
 		public EnvironmentService build() {
 			BFLogger.logDebug("Reading environment from: " + environmentService.dataSource());
 			return EnvironmentMain.INSTANCE.build(this);
