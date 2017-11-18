@@ -37,11 +37,11 @@ public class EnvironmentMainTest {
 	
 	@Test
 	public void testDependecyInjection() throws Exception {
+		SpreadsheetEnvironmentService.delInstance();
 		EnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
 				.getInstance(EnvironmentService.class);
 		
 		environmentService.set("DEV");
-		System.out.println("TEST");
 		assertEquals("http://demoqa.com/", environmentService.getServiceAddress("WWW_FONT_URL"));
 		
 	}

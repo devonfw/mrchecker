@@ -39,7 +39,6 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 		this.environmentNumber = 1; // column number taken as a default
 		fetchEnvData();
 		updateServicesMap();
-		System.out.println("SpreadsheetEnvironmentService.SpreadsheetEnvironmentService()");
 	}
 	
 	public static EnvironmentService init() {
@@ -53,6 +52,7 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 			synchronized (SpreadsheetEnvironmentService.class) {
 				if (instance == null) {
 					instance = new SpreadsheetEnvironmentService(path);
+					BFLogger.logDebug("Reading environment from: " + instance.dataSource());
 				}
 			}
 		}
