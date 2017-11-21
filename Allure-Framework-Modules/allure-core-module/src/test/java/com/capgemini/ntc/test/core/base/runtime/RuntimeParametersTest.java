@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.samples.runtime;
+package com.capgemini.ntc.test.core.base.runtime;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.samples.environment;
+package com.capgemini.ntc.test.core.base.environment;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
