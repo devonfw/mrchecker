@@ -1,12 +1,14 @@
 package com.capgemini.ntc.test.core.base.runtime;
 
 import java.util.Collection;
+import java.util.Map;
 
+/**
+ * @author LUSTEFAN
+ *
+ */
 public interface RuntimeParameters {
 
-	public void getParameters();
-	
-	
 	/**
 	 * 
 	 * @return environment, e.g. DEV, DEV
@@ -18,6 +20,6 @@ public interface RuntimeParameters {
 	 * 
 	 * @return collection containing all parameters
 	 */
-	public Collection<Object[]> getParams(); 
+	public Map<String, String> getParameters(); 
 	
 }

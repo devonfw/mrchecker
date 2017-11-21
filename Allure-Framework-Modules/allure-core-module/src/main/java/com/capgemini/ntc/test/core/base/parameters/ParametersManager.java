@@ -2,7 +2,7 @@ package com.capgemini.ntc.test.core.base.parameters;
 
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
-import com.capgemini.ntc.test.core.base.runtime.SystemRuntimeParameters;
+import com.capgemini.ntc.test.core.base.runtime.provider.SystemRuntimeParameters;
 import com.google.inject.Singleton;
 
 /**

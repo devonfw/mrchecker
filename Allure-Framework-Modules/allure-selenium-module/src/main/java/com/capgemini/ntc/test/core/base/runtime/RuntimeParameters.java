@@ -18,6 +18,6 @@ public interface RuntimeParameters {
 	 * 
 	 * @return collection containing all parameters
 	 */
-	public Collection<Object[]> getParams(); 
+	public Collection<Object[]> getParameters(); 
 	
 }

@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersModule;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 import com.google.inject.Guice;
 
@@ -30,10 +32,17 @@ public abstract class BaseTest implements IBaseTest {
 	
 	public BaseTest() {
 		
-		// Environment variables either from environmnets.csv or any other input data.
-		BaseTest.setEnvironmentService(Guice.createInjector(new EnvironmentModule())
-				.getInstance(EnvironmentService.class));
+		RuntimeParameters runtimeParametersInstance = setRuntimeParameters();
+		setEnvironmetInstance(runtimeParametersInstance);
 		
+	}
+	
+	public static EnvironmentService getEnvironmentService() {
+		return environmentService;
+	}
+	
+	public static void setEnvironmentService(EnvironmentService environmentService) {
+		BaseTest.environmentService = environmentService;
 	}
 	
 	@BeforeClass
@@ -56,15 +65,22 @@ public abstract class BaseTest implements IBaseTest {
 	@Override
 	abstract public void tearDown();
 	
-
 	@Rule
 	public TestWatcher testWatcher = new BaseTestWatcher(this);
 	
-	public static EnvironmentService getEnvironmentService() {
-		return environmentService;
+	
+	private void setEnvironmetInstance(RuntimeParameters runtimeParametersInstance) {
+		// Environment variables either from environmnets.csv or any other input data.
+		EnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
+				.getInstance(EnvironmentService.class);
+		environmetInstance.setEnvironment(runtimeParametersInstance.getEnv());
+		BaseTest.setEnvironmentService(environmetInstance);
 	}
 	
-	public static void setEnvironmentService(EnvironmentService environmentService) {
-		BaseTest.environmentService = environmentService;
+	private RuntimeParameters setRuntimeParameters() {
+		// Read System or maven parameters
+		RuntimeParameters runtimeParametersInstance = Guice.createInjector(new RuntimeParametersModule())
+				.getInstance(RuntimeParameters.class);
+		return runtimeParametersInstance;
 	}
 }

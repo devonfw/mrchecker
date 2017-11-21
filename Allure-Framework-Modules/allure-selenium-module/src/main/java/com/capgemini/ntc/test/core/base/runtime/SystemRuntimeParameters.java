@@ -88,7 +88,7 @@ public enum SystemRuntimeParameters implements RuntimeParameters{
 	 * 
 	 * @return collection containing all parameters
 	 */
-	public Collection<Object[]> getParams() {
+	public Collection<Object[]> getParameters() {
 		return params;
 	}
 	

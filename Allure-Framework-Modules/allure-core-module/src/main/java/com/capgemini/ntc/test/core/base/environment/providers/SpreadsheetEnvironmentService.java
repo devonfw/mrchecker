@@ -38,7 +38,7 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 		this.path = path;
 		fetchEnvData(path);
 		setEnvironment(environmentName);
-		
+		BFLogger.logDebug("Reading environment from: " + path);
 	}
 	
 	public static EnvironmentService init() {
@@ -53,7 +53,6 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 			synchronized (SpreadsheetEnvironmentService.class) {
 				if (instance == null) {
 					instance = new SpreadsheetEnvironmentService(path, environment);
-					BFLogger.logDebug("Reading environment from: " + instance.dataSource());
 				}
 			}
 		}
