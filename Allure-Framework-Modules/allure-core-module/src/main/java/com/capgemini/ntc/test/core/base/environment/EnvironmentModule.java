@@ -16,7 +16,8 @@ public class EnvironmentModule extends AbstractModule {
 		String path = getClass().getClassLoader()
 				.getResource("")
 				.getPath() + "/enviroments/environments.csv";
-		SpreadsheetEnvironmentService.init(path);
+		String environment = "DEV";
+		SpreadsheetEnvironmentService.init(path, environment);
 		return SpreadsheetEnvironmentService.getInstance();
 	}
 	

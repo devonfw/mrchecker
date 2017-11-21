@@ -29,29 +29,30 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 	
 	private static EnvironmentService instance;
 	
-	private String path;
-	private int environmentNumber;
 	private List<CSVRecord> records;
 	private Map<String, String> services;
+
+	private String path;
 	
-	private SpreadsheetEnvironmentService(String path) {
+	private SpreadsheetEnvironmentService(String path, String environmentName) {
 		this.path = path;
-		this.environmentNumber = 1; // column number taken as a default
-		fetchEnvData();
-		updateServicesMap();
+		fetchEnvData(path);
+		setEnvironment(environmentName);
+		
 	}
 	
 	public static EnvironmentService init() {
 		String path = SpreadsheetEnvironmentService.class.getResource("")
 				.getPath() + "/environments/environments.csv";
-		return init(path);
+		String environment = "DEV";
+		return init(path, environment);
 	}
 	
-	public static EnvironmentService init(String path) {
+	public static EnvironmentService init(String path, String environment) {
 		if (instance == null) {
 			synchronized (SpreadsheetEnvironmentService.class) {
 				if (instance == null) {
-					instance = new SpreadsheetEnvironmentService(path);
+					instance = new SpreadsheetEnvironmentService(path, environment);
 					BFLogger.logDebug("Reading environment from: " + instance.dataSource());
 				}
 			}
@@ -67,15 +68,13 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 		SpreadsheetEnvironmentService.instance = null;
 	}
 	
-	
 	/**
 	 * Sets environment (e.g. "QC1")
 	 * 
 	 * @param environmentName
 	 */
-	public void set(String environmentName) {
-		setEnvironmentNumber(environmentName);
-		updateServicesMap();
+	public void setEnvironment(String environmentName) {
+		updateServicesMapBasedOn(environmentName);
 	}
 	
 	/**
@@ -93,7 +92,7 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 		return serviceAddress;
 	}
 	
-	private void fetchEnvData() throws BFInputDataException {
+	private void fetchEnvData(String path) throws BFInputDataException {
 		File csvData = new File(path);
 		try {
 			CSVParser parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
@@ -103,8 +102,11 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 		}
 	}
 	
-	private void updateServicesMap() {
+	private void updateServicesMapBasedOn(String environmentName) {
 		services = new HashMap<String, String>();
+		
+		int environmentNumber = getEnvironmentNumber(environmentName);
+		
 		Iterator<CSVRecord> it = records.iterator();
 		it.next(); // first row contains table headers, so skip it
 		while (it.hasNext()) {
@@ -125,14 +127,13 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 		return address;
 	}
 	
-	private void setEnvironmentNumber(String environmentName) {
+	private int getEnvironmentNumber(String environmentName) throws BFInputDataException {
 		CSVRecord header = records.get(0);
-		for (int i = 0; i < header.size(); i++) {
-			String environment = header.get(i);
+		for (int environmentNumber = 0; environmentNumber < header.size(); environmentNumber++) {
+			String environment = header.get(environmentNumber);
 			if (environment.equals(environmentName)) {
-				environmentNumber = i;
 				BFLogger.logInfo("Selected Environment: " + environmentName);
-				return;
+				return environmentNumber;
 			}
 		}
 		throw new BFInputDataException("There is no Environment with name '" + environmentName + "' available");
@@ -144,7 +145,7 @@ public class SpreadsheetEnvironmentService implements EnvironmentService {
 	 */
 	@Override
 	public String dataSource() {
-		return path;
+		return this.path;
 	}
 	
 }

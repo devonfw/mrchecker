@@ -12,7 +12,7 @@ public interface EnvironmentService {
 	 * 
 	 * @param environmentName
 	 */
-	public void set(String environmentName);
+	public void setEnvironment(String environmentName);
 	
 	/**
 	 * @param serviceName

@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentParameters;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
 import com.capgemini.ntc.test.core.base.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
@@ -41,7 +40,7 @@ public class EnvironmentMainTest {
 		EnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
 				.getInstance(EnvironmentService.class);
 		
-		environmentService.set("DEV");
+		environmentService.setEnvironment("DEV");
 		assertEquals("http://demoqa.com/", environmentService.getServiceAddress("WWW_FONT_URL"));
 		
 	}
@@ -49,7 +48,7 @@ public class EnvironmentMainTest {
 	@Test
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
 		SpreadsheetEnvironmentService.delInstance();
-		systemUnderTest = Guice.createInjector(environmentTestModel())
+		systemUnderTest = Guice.createInjector(new EnvironmentModule())
 				.getInstance(EnvironmentService.class);
 		
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
@@ -68,7 +67,7 @@ public class EnvironmentMainTest {
 	@Test
 	public void setEnvironmentShouldSucceedWhenEnvironmentExist() {
 		
-		systemUnderTest.set("DEV2");
+		systemUnderTest.setEnvironment("DEV2");
 	}
 	
 	@Test
@@ -76,17 +75,17 @@ public class EnvironmentMainTest {
 		
 		String serviceName = "MY_RESEARCH_URL_VALUE";
 		
-		systemUnderTest.set("DEV2");
+		systemUnderTest.setEnvironment("DEV2");
 		String actualAddress = systemUnderTest.getServiceAddress(serviceName);
 		String expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
-		systemUnderTest.set("DEV1");
+		systemUnderTest.setEnvironment("DEV1");
 		actualAddress = systemUnderTest.getServiceAddress(serviceName);
 		expectedAddress = "https://myresearchqa1.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
-		systemUnderTest.set("DEV2");
+		systemUnderTest.setEnvironment("DEV2");
 		actualAddress = systemUnderTest.getServiceAddress(serviceName);
 		expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
@@ -95,20 +94,20 @@ public class EnvironmentMainTest {
 	@Test(expected = BFInputDataException.class)
 	public void setEnvironmentShouldThrowExceptionWhenEnvironmentNotFound() {
 		
-		systemUnderTest.set("DEV99");
+		systemUnderTest.setEnvironment("DEV99");
 	}
 	
 	@Test
 	public void ServicesURLsEnumIsReturningCorrectAddresses() {
 		
-		systemUnderTest.set("DEV1");
+		systemUnderTest.setEnvironment("DEV1");
 		BaseTest.setEnvironmentService(systemUnderTest);
 		
 		String actualAddress = GetEnvironmentParam.WWW_FONT_URL.getAddress();
 		String expectedAddress = "https://myresearchqa1.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
-		systemUnderTest.set("DEV2");
+		systemUnderTest.setEnvironment("DEV2");
 		actualAddress = GetEnvironmentParam.WWW_FONT_URL.getAddress();
 		expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
@@ -129,7 +128,8 @@ public class EnvironmentMainTest {
 			@Provides
 			EnvironmentService provideEnvironmentService() {
 				String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/enviroments/environments.csv");
-				SpreadsheetEnvironmentService.init(path);
+				String environment = "QA";
+				SpreadsheetEnvironmentService.init(path, environment);
 				return SpreadsheetEnvironmentService.getInstance();
 			}
 		};
