@@ -1,6 +1,4 @@
-package com.capgemini.ntc.test.core.base.runtime.provider;
-
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
+package com.capgemini.ntc.test.core.base.runtime;
 
 /**
  * This class stores various system properties

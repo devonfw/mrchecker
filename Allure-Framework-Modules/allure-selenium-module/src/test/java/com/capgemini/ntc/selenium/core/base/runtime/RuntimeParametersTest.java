@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.base.runtime;
+package com.capgemini.ntc.selenium.core.base.runtime;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;

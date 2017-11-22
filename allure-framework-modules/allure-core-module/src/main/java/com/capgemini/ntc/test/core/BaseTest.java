@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
 
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
-import com.capgemini.ntc.test.core.base.runtime.provider.RuntimeParameters;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 import com.google.inject.Guice;

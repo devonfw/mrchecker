@@ -1,9 +1,10 @@
-package com.capgemini.ntc.test.core.base.runtime;
+package com.capgemini.ntc.selenium.core.base.runtime;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
 
 /**
  * This class stores various system properties
@@ -32,13 +33,6 @@ public enum SystemRuntimeParameters implements RuntimeParametersImp{
 		init();
 	}
 
-	/**
-	 * 
-	 * @return environment, e.g. DEV, DEV
-	 */
-	public String getEnv() {
-		return env;
-	}
 
 	/**
 	 * 
