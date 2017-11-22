@@ -11,7 +11,7 @@ import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnviron
  * @author
  *
  */
-public enum SystemRuntimeParameters implements RuntimeParameters{
+public enum SystemRuntimeParameters implements RuntimeParametersImp{
 	INSTANCE(SpreadsheetEnvironmentService.INSTANCE);
 
 	public static boolean maintenanceMode = false;

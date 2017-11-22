@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
 
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersModule;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
+import com.capgemini.ntc.test.core.base.runtime.provider.RuntimeParameters;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 import com.google.inject.Guice;
 
@@ -32,8 +33,8 @@ public abstract class BaseTest implements IBaseTest {
 	
 	public BaseTest() {
 		
-		RuntimeParameters runtimeParametersInstance = setRuntimeParameters();
-		setEnvironmetInstance(runtimeParametersInstance);
+		setRuntimeParameters();
+		setEnvironmetInstance();
 		
 	}
 	
@@ -69,18 +70,17 @@ public abstract class BaseTest implements IBaseTest {
 	public TestWatcher testWatcher = new BaseTestWatcher(this);
 	
 	
-	private void setEnvironmetInstance(RuntimeParameters runtimeParametersInstance) {
+	private void setEnvironmetInstance() {
 		// Environment variables either from environmnets.csv or any other input data.
 		EnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
 				.getInstance(EnvironmentService.class);
-		environmetInstance.setEnvironment(runtimeParametersInstance.getEnv());
+		environmetInstance.setEnvironment(RuntimeParameters.ENV.getValue());
 		BaseTest.setEnvironmentService(environmetInstance);
 	}
 	
-	private RuntimeParameters setRuntimeParameters() {
+	private void setRuntimeParameters() {
 		// Read System or maven parameters
-		RuntimeParameters runtimeParametersInstance = Guice.createInjector(new RuntimeParametersModule())
-				.getInstance(RuntimeParameters.class);
-		return runtimeParametersInstance;
+		BFLogger.logDebug(RuntimeParameters.ENV.toString());
+		
 	}
 }

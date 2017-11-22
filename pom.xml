@@ -103,14 +103,7 @@
 
             <dependency>
                 <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
+                <artifactId>hamcrest-all</artifactId>
                 <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -199,7 +192,7 @@
                 <version>${log4j.version}</version>
             </dependency>
 
-            <!-- SLF4J is a simple facade for logging systems allowing the 
+            <!-- SLF4J is a simple facade for logging systems allowing the
                 end-user
                 to plug-in the desired logging system at deployment time -->
             <dependency>
@@ -283,7 +276,7 @@
 
 
                 <!-- START REPORT SERVER -->
-                <!--Needed only to show reports locally. Run 'mvn jetty:run' 
+                <!--Needed only to show reports locally. Run 'mvn jetty:run'
                     and open
                     'localhost:8080' to show the report -->
                 <plugin>

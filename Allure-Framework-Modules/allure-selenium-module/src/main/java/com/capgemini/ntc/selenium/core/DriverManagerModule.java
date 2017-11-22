@@ -9,7 +9,7 @@ public class DriverManagerModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(EnvironmentService.class).toProvider(SpreadsheetEnvironmentServiceProvider.class);
+//		bind(EnvironmentService.class).toProvider(SpreadsheetEnvironmentServiceProvider.class);
 //		bind(RuntimeParameters.class).to(SystemRuntimeParameters.class);
 		
 	}

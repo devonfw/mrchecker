@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <artifactId>allure-test-framework</artifactId>
         <groupId>com.capgemini.ntc</groupId>
         <version>1.0.0</version>
     </parent>
-    
+
     <artifactId>Allure-AppUnderTests</artifactId>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - List of Integration Test for Application Under Test </name>    
+    <name>AllureTestFramework - List of Integration Test for Application Under Test </name>
     <description>Allure Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
-    
+
 
     <organization>
         <name>Capgemini  - Nearshore Test Center - Poland</name>
@@ -28,151 +28,145 @@
         </developer>
     </developers>
 
-  
-	<properties>
-		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-        
-	</properties>
 
-    
-    
-    
+    <properties>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+
+    </properties>
+
+
+
+
     <dependencies>
-            
-            <!-- Dependency to other Allure Test Framework modules -->
-            <!-- Test core module-->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>allure-core-module</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            
-            <!-- Selenium module -->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>allure-selenium-module</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            
-            
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-            </dependency>
-            
-            <!--This dependency is necessary for JUnit plugin. -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>pl.pragmatists</groupId>
-                <artifactId>JUnitParams</artifactId>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-surefire-provider</artifactId>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <scope>test</scope>
-            </dependency>
 
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <scope>test</scope>
-            </dependency>
+        <!-- Dependency to other Allure Test Framework modules -->
+        <!-- Test core module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-core-module</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-            </dependency>
-            
-            <dependency>
-                <groupId>joda-time</groupId>
-                <artifactId>joda-time</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-csv</artifactId>
-            </dependency>
-            
-            <!--This dependency is necessary for Cucumber plugin. -->
-            <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
-            <dependency>
-                <groupId>net.masterthought</groupId>
-                <artifactId>cucumber-reporting</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>info.cukes</groupId>
-                <artifactId>cucumber-java</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>info.cukes</groupId>
-                <artifactId>cucumber-java8</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>info.cukes</groupId>
-                <artifactId>cucumber-picocontainer</artifactId>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.picocontainer</groupId>
-                <artifactId>picocontainer</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>info.cukes</groupId>
-                <artifactId>cucumber-junit</artifactId>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>info.cukes</groupId>
-                <artifactId>cucumber-core</artifactId>
-            </dependency>
-            
-            
-            <!--This dependency is necessary for Allure report plugin. -->
-            <dependency>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-junit-adaptor</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-report-data</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-cucumber-jvm-adaptor</artifactId>
-            </dependency>
-            
-            
-    </dependencies>    
+        <!-- Selenium module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-selenium-module</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
 
-	<!-- Build goals/actions -->
-	<build>
-			<plugins>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
+        <!--This dependency is necessary for JUnit plugin. -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+        </dependency>
+
+        <!--This dependency is necessary for Cucumber plugin. -->
+        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java8</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.picocontainer</groupId>
+            <artifactId>picocontainer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-core</artifactId>
+        </dependency>
+
+
+        <!--This dependency is necessary for Allure report plugin. -->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-junit-adaptor</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-report-data</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-maven-plugin</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+
+    <!-- Build goals/actions -->
+    <build>
+        <plugins>
             <!-- Plugins are taken from parent pom.xml -->
-            </plugins>
+        </plugins>
     </build>
-		
+
 
 </project>
