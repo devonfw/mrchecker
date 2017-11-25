@@ -8,20 +8,20 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * @author
  *
  */
-public class PiAtUserProviderException extends RuntimeException {
+public class UserProviderException extends RuntimeException {
 
 	private static final long serialVersionUID = 8578188391655275269L;
 
-	public PiAtUserProviderException() {
+	public UserProviderException() {
 		this("");
 	}
 
-	public PiAtUserProviderException(String message) {
+	public UserProviderException(String message) {
 		super(message);
 		BFLogger.logDebug(message);
 	}
 
-	public PiAtUserProviderException(Exception e, String message) {
+	public UserProviderException(Exception e, String message) {
 		super(message, e);
 		BFLogger.logError(message);
 	}

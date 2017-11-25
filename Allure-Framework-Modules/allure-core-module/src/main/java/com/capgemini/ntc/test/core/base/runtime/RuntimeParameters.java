@@ -5,19 +5,24 @@ package com.capgemini.ntc.test.core.base.runtime;
  * 
  * @author LUSTEFAN
  */
-public enum RuntimeParameters implements RuntimeParametersImp {
+public enum RuntimeParameters implements RuntimeParametersI {
 	
-	ENV("env");
+	ENV("env", "DEV");
 	
 	private String paramName;
+	private String paramValue;
+	private String defaultValue;
 	
-	private RuntimeParameters(String paramName) {
+	private RuntimeParameters(String paramName, String defaultValue) {
 		this.paramName = paramName;
+		this.defaultValue = defaultValue;
+		setValue();
 	}
+
 	
 	@Override
 	public String getValue() {
-		return System.getProperty(this.paramName);
+		return this.paramValue;
 	}
 	
 	@Override
@@ -25,4 +30,17 @@ public enum RuntimeParameters implements RuntimeParametersImp {
 		return paramName + "=" + this.getValue();
 	}
 	
+	@Override
+	public void refreshParameterValue() {
+		setValue();
+	}
+	
+	private void setValue() {
+		String systemParameterValue = System.getProperty(this.paramName);
+		this.paramValue = isSystemParameterEmpty(systemParameterValue) ? this.defaultValue : systemParameterValue;
+	}
+	
+	private boolean isSystemParameterEmpty(String systemParameterValue) {
+		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue) );
+	}
 }

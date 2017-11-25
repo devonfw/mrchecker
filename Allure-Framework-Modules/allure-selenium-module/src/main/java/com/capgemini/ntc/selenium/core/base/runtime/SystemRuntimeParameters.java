@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
 
 /**
  * This class stores various system properties
@@ -12,7 +12,7 @@ import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
  * @author
  *
  */
-public enum SystemRuntimeParameters implements RuntimeParametersImp{
+public enum SystemRuntimeParameters implements RuntimeParametersI{
 	INSTANCE(SpreadsheetEnvironmentService.INSTANCE);
 
 	public static boolean maintenanceMode = false;

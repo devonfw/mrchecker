@@ -2,7 +2,7 @@ package com.capgemini.ntc.test.core.base.parameters;
 
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
 import com.google.inject.Singleton;
 
 /**
@@ -16,7 +16,7 @@ public enum ParametersManager {
 	
 	INSTANCE;
 	/**
-	 * @return {@link RuntimeParametersImp} singleton
+	 * @return {@link RuntimeParametersI} singleton
 	 */
 	public RuntimeParameters parameters() {
 		return RuntimeParameters.INSTANCE;

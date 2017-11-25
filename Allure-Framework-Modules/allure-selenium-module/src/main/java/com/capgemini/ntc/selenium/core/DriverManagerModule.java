@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.core;
 
-import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentServiceProvider;
 import com.google.inject.AbstractModule;
 

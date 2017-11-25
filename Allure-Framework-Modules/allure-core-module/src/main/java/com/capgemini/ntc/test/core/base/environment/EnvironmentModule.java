@@ -12,7 +12,7 @@ public class EnvironmentModule extends AbstractModule {
 	}
 	
 	@Provides
-	EnvironmentService provideSpreadsheetEnvironmentService() {
+	EnvironmentServiceI provideSpreadsheetEnvironmentService() {
 		String path = getClass().getClassLoader()
 				.getResource("")
 				.getPath() + "/enviroments/environments.csv";

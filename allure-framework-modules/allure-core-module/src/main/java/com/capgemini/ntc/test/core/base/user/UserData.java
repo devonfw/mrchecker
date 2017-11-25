@@ -106,7 +106,7 @@ public class UserData {
 				return accountData;
 			} ;
 		}
-		throw new PiAtUserProviderException(
+		throw new UserProviderException(
 				"Unable to find account with properties '" + accountPredicate.toString() + "' in '" + this
 						+ "' account.");
 	}

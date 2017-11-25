@@ -18,7 +18,7 @@ import org.picocontainer.Startable;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
 import com.capgemini.ntc.test.core.base.parameters.ParametersManager;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.properties.PropertiesManager;
@@ -32,7 +32,7 @@ public class DriverManager implements Startable {
 	private static ParametersManager parametersManager;
 
 	@Inject
-	public DriverManager(EnvironmentService environmentService) {
+	public DriverManager(EnvironmentServiceI environmentService) {
 		DriverManager.parametersManager = ParametersManager.INSTANCE;
 		this.start();
 	}

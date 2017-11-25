@@ -44,7 +44,7 @@ public class AvailableUsers {
 				return accountData;
 			} ;
 		}
-		throw new PiAtUserProviderException(
+		throw new UserProviderException(
 				"Unable to find account with properties '" + accountPredicate.toString() + "' in '"
 						+ currentUserData.toString() + "' account.");
 	}
@@ -60,7 +60,7 @@ public class AvailableUsers {
 	 */
 	public UserData getUserData() {
 		if (userDataList.isEmpty()) {
-			throw new PiAtUserProviderException(
+			throw new UserProviderException(
 					"Unable to find USER that match data requirements " + requirements.toString());
 		}
 		if (currentUser == null) {
@@ -71,7 +71,7 @@ public class AvailableUsers {
 
 	private UserData getNextUser() {
 		if (index + 1 >= userDataList.size()) {
-			throw new PiAtUserProviderException(
+			throw new UserProviderException(
 					"Unable to find next USER that match data requirements " + requirements.toString());
 		}
 		return userDataList.get(++index);

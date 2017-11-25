@@ -10,9 +10,9 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersImp;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 import com.google.inject.Guice;
@@ -29,7 +29,7 @@ public abstract class BaseTest implements IBaseTest {
 	@ru.yandex.qatools.allure.annotations.Parameter("Username")
 	private String defaultUsername_lastUsedInTest;
 	
-	private static EnvironmentService environmentService;
+	private static EnvironmentServiceI environmentService;
 	
 	public BaseTest() {
 		
@@ -38,11 +38,11 @@ public abstract class BaseTest implements IBaseTest {
 		
 	}
 	
-	public static EnvironmentService getEnvironmentService() {
+	public static EnvironmentServiceI getEnvironmentService() {
 		return environmentService;
 	}
 	
-	public static void setEnvironmentService(EnvironmentService environmentService) {
+	public static void setEnvironmentService(EnvironmentServiceI environmentService) {
 		BaseTest.environmentService = environmentService;
 	}
 	
@@ -72,8 +72,8 @@ public abstract class BaseTest implements IBaseTest {
 	
 	private void setEnvironmetInstance() {
 		// Environment variables either from environmnets.csv or any other input data.
-		EnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
-				.getInstance(EnvironmentService.class);
+		EnvironmentServiceI environmetInstance = Guice.createInjector(new EnvironmentModule())
+				.getInstance(EnvironmentServiceI.class);
 		environmetInstance.setEnvironment(RuntimeParameters.ENV.getValue());
 		BaseTest.setEnvironmentService(environmetInstance);
 	}

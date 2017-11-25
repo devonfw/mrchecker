@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentService;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
 import com.capgemini.ntc.test.core.base.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
@@ -21,12 +21,12 @@ import com.google.inject.Provides;
 
 public class EnvironmentMainTest {
 	
-	EnvironmentService systemUnderTest;
+	EnvironmentServiceI systemUnderTest;
 	
 	@Before
 	public void setup() {
 		systemUnderTest = Guice.createInjector(environmentTestModel())
-				.getInstance(EnvironmentService.class);
+				.getInstance(EnvironmentServiceI.class);
 		
 	}
 	
@@ -37,8 +37,8 @@ public class EnvironmentMainTest {
 	@Test
 	public void testDependecyInjection() throws Exception {
 		SpreadsheetEnvironmentService.delInstance();
-		EnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
-				.getInstance(EnvironmentService.class);
+		EnvironmentServiceI environmentService = Guice.createInjector(new EnvironmentModule())
+				.getInstance(EnvironmentServiceI.class);
 		
 		environmentService.setEnvironment("DEV");
 		assertEquals("http://demoqa.com/", environmentService.getServiceAddress("WWW_FONT_URL"));
@@ -49,7 +49,7 @@ public class EnvironmentMainTest {
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
 		SpreadsheetEnvironmentService.delInstance();
 		systemUnderTest = Guice.createInjector(new EnvironmentModule())
-				.getInstance(EnvironmentService.class);
+				.getInstance(EnvironmentServiceI.class);
 		
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
 		String expectedAddress = "https://dma.company.com/";
@@ -126,7 +126,7 @@ public class EnvironmentMainTest {
 			}
 			
 			@Provides
-			EnvironmentService provideEnvironmentService() {
+			EnvironmentServiceI provideEnvironmentService() {
 				String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/enviroments/environments.csv");
 				String environment = "QA";
 				SpreadsheetEnvironmentService.init(path, environment);
