@@ -1,21 +1,13 @@
 package com.capgemini.ntc.selenium.core.base.runtime;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hamcrest.Matchers;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
-import com.google.common.collect.Lists;
 
 public class RuntimeParametersTest {
 	
