@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.utils;
+package com.capgemini.ntc.selenium.core.utils;
 
 import org.openqa.selenium.WebElement;
 

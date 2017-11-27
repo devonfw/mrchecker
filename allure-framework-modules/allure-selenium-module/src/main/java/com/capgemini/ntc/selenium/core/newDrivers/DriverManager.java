@@ -15,13 +15,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.picocontainer.Startable;
 
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesManager;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
 import com.capgemini.ntc.test.core.base.parameters.ParametersManager;
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.test.core.properties.PropertiesManager;
 import com.google.inject.Inject;
 
 public class DriverManager implements Startable {

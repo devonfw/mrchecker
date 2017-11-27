@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.properties;
+package com.capgemini.ntc.selenium.core.base.properties;
 
 import java.io.*;
 import java.util.Properties;
