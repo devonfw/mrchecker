@@ -1,22 +1,59 @@
 package com.capgemini.ntc.selenium.core.base.properties;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class PropertiesSelenium {
 	
-	private String seleniumChromePath;
+	private String seleniumChrome;
+	private String seleniumPhantomjs;
+	private String seleniumFirefox;
+	private String seleniumIE;
 
 	@Inject
-	private void setChromeDriverPath(@Named("selenium.chrome") String path) {
-		BFLogger.logDebug("Selenium.chrome path=" + path);
-		this.seleniumChromePath = path;
+	private void setSeleniumChrome(@Named("selenium.chrome") String path) {
+		this.seleniumChrome = path;
 		
 	}
 	
-	public String getChromeDriverPath() {
-		return this.seleniumChromePath;
+	public String getSeleniumChrome() {
+		return this.seleniumChrome;
 	}
+	
+	
+	
+	@Inject
+	private void setSeleniumPhantomjs(@Named("selenium.phantomjs") String path) {
+		this.seleniumPhantomjs = path;
+		
+	}
+	
+	public String getSeleniumPhantomjs() {
+		return this.seleniumPhantomjs;
+	}
+	
+	
+	@Inject
+	private void setSeleniumFirefox(@Named("selenium.firefox") String path) {
+		this.seleniumFirefox = path;
+		
+	}
+	
+	public String getSeleniumFirefox() {
+		return this.seleniumFirefox;
+	}
+	
+
+	@Inject
+	private void setSeleniumIE(@Named("selenium.ie") String path) {
+		this.seleniumIE = path;
+		
+	}
+	
+	public String getSeleniumIE() {
+		return this.seleniumIE;
+	}
+
+	
 	
 }

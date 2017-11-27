@@ -8,10 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesModule;
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
 import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
+import com.capgemini.ntc.selenium.core.newDrivers.DriverManagerModule;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WindowUtils;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -84,8 +87,6 @@ abstract public class BasePage implements IBasePage {
 			
 			driverManager = Guice.createInjector(new DriverManagerModule())
 					.getInstance(DriverManager.class);
-			// driverManager = new DriverManager(ParametersManager.INSTANCE);
-			// SpreadsheetEnvironmentService.INSTANCE;
 			// RuntimeParameters.INSTANCE;
 		}
 		return driverManager.getDriver();

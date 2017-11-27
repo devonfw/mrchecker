@@ -13,36 +13,44 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
-import org.picocontainer.Startable;
 
-import com.capgemini.ntc.selenium.core.base.properties.PropertiesManager;
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
+import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
-import com.capgemini.ntc.test.core.base.parameters.ParametersManager;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
-public class DriverManager implements Startable {
-
-	private final static PropertiesManager propMan = new PropertiesManager();
+public class DriverManager {
+	
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
+	
+	// Setup default variables
 	private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
-	private static ParametersManager parametersManager;
-
+	private static final int IMPLICITYWAITTIMER = 2; // in seconds
+	
+	private static PropertiesSelenium propertiesSelenium;
+	private static RuntimeParameters runtimeParameters;
+	
 	@Inject
-	public DriverManager(EnvironmentServiceI environmentService) {
-		DriverManager.parametersManager = ParametersManager.INSTANCE;
+	public DriverManager(@Named("properties") PropertiesSelenium propertiesSelenium,
+			@Named("runtime") RuntimeParameters runtimeParameters) {
+		
+		if (!(null == DriverManager.propertiesSelenium || null == propertiesSelenium)) {
+			DriverManager.propertiesSelenium = propertiesSelenium;
+		}
+		
+		DriverManager.runtimeParameters = runtimeParameters;
+		
 		this.start();
 	}
 	
-	@Override
 	public void start() {
 		DriverManager.getDriver();
 	}
-
-	@Override
+	
 	public void stop() {
 		try {
 			closeDriver();
@@ -52,7 +60,6 @@ public class DriverManager implements Startable {
 		}
 	}
 	
-	
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
@@ -61,9 +68,9 @@ public class DriverManager implements Startable {
 			BFLogger.logDebug("Closing Driver in finalize()");
 		} catch (Exception e) {
 		}
-
+		
 	}
-
+	
 	public static INewWebDriver getDriver() {
 		INewWebDriver driver = drivers.get();
 		if (driver == null) {
@@ -72,14 +79,14 @@ public class DriverManager implements Startable {
 		}
 		return driver;
 	}
-
+	
 	public static void closeDriver() {
 		INewWebDriver driver = drivers.get();
 		if (driver == null) {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
 			try {
-				BFLogger.logDebug("Closing WebDriver for this thread. " + parametersManager.parameters().getBrowser());
+				BFLogger.logDebug("Closing WebDriver for this thread. " + runtimeParameters.BROWSER.getValue());
 				driver.quit();
 			} catch (UnreachableBrowserException e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
@@ -90,24 +97,27 @@ public class DriverManager implements Startable {
 			}
 		}
 	}
-
+	
 	/**
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static INewWebDriver createDriver() {
-		BFLogger.logDebug("Creating new " + parametersManager.parameters().getBrowser() + " WebDriver.");
+		BFLogger.logDebug("Creating new " + runtimeParameters.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
-		if (parametersManager.parameters().isSeleniumGrid()) {
+		if (new Boolean(runtimeParameters.SELENIUM_GRID.getValue())) {
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
 		}
-		driver.manage().timeouts().implicitlyWait(parametersManager.parameters().getImplicityWaitTimer(), TimeUnit.SECONDS);
+		driver.manage()
+				.timeouts()
+				.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
+		
 		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
 		return driver;
 	}
-
+	
 	/**
 	 * Method sets Selenium Grid
 	 */
@@ -118,32 +128,32 @@ public class DriverManager implements Startable {
 			throw new BFSeleniumGridNotConnectedException(e);
 		}
 	}
-
+	
 	/**
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static INewWebDriver setupBrowser() {
-		String browser = parametersManager.parameters().getBrowser();
+		String browser = runtimeParameters.BROWSER.getValue();
 		switch (browser) {
-			case "chrome":
-				return Driver.CHROME.getDriver();
-			case "firefox":
-				return Driver.FIREFOX.getDriver();
-			case "internet explorer":
-				return Driver.IE.getDriver();
-			case "phantomjs":
-				return Driver.PHANTOMJS.getDriver();
-			default:
-				throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
+		case "chrome":
+			return Driver.CHROME.getDriver();
+		case "firefox":
+			return Driver.FIREFOX.getDriver();
+		case "internet explorer":
+			return Driver.IE.getDriver();
+		case "phantomjs":
+			return Driver.PHANTOMJS.getDriver();
+		default:
+			throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
 		}
 	}
-
+	
 	private enum Driver {
-
+		
 		CHROME {
 			@Override
 			public INewWebDriver getDriver() {
-				String browserPath = propMan.getProperty("chrome");
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 				chromePrefs.put("download.default_directory", System.getProperty("java.io.tmpdir"));
@@ -153,16 +163,16 @@ public class DriverManager implements Startable {
 				options.addArguments("--test-type");
 				DesiredCapabilities cap = DesiredCapabilities.chrome();
 				cap.setCapability(ChromeOptions.CAPABILITY, options);
-
+				
 				INewWebDriver driver = new NewChromeDriver(cap);
 				return driver;
 			}
-
+			
 		},
 		PHANTOMJS {
 			@Override
 			public INewWebDriver getDriver() {
-				String browserPath = propMan.getProperty("phantomjs");
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumPhantomjs();
 				ArrayList<String> cliArgsCap = new ArrayList<String>();
 				cliArgsCap.add("--web-security=false");
 				cliArgsCap.add("--ssl-protocol=any");
@@ -180,7 +190,7 @@ public class DriverManager implements Startable {
 			@Override
 			public INewWebDriver getDriver() {
 				FirefoxProfile profile = new FirefoxProfile();
-				String browserPath = propMan.getProperty("firefox");
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				profile.setPreference("webdriver.firefox.marionette", true);
 				profile.setPreference("browser.download.folderlist", 2);
@@ -196,7 +206,7 @@ public class DriverManager implements Startable {
 		IE {
 			@Override
 			public INewWebDriver getDriver() {
-				String browserPath = propMan.getProperty("ie");
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumIE();
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 				// Due to some issues with IE11 this line must be commented
@@ -204,33 +214,34 @@ public class DriverManager implements Startable {
 				// true);
 				return new NewInternetExplorerDriver(ieCapabilities);
 			}
-
+			
 		},
 		SAFARI {
 		},
 		SELENIUMGRID {
-
+			
 			@Override
 			public INewWebDriver getDriver() {
-				final String SELENIUM_GRID_URL = parametersManager.parameters().getSeleniumGrid();
+				final String SELENIUM_GRID_URL = runtimeParameters.SELENIUM_GRID.getValue();
 				BFLogger.logDebug("Connecting to the selenium grid: " + SELENIUM_GRID_URL);
 				DesiredCapabilities capabilities = new DesiredCapabilities();
-				String operatingSystem = DriverManager.parametersManager.parameters().getOs();
+				String operatingSystem = runtimeParameters.OS.getValue();
+				
 				// TODO add others os's
 				switch (operatingSystem) {
-					case "windows":
-						capabilities.setPlatform(Platform.WINDOWS);
-						break;
-					case "vista":
-						capabilities.setPlatform(Platform.VISTA);
-						break;
-					case "mac":
-						capabilities.setPlatform(Platform.MAC);
-						break;
+				case "windows":
+					capabilities.setPlatform(Platform.WINDOWS);
+					break;
+				case "vista":
+					capabilities.setPlatform(Platform.VISTA);
+					break;
+				case "mac":
+					capabilities.setPlatform(Platform.MAC);
+					break;
 				}
-
-				capabilities.setVersion(parametersManager.parameters().getBrowserVersion());
-				capabilities.setBrowserName(parametersManager.parameters().getBrowser());
+				
+				capabilities.setVersion(runtimeParameters.BROWSER_VERSION.getValue());
+				capabilities.setBrowserName(runtimeParameters.BROWSER.getValue());
 				NewRemoteWebDriver newRemoteWebDriver = null;
 				try {
 					newRemoteWebDriver = new NewRemoteWebDriver(new URL(SELENIUM_GRID_URL), capabilities);
@@ -241,12 +252,11 @@ public class DriverManager implements Startable {
 				return newRemoteWebDriver;
 			}
 		};
-
+		
 		public INewWebDriver getDriver() {
 			return null;
 		}
-
+		
 	}
-
-
+	
 }

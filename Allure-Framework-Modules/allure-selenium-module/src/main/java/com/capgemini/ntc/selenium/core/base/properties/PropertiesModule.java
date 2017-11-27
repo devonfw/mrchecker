@@ -6,28 +6,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
+import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.AbstractModule;
+import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
+@Singleton
 public class PropertiesModule extends AbstractModule {
 	
+	private static PropertiesModule instance;
 	private String path;
 	
-	public PropertiesModule() {
-		// Default value for settings file
-		this.path = getClass().getClassLoader()
-				.getResource("")
-				.getPath() + "/settings.properties";
-	}
-	
-	public PropertiesModule(String path) {
+	private PropertiesModule(String path) {
 		this.path = path;
+		BFLogger.logDebug("Selenium properties file path=" + this.path);
 	}
 	
 	@Override
 	protected void configure() {
-		BFLogger.logDebug("Selenium properties file path=" + this.path);
 		
 		if (!exists(this.path)) {
 			addError("Could not configure selenium properties");
@@ -41,7 +39,29 @@ public class PropertiesModule extends AbstractModule {
 		}
 	}
 	
-	protected static boolean exists(String path) {
+	public static PropertiesModule init() {
+		String path = PropertiesModule.class.getClassLoader()
+				.getResource("")
+				.getPath() + "/settings.properties";
+		return PropertiesModule.init(path);
+	}
+	
+	public static PropertiesModule init(String path) {
+		if (instance == null) {
+			synchronized (PropertiesModule.class) {
+				if (instance == null) {
+					instance = new PropertiesModule(path);
+				}
+			}
+		}
+		return instance;
+	}
+	
+	public static void delInstance() {
+		PropertiesModule.instance = null;
+	}
+	
+	private boolean exists(String path) {
 		File f = new File(path);
 		if (f.exists())
 			return true;
@@ -49,7 +69,7 @@ public class PropertiesModule extends AbstractModule {
 		return false;
 	}
 	
-	protected static Properties loadProperties(String path) {
+	private Properties loadProperties(String path) {
 		Properties properties = new Properties();
 		InputStream fileInputStream = null;
 		

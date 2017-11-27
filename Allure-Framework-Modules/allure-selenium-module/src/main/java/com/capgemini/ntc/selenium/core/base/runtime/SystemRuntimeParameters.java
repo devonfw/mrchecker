@@ -12,8 +12,8 @@ import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
  * @author
  *
  */
-public enum SystemRuntimeParameters implements RuntimeParametersI{
-	INSTANCE(SpreadsheetEnvironmentService.INSTANCE);
+public class SystemRuntimeParameters implements RuntimeParametersI{
+//	INSTANCE(SpreadsheetEnvironmentService.INSTANCE);
 
 	public static boolean maintenanceMode = false;
 	private int IMPLICITYWAITTIMER = 2; // in seconds
@@ -78,13 +78,6 @@ public enum SystemRuntimeParameters implements RuntimeParametersI{
 		return IMPLICITYWAITTIMER;
 	}
 
-	/**
-	 * 
-	 * @return collection containing all parameters
-	 */
-	public Collection<Object[]> getParameters() {
-		return params;
-	}
 	
 	/**
 	 * 
@@ -95,13 +88,12 @@ public enum SystemRuntimeParameters implements RuntimeParametersI{
 	}
 
 	private void init() {
-		getParameters();
+		getParametersLocal();
 		setDefaults();
 		createParamsCollection();
 	}
 
-	@Override
-	public void getParameters() {
+	public void getParametersLocal() {
 		env = System.getProperty("env");
 		browser = System.getProperty("browser");
 		browserVersion = System.getProperty("browserVersion");
@@ -150,5 +142,19 @@ public enum SystemRuntimeParameters implements RuntimeParametersI{
 
 	private void createParamsCollection() {
 		params = Arrays.asList(new Object[][] { { browser, browserVersion, os, seleniumGrid, env, maintenanceMode } });
+	}
+
+
+	@Override
+	public String getValue() {
+		// TASK Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void refreshParameterValue() {
+		// TASK Auto-generated method stub
+		
 	}
 }
