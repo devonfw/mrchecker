@@ -1,0 +1,3 @@
+Copy files : org.eclipse.ui.workbench.prefs, org.eclipse.ui.editors.prefs
+to your workspace:
+\workspace\.metadata\.plugins\org.eclipse.core.runtime\.settings\
