@@ -10,6 +10,7 @@
 package com.capgemini.ntc.selenium.jsoupHelper;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.jsoup.Jsoup;
