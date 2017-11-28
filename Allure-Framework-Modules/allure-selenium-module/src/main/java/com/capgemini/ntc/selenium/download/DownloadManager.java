@@ -1,15 +1,19 @@
-package com.capgemini.ntc.test.core.download;
+package com.capgemini.ntc.selenium.download;
 
 import java.io.File;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
-import com.example.selenium.core.exceptions.BFElementNotFoundException;
-import com.example.selenium.core.exceptions.BFInitializationException;
-import com.example.selenium.core.newDrivers.INewWebDriver;
-import com.example.selenium.core.newDrivers.NewChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
-import org.openqa.selenium.*;
+import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
+import com.capgemini.ntc.selenium.core.exceptions.BFInitializationException;
+import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
+import com.capgemini.ntc.selenium.core.newDrivers.NewChromeDriver;
 
 /**
  * This class contains utils related to file download using WebDriver

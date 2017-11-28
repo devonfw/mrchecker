@@ -7,13 +7,10 @@
  * permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright
  * notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
-package com.capgemini.ntc.test.core.jsoupHelper;
+package com.capgemini.ntc.selenium.jsoupHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.selenium.core.BasePage;
-import com.example.selenium.core.exceptions.BFElementNotFoundException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +18,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 
 /**
  * This class should be used when there are many WebElements to search through, like table with hundreds of rows. It

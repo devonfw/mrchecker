@@ -1,5 +1,0 @@
-service variable,DEV,QA,PROD
-WWW_FONT_URL,"http://demoqa.com/","https://pl.wiktionary.org/wiki/", "http://orient-addicts.djamila.pl/"
-SUB_PAGE," "," "
-TOOLS_QA,"http://toolsqa.com/","",""
-WEB_SERVICE,"http://jsonplaceholder.typicode.com","http://jsonplaceholder.typicode.com","http://jsonplaceholder.typicode.com"

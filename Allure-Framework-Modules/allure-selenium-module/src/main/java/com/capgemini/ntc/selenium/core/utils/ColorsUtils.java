@@ -2,7 +2,7 @@ package com.capgemini.ntc.selenium.core.utils;
 
 import org.openqa.selenium.WebElement;
 
-import com.capgemini.ntc.test.core.enums.ColorsEnum;
+import com.capgemini.ntc.selenium.core.enums.ColorsEnum;
 
 public class ColorsUtils {
 

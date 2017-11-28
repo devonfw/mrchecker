@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.unit;
+package com.capgemini.ntc.test.core.unit;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -11,9 +11,9 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
+import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.test.core.tests.core.BaseTest;
 
 /**
  * Class tests if exceptions thrown in each of method invoked in BaseTest lead to proper behavior (e.g. stop running).

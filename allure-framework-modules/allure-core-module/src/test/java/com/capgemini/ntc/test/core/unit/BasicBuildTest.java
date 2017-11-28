@@ -1,4 +1,4 @@
-package com.capgemini.ntc.test.core.tests.unit;
+package com.capgemini.ntc.test.core.unit;
 
 import static org.junit.Assert.*;
 

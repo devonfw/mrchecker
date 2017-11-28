@@ -8,10 +8,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesModule;
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
+import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParameters;
 import com.google.inject.Guice;
+import com.google.inject.name.Names;
 
 public class DriverManagerTest {
 	
+	private DriverManager driverManager;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -20,15 +26,20 @@ public class DriverManagerTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	private DriverManager driverManager;
 	
 	@Before
 	public void setUp() throws Exception {
 		
 		
-		driverManager = Guice.createInjector(new DriverManagerModule())
-				.getInstance(DriverManager.class);
 		
+		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesModule.init())
+				.getInstance(PropertiesSelenium.class);
+		
+		
+		driverManager = new DriverManager(propertiesSelenium);
+		
+		
+	
 		
 		
 		
@@ -36,6 +47,7 @@ public class DriverManagerTest {
 	
 	@After
 	public void tearDown() throws Exception {
+		driverManager.stop();
 	}
 	
 	@Test

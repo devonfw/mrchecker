@@ -32,17 +32,13 @@ public class DriverManager {
 	private static final int IMPLICITYWAITTIMER = 2; // in seconds
 	
 	private static PropertiesSelenium propertiesSelenium;
-	private static RuntimeParameters runtimeParameters;
 	
 	@Inject
-	public DriverManager(@Named("properties") PropertiesSelenium propertiesSelenium,
-			@Named("runtime") RuntimeParameters runtimeParameters) {
+	public DriverManager(@Named("properties") PropertiesSelenium propertiesSelenium) {
 		
-		if (!(null == DriverManager.propertiesSelenium || null == propertiesSelenium)) {
+		if (null == DriverManager.propertiesSelenium) {
 			DriverManager.propertiesSelenium = propertiesSelenium;
 		}
-		
-		DriverManager.runtimeParameters = runtimeParameters;
 		
 		this.start();
 	}
@@ -86,7 +82,7 @@ public class DriverManager {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
 			try {
-				BFLogger.logDebug("Closing WebDriver for this thread. " + runtimeParameters.BROWSER.getValue());
+				BFLogger.logDebug("Closing WebDriver for this thread. " + RuntimeParameters.BROWSER.getValue());
 				driver.quit();
 			} catch (UnreachableBrowserException e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
@@ -102,9 +98,9 @@ public class DriverManager {
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static INewWebDriver createDriver() {
-		BFLogger.logDebug("Creating new " + runtimeParameters.BROWSER.toString() + " WebDriver.");
+		BFLogger.logDebug("Creating new " + RuntimeParameters.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
-		if (new Boolean(runtimeParameters.SELENIUM_GRID.getValue())) {
+		if (new Boolean(RuntimeParameters.SELENIUM_GRID.getValue())) {
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
@@ -133,7 +129,7 @@ public class DriverManager {
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static INewWebDriver setupBrowser() {
-		String browser = runtimeParameters.BROWSER.getValue();
+		String browser = RuntimeParameters.BROWSER.getValue();
 		switch (browser) {
 		case "chrome":
 			return Driver.CHROME.getDriver();
@@ -222,10 +218,10 @@ public class DriverManager {
 			
 			@Override
 			public INewWebDriver getDriver() {
-				final String SELENIUM_GRID_URL = runtimeParameters.SELENIUM_GRID.getValue();
+				final String SELENIUM_GRID_URL = RuntimeParameters.SELENIUM_GRID.getValue();
 				BFLogger.logDebug("Connecting to the selenium grid: " + SELENIUM_GRID_URL);
 				DesiredCapabilities capabilities = new DesiredCapabilities();
-				String operatingSystem = runtimeParameters.OS.getValue();
+				String operatingSystem = RuntimeParameters.OS.getValue();
 				
 				// TODO add others os's
 				switch (operatingSystem) {
@@ -240,8 +236,8 @@ public class DriverManager {
 					break;
 				}
 				
-				capabilities.setVersion(runtimeParameters.BROWSER_VERSION.getValue());
-				capabilities.setBrowserName(runtimeParameters.BROWSER.getValue());
+				capabilities.setVersion(RuntimeParameters.BROWSER_VERSION.getValue());
+				capabilities.setBrowserName(RuntimeParameters.BROWSER.getValue());
 				NewRemoteWebDriver newRemoteWebDriver = null;
 				try {
 					newRemoteWebDriver = new NewRemoteWebDriver(new URL(SELENIUM_GRID_URL), capabilities);

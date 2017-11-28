@@ -1,27 +1,18 @@
 package com.capgemini.ntc.test.core;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.AssumptionViolatedException;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.junit.runners.model.MultipleFailureException;
 import org.junit.runners.model.Statement;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.UnhandledAlertException;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.example.selenium.core.newDrivers.DriverManager;
 
 import ru.yandex.qatools.allure.annotations.Attachment;
 
@@ -119,17 +110,21 @@ public class BaseTestWatcher extends TestWatcher {
 	@Attachment("Screenshot on failure")
 	public byte[] makeScreenshotOnFailure() {
 		byte[] screenshot = null;
-		try {
+		
+		// TASK Decouple Selenium from Test
+		/*try {
 			screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
 		} catch (UnhandledAlertException e) {
 			BFLogger.logDebug("[makeScreenshotOnFailure] Unable to take screenshot.");
-		}
+		}*/
 		return screenshot;
 	}
 
 	@Attachment("Source Page on failure")
 	public String makeSourcePageOnFailure() {
-		return DriverManager.getDriver().getPageSource();
+		// TASK Decouple Selenium from Test
+//		return DriverManager.getDriver().getPageSource();
+		return "";
 	}
 
 	@Attachment("Log file")
@@ -155,7 +150,8 @@ public class BaseTestWatcher extends TestWatcher {
 		return sdf.format(date);
 	}
 
-	private void saveScreenshot(Description description) {
+	// TASK Decouple Selenium from Test
+	/*private void saveScreenshot(Description description) {
 		TakesScreenshot takesScreenshot = (TakesScreenshot) DriverManager.getDriver();
 		File screenshotFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 		File destFile = getDestinationFile(description.getClassName(), description.getDisplayName(), "png");
@@ -167,8 +163,10 @@ public class BaseTestWatcher extends TestWatcher {
 			throw new RuntimeException(ioe);
 		}
 	}
-
-	private void savePageSource(Description description) {
+*/
+	
+	// TASK Decouple Selenium from Test
+	/*private void savePageSource(Description description) {
 		String pageSource = DriverManager.getDriver().getPageSource();
 		File destFile = getDestinationFile(description.getClassName(), description.getDisplayName(), "html");
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(destFile, false)))) {
@@ -178,5 +176,5 @@ public class BaseTestWatcher extends TestWatcher {
 			BFLogger.logDebug("Page source could not be saved: " + e.getMessage());
 		}
 	}
-
+*/
 }

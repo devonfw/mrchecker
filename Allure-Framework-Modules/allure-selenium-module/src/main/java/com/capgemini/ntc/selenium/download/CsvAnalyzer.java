@@ -1,13 +1,19 @@
-package com.capgemini.ntc.test.core.download;
+package com.capgemini.ntc.selenium.download;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.apache.commons.csv.*;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
-import com.example.selenium.core.exceptions.BFElementNotFoundException;
-import com.example.selenium.core.exceptions.BFInitializationException;
+import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
+import com.capgemini.ntc.selenium.core.exceptions.BFInitializationException;
 
 /**
  * This class contains utils related to CSV files analyze.

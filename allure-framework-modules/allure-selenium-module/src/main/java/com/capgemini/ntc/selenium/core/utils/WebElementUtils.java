@@ -6,13 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
-import com.capgemini.ntc.selenium.core.exceptions.BFRobotInitilizationException;
-import com.capgemini.ntc.selenium.core.utils.ScrollUtils;
-import com.capgemini.ntc.selenium.core.utils.StringUtils;
-import com.capgemini.ntc.selenium.core.utils.TimeUtills;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidElementStateException;
 import org.openqa.selenium.NoSuchElementException;
@@ -22,6 +15,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
+import com.capgemini.ntc.selenium.core.exceptions.BFRobotInitilizationException;
 import com.capgemini.ntc.test.core.exceptions.BFWaitingTimeoutException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -321,7 +317,7 @@ public class WebElementUtils {
 		String leftOffset = "";
 		while (!leftOffset.equals(sliderElement.getAttribute("style"))) {
 			if (System.currentTimeMillis() - startTime > BasePage.EXPLICITYWAITTIMER * 1000) {
-				throw new BFWaitingTimeoutException("Animation is to long");
+				throw new BFWaitingTimeoutException("Animation is to long", BasePage.EXPLICITYWAITTIMER * 1000);
 			}
 			leftOffset = sliderElement.getAttribute("style");
 			TimeUtills.waitMiliseconds(100);

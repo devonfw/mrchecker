@@ -14,7 +14,6 @@ import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
-import com.capgemini.ntc.selenium.core.newDrivers.DriverManagerModule;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WindowUtils;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -85,8 +84,10 @@ abstract public class BasePage implements IBasePage {
 	public static INewWebDriver getDriver() {
 		if (driverManager == null) {
 			
-			driverManager = Guice.createInjector(new DriverManagerModule())
-					.getInstance(DriverManager.class);
+			PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesModule.init())
+					.getInstance(PropertiesSelenium.class);
+			
+			driverManager = new DriverManager(propertiesSelenium);
 			// RuntimeParameters.INSTANCE;
 		}
 		return driverManager.getDriver();

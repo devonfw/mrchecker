@@ -47,7 +47,8 @@ public class CustomRunAfters extends Statement {
 					BFLogger.logError("There was an exception in @AfterClass " + each.getName() + ": " + e.toString());
 				}
 			}
-			DriverManager.closeDriver();
+			// TASK Decouple Selenium from Test
+			//DriverManager.closeDriver();
 		}
 		MultipleFailureException.assertEmpty(errors);
 	}

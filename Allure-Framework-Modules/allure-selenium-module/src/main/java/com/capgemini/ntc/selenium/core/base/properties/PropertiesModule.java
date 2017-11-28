@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
@@ -28,7 +29,7 @@ public class PropertiesModule extends AbstractModule {
 	protected void configure() {
 		
 		if (!exists(this.path)) {
-			addError("Could not configure selenium properties");
+			addError("Could not configure selenium properties. Path='" + this.path + "' does not exist");
 		}
 		
 		try {
@@ -40,9 +41,8 @@ public class PropertiesModule extends AbstractModule {
 	}
 	
 	public static PropertiesModule init() {
-		String path = PropertiesModule.class.getClassLoader()
-				.getResource("")
-				.getPath() + "/settings.properties";
+		String path = System.getProperty("user.dir")
+				+ Paths.get("/src/resources/selenium.properties"); 
 		return PropertiesModule.init(path);
 	}
 	
