@@ -1,21 +1,21 @@
 package com.capgemini.ntc.selenium.core.utils;
 
 import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
-import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
-
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.exceptions.BFComponentStateException;
+import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.gson.JsonObject;
@@ -25,18 +25,17 @@ import com.google.gson.JsonParser;
  * Contains methods that validate timestamp, pause application for moment, check trading hours in NY etc.
  * 
  * @author
- *
  */
 public class TimeUtills {
-
+	
 	private TimeUtills() {
 	}
-
+	
 	private static final String MARKET_CLOSE = "MARKET_CLOSE";
 	private static final String IS_OPEN = "IS_OPEN";
 	private static String urlService = "https://www.Bank.com/service/quote/json?productid=embeddedquotes&subproductid=default&market_close=1&symbols=.DJI%2C.IXIC%2C.SPX&dojo.preventCache=1436276037737&callback=dojo.io.script.jsonp_dojoIoScript1._jsonpCallback";
 	public static final int TEN_MINUTES_IN_SECONDS = 600;
-
+	
 	/**
 	 * Check is timestamp has valid format
 	 * 
@@ -57,9 +56,8 @@ public class TimeUtills {
 		}
 		return true;
 	}
-
+	
 	/**
-	 *
 	 * @author
 	 */
 	public static void pauseOneMinute() {
@@ -78,7 +76,7 @@ public class TimeUtills {
 		}
 		BFLogger.logTime(startTime, "pauseOneMinute");
 	}
-
+	
 	/**
 	 * Us this method to wait. Method will print message in every 5 sec.
 	 * 
@@ -100,7 +98,7 @@ public class TimeUtills {
 		}
 		BFLogger.logTime(startTime, "waitSeconds");
 	}
-
+	
 	/**
 	 * Us this method to wait. Method will print message in every 5 sec.
 	 * 
@@ -122,13 +120,11 @@ public class TimeUtills {
 		}
 		BFLogger.logTime(startTime, "waitMiliseconds");
 	}
-
+	
 	/**
 	 * It can be used to check is now are trading hours in New York. Method invoke service available on main Bank page.
 	 * Bank.com Invoke this method before you start test. For example in setUp method. As side effect method show json
-	 * in browser
-	 * 
-	 * NYSEtrading hours are 9:30 to 16:00
+	 * in browser NYSEtrading hours are 9:30 to 16:00
 	 * 
 	 * @return boolean
 	 * @author
@@ -136,12 +132,15 @@ public class TimeUtills {
 	public static boolean isNowTradingHoursinNY(INewWebDriver iNewWebDriver) {
 		String orginalUrl = iNewWebDriver.getCurrentUrl();
 		iNewWebDriver.get(urlService);
-		String preElement = iNewWebDriver.findDynamicElement(By.cssSelector("pre")).getText();
+		String preElement = iNewWebDriver.findDynamicElement(By.cssSelector("pre"))
+				.getText();
 		JsonParser parser = new JsonParser();
 		String jsonString = preElement.substring(preElement.indexOf("{"), preElement.length() - 1);
 		JsonObject jobject = (JsonObject) parser.parse(jsonString);
 		JsonObject marketClosedObject = jobject.getAsJsonObject(MARKET_CLOSE);
-		String result = marketClosedObject.get(IS_OPEN).toString().replace("\"", "");
+		String result = marketClosedObject.get(IS_OPEN)
+				.toString()
+				.replace("\"", "");
 		BFLogger.logInfo("isThisIsTradingHoursinNY - result: " + result);
 		iNewWebDriver.get(orginalUrl);
 		if (result.equals("N")) {
@@ -149,7 +148,7 @@ public class TimeUtills {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Function waits specified time
 	 * 
@@ -168,7 +167,7 @@ public class TimeUtills {
 			BFLogger.logDebug("Timed out after waiting timer to finish countdown.");
 		}
 	}
-
+	
 	/**
 	 * To transform date in String to Date object
 	 * 
@@ -189,7 +188,7 @@ public class TimeUtills {
 		}
 		return date;
 	}
-
+	
 	/**
 	 * To create date that represents some days before current day
 	 * 
@@ -202,12 +201,12 @@ public class TimeUtills {
 		Date date = new Date(System.currentTimeMillis() - (days * DAY_IN_MS));
 		return date;
 	}
-
+	
 	private static boolean isItWeekend(Calendar today) {
 		int dayOfWeek = today.get(Calendar.DAY_OF_WEEK);
 		return dayOfWeek > Calendar.SUNDAY && dayOfWeek <= Calendar.FRIDAY;
 	}
-
+	
 	private static Calendar getCurrentESTDate(String format) {
 		DateFormat dateFormat = new SimpleDateFormat(format);
 		dateFormat.setTimeZone(TimeZone.getTimeZone("EST"));
@@ -216,7 +215,7 @@ public class TimeUtills {
 		currentDate.setTime(date);
 		return currentDate;
 	}
-
+	
 	/**
 	 * @author
 	 * @param dateTimeMiliseconds
@@ -232,7 +231,7 @@ public class TimeUtills {
 	public static boolean isDateOlderThanGivenPeriod(long dateTimeMiliseconds, long periodLength) {
 		return (System.currentTimeMillis() - dateTimeMiliseconds > periodLength);
 	}
-
+	
 	/**
 	 * @author
 	 * @param date1
@@ -244,7 +243,7 @@ public class TimeUtills {
 	public static boolean isMax3YearsBetweenDates(Date date1, Date date2) {
 		return Math.abs(date2.getTime() - date1.getTime()) <= 94670000000L;
 	}
-
+	
 	/**
 	 * @author
 	 * @param dateEpoch
@@ -254,7 +253,7 @@ public class TimeUtills {
 	public static boolean isPass3YearsSinceGivenDate(long dateEpoch) {
 		return isPassXYearsSinceGivenDate(dateEpoch, 3);
 	}
-
+	
 	/**
 	 * @author
 	 * @param dateEpoch
@@ -264,7 +263,7 @@ public class TimeUtills {
 	public static boolean isTodayDate(long dateEpoch) {
 		return isPassXYearsSinceGivenDate(dateEpoch, 0);
 	}
-
+	
 	private static boolean isPassXYearsSinceGivenDate(long dateEpoch, int passYears) {
 		DateTime currentDate = new DateTime();
 		DateTime today = new DateTime(
@@ -283,7 +282,7 @@ public class TimeUtills {
 		int days = period.getDays();
 		return (years == passYears && months == 0 && days == 0 && weeks == 0);
 	}
-
+	
 	/**
 	 * @return get current year as String
 	 */
@@ -292,7 +291,7 @@ public class TimeUtills {
 		BFLogger.logInfo(String.valueOf(today.get(Calendar.YEAR)));
 		return String.valueOf(today.get(Calendar.YEAR));
 	}
-
+	
 	/**
 	 * @return get previous year as String
 	 */
@@ -300,7 +299,7 @@ public class TimeUtills {
 		Calendar today = Calendar.getInstance();
 		return String.valueOf(today.get(Calendar.YEAR) - 1);
 	}
-
+	
 	/**
 	 * @return true if date is between January 1st and April 15th, false otherwise
 	 */
@@ -312,13 +311,14 @@ public class TimeUtills {
 			return true;
 		return false;
 	}
-
+	
 	/**
 	 * @author
 	 * @return true if timestamp value is delayed (older than current time), false otherwise
 	 */
 	public static boolean isTimestampValueDelayed(By selectorTimestamp) {
-		WebElement timestampElement = BasePage.getDriver().findElement(selectorTimestamp);
+		WebElement timestampElement = BasePage.getDriver()
+				.findElement(selectorTimestamp);
 		String timestampText = timestampElement.getText();
 		int timestampBeginIndex = timestampText.indexOf("AS OF") + 6;
 		int timestampEndIndex = timestampText.indexOf("ET") - 1;
@@ -326,7 +326,7 @@ public class TimeUtills {
 		String currentDate = getCurrentESTTimestamp("MM/dd/yyyy h:mm a");
 		return !timestampValue.equals(currentDate);
 	}
-
+	
 	/**
 	 * Checks if specified time interval between two timestamps has passed
 	 * 
@@ -350,24 +350,25 @@ public class TimeUtills {
 		long difference = date2.getTime() - date1.getTime();
 		return difference >= timePassedInMiliseconds;
 	}
-
+	
 	private static String getCurrentESTTimestamp(String format) {
 		return getDateTimestamp(format, new Date());
 	}
-
+	
 	private static String getDateTimestamp(String format, Date date) {
 		DateFormat dateFormat = new SimpleDateFormat(format);
-		if (Calendar.getInstance().getTimeZone() != TimeZone.getTimeZone("EST")) {
+		if (Calendar.getInstance()
+				.getTimeZone() != TimeZone.getTimeZone("EST")) {
 			dateFormat.setTimeZone(TimeZone.getTimeZone("EST"));
 		}
 		return dateFormat.format(date);
 	}
-
+	
 	private static String getOnlyDataString(String format, Calendar calendar) {
 		DateFormat dateFormat = new SimpleDateFormat(format);
 		return dateFormat.format(calendar.getTime());
 	}
-
+	
 	/**
 	 * Check if now is after date (with time)
 	 * 
