@@ -97,7 +97,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			CSVParser parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
 			records = parser.getRecords();
 		} catch (IOException e) {
-			throw new BFInputDataException("Unable to parse" + path + " CSV.");
+			throw new BFInputDataException("Unable to parse CSV: " + path);
 		}
 	}
 	

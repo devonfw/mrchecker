@@ -87,7 +87,7 @@ public interface INewWebDriver extends WebDriver {
 
 	/**
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be enabled to action. If element after
-	 * this time will not be enabled then throw an exception (PiAtElementNotFoundException)
+	 * this time will not be enabled then throw an exception (BFElementNotFoundException)
 	 * 
 	 * @param by
 	 *            selector
@@ -99,7 +99,7 @@ public interface INewWebDriver extends WebDriver {
 
 	/**
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be clickable. If element will not be
-	 * clickable then throw an exception (PiAtElementNotFoundException)
+	 * clickable then throw an exception (BFElementNotFoundException)
 	 * 
 	 * @param by
 	 *            selector

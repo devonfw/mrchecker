@@ -147,7 +147,7 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	/**
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will
 	 * be clickable. If element will not be clickable then throw an exception
-	 * (PiAtElementNotFoundException)
+	 * (BFElementNotFoundException)
 	 * 
 	 * @param by
 	 *            selector

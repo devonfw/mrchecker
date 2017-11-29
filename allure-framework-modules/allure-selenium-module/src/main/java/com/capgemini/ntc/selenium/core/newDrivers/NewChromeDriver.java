@@ -122,7 +122,7 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 
 	/**
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be clickable. If element will not be
-	 * clickable then throw an exception (PiAtElementNotFoundException)
+	 * clickable then throw an exception (BFElementNotFoundException)
 	 * 
 	 * @param by
 	 *            selector

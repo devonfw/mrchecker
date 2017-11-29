@@ -5,10 +5,12 @@ import java.net.MalformedURLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 
+import com.capgemini.ntc.test.core.BaseTestWatcher.TestClassRule;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersCore;
@@ -18,15 +20,6 @@ import com.google.inject.Guice;
 
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
-	
-	@ru.yandex.qatools.allure.annotations.Parameter("Width")
-	public static int windowWidth;
-	
-	@ru.yandex.qatools.allure.annotations.Parameter("Height")
-	public static int windowHeight;
-	
-	@ru.yandex.qatools.allure.annotations.Parameter("Username")
-	private String defaultUsername_lastUsedInTest;
 	
 	private static IEnvironmentService environmentService;
 	
@@ -69,6 +62,9 @@ public abstract class BaseTest implements IBaseTest {
 	@Rule
 	public TestWatcher testWatcher = new BaseTestWatcher(this);
 	
+	@ClassRule
+	public static TestClassRule classRule = new TestClassRule();
+	
 	private void setEnvironmetInstance() {
 		// Environment variables either from environmnets.csv or any other input data.
 		IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
@@ -85,9 +81,8 @@ public abstract class BaseTest implements IBaseTest {
 	private void setPropertiesSettings() {
 		/*
 		 * For now there is no properties settings file for Core module. In future, please have a look on Selenium
-		 * Module 
-		 * PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
-		 * 		  .getInstance(PropertiesSelenium.class);
+		 * Module PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
+		 * .getInstance(PropertiesSelenium.class);
 		 */
 		
 	}

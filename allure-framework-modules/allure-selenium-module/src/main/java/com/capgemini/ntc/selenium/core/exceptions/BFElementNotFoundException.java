@@ -9,11 +9,11 @@ public class BFElementNotFoundException extends NoSuchElementException {
 	private static String messageText;
 
 	/**
-	 * {@code PiAtElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
+	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
 	 * and/or {@code findDynamicElement}
 	 *
 	 * <p>
-	 * {@code PiAtElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
+	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
 	 * be throw when <em>element</em> is not found directly or by timeout
 	 *
 	 * @author
@@ -25,11 +25,11 @@ public class BFElementNotFoundException extends NoSuchElementException {
 	}
 
 	/**
-	 * {@code PiAtElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
+	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
 	 * and/or {@code findDynamicElement}
 	 *
 	 * <p>
-	 * {@code PiAtElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
+	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
 	 * be throw when <em>element</em> is not found directly or by timeout
 	 *
 	 * @author
@@ -43,11 +43,11 @@ public class BFElementNotFoundException extends NoSuchElementException {
 	}
 
 	/**
-	 * {@code PiAtElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
+	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
 	 * and/or {@code findDynamicElement}
 	 *
 	 * <p>
-	 * {@code PiAtElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
+	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
 	 * be throw when <em>element</em> is not found directly or by timeout
 	 *
 	 * @author
@@ -62,11 +62,11 @@ public class BFElementNotFoundException extends NoSuchElementException {
 	}
 
 	/**
-	 * {@code PiAtElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
+	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
 	 * and/or {@code findDynamicElement}
 	 *
 	 * <p>
-	 * {@code PiAtElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
+	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
 	 * be throw when <em>element</em> is not found directly or by timeout
 	 *
 	 * @author
@@ -82,11 +82,11 @@ public class BFElementNotFoundException extends NoSuchElementException {
 	}
 
 	/**
-	 * {@code PiAtElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
+	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
 	 * and/or {@code findDynamicElement}
 	 *
 	 * <p>
-	 * {@code PiAtElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
+	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
 	 * be throw when <em>element</em> is not found directly or by timeout
 	 *
 	 * @author
@@ -102,11 +102,11 @@ public class BFElementNotFoundException extends NoSuchElementException {
 	}
 
 	/**
-	 * {@code PiAtElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
+	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
 	 * and/or {@code findDynamicElement}
 	 *
 	 * <p>
-	 * {@code PiAtElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
+	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
 	 * be throw when <em>element</em> is not found directly or by timeout
 	 *
 	 * @author
@@ -148,7 +148,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 			for (int i = 0; i++ < 16;) {
 				String stackTraceElement = Thread.currentThread().getStackTrace()[i].toString();
 				if (stackTraceElement.contains("com.example.webframe.pages") && !stackTraceElement
-						.contains("com.example.webframe.pages.exceptions.PiAtElementNotFoundException")) {
+						.contains("com.example.webframe.pages.exceptions.BFElementNotFoundException")) {
 					stackTraceElements = stackTraceElements
 							.concat("\n" + Thread.currentThread().getStackTrace()[i].toString());
 				}

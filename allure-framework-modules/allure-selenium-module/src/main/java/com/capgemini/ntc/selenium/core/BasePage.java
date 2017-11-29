@@ -1,15 +1,19 @@
 package com.capgemini.ntc.selenium.core;
 
+
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.capgemini.ntc.selenium.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
@@ -17,12 +21,14 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WindowUtils;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
-import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
+import com.capgemini.ntc.test.core.BaseTestWatcher;
+import com.capgemini.ntc.test.core.ITestObserver;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
-abstract public class BasePage implements IBasePage {
+import ru.yandex.qatools.allure.annotations.Attachment;
+
+abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	// in seconds; this value should be used for very shot delay purpose e.g. to
 	// wait for JavaScript take effort on element
@@ -48,6 +54,9 @@ abstract public class BasePage implements IBasePage {
 	}
 	
 	public BasePage(INewWebDriver driver, BasePage parent) {
+		//Add given module to Test core Observable list
+		BaseTestWatcher.addObserver(this);
+		
 		webDriverWait = new WebDriverWait(getDriver(), BasePage.EXPLICITYWAITTIMER);
 		
 		this.setParent(parent);
@@ -60,6 +69,40 @@ abstract public class BasePage implements IBasePage {
 	}
 
 	
+	@Override
+	public void onTestFailure() {
+	    BFLogger.logDebug("BasePage.onTestFailure");
+	    makeScreenshotOnFailure();
+	    makeSourcePageOnFailure();
+	}
+
+	@Override
+	public void onTestSuccess() {
+	    BFLogger.logDebug("BasePage.onTestSuccess");
+	}
+
+	@Override
+	public void onTestFinish() {
+	    BFLogger.logDebug("BasePage.onTestFinish");
+	    getDriver().close();
+	}
+
+	@Attachment("Screenshot on failure")
+	public byte[] makeScreenshotOnFailure() {
+	    byte[] screenshot = null;
+	    try {
+	        screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+	    } catch (UnhandledAlertException e) {
+	        BFLogger.logDebug("[makeScreenshotOnFailure] Unable to take screenshot.");
+	    }
+	    return screenshot;
+	}
+
+	@Attachment("Source Page on failure")
+	public String makeSourcePageOnFailure() {
+	    return DriverManager.getDriver().getPageSource();
+	}
+
 	public String getActualPageTitle() {
 		return getDriver().getTitle();
 	}
@@ -117,23 +160,6 @@ abstract public class BasePage implements IBasePage {
 		return this.parent;
 	}
 	
-	/**
-	 * @param selectorProgressBar
-	 * @param attribute
-	 * @param value
-	 * @throws WaitForProgressBarTimeoutException
-	 * @return true, if progress bar occurred and was handled
-	 */
-	/*
-	 * public static boolean waitForFinishProgressBar(IProgressBar progressBar) throws BFWaitingTimeoutException { long
-	 * startTime = System.currentTimeMillis(); int tmp_timeout = BasePage.PROGRESSBARWAITTIMER; boolean
-	 * progressBarHandled = true; String progressBarName = progressBar.getName(); BFLogger.logDebug("Waiting for " +
-	 * progressBarName + " to load."); try { while (progressBar.isLoading()) { TimeUtills.waitSeconds(1); if
-	 * (tmp_timeout-- <= 0) { BFLogger.logDebug("Timed out after " + PROGRESSBARWAITTIMER + " seconds waiting for " +
-	 * progressBarName + "."); progressBarHandled = false; throw new BFWaitingTimeoutException(progressBarName); } } }
-	 * catch (BFElementNotFoundException e) { BFLogger.logDebug("There was no " + progressBarName + " to handle.");
-	 * progressBarHandled = false; } BFLogger.logTime(startTime, progressBar.getName()); return progressBarHandled; }
-	 */
 	public abstract String pageTitle();
 	
 	public void loadPage(SubUrl subUrl) {
@@ -169,8 +195,8 @@ abstract public class BasePage implements IBasePage {
 	}
 	
 	/**
-	 * Recomended to use. It is method to check is element visible. If element not exists in DOM , method throw
-	 * PiAtElementNotFoundException
+	 * Recommended to use. It is method to check is element visible. If element not exists in DOM , method throw
+	 * BFElementNotFoundException
 	 * 
 	 * @throws BFElementNotFoundException
 	 * @param cssSelector
@@ -187,7 +213,7 @@ abstract public class BasePage implements IBasePage {
 	
 	/**
 	 * It is method to check is element visible. It search element inside parent. If element not exists in DOM , method
-	 * throw PiAtElementNotFoundException
+	 * throw BFElementNotFoundException
 	 * 
 	 * @throws BFElementNotFoundException
 	 * @param cssSelector
@@ -311,8 +337,7 @@ abstract public class BasePage implements IBasePage {
 	
 	private static void setRuntimeParametersSelenium() {
 		// Read System or maven parameters
-		BFLogger.logDebug(RuntimeParametersSelenium.values()
-				.toString());
+		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParametersSelenium.values()).toString());
 		
 	}
 	

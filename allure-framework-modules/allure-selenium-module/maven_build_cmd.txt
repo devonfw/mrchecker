@@ -1,2 +1,2 @@
-mvn install:install-file -Dfile=d:\Repo\devonfw-testing\allure-framework-modules\allure-core-module\target\allure-core-module-1.0.0.jar -DgroupId=com.capgemini.ntc -DartifactId=allure-core-module -Dversion=1.0.0 -Dpackaging=jar
+mvn install:install-file -Dfile=c:\Repo\devonfw-testing\allure-framework-modules\allure-core-module\target\allure-core-module-1.0.0.jar -DgroupId=com.capgemini.ntc -DartifactId=allure-core-module -Dversion=1.0.0 -Dpackaging=jar
 mvn clean compile -DskipTests
