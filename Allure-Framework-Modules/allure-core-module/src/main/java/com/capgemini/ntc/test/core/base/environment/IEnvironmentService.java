@@ -3,7 +3,7 @@ package com.capgemini.ntc.test.core.base.environment;
 /**
  * @author LUSTEFAN
  */
-public interface EnvironmentServiceI {
+public interface IEnvironmentService {
 	
 	// as the next step please define other Environment Services
 	

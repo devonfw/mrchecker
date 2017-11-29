@@ -8,14 +8,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.capgemini.ntc.selenium.core.base.properties.PropertiesModule;
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
+import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WindowUtils;
+import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
+import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
@@ -31,7 +34,7 @@ abstract public class BasePage implements IBasePage {
 	
 	public static final int MAX_COMPONENT_RELOAD_COUNT = 3;
 	
-	private static DriverManager driverManager = null;
+	private static DriverManager driver = null;
 	private static WebDriverWait webDriverWait;
 	
 	private BasePage parent;
@@ -55,6 +58,7 @@ abstract public class BasePage implements IBasePage {
 		}
 		
 	}
+
 	
 	public String getActualPageTitle() {
 		return getDriver().getTitle();
@@ -63,6 +67,25 @@ abstract public class BasePage implements IBasePage {
 	public void refreshPage() {
 		getDriver().navigate()
 				.refresh();
+	}
+
+	public static INewWebDriver getDriver() {
+		if (BasePage.driver == null) {
+			
+			// Get and then set properties information from selenium.settings file
+			PropertiesSelenium propertiesSelenium = setPropertiesSettings();
+			
+			// Read System or maven parameters
+			setRuntimeParametersSelenium();
+			
+			// Read Environment variables either from environmnets.csv or any other input data.
+			setEnvironmetInstance();
+			
+			BasePage.driver = new DriverManager(propertiesSelenium);
+			
+		}
+		return BasePage.driver.getDriver();
+		
 	}
 	
 	public static void navigateBack() {
@@ -81,18 +104,6 @@ abstract public class BasePage implements IBasePage {
 		getDriver().waitForPageLoaded();
 	}
 	
-	public static INewWebDriver getDriver() {
-		if (driverManager == null) {
-			
-			PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesModule.init())
-					.getInstance(PropertiesSelenium.class);
-			
-			driverManager = new DriverManager(propertiesSelenium);
-			// RuntimeParameters.INSTANCE;
-		}
-		return driverManager.getDriver();
-		// return DriverManager.getDriver();
-	}
 	
 	public static Actions getAction() {
 		return new Actions(getDriver());
@@ -289,6 +300,29 @@ abstract public class BasePage implements IBasePage {
 		JavascriptExecutor js = (JavascriptExecutor) BasePage.getDriver();
 		js.executeScript("window.open(arguments[0], '_blank');", url);
 		WindowUtils.switchWindow(url, true);
+	}
+	
+	private static PropertiesSelenium setPropertiesSettings() {
+		// Get and then set properties information from selenium.settings file
+		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
+				.getInstance(PropertiesSelenium.class);
+		return propertiesSelenium;
+	}
+	
+	private static void setRuntimeParametersSelenium() {
+		// Read System or maven parameters
+		BFLogger.logDebug(RuntimeParametersSelenium.values()
+				.toString());
+		
+	}
+	
+	private static void setEnvironmetInstance() {
+		/*
+		 * Environment variables either from environmnets.csv or any other input data. For now there is no properties
+		 * settings file for Selenium module. In future, please have a look on Core Module IEnvironmentService
+		 * environmetInstance = Guice.createInjector(new EnvironmentModule()) .getInstance(IEnvironmentService.class);
+		 */
+		
 	}
 	
 }

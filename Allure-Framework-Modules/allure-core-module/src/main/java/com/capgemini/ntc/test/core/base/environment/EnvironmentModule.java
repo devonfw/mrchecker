@@ -14,7 +14,7 @@ public class EnvironmentModule extends AbstractModule {
 	}
 	
 	@Provides
-	EnvironmentServiceI provideSpreadsheetEnvironmentService() {
+	IEnvironmentService provideSpreadsheetEnvironmentService() {
 		String path = System.getProperty("user.dir")
 				+ Paths.get("/src/resources/enviroments/environments.csv");
 		

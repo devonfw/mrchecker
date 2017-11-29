@@ -12,7 +12,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
+import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Singleton;
@@ -25,9 +25,9 @@ import com.google.inject.Singleton;
  */
 
 @Singleton
-public class SpreadsheetEnvironmentService implements EnvironmentServiceI {
+public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
-	private static EnvironmentServiceI instance;
+	private static IEnvironmentService instance;
 	
 	private List<CSVRecord> records;
 	private Map<String, String> services;
@@ -41,14 +41,14 @@ public class SpreadsheetEnvironmentService implements EnvironmentServiceI {
 		BFLogger.logDebug("Reading environment from: " + path);
 	}
 	
-	public static EnvironmentServiceI init() {
+	public static IEnvironmentService init() {
 		String path = SpreadsheetEnvironmentService.class.getResource("")
 				.getPath() + "/environments/environments.csv";
 		String environment = "DEV";
 		return init(path, environment);
 	}
 	
-	public static EnvironmentServiceI init(String path, String environment) {
+	public static IEnvironmentService init(String path, String environment) {
 		if (instance == null) {
 			synchronized (SpreadsheetEnvironmentService.class) {
 				if (instance == null) {
@@ -59,7 +59,7 @@ public class SpreadsheetEnvironmentService implements EnvironmentServiceI {
 		return instance;
 	}
 	
-	public static EnvironmentServiceI getInstance() {
+	public static IEnvironmentService getInstance() {
 		return SpreadsheetEnvironmentService.instance;
 	}
 	

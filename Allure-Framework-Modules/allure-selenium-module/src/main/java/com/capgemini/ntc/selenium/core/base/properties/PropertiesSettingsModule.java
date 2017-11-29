@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
+import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.AbstractModule;
@@ -15,14 +15,14 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 
 @Singleton
-public class PropertiesModule extends AbstractModule {
+public class PropertiesSettingsModule extends AbstractModule {
 	
-	private static PropertiesModule instance;
+	private static PropertiesSettingsModule instance;
 	private String path;
 	
-	private PropertiesModule(String path) {
+	private PropertiesSettingsModule(String path) {
 		this.path = path;
-		BFLogger.logDebug("Selenium properties file path=" + this.path);
+		BFLogger.logDebug("Selenium properties settings file path=" + this.path);
 	}
 	
 	@Override
@@ -40,17 +40,17 @@ public class PropertiesModule extends AbstractModule {
 		}
 	}
 	
-	public static PropertiesModule init() {
+	public static PropertiesSettingsModule init() {
 		String path = System.getProperty("user.dir")
 				+ Paths.get("/src/resources/selenium.properties"); 
-		return PropertiesModule.init(path);
+		return PropertiesSettingsModule.init(path);
 	}
 	
-	public static PropertiesModule init(String path) {
+	public static PropertiesSettingsModule init(String path) {
 		if (instance == null) {
-			synchronized (PropertiesModule.class) {
+			synchronized (PropertiesSettingsModule.class) {
 				if (instance == null) {
-					instance = new PropertiesModule(path);
+					instance = new PropertiesSettingsModule(path);
 				}
 			}
 		}
@@ -58,7 +58,7 @@ public class PropertiesModule extends AbstractModule {
 	}
 	
 	public static void delInstance() {
-		PropertiesModule.instance = null;
+		PropertiesSettingsModule.instance = null;
 	}
 	
 	private boolean exists(String path) {

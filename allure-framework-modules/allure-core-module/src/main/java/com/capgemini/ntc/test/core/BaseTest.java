@@ -10,9 +10,8 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentServiceI;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParameters;
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
+import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
+import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersCore;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 import com.google.inject.Guice;
@@ -29,20 +28,21 @@ public abstract class BaseTest implements IBaseTest {
 	@ru.yandex.qatools.allure.annotations.Parameter("Username")
 	private String defaultUsername_lastUsedInTest;
 	
-	private static EnvironmentServiceI environmentService;
+	private static IEnvironmentService environmentService;
 	
 	public BaseTest() {
 		
-		setRuntimeParameters();
+		setPropertiesSettings();
+		setRuntimeParametersCore();
 		setEnvironmetInstance();
 		
 	}
 	
-	public static EnvironmentServiceI getEnvironmentService() {
+	public static IEnvironmentService getEnvironmentService() {
 		return environmentService;
 	}
 	
-	public static void setEnvironmentService(EnvironmentServiceI environmentService) {
+	public static void setEnvironmentService(IEnvironmentService environmentService) {
 		BaseTest.environmentService = environmentService;
 	}
 	
@@ -69,18 +69,26 @@ public abstract class BaseTest implements IBaseTest {
 	@Rule
 	public TestWatcher testWatcher = new BaseTestWatcher(this);
 	
-	
 	private void setEnvironmetInstance() {
 		// Environment variables either from environmnets.csv or any other input data.
-		EnvironmentServiceI environmetInstance = Guice.createInjector(new EnvironmentModule())
-				.getInstance(EnvironmentServiceI.class);
-		environmetInstance.setEnvironment(RuntimeParameters.ENV.getValue());
+		IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
+				.getInstance(IEnvironmentService.class);
+		environmetInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
 		BaseTest.setEnvironmentService(environmetInstance);
 	}
 	
-	private void setRuntimeParameters() {
+	private void setRuntimeParametersCore() {
 		// Read System or maven parameters
-		BFLogger.logDebug(RuntimeParameters.ENV.toString());
+		BFLogger.logDebug(RuntimeParametersCore.ENV.toString());
+	}
+	
+	private void setPropertiesSettings() {
+		/*
+		 * For now there is no properties settings file for Core module. In future, please have a look on Selenium
+		 * Module 
+		 * PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
+		 * 		  .getInstance(PropertiesSelenium.class);
+		 */
 		
 	}
 }

@@ -5,7 +5,7 @@ package com.capgemini.ntc.test.core.base.runtime;
  * 
  * @author LUSTEFAN
  */
-public enum RuntimeParameters implements RuntimeParametersI {
+public enum RuntimeParametersCore implements RuntimeParametersI {
 	
 	ENV("env", "DEV");
 	
@@ -13,7 +13,7 @@ public enum RuntimeParameters implements RuntimeParametersI {
 	private String paramValue;
 	private String defaultValue;
 	
-	private RuntimeParameters(String paramName, String defaultValue) {
+	private RuntimeParametersCore(String paramName, String defaultValue) {
 		this.paramName = paramName;
 		this.defaultValue = defaultValue;
 		setValue();

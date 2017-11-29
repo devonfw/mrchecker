@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.capgemini.ntc.selenium.core.base.properties.PropertiesModule;
+import com.capgemini.ntc.selenium.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
-import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParameters;
+import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.google.inject.Guice;
 import com.google.inject.name.Names;
 
@@ -32,7 +32,7 @@ public class DriverManagerTest {
 		
 		
 		
-		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesModule.init())
+		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
 				.getInstance(PropertiesSelenium.class);
 		
 		

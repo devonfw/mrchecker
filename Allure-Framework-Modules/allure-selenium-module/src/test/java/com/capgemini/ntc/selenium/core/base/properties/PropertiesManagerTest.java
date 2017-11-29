@@ -29,13 +29,13 @@ public class PropertiesManagerTest {
 	@Before
 	public void setUp() throws Exception {
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/selenium.properties");
-		Injector i = Guice.createInjector(PropertiesModule.init(path));
+		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesSelenium = i.getInstance(PropertiesSelenium.class);
 	}
 	
 	@After
 	public void tearDown() throws Exception {
-		PropertiesModule.delInstance();
+		PropertiesSettingsModule.delInstance();
 	}
 	
 	@Test
@@ -61,9 +61,9 @@ public class PropertiesManagerTest {
 	// @Ignore
 	@Test
 	public void testDefaultParamters() {
-		PropertiesModule.delInstance();
+		PropertiesSettingsModule.delInstance();
 		
-		Injector i = Guice.createInjector(PropertiesModule.init());
+		Injector i = Guice.createInjector(PropertiesSettingsModule.init());
 		PropertiesSelenium propertiesSelenium = i.getInstance(PropertiesSelenium.class);
 		
 		assertEquals("", "./lib/webdrivers/chrome/chromedriver.exe", propertiesSelenium.getSeleniumChrome());

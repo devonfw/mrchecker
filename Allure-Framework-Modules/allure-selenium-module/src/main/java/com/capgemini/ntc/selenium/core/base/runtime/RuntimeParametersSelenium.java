@@ -8,7 +8,7 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * 
  * @author LUSTEFAN
  */
-public enum RuntimeParameters implements RuntimeParametersI {
+public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
 	BROWSER("browser", "chrome"),
 	BROWSER_VERSION("browserVersion", "8.0"),
@@ -19,7 +19,7 @@ public enum RuntimeParameters implements RuntimeParametersI {
 	private String paramValue;
 	private String defaultValue;
 	
-	private RuntimeParameters(String paramName, String defaultValue) {
+	private RuntimeParametersSelenium(String paramName, String defaultValue) {
 		this.paramName = paramName;
 		this.defaultValue = defaultValue;
 		setValue();

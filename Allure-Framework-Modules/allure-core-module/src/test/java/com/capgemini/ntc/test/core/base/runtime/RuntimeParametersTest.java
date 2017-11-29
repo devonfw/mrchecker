@@ -17,7 +17,7 @@ public class RuntimeParametersTest {
 	@Before
 	public void setUp() throws Exception {
 		System.setProperty("env", "UNKNOWN");
-		RuntimeParameters.ENV.refreshParameterValue();
+		RuntimeParametersCore.ENV.refreshParameterValue();
 	}
 	
 	@After
@@ -26,20 +26,20 @@ public class RuntimeParametersTest {
 	
 	@Test
 	public void testGetProperty() {
-		assertEquals("System parameters for 'env' are not equal", "UNKNOWN", RuntimeParameters.ENV.getValue());
+		assertEquals("System parameters for 'env' are not equal", "UNKNOWN", RuntimeParametersCore.ENV.getValue());
 	}
 	
 	@Test
 	public void testGetEmptyProperty() {
 		System.clearProperty("env");
-		RuntimeParameters.ENV.refreshParameterValue();
+		RuntimeParametersCore.ENV.refreshParameterValue();
 		
-		assertEquals("System parameters for empty property 'env' should be 'DEV'", "DEV", RuntimeParameters.ENV.getValue());
+		assertEquals("System parameters for empty property 'env' should be 'DEV'", "DEV", RuntimeParametersCore.ENV.getValue());
 	}
 	
 	@Test
 	public void testGetParams() throws Exception {
-		ArrayList<RuntimeParameters> collection = Lists.newArrayList(RuntimeParameters.values());
+		ArrayList<RuntimeParametersCore> collection = Lists.newArrayList(RuntimeParametersCore.values());
 		assertThat(collection, Matchers.hasItem(Matchers.hasToString("env=UNKNOWN")));
 	}
 	
