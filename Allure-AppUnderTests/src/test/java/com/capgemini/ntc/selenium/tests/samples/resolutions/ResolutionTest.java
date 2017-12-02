@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.tests.samples.resolutions;
+package com.capgemini.ntc.selenium.tests.samples.resolutions;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -9,12 +9,14 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
+import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
 import com.capgemini.ntc.selenium.pages.features.registration.RegistryPage;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsResolution;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsSelenium;
-import com.example.core.enums.ResolutionEnum;
-import com.example.core.tests.core.BaseTest;
-import com.example.core.tests.testRunners.ParallelParameterized;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsResolution;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsSelenium;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
 import ru.yandex.qatools.allure.annotations.Features;
 
@@ -39,7 +41,7 @@ public class ResolutionTest extends BaseTest {
 	@junitparams.Parameters(method = "getResolutions")
 	@Test
 	public void resolution_test(ResolutionEnum resolutionEnum) throws InterruptedException {
-		setResolution(resolutionEnum);
+		ResolutionUtils.setResolution(BasePage.getDriver(), resolutionEnum);
 
 		assertThat(true, is(registryPage.isButtonSubmitDisplayed()));
 		TimeUnit.SECONDS.sleep(1); //This is for demo. Do not do it at home 

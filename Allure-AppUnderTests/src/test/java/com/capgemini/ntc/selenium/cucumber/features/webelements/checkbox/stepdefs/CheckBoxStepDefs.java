@@ -1,7 +1,7 @@
 package com.capgemini.ntc.selenium.tests.cucumber.features.webelements.checkbox.stepdefs;
 
 import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

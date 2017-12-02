@@ -1,8 +1,9 @@
 package com.capgemini.ntc.selenium.pages.features.registration;
 
 import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 
 import org.openqa.selenium.By;
 
@@ -12,12 +13,13 @@ public class RegistryPage extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.REGISTRATION);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL, PageSubURLsEnum.REGISTRATION);
 	}
 	
 	@Override
 	public void load() {
-		BasePage.getDriver().get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
+		BasePage.getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getAddress()+ PageSubURLsEnum.REGISTRATION.getAddress());
+		getDriver().waitForPageLoaded();
 		loaded = true;
 	}
 

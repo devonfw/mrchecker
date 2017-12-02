@@ -1,6 +1,7 @@
 package com.capgemini.ntc.selenium.tests.samples.readFromTable;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertArrayEquals
+;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -14,10 +15,9 @@ import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
+import com.capgemini.ntc.selenium.jsoupHelper.JsoupHelper;
 import com.capgemini.ntc.selenium.tests.PageTestUtils;
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.test.core.download.MagicGridRow;
-import com.capgemini.ntc.test.core.jsoupHelper.JsoupHelper;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class JsoupHelperTest extends BaseTest {
@@ -138,7 +138,7 @@ public class JsoupHelperTest extends BaseTest {
 		assertOneValue(valuesNewMethod);
 		assertEquals("Incorrect text was found.", singleText, textNewMethod);
 
-		WebElement searchArea = getDriver().findElement(selectorTableBody);
+		WebElement searchArea = BasePage.getDriver().findElement(selectorTableBody);
 		startTimeMeasure();
 		valuesNewMethod = JsoupHelper.findOwnTexts(searchArea, selectorElementWithChildText);
 		textNewMethod = valuesNewMethod.get(0);

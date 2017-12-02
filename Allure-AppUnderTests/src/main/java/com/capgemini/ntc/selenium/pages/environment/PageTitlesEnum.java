@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.pages.enums;
+package com.capgemini.ntc.selenium.pages.environment;
 
 public enum PageTitlesEnum {
 	LOGIN_PAGE("Log In to Bank.com"),

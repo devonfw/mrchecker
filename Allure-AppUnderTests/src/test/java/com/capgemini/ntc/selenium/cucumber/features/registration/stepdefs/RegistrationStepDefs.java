@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.tests.cucumber.features.registration.stepdefs;
 
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.registration.Hobby;
 import com.capgemini.ntc.selenium.pages.features.registration.MaritalStatus;
 import com.capgemini.ntc.selenium.pages.features.registration.RegistrationPage;

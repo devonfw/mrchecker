@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.jsoupHelper.JsoupHelper;
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.test.core.jsoupHelper.JsoupHelper;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class JsoupTableSearch extends BaseTest {

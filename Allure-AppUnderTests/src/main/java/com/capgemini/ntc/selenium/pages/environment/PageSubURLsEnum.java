@@ -1,29 +1,10 @@
-package com.capgemini.ntc.selenium.pages.enums;
+package com.capgemini.ntc.selenium.pages.environment;
 
-import com.capgemini.ntc.test.core.enums.SubUrl;
+import com.capgemini.ntc.selenium.core.Url;
 
-public enum PageSubURLsEnum implements SubUrl {
+public enum PageSubURLsEnum implements Url{
 
-	WWW_FONT_URL {
-		@Override
-		public String subURL() {
-			return ServicesURLsEnum.WWW_FONT_URL.getAddress();
-		}
-	},
-	TOOLS_QA {
-		@Override
-		public String subURL() {
-			return ServicesURLsEnum.TOOLS_QA.getAddress();
-		}
-	},
-	
-	WEB_SERVICE {
-		@Override
-		public String subURL() {
-			return ServicesURLsEnum.WEB_SERVICE.getAddress();
-		}
-	},
-	
+
 	REGISTRATION("registration/"),
 	FRAMEANDWINDOWS("frames-and-windows/"),
 	MAIN_PAGE(""),
@@ -51,13 +32,16 @@ public enum PageSubURLsEnum implements SubUrl {
 
 	}
 
-	@Override
-	public String subURL() {
-		return subURL;
-	}
 
 	@Override
 	public String toString() {
-		return subURL();
+		return getAddress();
 	}
+
+	@Override
+	public String getAddress() {
+		return subURL;
+	}
+
+	
 }

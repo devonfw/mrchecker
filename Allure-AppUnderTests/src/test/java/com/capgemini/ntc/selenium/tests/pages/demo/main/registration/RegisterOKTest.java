@@ -1,18 +1,18 @@
-package com.capgemini.ntc.selenium.tests.tests.pages.demo.main.registration;
+package com.capgemini.ntc.selenium.tests.pages.demo.main.registration;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.core.utils.TestUtils;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.registration.Hobby;
 import com.capgemini.ntc.selenium.pages.features.registration.MaritalStatus;
 import com.capgemini.ntc.selenium.pages.features.registration.RegistrationPage;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsFailed;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsSelenium;
-import com.example.core.tests.TestUtils;
-import com.example.core.tests.core.BaseTest;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsFailed;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsSelenium;
+import com.capgemini.ntc.test.core.BaseTest;
 
 @Category({ TestsSelenium.class, TestsFailed.class })
 public class RegisterOKTest extends BaseTest {

@@ -1,10 +1,7 @@
 package com.capgemini.ntc.test.core;
 
-import java.io.File;
 import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.AssumptionViolatedException;

@@ -5,14 +5,15 @@ import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 
-import com.example.core.logger.BFLogger;
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class RegistrationPage extends BasePage {
 
@@ -61,19 +62,20 @@ public class RegistrationPage extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.REGISTRATION);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL, PageSubURLsEnum.REGISTRATION);
 	}
 
 	
 
 	@Override
 	public void load() {
-		BasePage.getDriver().get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
+		BasePage.getDriver()
+				.get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.REGISTRATION.getAddress());
 		loaded = true;
 	}
 
 	public void load(PageSubURLsEnum subUrl) {
-		BasePage.getDriver().get(PageSubURLsEnum.WWW_FONT_URL.subURL() + subUrl.subURL());
+		BasePage.getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + subUrl.getAddress());
 		loaded = true;
 	}
 

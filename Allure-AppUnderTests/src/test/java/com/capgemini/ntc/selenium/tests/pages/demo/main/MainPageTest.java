@@ -1,12 +1,11 @@
-package com.capgemini.ntc.selenium.tests.tests.pages.demo.main;
+package com.capgemini.ntc.selenium.tests.pages.demo.main;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.openqa.selenium.By;
 
-import com.example.core.tests.core.BaseTest;
 import com.capgemini.ntc.selenium.pages.features.MainPage;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsSelenium;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsSelenium;
+import com.capgemini.ntc.test.core.BaseTest;
 
 @Category({ TestsSelenium.class })
 public class MainPageTest extends BaseTest {

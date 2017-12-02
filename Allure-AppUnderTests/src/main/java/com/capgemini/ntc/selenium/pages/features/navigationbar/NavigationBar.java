@@ -1,13 +1,14 @@
 package com.capgemini.ntc.selenium.pages.features.navigationbar;
 
+import org.openqa.selenium.By;
+
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
-import com.example.core.logger.BFLogger;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.MainPage;
-
-import org.openqa.selenium.By;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class NavigationBar extends BasePage {
 
@@ -19,7 +20,7 @@ public class NavigationBar extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.MAIN_PAGE);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL, PageSubURLsEnum.MAIN_PAGE);
 	}
 
 	@Override

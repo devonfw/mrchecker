@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.tests.pages.demo.main.registration;
+package com.capgemini.ntc.selenium.tests.pages.demo.main.registration;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,23 +6,23 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.registration.Hobby;
 import com.capgemini.ntc.selenium.pages.features.registration.MaritalStatus;
 import com.capgemini.ntc.selenium.pages.features.registration.RegistrationPage;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsSelenium;
-import com.capgemini.ntc.selenium.tests.tests.pages.demo.main.registration.utils.DataProviderInternal;
-import com.example.core.tests.core.BaseTest;
-import com.example.core.tests.testRunners.ParallelParameterized;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsSelenium;
+import com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils.DataProviderInternal;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
 import junitparams.Parameters;
 
 @Category({ TestsSelenium.class })
 @RunWith(ParallelParameterized.class)
 public class RegisterOKTestDDInternalDataTest extends BaseTest {
-
+	
 	private static RegistrationPage registrationPage;
-
+	
 	private Object[] data() {
 		return new Object[] {
 				new DataProviderInternal()
@@ -57,23 +57,24 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 						.setPassword("xsw2#$_rewgwASD")
 						.setConfirmPassword("xsw2#$_rewgwASD") };
 	}
-
+	
 	@Override
 	public void setUp() {
 		registrationPage = new RegistrationPage();
 	}
-
+	
 	@Override
 	public void tearDown() {
 		registrationPage.load();
 	}
-
+	
 	@Test
 	@Parameters(method = "data")
 	public void registrationTest(DataProviderInternal dataProviderInternal) {
 		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle().equals(PageTitlesEnum.REGISTRATION.toString()));
-
+				registrationPage.getActualPageTitle()
+						.equals(PageTitlesEnum.REGISTRATION.toString()));
+		
 		registrationPage.setFirstName(dataProviderInternal.getFirstName());
 		registrationPage.setLastName(dataProviderInternal.getLastName());
 		registrationPage.setMaritalStatus(dataProviderInternal.getMaritalStatus());
@@ -87,10 +88,10 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 		registrationPage.setAboutYourself(dataProviderInternal.getAboutYourself());
 		registrationPage.setPassword(dataProviderInternal.getPassword());
 		registrationPage.setConfirmPassword(dataProviderInternal.getConfirmPassword());
-
+		
 		registrationPage.clickSubmit();
 		assertTrue("Registration succeed text visible: ", registrationPage.isRegistrationSuceedTextVisible());
 		return;
 	}
-
+	
 }

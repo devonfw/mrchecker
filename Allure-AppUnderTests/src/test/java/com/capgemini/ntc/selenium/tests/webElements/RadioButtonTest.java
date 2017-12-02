@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsSelenium;
 import com.example.core.tests.core.BaseTest;
 

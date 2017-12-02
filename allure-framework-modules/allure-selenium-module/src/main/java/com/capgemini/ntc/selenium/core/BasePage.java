@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.core;
 
-
+import java.net.URL;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.net.Urls;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
@@ -54,7 +55,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	}
 	
 	public BasePage(INewWebDriver driver, BasePage parent) {
-		//Add given module to Test core Observable list
+		// Add given module to Test core Observable list
 		BaseTestWatcher.addObserver(this);
 		
 		webDriverWait = new WebDriverWait(getDriver(), BasePage.EXPLICITYWAITTIMER);
@@ -67,42 +68,42 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 		}
 		
 	}
-
 	
 	@Override
 	public void onTestFailure() {
-	    BFLogger.logDebug("BasePage.onTestFailure");
-	    makeScreenshotOnFailure();
-	    makeSourcePageOnFailure();
+		BFLogger.logDebug("BasePage.onTestFailure");
+		makeScreenshotOnFailure();
+		makeSourcePageOnFailure();
 	}
-
+	
 	@Override
 	public void onTestSuccess() {
-	    BFLogger.logDebug("BasePage.onTestSuccess");
+		BFLogger.logDebug("BasePage.onTestSuccess");
 	}
-
+	
 	@Override
 	public void onTestFinish() {
-	    BFLogger.logDebug("BasePage.onTestFinish");
-	    getDriver().close();
+		BFLogger.logDebug("BasePage.onTestFinish");
+		getDriver().close();
 	}
-
+	
 	@Attachment("Screenshot on failure")
 	public byte[] makeScreenshotOnFailure() {
-	    byte[] screenshot = null;
-	    try {
-	        screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
-	    } catch (UnhandledAlertException e) {
-	        BFLogger.logDebug("[makeScreenshotOnFailure] Unable to take screenshot.");
-	    }
-	    return screenshot;
+		byte[] screenshot = null;
+		try {
+			screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+		} catch (UnhandledAlertException e) {
+			BFLogger.logDebug("[makeScreenshotOnFailure] Unable to take screenshot.");
+		}
+		return screenshot;
 	}
-
+	
 	@Attachment("Source Page on failure")
 	public String makeSourcePageOnFailure() {
-	    return DriverManager.getDriver().getPageSource();
+		return DriverManager.getDriver()
+				.getPageSource();
 	}
-
+	
 	public String getActualPageTitle() {
 		return getDriver().getTitle();
 	}
@@ -111,7 +112,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 		getDriver().navigate()
 				.refresh();
 	}
-
+	
 	public static INewWebDriver getDriver() {
 		if (BasePage.driver == null) {
 			
@@ -147,7 +148,6 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 		getDriver().waitForPageLoaded();
 	}
 	
-	
 	public static Actions getAction() {
 		return new Actions(getDriver());
 	}
@@ -162,32 +162,36 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	public abstract String pageTitle();
 	
-	public void loadPage(SubUrl subUrl) {
-		this.loadPage(PageSubURLsEnum.WWW_FONT_URL, subUrl);
-		
-	}
-	
-	public void loadPage(SubUrl baseURL, SubUrl subUrl) {
-		BFLogger.logDebug(getClass().getName() + ": Opening  page: " + baseURL.subURL() + subUrl.subURL());
-		getDriver().get(PageSubURLsEnum.WWW_FONT_URL.subURL() + subUrl);
+	public void loadPage(Url url) {
+		BFLogger.logDebug(getClass().getName() + ": Opening  page: " + url.getAddress());
+		getDriver().get(url.getAddress());
 		getDriver().waitForPageLoaded();
 		
 	}
 	
-	public boolean isUrlAndPageTitleAsCurrentPage(SubUrl subUrl) {
-		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.WWW_FONT_URL, subUrl);
+	public boolean isUrlAndPageTitleAsCurrentPage(Url baseUrl, Url subUrl) {
+		
+		Url url = new Url() {
+			@Override
+			public String getAddress() {
+				return baseUrl.getAddress() + subUrl.getAddress();
+			}
+			
+		};
+		
+		return isUrlAndPageTitleAsCurrentPage(url);
 	}
 	
-	public boolean isUrlAndPageTitleAsCurrentPage(SubUrl baseURL, SubUrl subUrl) {
+	public boolean isUrlAndPageTitleAsCurrentPage(Url url) {
 		getDriver().waitForPageLoaded();
 		String pageTitle = this.pageTitle();
-		String url = BasePage.getDriver()
+		String currentUrl = BasePage.getDriver()
 				.getCurrentUrl();
 		String currentPageTitle = BasePage.getDriver()
 				.getTitle();
-		if (!url.contains(baseURL.subURL() + subUrl.subURL()) || !pageTitle.equals(currentPageTitle)) {
+		if (!currentUrl.contains(url.getAddress()) || !pageTitle.equals(currentPageTitle)) {
 			BFLogger.logDebug(getClass().getName() + ": Current loaded page (" + url + ") with pageTitle ("
-					+ currentPageTitle + "). Page to load: (" + baseURL.subURL() + subUrl.subURL()
+					+ currentPageTitle + "). Page to load: (" + url.getAddress()
 					+ ") ,for page title: (" + pageTitle + ")");
 			return false;
 		}
@@ -337,7 +341,8 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	private static void setRuntimeParametersSelenium() {
 		// Read System or maven parameters
-		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParametersSelenium.values()).toString());
+		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParametersSelenium.values())
+				.toString());
 		
 	}
 	

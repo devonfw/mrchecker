@@ -36,9 +36,7 @@ public class CardOrderWithDataDrivenTest extends BaseTest {
 		setUpTest(data.getLogin());
 
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), 10);
-		TimeUtills.waitSeconds(5);
-		wait.until(ExpectedConditions
-				.presenceOfAllElementsLocatedBy(By.cssSelector("div[class='card-layout--card-wrapper']")));
+		
 		CardList cardList = new CardList();
 
 		String[][] actualCardsTitlesOrder = cardList.cardTitles();

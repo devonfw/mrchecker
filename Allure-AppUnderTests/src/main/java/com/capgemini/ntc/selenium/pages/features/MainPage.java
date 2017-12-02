@@ -2,8 +2,8 @@ package com.capgemini.ntc.selenium.pages.features;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
-import com.capgemini.ntc.selenium.pages.enums.PageTitlesEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.navigationbar.NavigationBar;
 
 public class MainPage extends BasePage {

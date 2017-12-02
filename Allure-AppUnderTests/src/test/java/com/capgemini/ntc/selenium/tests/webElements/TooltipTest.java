@@ -2,7 +2,7 @@ package com.capgemini.ntc.selenium.tests.tests.webElements;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.TooltipElement;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsSelenium;
 import com.example.core.tests.core.BaseTest;
 

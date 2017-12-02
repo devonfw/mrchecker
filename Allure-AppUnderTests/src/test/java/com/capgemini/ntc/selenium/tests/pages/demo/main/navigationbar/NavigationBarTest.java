@@ -1,13 +1,13 @@
-package com.capgemini.ntc.selenium.tests.tests.pages.demo.main.navigationbar;
+package com.capgemini.ntc.selenium.tests.pages.demo.main.navigationbar;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.example.core.logger.BFLogger;
-import com.example.core.tests.core.BaseTest;
 import com.capgemini.ntc.selenium.pages.features.MainPage;
 import com.capgemini.ntc.selenium.pages.features.navigationbar.home.NavBarHome;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class NavigationBarTest extends BaseTest {
 

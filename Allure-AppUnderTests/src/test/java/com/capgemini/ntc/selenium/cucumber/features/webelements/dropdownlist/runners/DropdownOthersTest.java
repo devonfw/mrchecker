@@ -2,7 +2,7 @@ package com.capgemini.ntc.selenium.tests.cucumber.features.webelements.dropdownl
 
 import com.example.core.tests.core.BaseTest;
 import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.pages.enums.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
