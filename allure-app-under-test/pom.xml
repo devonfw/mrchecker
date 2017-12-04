@@ -9,7 +9,7 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>Allure-AppUnderTests</artifactId>
+	<artifactId>allure-app-under-test</artifactId>
 	<packaging>jar</packaging>
 	<name>AllureTestFramework - List of Integration Test for Application Under Test </name>
 	<description>Allure Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.</description>
