@@ -62,7 +62,7 @@ public class RegistrationPage extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL, PageSubURLsEnum.REGISTRATION);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.REGISTRATION.getAddress());
 	}
 
 	

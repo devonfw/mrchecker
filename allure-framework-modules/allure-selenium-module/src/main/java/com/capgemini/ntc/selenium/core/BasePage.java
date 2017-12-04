@@ -84,7 +84,9 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@Override
 	public void onTestFinish() {
 		BFLogger.logDebug("BasePage.onTestFinish");
-		getDriver().close();
+		BFLogger.logDebug("driver:" + getDriver().toString());
+		DriverManager.closeDriver();
+		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Attachment("Screenshot on failure")
@@ -162,36 +164,23 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	public abstract String pageTitle();
 	
-	public void loadPage(Url url) {
-		BFLogger.logDebug(getClass().getName() + ": Opening  page: " + url.getAddress());
-		getDriver().get(url.getAddress());
+	public void loadPage(String url) {
+		BFLogger.logDebug(getClass().getName() + ": Opening  page: " + url);
+		getDriver().get(url);
 		getDriver().waitForPageLoaded();
 		
 	}
 	
-	public boolean isUrlAndPageTitleAsCurrentPage(Url baseUrl, Url subUrl) {
-		
-		Url url = new Url() {
-			@Override
-			public String getAddress() {
-				return baseUrl.getAddress() + subUrl.getAddress();
-			}
-			
-		};
-		
-		return isUrlAndPageTitleAsCurrentPage(url);
-	}
-	
-	public boolean isUrlAndPageTitleAsCurrentPage(Url url) {
+	public boolean isUrlAndPageTitleAsCurrentPage(String url) {
 		getDriver().waitForPageLoaded();
 		String pageTitle = this.pageTitle();
 		String currentUrl = BasePage.getDriver()
 				.getCurrentUrl();
 		String currentPageTitle = BasePage.getDriver()
 				.getTitle();
-		if (!currentUrl.contains(url.getAddress()) || !pageTitle.equals(currentPageTitle)) {
+		if (!currentUrl.contains(url) || !pageTitle.equals(currentPageTitle)) {
 			BFLogger.logDebug(getClass().getName() + ": Current loaded page (" + url + ") with pageTitle ("
-					+ currentPageTitle + "). Page to load: (" + url.getAddress()
+					+ currentPageTitle + "). Page to load: (" + url
 					+ ") ,for page title: (" + pageTitle + ")");
 			return false;
 		}

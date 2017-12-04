@@ -1,6 +1,7 @@
 package com.capgemini.ntc.selenium.pages.features.navigationbar.home;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 
@@ -12,7 +13,7 @@ public class NavBarHome extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.MAIN_PAGE);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.MAIN_PAGE.getAddress());
 	}
 
 	@Override

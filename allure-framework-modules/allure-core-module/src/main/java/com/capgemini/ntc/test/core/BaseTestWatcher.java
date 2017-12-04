@@ -128,7 +128,7 @@ public class BaseTestWatcher extends TestWatcher {
 	@Override
 	protected void failed(Throwable e, Description description) {
 		BFLogger.logInfo(description.getDisplayName() + " FAILED.");
-
+		
 		// Run test observers
 		TestClassRule.classObservers.get()
 				.forEach(ITestObserver::onTestFailure);
@@ -180,8 +180,20 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logInfo(description.getDisplayName()
 				+ getFormatedTestDuration());
 	}
-
+	
 	private String getFormatedTestDuration() {
 		return String.format(" duration: %1.2f min", (float) this.iStart / (60 * 1000));
+	}
+	
+	public static void removeObserver(ITestObserver observer) {
+		BFLogger.logDebug("Removing observer: " + observer.toString());
+		if (isAddedFromBeforeClassMethod()) {
+			TestClassRule.classObservers.get()
+					.remove(observer);
+		} else {
+			observers.get()
+					.remove(observer);
+		}
+		
 	}
 }

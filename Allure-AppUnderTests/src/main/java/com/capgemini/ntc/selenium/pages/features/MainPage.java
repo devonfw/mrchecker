@@ -42,7 +42,7 @@ public class MainPage extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(PageSubURLsEnum.MAIN_PAGE);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.MAIN_PAGE.getAddress());
 	}
 
 	public NavigationBar getNavigationBar() {

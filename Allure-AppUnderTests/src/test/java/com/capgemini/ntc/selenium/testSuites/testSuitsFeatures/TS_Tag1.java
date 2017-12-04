@@ -8,7 +8,7 @@ import com.googlecode.junittoolbox.ExcludeCategories;
 import com.googlecode.junittoolbox.IncludeCategories;
 import com.googlecode.junittoolbox.SuiteClasses;
 
-@RunWith(WildcardPatternSuiteBF.class)
+//@RunWith(WildcardPatternSuiteBF.class)
 @IncludeCategories({ TestsTag1.class })
 @ExcludeCategories({})
 @SuiteClasses({ "**/*.class" })

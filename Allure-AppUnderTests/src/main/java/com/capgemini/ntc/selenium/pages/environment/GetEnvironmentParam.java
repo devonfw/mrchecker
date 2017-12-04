@@ -29,4 +29,10 @@ public enum GetEnvironmentParam implements Url {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return this.getAddress();
+	}
+	
+	
 }

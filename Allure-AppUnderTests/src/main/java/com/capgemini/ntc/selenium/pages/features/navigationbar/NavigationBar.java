@@ -20,7 +20,7 @@ public class NavigationBar extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL, PageSubURLsEnum.MAIN_PAGE);
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.MAIN_PAGE.getAddress());
 	}
 
 	@Override

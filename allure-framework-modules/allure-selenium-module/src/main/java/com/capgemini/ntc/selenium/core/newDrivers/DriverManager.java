@@ -72,6 +72,7 @@ public class DriverManager {
 		if (driver == null) {
 			driver = createDriver();
 			drivers.set(driver);
+			BFLogger.logDebug("driver:" + driver.toString());
 		}
 		return driver;
 	}
