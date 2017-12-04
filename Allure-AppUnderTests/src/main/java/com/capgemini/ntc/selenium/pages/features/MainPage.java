@@ -2,6 +2,7 @@ package com.capgemini.ntc.selenium.pages.features;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.navigationbar.NavigationBar;
@@ -20,7 +21,7 @@ public class MainPage extends BasePage {
 
 	@Override
 	public void load() {
-		loadPage(PageSubURLsEnum.MAIN_PAGE);
+		getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.MAIN_PAGE.getAddress());
 	}
 
 	@Override

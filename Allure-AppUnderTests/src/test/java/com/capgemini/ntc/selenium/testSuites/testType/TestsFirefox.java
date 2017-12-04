@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.testSuites.testType;
+package com.capgemini.ntc.selenium.testSuites.testType;
 
 public interface TestsFirefox {
 

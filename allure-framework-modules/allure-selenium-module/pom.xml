@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>allure-framework-modules</artifactId>
-        <groupId>com.capgemini.ntc</groupId>
-        <version>1.0.0</version>
-    </parent>
-    <artifactId>allure-selenium-module</artifactId>
-    <packaging>jar</packaging>
-    <name>AllureTestFramework - Selenium - Module</name>
-    <description>Allure Test Framework Selenium supports:
+	<parent>
+		<artifactId>allure-framework-modules</artifactId>
+		<groupId>com.capgemini.ntc</groupId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>allure-selenium-module</artifactId>
+	<packaging>jar</packaging>
+	<name>AllureTestFramework - Selenium - Module</name>
+	<description>Allure Test Framework Selenium supports:
         * Malleable resolution
             * Remote Web Design
             * Mobile browsers 
@@ -27,93 +27,98 @@
             * against Selenium Grid through Jenkins
         * Page Object Model architecture
         * Selenium WebDriver with Java 
-    </description>
-    <url>https://github.com/devonfw/devonfw-testing</url>
+	</description>
+	<url>https://github.com/devonfw/devonfw-testing</url>
 
-    <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
-        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
-    </organization>
+	<organization>
+		<name>Capgemini  - Nearshore Test Center - Poland</name>
+		<url>http://nsc.capgemini.com/nearshoretestcenter</url>
+	</organization>
 
-    <developers>
-        <developer>
-            <name>Lukasz Stefaniszyn</name>
-            <email>stefaniszynlukasz@gmail.com</email>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<name>Lukasz Stefaniszyn</name>
+			<email>stefaniszynlukasz@gmail.com</email>
+		</developer>
+	</developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+	<properties>
+		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <!-- Selenium settings -->
-        <selenium.version>3.4.0</selenium.version>
+		<!-- Selenium settings -->
+		<selenium.version>3.4.0</selenium.version>
 
-    </properties>
+	</properties>
 
-    <dependencies>
+	<dependencies>
 
-        <!-- Dependency to other Allure Test Framework modules -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>allure-core-module</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+		<!-- Dependency to other Allure Test Framework modules -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>allure-core-module</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
-        <!--This dependency is necessary for Selenium plugin. -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
+		<!--This dependency is necessary for Selenium plugin. -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
 
-        <!--This dependency is necessary for JUnit plugin. -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-        </dependency>
-
-
-        <!--This dependency is necessary for Dependency Injection plugin. -->
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- For time and date dependency actions -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-csv</artifactId>
-        </dependency>
+		<!--This dependency is necessary for JUnit plugin. -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-surefire-provider</artifactId>
+		</dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-        </dependency>
+		<!--This dependency is necessary for Dependency Injection plugin. -->
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- For time and date dependency actions -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+		</dependency>
 
 
-    </dependencies>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+		</dependency>
+
+		<!-- Guava is a set of core libraries -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+
+	</dependencies>
 
 
-    <!-- Build goals/actions -->
-    <build>
-        <plugins>
-            <!-- Plugins are taken from parent pom.xml -->
-        </plugins>
-    </build>
+	<!-- Build goals/actions -->
+	<build>
+		<plugins>
+			<!-- Plugins are taken from parent pom.xml -->
+		</plugins>
+	</build>
 
 
 </project>

@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.tests.tests.testTag.tag2;
+package com.capgemini.ntc.selenium.tests.testTag.tag2;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -9,10 +9,10 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.example.core.logger.BFLogger;
-import com.example.core.tests.core.BaseTest;
 import com.capgemini.ntc.selenium.pages.features.registration.RegistryPage;
-import com.capgemini.ntc.selenium.tests.testSuites.testType.TestsTag2;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsTag2;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 import ru.yandex.qatools.allure.annotations.Features;
 @Features("TAG3")

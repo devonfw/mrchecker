@@ -1,6 +1,6 @@
-package com.capgemini.ntc.selenium.tests.tests.pages.demo.main.registration.utils;
+package com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils;
 
-import com.example.core.tests.TestUtils;
+import com.capgemini.ntc.selenium.core.utils.TestUtils;
 import com.capgemini.ntc.selenium.pages.features.registration.Hobby;
 import com.capgemini.ntc.selenium.pages.features.registration.MaritalStatus;
 

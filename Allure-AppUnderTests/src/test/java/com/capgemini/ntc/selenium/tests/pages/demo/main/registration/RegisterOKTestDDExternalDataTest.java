@@ -10,9 +10,9 @@ import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.features.registration.RegistrationPage;
 import com.capgemini.ntc.selenium.testSuites.testType.TestsSelenium;
 import com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils.DataProviderExternalJsonFile;
+import com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils.FormDataContainer;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
-import com.example.core.tests.utils.FormDataContainer;
 
 import junitparams.Parameters;
 

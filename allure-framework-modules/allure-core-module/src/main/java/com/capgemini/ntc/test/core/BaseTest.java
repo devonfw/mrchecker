@@ -45,7 +45,7 @@ public abstract class BaseTest implements IBaseTest {
 	
 	@AfterClass
 	public static final void tearDownClass() {
-		// DriverManager.stop();
+		
 	}
 	
 	@After
