@@ -1,0 +1,6 @@
+service variable,DEV,QA,PROD,DEV1,DEV2
+WWW_FONT_URL,http://demoqa.com/,https://pl.wiktionary.org/wiki/,http://orient-addicts.djamila.pl/,https://myresearchqa1.company.com/,https://myresearchqa2.company.com/
+DMA_URL,"https://dma.company.com",,,,
+MY_RESEARCH_URL_VALUE,,,,https://myresearchqa1.company.com/,https://myresearchqa2.company.com/
+TOOLS_QA,http://toolsqa.com/,,,,
+WEB_SERVICE,http://jsonplaceholder.typicode.com,http://jsonplaceholder.typicode.com,http://jsonplaceholder.typicode.com,,
