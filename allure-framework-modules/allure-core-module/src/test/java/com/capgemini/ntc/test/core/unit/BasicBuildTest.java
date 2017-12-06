@@ -11,8 +11,8 @@ public class BasicBuildTest extends BaseTest {
 	@Test
 	public void test() {
 		assertTrue(true);
-		System.out.println("BasicBuildTest.test()");
-		BaseTest.getAnalytics().pageView("http://www.capgemini.com", "BasicBuildTest.test()", "\\BasicBuildTest").post();;
+//		System.out.println("BasicBuildTest.test()");
+//		BaseTest.getAnalytics().pageView("http://www.capgemini.com", "BasicBuildTest.test()", "\\BasicBuildTest").post();;
 	}
 
 	@Override

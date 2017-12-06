@@ -24,7 +24,7 @@ import com.google.inject.Guice;
 public abstract class BaseTest implements IBaseTest {
 	
 	private static IEnvironmentService environmentService;
-	private static GoogleAnalytics analytics;
+	private GoogleAnalytics analytics;
 	
 	public BaseTest() {
 		
@@ -39,8 +39,8 @@ public abstract class BaseTest implements IBaseTest {
 		return environmentService;
 	}
 	
-	public static GoogleAnalytics getAnalytics() {
-		return BaseTest.analytics;
+	public GoogleAnalytics getAnalytics() {
+		return this.analytics;
 	}
 	
 	public static void setEnvironmentService(IEnvironmentService environmentService) {
@@ -96,8 +96,10 @@ public abstract class BaseTest implements IBaseTest {
 	}
 	
 	private void setAnalytics() {
+		analytics = AnalyticsCore.GOOGLE.getBuilder();
+		analytics.pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "BaseTest", "BaseTest core")
+				.postAsync();
 		
-		BaseTest.analytics = AnalyticsCore.GOOGLE.getBuilder();
 	}
 	
 }

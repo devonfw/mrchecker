@@ -11,6 +11,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.MultipleFailureException;
 import org.junit.runners.model.Statement;
 
+import com.capgemini.ntc.test.core.analytics.AnalyticsCore;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 import ru.yandex.qatools.allure.annotations.Attachment;
@@ -92,6 +93,7 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.RestrictedMethods.startSeparateLog(); // start logging for single test
 		BFLogger.logInfo(description.getDisplayName() + " STARTED.");
 		this.iStart = System.currentTimeMillis(); // start timing
+		baseTest.getAnalytics().pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "setUp", "Test setup").postAsync();
 		baseTest.setUp(); // Executed as a Before for each test
 	}
 	
