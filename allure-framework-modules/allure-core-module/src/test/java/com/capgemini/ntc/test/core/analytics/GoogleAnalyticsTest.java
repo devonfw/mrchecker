@@ -25,8 +25,10 @@ public class GoogleAnalyticsTest {
     public void testPageView() throws Exception {
         ga.pageView("http://www.google.com", "Search").post();
         ga.pageView("http://www.google.com", "Search").postAsync();
-        ga.pageView("http://www.capgemini.com", "Main", "\\Main").post();
-        ga.pageView("http://www.capgemini.com", "Main", "\\Other").postAsync();
+        ga.pageView("http://www.capgemini.com", "Main1", "\\Main3").post();
+        ga.pageView("http://www.capgemini.com", "Main2", "\\Other").postAsync();
+        ga.pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "BaseTest", "BaseTest core").post();
+        ga.pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "BaseTest", "BaseTest core").postAsync();
     }
 
     @Test
