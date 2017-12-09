@@ -33,7 +33,7 @@ public class WildcardPatternSuiteBF extends Suite {
         // e.printStackTrace();
         // }
         // javaPackageToSearch = prop.getProperty("javaPackageToSearch");
-        javaPackageToSearch = "com.example.selenium.tests.tests";
+        javaPackageToSearch = "com.capgemini.ntc.selenium.tests";
     }
     
     private static Class<?>[] getSuiteClasses(Class<?> klass) throws InitializationError {
