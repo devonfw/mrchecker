@@ -8,23 +8,23 @@ import com.brsanthu.googleanalytics.GoogleAnalytics;
  * @author LUSTEFAN
  */
 public enum AnalyticsCore implements IAnalytics {
-  
-  GOOGLE();
-  
-  private GoogleAnalytics instance = null;
-  
-  private String testTrackingID = "UA-110726320-1";
-  
-  private AnalyticsCore() {
-    instance = GoogleAnalytics.builder()
-        .withTrackingId(testTrackingID)
-        .withAppName("Allure-Test-Framework")
-        .withAppVersion("1.0.0")
-        .build();
-  }
-  
-  @Override
-  public GoogleAnalytics getInstance() {
-    return this.instance;
-  }
+    
+    GOOGLE();
+    
+    private GoogleAnalytics instance = null;
+    
+    private String testTrackingID = "UA-110726320-1";
+    
+    private AnalyticsCore() {
+        instance = GoogleAnalytics.builder()
+                .withTrackingId(testTrackingID)
+                .withAppName("Allure-Test-Framework")
+                .withAppVersion("1.0.0")
+                .build();
+    }
+    
+    @Override
+    public GoogleAnalytics getInstance() {
+        return this.instance;
+    }
 }

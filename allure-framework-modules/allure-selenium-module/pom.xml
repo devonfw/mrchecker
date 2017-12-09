@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>allure-framework-modules</artifactId>
+		<artifactId>allure-test-framework</artifactId>
 		<groupId>com.capgemini.ntc</groupId>
 		<version>1.0.0</version>
 	</parent>
@@ -42,6 +42,7 @@
 		</developer>
 	</developers>
 
+	
 	<properties>
 		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
@@ -112,7 +113,12 @@
 
 	</dependencies>
 
-
+	<distributionManagement>
+       <repository>
+        <id>Local repository</id>
+		<url>file://${user.home}/.m2/repository</url>
+       </repository>
+   </distributionManagement>
 	<!-- Build goals/actions -->
 	<build>
 		<plugins>

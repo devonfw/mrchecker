@@ -14,7 +14,6 @@ import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
-import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
@@ -31,8 +30,6 @@ public class DriverManager implements IDriverManager {
     // Setup default variables
     private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
     private static final int IMPLICITYWAITTIMER = 2; // in seconds
-    
-    private final static String AnalitycsCategoryName = "Selenium-NewDrivers";
     
     private static PropertiesSelenium propertiesSelenium;
     
@@ -96,16 +93,6 @@ public class DriverManager implements IDriverManager {
                 drivers.remove();
             }
         }
-    }
-    
-    static void sendAnalyticsEvent() {
-        String eventName = Thread.currentThread()
-                .getStackTrace()[2].getMethodName();
-        BasePage.getAnalytics()
-                .event()
-                .eventCategory(AnalitycsCategoryName)
-                .eventAction(eventName)
-                .postAsync();
     }
     
     /**

@@ -46,7 +46,7 @@ public class DriverExtention {
     }
     
     public WebElement findElementQuietly(WebElement elementToSearchIn, By by) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         
         WebElement element = null;
         try {
@@ -72,7 +72,7 @@ public class DriverExtention {
     }
     
     public WebElement findElementDynamic(WebElement elementToSearchIn, By by) throws BFElementNotFoundException {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         long startTime = System.currentTimeMillis();
         WebElement element;
         if (null == elementToSearchIn) {
@@ -102,7 +102,7 @@ public class DriverExtention {
     }
     
     public List<WebElement> findElementsDynamic(By by, int timeOut) throws BFElementNotFoundException {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         long startTime = System.currentTimeMillis();
         WebDriverWait wait = webDriverWait(timeOut);
         List<WebElement> elements = new ArrayList<WebElement>();
@@ -123,7 +123,7 @@ public class DriverExtention {
     }
     
     public WebElement waitForElement(final By by) throws BFElementNotFoundException {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         long startTime = System.currentTimeMillis();
         WebElement element = null;
         try {
@@ -142,7 +142,7 @@ public class DriverExtention {
     }
     
     public WebElement waitUntilElementIsClickable(final By by) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         long startTime = System.currentTimeMillis();
         WebElement element = null;
         try {
@@ -156,7 +156,7 @@ public class DriverExtention {
     }
     
     public WebElement waitForElementVisible(final By by) throws BFElementNotFoundException {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         long startTime = System.currentTimeMillis();
         
         WebElement element = null;
@@ -211,107 +211,107 @@ public class DriverExtention {
     }
     
     public Button elementButton(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new Button(selector);
     }
     
     public RadioButtonElement elementRadioButton(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new RadioButtonElement(selector);
     }
     
     public RadioButtonElement elementRadioButton(By selector, By childs) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new RadioButtonElement(selector, childs);
     }
     
     public RadioButtonElement elementRadioButton(By selector, By childs, List<String> selectedAttributes) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new RadioButtonElement(selector, childs, selectedAttributes);
     }
     
     public InputTextElement elementInputText(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new InputTextElement(selector);
     }
     
     public DropdownListElement elementDropdownList(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new DropdownListElement(selector);
     }
     
     public ListElements elementList(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new ListElements(selector);
     }
     
     public CheckBox elementCheckbox(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new CheckBox(selector);
     }
     
     public CheckBox elementCheckbox(By selector, By childs) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new CheckBox(selector, childs);
     }
     
     public LabelElement elementLabel(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new LabelElement(selector);
     }
     
     public TabElement elementTab(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new TabElement(selector);
     }
     
     public TabElement elementTab(By selector, By childs) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new TabElement(selector, childs);
     }
     
     public TabElement elementTab(By selector, By childs, List<String> selectedAttributes) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new TabElement(selector, childs, selectedAttributes);
     }
     
     public NavigationBarElement elementNavigationBar(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new NavigationBarElement(selector);
     }
     
     public NavigationBarElement elementNavigationBar(By selector, By inputChildsSelector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new NavigationBarElement(selector, inputChildsSelector);
     }
     
     public TooltipElement elementTooltip(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new TooltipElement(selector);
     }
     
     public MenuElement elementMenu(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new MenuElement(selector);
     }
     
     public MenuElement elementMenu(By selector, By childsSelector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new MenuElement(selector, childsSelector);
     }
     
     public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new MenuElement(selector, childsSelector, subMenuSelector);
     }
     
     public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector, By childsSubMenuSelector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
     }
     
     public IFrame elementIFrame(By selector) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return new IFrame(selector);
     }
     

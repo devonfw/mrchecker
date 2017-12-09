@@ -3,12 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<artifactId>allure-framework-modules</artifactId>
-		<groupId>com.capgemini.ntc</groupId>
-		<version>1.0.0</version>
-	</parent>
 	<artifactId>allure-core-module</artifactId>
+	<groupId>com.capgemini.ntc</groupId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>AllureTestFramework - Test core - Module</name>
 	<description>Allure Test Framework Core is responsible for:
@@ -52,6 +49,7 @@
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<surefire.provider.version>1.0.0-M2</surefire.provider.version>
 		<thread.count>8</thread.count>
+		<junit-toolbox.version>2.4</junit-toolbox.version>
 
 		<!-- Tests logger -->
 		<slf4j.version>1.7.21</slf4j.version>
@@ -158,7 +156,7 @@
 		<dependency>
 			<groupId>com.googlecode.junit-toolbox</groupId>
 			<artifactId>junit-toolbox</artifactId>
-			<version>1.9</version>
+			<version>${junit-toolbox.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
@@ -231,6 +229,15 @@
 		</dependency>
 
 	</dependencies>
+	
+	<distributionManagement>
+       <repository>
+        <id>Local repository</id>
+		<url>file://${user.home}/.m2/repository</url>
+       </repository>
+   </distributionManagement>
+	
+	
 
 	<!-- Build goals/actions -->
 	<build>

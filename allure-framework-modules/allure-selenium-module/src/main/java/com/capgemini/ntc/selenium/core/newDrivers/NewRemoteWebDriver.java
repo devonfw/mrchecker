@@ -62,13 +62,13 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
     
     @Override
     public List<WebElement> findElements(By by) {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         return DriverExtention.convertWebElementList(super.findElements(by));
     }
     
     @Override
     public WebElement findElement(By by) throws BFElementNotFoundException {
-        DriverManager.sendAnalyticsEvent();
+        IDriverManager.sendAnalyticsEvent();
         WebElement elementFromDriver = null;
         try {
             elementFromDriver = super.findElement(by);
