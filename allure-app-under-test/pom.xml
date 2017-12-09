@@ -36,6 +36,7 @@
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<surefire.provider.version>1.0.0-M2</surefire.provider.version>
 		<thread.count>8</thread.count>
+		<junit-toolbox.version>2.4</junit-toolbox.version>
 
 		<!-- Logger -->
 		<log4j.version>2.2</log4j.version>
@@ -148,6 +149,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>${commons-csv.version}</version>
+		</dependency>
+		<!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
+		<dependency>
+			<groupId>com.googlecode.junit-toolbox</groupId>
+			<artifactId>junit-toolbox</artifactId>
+			<version>${junit-toolbox.version}</version>
 		</dependency>
 
 

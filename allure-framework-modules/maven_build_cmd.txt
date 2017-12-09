@@ -1,2 +1,7 @@
+
+#1.  Instal 3rd party lib 
+mvn org.apache.maven.plugins:maven-install-plugin:2.5.1:install-file -Dfile=google-analytics-java-master\lib\google-analytics-java-2.0.0-SNAPSHOT.jar
+
+#2.  Compile and build
 mvn clean compile -DskipTests
 mvn deploy
