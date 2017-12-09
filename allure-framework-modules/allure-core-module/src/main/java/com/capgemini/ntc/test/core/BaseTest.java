@@ -22,84 +22,84 @@ import com.google.inject.Guice;
 
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
-	
-	private static IEnvironmentService environmentService;
-	private GoogleAnalytics analytics;
-	
-	public BaseTest() {
-		
-		setPropertiesSettings();
-		setRuntimeParametersCore();
-		setEnvironmetInstance();
-		setAnalytics();
-		
-	}
-	
-	public static IEnvironmentService getEnvironmentService() {
-		return environmentService;
-	}
-	
-	public GoogleAnalytics getAnalytics() {
-		return this.analytics;
-	}
-	
-	public static void setEnvironmentService(IEnvironmentService environmentService) {
-		BaseTest.environmentService = environmentService;
-	}
-	
-	@BeforeClass
-	public static final void setUpClass() throws MalformedURLException {
-	}
-	
-	@AfterClass
-	public static final void tearDownClass() {
-		
-	}
-	
-	@After
-	public void tearDownTestLast() {
-		
-	}
-	
-	@Override
-	abstract public void setUp();
-	
-	@Override
-	abstract public void tearDown();
-	
-	@Rule
-	public TestWatcher testWatcher = new BaseTestWatcher(this);
-	
-	@ClassRule
-	public static TestClassRule classRule = new TestClassRule();
-	
-	private void setEnvironmetInstance() {
-		// Environment variables either from environmnets.csv or any other input data.
-		IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
-				.getInstance(IEnvironmentService.class);
-		environmetInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
-		BaseTest.setEnvironmentService(environmetInstance);
-	}
-	
-	private void setRuntimeParametersCore() {
-		// Read System or maven parameters
-		BFLogger.logDebug(RuntimeParametersCore.ENV.toString());
-	}
-	
-	private void setPropertiesSettings() {
-		/*
-		 * For now there is no properties settings file for Core module. In future, please have a look on Selenium
-		 * Module PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
-		 * .getInstance(PropertiesSelenium.class);
-		 */
-		
-	}
-	
-	private void setAnalytics() {
-		analytics = AnalyticsCore.GOOGLE.getBuilder();
-		analytics.pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "BaseTest", "BaseTest core")
-				.postAsync();
-		
-	}
-	
+    
+    private static IEnvironmentService environmentService;
+    private static GoogleAnalytics analytics;
+    
+    public BaseTest() {
+        
+        setPropertiesSettings();
+        setRuntimeParametersCore();
+        setEnvironmetInstance();
+        setAnalytics();
+        
+    }
+    
+    public static IEnvironmentService getEnvironmentService() {
+        return environmentService;
+    }
+    
+    public static GoogleAnalytics getAnalytics() {
+        return BaseTest.analytics;
+    }
+    
+    public static void setEnvironmentService(IEnvironmentService environmentService) {
+        BaseTest.environmentService = environmentService;
+    }
+    
+    @BeforeClass
+    public static final void setUpClass() throws MalformedURLException {
+    }
+    
+    @AfterClass
+    public static final void tearDownClass() {
+        
+    }
+    
+    @After
+    public void tearDownTestLast() {
+        
+    }
+    
+    @Override
+    abstract public void setUp();
+    
+    @Override
+    abstract public void tearDown();
+    
+    @Rule
+    public TestWatcher testWatcher = new BaseTestWatcher(this);
+    
+    @ClassRule
+    public static TestClassRule classRule = new TestClassRule();
+    
+    private void setEnvironmetInstance() {
+        // Environment variables either from environmnets.csv or any other input data.
+        IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
+                .getInstance(IEnvironmentService.class);
+        environmetInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
+        BaseTest.setEnvironmentService(environmetInstance);
+    }
+    
+    private void setRuntimeParametersCore() {
+        // Read System or maven parameters
+        BFLogger.logDebug(RuntimeParametersCore.ENV.toString());
+    }
+    
+    private void setPropertiesSettings() {
+        /*
+         * For now there is no properties settings file for Core module. In future, please have a look on Selenium
+         * Module PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
+         * .getInstance(PropertiesSelenium.class);
+         */
+        
+    }
+    
+    private void setAnalytics() {
+        analytics = AnalyticsCore.GOOGLE.getInstance();
+        getAnalytics().pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "BaseTest", "BaseTest core")
+                .postAsync();
+        
+    }
+    
 }
