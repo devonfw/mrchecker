@@ -11,7 +11,7 @@ import com.googlecode.junittoolbox.SuiteClasses;
 @RunWith(WildcardPatternSuiteBF.class)
 @IncludeCategories({ TestsIE.class })
 @ExcludeCategories({})
-@SuiteClasses({ "**/*.class" })
+@SuiteClasses({ "**/*Test.class" })
 public class TS_TestsIE {
 
 }

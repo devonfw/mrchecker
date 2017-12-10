@@ -10,7 +10,7 @@ import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 
-public class JsoupTests extends BaseTest {
+public class JsoupTest extends BaseTest {
 	
 	private static EditableGridPage editableGridPage;
 	

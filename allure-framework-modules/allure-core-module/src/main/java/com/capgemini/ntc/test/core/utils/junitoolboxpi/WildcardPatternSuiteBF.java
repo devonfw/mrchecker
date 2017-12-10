@@ -34,7 +34,9 @@ public class WildcardPatternSuiteBF extends Suite {
         // }
         // javaPackageToSearch = prop.getProperty("javaPackageToSearch");
         // javaPackageToSearch = "com.capgemini.ntc.selenium.tests";
-        javaPackageToSearch = "com.capgemini.ntc.selenium.tests";
+        
+        // TODO : uncomment reading from properties file and link this with BasePage.getProperties
+        javaPackageToSearch = "";
     }
     
     private static Class<?>[] getSuiteClasses(Class<?> klass) throws InitializationError {
@@ -116,7 +118,7 @@ public class WildcardPatternSuiteBF extends Suite {
                         "did not find any *.class file using the specified wildcard patterns "
                                 + Arrays.toString(wildcardPatterns) + " in directory " + basePath);
             }
-            final String classNamePrefix = javaPackageToSearch + ".";
+            final String classNamePrefix = javaPackageToSearch.equals("") ? "" : javaPackageToSearch + ".";
             final Class<?>[] result = new Class<?>[classFiles.size()];
             int i = 0;
             final ClassLoader classLoader = klass.getClassLoader();

@@ -2,7 +2,6 @@ package com.capgemini.ntc.selenium.tests.testTag.tag2;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,14 +9,17 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.capgemini.ntc.selenium.pages.features.registration.RegistryPage;
+import com.capgemini.ntc.selenium.testSuites.testType.TestSlow;
+import com.capgemini.ntc.selenium.testSuites.testType.TestsIE;
 import com.capgemini.ntc.selenium.testSuites.testType.TestsTag2;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 import ru.yandex.qatools.allure.annotations.Features;
-@Features("TAG3")
-@Category({ TestsTag2.class })
-public class SecondTest_tag2 extends BaseTest {
+
+@Features("TAG2")
+@Category({ TestsTag2.class, TestSlow.class, TestsIE.class })
+public class FristTest_tag2_Test extends BaseTest{
 
 	private RegistryPage registryPage;
 
@@ -34,7 +36,7 @@ public class SecondTest_tag2 extends BaseTest {
 	}
 	
 	@Test
-	public void QCID_StayOnResistryPage_Tag2_Second() throws InterruptedException {
+	public void QCID_StayOnResistryPage_Tag2_First() throws InterruptedException {
 
 		BFLogger.logInfo(
 				"[Step 2] As a standard user I click Submit button,  So that I will stay on Registry page");
@@ -45,9 +47,8 @@ public class SecondTest_tag2 extends BaseTest {
 	}
 
 	@Test
-	public void testTag2_Second() {
-		BFLogger.logInfo("SecondTest_tag2.test()");
-		fail("Known fault");
+	public void testTag2_Frist() {
+		BFLogger.logInfo("FristTest_tag2.test()");
 
 	}
 
