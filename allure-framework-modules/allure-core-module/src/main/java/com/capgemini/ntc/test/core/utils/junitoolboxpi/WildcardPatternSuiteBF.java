@@ -33,6 +33,7 @@ public class WildcardPatternSuiteBF extends Suite {
         // e.printStackTrace();
         // }
         // javaPackageToSearch = prop.getProperty("javaPackageToSearch");
+        // javaPackageToSearch = "com.capgemini.ntc.selenium.tests";
         javaPackageToSearch = "com.capgemini.ntc.selenium.tests";
     }
     
@@ -143,6 +144,7 @@ public class WildcardPatternSuiteBF extends Suite {
             String javaPackageInProjectForSearchTests = javaPackageToSearch.replace('.', '/');
             String folderWithTestCases = System.getProperty("user.dir") + "/target/test-classes/";
             String completedPathToPackageToSearchTests = folderWithTestCases + javaPackageInProjectForSearchTests;
+            System.out.println("PATH: " + completedPathToPackageToSearchTests);
             f = new File(completedPathToPackageToSearchTests);
             return f;
         } catch (Exception e) {
