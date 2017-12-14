@@ -10,7 +10,7 @@
     <url>https://github.com/devonfw/devonfw-testing</url>
     <packaging>pom</packaging>
 
-    <organization>
+        <organization>
         <name>Capgemini  - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
@@ -18,9 +18,24 @@
     <developers>
         <developer>
             <name>Lukasz Stefaniszyn</name>
-            <email>stefaniszynlukasz@gmail.com</email>
+            <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
     </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
+        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+    </scm>
 
     <modules>
         <module>allure-core-module</module>
