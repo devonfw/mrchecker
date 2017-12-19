@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>allure-app-under-test</artifactId>
-    <groupId>com.capgemini</groupId>
-    <version>1.0.0</version>
+    <groupId>com.capgemini.ntc</groupId>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>AllureTestFramework - List of Integration Test for Application Under Test </name>
@@ -13,7 +13,7 @@
 
 
 
-        <organization>
+    <organization>
         <name>Capgemini  - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
@@ -40,7 +40,7 @@
         <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
     </scm>
 
-    <repositories>
+   <!--  <repositories>
         <repository>
             <id>Local repository</id>
             <url>file://${env.BASE_PATH}/m2/repository</url>
@@ -52,7 +52,7 @@
             <id>Local repository</id>
             <url>file://${env.BASE_PATH}/m2/repository</url>
         </repository>
-    </distributionManagement>
+    </distributionManagement> -->
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>

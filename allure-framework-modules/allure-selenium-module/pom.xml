@@ -5,8 +5,8 @@
 
     <parent>
         <artifactId>allure-test-framework</artifactId>
-        <groupId>com.capgemini</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>com.capgemini.ntc</groupId>
+        <version>0.0.2</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
     <packaging>jar</packaging>
