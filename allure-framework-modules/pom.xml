@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini.ntc</groupId>
     <artifactId>allure-test-framework</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>AllureTestFramework</name>
     <description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>

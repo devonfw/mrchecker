@@ -10,11 +10,14 @@ mvn -P release deploy
 https://oss.sonatype.org/#stagingRepositories   
 and release 
 
-#4. Verify release repo
+#4. Verify release OR snapshot repo
+Release
 https://oss.sonatype.org/content/repositories/releases/com/capgemini/ntc/
 https://oss.sonatype.org/content/groups/public/com/capgemini/ntc/
 https://repo.maven.apache.org/maven2/com/capgemini/ntc/
 
+Snapshot
+https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/
 
 
 #5. Install dependencies
