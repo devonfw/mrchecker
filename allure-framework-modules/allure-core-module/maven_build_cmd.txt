@@ -1,2 +1,4 @@
 mvn clean compile -DskipTests
-mvn deploy
+mvn -P release deploy
+
+mvn -P release clean verify install -DskipTests

@@ -42,12 +42,12 @@
         <module>allure-selenium-module</module>
     </modules>
 
-<!--     <repositories>
+    <!-- <repositories>
         <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
+        <id>Local repository</id>
+        <url>file://${env.BASE_PATH}/m2/repository</url>
         </repository>
-    </repositories> -->
+        </repositories> -->
 
 
     <distributionManagement>
@@ -320,7 +320,11 @@
             <id>release</id>
             <build>
                 <plugins>
-                    <!-- Generate source files -->
+                    <!-- Generate source files, but as a fake file. 
+                    To generate real source: 
+                    1. Remove node <exclude>*.*</exclude>
+                    2. Disable copy-rename-maven-plugin where source file is overwritten
+                    -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -328,6 +332,12 @@
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>*.*</exclude>
+                                    </excludes>
+                                </configuration>
                                 <goals>
                                     <goal>jar-no-fork</goal>
                                 </goals>
@@ -347,13 +357,39 @@
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
+                                <phase>verify</phase>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
                             </execution>
                         </executions>
                     </plugin>
-                    <!-- Sign with GPG files --> 
+
+
+                    <plugin>
+                        <groupId>com.coderplus.maven.plugins</groupId>
+                        <artifactId>copy-rename-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-file</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <fileSets>
+                                        <fileSet>
+                                            <sourceFile>project-version-sources.jar</sourceFile>
+                                            <destinationFile>${project.build.directory}/${project.artifactId}-${project.version}-sources.jar</destinationFile>
+                                        </fileSet>
+                                    </fileSets>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Sign with GPG files -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
