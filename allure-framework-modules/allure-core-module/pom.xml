@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>allure-core-module</artifactId>
-    <version>1.4.12-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Test core - Module</name>
     <description>Allure Test Framework Core is responsible for:
@@ -50,21 +50,6 @@
         <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
         <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
     </scm>
-
-    <!-- <repositories>
-        <repository>
-        <id>Local repository</id>
-        <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-        </repositories>
-
-        <distributionManagement>
-        <repository>
-        <id>Local repository</id>
-        <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-        </distributionManagement> -->
-
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>

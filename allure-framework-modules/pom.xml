@@ -42,14 +42,6 @@
         <module>allure-selenium-module</module>
     </modules>
 
-    <!-- <repositories>
-        <repository>
-        <id>Local repository</id>
-        <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-        </repositories> -->
-
-
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -61,14 +53,6 @@
         </repository>
     </distributionManagement>
 
-
-    <!-- <distributionManagement>
-        <repository>
-        <id>Local repository</id>
-        <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-        </distributionManagement>
-    -->
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 

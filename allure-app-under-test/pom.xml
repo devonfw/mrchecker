@@ -40,22 +40,13 @@
         <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
     </scm>
 
-   <!--  <repositories>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </distributionManagement> -->
-
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+
+        <!-- Allure test framework modules -->
+        <allure-core-module.version>1.0.0-SNAPSHOT</allure-core-module.version>
+        <allure-selenium-module.version>3.4.0.1-SNAPSHOT</allure-selenium-module.version>
+
 
         <!-- Java settings -->
         <java.compiler.version>1.8</java.compiler.version>
@@ -114,14 +105,14 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>
-            <version>${project.version}</version>
+            <version>${allure-core-module.version}</version>
         </dependency>
 
         <!-- Selenium module -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-selenium-module</artifactId>
-            <version>${project.version}</version>
+            <version>${allure-selenium-module.version}</version>
         </dependency>
 
 
