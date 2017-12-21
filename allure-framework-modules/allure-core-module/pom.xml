@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
 
-	<parent>
-		<artifactId>allure-test-framework</artifactId>
-		<groupId>com.capgemini.ntc</groupId>
-		<version>1.0.0</version>
-	</parent>
-	<artifactId>allure-core-module</artifactId>
-	<packaging>jar</packaging>
-	<name>AllureTestFramework - Test core - Module</name>
-	<description>Allure Test Framework Core is responsible for:
+    <parent>
+        <artifactId>allure-test-framework</artifactId>
+        <groupId>com.capgemini.ntc</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>allure-core-module</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>AllureTestFramework - Test core - Module</name>
+    <description>Allure Test Framework Core is responsible for:
         * Test report with logs and/or screenshots
         * Test groups/tags
         * Data Driven (inside test case, external file) 
@@ -21,244 +22,215 @@
         * Run on independent OperatingSystem
         * Externalize test environment (DEV, QA, PROD)
     </description>
-	<url>https://github.com/devonfw/devonfw-testing</url>
+    <url>https://github.com/devonfw/devonfw-testing</url>
 
-	<organization>
-		<name>Capgemini  - Nearshore Test Center - Poland</name>
-		<url>http://nsc.capgemini.com/nearshoretestcenter</url>
-	</organization>
+    <organization>
+        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
+    </organization>
 
-	<developers>
-		<developer>
-			<name>Lukasz Stefaniszyn</name>
-			<email>lukasz.stefaniszyn at capgemini.com</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Lukasz Stefaniszyn</name>
+            <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+    </developers>
 
-    <repositories>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </repositories>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-    <distributionManagement>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </distributionManagement>
+    <scm>
+        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
+        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+    </scm>
 
+    <properties>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-	<properties>
-		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+        <!-- Test tools -->
+        <junit.version>4.12</junit.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <mockito.version>1.8.5</mockito.version>
+        <joda-time.version>2.9.9</joda-time.version>
+        <commons-csv.version>1.1</commons-csv.version>
+        <JUnitParams.version>1.0.4</JUnitParams.version>
 
-		<!-- Allure reporting -->
-		<slf4j.version>1.7.21</slf4j.version>
-		<allure.report.directory>${pom.basedir}/target/</allure.report.directory>
-		<allure.version>1.5.4</allure.version>
-		<allure-report.version>1.4.19</allure-report.version>
-		<aspectj.version>1.8.9</aspectj.version>
-		<allure-maven-plugin.version>2.6</allure-maven-plugin.version>
-		<allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
-		<report-directory>${pom.basedir}/test-output/</report-directory>
-		<jetty.version>9.2.10.v20150310</jetty.version>
+        <!-- Tests executors -->
+        <thread.count>8</thread.count>
+        <junit-toolbox.version>2.4</junit-toolbox.version>
 
-		<!-- Tests executors -->
-		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-		<surefire.provider.version>1.0.0-M2</surefire.provider.version>
-		<thread.count>8</thread.count>
-		<junit-toolbox.version>2.4</junit-toolbox.version>
-
-		<!-- Tests logger -->
-		<slf4j.version>1.7.21</slf4j.version>
-
-		<!-- JSON support java 1.8 -->
-		<org.json.version>20160810</org.json.version>
-
-		<!-- Hashes sensitive data -->
-		<org.jasypt.version>1.9.2</org.jasypt.version>
-
-		<!-- spring version -->
-		<spring.version>4.3.7.RELEASE</spring.version>
-
-	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.brsanthu</groupId>
-			<artifactId>google-analytics-java</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
-		</dependency>
+        <!-- Logger -->
+        <log4j.version>2.2</log4j.version>
+        <slf4j.version>1.7.21</slf4j.version>
 
 
-		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-all</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <!-- Allure reporting -->
+        <slf4j.version>1.7.21</slf4j.version>
+        <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
+        <allure.version>1.5.4</allure.version>
+        <allure-report.version>1.4.19</allure-report.version>
+        <aspectj.version>1.8.9</aspectj.version>
+        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
+        <allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
+        <report-directory>${pom.basedir}/test-output/</report-directory>
+        <jetty.version>9.2.10.v20150310</jetty.version>
 
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
+        <!-- JSON support java 1.8 -->
+        <org.json.version>20160810</org.json.version>
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-csv</artifactId>
-		</dependency>
+        <!-- Hashes sensitive data -->
+        <org.jasypt.version>1.9.2</org.jasypt.version>
 
+        <!-- spring version -->
+        <spring.version>4.3.7.RELEASE</spring.version>
 
+    </properties>
 
-		<!--This dependency is necessary for JUnit plugin. -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>pl.pragmatists</groupId>
-			<artifactId>JUnitParams</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-surefire-provider</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.brsanthu</groupId>
+            <artifactId>google-analytics-java</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+        </dependency>
 
 
-		<!--This dependency is necessary for Logger. -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${hamcrest.version}</version><!--$NO-MVN-MAN-VER$ -->
+            <scope>test</scope>
+        </dependency>
 
-		<!--This dependency is necessary for Allure report plugin. -->
-		<dependency>
-			<groupId>ru.yandex.qatools.allure</groupId>
-			<artifactId>allure-junit-adaptor</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>ru.yandex.qatools.allure</groupId>
-			<artifactId>allure-report-data</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>ru.yandex.qatools.allure</groupId>
-			<artifactId>allure-maven-plugin</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>ru.yandex.qatools.allure</groupId>
-			<artifactId>allure-cucumber-jvm-adaptor</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>${commons-csv.version}</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
 
 
-		<!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
-		<dependency>
-			<groupId>com.googlecode.junit-toolbox</groupId>
-			<artifactId>junit-toolbox</artifactId>
-			<version>${junit-toolbox.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>${org.json.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-		</dependency>
 
-		<!--This dependency is necessary for Dependency Injection plugin. -->
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-		</dependency>
+        <!--This dependency is necessary for JUnit plugin. -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>${JUnitParams.version}</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
 
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-expression</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<version>1.4.01</version>
-		</dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>${surefire.provider.version}</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
 
 
-		<dependency>
-			<groupId>org.jasypt</groupId>
-			<artifactId>jasypt</artifactId>
-			<version>${org.jasypt.version}</version>
-		</dependency>
+        <!--This dependency is necessary for Logger. -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
 
-	</dependencies>
-	
-	
-	
-	
+        <!-- SLF4J is a simple facade for logging systems allowing the
+            end-user
+            to plug-in the desired logging system at deployment time -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
 
-	<!-- Build goals/actions -->
-	<build>
-		<plugins>
-			<!-- Plugins are taken from parent pom.xml -->
-		</plugins>
-	</build>
+        <!--This dependency is necessary for Allure report plugin. -->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-junit-adaptor</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-report-data</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-maven-plugin</artifactId>
+            <version>${allure-maven-plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+            <version>${allure-cucumber-jvm-adaptor.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+
+
+        <!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
+        <dependency>
+            <groupId>com.googlecode.junit-toolbox</groupId>
+            <artifactId>junit-toolbox</artifactId>
+            <version>${junit-toolbox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+
+
+
+        <!--This dependency is necessary for Dependency Injection plugin. -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>${org.jasypt.version}</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+
+
+    <!-- Build goals/actions -->
+    <build>
+        <plugins>
+            <!-- Plugins are taken from parent pom.xml -->
+        </plugins>
+    </build>
 
 
 </project>

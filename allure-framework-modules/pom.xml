@@ -1,482 +1,548 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.capgemini.ntc</groupId>
-	<artifactId>allure-test-framework</artifactId>
-	<version>1.0.0</version>
-	<name>AllureTestFramework</name>
-	<description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
-	<url>https://github.com/devonfw/devonfw-testing</url>
-	<packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.capgemini.ntc</groupId>
+    <artifactId>allure-test-framework</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>AllureTestFramework</name>
+    <description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
+    <url>https://github.com/devonfw/devonfw-testing</url>
+    <packaging>pom</packaging>
 
-	<organization>
-		<name>Capgemini  - Nearshore Test Center - Poland</name>
-		<url>http://nsc.capgemini.com/nearshoretestcenter</url>
-	</organization>
+    <organization>
+        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
+    </organization>
 
-	<developers>
-		<developer>
-			<name>Lukasz Stefaniszyn</name>
-			<email>lukasz.stefaniszyn at capgemini.com</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Lukasz Stefaniszyn</name>
+            <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+    </developers>
 
-	<modules>
-		<module>allure-core-module</module>
-		<module>allure-selenium-module</module>
-	</modules>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-    <repositories>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </repositories>
+    <scm>
+        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
+        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+    </scm>
+
+    <modules>
+        <module>allure-core-module</module>
+        <module>allure-selenium-module</module>
+    </modules>
 
     <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
         <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
-	<properties>
-		<project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+    <properties>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-		<!-- Java settings -->
-		<java.compiler.version>1.8</java.compiler.version>
+        <!-- Java settings -->
+        <java.compiler.version>1.8</java.compiler.version>
 
-		<!-- Tests executors -->
-		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-		<surefire.provider.version>1.0.0-M2</surefire.provider.version>
-		<thread.count>8</thread.count>
+        <!-- Tests executors -->
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <surefire.provider.version>1.0.0-M2</surefire.provider.version>
+        <thread.count>8</thread.count>
+        <aspectj.version>1.8.9</aspectj.version>
 
-		<!-- Logger -->
-		<log4j.version>2.2</log4j.version>
-		<SLF4J.version>1.7.12</SLF4J.version>
+        <!-- Report -->
+        <report-directory>${pom.basedir}/test-output/</report-directory>
 
-		<!-- Allure reporting -->
-		<slf4j.version>1.7.21</slf4j.version>
-		<allure.report.directory>${pom.basedir}/target/</allure.report.directory>
-		<allure.version>1.5.4</allure.version>
-		<allure-maven-plugin.version>2.6</allure-maven-plugin.version>
-		<allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
-		<report-directory>${pom.basedir}/test-output/</report-directory>
-		<jetty.version>9.2.10.v20150310</jetty.version>
-		<aspectj.version>1.8.4</aspectj.version>
+        <!-- Test tools -->
+        <hamcrest.version>1.3</hamcrest.version>
+        <junit.version>4.12</junit.version>
+        <mockito.version>1.8.5</mockito.version>
+        <joda-time.version>2.9.9</joda-time.version>
+        <commons-csv.version>1.1</commons-csv.version>
+        <JUnitParams.version>1.0.4</JUnitParams.version>
 
-		<!-- Cucumber version -->
-		<cucumber.version>1.2.5</cucumber.version>
-		<cucumber.jvm.parallel.version>4.1.0</cucumber.jvm.parallel.version>
-		<cucumber-reporting.version>3.7.0</cucumber-reporting.version>
+        <!-- Dependency Injection -->
+        <guice.version>4.1.0</guice.version>
 
-		<!-- Test tools -->
-		<hamcrest.version>1.3</hamcrest.version>
-		<junit.version>4.12</junit.version>
-		<mockito.version>1.8.5</mockito.version>
-		<joda-time.version>2.9.9</joda-time.version>
-		<jsoup.version>1.11.2</jsoup.version>
-		<commons-csv.version>1.1</commons-csv.version>
-		<JUnitParams.version>1.0.4</JUnitParams.version>
+        <!-- Guava is a set of core libraries -->
+        <google.guava.version>21.0</google.guava.version>
 
-		<!-- Dependency Injection -->
-		<picocontainer.version>2.15</picocontainer.version>
-		<guice.version>4.1.0</guice.version>
+        <!-- JSON support java 1.8 -->
+        <org.json.version>20160810</org.json.version>
 
-		<!-- Guava is a set of core libraries -->
-		<google.guava.version>21.0</google.guava.version>
-
-	</properties>
+    </properties>
 
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>${aspectj.version}</version>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
 
 
-			<!--This dependency is necessary for JUnit plugin. -->
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>pl.pragmatists</groupId>
-				<artifactId>JUnitParams</artifactId>
-				<version>${JUnitParams.version}</version>
-			</dependency>
+            <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-			<dependency>
-				<groupId>org.junit.platform</groupId>
-				<artifactId>junit-platform-surefire-provider</artifactId>
-				<version>${surefire.provider.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-all</artifactId>
-				<version>${hamcrest.version}</version>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>${mockito.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>joda-time</groupId>
-				<artifactId>joda-time</artifactId>
-				<version>${joda-time.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-csv</artifactId>
-				<version>${commons-csv.version}</version>
-			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-			<dependency>
-				<groupId>org.jsoup</groupId>
-				<artifactId>jsoup</artifactId>
-				<version>${jsoup.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>${commons-csv.version}</version>
+            </dependency>
 
 
-			<dependency>
-				<groupId>com.google.inject</groupId>
-				<artifactId>guice</artifactId>
-				<version>${guice.version}</version>
-			</dependency>
+
+            <!--This dependency is necessary for JUnit plugin. -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.pragmatists</groupId>
+                <artifactId>JUnitParams</artifactId>
+                <version>${JUnitParams.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-surefire-provider</artifactId>
+                <version>${surefire.provider.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+            </dependency>
+            
+            <!-- For time and date dependency actions -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
 
 
-			<!-- Guava is a set of core libraries -->
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${google.guava.version}</version>
-			</dependency>
+            <!-- Guava is a set of core libraries -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${org.json.version}</version>
+            </dependency>
 
 
-			<!--This dependency is necessary for Logger. -->
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-api</artifactId>
-				<version>${log4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-core</artifactId>
-				<version>${log4j.version}</version>
-			</dependency>
-
-			<!-- SLF4J is a simple facade for logging systems allowing the
-                end-user
-                to plug-in the desired logging system at deployment time -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${SLF4J.version}</version>
-			</dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
-			<!--This dependency is necessary for Allure report plugin. -->
-			<dependency>
-				<groupId>ru.yandex.qatools.allure</groupId>
-				<artifactId>allure-junit-adaptor</artifactId>
-				<version>${allure.version}</version>
-			</dependency>
 
-			<dependency>
-				<groupId>ru.yandex.qatools.allure</groupId>
-				<artifactId>allure-report-data</artifactId>
-				<version>${allure.version}</version>
-			</dependency>
+    <!-- Build goals/actions -->
+    <build>
+        <pluginManagement>
+            <plugins>
 
-			<dependency>
-				<groupId>ru.yandex.qatools.allure</groupId>
-				<artifactId>allure-maven-plugin</artifactId>
-				<version>${allure-maven-plugin.version}</version>
-			</dependency>
+                <!-- CLEAN -->
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>src/test/java/com/example/selenium/tests/cucumber/autogenerated_runners</directory>
+                                <includes>
+                                    <include>**/*.java</include>
+                                </includes>
+                                <followSymlinks>false</followSymlinks>
+                            </fileset>
+                            <fileset>
+                                <directory>logs</directory>
+                                <followSymlinks>false</followSymlinks>
+                            </fileset>
+                            <fileset>
+                                <directory>${report-directory}</directory>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </plugin>
 
-			<dependency>
-				<groupId>ru.yandex.qatools.allure</groupId>
-				<artifactId>allure-cucumber-jvm-adaptor</artifactId>
-				<version>${allure-cucumber-jvm-adaptor.version}</version>
-			</dependency>
-
-
-		</dependencies>
-	</dependencyManagement>
-
-	<!-- Build goals/actions -->
-	<build>
-		<pluginManagement>
-			<plugins>
-
-				<!-- CLEAN -->
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.0.0</version>
-					<configuration>
-						<filesets>
-							<fileset>
-								<directory>src/test/java/com/example/selenium/tests/cucumber/autogenerated_runners</directory>
-								<includes>
-									<include>**/*.java</include>
-								</includes>
-								<followSymlinks>false</followSymlinks>
-							</fileset>
-							<fileset>
-								<directory>logs</directory>
-								<followSymlinks>false</followSymlinks>
-							</fileset>
-							<fileset>
-								<directory>${report-directory}</directory>
-							</fileset>
-						</filesets>
-					</configuration>
-				</plugin>
-
-				<!-- COMPILE -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.6.1</version>
-					<configuration>
-						<source>${java.compiler.version}</source>
-						<target>${java.compiler.version}</target>
-						<encoding>UTF-8</encoding>
-						<testSource>${java.compiler.version}</testSource>
-						<testTarget>${java.compiler.version}</testTarget>
-					</configuration>
-				</plugin>
+                <!-- COMPILE -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.6.1</version>
+                    <configuration>
+                        <source>${java.compiler.version}</source>
+                        <target>${java.compiler.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <testSource>${java.compiler.version}</testSource>
+                        <testTarget>${java.compiler.version}</testTarget>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                    </configuration>
+                </plugin>
 
 
-				<!-- START REPORT SERVER -->
-				<!--Needed only to show reports locally. Run 'mvn jetty:run'
+                <!-- START REPORT SERVER -->
+                <!--Needed only to show reports locally. Run 'mvn jetty:run'
                     and open
                     'localhost:8080' to show the report -->
-				<plugin>
-					<groupId>org.eclipse.jetty</groupId>
-					<artifactId>jetty-maven-plugin</artifactId>
-					<version>${jetty.version}</version>
-					<configuration>
-						<webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory>
-						<stopKey>stop</stopKey>
-						<stopPort>1234</stopPort>
-					</configuration>
-				</plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>${jetty.version}</version>
+                    <configuration>
+                        <webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory>
+                        <stopKey>stop</stopKey>
+                        <stopPort>1234</stopPort>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
-			</plugins>
-		</pluginManagement>
-	</build>
+    <profiles>
 
-	<profiles>
-		<!-- RUN CLASSIC JUNIT TESTS -->
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<testFailureIgnore>true</testFailureIgnore>
-							<parallel>classes</parallel>
-							<perCoreThreadCount>false</perCoreThreadCount>
-							<threadCount>${thread.count}</threadCount>
-							<includes>
-								<include>**/*.class</include>
-							</includes>
-							<excludes>
-								<exclude>**/RawTest.*</exclude>
-								<exclude>**/OutboxDocumentTest.*</exclude>
-							</excludes>
-							<argLine>
+        <profile>
+            <!-- RELEASE -->
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Generate source files, but as a fake file.
+                        To generate real source:
+                        1. Remove node <exclude>*.*</exclude>
+                        2. Disable copy-rename-maven-plugin where source
+                        file is overwritten
+                    -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>*.*</exclude>
+                                    </excludes>
+                                </configuration>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Generate javadoc files -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.10.4</version>
+                        <configuration>
+                            <excludePackageNames>*.internal.*</excludePackageNames>
+                            <failOnError>false</failOnError>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
+                    <plugin>
+                        <groupId>com.coderplus.maven.plugins</groupId>
+                        <artifactId>copy-rename-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-file</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <fileSets>
+                                        <fileSet>
+                                            <sourceFile>project-version-sources.jar</sourceFile>
+                                            <destinationFile>${project.build.directory}/${project.artifactId}-${project.version}-sources.jar</destinationFile>
+                                        </fileSet>
+                                    </fileSets>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Sign with GPG files -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Push to Nexus -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
+        <!-- RUN CLASSIC JUNIT TESTS -->
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <testFailureIgnore>true</testFailureIgnore>
+                            <parallel>classes</parallel>
+                            <perCoreThreadCount>false</perCoreThreadCount>
+                            <threadCount>${thread.count}</threadCount>
+                            <includes>
+                                <include>**/*.class</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/RawTest.*</exclude>
+                                <exclude>**/OutboxDocumentTest.*</exclude>
+                            </excludes>
+                            <argLine>
                                 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
-								</property>
-							</properties>
+                            </argLine>
+                            <properties>
+                                <property>
+                                    <name>listener</name>
+                                    <value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
+                                </property>
+                            </properties>
 
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.aspectj</groupId>
+                                <artifactId>aspectjweaver</artifactId>
+                                <version>${aspectj.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-		<!-- RUN CLASSIC CUCUMBER TESTS WITH MANUAL RUNNERS -->
-		<profile>
-			<id>cucumber</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<testFailureIgnore>true</testFailureIgnore>
-							<threadCount>${thread.count}</threadCount>
-							<argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-							</argLine>
-							<argLine>-Dcucumber.options="--plugin
+        <!-- RUN CLASSIC CUCUMBER TESTS WITH MANUAL RUNNERS -->
+        <profile>
+            <id>cucumber</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <testFailureIgnore>true</testFailureIgnore>
+                            <threadCount>${thread.count}</threadCount>
+                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                            </argLine>
+                            <argLine>-Dcucumber.options="--plugin
                                 ru.yandex.qatools.allure.cucumberjvm.AllureReporter
                                 --plugin json:target/cucumber.json
                                 --plugin
                                 junit:test-output/junitreports/TEST-cucumber.xmlcucumber.xml"</argLine>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-							<dependency>
-								<groupId>org.apache.maven.surefire</groupId>
-								<artifactId>surefire-junit47</artifactId>
-								<version>${maven-surefire-plugin.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-					<plugin>
-						<groupId>net.masterthought</groupId>
-						<artifactId>maven-cucumber-reporting</artifactId>
-						<version>${cucumber-reporting.version}</version>
-						<executions>
-							<execution>
-								<id>execution</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>generate</goal>
-								</goals>
-								<configuration>
-									<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-									<projectName>CucumberReport</projectName>
-									<outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-									<parallelTesting>true</parallelTesting>
-									<buildNumber>1</buildNumber>
-									<checkBuildResult>false</checkBuildResult>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.aspectj</groupId>
+                                <artifactId>aspectjweaver</artifactId>
+                                <version>${aspectj.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.maven.surefire</groupId>
+                                <artifactId>surefire-junit47</artifactId>
+                                <version>${maven-surefire-plugin.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>net.masterthought</groupId>
+                        <artifactId>maven-cucumber-reporting</artifactId>
+                        <version>${cucumber-reporting.version}</version>
+                        <executions>
+                            <execution>
+                                <id>execution</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                                    <projectName>CucumberReport</projectName>
+                                    <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
+                                    <parallelTesting>true</parallelTesting>
+                                    <buildNumber>1</buildNumber>
+                                    <checkBuildResult>false</checkBuildResult>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-		<!-- RUN CUCUMBER TESTS WITH AUTOGENERATE RUNNERS -->
-		<profile>
-			<id>cucumber-parallel</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.github.temyers</groupId>
-						<artifactId>cucumber-jvm-parallel-plugin</artifactId>
-						<version>${cucumber.jvm.parallel.version}</version>
-						<executions>
-							<execution>
-								<id>generateRunners</id>
-								<phase>validate</phase>
-								<goals>
-									<goal>generateRunners</goal>
-								</goals>
-								<configuration>
-									<glue>
-										<package>com.example.selenium.tests.cucumber.common.stepdefs</package>
-									</glue>
-									<featuresDirectory>src/test/java/com/example/selenium/tests/cucumber/common/features</featuresDirectory>
-									<cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-									<!-- CucumberOptions.strict property -->
-									<strict>false</strict>
-									<!-- CucumberOptions.monochrome property -->
-									<monochrome>false</monochrome>
-									<tags>
-										<tag>${tags}</tag>
-										<tag>~@ignored</tag>
-									</tags>
-									<plugins>
-										<plugin>
-											<name>json</name>
-										</plugin>
-										<plugin>
-											<name>ru.yandex.qatools.allure.cucumberjvm.AllureReporter</name>
-										</plugin>
-										<plugin>
-											<name>junit</name>
-											<outputDirectory>${report-directory}/junitreports</outputDirectory>
-										</plugin>
-									</plugins>
-									<namingPattern>Parallel{c}IT</namingPattern>
-									<parallelScheme>SCENARIO</parallelScheme>
-									<useTestNG>false</useTestNG>
-									<namingScheme>feature-title</namingScheme>
-									<customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
-									<outputDirectory>${basedir}/src/test/java</outputDirectory>
-									<packageName>com.example.selenium.tests.cucumber.autogenerated_runners</packageName>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<skipTests>false</skipTests>
-							<threadCount>${thread.count}</threadCount>
-							<testFailureIgnore>true</testFailureIgnore>
-							<failIfNoTests>false</failIfNoTests>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.apache.maven.surefire</groupId>
-								<artifactId>surefire-junit4</artifactId>
-								<version>${maven-surefire-plugin.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+        <!-- RUN CUCUMBER TESTS WITH AUTOGENERATE RUNNERS -->
+        <profile>
+            <id>cucumber-parallel</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.temyers</groupId>
+                        <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                        <version>${cucumber.jvm.parallel.version}</version>
+                        <executions>
+                            <execution>
+                                <id>generateRunners</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>generateRunners</goal>
+                                </goals>
+                                <configuration>
+                                    <glue>
+                                        <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
+                                    </glue>
+                                    <featuresDirectory>src/test/java/com/example/selenium/tests/cucumber/common/features</featuresDirectory>
+                                    <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+                                    <!-- CucumberOptions.strict property -->
+                                    <strict>false</strict>
+                                    <!-- CucumberOptions.monochrome property -->
+                                    <monochrome>false</monochrome>
+                                    <tags>
+                                        <tag>${tags}</tag>
+                                        <tag>~@ignored</tag>
+                                    </tags>
+                                    <plugins>
+                                        <plugin>
+                                            <name>json</name>
+                                        </plugin>
+                                        <plugin>
+                                            <name>ru.yandex.qatools.allure.cucumberjvm.AllureReporter</name>
+                                        </plugin>
+                                        <plugin>
+                                            <name>junit</name>
+                                            <outputDirectory>${report-directory}/junitreports</outputDirectory>
+                                        </plugin>
+                                    </plugins>
+                                    <namingPattern>Parallel{c}IT</namingPattern>
+                                    <parallelScheme>SCENARIO</parallelScheme>
+                                    <useTestNG>false</useTestNG>
+                                    <namingScheme>feature-title</namingScheme>
+                                    <customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
+                                    <outputDirectory>${basedir}/src/test/java</outputDirectory>
+                                    <packageName>com.example.selenium.tests.cucumber.autogenerated_runners</packageName>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven-surefire-plugin.version}</version>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <threadCount>${thread.count}</threadCount>
+                            <testFailureIgnore>true</testFailureIgnore>
+                            <failIfNoTests>false</failIfNoTests>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.maven.surefire</groupId>
+                                <artifactId>surefire-junit4</artifactId>
+                                <version>${maven-surefire-plugin.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
-	<reporting>
-		<excludeDefaults>true</excludeDefaults>
-		<plugins>
-			<plugin>
-				<groupId>ru.yandex.qatools.allure</groupId>
-				<artifactId>allure-maven-plugin</artifactId>
-				<version>${allure-maven-plugin.version}</version>
-				<configuration>
-					<resultsPattern>target/allure-results</resultsPattern>
-					<reportPath>target/report</reportPath>
-					<reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
-					<reportVersion>${allure-report.version}</reportVersion>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>${allure-maven-plugin.version}</version>
+                <configuration>
+                    <resultsPattern>target/allure-results</resultsPattern>
+                    <reportPath>target/report</reportPath>
+                    <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
+                    <reportVersion>${allure-report.version}</reportVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

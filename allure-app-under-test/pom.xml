@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>allure-app-under-test</artifactId>
     <groupId>com.capgemini.ntc</groupId>
-    <version>1.0.0</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>AllureTestFramework - List of Integration Test for Application Under Test </name>
@@ -21,26 +21,36 @@
     <developers>
         <developer>
             <name>Lukasz Stefaniszyn</name>
+<<<<<<< HEAD
             <email>lukasz.stefaniszyn at capgemini.com</email>
+=======
+            <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+>>>>>>> feature/deployToNexus
         </developer>
     </developers>
 
-    <repositories>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </repositories>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-    <distributionManagement>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </distributionManagement>
+    <scm>
+        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
+        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+
+        <!-- Allure test framework modules -->
+        <allure-core-module.version>1.0.0-SNAPSHOT</allure-core-module.version>
+        <allure-selenium-module.version>3.4.0.1-SNAPSHOT</allure-selenium-module.version>
+
 
         <!-- Java settings -->
         <java.compiler.version>1.8</java.compiler.version>
@@ -99,14 +109,14 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>
-            <version>${project.version}</version>
+            <version>${allure-core-module.version}</version>
         </dependency>
 
         <!-- Selenium module -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-selenium-module</artifactId>
-            <version>${project.version}</version>
+            <version>${allure-selenium-module.version}</version>
         </dependency>
 
 
