@@ -21,13 +21,9 @@
     <developers>
         <developer>
             <name>Lukasz Stefaniszyn</name>
-<<<<<<< HEAD
-            <email>lukasz.stefaniszyn at capgemini.com</email>
-=======
             <email>lukasz.stefaniszyn@capgemini.com</email>
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
->>>>>>> feature/deployToNexus
         </developer>
     </developers>
 
