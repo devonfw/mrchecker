@@ -4,4 +4,5 @@ public interface ITestObserver {
 	public void onTestSuccess();
 	public void onTestFailure();
 	public void onTestFinish();
+	public void addObserver();
 }

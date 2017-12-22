@@ -25,23 +25,10 @@ public class BaseTestWatcher extends TestWatcher {
     }
     
     private static CopyOnWriteArrayList<ITestObserver> observers = new CopyOnWriteArrayList<>();
-    // private static ThreadLocal<List<ITestObserver>> observers = new ThreadLocal<List<ITestObserver>>() {
-    // @Override
-    // protected List<ITestObserver> initialValue() {
-    // return new ArrayList<>();
-    // };
-    // };
-    
     public static class TestClassRule extends ExternalResource {
         
         private static CopyOnWriteArrayList<ITestObserver> classObservers = new CopyOnWriteArrayList<>();
-        // private static ThreadLocal<List<ITestObserver>> classObservers = new ThreadLocal<List<ITestObserver>>() {
-        // @Override
-        // protected java.util.List<ITestObserver> initialValue() {
-        // return new ArrayList<>();
-        // };
-        // };
-        
+
         @Override
         protected void after() {
             classObservers

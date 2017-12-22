@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.brsanthu.googleanalytics.GoogleAnalytics;
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
-import com.capgemini.ntc.selenium.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
@@ -22,6 +21,7 @@ import com.capgemini.ntc.selenium.core.utils.WindowUtils;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
+import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
@@ -56,7 +56,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
     
     public BasePage(INewWebDriver driver, BasePage parent) {
         // Add given module to Test core Observable list
-        BaseTestWatcher.addObserver(this);
+        this.addObserver();
         
         webDriverWait = new WebDriverWait(getDriver(), BasePage.EXPLICITYWAITTIMER);
         
@@ -67,6 +67,11 @@ abstract public class BasePage implements IBasePage, ITestObserver {
             this.load();
         }
         
+    }
+    
+    @Override
+    public void addObserver() {
+    	BaseTestWatcher.addObserver(this);
     }
     
     @Override

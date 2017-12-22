@@ -11,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -28,7 +29,7 @@ public class PropertiesManagerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/selenium.properties");
+		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings.properties");
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesSelenium = i.getInstance(PropertiesSelenium.class);
 	}
