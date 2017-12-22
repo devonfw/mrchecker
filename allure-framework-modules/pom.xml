@@ -42,14 +42,21 @@
         <module>allure-selenium-module</module>
     </modules>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+
+
+    <repositories>
         <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>Local repository</id>
+            <url>file://${env.BASE_PATH}/m2/repository</url>
+        </repository>
+    </repositories>
+
+
+    <distributionManagement>
+        <!-- Repository used as default deploy phase. If you like to deploy to Maven Central, then use profile release - "mvn -P release" -->
+        <repository>
+            <id>Local repository</id>
+            <url>file://${env.BASE_PATH}/m2/repository</url>
         </repository>
     </distributionManagement>
 
@@ -136,7 +143,7 @@
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
             </dependency>
-            
+
             <!-- For time and date dependency actions -->
             <dependency>
                 <groupId>joda-time</groupId>
@@ -233,7 +240,18 @@
         <profile>
             <!-- RELEASE -->
             <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
             <build>
+
                 <plugins>
                     <!-- Generate source files, but as a fake file.
                         To generate real source:

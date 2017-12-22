@@ -39,6 +39,15 @@
         <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
         <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
     </scm>
+    
+    <distributionManagement>
+        <!-- Repository used as default deploy phase.-->
+        <repository>
+            <id>Local repository</id>
+            <url>file://${env.BASE_PATH}/m2/repository</url>
+        </repository>
+    </distributionManagement>
+    
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
