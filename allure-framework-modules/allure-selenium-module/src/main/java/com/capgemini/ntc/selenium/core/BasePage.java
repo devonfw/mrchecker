@@ -34,7 +34,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	public static final int EXPLICITY_SHORT_WAIT_TIME = 1;
 	
 	public static final int PROGRESSBARWAITTIMER = 60;
-	// in seconds. timer used in findDynamicElement
+	// in seconds. timer used in findElementDynamic
 	public static final int EXPLICITYWAITTIMER = 20;
 	
 	public static final int MAX_COMPONENT_RELOAD_COUNT = 3;

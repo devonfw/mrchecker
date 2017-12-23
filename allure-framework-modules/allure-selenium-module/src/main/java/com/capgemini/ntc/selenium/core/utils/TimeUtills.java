@@ -132,7 +132,7 @@ public class TimeUtills {
 	public static boolean isNowTradingHoursinNY(INewWebDriver iNewWebDriver) {
 		String orginalUrl = iNewWebDriver.getCurrentUrl();
 		iNewWebDriver.get(urlService);
-		String preElement = iNewWebDriver.findDynamicElement(By.cssSelector("pre"))
+		String preElement = iNewWebDriver.findElementDynamic(By.cssSelector("pre"))
 				.getText();
 		JsonParser parser = new JsonParser();
 		String jsonString = preElement.substring(preElement.indexOf("{"), preElement.length() - 1);

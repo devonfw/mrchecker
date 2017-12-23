@@ -97,7 +97,7 @@ public class RegistrationPage extends BasePage {
 
 	public boolean isRegistrationSuceedTextVisible() {
 		try{
-			return getDriver().findDynamicElement(selectorRegistrationSucceed).getText().equals(registrationSucceedText);
+			return getDriver().findElementDynamic(selectorRegistrationSucceed).getText().equals(registrationSucceedText);
 		} catch (BFElementNotFoundException e){
 			return false;
 		}
