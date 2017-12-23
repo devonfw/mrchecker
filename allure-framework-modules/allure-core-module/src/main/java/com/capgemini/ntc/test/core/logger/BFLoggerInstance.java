@@ -18,25 +18,26 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 
 public class BFLoggerInstance {
-
+	
 	private final String FBEGIN = "Function: ";
 	private final String FEND = "END";
-
+	
 	static {
-		Logger.getRootLogger().removeAppender("console");
+		Logger.getRootLogger()
+				.removeAppender("console");
 	}
-
+	
 	private static final String logPattern = "%d{yyyy-MM-dd 'at' HH:mm:ss z} %M - %m%x%n";
 	private static final Level loggerLevel = Level.DEBUG;
-
+	
 	private File directory;
 	private File logFile;
 	private String appenderName;
 	private Logger logger;
-
+	
 	protected BFLoggerInstance() {
 	}
-
+	
 	/**
 	 * Adds the selected appender to a new instance of AsyncAppender
 	 * 
@@ -48,7 +49,7 @@ public class BFLoggerInstance {
 		wrapper.addAppender(appender);
 		return wrapper;
 	}
-
+	
 	private Logger getLogger() {
 		if (logger == null) {
 			logger = Logger.getLogger(getAppenderName());
@@ -60,12 +61,13 @@ public class BFLoggerInstance {
 		}
 		return logger;
 	}
-
+	
 	private FileAppender createEnvFileAppender() {
 		PatternLayout patternLayout = new PatternLayout(logPattern);
 		FileAppender appender;
 		try {
-			String envLogName = getLogFile().getPath().replace(".log", "_env.log");
+			String envLogName = getLogFile().getPath()
+					.replace(".log", "_env.log");
 			appender = new FileAppender(patternLayout, envLogName, true);
 			appender.setName("EnvRollingFile");
 			appender.setThreshold(EnvironmentLevel.ENVIRONMENT);
@@ -76,7 +78,7 @@ public class BFLoggerInstance {
 		}
 		return appender;
 	}
-
+	
 	private FileAppender createFileAppender() {
 		PatternLayout patternLayout = new PatternLayout(logPattern);
 		FileAppender appender;
@@ -91,7 +93,7 @@ public class BFLoggerInstance {
 		}
 		return appender;
 	}
-
+	
 	private ConsoleAppender createConsoleAppender() {
 		PatternLayout patternLayout = new PatternLayout(logPattern);
 		ConsoleAppender appender;
@@ -107,7 +109,7 @@ public class BFLoggerInstance {
 		}
 		return appender;
 	}
-
+	
 	private File getLogFile() {
 		if (logFile == null) {
 			String path = getDirectory().getPath() + "\\" + getAppenderName() + ".log";
@@ -116,7 +118,7 @@ public class BFLoggerInstance {
 		}
 		return logFile;
 	}
-
+	
 	private File getDirectory() {
 		if (directory == null) {
 			directory = new File("./logs");
@@ -126,57 +128,65 @@ public class BFLoggerInstance {
 		}
 		return directory;
 	}
-
+	
 	private String getAppenderName() {
 		if (appenderName == null) {
-			appenderName = Thread.currentThread().getName();
+			appenderName = Thread.currentThread()
+					.getName();
 		}
 		return appenderName;
 	}
-
+	
 	private int logLevel = 0;
-
+	
 	// logger - log INFO message
 	public void logInfo(String message) {
 		getLogger().info(formatMessage(message));
 	}
-
+	
 	// logger - log ENV message
 	public void logEnv(String message) {
 		getLogger().log(EnvironmentLevel.ENVIRONMENT, message);
 		if (message.equals(FEND))
 			--logLevel;
 	}
-
+	
 	// logger - log DEBUG message
 	public void logDebug(String message) {
 		char[] indent = new char[logLevel];
 		Arrays.fill(indent, ' ');
-
+		
 		getLogger().debug(formatMessage(new String(indent) + message));
 	}
-
+	
+	// logger - log ANALYTICS message
+	public void logAnalytics(String message) {
+		char[] indent = new char[logLevel];
+		Arrays.fill(indent, ' ');
+		getLogger().debug(formatMessage(new String(indent) + message));
+	}
+	
 	public void logFunctionBegin(String functionName) {
 		logDebug(FBEGIN + functionName);
 		++logLevel;
 	}
-
+	
 	public void logFunctionEnd() {
 		--logLevel;
 		logDebug(FEND);
 	}
-
+	
 	// logger - log ERROR message
 	public void logError(String message) {
 		getLogger().error(formatMessage(message));
 		if (message.equals(FEND))
 			--logLevel;
 	}
-
+	
 	private String formatMessage(String message) {
 		return "[" + getAppenderName() + "] " + message;
 	}
-
+	
 	/**
 	 * WARING: Do not use this method outside of BaseTestWatcher Begin writing all logs to a separate file in addition
 	 * to the main log file
@@ -190,7 +200,7 @@ public class BFLoggerInstance {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * WARING: Do not use this method outside of BaseTestWatcher Stop writing to the separate log file, return its
 	 * current content and clear the file
@@ -206,5 +216,5 @@ public class BFLoggerInstance {
 			return "";
 		}
 	}
-
+	
 }

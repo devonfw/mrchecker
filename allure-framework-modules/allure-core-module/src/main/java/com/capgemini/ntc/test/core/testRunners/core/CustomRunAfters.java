@@ -1,6 +1,5 @@
 package com.capgemini.ntc.test.core.testRunners.core;
 
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,21 +16,20 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * and 1 failed.
  * 
  * @author
- *
  */
 public class CustomRunAfters extends Statement {
 	private final Statement next;
-
+	
 	private final Object target;
-
+	
 	private final List<FrameworkMethod> afters;
-
+	
 	public CustomRunAfters(Statement next, List<FrameworkMethod> afters, Object target) {
 		this.next = next;
 		this.afters = afters;
 		this.target = target;
 	}
-
+	
 	@Override
 	public void evaluate() throws Throwable {
 		List<Throwable> errors = new ArrayList<Throwable>();
@@ -47,8 +45,6 @@ public class CustomRunAfters extends Statement {
 					BFLogger.logError("There was an exception in @AfterClass " + each.getName() + ": " + e.toString());
 				}
 			}
-			// TASK Decouple Selenium from Test
-			//DriverManager.closeDriver();
 		}
 		MultipleFailureException.assertEmpty(errors);
 	}

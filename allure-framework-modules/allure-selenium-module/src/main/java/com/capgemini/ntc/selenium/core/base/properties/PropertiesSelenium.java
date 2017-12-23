@@ -5,12 +5,12 @@ import com.google.inject.name.Named;
 
 public class PropertiesSelenium {
 	
-	private String seleniumChrome;
-	private String seleniumPhantomjs;
-	private String seleniumFirefox;
-	private String seleniumIE;
-
-	@Inject
+	private String seleniumChrome = "./lib/webdrivers/chrome/chromedriver.exe";// default value
+	private String seleniumPhantomjs = "./lib/webdrivers/phantomjs/bin/phantomjs.exe";// default value
+	private String seleniumFirefox = "./lib/webdrivers/firefox/geckodriver.exe";// default value
+	private String seleniumIE = "./lib/webdrivers/internetexplorer/IEDriverServer.exe";// default value
+	
+	@Inject(optional = true)
 	private void setSeleniumChrome(@Named("selenium.chrome") String path) {
 		this.seleniumChrome = path;
 		
@@ -20,9 +20,7 @@ public class PropertiesSelenium {
 		return this.seleniumChrome;
 	}
 	
-	
-	
-	@Inject
+	@Inject(optional = true)
 	private void setSeleniumPhantomjs(@Named("selenium.phantomjs") String path) {
 		this.seleniumPhantomjs = path;
 		
@@ -32,8 +30,7 @@ public class PropertiesSelenium {
 		return this.seleniumPhantomjs;
 	}
 	
-	
-	@Inject
+	@Inject(optional = true)
 	private void setSeleniumFirefox(@Named("selenium.firefox") String path) {
 		this.seleniumFirefox = path;
 		
@@ -43,8 +40,7 @@ public class PropertiesSelenium {
 		return this.seleniumFirefox;
 	}
 	
-
-	@Inject
+	@Inject(optional = true)
 	private void setSeleniumIE(@Named("selenium.ie") String path) {
 		this.seleniumIE = path;
 		
@@ -53,7 +49,5 @@ public class PropertiesSelenium {
 	public String getSeleniumIE() {
 		return this.seleniumIE;
 	}
-
-	
 	
 }

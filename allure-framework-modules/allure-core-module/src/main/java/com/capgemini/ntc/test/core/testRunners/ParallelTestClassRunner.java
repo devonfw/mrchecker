@@ -12,22 +12,19 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.core.CustomRunAfters;
-
 
 /**
  * Use this runner to run Selenium tests in parallel, with separate driver for each thread.
  * 
  * @author
- *
  */
 public class ParallelTestClassRunner extends BlockJUnit4ClassRunner {
-
+	
 	public ParallelTestClassRunner(Class<?> klass) throws InitializationError {
 		super(klass);
 	}
-
+	
 	@Override
 	public void run(final RunNotifier notifier) {
 		EachTestNotifier testNotifier = new EachTestNotifier(notifier, getDescription());
@@ -42,10 +39,10 @@ public class ParallelTestClassRunner extends BlockJUnit4ClassRunner {
 			testNotifier.addFailure(e);
 		} finally {
 			// TASK Decouple Selenium from Test
-			//DriverManager.closeDriver();
+			// DriverManager.closeDriver();
 		}
 	}
-
+	
 	/**
 	 * Returns a {@link Statement}: run all non-overridden {@code @AfterClass} methods on this class and superclasses
 	 * before executing {@code statement}; all AfterClass methods are always executed: exceptions thrown by previous

@@ -42,15 +42,19 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
         driverExtention = new DriverExtention(this);
     }
     
+    /**
+	 * @deprecated  As of release 1.0.0, replaced by {@link #findDynamicElements(By)()}
+	 */
+	@Deprecated
     @Override
     public List<WebElement> findElements(By by) {
-        IDriverManager.sendAnalyticsEvent();
+        BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
         return DriverExtention.convertWebElementList(super.findElements(by));
     }
     
     @Override
     public WebElement findElement(By by) throws BFElementNotFoundException {
-        IDriverManager.sendAnalyticsEvent();
+        BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
         WebElement elementFromDriver = null;
         try {
             elementFromDriver = super.findElement(by);

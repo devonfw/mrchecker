@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.core.base.properties;
+package com.capgemini.ntc.test.core.base.properties;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,27 +22,27 @@ public class PropertiesSettingsModule extends AbstractModule {
 	
 	private PropertiesSettingsModule(String path) {
 		this.path = path;
-		BFLogger.logDebug("Selenium properties settings file path=" + this.path);
+		BFLogger.logDebug("Properties settings file path=" + this.path);
 	}
 	
 	@Override
 	protected void configure() {
 		
 		if (!exists(this.path)) {
-			addError("Could not configure selenium properties. Path='" + this.path + "' does not exist");
+			addError("Could not configure properties file. Path='" + this.path + "' does not exist");
 		}
 		
 		try {
 			Properties properties = loadProperties(path);
 			Names.bindProperties(binder(), properties);
 		} catch (RuntimeException e) {
-			addError("Could not configure selenium properties", e);
+			addError("Could not configure properties file", e);
 		}
 	}
 	
 	public static PropertiesSettingsModule init() {
 		String path = System.getProperty("user.dir")
-				+ Paths.get("/src/resources/selenium.properties"); 
+				+ Paths.get("/src/resources/settings.properties"); 
 		return PropertiesSettingsModule.init(path);
 	}
 	
