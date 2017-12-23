@@ -76,7 +76,7 @@ public class NewRemoteWebElement extends RemoteWebElement {
 	}
 	
 	/**
-	 * @deprecated As of release 1.0.0, replaced by {@link #findDynamicElement(By)()}
+	 * @deprecated As of release 1.0.0, replaced by {@link #findElementDynamic(By)()}
 	 */
 	@Deprecated
 	@Override
@@ -91,7 +91,7 @@ public class NewRemoteWebElement extends RemoteWebElement {
 	}
 	
 	/**
-	 * @deprecated As of release 1.0.0, replaced by {@link #findDynamicElements(By)()}
+	 * @deprecated As of release 1.0.0, replaced by {@link #findElementDynamics(By)()}
 	 */
 	@Deprecated
 	@Override

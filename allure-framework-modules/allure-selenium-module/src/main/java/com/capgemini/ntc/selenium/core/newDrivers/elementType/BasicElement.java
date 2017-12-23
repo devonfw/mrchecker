@@ -33,7 +33,7 @@ public abstract class BasicElement implements IBasicElement {
 	}
 
 	public WebElement getElement(int timeOutInSec) throws BFElementNotFoundException {
-		return BasePage.getDriver().findDynamicElement(getCssSelector());
+		return BasePage.getDriver().findElementDynamic(getCssSelector());
 	}
 
 	public String getClassName(){

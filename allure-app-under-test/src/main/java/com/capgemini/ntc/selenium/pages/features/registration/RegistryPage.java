@@ -1,16 +1,16 @@
 package com.capgemini.ntc.selenium.pages.features.registration;
 
+import org.openqa.selenium.By;
+
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 
-import org.openqa.selenium.By;
-
 public class RegistryPage extends BasePage {
 	private final static By selectorSubmitButton = By.cssSelector("input[id='name_3_firstname']");
 	private boolean loaded;
-
+	
 	@Override
 	public boolean isLoaded() {
 		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.REGISTRATION.getAddress());
@@ -18,22 +18,24 @@ public class RegistryPage extends BasePage {
 	
 	@Override
 	public void load() {
-		BasePage.getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getAddress()+ PageSubURLsEnum.REGISTRATION.getAddress());
+		BasePage.getDriver()
+				.get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.REGISTRATION.getAddress());
 		getDriver().waitForPageLoaded();
 		loaded = true;
 	}
-
+	
 	@Override
 	public String pageTitle() {
 		return PageTitlesEnum.REGISTRATION.toString();
 	}
-
-
+	
 	public void clickSubmit() {
-		getDriver().elementButton(selectorSubmitButton).click();
+		getDriver().elementButton(selectorSubmitButton)
+				.click();
 	}
-
+	
 	public boolean isButtonSubmitDisplayed() {
-		return getDriver().elementButton(selectorSubmitButton).isDisplayed();
+		return getDriver().elementButton(selectorSubmitButton)
+				.isDisplayed();
 	}
 }

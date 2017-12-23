@@ -28,7 +28,7 @@ public class ParsingHelper {
 	 * @author
 	 */
 	public static int findAndParseIntFromWebElement(By by, boolean returnZeroIfContentIsNotParsable) {
-		WebElement element = BasePage.getDriver().findDynamicElement(by);
+		WebElement element = BasePage.getDriver().findElementDynamic(by);
 		try {
 			return parseInt(element.getText());
 		} catch (NumberFormatException numberFormatException) {

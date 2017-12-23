@@ -98,7 +98,7 @@ public class DownloadManager {
 			} catch (BFElementNotFoundException e) {
 				throw new BFElementNotFoundException("Nothing has been downloaded yet");
 			}
-			WebElement element = driver.findDynamicElement(selectorChromeDownloadElement);
+			WebElement element = driver.findElementDynamic(selectorChromeDownloadElement);
 			fileName = element.getText();
 			driver.findElement(selectorChromeClearAllDownloads).click();
 			((JavascriptExecutor) driver).executeScript("window.close();");

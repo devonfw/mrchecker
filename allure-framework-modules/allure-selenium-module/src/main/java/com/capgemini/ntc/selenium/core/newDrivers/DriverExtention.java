@@ -97,7 +97,7 @@ public class DriverExtention {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, timeOut);
 		}
-		BFLogger.logTime(startTime, "findDynamicElement()", by.toString());
+		BFLogger.logTime(startTime, "findElementDynamic()", by.toString());
 		return element;
 	}
 	
@@ -114,7 +114,7 @@ public class DriverExtention {
 		if (elements.isEmpty()) {
 			BFLogger.logError("Not found element : " + by.toString() + ".");
 		}
-		BFLogger.logTime(startTime, "findDynamicElements()", by.toString());
+		BFLogger.logTime(startTime, "findElementDynamics()", by.toString());
 		return elements;
 	}
 	

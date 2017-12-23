@@ -17,12 +17,12 @@ public class ListElements extends BasicElement implements IBasicElement {
 	}
 
 	public Integer getSize() {
-		return BasePage.getDriver().findDynamicElements(this.cssSelector).size();
+		return BasePage.getDriver().findElementDynamics(this.cssSelector).size();
 
 	}
 
 	public List<WebElement> getList() {
-		return BasePage.getDriver().findDynamicElements(this.cssSelector);		
+		return BasePage.getDriver().findElementDynamics(this.cssSelector);		
 	}
 	
 }

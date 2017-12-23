@@ -10,7 +10,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 
 	/**
 	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
-	 * and/or {@code findDynamicElement}
+	 * and/or {@code findElementDynamic}
 	 *
 	 * <p>
 	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
@@ -26,7 +26,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 
 	/**
 	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
-	 * and/or {@code findDynamicElement}
+	 * and/or {@code findElementDynamic}
 	 *
 	 * <p>
 	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
@@ -44,7 +44,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 
 	/**
 	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
-	 * and/or {@code findDynamicElement}
+	 * and/or {@code findElementDynamic}
 	 *
 	 * <p>
 	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
@@ -63,7 +63,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 
 	/**
 	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
-	 * and/or {@code findDynamicElement}
+	 * and/or {@code findElementDynamic}
 	 *
 	 * <p>
 	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
@@ -83,7 +83,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 
 	/**
 	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
-	 * and/or {@code findDynamicElement}
+	 * and/or {@code findElementDynamic}
 	 *
 	 * <p>
 	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will
@@ -103,7 +103,7 @@ public class BFElementNotFoundException extends NoSuchElementException {
 
 	/**
 	 * {@code BFElementNotFoundException} is the class that can be thrown during any type of {@code findElement}
-	 * and/or {@code findDynamicElement}
+	 * and/or {@code findElementDynamic}
 	 *
 	 * <p>
 	 * {@code BFElementNotFoundException} and its subclasses are <em>unchecked exceptions</em>. Given exception will

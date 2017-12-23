@@ -3,15 +3,60 @@ package com.capgemini.ntc.selenium.core.newDrivers;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
-import com.capgemini.ntc.selenium.core.newDrivers.elementType.*;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.ListElements;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.MenuElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.NavigationBarElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.TabElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.TooltipElement;
 
 public interface INewWebDriver extends WebDriver {
-
+	
+	/**
+	 * Find all elements within the current page using the given mechanism. This method is affected by the 'implicit
+	 * wait' times in force at the time of execution. When implicitly waiting, this method will return as soon as there
+	 * are more than 0 items in the found collection, or will return an empty list if the timeout is reached.
+	 * 
+	 * @deprecated As of release 1.0.0, replaced by {@link #findElementDynamics(By)()}
+	 * @param by
+	 *            The locating mechanism to use
+	 * @return A list of all {@link WebElement}s, or an empty list if nothing matches
+	 * @see org.openqa.selenium.By
+	 * @see org.openqa.selenium.WebDriver.Timeouts
+	 */
+	@Deprecated
+	List<WebElement> findElements(By by);
+	
+	/**
+	 * Find the first {@link WebElement} using the given method. This method is affected by the 'implicit wait' times in
+	 * force at the time of execution. The findElement(..) invocation will return a matching row, or try again
+	 * repeatedly until the configured timeout is reached. findElement should not be used to look for non-present
+	 * elements, use {@link #findElements(By)} and assert zero length response instead.
+	 * 
+	 * @deprecated As of release 1.0.0, replaced by {@link #findElementDynamic(By)()}
+	 * @param by
+	 *            The locating mechanism
+	 * @return The first matching element on the current page
+	 * @throws NoSuchElementException
+	 *             If no matching elements are found
+	 * @see org.openqa.selenium.By
+	 * @see org.openqa.selenium.WebDriver.Timeouts
+	 */
+	@Deprecated
+	WebElement findElement(By by);
+	
 	/**
 	 * Try to find element quietly - NoSuchElementException will not be thrown. Use it to check if element exist on page
 	 * e.g. PopUp
@@ -21,7 +66,7 @@ public interface INewWebDriver extends WebDriver {
 	 * @return found WebElement or null if couldn't find
 	 */
 	WebElement findElementQuietly(WebElement elementToSearchIn, By searchedBySelector);
-
+	
 	/**
 	 * Try to find element quietly - NoSuchElementException will not be thrown. Use it to check if element exist on page
 	 * e.g. PopUp
@@ -30,10 +75,8 @@ public interface INewWebDriver extends WebDriver {
 	 * @return found WebElement or null if couldn't find
 	 */
 	WebElement findElementQuietly(By searchedBySelector);
-
+	
 	/**
-	 * 
-	 * 
 	 * /** Try to find by dynamic element - will wait given by user an amount of seconds for an element to load on page.
 	 * If element will not be found will throw an exception (PiAtElementNotLoadedException)
 	 * 
@@ -45,8 +88,8 @@ public interface INewWebDriver extends WebDriver {
 	 * @author
 	 * @throws BFElementNotFoundException
 	 */
-	WebElement findDynamicElement(By by, int timeOut) throws BFElementNotFoundException;
-
+	WebElement findElementDynamic(By by, int timeOut) throws BFElementNotFoundException;
+	
 	/**
 	 * Try to find by dynamic element - will wait given by user an amount of seconds for an element to load on page. If
 	 * element will not be found will throw an exception (PiAtElementNotLoadedException)
@@ -57,8 +100,8 @@ public interface INewWebDriver extends WebDriver {
 	 * @author
 	 * @throws BFElementNotFoundException
 	 */
-	WebElement findDynamicElement(By by) throws BFElementNotFoundException;
-
+	WebElement findElementDynamic(By by) throws BFElementNotFoundException;
+	
 	/**
 	 * Try to find by dynamic List of elements - will wait given by user an amount of seconds for an element to load on
 	 * page. If element will not be found will throw an exception (PiAtElementNotLoadedException)
@@ -71,8 +114,8 @@ public interface INewWebDriver extends WebDriver {
 	 * @author
 	 * @throws BFElementNotFoundException
 	 */
-	List<WebElement> findDynamicElements(By by, int timeOut);
-
+	List<WebElement> findElementDynamics(By by, int timeOut);
+	
 	/**
 	 * Try to find by dynamic List of elements - will wait {@link BasePage.EXPLICITYWAITTIMER} seconds for an element to
 	 * load on page. If element will not be found then throw an exception (PiAtElementNotLoadedException)
@@ -83,8 +126,8 @@ public interface INewWebDriver extends WebDriver {
 	 * @author
 	 * @throws BFElementNotFoundException
 	 */
-	List<WebElement> findDynamicElements(By by);
-
+	List<WebElement> findElementDynamics(By by);
+	
 	/**
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be enabled to action. If element after
 	 * this time will not be enabled then throw an exception (BFElementNotFoundException)
@@ -96,7 +139,7 @@ public interface INewWebDriver extends WebDriver {
 	 * @throws BFElementNotFoundException
 	 */
 	WebElement waitForElement(final By selector);
-
+	
 	/**
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be clickable. If element will not be
 	 * clickable then throw an exception (BFElementNotFoundException)
@@ -108,7 +151,7 @@ public interface INewWebDriver extends WebDriver {
 	 * @throws BFElementNotFoundException
 	 */
 	WebElement waitUntilElementIsClickable(final By selector);
-
+	
 	/**
 	 * Waits for element located by selector to become visible. Throws exception if element is not visible after
 	 * specified time period.
@@ -120,7 +163,7 @@ public interface INewWebDriver extends WebDriver {
 	 * @throws BFElementNotFoundException
 	 */
 	WebElement waitForElementVisible(final By selector);
-
+	
 	/**
 	 * This function force browser (especially usable for IE ) to wait till page is loaded
 	 * 
@@ -128,79 +171,78 @@ public interface INewWebDriver extends WebDriver {
 	 * @throws BFElementNotFoundException
 	 */
 	void waitForPageLoaded();
-
+	
 	/**
 	 * Operations on Button
 	 */
 	Button elementButton(final By selector);
-
+	
 	/**
 	 * Operations on Radion Buttons
 	 */
 	RadioButtonElement elementRadioButton(final By selector);
-
+	
 	RadioButtonElement elementRadioButton(final By selector, final By inputChildsSelector);
-
+	
 	RadioButtonElement elementRadioButton(final By selector, final By inputChildsSelector, final List<String> listSelectedAttributes);
-
-
+	
 	/**
 	 * Operations on Input Text field
 	 */
 	InputTextElement elementInputText(final By selector);
-
+	
 	/**
 	 * Operations on Dropdown List
 	 */
 	DropdownListElement elementDropdownList(final By selector);
-
+	
 	/**
 	 * Operations on Lists
 	 */
 	ListElements elementList(final By selector);
-
+	
 	/**
 	 * Operations on Checkbox
 	 */
 	CheckBox elementCheckbox(final By selector);
-
+	
 	/**
 	 * Operations on Label
 	 */
 	LabelElement elementLabel(final By selector);
-
+	
 	/**
 	 * Operations on Tabs
 	 */
 	TabElement elementTab(final By selector);
-
+	
 	TabElement elementTab(final By selector, final By inputChildsSelector);
-
+	
 	TabElement elementTab(final By selector, final By inputChildsSelector, final List<String> listSelectedAttributes);
-
+	
 	/**
 	 * Operations on Navigation Bar
 	 */
 	NavigationBarElement elementNavigationBar(final By selector);
-
+	
 	NavigationBarElement elementNavigationBar(final By selector, final By inputChildsSelector);
-
+	
 	/**
 	 * Operations on Tooltip
 	 */
 	TooltipElement elementTooltip(final By cssSelector);
-
+	
 	/**
-	 *  Operations on Menu
+	 * Operations on Menu
 	 */
 	MenuElement elementMenu(final By selector);
-
-	MenuElement elementMenu(final By selector,final By childsSelector);
-
-	MenuElement elementMenu(final By selector,final By childsSelector,final By subMenuSelector);
-
-	MenuElement elementMenu(final By selector,final By childsSelector,final By subMenuSelector,final By childsSubMenuSelector);
-
+	
+	MenuElement elementMenu(final By selector, final By childsSelector);
+	
+	MenuElement elementMenu(final By selector, final By childsSelector, final By subMenuSelector);
+	
+	MenuElement elementMenu(final By selector, final By childsSelector, final By subMenuSelector, final By childsSubMenuSelector);
+	
 	/**
 	 * Operations on iFrame
 	 */

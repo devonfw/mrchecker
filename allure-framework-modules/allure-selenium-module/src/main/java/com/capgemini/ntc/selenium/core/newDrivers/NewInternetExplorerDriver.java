@@ -33,7 +33,7 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	}
 	
 	/**
-	 * @deprecated As of release 1.0.0, replaced by {@link #findDynamicElements(By)()}
+	 * @deprecated As of release 1.0.0, replaced by {@link #findElementDynamics(By)()}
 	 */
 	@Deprecated
 	@Override
@@ -44,7 +44,7 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	}
 	
 	/**
-	 * @deprecated As of release 1.0.0, replaced by {@link #findDynamicElement(By)()}
+	 * @deprecated As of release 1.0.0, replaced by {@link #findElementDynamic(By)()}
 	 */
 	@Deprecated
 	@Override
@@ -97,7 +97,7 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	 * @author
 	 * @throws BFElementNotFoundException
 	 */
-	public WebElement findDynamicElement(By by, int timeOut) throws BFElementNotFoundException {
+	public WebElement findElementDynamic(By by, int timeOut) throws BFElementNotFoundException {
 		return driverExtention.findElementDynamic(by, timeOut);
 	}
 	
@@ -111,7 +111,7 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	 * @author
 	 * @throws BFElementNotFoundException
 	 */
-	public WebElement findDynamicElement(By by) throws BFElementNotFoundException {
+	public WebElement findElementDynamic(By by) throws BFElementNotFoundException {
 		return driverExtention.findElementDynamic(by);
 	}
 	
@@ -126,7 +126,7 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	 * @return found WebElement object
 	 * @author
 	 */
-	public List<WebElement> findDynamicElements(By by, int timeOut) {
+	public List<WebElement> findElementDynamics(By by, int timeOut) {
 		return driverExtention.findElementsDynamic(by, timeOut);
 	}
 	
@@ -139,7 +139,7 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	 * @return found WebElement object
 	 * @author
 	 */
-	public List<WebElement> findDynamicElements(By by) {
+	public List<WebElement> findElementDynamics(By by) {
 		return driverExtention.findElementsDynamic(by);
 	}
 	
