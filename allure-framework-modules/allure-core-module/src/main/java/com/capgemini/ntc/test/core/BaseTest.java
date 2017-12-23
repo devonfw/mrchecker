@@ -10,9 +10,9 @@ import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.RunWith;
 
-import com.brsanthu.googleanalytics.GoogleAnalytics;
 import com.capgemini.ntc.test.core.BaseTestWatcher.TestClassRule;
-import com.capgemini.ntc.test.core.analytics.AnalyticsCore;
+import com.capgemini.ntc.test.core.analytics.AnalyticsProvider;
+import com.capgemini.ntc.test.core.analytics.IAnalytics;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesCoreTest;
@@ -26,25 +26,25 @@ import com.google.inject.Guice;
 public abstract class BaseTest implements IBaseTest {
 	
 	private static IEnvironmentService environmentService;
-	private static GoogleAnalytics analytics;
+	private final static IAnalytics analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
 		setPropertiesSettings = setPropertiesSettings();
 		setRuntimeParametersCore();
 		setEnvironmetInstance();
-		setAnalytics(setPropertiesSettings.isAnalyticsEnabled());
+		analytics = setAnalytics(setPropertiesSettings.isAnalyticsEnabled());
 	}
 	
 	public BaseTest() {
-		
+		getAnalytics().sendClassName();
 	}
 	
 	public static IEnvironmentService getEnvironmentService() {
-		return environmentService;
+		return BaseTest.environmentService;
 	}
 	
-	public static GoogleAnalytics getAnalytics() {
+	public static IAnalytics getAnalytics() {
 		return BaseTest.analytics;
 	}
 	
@@ -104,14 +104,9 @@ public abstract class BaseTest implements IBaseTest {
 		return propertiesCoreTest;
 	}
 	
-	private static void setAnalytics(Boolean isAnalyticsEnabled) {
+	private static IAnalytics setAnalytics(Boolean isAnalyticsEnabled) {
 		BFLogger.logDebug("Is analytics enabled:" + isAnalyticsEnabled);
-		if (isAnalyticsEnabled) {
-			analytics = AnalyticsCore.GOOGLE.getInstance();
-			
-		}
-		getAnalytics().pageView("/allure-core-module/src/main/java/com/capgemini/ntc/test/core", "BaseTest", "BaseTest core")
-				.postAsync();
+		return isAnalyticsEnabled ? AnalyticsProvider.GOOGLE : AnalyticsProvider.DISABLED;
 		
 	}
 	
