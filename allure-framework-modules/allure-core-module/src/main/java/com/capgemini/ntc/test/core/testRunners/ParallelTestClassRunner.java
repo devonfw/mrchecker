@@ -20,38 +20,38 @@ import com.capgemini.ntc.test.core.testRunners.core.CustomRunAfters;
  * @author
  */
 public class ParallelTestClassRunner extends BlockJUnit4ClassRunner {
-  
-  public ParallelTestClassRunner(Class<?> klass) throws InitializationError {
-    super(klass);
-  }
-  
-  @Override
-  public void run(final RunNotifier notifier) {
-    EachTestNotifier testNotifier = new EachTestNotifier(notifier, getDescription());
-    try {
-      Statement statement = classBlock(notifier);
-      statement.evaluate();
-    } catch (AssumptionViolatedException e) {
-      testNotifier.addFailedAssumption(e);
-    } catch (StoppedByUserException e) {
-      throw e;
-    } catch (Throwable e) {
-      testNotifier.addFailure(e);
-    } finally {
-      // TASK Decouple Selenium from Test
-      // DriverManager.closeDriver();
-    }
-  }
-  
-  /**
-   * Returns a {@link Statement}: run all non-overridden {@code @AfterClass} methods on this class and superclasses
-   * before executing {@code statement}; all AfterClass methods are always executed: exceptions thrown by previous steps
-   * are combined, if necessary, with exceptions from AfterClass methods into a
-   * {@link org.junit.runners.model.MultipleFailureException}.
-   */
-  @Override
-  protected Statement withAfterClasses(Statement statement) {
-    List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(AfterClass.class);
-    return afters.isEmpty() ? statement : new CustomRunAfters(statement, afters, null);
-  }
+	
+	public ParallelTestClassRunner(Class<?> klass) throws InitializationError {
+		super(klass);
+	}
+	
+	@Override
+	public void run(final RunNotifier notifier) {
+		EachTestNotifier testNotifier = new EachTestNotifier(notifier, getDescription());
+		try {
+			Statement statement = classBlock(notifier);
+			statement.evaluate();
+		} catch (AssumptionViolatedException e) {
+			testNotifier.addFailedAssumption(e);
+		} catch (StoppedByUserException e) {
+			throw e;
+		} catch (Throwable e) {
+			testNotifier.addFailure(e);
+		} finally {
+			// TASK Decouple Selenium from Test
+			// DriverManager.closeDriver();
+		}
+	}
+	
+	/**
+	 * Returns a {@link Statement}: run all non-overridden {@code @AfterClass} methods on this class and superclasses
+	 * before executing {@code statement}; all AfterClass methods are always executed: exceptions thrown by previous
+	 * steps are combined, if necessary, with exceptions from AfterClass methods into a
+	 * {@link org.junit.runners.model.MultipleFailureException}.
+	 */
+	@Override
+	protected Statement withAfterClasses(Statement statement) {
+		List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(AfterClass.class);
+		return afters.isEmpty() ? statement : new CustomRunAfters(statement, afters, null);
+	}
 }
