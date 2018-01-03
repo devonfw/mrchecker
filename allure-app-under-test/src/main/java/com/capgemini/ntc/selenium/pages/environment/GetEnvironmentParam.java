@@ -23,7 +23,7 @@ public enum GetEnvironmentParam implements Url {
 		}
 		
 		return BaseTest.getEnvironmentService()
-				.getServiceAddress(this.name());
+						.getServiceAddress(this.name());
 		
 	}
 	
