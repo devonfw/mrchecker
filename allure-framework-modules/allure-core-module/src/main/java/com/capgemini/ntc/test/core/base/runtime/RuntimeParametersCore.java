@@ -18,7 +18,6 @@ public enum RuntimeParametersCore implements RuntimeParametersI {
 		this.defaultValue = defaultValue;
 		setValue();
 	}
-
 	
 	@Override
 	public String getValue() {
@@ -41,6 +40,6 @@ public enum RuntimeParametersCore implements RuntimeParametersI {
 	}
 	
 	private boolean isSystemParameterEmpty(String systemParameterValue) {
-		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue) );
+		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue));
 	}
 }

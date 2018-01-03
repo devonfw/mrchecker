@@ -2,7 +2,6 @@ package com.capgemini.ntc.test.core.testRunners;
 
 import java.util.List;
 
-
 import org.junit.runner.Description;
 import org.junit.runner.manipulation.Filter;
 import org.junit.runner.manipulation.NoTestsRemainException;
@@ -12,11 +11,9 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.test.core.testRunners.core.ParametrizedTestMethodsFilter;
 
 import junitparams.internal.ParameterisedTestClassRunner;
-
 import junitparams.internal.TestMethod;
 
 /**
@@ -39,10 +36,8 @@ import junitparams.internal.TestMethod;
  * <h3 id="p1">1. Parameterising tests</h3> Parameterised tests are a great way to limit the amount of test code when
  * you need to test the same code under different conditions. Ever tried to do it with standard JUnit tools like
  * Parameterized runner or Theories? I always thought they're so awkward to use, that I've written this library to help
- * all those out there who'd like to have a handy tool.
- *
- * So here we go. There are a few different ways to use JUnitParams, I will try to show you all of them here.
- *
+ * all those out there who'd like to have a handy tool. So here we go. There are a few different ways to use
+ * JUnitParams, I will try to show you all of them here.
  * <h4 id="a">a. Parameterising tests via values in annotation</h4>
  * <p>
  * You can parameterise your test with values defined in annotations. Just pass sets of test method argument values as
@@ -88,7 +83,6 @@ import junitparams.internal.TestMethod;
  * Where <code>$(...)</code> is a static method defined in <code>ParallelParameterized</code> class, which returns its
  * parameters as a <code>Object[]</code> array. Just a shortcut, so that you don't need to write the ugly
  * <code>new Object[] {}</code> kind of stuff.
- *
  * <p>
  * <code>method</code> can take more than one method name - you can pass as many of them as you want, separated by
  * commas. This enables you to divide your test cases e.g. into categories.
@@ -131,7 +125,6 @@ import junitparams.internal.TestMethod;
  *      );
  *   }
  * </pre>
- *
  * <p>
  * If you don't like returning untyped values and arrays, you can equally well return any Iterable of concrete objects:
  *
@@ -169,13 +162,11 @@ import junitparams.internal.TestMethod;
  * 
  * And JUnitParams will invoke the appropriate constructor (<code>new Person(int age, String name)</code> in this case.)
  * <b>If you want to use it, watch out! Automatic refactoring of constructor arguments won't be working here!</b>
- *
  * <p>
  * You can also define methods that provide parameters in subclasses and use them in test methods defined in
  * superclasses, as well as redefine data providing methods in subclasses to be used by test method defined in a
  * superclass. That you can doesn't mean you should. Inheritance in tests is usually a code smell (readability hurts),
  * so make sure you know what you're doing.
- *
  * <h4 id="c">c. Parameterising tests via external classes</h4>
  * <p>
  * For more complex cases you may want to externalise the method that provides parameters or use more than one method to
@@ -202,7 +193,6 @@ import junitparams.internal.TestMethod;
  * </pre>
  *
  * All methods starting with <code>provide</code> are used as parameter providers.
- *
  * <p>
  * Sometimes though you may want to use just one or few methods of some class to provide you parameters. This can be
  * done as well like this:
@@ -214,7 +204,6 @@ import junitparams.internal.TestMethod;
  *       ...
  *   }
  * </pre>
- *
  *
  * <h4 id="d">d. Loading parameters from files</h4> You may be interested in loading parameters from a file. This is
  * very easy if it's a CSV file with columns in the same order as test method parameters:
@@ -252,9 +241,8 @@ import junitparams.internal.TestMethod;
  * }
  * </pre>
  *
- * A CSV files with a header are also supported with the use of <code>CsvWithHeaderMapper</code> class.
- *
- * You may also want to use a completely different file format, like excel or something. Then just parse it yourself:
+ * A CSV files with a header are also supported with the use of <code>CsvWithHeaderMapper</code> class. You may also
+ * want to use a completely different file format, like excel or something. Then just parse it yourself:
  *
  * <pre>
  *   &#064;Test
@@ -271,11 +259,9 @@ import junitparams.internal.TestMethod;
  * }
  * </pre>
  *
- * As you see, you don't need to open or close the file. Just read it from the reader and parse it the way you wish.
- *
- * By default the file is loaded from the file system, relatively to where you start the tests from. But you can also
- * use a resource from the classpath by prefixing the file name with <code>classpath:</code>
- *
+ * As you see, you don't need to open or close the file. Just read it from the reader and parse it the way you wish. By
+ * default the file is loaded from the file system, relatively to where you start the tests from. But you can also use a
+ * resource from the classpath by prefixing the file name with <code>classpath:</code>
  * <h4 id="e">e. Converting parameter values</h4> Sometimes you want to pass some parameter in one form, but use it in
  * the test in another. Dates are a good example. It's handy to specify them in the parameters as a String like
  * "2013.01.01", but you'd like to use a Jodatime's LocalDate or JDKs Date in the test without manually converting the
@@ -286,18 +272,16 @@ import junitparams.internal.TestMethod;
  * <pre>
  * &#064;Test
  * &#064;Parameters({ "01.12.2012, A" })
- * public void convertMultipleParams(
- * 		&#064;ConvertParam(value = StringToDateConverter.class, options = "dd.MM.yyyy") Date date,
- * 		&#064;ConvertParam(LetterToASCIIConverter.class) int num) {
- *
- * 	Calendar calendar = Calendar.getInstance();
- * 	calendar.setTime(date);
- *
- * 	assertEquals(2012, calendar.get(Calendar.YEAR));
- * 	assertEquals(11, calendar.get(Calendar.MONTH));
- * 	assertEquals(1, calendar.get(Calendar.DAY_OF_MONTH));
- *
- * 	assertEquals(65, num);
+ * public void convertMultipleParams(&#064;ConvertParam(value = StringToDateConverter.class, options = "dd.MM.yyyy") Date date, &#064;ConvertParam(LetterToASCIIConverter.class) int num) {
+ *   
+ *   Calendar calendar = Calendar.getInstance();
+ *   calendar.setTime(date);
+ *   
+ *   assertEquals(2012, calendar.get(Calendar.YEAR));
+ *   assertEquals(11, calendar.get(Calendar.MONTH));
+ *   assertEquals(1, calendar.get(Calendar.DAY_OF_MONTH));
+ *   
+ *   assertEquals(65, num);
  * }
  * </pre>
  *
@@ -312,13 +296,12 @@ import junitparams.internal.TestMethod;
  *
  * &#064;Before
  * public void init() throws Exception {
- * 	this.testContextManager = new TestContextManager(getClass());
- * 	this.testContextManager.prepareTestInstance(this);
+ *   this.testContextManager = new TestContextManager(getClass());
+ *   this.testContextManager.prepareTestInstance(this);
  * }
  * </pre>
  *
  * This lets you use in your tests anything that Spring provides in its test framework.
- *
  * <h3 id="p3">3. Other options</h3>
  * <h4>Enhancing test case description</h4> You can use <code>TestCaseName</code> annotation to provide template of the
  * individual test case name:
@@ -361,97 +344,97 @@ import junitparams.internal.TestMethod;
  * @author Lipinski (lipinski.pawel@gmail.com)
  */
 public class ParallelParameterized extends BlockJUnit4ClassRunner {
-
-	private ParametrizedTestMethodsFilter parametrizedTestMethodsFilter = new ParametrizedTestMethodsFilter(this);
-	private ParameterisedTestClassRunner parameterisedRunner;
-	private Description description;
-
-	public ParallelParameterized(Class<?> klass) throws InitializationError {
-		super(klass);
-		parameterisedRunner = new ParameterisedTestClassRunner(getTestClass());
-	}
-
-	@Override
-	public void filter(Filter filter) throws NoTestsRemainException {
-		super.filter(filter);
-		this.parametrizedTestMethodsFilter = new ParametrizedTestMethodsFilter(this, filter);
-	}
-
-	protected void collectInitializationErrors(List<Throwable> errors) {
-		for (Throwable throwable : errors)
-			throwable.printStackTrace();
-	}
-
-	@Override
-	protected void runChild(FrameworkMethod method, RunNotifier notifier) {
-		if (handleIgnored(method, notifier))
-			return;
-
-		TestMethod testMethod = parameterisedRunner.testMethodFor(method);
-		if (parameterisedRunner.shouldRun(testMethod))
-			parameterisedRunner.runParameterisedTest(testMethod, methodBlock(method), notifier);
-		else
-			super.runChild(method, notifier);
-	}
-
-	private boolean handleIgnored(FrameworkMethod method, RunNotifier notifier) {
-		TestMethod testMethod = parameterisedRunner.testMethodFor(method);
-		if (testMethod.isIgnored())
-			notifier.fireTestIgnored(describeMethod(method));
-
-		return testMethod.isIgnored();
-	}
-
-	@Override
-	protected List<FrameworkMethod> computeTestMethods() {
-		return parameterisedRunner.computeFrameworkMethods();
-	}
-
-	@Override
-	protected Statement methodInvoker(FrameworkMethod method, Object test) {
-		Statement methodInvoker = parameterisedRunner.parameterisedMethodInvoker(method, test);
-		if (methodInvoker == null)
-			methodInvoker = super.methodInvoker(method, test);
-
-		return methodInvoker;
-	}
-
-	@Override
-	public Description getDescription() {
-		if (description == null) {
-			description = Description.createSuiteDescription(getName(), getTestClass().getAnnotations());
-			List<FrameworkMethod> resultMethods = getListOfMethods();
-
-			for (FrameworkMethod method : resultMethods)
-				description.addChild(describeMethod(method));
-		}
-
-		return description;
-	}
-
-	private List<FrameworkMethod> getListOfMethods() {
-		List<FrameworkMethod> frameworkMethods = parameterisedRunner.returnListOfMethods();
-		return parametrizedTestMethodsFilter.filteredMethods(frameworkMethods);
-	}
-
-	public Description describeMethod(FrameworkMethod method) {
-		Description child = parameterisedRunner.describeParameterisedMethod(method);
-
-		if (child == null)
-			child = describeChild(method);
-
-		return child;
-	}
-
-	/**
-	 * Shortcut for returning an array of objects. All parameters passed to this method are returned in an
-	 * <code>Object[]</code> array.
-	 *
-	 * @param params
-	 *            Values to be returned in an <code>Object[]</code> array.
-	 * @return Values passed to this method.
-	 */
-	public static Object[] $(Object... params) {
-		return params;
-	}
+  
+  private ParametrizedTestMethodsFilter parametrizedTestMethodsFilter = new ParametrizedTestMethodsFilter(this);
+  private ParameterisedTestClassRunner  parameterisedRunner;
+  private Description                   description;
+  
+  public ParallelParameterized(Class<?> klass) throws InitializationError {
+    super(klass);
+    parameterisedRunner = new ParameterisedTestClassRunner(getTestClass());
+  }
+  
+  @Override
+  public void filter(Filter filter) throws NoTestsRemainException {
+    super.filter(filter);
+    this.parametrizedTestMethodsFilter = new ParametrizedTestMethodsFilter(this, filter);
+  }
+  
+  protected void collectInitializationErrors(List<Throwable> errors) {
+    for (Throwable throwable : errors)
+      throwable.printStackTrace();
+  }
+  
+  @Override
+  protected void runChild(FrameworkMethod method, RunNotifier notifier) {
+    if (handleIgnored(method, notifier))
+      return;
+    
+    TestMethod testMethod = parameterisedRunner.testMethodFor(method);
+    if (parameterisedRunner.shouldRun(testMethod))
+      parameterisedRunner.runParameterisedTest(testMethod, methodBlock(method), notifier);
+    else
+      super.runChild(method, notifier);
+  }
+  
+  private boolean handleIgnored(FrameworkMethod method, RunNotifier notifier) {
+    TestMethod testMethod = parameterisedRunner.testMethodFor(method);
+    if (testMethod.isIgnored())
+      notifier.fireTestIgnored(describeMethod(method));
+    
+    return testMethod.isIgnored();
+  }
+  
+  @Override
+  protected List<FrameworkMethod> computeTestMethods() {
+    return parameterisedRunner.computeFrameworkMethods();
+  }
+  
+  @Override
+  protected Statement methodInvoker(FrameworkMethod method, Object test) {
+    Statement methodInvoker = parameterisedRunner.parameterisedMethodInvoker(method, test);
+    if (methodInvoker == null)
+      methodInvoker = super.methodInvoker(method, test);
+    
+    return methodInvoker;
+  }
+  
+  @Override
+  public Description getDescription() {
+    if (description == null) {
+      description = Description.createSuiteDescription(getName(), getTestClass().getAnnotations());
+      List<FrameworkMethod> resultMethods = getListOfMethods();
+      
+      for (FrameworkMethod method : resultMethods)
+        description.addChild(describeMethod(method));
+    }
+    
+    return description;
+  }
+  
+  private List<FrameworkMethod> getListOfMethods() {
+    List<FrameworkMethod> frameworkMethods = parameterisedRunner.returnListOfMethods();
+    return parametrizedTestMethodsFilter.filteredMethods(frameworkMethods);
+  }
+  
+  public Description describeMethod(FrameworkMethod method) {
+    Description child = parameterisedRunner.describeParameterisedMethod(method);
+    
+    if (child == null)
+      child = describeChild(method);
+    
+    return child;
+  }
+  
+  /**
+   * Shortcut for returning an array of objects. All parameters passed to this method are returned in an
+   * <code>Object[]</code> array.
+   *
+   * @param params
+   *          Values to be returned in an <code>Object[]</code> array.
+   * @return Values passed to this method.
+   */
+  public static Object[] $(Object... params) {
+    return params;
+  }
 }

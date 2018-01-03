@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import com.capgemini.ntc.selenium.core.enums.ColorsEnum;
 
 public class ColorsUtils {
-
+	
 	private ColorsUtils() {
 	}
-
+	
 	/**
 	 * @param element
 	 *            - WebElement
@@ -24,9 +24,8 @@ public class ColorsUtils {
 		}
 		return true;
 	}
-
+	
 	/**
-	 * 
 	 * @param element
 	 *            - WebElement
 	 * @param validator
@@ -37,5 +36,5 @@ public class ColorsUtils {
 	public static boolean isColorCorrectForValue(WebElement element, IColorValidator<WebElement> validator) {
 		return validator.isValid(element);
 	}
-
+	
 }

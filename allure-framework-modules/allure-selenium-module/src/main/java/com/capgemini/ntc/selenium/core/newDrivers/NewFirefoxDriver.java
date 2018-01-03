@@ -197,7 +197,9 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	}
 	
 	@Override
-	public RadioButtonElement elementRadioButton(By selector, By inputChildsSelector, List<String> listSelectedAttributes) {
+	public RadioButtonElement elementRadioButton(By selector,
+			By inputChildsSelector,
+			List<String> listSelectedAttributes) {
 		return driverExtention.elementRadioButton(selector, inputChildsSelector, listSelectedAttributes);
 	}
 	

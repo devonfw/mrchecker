@@ -63,9 +63,7 @@ public class BaseTestWatcher extends TestWatcher {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private void skippedQuietly(org.junit.internal.AssumptionViolatedException e,
-			Description description,
-			List<Throwable> errors) {
+	private void skippedQuietly(org.junit.internal.AssumptionViolatedException e, Description description, List<Throwable> errors) {
 		try {
 			if (e instanceof AssumptionViolatedException) {
 				skipped((AssumptionViolatedException) e, description);
@@ -109,10 +107,8 @@ public class BaseTestWatcher extends TestWatcher {
 	protected void succeeded(Description description) {
 		BFLogger.logInfo(description.getDisplayName() + " PASSED.");
 		// Run test observers
-		TestClassRule.classObservers
-				.forEach(ITestObserver::onTestSuccess);
-		observers
-				.forEach(ITestObserver::onTestSuccess);
+		TestClassRule.classObservers.forEach(ITestObserver::onTestSuccess);
+		observers.forEach(ITestObserver::onTestSuccess);
 	}
 	
 	@Override
@@ -120,10 +116,8 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logInfo(description.getDisplayName() + " FAILED.");
 		
 		// Run test observers
-		TestClassRule.classObservers
-				.forEach(ITestObserver::onTestFailure);
-		observers
-				.forEach(ITestObserver::onTestFailure);
+		TestClassRule.classObservers.forEach(ITestObserver::onTestFailure);
+		observers.forEach(ITestObserver::onTestFailure);
 	}
 	
 	@Attachment("Log file")
@@ -165,8 +159,7 @@ public class BaseTestWatcher extends TestWatcher {
 	}
 	
 	private void printTimeExecutionLog(Description description) {
-		BFLogger.logInfo(description.getDisplayName()
-				+ getFormatedTestDuration());
+		BFLogger.logInfo(description.getDisplayName() + getFormatedTestDuration());
 	}
 	
 	private String getFormatedTestDuration() {
@@ -176,11 +169,9 @@ public class BaseTestWatcher extends TestWatcher {
 	public static void removeObserver(ITestObserver observer) {
 		BFLogger.logDebug("Removing observer: " + observer.toString());
 		if (isAddedFromBeforeClassMethod()) {
-			TestClassRule.classObservers
-					.remove(observer);
+			TestClassRule.classObservers.remove(observer);
 		} else {
-			observers
-					.remove(observer);
+			observers.remove(observer);
 		}
 		
 	}

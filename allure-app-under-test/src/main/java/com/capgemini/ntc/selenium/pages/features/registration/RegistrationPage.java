@@ -16,10 +16,10 @@ import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class RegistrationPage extends BasePage {
-
+	
 	private BasePage parent;
 	private boolean loaded;
-
+	
 	private final static By selectorFirstName = By.cssSelector("input[id='name_3_firstname']");
 	private final static By selectorLastName = By.cssSelector("input[id='name_3_lastname']");
 	private final static By selectorMaritalStatus = By.cssSelector("div[class='radio_wrap']");
@@ -39,146 +39,154 @@ public class RegistrationPage extends BasePage {
 	private final static By selectorRegistrationSucceed = By.cssSelector("p[class='piereg_message']");
 	private final static By selectorRegistrationError = By.cssSelector("p[class='piereg_login_error']");
 	
-	
-
 	private static String registrationSucceedText = "Thank you for your registration";
 	private static String registrationErrorText = "Error: Username already exists";
-
+	
 	private final String pattern = "(.*)-(.*)-(.*)";
-
+	
 	public RegistrationPage() {
 		this(getDriver());
 	}
-
+	
 	public RegistrationPage(INewWebDriver driver) {
 		super(driver, null);
-
+		
 		// Execute for current page
 		if (!this.isLoaded()) { // In this scenario check if current page is loaded, if not, then try to
 								// load it
 			this.load();
 		}
 	}
-
+	
 	@Override
 	public boolean isLoaded() {
 		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.REGISTRATION.getAddress());
 	}
-
 	
-
 	@Override
 	public void load() {
 		BasePage.getDriver()
 				.get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.REGISTRATION.getAddress());
 		loaded = true;
 	}
-
+	
 	public void load(PageSubURLsEnum subUrl) {
-		BasePage.getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + subUrl.getAddress());
+		BasePage.getDriver()
+				.get(GetEnvironmentParam.WWW_FONT_URL.getAddress() + subUrl.getAddress());
 		loaded = true;
 	}
-
+	
 	public BasePage getParent() {
 		return this.parent;
 	}
-
+	
 	public void setParent(BasePage parent) {
 		this.parent = parent;
 	}
-
+	
 	public boolean wasLoaded() {
 		return loaded;
 	}
-
+	
 	public void clickSubmit() {
-		getDriver().elementButton(selectorSubmitButton).click();
+		getDriver().elementButton(selectorSubmitButton)
+				.click();
 	}
-
+	
 	public boolean isRegistrationSuceedTextVisible() {
-		try{
-			return getDriver().findElementDynamic(selectorRegistrationSucceed).getText().equals(registrationSucceedText);
-		} catch (BFElementNotFoundException e){
+		try {
+			return getDriver().findElementDynamic(selectorRegistrationSucceed)
+					.getText()
+					.equals(registrationSucceedText);
+		} catch (BFElementNotFoundException e) {
 			return false;
 		}
 	}
 	
 	public boolean isRegistryErrorTextVisible() {
-		try{
+		try {
 			getDriver().waitForElementVisible(selectorRegistrationError);
-			BFLogger.logDebug(getDriver().waitForElementVisible(selectorRegistrationError).getText());
-			return getDriver().elementLabel(selectorRegistrationError).getText().equals(registrationErrorText);
-		} catch (BFElementNotFoundException e){
+			BFLogger.logDebug(getDriver().waitForElementVisible(selectorRegistrationError)
+					.getText());
+			return getDriver().elementLabel(selectorRegistrationError)
+					.getText()
+					.equals(registrationErrorText);
+		} catch (BFElementNotFoundException e) {
 			return false;
 		}
 	}
-
+	
 	public String getRegistryErrorText() {
 		getDriver().waitForElementVisible(selectorRegistrationError);
-		return getDriver().elementLabel(selectorRegistrationError).getText();
+		return getDriver().elementLabel(selectorRegistrationError)
+				.getText();
 	}
-
+	
 	@Override
 	public String pageTitle() {
 		return PageTitlesEnum.REGISTRATION.toString();
 	}
-
+	
 	public void setFirstName(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorFirstName);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setLastName(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorLastName);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setMaritalStatus(MaritalStatus maritalStatus) {
-
+		
 		switch (maritalStatus) {
-			case SINGLE: {
-				getDriver().elementRadioButton(selectorMaritalStatus).selectItemByValue("single");
-
-				// radioButtonElement.selectElement("Single");
-				break;
-			}
-			case MARRIED: {
-				getDriver().elementRadioButton(selectorMaritalStatus).selectItemByValue("married");
-				// radioButtonElement.selectElement("Married");
-				break;
-			}
-			case DIVORCED: {
-				getDriver().elementRadioButton(selectorMaritalStatus).selectItemByValue("divorced");
-				// radioButtonElement.selectElement("Divorced");
-				break;
-			}
+		case SINGLE: {
+			getDriver().elementRadioButton(selectorMaritalStatus)
+					.selectItemByValue("single");
+			
+			// radioButtonElement.selectElement("Single");
+			break;
+		}
+		case MARRIED: {
+			getDriver().elementRadioButton(selectorMaritalStatus)
+					.selectItemByValue("married");
+			// radioButtonElement.selectElement("Married");
+			break;
+		}
+		case DIVORCED: {
+			getDriver().elementRadioButton(selectorMaritalStatus)
+					.selectItemByValue("divorced");
+			// radioButtonElement.selectElement("Divorced");
+			break;
+		}
 		}
 	}
-
+	
 	public void setHobby(com.capgemini.ntc.selenium.pages.features.registration.Hobby hobby) {
-		getDriver().elementCheckbox(selectorHobby).setCheckBoxByValue(hobby.toString());
+		getDriver().elementCheckbox(selectorHobby)
+				.setCheckBoxByValue(hobby.toString());
 	}
-
+	
 	public void setHobby(com.capgemini.ntc.selenium.pages.features.registration.Hobby[] hobbies) {
 		com.capgemini.ntc.selenium.pages.features.registration.Hobby hobby;
-
+		
 		for (int i = 0; i < hobbies.length; i++) {
 			hobby = hobbies[i];
 			this.setHobby(hobby);
 		}
 	}
-
+	
 	public void setCountry(String value) {
 		this.setComboBoxValue(selectorCountry, value);
 	}
-
+	
 	public void setBirthDate(String date) {
 		// date format -> mm-dd-yyyy
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(date);
-
+		
 		if (m.find()) {
 			this.setComboBoxValue(selectorBirthDateMonth, m.group(1));
 			this.setComboBoxValue(selectorBirthDateDay, m.group(2));
@@ -187,49 +195,50 @@ public class RegistrationPage extends BasePage {
 			System.out.println("NO MATCH");
 		}
 	}
-
+	
 	public void setPhoneNumber(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorPhoneNumber);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setUsername(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorUsername);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setEmail(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorEmail);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setProfilePicture(String value) {
-		getDriver().findElement(selectorYourProfilePhotoPath).sendKeys(value);
+		getDriver().findElement(selectorYourProfilePhotoPath)
+				.sendKeys(value);
 	}
-
+	
 	public void setAboutYourself(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorAboutYourself);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setPassword(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorPassword);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	public void setConfirmPassword(String value) {
 		InputTextElement inputTextElement = new InputTextElement(selectorConfirmPassword);
 		inputTextElement.clearInputText();
 		inputTextElement.setInputText(value);
 	}
-
+	
 	private void setComboBoxValue(By comboBoxObject, String value) {
 		new DropdownListElement(comboBoxObject).selectDropdownByValue(value);
 	}
-
+	
 }

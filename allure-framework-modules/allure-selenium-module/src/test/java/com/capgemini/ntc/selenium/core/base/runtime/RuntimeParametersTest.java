@@ -28,7 +28,6 @@ public class RuntimeParametersTest {
 		RuntimeParametersSelenium.BROWSER_VERSION.refreshParameterValue();
 		RuntimeParametersSelenium.OS.refreshParameterValue();
 		RuntimeParametersSelenium.SELENIUM_GRID.refreshParameterValue();
-		
 	}
 	
 	@After
@@ -50,14 +49,12 @@ public class RuntimeParametersTest {
 		
 	}
 	
-	
 	@Test
 	public void testBrowserIE() throws Exception {
 		System.setProperty("browser", "ie");
 		RuntimeParametersSelenium.BROWSER.refreshParameterValue();
 		
 		assertEquals("System parameters for empty property 'browser' should be 'internet explorer'", "internet explorer", RuntimeParametersSelenium.BROWSER.getValue());
-		
 		
 	}
 	
@@ -75,16 +72,15 @@ public class RuntimeParametersTest {
 		assertEquals("System parameters for empty property 'seleniumGrid' should be 'false'", "false", RuntimeParametersSelenium.SELENIUM_GRID.getValue());
 		assertEquals("System parameters for empty property 'os' should be 'windows'", "windows", RuntimeParametersSelenium.OS.getValue());
 		
-		
-		
 	}
 	
 	@Test
 	public void testParamsToString() throws Exception {
 		
-		RuntimeParametersSelenium.valueOf("BROWSER").toString().equals("browser=magicBrowser");
+		RuntimeParametersSelenium.valueOf("BROWSER")
+				.toString()
+				.equals("browser=magicBrowser");
 		
-
 	}
 	
 }

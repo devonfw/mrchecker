@@ -16,17 +16,16 @@ import org.openqa.selenium.WebElement;
  * @author
  */
 public class Utility {
-
+	
 	static public enum SortOrder {
-		ASCENDING(1),
-		DESCENDING(-1);
+		ASCENDING(1), DESCENDING(-1);
 		int param;
-
+		
 		SortOrder(int param) {
 			this.param = param;
 		}
 	}
-
+	
 	/**
 	 * Matches String with pattern
 	 * 
@@ -39,7 +38,7 @@ public class Utility {
 	public static boolean isStringMatchingPattern(String pattern, String toCompare) {
 		return Pattern.matches(pattern, toCompare);
 	}
-
+	
 	/**
 	 * Searches for pattern in String
 	 * 
@@ -54,7 +53,7 @@ public class Utility {
 		Matcher matcher = p.matcher(toCompare);
 		return matcher.find();
 	}
-
+	
 	/**
 	 * Check if strings in first table are alike ordered than strings in second table.
 	 * 
@@ -99,9 +98,11 @@ public class Utility {
 		}
 		return true;
 	}
-
+	
 	public static String convertValueColorFromRgbToHex(String colorAsString) {
-		String[] numbers = colorAsString.replace("rgba(", "").replace(")", "").split(",");
+		String[] numbers = colorAsString.replace("rgba(", "")
+				.replace(")", "")
+				.split(",");
 		int number1 = Integer.parseInt(numbers[0]);
 		numbers[1] = numbers[1].trim();
 		int number2 = Integer.parseInt(numbers[1]);
@@ -110,7 +111,7 @@ public class Utility {
 		String colorInHex = String.format("#%02x%02x%02x", number1, number2, number3);
 		return colorInHex;
 	}
-
+	
 	/**
 	 * Returns CSS classes from a WebElement pointed by given selector
 	 * 
@@ -118,9 +119,10 @@ public class Utility {
 	 * @author
 	 */
 	public static String[] getCssClassesFromWebElement(By selector) {
-		WebElement messagesPopupWindow = BasePage.getDriver().findElement(selector);
+		WebElement messagesPopupWindow = BasePage.getDriver()
+				.findElement(selector);
 		String cssClasses = messagesPopupWindow.getAttribute("class");
 		return cssClasses.split(" ");
 	}
-
+	
 }

@@ -12,32 +12,32 @@ import org.json.JSONObject;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
 public class JsonReader {
-
-	private JsonReader() {
-		// NOP
-	}
-
-	/**
-	 * Reads JSON file and return it's
-	 * 
-	 * @param jsonFile
-	 * @return
-	 */
-	public static JSONObject readJson(File jsonFile) {
-		JSONObject jsonObject = null;
-		try {
-			InputStream jsonStream = new FileInputStream(jsonFile);
-			String genreJson = IOUtils.toString(jsonStream);
-			try {
-				jsonObject = new JSONObject(genreJson);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (IOException e) {
-			throw new BFInputDataException("Unable to read JSON file: " + jsonFile.getName());
-		}
-		return jsonObject;
-	}
-
+  
+  private JsonReader() {
+    // NOP
+  }
+  
+  /**
+   * Reads JSON file and return it's
+   * 
+   * @param jsonFile
+   * @return
+   */
+  public static JSONObject readJson(File jsonFile) {
+    JSONObject jsonObject = null;
+    try {
+      InputStream jsonStream = new FileInputStream(jsonFile);
+      String genreJson = IOUtils.toString(jsonStream);
+      try {
+        jsonObject = new JSONObject(genreJson);
+      } catch (JSONException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    } catch (IOException e) {
+      throw new BFInputDataException("Unable to read JSON file: " + jsonFile.getName());
+    }
+    return jsonObject;
+  }
+  
 }

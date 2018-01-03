@@ -5,22 +5,22 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.capgemini.ntc.test.core.utils.datadriven.json.JsonReader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.capgemini.ntc.test.core.utils.datadriven.json.JsonReader;
 
 /**
  * Parse JSON file and creates Map of {@code UserData} with USER numbers as keys.
  * 
  * @author
- *
  */
 public class MapUserFile {
-
+	
 	private MapUserFile() {
 	}
-
+	
 	private enum UserJsonKey {
 		PASSWORD("password"),
 		ENVIRONMENT("environment"),
@@ -34,21 +34,21 @@ public class MapUserFile {
 		UserJsonKey(String key) {
 			this.key = key;
 		}
-
+		
 		private String key;
-
+		
 		@Override
 		public String toString() {
 			return key;
 		}
 	}
-
+	
 	/**
 	 * Parse JSON file to map, where key is a USER and a value is {@code UserData} object
 	 * 
 	 * @param jsonFile
 	 * @return
-	 * @throws JSONException 
+	 * @throws JSONException
 	 */
 	public static Map<String, UserData> map(File jsonFile) throws JSONException {
 		JSONObject jsonObject = JsonReader.readJson(jsonFile);
@@ -62,7 +62,7 @@ public class MapUserFile {
 		}
 		return userDataMap;
 	}
-
+	
 	private static UserData retrieveUserData(String user, JSONObject userContent) throws JSONException {
 		UserData userData = new UserData();
 		userData.setUser(user);
@@ -83,15 +83,16 @@ public class MapUserFile {
 		}
 		return userData;
 	}
-
+	
 	private static String getStringValue(UserJsonKey what, JSONObject from) throws JSONException {
 		String key = what.toString();
 		if (from.isNull(key)) {
 			return "";
-		} ;
+		}
+		;
 		return (String) from.get(key);
 	}
-
+	
 	private static boolean isNull(JSONObject jsonObj, UserJsonKey key) {
 		return jsonObj.isNull(key.toString());
 	}

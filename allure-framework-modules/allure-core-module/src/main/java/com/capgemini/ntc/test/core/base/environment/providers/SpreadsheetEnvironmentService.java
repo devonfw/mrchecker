@@ -31,7 +31,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	private List<CSVRecord> records;
 	private Map<String, String> services;
-
+	
 	private String path;
 	
 	private SpreadsheetEnvironmentService(String path, String environmentName) {
@@ -83,10 +83,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	public String getServiceAddress(String serviceName) {
 		String serviceAddress = services.get(serviceName);
 		if (serviceAddress == null) {
-			throw new BFInputDataException(
-					"service " + serviceName + " " +
-							"retrieve address of" + " " +
-							"not found in available services table");
+			throw new BFInputDataException("service " + serviceName + " " + "retrieve address of" + " " + "not found in available services table");
 		}
 		return serviceAddress;
 	}

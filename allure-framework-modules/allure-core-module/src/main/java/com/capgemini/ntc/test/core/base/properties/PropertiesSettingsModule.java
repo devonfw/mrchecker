@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
-import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
@@ -41,8 +39,7 @@ public class PropertiesSettingsModule extends AbstractModule {
 	}
 	
 	public static PropertiesSettingsModule init() {
-		String path = System.getProperty("user.dir")
-				+ Paths.get("/src/resources/settings.properties"); 
+		String path = System.getProperty("user.dir") + Paths.get("/src/resources/settings.properties");
 		return PropertiesSettingsModule.init(path);
 	}
 	

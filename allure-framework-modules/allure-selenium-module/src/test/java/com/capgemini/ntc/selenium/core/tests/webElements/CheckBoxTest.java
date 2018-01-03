@@ -18,7 +18,8 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class CheckBoxTest extends BaseTest {
 	
-	private static final By hobbyCheckBoxSelector = By.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
+	private static final By hobbyCheckBoxSelector = By
+			.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
 	CheckBox checkBoxElement;
 	
 	@AfterClass
