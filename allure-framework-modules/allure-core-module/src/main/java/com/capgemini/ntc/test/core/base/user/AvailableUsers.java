@@ -12,10 +12,10 @@ import org.apache.commons.collections.Predicate;
  * @author
  */
 public class AvailableUsers {
-	private List<UserData> userDataList;
-	private List<Predicate> requirements = new ArrayList<Predicate>();
-	private int index = -1;
-	private UserData currentUser;
+	private List<UserData>	userDataList;
+	private List<Predicate>	requirements	= new ArrayList<Predicate>();
+	private int				index			= -1;
+	private UserData		currentUser;
 	
 	public AvailableUsers() {
 		userDataList = new ArrayList<UserData>();
@@ -40,7 +40,7 @@ public class AvailableUsers {
 		UserData currentUserData = getUserData();
 		for (AccountData accountData : currentUserData.getAccountsData()) {
 			if (accountPredicate.get()
-					.evaluate(accountData)) {
+							.evaluate(accountData)) {
 				return accountData;
 			}
 			;

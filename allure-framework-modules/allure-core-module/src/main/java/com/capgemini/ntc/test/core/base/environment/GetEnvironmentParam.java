@@ -4,7 +4,10 @@ import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
 public enum GetEnvironmentParam {
-	WWW_FONT_URL, SPS_WI_URL, TOOLS_QA, WEB_SERVICE;
+	WWW_FONT_URL,
+	SPS_WI_URL,
+	TOOLS_QA,
+	WEB_SERVICE;
 	
 	public String getAddress() {
 		
@@ -13,7 +16,7 @@ public enum GetEnvironmentParam {
 		}
 		
 		return BaseTest.getEnvironmentService()
-				.getServiceAddress(this.name());
+						.getServiceAddress(this.name());
 		
 	}
 	

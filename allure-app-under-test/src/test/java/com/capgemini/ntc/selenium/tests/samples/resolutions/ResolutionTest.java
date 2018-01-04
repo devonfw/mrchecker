@@ -28,9 +28,9 @@ public class ResolutionTest extends BaseTest {
 	
 	private static Object[] getResolutions() {
 		return new Object[] {
-				ResolutionEnum.w768,
-				ResolutionEnum.w960,
-				ResolutionEnum.w1920 };
+						ResolutionEnum.w768,
+						ResolutionEnum.w960,
+						ResolutionEnum.w1920 };
 	}
 	
 	@Override

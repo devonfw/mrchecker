@@ -78,8 +78,8 @@ public class RuntimeParametersTest {
 	public void testParamsToString() throws Exception {
 		
 		RuntimeParametersSelenium.valueOf("BROWSER")
-				.toString()
-				.equals("browser=magicBrowser");
+						.toString()
+						.equals("browser=magicBrowser");
 		
 	}
 	

@@ -17,8 +17,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class BaseTestWatcher extends TestWatcher {
-	private BaseTest baseTest;
-	private long iStart;
+	private BaseTest	baseTest;
+	private long		iStart;
 	
 	public BaseTestWatcher(BaseTest baseTest) {
 		this.baseTest = baseTest;
@@ -81,7 +81,7 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logInfo(description.getDisplayName() + " STARTED.");
 		this.iStart = System.currentTimeMillis(); // start timing
 		BaseTest.getAnalytics()
-				.sendClassName();
+						.sendClassName();
 		
 		baseTest.setUp(); // Executed as a Before for each test
 	}
@@ -137,10 +137,10 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	private static boolean isAddedFromBeforeClassMethod() {
 		for (StackTraceElement elem : Thread.currentThread()
-				.getStackTrace()) {
+						.getStackTrace()) {
 			try {
 				Method method = Class.forName(elem.getClassName())
-						.getDeclaredMethod(elem.getMethodName());
+								.getDeclaredMethod(elem.getMethodName());
 				if (method.getDeclaredAnnotation(org.junit.BeforeClass.class) != null) {
 					// Adding from BeforeClass-annotated method
 					return true;

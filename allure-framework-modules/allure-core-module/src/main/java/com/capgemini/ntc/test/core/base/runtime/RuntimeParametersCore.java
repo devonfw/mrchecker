@@ -9,9 +9,9 @@ public enum RuntimeParametersCore implements RuntimeParametersI {
 	
 	ENV("env", "DEV");
 	
-	private String paramName;
-	private String paramValue;
-	private String defaultValue;
+	private String	paramName;
+	private String	paramValue;
+	private String	defaultValue;
 	
 	private RuntimeParametersCore(String paramName, String defaultValue) {
 		this.paramName = paramName;

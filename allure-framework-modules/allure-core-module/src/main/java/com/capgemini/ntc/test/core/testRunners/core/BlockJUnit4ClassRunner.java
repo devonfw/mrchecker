@@ -157,7 +157,7 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
 	 */
 	protected void validateZeroArgConstructor(List<Throwable> errors) {
 		if (!getTestClass().isANonStaticInnerClass() && hasOneConstructor() && (getTestClass().getOnlyConstructor()
-				.getParameterTypes().length != 0)) {
+						.getParameterTypes().length != 0)) {
 			String gripe = "Test class should have exactly one public zero-argument constructor";
 			errors.add(new Exception(gripe));
 		}
@@ -165,7 +165,7 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
 	
 	private boolean hasOneConstructor() {
 		return getTestClass().getJavaClass()
-				.getConstructors().length == 1;
+						.getConstructors().length == 1;
 	}
 	
 	/**
@@ -205,7 +205,7 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
 	 */
 	protected Object createTest() throws Exception {
 		return getTestClass().getOnlyConstructor()
-				.newInstance();
+						.newInstance();
 	}
 	
 	/**
@@ -292,8 +292,8 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
 			return next;
 		}
 		return FailOnTimeout.builder()
-				.withTimeout(timeout, TimeUnit.MILLISECONDS)
-				.build(next);
+						.withTimeout(timeout, TimeUnit.MILLISECONDS)
+						.build(next);
 	}
 	
 	/**

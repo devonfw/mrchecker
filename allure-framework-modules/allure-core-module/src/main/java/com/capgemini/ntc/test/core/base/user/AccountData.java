@@ -8,9 +8,9 @@ package com.capgemini.ntc.test.core.base.user;
  */
 public class AccountData {
 	
-	private String name;
-	private String number;
-	private String type;
+	private String	name;
+	private String	number;
+	private String	type;
 	
 	public AccountData(String type, String number) {
 		this.type = type;

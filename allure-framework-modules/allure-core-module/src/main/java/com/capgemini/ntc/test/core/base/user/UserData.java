@@ -11,14 +11,14 @@ import java.util.List;
  * @author
  */
 public class UserData {
-	private String user;
-	private String password;
-	private String environment;
-	private String description;
-	private String type;
-	private String trade;
-	private List<AccountData> accountsData;
-	private String active;
+	private String				user;
+	private String				password;
+	private String				environment;
+	private String				description;
+	private String				type;
+	private String				trade;
+	private List<AccountData>	accountsData;
+	private String				active;
 	
 	public UserData() {
 		accountsData = new ArrayList<AccountData>();
@@ -102,7 +102,7 @@ public class UserData {
 	public AccountData findAccountData(UserAccountPredicate accountPredicate) {
 		for (AccountData accountData : getAccountsData()) {
 			if (accountPredicate.get()
-					.evaluate(accountData)) {
+							.evaluate(accountData)) {
 				return accountData;
 			}
 			;

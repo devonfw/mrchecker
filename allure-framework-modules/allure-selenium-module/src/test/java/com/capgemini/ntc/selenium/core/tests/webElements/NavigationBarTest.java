@@ -18,14 +18,14 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class NavigationBarTest extends BaseTest {
 	
-	private final static By navigationBarSelector = By.cssSelector("ol#breadcrumbs");
-	private final static By childsSelector = By.cssSelector("li");
-	private NavigationBarElement navigationBarElement;
+	private final static By			navigationBarSelector	= By.cssSelector("ol#breadcrumbs");
+	private final static By			childsSelector			= By.cssSelector("li");
+	private NavigationBarElement	navigationBarElement;
 	
 	@AfterClass
 	public static void tearDownAll() {
 		BasePage.getDriver()
-				.close();
+						.close();
 	}
 	
 	@Test
@@ -49,10 +49,10 @@ public class NavigationBarTest extends BaseTest {
 	@Test
 	public void testClickActiveItem() {
 		String url = BasePage.getDriver()
-				.getCurrentUrl();
+						.getCurrentUrl();
 		this.navigationBarElement.clickActiveItem();
 		assertEquals(url, BasePage.getDriver()
-				.getCurrentUrl());
+						.getCurrentUrl());
 	}
 	
 	@Test
@@ -64,16 +64,16 @@ public class NavigationBarTest extends BaseTest {
 	@Test
 	public void testConstructor() {
 		NavigationBarElement navBarElem = BasePage.getDriver()
-				.elementNavigationBar(NavigationBarTest.navigationBarSelector, NavigationBarTest.childsSelector);
+						.elementNavigationBar(NavigationBarTest.navigationBarSelector, NavigationBarTest.childsSelector);
 		assertEquals(Arrays.asList("Home", "Tabs"), navBarElem.getItemsTextList());
 	}
 	
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.TABS.subURL());
+						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.TABS.subURL());
 		this.navigationBarElement = BasePage.getDriver()
-				.elementNavigationBar(NavigationBarTest.navigationBarSelector);
+						.elementNavigationBar(NavigationBarTest.navigationBarSelector);
 	}
 	
 	@Override

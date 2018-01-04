@@ -18,11 +18,11 @@ import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
  */
 public class UserProvider {
 	
-	private static final String USER_REPOSITORY_FILE_PATH = "/dynamicData/user_repository.json";
-	private static final String DEF_ENVIRONMENT = "DEV1";
-	private static UserProvider userProvider;
-	private Map<String, UserData> initialUserMap;
-	private Map<String, UserData> workingUserMap;
+	private static final String		USER_REPOSITORY_FILE_PATH	= "/dynamicData/user_repository.json";
+	private static final String		DEF_ENVIRONMENT				= "DEV1";
+	private static UserProvider		userProvider;
+	private Map<String, UserData>	initialUserMap;
+	private Map<String, UserData>	workingUserMap;
 	
 	private UserProvider(String environment) throws BFInputDataException, JSONException {
 		fetchDataFromFile();
@@ -45,8 +45,8 @@ public class UserProvider {
 	
 	private void fetchDataFromFile() throws BFInputDataException, JSONException {
 		File jsonFile = new File(this.getClass()
-				.getResource(USER_REPOSITORY_FILE_PATH)
-				.getFile());
+						.getResource(USER_REPOSITORY_FILE_PATH)
+						.getFile());
 		initialUserMap = MapUserFile.map(jsonFile);
 	}
 	
@@ -63,7 +63,7 @@ public class UserProvider {
 		Map<String, UserData> filteredUserMap = new HashMap<String, UserData>();
 		for (Entry<String, UserData> entry : initialUserMap.entrySet()) {
 			String userEnvironment = entry.getValue()
-					.getEnvironment();
+							.getEnvironment();
 			if (userEnvironment.equals(environmentName)) {
 				filteredUserMap.put(entry.getKey(), entry.getValue());
 			}
@@ -82,7 +82,7 @@ public class UserProvider {
 		for (UserData data : workingUserMap.values()) {
 			for (AccountData accountData : data.getAccountsData()) {
 				if (accountPredicate.get()
-						.evaluate(accountData)) {
+								.evaluate(accountData)) {
 					availableUser.add(data);
 					break;
 				}
