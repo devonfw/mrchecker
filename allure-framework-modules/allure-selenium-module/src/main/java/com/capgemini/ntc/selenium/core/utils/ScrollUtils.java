@@ -14,13 +14,12 @@ import org.openqa.selenium.WebElement;
  * operated on the whole page not on a particular component.
  * 
  * @author
- *
  */
 public class ScrollUtils {
-
+	
 	private ScrollUtils() {
 	}
-
+	
 	/**
 	 * Determines if the scroll bar is positioned at its lowest possible position by comparing its position before and
 	 * after scrolling 250 points to the bottom
@@ -29,26 +28,28 @@ public class ScrollUtils {
 	 * @author
 	 */
 	public static boolean isScrolledToTheBottomOfThePage() {
-
+		
 		JavascriptExecutor executor = (JavascriptExecutor) BasePage.getDriver();
 		Long scrollPositionBefore = (Long) executor.executeScript("return window.scrollY;");
 		executor.executeScript("window.scrollBy(0,250);");
 		Long scrollPositionAfter = (Long) executor.executeScript("return window.scrollY;");
-
+		
 		BFLogger.logDebug(scrollPositionBefore + " " + scrollPositionAfter);
-
+		
 		return scrollPositionBefore.equals(scrollPositionAfter);
 	}
-
+	
 	public static void scrollToBottom() {
-		BasePage.getAction().sendKeys(Keys.END).perform();
+		BasePage.getAction()
+				.sendKeys(Keys.END)
+				.perform();
 	}
-
+	
 	public static void scrollToTop() {
 		JavascriptExecutor js = (JavascriptExecutor) BasePage.getDriver();
 		js.executeScript("window.scrollTo(0,0);");
 	}
-
+	
 	/**
 	 * This method moves view to the given element and tries to center it horizontally and vertically if possible Its
 	 * useful especially with Chrome, when driver cant click on element which is not visible on screen, becouse of for
@@ -59,19 +60,28 @@ public class ScrollUtils {
 	 */
 	public static void scrollElementIntoView(WebElement element) {
 		Point point = element.getLocation();
-		int windowHeight = BasePage.getDriver().manage().window().getSize().getHeight();
+		int windowHeight = BasePage.getDriver()
+				.manage()
+				.window()
+				.getSize()
+				.getHeight();
 		int center = windowHeight / 2;
 		int toMove = point.getY();
 		int toMoveCenter = (toMove >= center
-				|| toMove <= BasePage.getDriver().findElement(By.tagName("body")).getSize().getHeight())
-						? toMove - center : toMove;
-
+				|| toMove <= BasePage.getDriver()
+						.findElement(By.tagName("body"))
+						.getSize()
+						.getHeight())
+								? toMove - center
+								: toMove;
+		
 		JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
-
+		
 		jse.executeScript("window.scrollTo(0, arguments[0]);", toMoveCenter);
-		BasePage.getDriver().waitForPageLoaded();
+		BasePage.getDriver()
+				.waitForPageLoaded();
 	}
-
+	
 	/**
 	 * @return true if element is presented in the middle of the page; false otherwise
 	 * @author
@@ -79,13 +89,18 @@ public class ScrollUtils {
 	public static boolean isElementLocatedInTheMiddle(WebElement element) {
 		JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
 		long verticalOffset = (long) jse.executeScript("return window.scrollY;");
-		long elementTopPosition = element.getLocation().getY();
+		long elementTopPosition = element.getLocation()
+				.getY();
 		long elementBottomPosition = elementTopPosition + element.getSize().height;
-		long windowHeight = BasePage.getDriver().manage().window().getSize().getHeight();
+		long windowHeight = BasePage.getDriver()
+				.manage()
+				.window()
+				.getSize()
+				.getHeight();
 		long windowHeightCenter = (windowHeight / 2) + verticalOffset;
 		return elementTopPosition < windowHeightCenter && elementBottomPosition > windowHeightCenter;
 	}
-
+	
 	/**
 	 * Scrolls page by offsets given by parameters Negative xOffset scrolls left, negative yOffset scrolls up
 	 * 
@@ -98,5 +113,5 @@ public class ScrollUtils {
 		JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
 		jse.executeScript("window.scrollBy(" + xOffset + "," + yOffset + ")", "");
 	}
-
+	
 }

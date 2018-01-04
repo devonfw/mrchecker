@@ -28,10 +28,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * @see
  */
 public class WebElementUtils {
-
+	
 	private WebElementUtils() {
 	}
-
+	
 	/**
 	 * Simulate click on Print link. That was needed becouse after standard click Selenium lost focus. This function
 	 * mark element and press enter to simulate click.
@@ -51,9 +51,9 @@ public class WebElementUtils {
 		} catch (AWTException e) {
 			throw new BFRobotInitilizationException(e);
 		}
-
+		
 	}
-
+	
 	/**
 	 * Checks if WebElement is highlighted in specified color
 	 * 
@@ -66,7 +66,7 @@ public class WebElementUtils {
 		String colorAsString = webElement.getCssValue("background-color");
 		return color.equalsIgnoreCase(colorAsString);
 	}
-
+	
 	/**
 	 * Method is moving mouse to the specified element by <b>elementSelector</b> and wait for 10 seconds for hover
 	 * element specified by <b>waitForSelector</b>
@@ -77,11 +77,12 @@ public class WebElementUtils {
 	 *            - element to wait for after hovering mouse on element specified by elementSelector
 	 */
 	public static WebElement hoverOnElement(By elementSelector, By waitForSelector) {
-		WebElement element = BasePage.getDriver().findElement(elementSelector);
-
+		WebElement element = BasePage.getDriver()
+				.findElement(elementSelector);
+		
 		return hoverOnElement(element, waitForSelector);
 	}
-
+	
 	/**
 	 * Method is moving mouse to the specified element by <b>elementToHoverOn</b> and wait for 10 seconds for hover
 	 * element specified by <b>waitForSelector</b>
@@ -93,14 +94,17 @@ public class WebElementUtils {
 	 */
 	public static WebElement hoverOnElement(WebElement elementToHoverOn, By waitForSelector) {
 		long startTime = System.currentTimeMillis();
-		BasePage.getAction().moveToElement(elementToHoverOn).build().perform();
-
+		BasePage.getAction()
+				.moveToElement(elementToHoverOn)
+				.build()
+				.perform();
+		
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(waitForSelector));
 		BFLogger.logTime(startTime, "hoverOnElement", waitForSelector.toString());
 		return element;
 	}
-
+	
 	/**
 	 * Method is moving mouse to the specified element by <b>elementToHoverOn</b> and wait for 10 seconds for hover
 	 * element specified by <b>waitForElement</b>
@@ -112,14 +116,17 @@ public class WebElementUtils {
 	 */
 	public static WebElement hoverOnElement(WebElement elementToHoverOn, WebElement waitForElement) {
 		long startTime = System.currentTimeMillis();
-		BasePage.getAction().moveToElement(elementToHoverOn).build().perform();
-
+		BasePage.getAction()
+				.moveToElement(elementToHoverOn)
+				.build()
+				.perform();
+		
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(waitForElement));
 		BFLogger.logTime(startTime, "hoverOnElement", waitForElement.toString());
 		return element;
 	}
-
+	
 	/**
 	 * Wait until element localized by passed as a parameter selector is visible
 	 * 
@@ -131,7 +138,7 @@ public class WebElementUtils {
 	public static void waitForElementVisible(By elementToWaitFor) {
 		waitForElementVisible(elementToWaitFor, BasePage.EXPLICITYWAITTIMER);
 	}
-
+	
 	/**
 	 * Wait until element localized by passed as a parameter selector is visible
 	 * 
@@ -148,7 +155,7 @@ public class WebElementUtils {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(elementToWaitFor));
 		BFLogger.logTime(startTime, "waitForElementVisible", elementToWaitFor.toString());
 	}
-
+	
 	/**
 	 * Method waits max of 10 seconds for the <b>elementToWaitFor</b> to become visible
 	 * 
@@ -162,7 +169,7 @@ public class WebElementUtils {
 		BFLogger.logTime(startTime, "waitForElementVisible", elementToWaitFor.toString());
 		return element;
 	}
-
+	
 	/**
 	 * Method waits max of 10 seconds for the <b>elementToWaitFor</b> to become invisible
 	 * 
@@ -178,7 +185,7 @@ public class WebElementUtils {
 		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor.toString());
 		return elementInvisibility;
 	}
-
+	
 	/**
 	 * Method waits max of 10 seconds for the <b>elementToWaitFor</b> to become invisible
 	 * 
@@ -193,16 +200,18 @@ public class WebElementUtils {
 		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor.toString());
 		return elementInvisibility;
 	}
-
+	
 	/**
 	 * Waits till element is clickable and perform click
 	 * 
 	 * @param selector
 	 */
 	public static void dynamicClick(By selector) {
-		BasePage.getDriver().waitUntilElementIsClickable(selector).click();
+		BasePage.getDriver()
+				.waitUntilElementIsClickable(selector)
+				.click();
 	}
-
+	
 	/**
 	 * Method is moving mouse on given distance in px from the actual position
 	 * 
@@ -212,20 +221,21 @@ public class WebElementUtils {
 	 *            vertical offset. Negative value means moving mouse up
 	 */
 	public static void moveMousePointer(int xOffset, int yOffset) {
-		BasePage.getAction().moveByOffset(xOffset, yOffset).build().perform();
+		BasePage.getAction()
+				.moveByOffset(xOffset, yOffset)
+				.build()
+				.perform();
 	}
-
+	
 	/**
-	 * 
 	 * @param field
 	 * @return 'value' attribute of given WebElement or null if 'value' attribute not found
 	 */
 	public static String getValue(WebElement field) {
 		return field.getAttribute("value");
 	}
-
+	
 	/**
-	 * 
 	 * @param WebElement
 	 *            field
 	 * @return 'value' attribute of given WebElement or null if 'value' attribute not found
@@ -233,7 +243,7 @@ public class WebElementUtils {
 	public static boolean isAttributeWithContent(String attribute, WebElement field) {
 		return !StringUtils.isEmpty(field.getAttribute(attribute));
 	}
-
+	
 	/**
 	 * Clears input field and sends new string
 	 * 
@@ -250,7 +260,7 @@ public class WebElementUtils {
 			throw new BFComponentStateException(field.toString(), "type '" + keys + "' into", "not editable.");
 		}
 	}
-
+	
 	/**
 	 * Method gets desired WebElement within certain parent object. Generates detailed error message when element is not
 	 * found.Generic class argument is only for warning suppression.
@@ -266,20 +276,20 @@ public class WebElementUtils {
 	 * @throws BFComponentStateException
 	 * @return WebElement matching selector
 	 */
-	public static <T> WebElement getExpectedElement(WebElement parent, By selector, Class<T> retriever,
+	public static <T> WebElement getExpectedElement(WebElement parent,
+			By selector,
+			Class<T> retriever,
 			String expectedElementDescription) {
 		WebElement e;
 		try {
 			e = parent.findElement(selector);
 		} catch (NoSuchElementException ex) {
-			throw new BFComponentStateException(
-					retriever.getSimpleName(),
-					"get " + expectedElementDescription,
+			throw new BFComponentStateException(retriever.getSimpleName(), "get " + expectedElementDescription,
 					"not found");
 		}
 		return e;
 	}
-
+	
 	/**
 	 * Checks if given element was changed (by page refresh or dynamically by script). Flow: retrieve web element
 	 * {@code webElement} than perform some action which might trigger refresh (on it) and than invoke this method to
@@ -295,7 +305,7 @@ public class WebElementUtils {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Checks if Element is link.
 	 * 
@@ -305,7 +315,7 @@ public class WebElementUtils {
 	public static boolean isLink(WebElement element) {
 		return (element.getAttribute("href") != null || element.getAttribute("url") != null);
 	}
-
+	
 	/**
 	 * Wait for end animation. For example when element 'selector' is fade in out
 	 * 
@@ -313,7 +323,8 @@ public class WebElementUtils {
 	 */
 	public static void waitForAnimationEnd(By selector) {
 		long startTime = System.currentTimeMillis();
-		WebElement sliderElement = BasePage.getDriver().findElement(selector);
+		WebElement sliderElement = BasePage.getDriver()
+				.findElement(selector);
 		String leftOffset = "";
 		while (!leftOffset.equals(sliderElement.getAttribute("style"))) {
 			if (System.currentTimeMillis() - startTime > BasePage.EXPLICITYWAITTIMER * 1000) {
@@ -324,7 +335,7 @@ public class WebElementUtils {
 		}
 		BFLogger.logTime(startTime, "waitForAnimationEnd", selector.toString());
 	}
-
+	
 	/**
 	 * Clicks on element if it is displayed, otherwise throws an exception
 	 * 
@@ -335,12 +346,14 @@ public class WebElementUtils {
 	 */
 	public static void clickIfVisible(By selector, String elementName) {
 		if (BasePage.isElementDisplayedNoException(selector)) {
-			BasePage.getDriver().findElement(selector).click();
+			BasePage.getDriver()
+					.findElement(selector)
+					.click();
 		} else {
 			throw new BFComponentStateException(elementName, "click", "element not found");
 		}
 	}
-
+	
 	/**
 	 * @return texts from elements
 	 */

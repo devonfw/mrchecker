@@ -46,7 +46,8 @@ public class DriverExtention {
 	}
 	
 	public WebElement findElementQuietly(WebElement elementToSearchIn, By by) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		
 		WebElement element = null;
 		try {
@@ -72,7 +73,8 @@ public class DriverExtention {
 	}
 	
 	public WebElement findElementDynamic(WebElement elementToSearchIn, By by) throws BFElementNotFoundException {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element;
 		if (null == elementToSearchIn) {
@@ -102,7 +104,8 @@ public class DriverExtention {
 	}
 	
 	public List<WebElement> findElementsDynamic(By by, int timeOut) throws BFElementNotFoundException {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = webDriverWait(timeOut);
 		List<WebElement> elements = new ArrayList<WebElement>();
@@ -123,7 +126,8 @@ public class DriverExtention {
 	}
 	
 	public WebElement waitForElement(final By by) throws BFElementNotFoundException {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element = null;
 		try {
@@ -142,7 +146,8 @@ public class DriverExtention {
 	}
 	
 	public WebElement waitUntilElementIsClickable(final By by) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element = null;
 		try {
@@ -156,7 +161,8 @@ public class DriverExtention {
 	}
 	
 	public WebElement waitForElementVisible(final By by) throws BFElementNotFoundException {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		
 		WebElement element = null;
@@ -211,107 +217,128 @@ public class DriverExtention {
 	}
 	
 	public Button elementButton(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new Button(selector);
 	}
 	
 	public RadioButtonElement elementRadioButton(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new RadioButtonElement(selector);
 	}
 	
 	public RadioButtonElement elementRadioButton(By selector, By childs) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new RadioButtonElement(selector, childs);
 	}
 	
 	public RadioButtonElement elementRadioButton(By selector, By childs, List<String> selectedAttributes) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new RadioButtonElement(selector, childs, selectedAttributes);
 	}
 	
 	public InputTextElement elementInputText(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new InputTextElement(selector);
 	}
 	
 	public DropdownListElement elementDropdownList(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new DropdownListElement(selector);
 	}
 	
 	public ListElements elementList(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new ListElements(selector);
 	}
 	
 	public CheckBox elementCheckbox(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new CheckBox(selector);
 	}
 	
 	public CheckBox elementCheckbox(By selector, By childs) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new CheckBox(selector, childs);
 	}
 	
 	public LabelElement elementLabel(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new LabelElement(selector);
 	}
 	
 	public TabElement elementTab(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TabElement(selector);
 	}
 	
 	public TabElement elementTab(By selector, By childs) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TabElement(selector, childs);
 	}
 	
 	public TabElement elementTab(By selector, By childs, List<String> selectedAttributes) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TabElement(selector, childs, selectedAttributes);
 	}
 	
 	public NavigationBarElement elementNavigationBar(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new NavigationBarElement(selector);
 	}
 	
 	public NavigationBarElement elementNavigationBar(By selector, By inputChildsSelector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new NavigationBarElement(selector, inputChildsSelector);
 	}
 	
 	public TooltipElement elementTooltip(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TooltipElement(selector);
 	}
 	
 	public MenuElement elementMenu(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector);
 	}
 	
 	public MenuElement elementMenu(By selector, By childsSelector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector);
 	}
 	
 	public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector, subMenuSelector);
 	}
 	
 	public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector, By childsSubMenuSelector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
 	}
 	
 	public IFrame elementIFrame(By selector) {
-		BasePage.getAnalytics().sendMethodEvent(BasePage.analitycsCategoryName);
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new IFrame(selector);
 	}
 	

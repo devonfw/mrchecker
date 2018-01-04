@@ -130,7 +130,8 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 			// Read System or maven parameters
 			setRuntimeParametersSelenium();
 			
-			// Read Environment variables either from environmnets.csv or any other input data.
+			// Read Environment variables either from environmnets.csv or any other input
+			// data.
 			setEnvironmetInstance();
 			
 			// Get analytics instance created in BaseTets
@@ -197,8 +198,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 				.getTitle();
 		if (!currentUrl.contains(url) || !pageTitle.equals(currentPageTitle)) {
 			BFLogger.logDebug(getClass().getName() + ": Current loaded page (" + url + ") with pageTitle ("
-					+ currentPageTitle + "). Page to load: (" + url
-					+ ") ,for page title: (" + pageTitle + ")");
+					+ currentPageTitle + "). Page to load: (" + url + ") ,for page title: (" + pageTitle + ")");
 			return false;
 		}
 		return true;

@@ -22,33 +22,34 @@ import com.capgemini.ntc.selenium.core.exceptions.BFInitializationException;
  * @author
  */
 public class CsvAnalyzer {
-
+	
 	private CSVParser csvParser;
 	private List<CSVRecord> csvRecords;
 	private File file;
 	private Map<String, Integer> headerMap;
-
+	
 	public CsvAnalyzer(File file) {
 		super();
 		this.file = file;
 		initialize();
 	}
-
+	
 	private void initialize() {
 		try {
 			this.csvParser = CSVParser.parse(file, Charset.defaultCharset(),
-					CSVFormat.EXCEL.withDelimiter(',').withHeader());
+					CSVFormat.EXCEL.withDelimiter(',')
+							.withHeader());
 			csvRecords = csvParser.getRecords();
 			headerMap = csvParser.getHeaderMap();
 		} catch (IOException e) {
 			throw new BFInitializationException(e, "Cannot initialize CSV Parser for file: " + file.getName());
 		}
 	}
-
+	
 	public List<CSVRecord> getRecords() {
 		return csvRecords;
 	}
-
+	
 	/**
 	 * @param columnNameToSearchIn
 	 *            - column name to search text specified by rowContentToSearch
@@ -66,10 +67,11 @@ public class CsvAnalyzer {
 	 *             if row not found or row does not contain specified column
 	 * @author
 	 */
-	public String getCellContentByRowColumn(String columnNameToSearchIn, String rowContentToSearch,
+	public String getCellContentByRowColumn(String columnNameToSearchIn,
+			String rowContentToSearch,
 			String columnNameToReturn) {
 		Integer columnIndexToReturn = headerMap.get(columnNameToReturn);
-
+		
 		CSVRecord csvRecord = getRowByRowColumn(columnNameToSearchIn, rowContentToSearch);
 		if (columnIndexToReturn >= csvRecord.size()) {
 			throw new BFElementNotFoundException(
@@ -78,7 +80,7 @@ public class CsvAnalyzer {
 			return csvRecord.get(columnIndexToReturn);
 		}
 	}
-
+	
 	/**
 	 * @param columnName
 	 *            - name of column header
@@ -88,7 +90,7 @@ public class CsvAnalyzer {
 	public List<String> getColumnContentAsList(String columnName) {
 		List<String> columnsAsList = new ArrayList<String>(csvRecords.size());
 		Integer columnIndex = headerMap.get(columnName);
-
+		
 		for (CSVRecord csvRecord : csvRecords) {
 			if (columnIndex >= csvRecord.size()) {
 				continue;
@@ -98,7 +100,7 @@ public class CsvAnalyzer {
 		}
 		return columnsAsList;
 	}
-
+	
 	/**
 	 * @param columnName
 	 *            - name of column header
@@ -112,9 +114,10 @@ public class CsvAnalyzer {
 	 */
 	public String getColumnRowValue(String columnName, int rowNumber) {
 		Integer columnIndex = headerMap.get(columnName);
-		return csvRecords.get(rowNumber).get(columnIndex);
+		return csvRecords.get(rowNumber)
+				.get(columnIndex);
 	}
-
+	
 	/**
 	 * @return Map of csv headers and their indexes
 	 * @author
@@ -122,7 +125,7 @@ public class CsvAnalyzer {
 	public Map<String, Integer> getHeader() {
 		return headerMap;
 	}
-
+	
 	/**
 	 * @return Map of csv headers and their indexes
 	 * @author
@@ -131,7 +134,7 @@ public class CsvAnalyzer {
 		Set<String> headers = headerMap.keySet();
 		return headers.toArray(new String[headers.size()]);
 	}
-
+	
 	/**
 	 * @param columnNameToSearchIn
 	 *            - column name to search text specified by rowContentToSearch
@@ -151,15 +154,15 @@ public class CsvAnalyzer {
 			if (columnIndexToSearchIn >= csvRecord.size()) {
 				continue;
 			}
-			if (csvRecord.get(columnIndexToSearchIn).equals(rowContentToSearch)) {
+			if (csvRecord.get(columnIndexToSearchIn)
+					.equals(rowContentToSearch)) {
 				return csvRecord;
 			}
 		}
-		throw new BFElementNotFoundException(
-				"Could not find row with content '" + rowContentToSearch + "' in column '" + columnNameToSearchIn
-						+ "'");
+		throw new BFElementNotFoundException("Could not find row with content '" + rowContentToSearch + "' in column '"
+				+ columnNameToSearchIn + "'");
 	}
-
+	
 	/**
 	 * @param text
 	 *            - text to search for
@@ -168,13 +171,14 @@ public class CsvAnalyzer {
 	 */
 	public boolean isFileContainsText(String text) {
 		for (CSVRecord csvRecord : csvRecords) {
-			if (csvRecord.toString().contains(text)) {
+			if (csvRecord.toString()
+					.contains(text)) {
 				return true;
 			}
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Checks if there is a row containing given value (it wont check headers)
 	 * 
@@ -192,10 +196,9 @@ public class CsvAnalyzer {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * @return True if headers and all values in file match the pattern
-	 * 
 	 * @author
 	 */
 	public boolean isEveryCellFormatValid(String pattern) {
@@ -205,7 +208,7 @@ public class CsvAnalyzer {
 				return false;
 			}
 		}
-
+		
 		// check row values
 		for (CSVRecord csvRecord : csvRecords) {
 			for (int i = 0; i < csvRecord.size(); i++) {
@@ -215,10 +218,10 @@ public class CsvAnalyzer {
 				}
 			}
 		}
-
+		
 		return true;
 	}
-
+	
 	/**
 	 * Method to get first not empty row in csv File.
 	 *
@@ -229,7 +232,9 @@ public class CsvAnalyzer {
 		List<CSVRecord> csvRecordsList = getRecords();
 		int csvStart = 0;
 		for (int i = 0; i < csvRecordsList.size(); i++) {
-			if (csvRecordsList.get(i).get(0).equals("")) {
+			if (csvRecordsList.get(i)
+					.get(0)
+					.equals("")) {
 				csvStart++;
 			} else {
 				break;
@@ -237,7 +242,7 @@ public class CsvAnalyzer {
 		}
 		return csvStart;
 	}
-
+	
 	/**
 	 * Closes resources.
 	 *
@@ -253,5 +258,5 @@ public class CsvAnalyzer {
 			}
 		}
 	}
-
+	
 }

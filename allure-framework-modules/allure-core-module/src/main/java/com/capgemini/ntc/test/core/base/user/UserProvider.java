@@ -15,27 +15,26 @@ import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
  * environment.
  * 
  * @author
- *
  */
 public class UserProvider {
-
-	private static final String USER_REPOSITORY_FILE_PATH = "/dynamicData/user_repository.json";
-	private static final String DEF_ENVIRONMENT = "DEV1";
-	private static UserProvider userProvider;
-	private Map<String, UserData> initialUserMap;
-	private Map<String, UserData> workingUserMap;
-
+	
+	private static final String		USER_REPOSITORY_FILE_PATH	= "/dynamicData/user_repository.json";
+	private static final String		DEF_ENVIRONMENT				= "DEV1";
+	private static UserProvider		userProvider;
+	private Map<String, UserData>	initialUserMap;
+	private Map<String, UserData>	workingUserMap;
+	
 	private UserProvider(String environment) throws BFInputDataException, JSONException {
 		fetchDataFromFile();
 		setEnvironment(environment);
 	}
-
+	
 	/**
 	 * Gets instance of class
 	 * 
 	 * @return
-	 * @throws JSONException 
-	 * @throws BFInputDataException 
+	 * @throws JSONException
+	 * @throws BFInputDataException
 	 */
 	public static UserProvider get() throws BFInputDataException, JSONException {
 		if (userProvider == null) {
@@ -43,12 +42,14 @@ public class UserProvider {
 		}
 		return userProvider;
 	}
-
+	
 	private void fetchDataFromFile() throws BFInputDataException, JSONException {
-		File jsonFile = new File(this.getClass().getResource(USER_REPOSITORY_FILE_PATH).getFile());
+		File jsonFile = new File(this.getClass()
+						.getResource(USER_REPOSITORY_FILE_PATH)
+						.getFile());
 		initialUserMap = MapUserFile.map(jsonFile);
 	}
-
+	
 	/**
 	 * Sets environment (e.g. "DEV1")
 	 * 
@@ -57,18 +58,19 @@ public class UserProvider {
 	public void setEnvironment(String environmentName) {
 		workingUserMap = filterByEnvironment(environmentName);
 	}
-
+	
 	private Map<String, UserData> filterByEnvironment(String environmentName) {
 		Map<String, UserData> filteredUserMap = new HashMap<String, UserData>();
 		for (Entry<String, UserData> entry : initialUserMap.entrySet()) {
-			String userEnvironment = entry.getValue().getEnvironment();
+			String userEnvironment = entry.getValue()
+							.getEnvironment();
 			if (userEnvironment.equals(environmentName)) {
 				filteredUserMap.put(entry.getKey(), entry.getValue());
 			}
 		}
 		return filteredUserMap;
 	}
-
+	
 	/**
 	 * Tries to find USER that match given predicate
 	 * 
@@ -79,7 +81,8 @@ public class UserProvider {
 		AvailableUsers availableUser = new AvailableUsers();
 		for (UserData data : workingUserMap.values()) {
 			for (AccountData accountData : data.getAccountsData()) {
-				if (accountPredicate.get().evaluate(accountData)) {
+				if (accountPredicate.get()
+								.evaluate(accountData)) {
 					availableUser.add(data);
 					break;
 				}

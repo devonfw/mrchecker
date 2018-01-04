@@ -31,6 +31,7 @@ public class BasePageTest extends BaseTest {
 		
 		@Override
 		public boolean isLoaded() {
+			
 			return false;
 		}
 		

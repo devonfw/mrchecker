@@ -61,7 +61,8 @@ public class TabTest extends BaseTest {
 	@Test
 	public void testSelectionSpecifiedItem() {
 		tabObject = BasePage.getDriver()
-				.elementTab(TabTest.tabSelector, TabTest.tabChildsSelector, TabTest.listSelectedAttributes);
+				.elementTab(TabTest.tabSelector, TabTest.tabChildsSelector,
+						TabTest.listSelectedAttributes);
 		tabObject.selectItemByIndex(1);
 		assertEquals(tabObject.getSelectedItemIndex(), 1);
 		assertTrue(tabObject.isItemSelectedByIndex(1));

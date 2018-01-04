@@ -29,7 +29,7 @@ public class SecuredProperties {
 		} catch (FileNotFoundException e) {
 			BFLogger.logError("secretData file not found loading error");
 			BFLogger.logError(e.getMessage());
-		} 
+		}
 		
 		properties = new EncryptableProperties(encryptor);
 		

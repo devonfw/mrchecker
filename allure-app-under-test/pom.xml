@@ -100,6 +100,10 @@
 
         <!-- Guava is a set of core libraries -->
         <google.guava.version>21.0</google.guava.version>
+        
+        <!-- Static analyze settings -->
+        <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
+        <style_format.directory>${pom.basedir}/../resources/style_format</style_format.directory>
 
     </properties>
 
@@ -259,6 +263,26 @@
                     </configuration>
                 </plugin>
 
+            <!-- Static Analysis Plugins -->
+            <plugin><!-- mvn java-formatter:format -->
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <version>${formatter-maven-plugin.version}</version>
+                <configuration>
+                    <configFile>${style_format.directory}/eclipse_format_code_standards.xml</configFile>
+                    <lineEnding>LF</lineEnding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id></id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
                 <!-- START REPORT SERVER -->
                 <!--Needed only to show reports locally. Run 'mvn jetty:run'

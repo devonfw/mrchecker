@@ -13,25 +13,25 @@ public enum ResolutionEnum implements IResolutionList {
 	w1600(1600, 1200),
 	w1800(1800, 1440),
 	w1920(1920, 1080);
-
+	
 	private int width;
 	private int height;
-
+	
 	private ResolutionEnum(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}
-
+	
 	public int getWidth() {
 		return width;
 	}
-
+	
 	public int getHeight() {
 		return height;
 	}
-
+	
 	public String toString() {
 		return "Widht:" + getWidth() + " Height:" + getHeight();
-
+		
 	}
 }

@@ -6,10 +6,8 @@ import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
 /**
  * @author lucst
- *	
- *	Takes values saved in /src/resources/environments/environment.csv
- *  When -Denv is not set, then it takes default DEV 
- *
+ *         Takes values saved in /src/resources/environments/environment.csv When -Denv is not set, then it takes
+ *         default DEV
  */
 public enum GetEnvironmentParam implements Url {
 	
@@ -25,14 +23,16 @@ public enum GetEnvironmentParam implements Url {
 			throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
 		}
 		
-		return BaseTest.getEnvironmentService().getServiceAddress(this.name());
+		return BaseTest.getEnvironmentService()
+						.getServiceAddress(this.name());
 		
 	}
 	
 	@Override
 	public String toString() {
+		
 		return this.getAddress();
+		
 	}
-	
 	
 }

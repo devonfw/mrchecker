@@ -69,7 +69,8 @@ public class MenuTest extends BaseTest {
 				.elementButton(MenuTest.subMenuTabSelector)
 				.click();
 		menu2Element = BasePage.getDriver()
-				.elementMenu(MenuTest.menu2Selector, MenuTest.menuChildsSelector, MenuTest.subMenuSelector);
+				.elementMenu(MenuTest.menu2Selector, MenuTest.menuChildsSelector,
+						MenuTest.subMenuSelector);
 		assertEquals(getCurrentURL() + "#", menu2Element.getSubMenuItemLinkByText("FAQ", "Sub Menu Item 3"));
 	}
 	
@@ -99,7 +100,8 @@ public class MenuTest extends BaseTest {
 				.elementButton(MenuTest.subMenuTabSelector)
 				.click();
 		menu2Element = BasePage.getDriver()
-				.elementMenu(MenuTest.menu2Selector, MenuTest.menuChildsSelector, MenuTest.subMenuSelector, MenuTest.subMenuChildsSelector);
+				.elementMenu(MenuTest.menu2Selector, MenuTest.menuChildsSelector,
+						MenuTest.subMenuSelector, MenuTest.subMenuChildsSelector);
 		menu2Element.selectSubMenuItemByText("FAQ", "Sub Menu Item 3");
 	}
 	
