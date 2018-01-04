@@ -1,6 +1,6 @@
 # Install #
 
-1. Download package [TestEnvironment](https://github.com/devonfw/devonfw-testing/releases/download/1.0.0/testing-selenium-java-applications.7z)
+1. Download package [TestEnvironment](https://github.com/devonfw/devonfw-testing/releases/download/2.1.0/Allure_Test_Framework.7z)
 2. Unzip with [7z](http://www.7-zip.org/download.html)
 3. In unzipped folder run _start-eclipse.bat_
 

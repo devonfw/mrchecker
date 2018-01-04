@@ -12,7 +12,7 @@ import com.capgemini.ntc.test.core.base.user.UserProvider;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
 public class UserProviderTest {
-
+	
 	@Test
 	public void createUserProviderSuccessfully() {
 		try {
@@ -25,7 +25,7 @@ public class UserProviderTest {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Test
 	public void changeEnvironmentToNotExistingAndReturnNoUsers() throws BFInputDataException, JSONException {
 		UserProvider userProvider = UserProvider.get();
@@ -33,7 +33,7 @@ public class UserProviderTest {
 		AvailableUsers users = userProvider.find(UserAccountPredicate.SPS_ACCOUNT);
 		assertTrue("User provider is not working properly, USERs list is not empty", users.isEmpty());
 	}
-
+	
 	@Test
 	public void changeEnvironmentToExistingAndFindMatchingUsers() throws BFInputDataException, JSONException {
 		UserProvider userProvider = UserProvider.get();

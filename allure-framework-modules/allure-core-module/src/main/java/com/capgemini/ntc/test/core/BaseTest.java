@@ -25,8 +25,8 @@ import com.google.inject.Guice;
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
 	
-	private static IEnvironmentService environmentService;
-	private final static IAnalytics analytics;
+	private static IEnvironmentService	environmentService;
+	private final static IAnalytics		analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
@@ -81,7 +81,7 @@ public abstract class BaseTest implements IBaseTest {
 	private static void setEnvironmetInstance() {
 		// Environment variables either from environmnets.csv or any other input data.
 		IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		environmetInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
 		BaseTest.setEnvironmentService(environmetInstance);
 	}
@@ -100,7 +100,7 @@ public abstract class BaseTest implements IBaseTest {
 		
 		// Get and then set properties information from settings.properties file
 		PropertiesCoreTest propertiesCoreTest = Guice.createInjector(PropertiesSettingsModule.init())
-				.getInstance(PropertiesCoreTest.class);
+						.getInstance(PropertiesCoreTest.class);
 		return propertiesCoreTest;
 	}
 	

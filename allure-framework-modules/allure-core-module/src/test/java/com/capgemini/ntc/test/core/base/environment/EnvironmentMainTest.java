@@ -9,9 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
-import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
-import com.capgemini.ntc.test.core.base.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.base.environment.providers.SpreadsheetEnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -55,8 +52,6 @@ public class EnvironmentMainTest {
 		String expectedAddress = "https://dma.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 	}
-
-
 	
 	@Test(expected = BFInputDataException.class)
 	public void getServiceAddressShouldThrowExceptionWhenServiceNotFound() {
@@ -117,7 +112,7 @@ public class EnvironmentMainTest {
 	public void envLogTest() {
 		BFLogger.logEnv("----- test -----");
 	}
-
+	
 	private AbstractModule environmentTestModel() {
 		return new AbstractModule() {
 			

@@ -26,13 +26,12 @@ import com.capgemini.ntc.selenium.core.utils.WebElementUtils;
  * Web Driver utility class
  * 
  * @author
- *
  */
 public class WdUtility {
-
+	
 	private WdUtility() {
 	}
-
+	
 	/**
 	 * Executes Java Script code to returns content of CSS property by given selector (class, id)
 	 * 
@@ -45,14 +44,16 @@ public class WdUtility {
 	 *            - e.g. content
 	 * @return
 	 */
-	public static String getStylePropertyByJS(final INewWebDriver driver, String querySelector, String pseudoElement,
+	public static String getStylePropertyByJS(final INewWebDriver driver,
+			String querySelector,
+			String pseudoElement,
 			String cssProperty) {
 		String script = "return window.getComputedStyle(document.querySelector('" + querySelector + "'),'"
 				+ pseudoElement + "').getPropertyValue('" + cssProperty + "')";
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return (String) js.executeScript(script);
 	}
-
+	
 	public static List<Date> createDateList(List<WebElement> dateElements, String pattern) throws ParseException {
 		List<Date> datesList = new ArrayList<Date>();
 		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -62,7 +63,7 @@ public class WdUtility {
 		}
 		return datesList;
 	}
-
+	
 	public static List<String> createStringList(List<WebElement> elements) {
 		List<String> stringsList = new ArrayList<String>();
 		for (WebElement el : elements) {
@@ -70,7 +71,7 @@ public class WdUtility {
 		}
 		return stringsList;
 	}
-
+	
 	/**
 	 * Compares two elements in z-axis, by comparison their CSS <i>z-index</i> values. For element which doesn't contain
 	 * z-index it assign 0 value.
@@ -100,7 +101,7 @@ public class WdUtility {
 		}
 		return -1;
 	}
-
+	
 	/**
 	 * Check if first element is over second element
 	 * 
@@ -111,7 +112,7 @@ public class WdUtility {
 	public static boolean isOverElement(WebElement firstElement, WebElement secondElement) {
 		return WdUtility.compareElementsInZAxis(firstElement, secondElement) > 0 ? true : false;
 	}
-
+	
 	/**
 	 * Checks if text is displayed inside the element
 	 * 
@@ -124,9 +125,10 @@ public class WdUtility {
 	 */
 	public static boolean isTextDisplayedInsideElement(By selector, String text) {
 		WebElement element = getDriver().findElement(selector);
-		return element.getText().contains(text);
+		return element.getText()
+				.contains(text);
 	}
-
+	
 	/**
 	 * Checks if tooltip is displayed when hovering over element
 	 * 
@@ -138,10 +140,12 @@ public class WdUtility {
 	 * @return true if tooltip is displayed, false otherwise
 	 */
 	public static boolean isTooltipDisplayed(WebElement element, WebElement tooltip) {
-		getAction().moveToElement(element).perform();
-		return !tooltip.getCssValue("display").equals("none");
+		getAction().moveToElement(element)
+				.perform();
+		return !tooltip.getCssValue("display")
+				.equals("none");
 	}
-
+	
 	/**
 	 * Checks if tooltip is displayed when hovering over element
 	 * 
@@ -156,7 +160,7 @@ public class WdUtility {
 		WebElement tooltip = WebElementUtils.hoverOnElement(element, waitForSelector);
 		return !tooltip.isDisplayed();
 	}
-
+	
 	/**
 	 * Checks if element's text matches the given format
 	 * 
@@ -174,7 +178,7 @@ public class WdUtility {
 		Matcher patternMatcher = pattern.matcher(elementText);
 		return patternMatcher.find();
 	}
-
+	
 	/**
 	 * @author
 	 * @param selectorKey
@@ -191,15 +195,18 @@ public class WdUtility {
 			BFLogger.logError("Incorrect lists - an empty map will be created");
 			return map;
 		}
-
+		
 		Iterator<WebElement> keyIterator = keys.iterator();
 		Iterator<WebElement> valueIterator = values.iterator();
 		while (keyIterator.hasNext() && valueIterator.hasNext()) {
-			map.put(keyIterator.next().getText(), valueIterator.next().getText());
+			map.put(keyIterator.next()
+					.getText(),
+					valueIterator.next()
+							.getText());
 		}
 		return map;
 	}
-
+	
 	/**
 	 * @author
 	 * @param element
@@ -214,7 +221,7 @@ public class WdUtility {
 				"var element = document.querySelector(arguments[0]); return (element.offsetWidth < element.scrollWidth);",
 				selectorForElement);
 	}
-
+	
 	/**
 	 * @author
 	 * @param selectorElement

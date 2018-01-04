@@ -15,7 +15,8 @@ public enum GetEnvironmentParam {
 			throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
 		}
 		
-		return BaseTest.getEnvironmentService().getServiceAddress(this.name());
+		return BaseTest.getEnvironmentService()
+						.getServiceAddress(this.name());
 		
 	}
 	

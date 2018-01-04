@@ -62,7 +62,8 @@ public class RadioButtonTest extends BaseTest {
 	public void testSelectionSpecifiedItem() {
 		// example of usage Radio Button with other constructor's arguments
 		maritalStatusRadioButton = BasePage.getDriver()
-				.elementRadioButton(selectorMaritalStatus, By.cssSelector("input"), Arrays.asList("selected"));
+				.elementRadioButton(selectorMaritalStatus,
+						By.cssSelector("input"), Arrays.asList("selected"));
 		maritalStatusRadioButton.selectItemByIndex(2);
 		assertEquals(maritalStatusRadioButton.getSelectedItemIndex(), 2);
 		assertTrue(maritalStatusRadioButton.isItemSelectedByIndex(2));

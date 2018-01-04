@@ -25,3 +25,7 @@ https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/
  
 #6. Deploy to local repo 
  mvn -s /d/eclipse/testing-selenium-java-applications/m2/settings.xml  clean install deploy -DskipTests=true
+ 
+ #7  Formatter
+mvn formatter:validate
+mvn formatter:format

@@ -266,14 +266,8 @@ public class TimeUtills {
 	
 	private static boolean isPassXYearsSinceGivenDate(long dateEpoch, int passYears) {
 		DateTime currentDate = new DateTime();
-		DateTime today = new DateTime(
-				currentDate.getYear(),
-				currentDate.getMonthOfYear(),
-				currentDate.getDayOfMonth(),
-				0,
-				0,
-				0,
-				0);
+		DateTime today = new DateTime(currentDate.getYear(), currentDate.getMonthOfYear(), currentDate.getDayOfMonth(),
+				0, 0, 0, 0);
 		DateTime date = new DateTime(dateEpoch * 1000L);
 		Period period = new Period(date, today);
 		int years = period.getYears();

@@ -13,5 +13,5 @@ import com.googlecode.junittoolbox.SuiteClasses;
 @ExcludeCategories({})
 @SuiteClasses({ "**/*Test.class" })
 public class TS_TestsSelenium {
-
+	
 }

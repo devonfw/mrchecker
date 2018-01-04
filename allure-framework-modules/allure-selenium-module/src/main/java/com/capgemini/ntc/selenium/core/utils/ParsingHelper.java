@@ -9,10 +9,10 @@ import org.openqa.selenium.WebElement;
 import com.capgemini.ntc.selenium.core.BasePage;
 
 public class ParsingHelper {
-
+	
 	private ParsingHelper() {
 	}
-
+	
 	/**
 	 * Finds and parses the WebElement's content as a signed decimal integer.
 	 * 
@@ -28,7 +28,8 @@ public class ParsingHelper {
 	 * @author
 	 */
 	public static int findAndParseIntFromWebElement(By by, boolean returnZeroIfContentIsNotParsable) {
-		WebElement element = BasePage.getDriver().findElementDynamic(by);
+		WebElement element = BasePage.getDriver()
+				.findElementDynamic(by);
 		try {
 			return parseInt(element.getText());
 		} catch (NumberFormatException numberFormatException) {
@@ -38,9 +39,9 @@ public class ParsingHelper {
 				throw numberFormatException;
 			}
 		}
-
+		
 	}
-
+	
 	/**
 	 * Parses the string argument as a signed decimal integer.
 	 * 
@@ -59,7 +60,7 @@ public class ParsingHelper {
 			throw new NumberFormatException("For input string: \"" + stringToParse + "\"");
 		}
 	}
-
+	
 	/**
 	 * Parses the first occurency of the substring (represented by given regex)
 	 * 
@@ -79,7 +80,7 @@ public class ParsingHelper {
 		}
 		return "";
 	}
-
+	
 	/**
 	 * Parses Option Position symbol by removing "-" sign and all digits
 	 * 

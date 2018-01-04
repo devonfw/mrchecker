@@ -9,7 +9,6 @@ import com.capgemini.ntc.selenium.pages.samples.readFromTable.EditableGridPage;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-
 public class JsoupTest extends BaseTest {
 	
 	private static EditableGridPage editableGridPage;
@@ -27,7 +26,6 @@ public class JsoupTest extends BaseTest {
 		BFLogger.logInfo("[TEST1] - Print all cells");
 		editableGridPage.printAllCells();
 	}
-	
 	
 	@Override
 	public void setUp() {

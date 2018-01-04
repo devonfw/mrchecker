@@ -17,7 +17,7 @@ import com.google.inject.name.Names;
 public class DriverManagerTest {
 	
 	private DriverManager driverManager;
-
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -25,23 +25,14 @@ public class DriverManagerTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
-
 	
 	@Before
 	public void setUp() throws Exception {
 		
-		
-		
 		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
 				.getInstance(PropertiesSelenium.class);
 		
-		
 		driverManager = new DriverManager(propertiesSelenium);
-		
-		
-	
-		
-		
 		
 	}
 	

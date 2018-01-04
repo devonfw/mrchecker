@@ -10,10 +10,7 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  */
 public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
-	BROWSER("browser", "chrome"),
-	BROWSER_VERSION("browserVersion", "8.0"),
-	SELENIUM_GRID("seleniumGrid", "false"),
-	OS("os", "windows");
+	BROWSER("browser", "chrome"), BROWSER_VERSION("browserVersion", "8.0"), SELENIUM_GRID("seleniumGrid", "false"), OS("os", "windows");
 	
 	private String paramName;
 	private String paramValue;
@@ -44,7 +41,8 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	private void setValue() {
 		
 		String paramValue = System.getProperty(this.paramName);
-		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue.toLowerCase();;
+		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue.toLowerCase();
+		;
 		
 		switch (this.name()) {
 		case "BROWSER":

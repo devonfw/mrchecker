@@ -16,9 +16,9 @@ import com.capgemini.ntc.test.core.BaseTest;
 
 @Category({ TestsSelenium.class, TestsFailed.class })
 public class RegisterOKTest extends BaseTest {
-
+	
 	private static RegistrationPage registrationPage;
-
+	
 	private static String firstName = "John";
 	private static String lastName = "Travolta";
 	private static MaritalStatus maritalStatus = MaritalStatus.SINGLE;
@@ -32,22 +32,23 @@ public class RegisterOKTest extends BaseTest {
 	private static String aboutYourself = "It's me.";
 	private static String password = "1w@e#r$W_12";
 	private static String confirmPassword = password;
-
+	
 	@Override
 	public void setUp() {
 		registrationPage = new RegistrationPage();
 	}
-
+	
 	@Override
 	public void tearDown() {
 		// TODO Auto-generated method stub
 	}
-
+	
 	@Test
 	public void Register_OK() {
 		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle().equals(PageTitlesEnum.REGISTRATION.toString()));
-
+				registrationPage.getActualPageTitle()
+						.equals(PageTitlesEnum.REGISTRATION.toString()));
+		
 		registrationPage.setFirstName(firstName);
 		registrationPage.setLastName(lastName);
 		registrationPage.setMaritalStatus(maritalStatus);
@@ -61,11 +62,11 @@ public class RegisterOKTest extends BaseTest {
 		registrationPage.setAboutYourself(aboutYourself);
 		registrationPage.setPassword(password);
 		registrationPage.setConfirmPassword(confirmPassword);
-
+		
 		registrationPage.clickSubmit();
-
+		
 		assertTrue("Username already exists", registrationPage.isRegistryErrorTextVisible());
 		return;
 	}
-
+	
 }

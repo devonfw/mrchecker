@@ -29,9 +29,9 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	private static IEnvironmentService instance;
 	
-	private List<CSVRecord> records;
-	private Map<String, String> services;
-
+	private List<CSVRecord>		records;
+	private Map<String, String>	services;
+	
 	private String path;
 	
 	private SpreadsheetEnvironmentService(String path, String environmentName) {
@@ -43,7 +43,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	public static IEnvironmentService init() {
 		String path = SpreadsheetEnvironmentService.class.getResource("")
-				.getPath() + "/environments/environments.csv";
+						.getPath() + "/environments/environments.csv";
 		String environment = "DEV";
 		return init(path, environment);
 	}
@@ -83,10 +83,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	public String getServiceAddress(String serviceName) {
 		String serviceAddress = services.get(serviceName);
 		if (serviceAddress == null) {
-			throw new BFInputDataException(
-					"service " + serviceName + " " +
-							"retrieve address of" + " " +
-							"not found in available services table");
+			throw new BFInputDataException("service " + serviceName + " " + "retrieve address of" + " " + "not found in available services table");
 		}
 		return serviceAddress;
 	}
@@ -112,7 +109,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			CSVRecord record = it.next();
 			String key = record.get(0);
 			String value = record.get(environmentNumber)
-					.trim();
+							.trim();
 			value = formatAddress(value);
 			services.put(key, value);
 		}

@@ -3,21 +3,21 @@ package com.capgemini.ntc.test.core.utils;
 import java.util.Comparator;
 
 public class StringComparator implements Comparator<String> {
-
+	
 	private String specials;
 	private String coreSymbol;
-
+	
 	public StringComparator(String specials, String coreSymbol) {
 		this.specials = specials;
 		this.coreSymbol = coreSymbol;
 	}
-
+	
 	public int compare(String wordA, String wordB) {
 		int length;
 		int result;
 		char charA;
 		char charB;
-
+		
 		// compare base symbol with non-base symbol
 		if (wordA.matches(coreSymbol) && !wordB.matches(coreSymbol)) {
 			return -1;
@@ -28,16 +28,16 @@ public class StringComparator implements Comparator<String> {
 		if (wordA.matches("N/A")) {
 			return -1;
 		}
-
+		
 		if (wordA.length() > wordB.length()) {
 			length = wordB.length();
 		} else {
 			length = wordA.length();
 		}
-
+		
 		wordA = removeHyphenFromBeginning(wordA);
 		wordB = removeHyphenFromBeginning(wordB);
-
+		
 		for (int i = 0; i < length; i++) {
 			charA = wordA.charAt(i);
 			charB = wordB.charAt(i);
@@ -58,7 +58,7 @@ public class StringComparator implements Comparator<String> {
 		}
 		return Integer.compare(wordA.length(), wordB.length());
 	}
-
+	
 	private String removeHyphenFromBeginning(String string) {
 		if (string.charAt(0) == '-') {
 			return string.substring(1, string.length());
