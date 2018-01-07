@@ -33,7 +33,8 @@ public class InputTextTest extends BaseTest {
 		// verify if input text is displayed
 		assertTrue(inputElement.isDisplayed());
 		
-		// clear current text and verify (what to call getValue() or getText() depends on implementation)
+		// clear current text and verify (what to call getValue() or getText() depends
+		// on implementation)
 		inputElement.clearInputText();
 		assertEquals("", inputElement.getValue());
 		

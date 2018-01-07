@@ -19,10 +19,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  * @author
  */
 public class DateUtils {
-
+	
 	private DateUtils() {
 	}
-
+	
 	// 12 hours format with AM/PM
 	public static final String TIME_12H_REGEX = "(1[012]|[1-9]):[0-5][0-9](\\s)?(?i) (AM|PM)";
 	// MM/DD/YYYY regexp
@@ -34,10 +34,10 @@ public class DateUtils {
 	public static final String US_DATE_FORMAT = "MM/dd/yyyy";
 	public static final String[] MOTHS = new String[] { "January", "February", "March", "April", "May", "June", "July",
 			"August", "September", "October", "November", "December" };
-
+	
 	private static final String HTTP_RESPONSE_DATE_REGEX = "(\\w+,\\s\\d{1,2}\\s\\w+\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s\\w{2,6})";
 	private static final String HTTP_RESPONSE_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss zzz";
-
+	
 	/**
 	 * Matches date with MM/DD/YYYY pattern
 	 * 
@@ -46,7 +46,7 @@ public class DateUtils {
 	public static boolean matchDate(String date) {
 		return DateUtils.matchDate(date, DATE_REGEX);
 	}
-
+	
 	/**
 	 * Matches date with MM/DD/YYYY pattern
 	 * 
@@ -54,9 +54,10 @@ public class DateUtils {
 	 */
 	public static boolean matchDate(String date, String regex) {
 		Pattern pattern = Pattern.compile(regex);
-		return pattern.matcher(date).matches();
+		return pattern.matcher(date)
+				.matches();
 	}
-
+	
 	public static boolean areDatesOrdered(List<Date> dates, Utility.SortOrder sortOrder) {
 		if (dates.isEmpty()) {
 			throw new IllegalArgumentException("Dates list can't be empty");
@@ -73,7 +74,7 @@ public class DateUtils {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * Converts String representing month (first three letters of month name i.e Jan, Feb and so on) to number from 1 to
 	 * 12
@@ -92,7 +93,7 @@ public class DateUtils {
 		cal.setTime(date);
 		return cal.get(Calendar.MONTH);
 	}
-
+	
 	/**
 	 * Converts String representing date in following format: MM/DD/YYYY to Calendar object
 	 * 
@@ -109,22 +110,22 @@ public class DateUtils {
 		calendar.setTime(formattedDate);
 		return calendar;
 	}
-
+	
 	public static Calendar convertDateToCalendar(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		return calendar;
 	}
-
+	
 	public static String getCurrentDateInUsFormat() {
 		return getCurrentDate(US_DATE_FORMAT);
 	}
-
+	
 	public static String getCurrentDate(String dateFormatStr) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatStr);
 		return dateFormat.format(new Date());
 	}
-
+	
 	/**
 	 * Check if given string contains date in format dd/mm/yyyy
 	 * 
@@ -137,7 +138,7 @@ public class DateUtils {
 		Matcher matcher = p.matcher(toCheck);
 		return matcher.find();
 	}
-
+	
 	public static int compareDatesWithoutTime(Date date1, Date date2) {
 		Calendar c1 = convertDateToCalendar(date1);
 		Calendar c2 = convertDateToCalendar(date2);
@@ -147,7 +148,7 @@ public class DateUtils {
 			return c1.get(Calendar.MONTH) - c2.get(Calendar.MONTH);
 		return c1.get(Calendar.DAY_OF_MONTH) - c2.get(Calendar.DAY_OF_MONTH);
 	}
-
+	
 	/**
 	 * @param text
 	 *            to check for date
@@ -155,9 +156,10 @@ public class DateUtils {
 	 * @throws ParseException
 	 */
 	public static Calendar getFirstDateFromString(String text) throws ParseException {
-		Matcher matcher = Pattern.compile(COMMON_DATE_REGEX).matcher(text);
+		Matcher matcher = Pattern.compile(COMMON_DATE_REGEX)
+				.matcher(text);
 		matcher.find();
 		return convertStringToCalendar(matcher.group());
 	}
-
+	
 }

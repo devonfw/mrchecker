@@ -223,7 +223,9 @@ public final class NewPhantomJSDriver extends PhantomJSDriver implements INewWeb
 	}
 	
 	@Override
-	public RadioButtonElement elementRadioButton(By selector, By inputChildsSelector, List<String> listSelectedAttributes) {
+	public RadioButtonElement elementRadioButton(By selector,
+			By inputChildsSelector,
+			List<String> listSelectedAttributes) {
 		return driverExtention.elementRadioButton(selector, inputChildsSelector, listSelectedAttributes);
 	}
 	

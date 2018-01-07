@@ -15,7 +15,7 @@ import com.googlecode.junittoolbox.ExcludeCategories;
 import com.googlecode.junittoolbox.IncludeCategories;
 
 class CategoriesFilterBF extends Filter {
-
+	
 	static CategoriesFilterBF forTestSuite(Class<?> testSuiteClass) {
 		List<Class<?>> includedCategories = new ArrayList<Class<?>>();
 		List<Class<?>> excludedCategories = new ArrayList<Class<?>>();
@@ -35,18 +35,17 @@ class CategoriesFilterBF extends Filter {
 		if (excludeCategoriesAnnotation != null) {
 			excludedCategories.addAll(Arrays.asList(excludeCategoriesAnnotation.value()));
 		}
-		return (includedCategories.isEmpty() && excludedCategories.isEmpty() ? null
-				: new CategoriesFilterBF(includedCategories, excludedCategories));
+		return (includedCategories.isEmpty() && excludedCategories.isEmpty() ? null : new CategoriesFilterBF(includedCategories, excludedCategories));
 	}
-
+	
 	private final List<Class<?>> includedCategories = new ArrayList<Class<?>>();
 	private final List<Class<?>> excludedCategories = new ArrayList<Class<?>>();
-
+	
 	private CategoriesFilterBF(Collection<Class<?>> includedCategories, Collection<Class<?>> excludedCategories) {
 		this.includedCategories.addAll(includedCategories);
 		this.excludedCategories.addAll(excludedCategories);
 	}
-
+	
 	@Override
 	public String describe() {
 		StringBuilder sb = new StringBuilder();
@@ -64,7 +63,7 @@ class CategoriesFilterBF extends Filter {
 		}
 		return sb.toString();
 	}
-
+	
 	@Override
 	public boolean shouldRun(Description description) {
 		if (hasCorrectCategoryAnnotation(description)) {
@@ -77,7 +76,7 @@ class CategoriesFilterBF extends Filter {
 		}
 		return false;
 	}
-
+	
 	private boolean hasCorrectCategoryAnnotation(Description description) {
 		List<Class<?>> categories = categories(description);
 		if (categories.isEmpty()) {
@@ -109,14 +108,14 @@ class CategoriesFilterBF extends Filter {
 		// Test has no included category ...
 		return false;
 	}
-
+	
 	private List<Class<?>> categories(Description description) {
 		ArrayList<Class<?>> categories = new ArrayList<Class<?>>();
 		categories.addAll(Arrays.asList(directCategories(description)));
 		categories.addAll(Arrays.asList(directCategories(parentDescription(description))));
 		return categories;
 	}
-
+	
 	private Description parentDescription(Description description) {
 		Class<?> testClass = description.getTestClass();
 		if (testClass == null) {
@@ -124,7 +123,7 @@ class CategoriesFilterBF extends Filter {
 		}
 		return Description.createSuiteDescription(testClass);
 	}
-
+	
 	private Class<?>[] directCategories(Description description) {
 		if (description == null) {
 			return new Class<?>[0];

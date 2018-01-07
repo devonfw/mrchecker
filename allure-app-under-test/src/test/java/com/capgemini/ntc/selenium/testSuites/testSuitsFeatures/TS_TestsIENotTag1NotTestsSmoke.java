@@ -11,4 +11,5 @@ import com.googlecode.junittoolbox.SuiteClasses;
 @RunWith(WildcardPatternSuiteBF.class)
 @ExcludeCategories({ TestsTag1.class, TestsSmoke.class })
 @SuiteClasses({ "**/*Test.class" })
-public class TS_TestsIENotTag1NotTestsSmoke {}
+public class TS_TestsIENotTag1NotTestsSmoke {
+}

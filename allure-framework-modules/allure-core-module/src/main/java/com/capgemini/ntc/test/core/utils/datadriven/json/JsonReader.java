@@ -12,11 +12,11 @@ import org.json.JSONObject;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
 public class JsonReader {
-
+	
 	private JsonReader() {
 		// NOP
 	}
-
+	
 	/**
 	 * Reads JSON file and return it's
 	 * 
@@ -39,5 +39,5 @@ public class JsonReader {
 		}
 		return jsonObject;
 	}
-
+	
 }

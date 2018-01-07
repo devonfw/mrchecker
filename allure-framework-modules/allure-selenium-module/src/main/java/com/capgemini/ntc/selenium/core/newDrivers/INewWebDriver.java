@@ -184,7 +184,9 @@ public interface INewWebDriver extends WebDriver {
 	
 	RadioButtonElement elementRadioButton(final By selector, final By inputChildsSelector);
 	
-	RadioButtonElement elementRadioButton(final By selector, final By inputChildsSelector, final List<String> listSelectedAttributes);
+	RadioButtonElement elementRadioButton(final By selector,
+			final By inputChildsSelector,
+			final List<String> listSelectedAttributes);
 	
 	/**
 	 * Operations on Input Text field
@@ -241,7 +243,10 @@ public interface INewWebDriver extends WebDriver {
 	
 	MenuElement elementMenu(final By selector, final By childsSelector, final By subMenuSelector);
 	
-	MenuElement elementMenu(final By selector, final By childsSelector, final By subMenuSelector, final By childsSubMenuSelector);
+	MenuElement elementMenu(final By selector,
+			final By childsSelector,
+			final By subMenuSelector,
+			final By childsSubMenuSelector);
 	
 	/**
 	 * Operations on iFrame

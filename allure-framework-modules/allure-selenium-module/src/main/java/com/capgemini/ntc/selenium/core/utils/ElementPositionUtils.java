@@ -15,14 +15,15 @@ import org.openqa.selenium.WebElement;
  * @author
  */
 public class ElementPositionUtils {
-
+	
 	private ElementPositionUtils() {
 	}
-
+	
 	public static boolean isElementNextToEdge(WebElement element, EdgesEnum edge) {
-		return element.getCssValue(edge.toString()).equals("0px");
+		return element.getCssValue(edge.toString())
+				.equals("0px");
 	}
-
+	
 	/**
 	 * Method checks if second element is in given relation to first element considering X coordinate
 	 * 
@@ -34,13 +35,16 @@ public class ElementPositionUtils {
 	 *            relation of a second element to first one
 	 * @return true if two elements are placed in given relation
 	 */
-	public static boolean isElementsPositionRelatedX(By selectorFirst, By selectorSecond,
+	public static boolean isElementsPositionRelatedX(By selectorFirst,
+			By selectorSecond,
 			RelatedPositionEnum position) {
-		WebElement elementFirst = BasePage.getDriver().findElement(selectorFirst);
-		WebElement elementSecond = BasePage.getDriver().findElement(selectorSecond);
+		WebElement elementFirst = BasePage.getDriver()
+				.findElement(selectorFirst);
+		WebElement elementSecond = BasePage.getDriver()
+				.findElement(selectorSecond);
 		return ElementPositionUtils.isElementsPositionRelatedX(elementFirst, elementSecond, position);
 	}
-
+	
 	/**
 	 * Method checks if second element is in given relation to first element considering Y coordinate
 	 * 
@@ -52,13 +56,16 @@ public class ElementPositionUtils {
 	 *            relation of a second element to first one
 	 * @return true if two elements are placed in given relation
 	 */
-	public static boolean isElementsPositionRelatedY(By selectorFirst, By selectorSecond,
+	public static boolean isElementsPositionRelatedY(By selectorFirst,
+			By selectorSecond,
 			RelatedPositionEnum position) {
-		WebElement elementFirst = BasePage.getDriver().findElement(selectorFirst);
-		WebElement elementSecond = BasePage.getDriver().findElement(selectorSecond);
+		WebElement elementFirst = BasePage.getDriver()
+				.findElement(selectorFirst);
+		WebElement elementSecond = BasePage.getDriver()
+				.findElement(selectorSecond);
 		return ElementPositionUtils.isElementsPositionRelatedY(elementFirst, elementSecond, position);
 	}
-
+	
 	/**
 	 * Method checks if second element is in given relation to first element considering X coordinate
 	 * 
@@ -74,10 +81,14 @@ public class ElementPositionUtils {
 	 * @throws BFElementNotFoundException
 	 *             if elements do not exist
 	 */
-	public static boolean isElementsPositionRelatedX(By selectorFirst, By selectorSecond, WebElement scope,
+	public static boolean isElementsPositionRelatedX(By selectorFirst,
+			By selectorSecond,
+			WebElement scope,
 			RelatedPositionEnum position) {
-		WebElement elementFirst = BasePage.getDriver().findElementQuietly(scope, selectorFirst);
-		WebElement elementSecond = BasePage.getDriver().findElementQuietly(scope, selectorSecond);
+		WebElement elementFirst = BasePage.getDriver()
+				.findElementQuietly(scope, selectorFirst);
+		WebElement elementSecond = BasePage.getDriver()
+				.findElementQuietly(scope, selectorSecond);
 		if (elementFirst == null) {
 			throw new BFElementNotFoundException(selectorFirst);
 		}
@@ -86,7 +97,7 @@ public class ElementPositionUtils {
 		}
 		return ElementPositionUtils.isElementsPositionRelatedX(elementFirst, elementSecond, position);
 	}
-
+	
 	/**
 	 * Method checks if second element is in given relation to first element considering Y coordinate
 	 * 
@@ -98,10 +109,13 @@ public class ElementPositionUtils {
 	 *            relation of a second element to first one
 	 * @return true if two elements are placed in given relation
 	 */
-	public static boolean isElementsPositionRelatedY(WebElement elementFirst, WebElement elementSecond,
+	public static boolean isElementsPositionRelatedY(WebElement elementFirst,
+			WebElement elementSecond,
 			RelatedPositionEnum position) {
-		int firstElementY = elementFirst.getLocation().getY();
-		int secondElementY = elementSecond.getLocation().getY();
+		int firstElementY = elementFirst.getLocation()
+				.getY();
+		int secondElementY = elementSecond.getLocation()
+				.getY();
 		if (position == RelatedPositionEnum.INLINE) {
 			return firstElementY == secondElementY;
 		} else if (position == RelatedPositionEnum.ABOVE) {
@@ -111,7 +125,7 @@ public class ElementPositionUtils {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Method checks if second element is in given relation to first element considering X coordinate
 	 * 
@@ -123,10 +137,13 @@ public class ElementPositionUtils {
 	 *            relation of a second element to first one
 	 * @return true if two elements are placed in given relation
 	 */
-	public static boolean isElementsPositionRelatedX(WebElement elementFirst, WebElement elementSecond,
+	public static boolean isElementsPositionRelatedX(WebElement elementFirst,
+			WebElement elementSecond,
 			RelatedPositionEnum position) {
-		int firstElementX = elementFirst.getLocation().getX();
-		int secondElementX = elementSecond.getLocation().getX();
+		int firstElementX = elementFirst.getLocation()
+				.getX();
+		int secondElementX = elementSecond.getLocation()
+				.getX();
 		if (position == RelatedPositionEnum.INLINE) {
 			return firstElementX == secondElementX;
 		} else if (position == RelatedPositionEnum.BEFORE) {
@@ -136,7 +153,7 @@ public class ElementPositionUtils {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Method checks if WebElement is in Right-Top corner of the screen
 	 * 
@@ -146,11 +163,15 @@ public class ElementPositionUtils {
 	 */
 	public static boolean isOnRightTopCorner(WebElement element) {
 		ScrollUtils.scrollToTop();
-		int elementPositonX = element.getLocation().getX();
+		int elementPositonX = element.getLocation()
+				.getX();
 		int screenWidthMiddle = WindowUtils.getScreenWidth(DriverManager.getDriver()) / 2;
-		int elementPositonY = element.getLocation().getY() + element.getSize().getHeight();
+		int elementPositonY = element.getLocation()
+				.getY()
+				+ element.getSize()
+						.getHeight();
 		int screenHeightMiddle = WindowUtils.getScreenHeight(DriverManager.getDriver()) / 2;
 		return elementPositonX >= screenWidthMiddle && elementPositonY <= screenHeightMiddle;
 	}
-
+	
 }

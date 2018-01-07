@@ -19,21 +19,21 @@ import com.google.common.io.Files;
 
 public class BFLoggerInstance {
 	
-	private final String FBEGIN = "Function: ";
-	private final String FEND = "END";
+	private final String	FBEGIN	= "Function: ";
+	private final String	FEND	= "END";
 	
 	static {
 		Logger.getRootLogger()
-				.removeAppender("console");
+						.removeAppender("console");
 	}
 	
-	private static final String logPattern = "%d{yyyy-MM-dd 'at' HH:mm:ss z} %M - %m%x%n";
-	private static final Level loggerLevel = Level.DEBUG;
+	private static final String	logPattern	= "%d{yyyy-MM-dd 'at' HH:mm:ss z} %M - %m%x%n";
+	private static final Level	loggerLevel	= Level.DEBUG;
 	
-	private File directory;
-	private File logFile;
-	private String appenderName;
-	private Logger logger;
+	private File	directory;
+	private File	logFile;
+	private String	appenderName;
+	private Logger	logger;
 	
 	protected BFLoggerInstance() {
 	}
@@ -67,7 +67,7 @@ public class BFLoggerInstance {
 		FileAppender appender;
 		try {
 			String envLogName = getLogFile().getPath()
-					.replace(".log", "_env.log");
+							.replace(".log", "_env.log");
 			appender = new FileAppender(patternLayout, envLogName, true);
 			appender.setName("EnvRollingFile");
 			appender.setThreshold(EnvironmentLevel.ENVIRONMENT);
@@ -132,7 +132,7 @@ public class BFLoggerInstance {
 	private String getAppenderName() {
 		if (appenderName == null) {
 			appenderName = Thread.currentThread()
-					.getName();
+							.getName();
 		}
 		return appenderName;
 	}

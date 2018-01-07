@@ -13,15 +13,14 @@ import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
  * This class extends apache StringUtils and contains utility methods related to string operations.
  * 
  * @author
- *
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
-
+	
 	private StringUtils() {
 	}
-
+	
 	private static final Pattern pattern = Pattern.compile(".*\\(([^)]+)\\).*");
-
+	
 	/**
 	 * Checks if texts matches regex
 	 * 
@@ -32,9 +31,10 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 */
 	public static boolean isTextMatchesRegex(String textToMatch, String regex) {
 		Pattern pattern = Pattern.compile(regex);
-		return pattern.matcher(textToMatch).find();
+		return pattern.matcher(textToMatch)
+				.find();
 	}
-
+	
 	/**
 	 * Searches for occurrence of first regex group in textToMatch
 	 * 
@@ -46,7 +46,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	public static String findSubstring(String textToMatch, String regex) {
 		return findSubstring(textToMatch, regex, 1);
 	}
-
+	
 	/**
 	 * Searches for occurrence of regex in textToMatch
 	 * 
@@ -63,15 +63,14 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		if (patternMatcher.find()) {
 			int groupCount = patternMatcher.groupCount();
 			if (groupNumber > groupCount) {
-				throw new BFInputDataException(
-						"Unable to return group number " + groupNumber + ". Only " + groupCount
-								+ " groups were found for regex \"" + regex + "\" in text \"" + textToMatch + "\".");
+				throw new BFInputDataException("Unable to return group number " + groupNumber + ". Only " + groupCount
+						+ " groups were found for regex \"" + regex + "\" in text \"" + textToMatch + "\".");
 			}
 			return patternMatcher.group(groupNumber);
 		}
 		return "";
 	}
-
+	
 	/**
 	 * Searches for occurrences of regex in textToMatch
 	 * 
@@ -89,23 +88,22 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		while (patternMatcher.find()) {
 			int groupCount = patternMatcher.groupCount();
 			if (groupNumber > groupCount) {
-				throw new BFInputDataException(
-						"Unable to return group number " + groupNumber + ". Only " + groupCount
-								+ " groups were found for regex \"" + regex + "\" in text \"" + textToMatch + "\".");
+				throw new BFInputDataException("Unable to return group number " + groupNumber + ". Only " + groupCount
+						+ " groups were found for regex \"" + regex + "\" in text \"" + textToMatch + "\".");
 			}
 			toReturn.add(patternMatcher.group(groupNumber));
 		}
 		return toReturn;
 	}
-
+	
 	/**
-	 * 
 	 * @return true if font in is bold.
 	 */
 	public static boolean isFontBold(WebElement text) {
-		return text.getCssValue("font-weight").contains("bold");
+		return text.getCssValue("font-weight")
+				.contains("bold");
 	}
-
+	
 	/**
 	 * checks if there is a text in brackets "(xxx)" at the end of String and cuts it with trailing whitespaces
 	 * 

@@ -28,13 +28,12 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
  * speeds up searching for given values or WebElements a lot.
  * 
  * @author
- *
  */
 public class JsoupHelper {
-
+	
 	private JsoupHelper() {
 	}
-
+	
 	/**
 	 * Returns texts from <b>all (both visible and invisible)</b> WebElements specified by {@code toSearch selector} and
 	 * all of its <b>children</b>. <br>
@@ -50,7 +49,7 @@ public class JsoupHelper {
 		Document doc = initDocument(searchArea);
 		return getTexts(toSearch, doc);
 	}
-
+	
 	/**
 	 * Returns texts from <b>all (both visible and invisible)</b> WebElements specified by {@code toSearch selector} and
 	 * all of its <b>children</b> <br>
@@ -64,7 +63,7 @@ public class JsoupHelper {
 		Document doc = initDocument();
 		return getTexts(toSearch, doc);
 	}
-
+	
 	/**
 	 * Returns texts <b>directly</b> from <b>all (both visible and invisible)</b> WebElements specified by
 	 * {@code toSearch selector}. <br>
@@ -80,7 +79,7 @@ public class JsoupHelper {
 		Document doc = initDocument(searchArea);
 		return getOwnTexts(toSearch, doc);
 	}
-
+	
 	/**
 	 * Returns texts <b>directly</b> from <b>all (both visible and invisible)</b> WebElements specified by
 	 * {@code toSearch selector}. <br>
@@ -94,7 +93,7 @@ public class JsoupHelper {
 		Document doc = initDocument();
 		return getOwnTexts(toSearch, doc);
 	}
-
+	
 	/**
 	 * Returns {@code attribute} from <b>all (both visible and invisible)</b> WebElements specified by
 	 * {@code toSearch selector}
@@ -112,7 +111,7 @@ public class JsoupHelper {
 		Document doc = initDocument(searchArea);
 		return getAttributes(toSearch, attribute, doc);
 	}
-
+	
 	/**
 	 * Tries to find text within given web element. Note: To provide reliable information, passed web element should
 	 * contain as small as possible area of page.
@@ -135,7 +134,7 @@ public class JsoupHelper {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Returns {@code attribute} from <b>all (both visible and invisible)</b> WebElements specified by
 	 * {@code toSearch selector}
@@ -150,7 +149,7 @@ public class JsoupHelper {
 		Document doc = initDocument();
 		return getAttributes(toSearch, attribute, doc);
 	}
-
+	
 	/**
 	 * Tries to retrieve full CSS selectors for given text found in elements localized by By parameter
 	 * 
@@ -164,7 +163,7 @@ public class JsoupHelper {
 		By elementToCheck = By.cssSelector("*");
 		return getSelectors(elementToReturn, elementToCheck, valueToCheck);
 	}
-
+	
 	/**
 	 * Returns selectors to WebElements specified by {@code elementToReturn}, with {@code text} in WebElement specified
 	 * by {@code elementToCheck}. <br>
@@ -181,11 +180,13 @@ public class JsoupHelper {
 		List<String> result = new ArrayList<String>();
 		Document doc = initDocument();
 		String selector = createStringSelector(elementToReturn);
-
-		Elements rowListE = doc.body().select(selector);
+		
+		Elements rowListE = doc.body()
+				.select(selector);
 		for (Element row : rowListE) {
 			String selectorOfElementTocheck = createStringSelector(elementToCheck);
-			String containsQuery = valueToCheck == null || valueToCheck.isEmpty() ? ""
+			String containsQuery = valueToCheck == null || valueToCheck.isEmpty()
+					? ""
 					: ":contains(" + valueToCheck + ")";
 			Elements returnCandidates = row.select(selectorOfElementTocheck + containsQuery);
 			if (!returnCandidates.isEmpty())
@@ -193,7 +194,7 @@ public class JsoupHelper {
 		}
 		return result;
 	}
-
+	
 	/**
 	 * Returns WebElements specified by {@code elementToReturn}, with {@code text} in WebElement specified by
 	 * {@code elementToCheck}. <br>
@@ -213,7 +214,7 @@ public class JsoupHelper {
 		List<String> selectors = getSelectors(elementToReturn, elementToCheck, text);
 		return getElements(text, selectors);
 	}
-
+	
 	/**
 	 * Returns WebElements specified by {@code elementToReturn}, with desired {@code text}. <br>
 	 * Example: this method can return rows from table, which contain desired value anywhere in row
@@ -230,14 +231,14 @@ public class JsoupHelper {
 		List<String> selectors = getSelectors(elementToReturn, text);
 		return getElements(text, selectors);
 	}
-
+	
 	private static List<String> getTexts(By toSearch, Document doc) {
 		String selector = createStringSelector(toSearch);
 		Element body = doc.body();
 		Elements elements = body.select(selector);
 		return getTextsFromElements(elements);
 	}
-
+	
 	private static List<String> getTextsFromElements(Elements elements) {
 		List<String> result = new ArrayList<String>();
 		for (Element element : elements) {
@@ -246,7 +247,7 @@ public class JsoupHelper {
 		}
 		return result;
 	}
-
+	
 	private static List<String> getOwnTexts(By toSearch, Document doc) {
 		String selector = createStringSelector(toSearch);
 		List<String> result = new ArrayList<String>();
@@ -257,7 +258,7 @@ public class JsoupHelper {
 		}
 		return result;
 	}
-
+	
 	private static List<WebElement> getElements(String text, List<String> selectors) {
 		if (selectors.isEmpty()) {
 			throw new BFElementNotFoundException("Element with text [" + text + "] not found.");
@@ -265,12 +266,13 @@ public class JsoupHelper {
 		List<WebElement> elementsToReturn = new ArrayList<WebElement>();
 		for (String selector : selectors) {
 			By elementSelector = By.cssSelector(selector);
-			WebElement foundElement = BasePage.getDriver().findElement(elementSelector);
+			WebElement foundElement = BasePage.getDriver()
+					.findElement(elementSelector);
 			elementsToReturn.add(foundElement);
 		}
 		return elementsToReturn;
 	}
-
+	
 	private static List<String> getAttributes(By toSearch, String attribute, Document doc) {
 		List<String> result = new ArrayList<String>();
 		String selector = createStringSelector(toSearch);
@@ -285,7 +287,7 @@ public class JsoupHelper {
 		}
 		return result;
 	}
-
+	
 	private static Document initDocument(WebElement searchArea) {
 		String innerHtml = searchArea.getAttribute("innerHTML");
 		if (isConversionToTableRequired(innerHtml)) {
@@ -296,7 +298,7 @@ public class JsoupHelper {
 		Document doc = Jsoup.parse("<html><body>" + innerHtml + "</body></html>");
 		return doc;
 	}
-
+	
 	private static boolean isConversionToTableRequired(String innerHtml) {
 		String[] tableIdentifiers = { "<table", "<thead", "<tbody", "<tr", "<td" };
 		if (innerHtml.contains(tableIdentifiers[0])) {
@@ -309,12 +311,12 @@ public class JsoupHelper {
 		}
 		return false;
 	}
-
+	
 	private static String convertToTable(String innerHtml) {
 		innerHtml = "<table>" + innerHtml + "</table>";
 		return innerHtml;
 	}
-
+	
 	private static boolean isConversionToListRequired(String innerHtml) {
 		if (innerHtml.contains("<ul") && innerHtml.contains("<ol")) {
 			return false;
@@ -324,25 +326,27 @@ public class JsoupHelper {
 		}
 		return false;
 	}
-
+	
 	private static String convertToList(String innerHtml) {
 		innerHtml = "<ul>" + innerHtml + "</ul>";
 		return innerHtml;
 	}
-
+	
 	private static Document initDocument() {
-		Document doc = Jsoup.parse(BasePage.getDriver().getPageSource());
+		Document doc = Jsoup.parse(BasePage.getDriver()
+				.getPageSource());
 		return doc;
 	}
-
+	
 	private static String createStringSelector(By from) {
 		String selector = from.toString();
-		int substringBegin = from.toString().indexOf(":") + 2;
+		int substringBegin = from.toString()
+				.indexOf(":") + 2;
 		selector = selector.substring(substringBegin);
 		selector = removeQuotes(selector);
 		return selector;
 	}
-
+	
 	private static String removeQuotes(String selector) {
 		String openingQuote = "=\\s*'";
 		String closingQuote = "'\\s*\\]";
@@ -350,5 +354,5 @@ public class JsoupHelper {
 		selector = selector.replaceAll(closingQuote, "]");
 		return selector;
 	}
-
+	
 }

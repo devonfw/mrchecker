@@ -9,16 +9,15 @@ public enum RuntimeParametersCore implements RuntimeParametersI {
 	
 	ENV("env", "DEV");
 	
-	private String paramName;
-	private String paramValue;
-	private String defaultValue;
+	private String	paramName;
+	private String	paramValue;
+	private String	defaultValue;
 	
 	private RuntimeParametersCore(String paramName, String defaultValue) {
 		this.paramName = paramName;
 		this.defaultValue = defaultValue;
 		setValue();
 	}
-
 	
 	@Override
 	public String getValue() {
@@ -41,6 +40,6 @@ public enum RuntimeParametersCore implements RuntimeParametersI {
 	}
 	
 	private boolean isSystemParameterEmpty(String systemParameterValue) {
-		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue) );
+		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue));
 	}
 }

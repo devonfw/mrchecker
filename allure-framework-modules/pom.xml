@@ -40,6 +40,7 @@
     <modules>
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
+        <!-- <module>build-tools</module> -->
     </modules>
 
 
@@ -53,7 +54,8 @@
 
 
     <distributionManagement>
-        <!-- Repository used as default deploy phase. If you like to deploy to Maven Central, then use profile release - "mvn -P release" -->
+        <!-- Repository used as default deploy phase. If you like to deploy
+            to Maven Central, then use profile release - "mvn -P release" -->
         <repository>
             <id>Local repository</id>
             <url>file://${env.BASE_PATH}/m2/repository</url>
@@ -91,6 +93,10 @@
 
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
+
+        <!-- Static analyze settings -->
+        <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
+        <style_format.directory>${pom.basedir}/../../resources/style_format</style_format.directory>
 
     </properties>
 
@@ -216,6 +222,29 @@
                     </configuration>
                 </plugin>
 
+                <!-- STATIC ANALYZE -->
+                <plugin><!-- mvn formatter:format OR mvn formatter:validate -->
+                    <groupId>net.revelc.code.formatter</groupId>
+                    <artifactId>formatter-maven-plugin</artifactId>
+                    <version>${formatter-maven-plugin.version}</version>
+                    <configuration>
+                        <configFile>${style_format.directory}/eclipse_format_code_standards.xml</configFile>
+                        <!--<lineEnding>LF</lineEnding>-->
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <compilerSource>${java.compiler.version}</compilerSource>
+                        <compilerCompliance>${java.compiler.version}</compilerCompliance>
+                        <compilerTargetPlatform>${java.compiler.version}</compilerTargetPlatform>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id></id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>validate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
                 <!-- START REPORT SERVER -->
                 <!--Needed only to show reports locally. Run 'mvn jetty:run'
