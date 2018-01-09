@@ -1,8 +1,8 @@
-package com.capgemini.ntc.core.datadriven;
+package com.capgemini.ntc.core.datadriven.person_example;
 
 import java.util.List;
 
-public class JUnitParamsTutorial {
+public class SimpleCalc {
 	
 	public int add(final int a, final int b) {
 		return a + b;

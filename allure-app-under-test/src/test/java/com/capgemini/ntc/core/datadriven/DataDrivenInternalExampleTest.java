@@ -8,12 +8,15 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.capgemini.ntc.core.datadriven.person_example.SimpleCalc;
+import com.capgemini.ntc.test.core.BaseTest;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @RunWith(JUnitParamsRunner.class)
-public class DataDrivenInternalExampleTest {
-	private JUnitParamsTutorial testSubject = new JUnitParamsTutorial();
+public class DataDrivenInternalExampleTest extends BaseTest {
+	private SimpleCalc testSubject = new SimpleCalc();
 	
 	/**
 	 * ---------------------------------------------------------------------------------------------------------------
@@ -81,6 +84,18 @@ public class DataDrivenInternalExampleTest {
 							new Object[] { Arrays.asList(), "e", false }
 			};
 		}
+	}
+	
+	@Override
+	public void setUp() {
+		// TASK Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void tearDown() {
+		// TASK Auto-generated method stub
+		
 	}
 	
 }

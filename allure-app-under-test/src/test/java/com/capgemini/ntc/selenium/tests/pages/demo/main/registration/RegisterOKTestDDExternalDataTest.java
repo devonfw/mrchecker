@@ -12,12 +12,12 @@ import com.capgemini.ntc.selenium.testSuites.testType.TestsSelenium;
 import com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils.DataProviderExternalJsonFile;
 import com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils.FormDataContainer;
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
+import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @Category({ TestsSelenium.class })
-@RunWith(ParallelParameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class RegisterOKTestDDExternalDataTest extends BaseTest {
 	
 	public RegistrationPage registrationPage;
@@ -36,8 +36,8 @@ public class RegisterOKTestDDExternalDataTest extends BaseTest {
 	@Parameters(source = DataProviderExternalJsonFile.class)
 	public void registrationTest(FormDataContainer data) throws InterruptedException {
 		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle()
-						.equals(PageTitlesEnum.REGISTRATION.toString()));
+						registrationPage.getActualPageTitle()
+										.equals(PageTitlesEnum.REGISTRATION.toString()));
 		
 		registrationPage.setFirstName(data.getFirstName());
 		registrationPage.setLastName(data.getLastName());
@@ -55,7 +55,7 @@ public class RegisterOKTestDDExternalDataTest extends BaseTest {
 		
 		registrationPage.clickSubmit();
 		
-		assertTrue("Registration succeed text visible: ", registrationPage.isRegistrationSuceedTextVisible());
+		assertTrue("Registration succeed text visible: ", registrationPage.isRegistryErrorTextVisible());
 		
 		return;
 	}

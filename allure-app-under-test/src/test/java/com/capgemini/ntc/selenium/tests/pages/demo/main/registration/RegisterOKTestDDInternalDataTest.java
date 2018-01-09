@@ -15,47 +15,48 @@ import com.capgemini.ntc.selenium.tests.pages.demo.main.registration.utils.DataP
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
+import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 @Category({ TestsSelenium.class })
-@RunWith(ParallelParameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class RegisterOKTestDDInternalDataTest extends BaseTest {
 	
 	private static RegistrationPage registrationPage;
 	
 	private Object[] data() {
 		return new Object[] {
-				new DataProviderInternal()
-						.setFirstName("John")
-						.setLastName("Travola")
-						.setMaritalStatus(MaritalStatus.SINGLE)
-						.setHobby(Hobby.DANCE)
-						.setCountry("Angola")
-						.setBirthDate("6-12-1951")
-						.setPhoneNumber("0048777888999")
-						.setUsername("john5Travolta")
-						.setEmail("john52travolta@test.me")
-						.setYourProfilePhotoPath(
-								"com/example/demo/cucumber/features/registration/graph/ok-graph.gif")
-						.setAboutYourself("It's me.")
-						.setPassword("xsw2#$_rewgwASD")
-						.setConfirmPassword("xsw2#$_rewgwASD"),
-				// next data
-				new DataProviderInternal()
-						.setFirstName("Johny")
-						.setLastName("Walker")
-						.setMaritalStatus(MaritalStatus.MARRIED)
-						.setHobby(Hobby.READING)
-						.setCountry("Ghana")
-						.setBirthDate("2-8-1984")
-						.setPhoneNumber("0048777888999")
-						.setUsername("john5Smith")
-						.setEmail("john5Smith@test.me")
-						.setYourProfilePhotoPath(
-								"com/example/demo/cucumber/features/registration/graph/ok-graph.gif")
-						.setAboutYourself("It's me.")
-						.setPassword("xsw2#$_rewgwASD")
-						.setConfirmPassword("xsw2#$_rewgwASD") };
+						new DataProviderInternal()
+										.setFirstName("John")
+										.setLastName("Travola")
+										.setMaritalStatus(MaritalStatus.SINGLE)
+										.setHobby(Hobby.DANCE)
+										.setCountry("Angola")
+										.setBirthDate("6-12-1951")
+										.setPhoneNumber("0048777888999")
+										.setUsername("john5Travolta")
+										.setEmail("john52travolta@test.me")
+										.setYourProfilePhotoPath(
+														"com/example/demo/cucumber/features/registration/graph/ok-graph.gif")
+										.setAboutYourself("It's me.")
+										.setPassword("xsw2#$_rewgwASD")
+										.setConfirmPassword("xsw2#$_rewgwASD"),
+						// next data
+						new DataProviderInternal()
+										.setFirstName("Johny")
+										.setLastName("Walker")
+										.setMaritalStatus(MaritalStatus.MARRIED)
+										.setHobby(Hobby.READING)
+										.setCountry("Ghana")
+										.setBirthDate("2-8-1984")
+										.setPhoneNumber("0048777888999")
+										.setUsername("john5Smith")
+										.setEmail("john5Smith@test.me")
+										.setYourProfilePhotoPath(
+														"com/example/demo/cucumber/features/registration/graph/ok-graph.gif")
+										.setAboutYourself("It's me.")
+										.setPassword("xsw2#$_rewgwASD")
+										.setConfirmPassword("xsw2#$_rewgwASD") };
 	}
 	
 	@Override
@@ -72,8 +73,8 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 	@Parameters(method = "data")
 	public void registrationTest(DataProviderInternal dataProviderInternal) {
 		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle()
-						.equals(PageTitlesEnum.REGISTRATION.toString()));
+						registrationPage.getActualPageTitle()
+										.equals(PageTitlesEnum.REGISTRATION.toString()));
 		
 		registrationPage.setFirstName(dataProviderInternal.getFirstName());
 		registrationPage.setLastName(dataProviderInternal.getLastName());
@@ -90,7 +91,7 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 		registrationPage.setConfirmPassword(dataProviderInternal.getConfirmPassword());
 		
 		registrationPage.clickSubmit();
-		assertTrue("Registration succeed text visible: ", registrationPage.isRegistrationSuceedTextVisible());
+		assertTrue("Registration succeed text visible: ", registrationPage.isRegistryErrorTextVisible());
 		return;
 	}
 	

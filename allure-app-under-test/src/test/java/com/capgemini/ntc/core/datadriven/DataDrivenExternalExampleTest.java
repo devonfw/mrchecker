@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 
 import com.capgemini.ntc.core.datadriven.person_example.PersonMapper;
 import com.capgemini.ntc.core.datadriven.person_example.PersonMapper.Person;
+import com.capgemini.ntc.core.datadriven.person_example.SimpleCalc;
+import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 import junitparams.FileParameters;
@@ -12,21 +14,20 @@ import junitparams.JUnitParamsRunner;
 import junitparams.mappers.CsvWithHeaderMapper;
 
 @RunWith(JUnitParamsRunner.class)
-public class DataDrivenExternalExampleTest {
-	private JUnitParamsTutorial testSubject = new JUnitParamsTutorial();
+public class DataDrivenExternalExampleTest extends BaseTest {
+	private SimpleCalc testSubject = new SimpleCalc();
 	
 	/**
 	 * ---------------------------------------------------------------------------------------------------------------
 	 * --- EXAMPLE 1 -------------------------------------------------------------------------------------------------
 	 * ---------------------------------------------------------------------------------------------------------------
-	 * dsadada
 	 **/
-	
 	@Test
 	@FileParameters("src/test/resources/datadriven/test.csv")
 	public void loadParamsFromCsv(String age, String name) {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromCsv()");
 		BFLogger.logDebug("\t" + "Name=" + name + " " + "Age=" + age);
+		
 	}
 	
 	/**
@@ -53,6 +54,22 @@ public class DataDrivenExternalExampleTest {
 	public void loadParamsFromAnyFile(Person person) {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromAnyFile()");
 		BFLogger.logDebug("\t" + "Name=" + person.getName() + " " + "Age=" + person.getAge());
+	}
+	
+	@Override
+	public void setUp() {
+		// TASK Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void tearDown() {
+		try {
+			Thread.sleep(1 * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
