@@ -99,8 +99,6 @@ public class BaseTestWatcher extends TestWatcher {
 		
 		// Clear observers for single test
 		observers.clear();
-		BFLogger.logDebug("Removed all observers");
-		
 	}
 	
 	@Override
