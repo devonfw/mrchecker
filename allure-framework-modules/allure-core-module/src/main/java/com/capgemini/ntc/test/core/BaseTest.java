@@ -64,6 +64,13 @@ public abstract class BaseTest implements IBaseTest {
 	@After
 	public void tearDownTestLast() {
 		
+		// Run observers
+		TestClassRule.classObservers.forEach(ITestObserver::onTestFinish);
+		BaseTestWatcher.observers.forEach(ITestObserver::onTestFinish);
+		
+		// Clear observers for single test
+		BaseTestWatcher.observers.clear();
+		
 	}
 	
 	@Override

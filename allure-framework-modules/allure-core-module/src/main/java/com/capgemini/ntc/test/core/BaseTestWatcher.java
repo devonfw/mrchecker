@@ -24,11 +24,11 @@ public class BaseTestWatcher extends TestWatcher {
 		this.baseTest = baseTest;
 	}
 	
-	private static CopyOnWriteArrayList<ITestObserver> observers = new CopyOnWriteArrayList<>();
+	static CopyOnWriteArrayList<ITestObserver> observers = new CopyOnWriteArrayList<>();
 	
 	public static class TestClassRule extends ExternalResource {
 		
-		private static CopyOnWriteArrayList<ITestObserver> classObservers = new CopyOnWriteArrayList<>();
+		static CopyOnWriteArrayList<ITestObserver> classObservers = new CopyOnWriteArrayList<>();
 		
 		@Override
 		protected void after() {
@@ -93,12 +93,12 @@ public class BaseTestWatcher extends TestWatcher {
 		baseTest.tearDown(); // Executed as a After for each test
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
 		
-		// Run observers
-		TestClassRule.classObservers.forEach(ITestObserver::onTestFinish);
-		observers.forEach(ITestObserver::onTestFinish);
-		
-		// Clear observers for single test
-		observers.clear();
+		// // Run observers
+		// TestClassRule.classObservers.forEach(ITestObserver::onTestFinish);
+		// observers.forEach(ITestObserver::onTestFinish);
+		//
+		// // Clear observers for single test
+		// observers.clear();
 	}
 	
 	@Override
