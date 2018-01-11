@@ -95,7 +95,7 @@ public class BaseTestWatcher extends TestWatcher {
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
 		
 		// Clear observers for single test
-		observers.clear();
+		// observers.clear();
 	}
 	
 	@Override
@@ -130,10 +130,29 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	public static void addObserver(ITestObserver observer) {
 		BFLogger.logDebug("Adding observer: " + observer.toString());
-		if (isAddedFromBeforeClassMethod()) {
-			TestClassRule.classObservers.add(observer);
-		} else {
-			observers.add(observer);
+		
+		// if observer.moduleType() in TestClassRule.classObservers.
+		
+		boolean anyMatchTestClassObservers = TestClassRule.classObservers.stream()
+						.anyMatch(x -> x.getModuleType()
+										.equals(observer.getModuleType()));
+		
+		boolean anyMatchMethodObservers = observers.stream()
+						.anyMatch(x -> x.getModuleType()
+										.equals(observer.getModuleType()));
+		
+		BFLogger.logError("Any match of anyMatchTestClassObservers: " + anyMatchTestClassObservers);
+		BFLogger.logError("Any match of anyMatchMethodObservers: " + anyMatchMethodObservers);
+		
+		if (!(anyMatchMethodObservers | anyMatchTestClassObservers)) {
+			if (isAddedFromBeforeClassMethod()) {
+				// TestClassRule.classObservers.add(observer);
+				TestClassRule.classObservers.addIfAbsent(observer);
+			} else {
+				observers.addIfAbsent(observer);
+				// observers.add(observer);
+			}
+			
 		}
 		
 	}

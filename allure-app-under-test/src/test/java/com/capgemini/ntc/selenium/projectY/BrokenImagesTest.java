@@ -12,9 +12,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class BrokenImagesTest extends BaseTest {
 	
-	private TheInternetPage		theInternetPage;
-	private static final int	CorrectHeight	= 90;
-	private static final int	CorrectWidth	= 120;
+	private TheInternetPage	theInternetPage;
+	private final int		CorrectHeight	= 90;
+	private final int		CorrectWidth	= 120;
 	
 	@Override
 	public void setUp() {

@@ -8,4 +8,6 @@ public interface ITestObserver {
 	public void onTestFinish();
 	
 	public void addObserver();
+	
+	public ModuleType getModuleType();
 }

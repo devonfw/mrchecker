@@ -45,6 +45,7 @@ public class BasePageTest extends BaseTest {
 		public String pageTitle() {
 			return getDriver().getTitle();
 		}
+		
 	}
 	
 }
