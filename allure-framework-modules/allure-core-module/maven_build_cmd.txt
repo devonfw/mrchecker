@@ -5,7 +5,7 @@ mvn clean compile -DskipTests
 mvn -P release clean verify install deploy -DskipTests=true
 
 #6. Deploy to local repo 
-mvn -s /d/eclipse/testing-selenium-java-applications/m2/settings.xml  clean install deploy -DskipTests=true
+mvn -s /d/eclipse/Allure_Test_Framework/m2/settings.xml  clean install deploy -DskipTests=true
 
 #7  Formatter
 mvn formatter:validate

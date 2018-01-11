@@ -88,25 +88,26 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	@Override
 	protected void finished(Description description) {
+		System.out.println("BaseTestWatcher.finished()");
 		this.iStart = System.currentTimeMillis() - this.iStart; // end timing
 		printTimeExecutionLog(description);
 		baseTest.tearDown(); // Executed as a After for each test
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
 		
-		// // Run observers
-		// TestClassRule.classObservers.forEach(ITestObserver::onTestFinish);
-		// observers.forEach(ITestObserver::onTestFinish);
-		//
-		// // Clear observers for single test
-		// observers.clear();
+		// Clear observers for single test
+		observers.clear();
 	}
 	
 	@Override
 	protected void succeeded(Description description) {
 		BFLogger.logInfo(description.getDisplayName() + " PASSED.");
+		
 		// Run test observers
-		TestClassRule.classObservers.forEach(ITestObserver::onTestSuccess);
 		observers.forEach(ITestObserver::onTestSuccess);
+		
+		// // Clear observers for single test
+		// observers.clear();
+		
 	}
 	
 	@Override
@@ -116,6 +117,10 @@ public class BaseTestWatcher extends TestWatcher {
 		// Run test observers
 		TestClassRule.classObservers.forEach(ITestObserver::onTestFailure);
 		observers.forEach(ITestObserver::onTestFailure);
+		
+		// Clear observers for single test
+		// observers.clear();
+		
 	}
 	
 	@Attachment("Log file")
@@ -148,7 +153,7 @@ public class BaseTestWatcher extends TestWatcher {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				// e.printStackTrace();
+				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
 				continue;
 			}
