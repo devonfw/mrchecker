@@ -39,17 +39,17 @@ public class RegistryPageTest extends BaseTest {
 	public void QCID_12342343_StayOnResistryPage() {
 		
 		BFLogger.logInfo(
-				"[Step 2] As a standard user I click Submit button,  So that I will stay on Registry page");
+						"[Step 2] As a standard user I click Submit button,  So that I will stay on Registry page");
 		registryPage.clickSubmit();
 		assertThat(true, is(registryPage.isLoaded()));
 	}
 	
 	@Test
-	public void QCID_3784343_DataAreSaved() {
+	public void EXAMPLE_FAIL_TEST() {
 		
 		BFLogger.logInfo(
-				"[Step 2] As a standard user I click Submit button,  So that my data will be saved");
+						"[Step 2] As a standard user I click Submit button,  So that my data will be saved");
 		registryPage.clickSubmit();
-		assertThat(false, is(registryPage.isButtonSubmitDisplayed()));
+		assertThat("Submit display button was not visible", false, is(registryPage.isButtonSubmitDisplayed()));
 	}
 }

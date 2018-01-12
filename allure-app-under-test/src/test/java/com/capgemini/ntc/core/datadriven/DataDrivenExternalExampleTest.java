@@ -58,7 +58,6 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		// TASK Auto-generated method stub
 		
 	}
 	

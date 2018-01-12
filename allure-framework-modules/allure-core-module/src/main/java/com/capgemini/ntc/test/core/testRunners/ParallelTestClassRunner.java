@@ -38,8 +38,6 @@ public class ParallelTestClassRunner extends BlockJUnit4ClassRunner {
 		} catch (Throwable e) {
 			testNotifier.addFailure(e);
 		} finally {
-			// TASK Decouple Selenium from Test
-			// DriverManager.closeDriver();
 		}
 	}
 	

@@ -24,8 +24,6 @@ public class CheckBoxTest extends BaseTest {
 	
 	@AfterClass
 	public static void tearDownAll() {
-		BasePage.getDriver()
-						.close();
 	}
 	
 	@Test
