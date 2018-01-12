@@ -115,7 +115,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	public void onTestFinish() {
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
 						.getSimpleName());
-		// BaseTestWatcher.removeObserver(this);
+		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override

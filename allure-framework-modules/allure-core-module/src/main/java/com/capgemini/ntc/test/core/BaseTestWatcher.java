@@ -163,12 +163,14 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	public static void removeObserver(ITestObserver observer) {
 		BFLogger.logDebug("Removing observer: " + observer.toString());
+		
 		if (isAddedFromBeforeClassMethod()) {
 			TestClassRule.classObservers.remove(observer);
 		} else {
-			observers.remove(observer);
+			if (TestClassRule.classObservers.size() != 0) {
+				observers.remove(observer);
+			}
 		}
-		
 	}
 	
 	private static boolean isAddedFromBeforeClassMethod() {
