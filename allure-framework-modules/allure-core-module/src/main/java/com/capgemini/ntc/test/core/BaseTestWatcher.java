@@ -88,11 +88,13 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	@Override
 	protected void finished(Description description) {
-		System.out.println("BaseTestWatcher.finished()");
+		BFLogger.logError("BaseTestWatcher.finished()");
 		this.iStart = System.currentTimeMillis() - this.iStart; // end timing
 		printTimeExecutionLog(description);
 		baseTest.tearDown(); // Executed as a After for each test
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
+		
+		observers.forEach(ITestObserver::onTestFinish);
 		
 		// Clear observers for single test
 		// observers.clear();
@@ -103,8 +105,8 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logInfo(description.getDisplayName() + " PASSED.");
 		
 		// Run test observers
+		TestClassRule.classObservers.forEach(ITestObserver::onTestSuccess);
 		observers.forEach(ITestObserver::onTestSuccess);
-		
 		// // Clear observers for single test
 		// observers.clear();
 		
@@ -129,7 +131,7 @@ public class BaseTestWatcher extends TestWatcher {
 	}
 	
 	public static void addObserver(ITestObserver observer) {
-		BFLogger.logDebug("Adding observer: " + observer.toString());
+		BFLogger.logDebug("To add observer: " + observer.toString());
 		
 		// if observer.moduleType() in TestClassRule.classObservers.
 		
@@ -141,18 +143,30 @@ public class BaseTestWatcher extends TestWatcher {
 						.anyMatch(x -> x.getModuleType()
 										.equals(observer.getModuleType()));
 		
+		BFLogger.logError("BaseTestWatcher.observers: " + BaseTestWatcher.observers.toString());
+		BFLogger.logError("TestClassRule.classObservers: " + TestClassRule.classObservers.toString());
+		
 		BFLogger.logError("Any match of anyMatchTestClassObservers: " + anyMatchTestClassObservers);
 		BFLogger.logError("Any match of anyMatchMethodObservers: " + anyMatchMethodObservers);
 		
 		if (!(anyMatchMethodObservers | anyMatchTestClassObservers)) {
 			if (isAddedFromBeforeClassMethod()) {
-				// TestClassRule.classObservers.add(observer);
 				TestClassRule.classObservers.addIfAbsent(observer);
 			} else {
 				observers.addIfAbsent(observer);
-				// observers.add(observer);
 			}
+			BFLogger.logDebug("Added observer: " + observer.toString());
 			
+		}
+		
+	}
+	
+	public static void removeObserver(ITestObserver observer) {
+		BFLogger.logDebug("Removing observer: " + observer.toString());
+		if (isAddedFromBeforeClassMethod()) {
+			TestClassRule.classObservers.remove(observer);
+		} else {
+			observers.remove(observer);
 		}
 		
 	}
@@ -188,13 +202,4 @@ public class BaseTestWatcher extends TestWatcher {
 		return String.format(" duration: %1.2f min", (float) this.iStart / (60 * 1000));
 	}
 	
-	public static void removeObserver(ITestObserver observer) {
-		BFLogger.logDebug("Removing observer: " + observer.toString());
-		if (isAddedFromBeforeClassMethod()) {
-			TestClassRule.classObservers.remove(observer);
-		} else {
-			observers.remove(observer);
-		}
-		
-	}
 }

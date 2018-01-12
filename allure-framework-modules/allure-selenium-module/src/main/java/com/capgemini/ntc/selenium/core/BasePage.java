@@ -115,6 +115,13 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	public void onTestFinish() {
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
 						.getSimpleName());
+		// BaseTestWatcher.removeObserver(this);
+	}
+	
+	@Override
+	public void onTestClassFinish() {
+		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
+						.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
 		DriverManager.closeDriver();
 		BaseTestWatcher.removeObserver(this);

@@ -58,10 +58,13 @@ public abstract class BaseTest implements IBaseTest {
 	
 	@AfterClass
 	public static final void tearDownClass() {
-		System.out.println("BaseTest.tearDownTestLast()");
+		BFLogger.logError("BaseTest.tearDownClass()");
+		BFLogger.logError("BaseTestWatcher.observers: " + BaseTestWatcher.observers.toString());
+		BFLogger.logError("TestClassRule.classObservers: " + TestClassRule.classObservers.toString());
+		
 		// Run observers
-		TestClassRule.classObservers.forEach(ITestObserver::onTestFinish);
-		BaseTestWatcher.observers.forEach(ITestObserver::onTestFinish);
+		TestClassRule.classObservers.forEach(ITestObserver::onTestClassFinish);
+		BaseTestWatcher.observers.forEach(ITestObserver::onTestClassFinish);
 		
 		// Clear observers for all tests
 		BaseTestWatcher.observers.clear();

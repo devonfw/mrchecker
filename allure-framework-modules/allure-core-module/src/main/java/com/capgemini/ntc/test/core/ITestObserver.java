@@ -7,6 +7,8 @@ public interface ITestObserver {
 	
 	public void onTestFinish();
 	
+	public void onTestClassFinish();
+	
 	public void addObserver();
 	
 	public ModuleType getModuleType();
