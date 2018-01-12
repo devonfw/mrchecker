@@ -20,6 +20,7 @@ import com.capgemini.ntc.selenium.core.utils.WindowUtils;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
+import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
@@ -98,22 +99,36 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	@Override
 	public void onTestFailure() {
-		BFLogger.logDebug("BasePage.onTestFailure");
+		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
+						.getSimpleName());
 		makeScreenshotOnFailure();
 		makeSourcePageOnFailure();
 	}
 	
 	@Override
 	public void onTestSuccess() {
-		BFLogger.logDebug("BasePage.onTestSuccess");
+		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
+						.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
-		BFLogger.logDebug("BasePage.onTestFinish");
+		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
+						.getSimpleName());
+		BaseTestWatcher.removeObserver(this);
+	}
+	
+	@Override
+	public void onTestClassFinish() {
+		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
+						.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
 		DriverManager.closeDriver();
-		BaseTestWatcher.removeObserver(this);
+	}
+	
+	@Override
+	public ModuleType getModuleType() {
+		return ModuleType.SELENIUM;
 	}
 	
 	@Attachment("Screenshot on failure")

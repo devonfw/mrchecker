@@ -7,12 +7,16 @@ import java.awt.AWTException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestLocal;
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestsNONParallel;
 import com.capgemini.ntc.selenium.pages.projectY.TheBasicAuthPage;
 import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
+@Category({ TestLocal.class, TestsNONParallel.class })
 public class BasicAuthTest extends BaseTest {
 	
 	private static TheInternetPage theInternetPage;

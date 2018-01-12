@@ -6,6 +6,7 @@ import com.capgemini.ntc.example.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
+import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
@@ -58,9 +59,8 @@ abstract public class BasePage implements ITestObserver {
 	
 	@Override
 	public void onTestFailure() {
-		BFLogger.logDebug("BasePage.onTestFailure");
-		
-		// All actions needed while test method is failing
+		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
+						.getSimpleName());
 		makeScreenshotOnFailure();
 		makeSourcePageOnFailure();
 	}
@@ -68,18 +68,29 @@ abstract public class BasePage implements ITestObserver {
 	@Override
 	public void onTestSuccess() {
 		// All actions needed while test method is success
-		BFLogger.logDebug("BasePage.onTestSuccess");
+		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
+						.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		// All actions needed while test class is finishing
-		BFLogger.logDebug("BasePage.onTestFinish");
-		
-		// Closing drivers
-		DriverManager.closeDriver();
-		
+		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
+						.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
+	}
+	
+	@Override
+	public void onTestClassFinish() {
+		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
+						.getSimpleName());
+		BFLogger.logDebug("driver:" + getDriver().toString());
+		DriverManager.closeDriver();
+	}
+	
+	@Override
+	public ModuleType getModuleType() {
+		return ModuleType.EXAMPLE;
 	}
 	
 	@Attachment("Screenshot on failure")
