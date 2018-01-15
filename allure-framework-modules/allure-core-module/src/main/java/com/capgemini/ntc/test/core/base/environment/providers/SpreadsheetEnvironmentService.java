@@ -72,6 +72,12 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 		return init(path, environment, secretPath);
 	}
 	
+	public static IEnvironmentService init(String path, String environment) {
+		String secretPath = SpreadsheetEnvironmentService.class.getResource("")
+						.getPath() + "/environments/secret.txt";
+		return init(path, environment, secretPath);
+	}
+	
 	public static IEnvironmentService init(String path, String environment, String secretPath) {
 		if (instance == null) {
 			synchronized (SpreadsheetEnvironmentService.class) {

@@ -124,7 +124,7 @@ public class EnvironmentMainTest {
 			IEnvironmentService provideEnvironmentService() {
 				String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/enviroments/environments.csv");
 				String environment = "QA";
-				SpreadsheetEnvironmentService.init(path, environment, null);
+				SpreadsheetEnvironmentService.init(path, environment);
 				return SpreadsheetEnvironmentService.getInstance();
 			}
 		};
