@@ -2,7 +2,7 @@ package com.capgemini.ntc.example;
 
 import org.junit.Test;
 
-import com.capgemini.ntc.example.core.BasePage;
+import com.capgemini.ntc.security.core.BasePage;
 
 public class BasePageTest {
 	
