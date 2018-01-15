@@ -23,7 +23,7 @@ public abstract class SecurityTest extends BasePage {
 	private static final Map<SessionEnum, Headers>	authData				= new HashMap<>();
 	
 	{
-		authenticateSession(SessionEnum.WAITER, "waiter", "waiter");
+		authenticateSession(SessionEnum.WAITER, getEnvValue("SECURITY_USER1_NAME"), getEnvValue("SECURITY_USER1_PASSWD"));
 	}
 	
 	private void authenticateSession(SessionEnum session, String user, String password) {

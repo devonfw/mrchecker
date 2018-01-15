@@ -1,6 +1,8 @@
 package com.capgemini.ntc.test.core.base.environment.providers;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -11,6 +13,8 @@ import java.util.Map;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.properties.PropertyValueEncryptionUtils;
 
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
@@ -32,27 +36,47 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	private List<CSVRecord>		records;
 	private Map<String, String>	services;
 	
-	private String path;
+	private String						path;
+	private StandardPBEStringEncryptor	encryptor;
 	
-	private SpreadsheetEnvironmentService(String path, String environmentName) {
+	private SpreadsheetEnvironmentService(String path, String environmentName, String secretPath) {
 		this.path = path;
+		initEncryptor(secretPath);
 		fetchEnvData(path);
 		setEnvironment(environmentName);
 		BFLogger.logDebug("Reading environment from: " + path);
 	}
 	
+	private void initEncryptor(String secretPath) {
+		if (secretPath == null) {
+			return;
+		}
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(secretPath))) {
+			String secret = br.readLine();
+			encryptor = new StandardPBEStringEncryptor();
+			encryptor.setPassword(secret);
+		} catch (Exception e) {
+			e.printStackTrace();
+			BFLogger.logError(e.getLocalizedMessage());
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public static IEnvironmentService init() {
 		String path = SpreadsheetEnvironmentService.class.getResource("")
 						.getPath() + "/environments/environments.csv";
+		String secretPath = SpreadsheetEnvironmentService.class.getResource("")
+						.getPath() + "/environments/secret.txt";
 		String environment = "DEV";
-		return init(path, environment);
+		return init(path, environment, secretPath);
 	}
 	
-	public static IEnvironmentService init(String path, String environment) {
+	public static IEnvironmentService init(String path, String environment, String secretPath) {
 		if (instance == null) {
 			synchronized (SpreadsheetEnvironmentService.class) {
 				if (instance == null) {
-					instance = new SpreadsheetEnvironmentService(path, environment);
+					instance = new SpreadsheetEnvironmentService(path, environment, secretPath);
 				}
 			}
 		}
@@ -110,16 +134,21 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			String key = record.get(0);
 			String value = record.get(environmentNumber)
 							.trim();
+			value = decrypt(value);
 			value = formatAddress(value);
 			services.put(key, value);
 		}
 	}
 	
+	private String decrypt(String value) {
+		if (encryptor != null && PropertyValueEncryptionUtils.isEncryptedValue(value)) {
+			return PropertyValueEncryptionUtils.decrypt(value, encryptor);
+		}
+		return value;
+	}
+	
 	private String formatAddress(String address) {
 		address = address.replaceAll("\\\\", "/");
-		if (!address.endsWith("/")) {
-			address = address + "/";
-		}
 		return address;
 	}
 	

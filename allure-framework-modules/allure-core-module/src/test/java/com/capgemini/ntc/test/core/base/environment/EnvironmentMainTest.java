@@ -23,7 +23,7 @@ public class EnvironmentMainTest {
 	@Before
 	public void setup() {
 		systemUnderTest = Guice.createInjector(environmentTestModel())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		
 	}
 	
@@ -35,7 +35,7 @@ public class EnvironmentMainTest {
 	public void testDependecyInjection() throws Exception {
 		SpreadsheetEnvironmentService.delInstance();
 		IEnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		
 		environmentService.setEnvironment("DEV");
 		assertEquals("http://demoqa.com/", environmentService.getServiceAddress("WWW_FONT_URL"));
@@ -46,7 +46,7 @@ public class EnvironmentMainTest {
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
 		SpreadsheetEnvironmentService.delInstance();
 		systemUnderTest = Guice.createInjector(new EnvironmentModule())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		
 		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
 		String expectedAddress = "https://dma.company.com/";
@@ -124,7 +124,7 @@ public class EnvironmentMainTest {
 			IEnvironmentService provideEnvironmentService() {
 				String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/enviroments/environments.csv");
 				String environment = "QA";
-				SpreadsheetEnvironmentService.init(path, environment);
+				SpreadsheetEnvironmentService.init(path, environment, null);
 				return SpreadsheetEnvironmentService.getInstance();
 			}
 		};
