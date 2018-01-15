@@ -55,6 +55,7 @@
         <!-- Allure test framework modules -->
         <allure-core-module.version>4.12.0.1</allure-core-module.version>
         <allure-selenium-module.version>3.4.0.1</allure-selenium-module.version>
+        <allure-security-module.version>3.4.0.1</allure-security-module.version>
 
 
         <!-- Java settings -->
@@ -128,6 +129,12 @@
             <version>${allure-selenium-module.version}</version>
         </dependency>
 
+        <!-- Security module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-security-module</artifactId>
+            <version>${allure-security-module.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>

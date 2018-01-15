@@ -51,12 +51,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-
         <allure-core-module.version>4.12.0.1</allure-core-module.version>
-
-        <!-- Lib/package version settings -->
-        <!-- <package.version>0.0.0</selenium.version> -->
-
+        <restassured.version>3.0.6</restassured.version>
     </properties>
 
     <dependencies>
@@ -68,12 +64,12 @@
             <version>${allure-core-module.version}</version>
         </dependency>
 
-
-        <!--This dependency is necessary for ???????? plugin. -->
-        <!--<dependency>
-            <groupId>reuse.package.from.parent.pom</groupId>
-            <artifactId>lib-name</artifactId>
-            </dependency> -->
+        <!--  Needed to perform all API calls -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restassured.version}</version>
+        </dependency>
 
     </dependencies>
 
