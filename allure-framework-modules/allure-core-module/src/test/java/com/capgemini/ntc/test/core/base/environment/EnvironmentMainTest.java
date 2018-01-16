@@ -109,6 +109,15 @@ public class EnvironmentMainTest {
 	}
 	
 	@Test
+	public void valueDecryptionTest() {
+		systemUnderTest.setEnvironment("DEV");
+		String actualPasswd = BaseTest.getEnvironmentService()
+						.getServiceAddress("USER_PASSWD");
+		String expectedPasswd = "password";
+		assertEquals(expectedPasswd, actualPasswd);
+	}
+	
+	@Test
 	public void envLogTest() {
 		BFLogger.logEnv("----- test -----");
 	}
