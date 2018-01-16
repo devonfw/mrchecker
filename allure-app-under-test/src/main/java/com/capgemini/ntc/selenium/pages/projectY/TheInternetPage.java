@@ -5,12 +5,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.features.samples.theinternet.ChallengingDomPage;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
 	
 	private static final By	selectorCheckboxesLink			= By.cssSelector("#content > ul > li:nth-child(5) > a");
 	private static final By	selectorElementClick			= By.cssSelector("li:nth-child(1) > a");
+	private static final By	selectorChallengingDomClick		= By.cssSelector("li:nth-child(4) > a");
 	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li:nth-child(3) > a");
 	private static final By	selectorDropdownClickLink		= By.cssSelector("li:nth-child(9) > a");
 	private static final By	selectorMultipleWindowsLink		= By.cssSelector("#content > ul > li:nth-child(29) > a");
@@ -46,6 +48,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementClickLink = getDriver().findElementDynamic(selectorElementClick);
 		elementClickLink.click();
 		return new ABtestPage();
+	}
+	
+	public ChallengingDomPage clickChallengingDomLink() {
+		WebElement elementClickLink = getDriver().findElementDynamic(selectorChallengingDomClick);
+		elementClickLink.click();
+		return new ChallengingDomPage();
 	}
 	
 	public BrokenImagePage clickBrokenImageLink() {
