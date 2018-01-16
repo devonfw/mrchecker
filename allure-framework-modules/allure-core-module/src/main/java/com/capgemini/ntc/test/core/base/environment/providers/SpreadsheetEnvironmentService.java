@@ -141,7 +141,6 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			String value = record.get(environmentNumber)
 							.trim();
 			value = decrypt(value);
-			value = formatAddress(value);
 			services.put(key, value);
 		}
 	}
@@ -151,11 +150,6 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			return PropertyValueEncryptionUtils.decrypt(value, encryptor);
 		}
 		return value;
-	}
-	
-	private String formatAddress(String address) {
-		address = address.replaceAll("\\\\", "/");
-		return address;
 	}
 	
 	private int getEnvironmentNumber(String environmentName) throws BFInputDataException {
