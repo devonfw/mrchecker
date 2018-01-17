@@ -20,4 +20,9 @@ public enum EnvironmentParam {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return getValue();
+	}
+	
 }

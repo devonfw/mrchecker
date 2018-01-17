@@ -40,7 +40,7 @@ public class DirectoryBrowsingTest extends SecurityPage {
 	private EnvironmentParam	origin;
 	private int					statusCode;
 	
-	@Parameters(name = "{index}: {0}, {1}, {2}, {3}")
+	@Parameters(name = "{index}: Accessing {1}{2} as {0}, expecting HTTP {3}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
 						{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.IMG_DIR, 403 },
