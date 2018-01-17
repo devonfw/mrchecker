@@ -76,7 +76,7 @@ public final class NewPhantomJSDriver extends PhantomJSDriver implements INewWeb
 	@Override
 	public List<WebElement> findElements(By by) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return DriverExtention.convertWebElementList(super.findElements(by));
 	}
 	
@@ -87,7 +87,7 @@ public final class NewPhantomJSDriver extends PhantomJSDriver implements INewWeb
 	@Override
 	public WebElement findElement(By by) throws BFElementNotFoundException {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		WebElement elementFromDriver = null;
 		try {
 			elementFromDriver = super.findElement(by);
@@ -224,8 +224,8 @@ public final class NewPhantomJSDriver extends PhantomJSDriver implements INewWeb
 	
 	@Override
 	public RadioButtonElement elementRadioButton(By selector,
-			By inputChildsSelector,
-			List<String> listSelectedAttributes) {
+					By inputChildsSelector,
+					List<String> listSelectedAttributes) {
 		return driverExtention.elementRadioButton(selector, inputChildsSelector, listSelectedAttributes);
 	}
 	
@@ -307,5 +307,10 @@ public final class NewPhantomJSDriver extends PhantomJSDriver implements INewWeb
 	@Override
 	public IFrame elementIFrame(By selector) {
 		return driverExtention.elementIFrame(selector);
+	}
+	
+	@Override
+	public void mouseRightClick(By selector) {
+		driverExtention.mouseRightClick(selector);
 	}
 }

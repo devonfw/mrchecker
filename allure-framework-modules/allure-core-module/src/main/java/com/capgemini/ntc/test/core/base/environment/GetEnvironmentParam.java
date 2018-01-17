@@ -7,7 +7,8 @@ public enum GetEnvironmentParam {
 	WWW_FONT_URL,
 	SPS_WI_URL,
 	TOOLS_QA,
-	WEB_SERVICE;
+	WEB_SERVICE,
+	HEROKUAPP;
 	
 	public String getAddress() {
 		
