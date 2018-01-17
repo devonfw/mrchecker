@@ -40,6 +40,7 @@
     <modules>
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
+        <module>allure-security-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
 
@@ -77,6 +78,7 @@
         <!-- Report -->
         <report-directory>${pom.basedir}/test-output/</report-directory>
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
+        <jetty.version>9.2.10.v20150310</jetty.version>
 
         <!-- Test tools -->
         <hamcrest.version>1.3</hamcrest.version>
@@ -181,7 +183,16 @@
     <!-- Build goals/actions -->
     <build>
         <pluginManagement>
+
             <plugins>
+
+                <!-- Generate Project info such as licenses and plugins -->
+                <!-- <plugin> -->
+                <!-- <groupId>org.apache.maven.plugins</groupId> -->
+                <!-- <artifactId>maven-project-info-reports-plugin</artifactId> -->
+                <!-- <version>2.9</version> -->
+                <!-- </plugin> -->
+
 
                 <!-- CLEAN -->
                 <plugin>
@@ -230,7 +241,7 @@
                     <version>${formatter-maven-plugin.version}</version>
                     <configuration>
                         <configFile>${style_format.directory}/eclipse_format_code_standards.xml</configFile>
-                        <!--<lineEnding>LF</lineEnding>-->
+                        <!--<lineEnding>LF</lineEnding> -->
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <compilerSource>${java.compiler.version}</compilerSource>
                         <compilerCompliance>${java.compiler.version}</compilerCompliance>
@@ -368,6 +379,24 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <!-- Generate list of licenses.  mvn -P release -DskipTests=true site -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <version>1.14</version>
+                        <executions>
+                            <execution>
+                                <id>download-licenses</id>
+                                <goals>
+                                    <goal>download-licenses</goal>
+                                    <goal>aggregate-download-licenses</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+
                     <!-- Push to Nexus -->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
@@ -382,6 +411,18 @@
                     </plugin>
                 </plugins>
             </build>
+            
+            <reporting>
+                <plugins>
+                    <!-- Report project information -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <version>2.9</version>
+                    </plugin>
+                </plugins>
+            </reporting>
+        
         </profile>
 
 
@@ -432,147 +473,16 @@
             </build>
         </profile>
 
-        <!-- RUN CLASSIC CUCUMBER TESTS WITH MANUAL RUNNERS -->
-        <profile>
-            <id>cucumber</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <testFailureIgnore>true</testFailureIgnore>
-                            <threadCount>${thread.count}</threadCount>
-                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                            </argLine>
-                            <argLine>-Dcucumber.options="--plugin
-                                ru.yandex.qatools.allure.cucumberjvm.AllureReporter
-                                --plugin json:target/cucumber.json
-                                --plugin
-                                junit:test-output/junitreports/TEST-cucumber.xmlcucumber.xml"</argLine>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.aspectj</groupId>
-                                <artifactId>aspectjweaver</artifactId>
-                                <version>${aspectj.version}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.apache.maven.surefire</groupId>
-                                <artifactId>surefire-junit47</artifactId>
-                                <version>${maven-surefire-plugin.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.masterthought</groupId>
-                        <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>${cucumber-reporting.version}</version>
-                        <executions>
-                            <execution>
-                                <id>execution</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-                                    <projectName>CucumberReport</projectName>
-                                    <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                                    <parallelTesting>true</parallelTesting>
-                                    <buildNumber>1</buildNumber>
-                                    <checkBuildResult>false</checkBuildResult>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
-        <!-- RUN CUCUMBER TESTS WITH AUTOGENERATE RUNNERS -->
-        <profile>
-            <id>cucumber-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.temyers</groupId>
-                        <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                        <version>${cucumber.jvm.parallel.version}</version>
-                        <executions>
-                            <execution>
-                                <id>generateRunners</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>generateRunners</goal>
-                                </goals>
-                                <configuration>
-                                    <glue>
-                                        <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
-                                    </glue>
-                                    <featuresDirectory>src/test/java/com/example/selenium/tests/cucumber/common/features</featuresDirectory>
-                                    <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-                                    <!-- CucumberOptions.strict property -->
-                                    <strict>false</strict>
-                                    <!-- CucumberOptions.monochrome property -->
-                                    <monochrome>false</monochrome>
-                                    <tags>
-                                        <tag>${tags}</tag>
-                                        <tag>~@ignored</tag>
-                                    </tags>
-                                    <plugins>
-                                        <plugin>
-                                            <name>json</name>
-                                        </plugin>
-                                        <plugin>
-                                            <name>ru.yandex.qatools.allure.cucumberjvm.AllureReporter</name>
-                                        </plugin>
-                                        <plugin>
-                                            <name>junit</name>
-                                            <outputDirectory>${report-directory}/junitreports</outputDirectory>
-                                        </plugin>
-                                    </plugins>
-                                    <namingPattern>Parallel{c}IT</namingPattern>
-                                    <parallelScheme>SCENARIO</parallelScheme>
-                                    <useTestNG>false</useTestNG>
-                                    <namingScheme>feature-title</namingScheme>
-                                    <customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
-                                    <outputDirectory>${basedir}/src/test/java</outputDirectory>
-                                    <packageName>com.example.selenium.tests.cucumber.autogenerated_runners</packageName>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <skipTests>false</skipTests>
-                            <threadCount>${thread.count}</threadCount>
-                            <testFailureIgnore>true</testFailureIgnore>
-                            <failIfNoTests>false</failIfNoTests>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.apache.maven.surefire</groupId>
-                                <artifactId>surefire-junit4</artifactId>
-                                <version>${maven-surefire-plugin.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-
-                </plugins>
-            </build>
-        </profile>
     </profiles>
 
 
 
     <reporting>
         <excludeDefaults>true</excludeDefaults>
+
         <plugins>
+
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
@@ -584,6 +494,8 @@
                     <reportVersion>${allure-report.version}</reportVersion>
                 </configuration>
             </plugin>
+
+
         </plugins>
     </reporting>
 </project>
