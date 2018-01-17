@@ -10,10 +10,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.capgemini.ntc.security.tests.Constants;
-import com.capgemini.ntc.security.tests.SecurityTest;
-import com.capgemini.ntc.security.tests.SessionEnum;
-import com.capgemini.ntc.security.tests.SubUrlEnum;
+import com.capgemini.ntc.security.EnvironmentParam;
+import com.capgemini.ntc.security.SecurityPage;
+import com.capgemini.ntc.security.SessionEnum;
+import com.capgemini.ntc.security.SubUrlEnum;
 
 import io.restassured.specification.RequestSpecification;
 
@@ -33,22 +33,22 @@ import io.restassured.specification.RequestSpecification;
  * @author Marek Puchalski, Capgemini
  */
 @RunWith(Parameterized.class)
-public class DirectoryBrowsingTest extends SecurityTest {
+public class DirectoryBrowsingTest extends SecurityPage {
 	
-	private SessionEnum	session;
-	private SubUrlEnum	path;
-	private String		origin;
-	private int			statusCode;
+	private SessionEnum			session;
+	private SubUrlEnum			path;
+	private EnvironmentParam	origin;
+	private int					statusCode;
 	
 	@Parameters(name = "{index}: {0}, {1}, {2}, {3}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-						{ SessionEnum.ANON, getEnvValue(Constants.CLIENT_ORIGIN), SubUrlEnum.IMG_DIR, 403 },
-						{ SessionEnum.ANON, getEnvValue(Constants.SERVER_ORIGIN), SubUrlEnum.REST_ROOT, 403 },
+						{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.IMG_DIR, 403 },
+						{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.REST_ROOT, 403 },
 		});
 	}
 	
-	public DirectoryBrowsingTest(SessionEnum session, String origin, SubUrlEnum path, int statusCode) {
+	public DirectoryBrowsingTest(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, int statusCode) {
 		this.session = session;
 		this.origin = origin;
 		this.path = path;
@@ -58,8 +58,8 @@ public class DirectoryBrowsingTest extends SecurityTest {
 	@Test
 	public void testHeader() {
 		RequestSpecification rs = initBuilder(session)
-						.setBaseUri(origin)
-						.setBasePath(path.toString())
+						.setBaseUri(origin.getValue())
+						.setBasePath(path.getValue())
 						.build();
 		given(rs)
 						.when()

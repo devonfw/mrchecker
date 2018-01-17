@@ -1,4 +1,4 @@
-package com.capgemini.ntc.security.tests;
+package com.capgemini.ntc.security;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,16 +17,16 @@ import io.restassured.http.Headers;
 import io.restassured.parsing.Parser;
 import io.restassured.specification.RequestSpecification;
 
-public abstract class SecurityTest extends BasePage {
+public abstract class SecurityPage extends BasePage {
 	
 	private static final String						AUTHORIZATION_HEADER	= "Authorization";
 	private static final Map<SessionEnum, Headers>	authData				= new HashMap<>();
 	
 	{
-		authenticateSession(SessionEnum.WAITER, getEnvValue("SECURITY_USER1_NAME"), getEnvValue("SECURITY_USER1_PASSWD"));
+		authenticateSession(SessionEnum.WAITER, EnvironmentParam.SECURITY_USER1_NAME, EnvironmentParam.SECURITY_USER1_PASSWD);
 	}
 	
-	private void authenticateSession(SessionEnum session, String user, String password) {
+	private void authenticateSession(SessionEnum session, EnvironmentParam user, EnvironmentParam password) {
 		RestAssured.defaultParser = Parser.TEXT;
 		
 		JSONObject request = new JSONObject();
@@ -35,8 +35,8 @@ public abstract class SecurityTest extends BasePage {
 		
 		RequestSpecification rs = new RequestSpecBuilder()
 						.setBody(request.toString())
-						.setBaseUri(getEnvValue(Constants.SERVER_ORIGIN))
-						.setBasePath(SubUrlEnum.LOGIN.toString())
+						.setBaseUri(EnvironmentParam.SECURITY_SERVER_ORIGIN.getValue())
+						.setBasePath(SubUrlEnum.LOGIN.getValue())
 						.build();
 		Headers headers = given(rs)
 						.when()

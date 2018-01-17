@@ -1,8 +1,6 @@
-package com.capgemini.ntc.security.tests;
+package com.capgemini.ntc.security;
 
-import com.capgemini.ntc.selenium.core.Url;
-
-public enum SubUrlEnum implements Url {
+public enum SubUrlEnum {
 	
 	LOGIN("mythaistar/login"),
 	IMG_DIR("/assets/images/"),
@@ -14,17 +12,12 @@ public enum SubUrlEnum implements Url {
 		this.subURL = subURL;
 	};
 	
-	private SubUrlEnum() {
-		
-	}
-	
 	@Override
 	public String toString() {
-		return getAddress();
+		return getValue();
 	}
 	
-	@Override
-	public String getAddress() {
+	public String getValue() {
 		return subURL;
 	}
 	

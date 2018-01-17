@@ -7,6 +7,7 @@ import com.capgemini.ntc.security.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
+import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
@@ -71,7 +72,13 @@ abstract public class BasePage implements ITestObserver {
 						.getInstance(IEnvironmentService.class);
 	}
 	
-	public static String getEnvValue(String key) {
-		return environmentInstance.getServiceAddress(key);
+	@Override
+	public ModuleType getModuleType() {
+		return ModuleType.EXAMPLE;
+	}
+	
+	@Override
+	public void onTestClassFinish() {
+		BFLogger.logDebug("BasePage.onTestClassFinish");
 	}
 }
