@@ -3,7 +3,6 @@ package com.capgemini.ntc.test.core;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.AssumptionViolatedException;
 import org.junit.rules.ExternalResource;
@@ -20,20 +19,31 @@ public class BaseTestWatcher extends TestWatcher {
 	private BaseTest	baseTest;
 	private long		iStart;
 	
-	public BaseTestWatcher(BaseTest baseTest) {
-		this.baseTest = baseTest;
-	}
-	
-	private static CopyOnWriteArrayList<ITestObserver> observers = new CopyOnWriteArrayList<>();
+	static final ThreadLocal<List<ITestObserver>> observers = new ThreadLocal<List<ITestObserver>>() {
+		@Override
+		protected List<ITestObserver> initialValue() {
+			return new ArrayList<ITestObserver>();
+		}
+	};
 	
 	public static class TestClassRule extends ExternalResource {
 		
-		private static CopyOnWriteArrayList<ITestObserver> classObservers = new CopyOnWriteArrayList<>();
+		static final ThreadLocal<List<ITestObserver>> classObservers = new ThreadLocal<List<ITestObserver>>() {
+			@Override
+			protected List<ITestObserver> initialValue() {
+				return new ArrayList<ITestObserver>();
+			}
+		};
 		
 		@Override
 		protected void after() {
-			classObservers.clear();
+			classObservers.get()
+							.clear();
 		}
+	}
+	
+	public BaseTestWatcher(BaseTest baseTest) {
+		this.baseTest = baseTest;
 	}
 	
 	@Override
@@ -62,19 +72,6 @@ public class BaseTestWatcher extends TestWatcher {
 		};
 	}
 	
-	@SuppressWarnings("deprecation")
-	private void skippedQuietly(org.junit.internal.AssumptionViolatedException e, Description description, List<Throwable> errors) {
-		try {
-			if (e instanceof AssumptionViolatedException) {
-				skipped((AssumptionViolatedException) e, description);
-			} else {
-				skipped(e, description);
-			}
-		} catch (Throwable e1) {
-			errors.add(e1);
-		}
-	}
-	
 	@Override
 	protected void starting(Description description) {
 		BFLogger.RestrictedMethods.startSeparateLog(); // start logging for single test
@@ -93,20 +90,19 @@ public class BaseTestWatcher extends TestWatcher {
 		baseTest.tearDown(); // Executed as a After for each test
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
 		
-		// Run observers
-		TestClassRule.classObservers.forEach(ITestObserver::onTestFinish);
-		observers.forEach(ITestObserver::onTestFinish);
-		
-		// Clear observers for single test
-		observers.clear();
+		observers.get()
+						.forEach(ITestObserver::onTestFinish);
 	}
 	
 	@Override
 	protected void succeeded(Description description) {
 		BFLogger.logInfo(description.getDisplayName() + " PASSED.");
+		
 		// Run test observers
-		TestClassRule.classObservers.forEach(ITestObserver::onTestSuccess);
-		observers.forEach(ITestObserver::onTestSuccess);
+		TestClassRule.classObservers.get()
+						.forEach(ITestObserver::onTestSuccess);
+		observers.get()
+						.forEach(ITestObserver::onTestSuccess);
 	}
 	
 	@Override
@@ -114,8 +110,10 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logInfo(description.getDisplayName() + " FAILED.");
 		
 		// Run test observers
-		TestClassRule.classObservers.forEach(ITestObserver::onTestFailure);
-		observers.forEach(ITestObserver::onTestFailure);
+		TestClassRule.classObservers.get()
+						.forEach(ITestObserver::onTestFailure);
+		observers.get()
+						.forEach(ITestObserver::onTestFailure);
 	}
 	
 	@Attachment("Log file")
@@ -124,13 +122,65 @@ public class BaseTestWatcher extends TestWatcher {
 	}
 	
 	public static void addObserver(ITestObserver observer) {
-		BFLogger.logDebug("Adding observer: " + observer.toString());
-		if (isAddedFromBeforeClassMethod()) {
-			TestClassRule.classObservers.add(observer);
-		} else {
-			observers.add(observer);
+		BFLogger.logDebug("To add observer: " + observer.toString());
+		
+		boolean anyMatchTestClassObservers = TestClassRule.classObservers.get()
+						.stream()
+						.anyMatch(x -> x.getModuleType()
+										.equals(observer.getModuleType()));
+		
+		boolean anyMatchMethodObservers = observers.get()
+						.stream()
+						.anyMatch(x -> x.getModuleType()
+										.equals(observer.getModuleType()));
+		
+		BFLogger.logDebug("BaseTestWatcher.observers: " + BaseTestWatcher.observers.get()
+						.toString());
+		BFLogger.logDebug("TestClassRule.classObservers: " + TestClassRule.classObservers.get()
+						.toString());
+		
+		if (!(anyMatchMethodObservers | anyMatchTestClassObservers)) {
+			if (isAddedFromBeforeClassMethod()) {
+				TestClassRule.classObservers.get()
+								.add(observer);
+			} else {
+				observers.get()
+								.add(observer);
+			}
+			BFLogger.logDebug("Added observer: " + observer.toString());
+			
 		}
 		
+	}
+	
+	public static void removeObserver(ITestObserver observer) {
+		BFLogger.logDebug("To remove observer: " + observer.toString());
+		
+		if (isAddedFromBeforeClassMethod()) {
+			TestClassRule.classObservers.get()
+							.remove(observer);
+			BFLogger.logDebug("Removed observer: " + observer.toString());
+		} else {
+			if (!TestClassRule.classObservers.get()
+							.isEmpty()) {
+				observers.get()
+								.remove(observer);
+				BFLogger.logDebug("Removed observer: " + observer.toString());
+			}
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	private void skippedQuietly(org.junit.internal.AssumptionViolatedException e, Description description, List<Throwable> errors) {
+		try {
+			if (e instanceof AssumptionViolatedException) {
+				skipped((AssumptionViolatedException) e, description);
+			} else {
+				skipped(e, description);
+			}
+		} catch (Throwable e1) {
+			errors.add(e1);
+		}
 	}
 	
 	private static boolean isAddedFromBeforeClassMethod() {
@@ -148,7 +198,7 @@ public class BaseTestWatcher extends TestWatcher {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				// e.printStackTrace();
+				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
 				continue;
 			}
@@ -164,13 +214,4 @@ public class BaseTestWatcher extends TestWatcher {
 		return String.format(" duration: %1.2f min", (float) this.iStart / (60 * 1000));
 	}
 	
-	public static void removeObserver(ITestObserver observer) {
-		BFLogger.logDebug("Removing observer: " + observer.toString());
-		if (isAddedFromBeforeClassMethod()) {
-			TestClassRule.classObservers.remove(observer);
-		} else {
-			observers.remove(observer);
-		}
-		
-	}
 }
