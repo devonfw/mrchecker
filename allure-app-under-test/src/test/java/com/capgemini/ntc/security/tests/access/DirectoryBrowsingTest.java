@@ -12,8 +12,8 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.capgemini.ntc.security.EnvironmentParam;
 import com.capgemini.ntc.security.SecurityPage;
-import com.capgemini.ntc.security.SessionEnum;
 import com.capgemini.ntc.security.SubUrlEnum;
+import com.capgemini.ntc.security.session.SessionEnum;
 
 import io.restassured.specification.RequestSpecification;
 
@@ -57,7 +57,8 @@ public class DirectoryBrowsingTest extends SecurityPage {
 	
 	@Test
 	public void testHeader() {
-		RequestSpecification rs = initBuilder(session)
+		RequestSpecification rs = getSessionManager()
+						.initBuilder(session)
 						.setBaseUri(origin.getValue())
 						.setBasePath(path.getValue())
 						.build();

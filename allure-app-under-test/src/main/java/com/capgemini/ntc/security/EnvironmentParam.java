@@ -3,6 +3,11 @@ package com.capgemini.ntc.security;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
+/**
+ * This enumeration holds all environment variables relevant for the security test suite.
+ *
+ * @author Marek Puchalski, Capgemini
+ */
 public enum EnvironmentParam {
 	SECURITY_CLIENT_ORIGIN,
 	SECURITY_SERVER_ORIGIN,

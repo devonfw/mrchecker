@@ -1,5 +1,10 @@
 package com.capgemini.ntc.security;
 
+/**
+ * This enumeration holds all sub-urls relevant for the security test suite.
+ *
+ * @author Marek Puchalski, Capgemini
+ */
 public enum SubUrlEnum {
 	
 	LOGIN("mythaistar/login"),

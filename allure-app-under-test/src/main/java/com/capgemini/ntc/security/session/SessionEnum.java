@@ -1,4 +1,4 @@
-package com.capgemini.ntc.security;
+package com.capgemini.ntc.security.session;
 
 /**
  * This enumeration defines various user sessions (based on the role names)
