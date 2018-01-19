@@ -3,3 +3,5 @@ WWW_FONT_URL,"http://demoqa.com/","https://pl.wiktionary.org/wiki/", "http://ori
 SUB_PAGE," "," "
 TOOLS_QA,"http://toolsqa.com/","",""
 WEB_SERVICE,"http://jsonplaceholder.typicode.com","http://jsonplaceholder.typicode.com","http://jsonplaceholder.typicode.com"
+SECURITY_CLIENT,"http://de-mucdevondepl01:8090","http://de-mucdevondepl01:8090",""
+SECURITY_SERVER,"http://de-mucdevondepl01:9090","http://de-mucdevondepl01:9090",""

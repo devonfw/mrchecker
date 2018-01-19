@@ -39,15 +39,15 @@
         <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
         <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
     </scm>
-    
+
     <distributionManagement>
-        <!-- Repository used as default deploy phase.-->
+        <!-- Repository used as default deploy phase. -->
         <repository>
             <id>Local repository</id>
             <url>file://${env.BASE_PATH}/m2/repository</url>
         </repository>
     </distributionManagement>
-    
+
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
@@ -55,6 +55,7 @@
         <!-- Allure test framework modules -->
         <allure-core-module.version>4.12.0.2</allure-core-module.version>
         <allure-selenium-module.version>3.4.0.2</allure-selenium-module.version>
+        <allure-security-module.version>3.4.0.1</allure-security-module.version>
 
 
         <!-- Java settings -->
@@ -100,7 +101,7 @@
 
         <!-- Guava is a set of core libraries -->
         <google.guava.version>21.0</google.guava.version>
-        
+
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
         <style_format.directory>${pom.basedir}/../resources/style_format</style_format.directory>
@@ -128,6 +129,12 @@
             <version>${allure-selenium-module.version}</version>
         </dependency>
 
+        <!-- Security module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-security-module</artifactId>
+            <version>${allure-security-module.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -263,26 +270,26 @@
                     </configuration>
                 </plugin>
 
-            <!-- Static Analysis Plugins -->
-            <plugin><!-- mvn java-formatter:format -->
-                <groupId>net.revelc.code.formatter</groupId>
-                <artifactId>formatter-maven-plugin</artifactId>
-                <version>${formatter-maven-plugin.version}</version>
-                <configuration>
-                    <configFile>${style_format.directory}/eclipse_format_code_standards.xml</configFile>
-                    <lineEnding>LF</lineEnding>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id></id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+                <!-- Static Analysis Plugins -->
+                <plugin><!-- mvn java-formatter:format -->
+                    <groupId>net.revelc.code.formatter</groupId>
+                    <artifactId>formatter-maven-plugin</artifactId>
+                    <version>${formatter-maven-plugin.version}</version>
+                    <configuration>
+                        <configFile>${style_format.directory}/eclipse_format_code_standards.xml</configFile>
+                        <lineEnding>LF</lineEnding>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id></id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>validate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
                 <!-- START REPORT SERVER -->
                 <!--Needed only to show reports locally. Run 'mvn jetty:run'

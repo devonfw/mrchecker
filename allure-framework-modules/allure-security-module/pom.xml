@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>allure-test-framework</artifactId>
+        <groupId>com.capgemini.ntc</groupId>
+        <version>2.0.0</version>
+    </parent>
+    <artifactId>allure-security-module</artifactId>
+    <version>3.4.0.1</version>
+    <packaging>jar</packaging>
+    <name>AllureTestFramework - Security - Module</name>
+    <description>This is a module of the Allure testing framework dedicated 
+                 to perform and support and support security tests.
+    </description>
+    <url>https://github.com/devonfw/devonfw-testing</url>
+
+    <organization>
+        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Lukasz Stefaniszyn</name>
+            <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        <developer>
+            <name>Marek Puchalski</name>
+            <email>marek.puchalski@capgemini.com;marek.puchalski@owasp.org</email>
+            <organization>Capgemini - Software Solutions Center - Poland</organization>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
+        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+        <allure-core-module.version>4.12.0.2</allure-core-module.version>
+        <restassured.version>3.0.6</restassured.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Dependency to other Allure Test Framework modules -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-core-module</artifactId>
+            <version>${allure-core-module.version}</version>
+        </dependency>
+
+        <!--  Needed to perform all API calls -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restassured.version}</version>
+        </dependency>
+
+    </dependencies>
+
+
+    <!-- Build goals/actions -->
+    <build>
+        <plugins>
+            <!-- Plugins are taken from parent pom.xml -->
+        </plugins>
+    </build>
+
+
+</project>
