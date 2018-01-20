@@ -3,7 +3,7 @@ package com.capgemini.ntc.selenium.pages.projectX;
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
-import com.capgemini.ntc.selenium.pages.environment.PageSubURLsToolsQAEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectXEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.projectX.navigationbar.NavigationBar;
 
@@ -21,7 +21,7 @@ public class MainPage extends BasePage {
 	
 	@Override
 	public void load() {
-		getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsToolsQAEnum.MAIN_PAGE.getValue());
+		getDriver().get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.MAIN_PAGE.getValue());
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class MainPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsToolsQAEnum.MAIN_PAGE.getValue());
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.MAIN_PAGE.getValue());
 	}
 	
 	public NavigationBar getNavigationBar() {

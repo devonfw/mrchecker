@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.pages.environment;
 
-public enum PageSubURLsToolsQAEnum {
+public enum PageSubURLsProjectXEnum {
 	
 	REGISTRATION("registration/"),
 	FRAMEANDWINDOWS("frames-and-windows"),
@@ -16,11 +16,11 @@ public enum PageSubURLsToolsQAEnum {
 	 */
 	private String subURL;
 	
-	private PageSubURLsToolsQAEnum(String subURL) {
+	private PageSubURLsProjectXEnum(String subURL) {
 		this.subURL = subURL;
 	};
 	
-	private PageSubURLsToolsQAEnum() {
+	private PageSubURLsProjectXEnum() {
 		
 	}
 	

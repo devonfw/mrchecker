@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
-import com.capgemini.ntc.selenium.pages.environment.PageSubURLsToolsQAEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectXEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 
 public class RegistryPage extends BasePage {
@@ -13,13 +13,13 @@ public class RegistryPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsToolsQAEnum.REGISTRATION.getValue());
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
 	}
 	
 	@Override
 	public void load() {
 		BasePage.getDriver()
-				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsToolsQAEnum.REGISTRATION.getValue());
+				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
 		getDriver().waitForPageLoaded();
 		loaded = true;
 	}

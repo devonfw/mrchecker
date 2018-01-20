@@ -11,7 +11,7 @@ import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
-import com.capgemini.ntc.selenium.pages.environment.PageSubURLsToolsQAEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectXEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -60,17 +60,17 @@ public class RegistrationPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsToolsQAEnum.REGISTRATION.getValue());
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
 	}
 	
 	@Override
 	public void load() {
 		BasePage.getDriver()
-				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsToolsQAEnum.REGISTRATION.getValue());
+				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
 		loaded = true;
 	}
 	
-	public void load(PageSubURLsToolsQAEnum subUrl) {
+	public void load(PageSubURLsProjectXEnum subUrl) {
 		BasePage.getDriver()
 				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + subUrl.getValue());
 		loaded = true;

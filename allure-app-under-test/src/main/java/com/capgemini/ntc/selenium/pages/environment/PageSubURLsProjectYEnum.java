@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.pages.environment;
 
-public enum PageSubURLsTheInternetEnum {
+public enum PageSubURLsProjectYEnum {
 	
 	BASIC_AUTH("basic_auth"),
 	NEW_WINDOW("windows/new"),
@@ -12,11 +12,11 @@ public enum PageSubURLsTheInternetEnum {
 	 */
 	private String subURL;
 	
-	private PageSubURLsTheInternetEnum(String subURL) {
+	private PageSubURLsProjectYEnum(String subURL) {
 		this.subURL = subURL;
 	};
 	
-	private PageSubURLsTheInternetEnum() {
+	private PageSubURLsProjectYEnum() {
 		
 	}
 	

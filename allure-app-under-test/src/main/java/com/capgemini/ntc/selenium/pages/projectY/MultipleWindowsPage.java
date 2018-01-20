@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
-import com.capgemini.ntc.selenium.pages.environment.PageSubURLsTheInternetEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class MultipleWindowsPage extends BasePage {
@@ -15,13 +15,13 @@ public class MultipleWindowsPage extends BasePage {
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsTheInternetEnum.WINDOW.getValue());
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
 	}
 	
 	@Override
 	public void load() {
 		BFLogger.logDebug("load page");
-		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsTheInternetEnum.WINDOW.getValue());
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	

@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import org.openqa.selenium.By;
 
 import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.pages.environment.PageSubURLsTheInternetEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheBasicAuthPage extends BasePage {
@@ -43,7 +43,7 @@ public class TheBasicAuthPage extends BasePage {
 	}
 	
 	private void enterLoginAndPasswordByUrl(String login, String password) {
-		getDriver().get("http://" + login + ":" + password + "@" + "the-internet.herokuapp.com/" + PageSubURLsTheInternetEnum.BASIC_AUTH.getValue());
+		getDriver().get("http://" + login + ":" + password + "@" + "the-internet.herokuapp.com/" + PageSubURLsProjectYEnum.BASIC_AUTH.getValue());
 	}
 	
 	public void enterLoginAndPassword(String login, String password) throws AWTException, InterruptedException {
