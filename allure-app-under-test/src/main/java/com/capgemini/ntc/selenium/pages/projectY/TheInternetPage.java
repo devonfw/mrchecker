@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
@@ -18,16 +19,16 @@ public class TheInternetPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The internet page is loaded.");
+		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/");
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 		
 	}
 	
 	@Override
 	public void load() {
 		BFLogger.logDebug("load page");
-		getDriver().get("http://the-internet.herokuapp.com");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	

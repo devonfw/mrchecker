@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.pages.environment;
+package com.capgemini.ntc.selenium.core.base.environment;
 
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
