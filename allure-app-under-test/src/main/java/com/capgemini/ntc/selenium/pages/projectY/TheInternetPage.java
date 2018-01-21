@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.features.samples.theinternet.ChallengingDomPage;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -15,21 +16,22 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li:nth-child(4) > a");
 	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li:nth-child(3) > a");
 	private static final By	selectorDropdownClickLink		= By.cssSelector("li:nth-child(9) > a");
-	private static final By	selectorMultipleWindowsLink		= By.cssSelector("#content > ul > li:nth-child(29) > a");
+	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li:nth-child(2) > a");
+	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The internet page is loaded.");
+		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/");
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 		
 	}
 	
 	@Override
 	public void load() {
 		BFLogger.logDebug("load page");
-		getDriver().get("http://the-internet.herokuapp.com");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
@@ -66,6 +68,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementClickLink = getDriver().findElementDynamic(selectorDropdownClickLink);
 		elementClickLink.click();
 		return new DropdownPage();
+	}
+	
+	public KeyPressesPage clickKeyPressesLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorKeyPressesLink);
+		elementLink.click();
+		return new KeyPressesPage();
 	}
 	
 	public MultipleWindowsPage clickmultipleWindowsPageLink() {

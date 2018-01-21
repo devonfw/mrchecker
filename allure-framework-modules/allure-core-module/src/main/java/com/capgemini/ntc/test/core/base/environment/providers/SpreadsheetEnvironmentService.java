@@ -34,6 +34,8 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	private String path;
 	
+	private String environmentName;
+	
 	private SpreadsheetEnvironmentService(String path, String environmentName) {
 		this.path = path;
 		fetchEnvData(path);
@@ -73,19 +75,25 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	 * @param environmentName
 	 */
 	public void setEnvironment(String environmentName) {
+		this.environmentName = environmentName;
 		updateServicesMapBasedOn(environmentName);
+	}
+	
+	@Override
+	public String getEnvironment() {
+		return this.environmentName;
 	}
 	
 	/**
 	 * @param serviceName
-	 * @return address of service for current environment
+	 * @return value of service for current environment
 	 */
-	public String getServiceAddress(String serviceName) {
-		String serviceAddress = services.get(serviceName);
-		if (serviceAddress == null) {
+	public String getValue(String serviceName) {
+		String value = services.get(serviceName);
+		if (value == null) {
 			throw new BFInputDataException("service " + serviceName + " " + "retrieve address of" + " " + "not found in available services table");
 		}
-		return serviceAddress;
+		return value;
 	}
 	
 	private void fetchEnvData(String path) throws BFInputDataException {
@@ -110,17 +118,8 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			String key = record.get(0);
 			String value = record.get(environmentNumber)
 							.trim();
-			value = formatAddress(value);
 			services.put(key, value);
 		}
-	}
-	
-	private String formatAddress(String address) {
-		address = address.replaceAll("\\\\", "/");
-		if (!address.endsWith("/")) {
-			address = address + "/";
-		}
-		return address;
 	}
 	
 	private int getEnvironmentNumber(String environmentName) throws BFInputDataException {

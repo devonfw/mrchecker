@@ -15,10 +15,17 @@ public interface IEnvironmentService {
 	public void setEnvironment(String environmentName);
 	
 	/**
-	 * @param serviceName
-	 * @return address of service for current environment from data source
+	 * Sets environment (e.g. "QC1")
+	 * 
+	 * @param environmentName
 	 */
-	public String getServiceAddress(String serviceName);
+	public String getEnvironment();
+	
+	/**
+	 * @param serviceName
+	 * @return get value of service for current environment from data source
+	 */
+	public String getValue(String serviceName);
 	
 	/**
 	 * @return source from Environment variables are taken. This could be file path
