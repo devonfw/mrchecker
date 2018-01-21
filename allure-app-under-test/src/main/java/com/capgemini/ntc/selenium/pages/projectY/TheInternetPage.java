@@ -12,7 +12,7 @@ public class TheInternetPage extends BasePage {
 	
 	private static final By	selectorCheckboxesLink			= By.cssSelector("#content > ul > li:nth-child(5) > a");
 	private static final By	selectorElementClick			= By.cssSelector("li:nth-child(1) > a");
-	private static final By	selectorChallengingDomClick		= By.cssSelector("li:nth-child(4) > a");
+	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li:nth-child(3) > a");
 	private static final By	selectorDropdownClickLink		= By.cssSelector("li:nth-child(9) > a");
 	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");

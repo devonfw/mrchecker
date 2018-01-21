@@ -26,12 +26,13 @@ public class ChallengingDomPage extends BasePage {
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getDriver().getTitle();
 	}
 	
 	public HashMap<String, ArrayList<String>> getTableValues() {
