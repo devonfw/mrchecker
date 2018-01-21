@@ -99,7 +99,7 @@
         <guice.version>4.1.0</guice.version>
 
         <!-- Guava is a set of core libraries -->
-        <google.guava.version>21.0</google.guava.version>
+        <google.guava.version>23.0</google.guava.version>
         
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
