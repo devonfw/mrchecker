@@ -22,10 +22,6 @@ public class KeyPressesTest extends BaseTest {
 		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
 		theInternetPage = new TheInternetPage();
 		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-		BFLogger.logDebug("Step 3 - Click on the Key Presses link");
-		keyPressesPage = theInternetPage.clickKeyPressesLink();
-		BFLogger.logDebug("Step 4 - Verify if the Url http://the-internet.herokuapp.com/key_presses opens");
-		assertTrue("The Key Presses Page was not open", keyPressesPage.isLoaded());
 	}
 	
 	@Override
@@ -36,6 +32,10 @@ public class KeyPressesTest extends BaseTest {
 	
 	@Test
 	public void pressKeyTest() {
+		BFLogger.logDebug("Step 3 - Click on the Key Presses link");
+		keyPressesPage = theInternetPage.clickKeyPressesLink();
+		BFLogger.logDebug("Step 4 - Verify if the Url http://the-internet.herokuapp.com/key_presses opens");
+		assertTrue("The Key Presses Page was not open", keyPressesPage.isLoaded());
 		assertTrue("The expected key doesn't pressed", keyPressesPage.getSendKeyPress("Q")
 						.equals(key));
 	}

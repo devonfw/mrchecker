@@ -3,6 +3,8 @@ package com.capgemini.ntc.selenium.pages.projectY;
 import org.openqa.selenium.By;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class KeyPressesPage extends BasePage {
@@ -13,13 +15,13 @@ public class KeyPressesPage extends BasePage {
 	public boolean isLoaded() {
 		BFLogger.logDebug("The KeyPresses page is loaded.");
 		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/key_presses");
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.KEY_PRESS.getValue());
 	}
 	
 	@Override
 	public void load() {
 		BFLogger.logDebug("load");
-		getDriver().get("http://the-internet.herokuapp.com/key_presses");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.KEY_PRESS.getValue());
 	}
 	
 	@Override

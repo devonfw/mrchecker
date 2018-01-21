@@ -5,7 +5,8 @@ public enum PageSubURLsProjectYEnum {
 	BASIC_AUTH("basic_auth"),
 	NEW_WINDOW("windows/new"),
 	WINDOW("windows"),
-	CHECKBOX("checkboxes");
+	CHECKBOX("checkboxes"),
+	KEY_PRESS("key_presses");
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment
