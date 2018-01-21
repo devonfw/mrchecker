@@ -3,10 +3,10 @@ package com.capgemini.ntc.selenium.core.newDrivers;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
@@ -31,8 +31,8 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 		driverExtention = new DriverExtention(this);
 	}
 	
-	public NewFirefoxDriver(Capabilities capabilities) {
-		super(capabilities);
+	public NewFirefoxDriver(FirefoxOptions options) {
+		super(options);
 		driverExtention = new DriverExtention(this);
 	}
 	
