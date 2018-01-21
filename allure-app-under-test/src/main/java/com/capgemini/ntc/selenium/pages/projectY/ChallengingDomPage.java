@@ -1,25 +1,27 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.jsoupHelper.JsoupHelper;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ChallengingDomPage extends BasePage {
 	
-	private final static By		tableArea				= By.cssSelector("div.large-10.columns > table");
-	private final By			selectorAllCellsInRows	= By.cssSelector("tbody > tr");
-	private By					selectorButtonToClick	= By.cssSelector("#content > div > div > div >div:nth-child(1) > a:nth-child(1)");
-	private ArrayList<String>	valuesInTableBeforeClick;
+	private final By	selectorAllCellsInRows	= By.cssSelector("tbody > tr");
+	private By			selectorFirstButton		= By.cssSelector(".large-2.columns > .button:nth-child(1)");
 	
 	@Override
 	public boolean isLoaded() {
+		BFLogger.logDebug("The ChallengingDOM page is loaded.");
 		return getDriver().getCurrentUrl()
-						.contains("challenging_dom");
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
 	}
 	
 	@Override
@@ -32,32 +34,25 @@ public class ChallengingDomPage extends BasePage {
 		return "The Internet";
 	}
 	
-	public void saveCellsValuesBeforeClick() {
-		BFLogger.logDebug("saveCellsValuesBeforeClick()");
-		valuesInTableBeforeClick = (ArrayList<String>) JsoupHelper.findTexts(getDriver().findElementDynamic(tableArea), selectorAllCellsInRows);
-		BFLogger.logDebug("Cells Values saved");
-		BFLogger.logDebug(valuesInTableBeforeClick.get(0));
+	public HashMap<String, ArrayList<String>> getTableValues() {
+		List<WebElement> rows = getDriver().findElementDynamics(selectorAllCellsInRows);
+		HashMap<String, ArrayList<String>> tableValues = new HashMap<String, ArrayList<String>>();
+		
+		rows.forEach(row -> {
+			ArrayList<String> cellsValues = new ArrayList<>();
+			List<WebElement> cells = row.findElements(By.cssSelector("td"));
+			cells.forEach(cell -> {
+				cellsValues.add(cell.getText());
+			});
+			tableValues.put("row " + rows.indexOf(row), cellsValues);
+		});
+		
+		return tableValues;
 	}
 	
 	public void clickFirstButton() {
 		BFLogger.logDebug("clickFirstButton()");
-		WebElement elementToClick = getDriver().findElementDynamic(selectorButtonToClick);
+		WebElement elementToClick = getDriver().findElementDynamic(selectorFirstButton);
 		elementToClick.click();
-	}
-	
-	public boolean compareValuesInCells() {
-		for (int i = 0; i < valuesInTableBeforeClick.size(); i++) {
-			By selectorOfSingleRow = By.cssSelector("tbody > tr" + ":nth-child(" + (i + 1) + ")");
-			String textInRow = getDriver().findElementDynamic(selectorOfSingleRow)
-							.getText();
-			BFLogger.logDebug("Row" + i + " from table:   " + textInRow);
-			BFLogger.logDebug("Row" + i + " before click: " + valuesInTableBeforeClick.get(i));
-			if (!(textInRow.equals(valuesInTableBeforeClick.get(i)))) {
-				BFLogger.logDebug("Values in row " + (i) + " are changed");
-				return false;
-			}
-		}
-		BFLogger.logDebug("All values in table are correct after click");
-		return true;
 	}
 }
