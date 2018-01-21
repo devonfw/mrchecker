@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.pages.features.samples.theinternet;
+package com.capgemini.ntc.selenium.pages.projectY;
 
 import java.util.ArrayList;
 

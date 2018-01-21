@@ -1,4 +1,4 @@
-package com.capgemini.ntc.selenium.features.samples.theinternet;
+package com.capgemini.ntc.selenium.projectY;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.DriverManager;
-import com.capgemini.ntc.selenium.pages.features.samples.theinternet.ChallengingDomPage;
+import com.capgemini.ntc.selenium.pages.projectY.ChallengingDomPage;
 import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;

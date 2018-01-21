@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
-import com.capgemini.ntc.selenium.pages.features.samples.theinternet.ChallengingDomPage;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
