@@ -166,9 +166,10 @@ public class DriverManager {
 		FIREFOX {
 			@Override
 			public INewWebDriver getDriver() {
-				// String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
-				// System.setProperty("webdriver.gecko.driver", browserPath);
-				//
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
+				System.setProperty("webdriver.gecko.driver", browserPath);
+				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
+				
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("webdriver.firefox.marionette", true);
 				profile.setPreference("browser.download.folderlist", 2);
@@ -179,28 +180,9 @@ public class DriverManager {
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
 				
-				// DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				// capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-				// // capabilities.setCapability("moz:firefoxOptions", profile);
-				// return new NewFirefoxDriver(capabilities);
-				//
-				
-				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
-				System.setProperty("webdriver.gecko.driver", browserPath);
-				System.setProperty("webdriver.firefox.logfile", "logs.txt");
-				
 				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
-				options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); // Location where Firefox
-				// is
-				// // installed
 				
-				// DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-				// capabilities.setCapability("moz:firefoxOptions", options);
-				// capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-				// set more capabilities as per your requirements
 				return new NewFirefoxDriver(options);
-				// return (INewWebDriver) new FirefoxDriver(capabilities);
-				
 			}
 		},
 		IE {
