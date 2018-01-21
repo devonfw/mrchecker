@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -52,8 +53,8 @@ public class ChallengingDomPage extends BasePage {
 	}
 	
 	public void clickFirstButton() {
-		BFLogger.logDebug("clickFirstButton()");
-		WebElement elementToClick = getDriver().findElementDynamic(selectorFirstButton);
-		elementToClick.click();
+		Button firstButton = getDriver().elementButton(selectorFirstButton);
+		firstButton.click();
+		getDriver().waitForPageLoaded();
 	}
 }
