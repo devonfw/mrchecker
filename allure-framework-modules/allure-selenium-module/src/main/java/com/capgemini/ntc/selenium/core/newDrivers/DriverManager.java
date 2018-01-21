@@ -2,15 +2,14 @@ package com.capgemini.ntc.selenium.core.newDrivers;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
@@ -28,8 +27,8 @@ public class DriverManager {
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
 	
 	// Setup default variables
-	private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
-	private static final int IMPLICITYWAITTIMER = 2; // in seconds
+	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
+	private static final int			IMPLICITYWAITTIMER	= 2;					// in seconds
 	
 	private static PropertiesSelenium propertiesSelenium;
 	
@@ -107,8 +106,8 @@ public class DriverManager {
 			driver = setupBrowser();
 		}
 		driver.manage()
-				.timeouts()
-				.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
+						.timeouts()
+						.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
 		
 		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
@@ -132,16 +131,14 @@ public class DriverManager {
 	private static INewWebDriver setupBrowser() {
 		String browser = RuntimeParametersSelenium.BROWSER.getValue();
 		switch (browser) {
-		case "chrome":
-			return Driver.CHROME.getDriver();
-		case "firefox":
-			return Driver.FIREFOX.getDriver();
-		case "internet explorer":
-			return Driver.IE.getDriver();
-		case "phantomjs":
-			return Driver.PHANTOMJS.getDriver();
-		default:
-			throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
+			case "chrome":
+				return Driver.CHROME.getDriver();
+			case "firefox":
+				return Driver.FIREFOX.getDriver();
+			case "internet explorer":
+				return Driver.IE.getDriver();
+			default:
+				throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
 		}
 	}
 	
@@ -166,38 +163,44 @@ public class DriverManager {
 			}
 			
 		},
-		PHANTOMJS {
-			@Override
-			public INewWebDriver getDriver() {
-				String browserPath = DriverManager.propertiesSelenium.getSeleniumPhantomjs();
-				ArrayList<String> cliArgsCap = new ArrayList<String>();
-				cliArgsCap.add("--web-security=false");
-				cliArgsCap.add("--ssl-protocol=any");
-				cliArgsCap.add("--ignore-ssl-errors=true");
-				DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
-				capabilities.setCapability("takesScreenshot", true);
-				capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
-				capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_GHOSTDRIVER_CLI_ARGS,
-						new String[] { "--logLevel=2" });
-				capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, browserPath);
-				return new NewPhantomJSDriver(capabilities);
-			}
-		},
 		FIREFOX {
 			@Override
 			public INewWebDriver getDriver() {
+				// String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
+				// System.setProperty("webdriver.gecko.driver", browserPath);
+				//
 				FirefoxProfile profile = new FirefoxProfile();
-				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
-				System.setProperty("webdriver.gecko.driver", browserPath);
 				profile.setPreference("webdriver.firefox.marionette", true);
 				profile.setPreference("browser.download.folderlist", 2);
 				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
-						"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
+								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv,application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip,application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.download.useDownloadDir", true);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
-				return new NewFirefoxDriver(profile);
+				
+				// DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				// capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+				// // capabilities.setCapability("moz:firefoxOptions", profile);
+				// return new NewFirefoxDriver(capabilities);
+				//
+				
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
+				System.setProperty("webdriver.gecko.driver", browserPath);
+				System.setProperty("webdriver.firefox.logfile", "logs.txt");
+				
+				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
+				options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); // Location where Firefox
+				// is
+				// // installed
+				
+				// DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+				// capabilities.setCapability("moz:firefoxOptions", options);
+				// capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+				// set more capabilities as per your requirements
+				return new NewFirefoxDriver(options);
+				// return (INewWebDriver) new FirefoxDriver(capabilities);
+				
 			}
 		},
 		IE {
@@ -226,15 +229,15 @@ public class DriverManager {
 				
 				// TODO add others os's
 				switch (operatingSystem) {
-				case "windows":
-					capabilities.setPlatform(Platform.WINDOWS);
-					break;
-				case "vista":
-					capabilities.setPlatform(Platform.VISTA);
-					break;
-				case "mac":
-					capabilities.setPlatform(Platform.MAC);
-					break;
+					case "windows":
+						capabilities.setPlatform(Platform.WINDOWS);
+						break;
+					case "vista":
+						capabilities.setPlatform(Platform.VISTA);
+						break;
+					case "mac":
+						capabilities.setPlatform(Platform.MAC);
+						break;
 				}
 				
 				capabilities.setVersion(RuntimeParametersSelenium.BROWSER_VERSION.getValue());
