@@ -14,8 +14,9 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorElementClick			= By.cssSelector("li:nth-child(1) > a");
 	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li:nth-child(3) > a");
 	private static final By	selectorDropdownClickLink		= By.cssSelector("li:nth-child(9) > a");
-	private static final By	selectorMultipleWindowsLink		= By.cssSelector("#content > ul > li:nth-child(29) > a");
+	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li:nth-child(2) > a");
+	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -59,6 +60,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementClickLink = getDriver().findElementDynamic(selectorDropdownClickLink);
 		elementClickLink.click();
 		return new DropdownPage();
+	}
+	
+	public KeyPressesPage clickKeyPressesLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorKeyPressesLink);
+		elementLink.click();
+		return new KeyPressesPage();
 	}
 	
 	public MultipleWindowsPage clickmultipleWindowsPageLink() {
