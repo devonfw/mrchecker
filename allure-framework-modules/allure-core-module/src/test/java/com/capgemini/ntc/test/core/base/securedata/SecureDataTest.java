@@ -67,9 +67,30 @@ public class SecureDataTest {
     };
   }
   
-  @Test
+  @Test(expected = BFSecureModuleException.class)
   public void secretdata_file_with_empty_key() {
-    fail("Not yet implemented");
+    SecretdataFileService.delInstance();
+    
+    ISecureDataService secureDataService = Guice.createInjector(securedataTestModel_secretdata_file_with_empty_key())
+            .getInstance(ISecureDataService.class);
+    
+    secureDataService.decrypt("test");
+  }
+  
+  private AbstractModule securedataTestModel_secretdata_file_with_empty_key() {
+    return new AbstractModule() {
+      
+      @Override
+      protected void configure() {
+      }
+      
+      @Provides
+      ISecureDataService provideSecuredataService() {
+        String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/secretData_emptykey");
+        SecretdataFileService.init(path);
+        return SecretdataFileService.getInstance();
+      }
+    };
   }
   
   @Test

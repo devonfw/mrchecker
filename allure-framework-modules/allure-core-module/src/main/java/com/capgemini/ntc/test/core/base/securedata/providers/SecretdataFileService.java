@@ -88,7 +88,7 @@ public class SecretdataFileService implements ISecureDataService {
     String password = null;
     try {
       scanner = new Scanner(secretdataFile);
-      password = scanner.next();
+      password = getPasswordFromOpenFile(scanner, password);
     } catch (FileNotFoundException e) {
       BFLogger.logError("secretData file not found loading error");
       BFLogger.logError(e.getMessage());
@@ -97,6 +97,15 @@ public class SecretdataFileService implements ISecureDataService {
         scanner.close();
       }
       
+    }
+    return password;
+  }
+  
+  private String getPasswordFromOpenFile(Scanner scanner, String password) {
+    if (scanner.hasNext()) {
+      password = scanner.next();
+    } else {
+      BFLogger.logError("In secret data file: " + this.path + "  no key/text was found");
     }
     return password;
   }
