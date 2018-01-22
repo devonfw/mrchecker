@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class MultipleWindowsPage extends BasePage {
@@ -13,13 +15,13 @@ public class MultipleWindowsPage extends BasePage {
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/windows");
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
 	}
 	
 	@Override
 	public void load() {
 		BFLogger.logDebug("load page");
-		getDriver().get("http://the-internet.herokuapp.com/windows");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	

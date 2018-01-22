@@ -3,22 +3,29 @@ package com.capgemini.ntc.test.core.base.environment;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
-public enum GetEnvironmentParam {
+enum GetEnvironmentParam {
 	WWW_FONT_URL,
 	SPS_WI_URL,
 	TOOLS_QA,
 	WEB_SERVICE,
 	HEROKUAPP;
 	
-	public String getAddress() {
+	IEnvironmentService environmentService = BaseTest.getEnvironmentService();
+	
+	public String getValue() {
 		
-		if (null == BaseTest.getEnvironmentService()) {
+		if (null == environmentService) {
 			throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
 		}
+		return environmentService
+						.getValue(this.name());
 		
-		return BaseTest.getEnvironmentService()
-						.getServiceAddress(this.name());
-		
+	}
+	
+	public static void refreshAll() {
+		for (GetEnvironmentParam e : values()) {
+			e.environmentService = BaseTest.getEnvironmentService();
+		}
 	}
 	
 }

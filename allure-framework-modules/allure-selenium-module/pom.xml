@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
-    <version>3.4.0.2</version>
+    <version>3.8.1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:
@@ -29,7 +29,7 @@
         * Page Object Model architecture
         * Selenium WebDriver with Java
 
-Based on Selenium 3.4.0</description>
+Based on Selenium 3.8.1</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
     <organization>
@@ -63,10 +63,10 @@ Based on Selenium 3.4.0</description>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <allure-core-module.version>4.12.0.2</allure-core-module.version>
+        <allure-core-module.version>4.12.0.3-SNAPSHOT</allure-core-module.version>
 
         <!-- Selenium settings -->
-        <selenium.version>3.4.0</selenium.version>
+        <selenium.version>3.8.1</selenium.version>
 
         <!-- Test tools -->
         <jsoup.version>1.11.2</jsoup.version>
@@ -130,12 +130,6 @@ Based on Selenium 3.4.0</description>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
-        </dependency>
-
-        <!-- Guava is a set of core libraries -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
 
     </dependencies>

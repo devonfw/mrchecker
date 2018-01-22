@@ -23,8 +23,9 @@ public class EnvironmentMainTest {
 	@Before
 	public void setup() {
 		systemUnderTest = Guice.createInjector(environmentTestModel())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		
+		BaseTest.getEnvironmentService();
 	}
 	
 	@After
@@ -35,10 +36,10 @@ public class EnvironmentMainTest {
 	public void testDependecyInjection() throws Exception {
 		SpreadsheetEnvironmentService.delInstance();
 		IEnvironmentService environmentService = Guice.createInjector(new EnvironmentModule())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		
 		environmentService.setEnvironment("DEV");
-		assertEquals("http://demoqa.com/", environmentService.getServiceAddress("WWW_FONT_URL"));
+		assertEquals("http://demoqa.com/", environmentService.getValue("WWW_FONT_URL"));
 		
 	}
 	
@@ -46,23 +47,24 @@ public class EnvironmentMainTest {
 	public void getServiceAddressShouldReturnCorrectServiceAddressForDefaultEnvironment() {
 		SpreadsheetEnvironmentService.delInstance();
 		systemUnderTest = Guice.createInjector(new EnvironmentModule())
-				.getInstance(IEnvironmentService.class);
+						.getInstance(IEnvironmentService.class);
 		
-		String actualAddress = systemUnderTest.getServiceAddress("DMA_URL");
-		String expectedAddress = "https://dma.company.com/";
+		String actualAddress = systemUnderTest.getValue("DMA_URL");
+		String expectedAddress = "https://dma.company.com";
 		assertEquals(expectedAddress, actualAddress);
 	}
 	
 	@Test(expected = BFInputDataException.class)
 	public void getServiceAddressShouldThrowExceptionWhenServiceNotFound() {
 		
-		systemUnderTest.getServiceAddress("NOT_EXISTING_SERVICE");
+		systemUnderTest.getValue("NOT_EXISTING_SERVICE");
 	}
 	
 	@Test
 	public void setEnvironmentShouldSucceedWhenEnvironmentExist() {
 		
 		systemUnderTest.setEnvironment("DEV2");
+		assertEquals("DEV2", systemUnderTest.getEnvironment());
 	}
 	
 	@Test
@@ -71,17 +73,17 @@ public class EnvironmentMainTest {
 		String serviceName = "MY_RESEARCH_URL_VALUE";
 		
 		systemUnderTest.setEnvironment("DEV2");
-		String actualAddress = systemUnderTest.getServiceAddress(serviceName);
+		String actualAddress = systemUnderTest.getValue(serviceName);
 		String expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
 		systemUnderTest.setEnvironment("DEV1");
-		actualAddress = systemUnderTest.getServiceAddress(serviceName);
+		actualAddress = systemUnderTest.getValue(serviceName);
 		expectedAddress = "https://myresearchqa1.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
 		systemUnderTest.setEnvironment("DEV2");
-		actualAddress = systemUnderTest.getServiceAddress(serviceName);
+		actualAddress = systemUnderTest.getValue(serviceName);
 		expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 	}
@@ -94,16 +96,18 @@ public class EnvironmentMainTest {
 	
 	@Test
 	public void ServicesURLsEnumIsReturningCorrectAddresses() {
+		BaseTest.getEnvironmentService();
 		
 		systemUnderTest.setEnvironment("DEV1");
 		BaseTest.setEnvironmentService(systemUnderTest);
+		GetEnvironmentParam.refreshAll();
 		
-		String actualAddress = GetEnvironmentParam.WWW_FONT_URL.getAddress();
+		String actualAddress = GetEnvironmentParam.WWW_FONT_URL.getValue();
 		String expectedAddress = "https://myresearchqa1.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 		
 		systemUnderTest.setEnvironment("DEV2");
-		actualAddress = GetEnvironmentParam.WWW_FONT_URL.getAddress();
+		actualAddress = GetEnvironmentParam.WWW_FONT_URL.getValue();
 		expectedAddress = "https://myresearchqa2.company.com/";
 		assertEquals(expectedAddress, actualAddress);
 	}
