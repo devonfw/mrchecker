@@ -11,7 +11,7 @@ public class NewWindowPage extends BasePage {
 	public boolean isLoaded() {
 		BFLogger.logDebug("is loaded");
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
 	}
 	
 	@Override

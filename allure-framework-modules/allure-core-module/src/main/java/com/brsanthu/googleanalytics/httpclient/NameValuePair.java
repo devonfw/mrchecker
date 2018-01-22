@@ -1,9 +1,9 @@
 package com.brsanthu.googleanalytics.httpclient;
 
 public interface NameValuePair {
-
-    String getName();
-
-    String getValue();
-
+	
+	String getName();
+	
+	String getValue();
+	
 }

@@ -4,8 +4,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class BFInputDataException extends AssertionError {
 	
-	private static final long	serialVersionUID	= 6054714830892676552L;
-	private static String		exceptionMessage;
+	private static final long serialVersionUID = 6054714830892676552L;
+	private static String exceptionMessage;
 	
 	/**
 	 * This exception should be thrown when test data contains false information, e.g.: invalid USER, USER without

@@ -15,8 +15,8 @@ import com.google.inject.name.Names;
 @Singleton
 public class PropertiesSettingsModule extends AbstractModule {
 	
-	private static PropertiesSettingsModule	instance;
-	private String							path;
+	private static PropertiesSettingsModule instance;
+	private String path;
 	
 	private PropertiesSettingsModule(String path) {
 		this.path = path;

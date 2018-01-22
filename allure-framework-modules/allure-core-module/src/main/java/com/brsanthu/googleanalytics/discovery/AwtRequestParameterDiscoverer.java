@@ -20,33 +20,34 @@ import com.brsanthu.googleanalytics.request.DefaultRequest;
  * @author Santhosh Kumar
  */
 public class AwtRequestParameterDiscoverer extends DefaultRequestParameterDiscoverer {
-
-    @Override
-    public DefaultRequest discoverParameters(GoogleAnalyticsConfig config, DefaultRequest request) {
-        super.discoverParameters(config, request);
-
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-
-        if (isEmpty(request.screenResolution())) {
-            Dimension screenSize = toolkit.getScreenSize();
-            request.screenResolution(
-                    ((int) screenSize.getWidth()) + "x" + ((int) screenSize.getHeight()) + ", " + toolkit.getScreenResolution() + " dpi");
-        }
-
-        if (isEmpty(request.screenColors())) {
-            GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            GraphicsDevice[] graphicsDevices = graphicsEnvironment.getScreenDevices();
-
-            StringBuilder sb = new StringBuilder();
-            for (GraphicsDevice graphicsDevice : graphicsDevices) {
-                if (sb.length() != 0) {
-                    sb.append(", ");
-                }
-                sb.append(graphicsDevice.getDisplayMode().getBitDepth());
-            }
-            request.screenColors(sb.toString());
-        }
-
-        return request;
-    }
+	
+	@Override
+	public DefaultRequest discoverParameters(GoogleAnalyticsConfig config, DefaultRequest request) {
+		super.discoverParameters(config, request);
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		
+		if (isEmpty(request.screenResolution())) {
+			Dimension screenSize = toolkit.getScreenSize();
+			request.screenResolution(
+					((int) screenSize.getWidth()) + "x" + ((int) screenSize.getHeight()) + ", " + toolkit.getScreenResolution() + " dpi");
+		}
+		
+		if (isEmpty(request.screenColors())) {
+			GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			GraphicsDevice[] graphicsDevices = graphicsEnvironment.getScreenDevices();
+			
+			StringBuilder sb = new StringBuilder();
+			for (GraphicsDevice graphicsDevice : graphicsDevices) {
+				if (sb.length() != 0) {
+					sb.append(", ");
+				}
+				sb.append(graphicsDevice.getDisplayMode()
+						.getBitDepth());
+			}
+			request.screenColors(sb.toString());
+		}
+		
+		return request;
+	}
 }

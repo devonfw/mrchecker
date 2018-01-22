@@ -29,8 +29,8 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	private static IEnvironmentService instance;
 	
-	private List<CSVRecord>		records;
-	private Map<String, String>	services;
+	private List<CSVRecord> records;
+	private Map<String, String> services;
 	
 	private String path;
 	
@@ -45,7 +45,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	public static IEnvironmentService init() {
 		String path = SpreadsheetEnvironmentService.class.getResource("")
-						.getPath() + "/environments/environments.csv";
+				.getPath() + "/environments/environments.csv";
 		String environment = "DEV";
 		return init(path, environment);
 	}
@@ -117,7 +117,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			CSVRecord record = it.next();
 			String key = record.get(0);
 			String value = record.get(environmentNumber)
-							.trim();
+					.trim();
 			services.put(key, value);
 		}
 	}

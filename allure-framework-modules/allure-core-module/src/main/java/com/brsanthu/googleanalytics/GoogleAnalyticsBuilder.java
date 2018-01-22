@@ -16,10 +16,10 @@ import com.brsanthu.googleanalytics.internal.GoogleAnalyticsThreadFactory;
 import com.brsanthu.googleanalytics.request.DefaultRequest;
 
 public class GoogleAnalyticsBuilder {
-	private GoogleAnalyticsConfig	config			= new GoogleAnalyticsConfig();
-	private DefaultRequest			defaultRequest	= new DefaultRequest();
-	private HttpClient				httpClient;
-	private ExecutorService			executor;
+	private GoogleAnalyticsConfig config = new GoogleAnalyticsConfig();
+	private DefaultRequest defaultRequest = new DefaultRequest();
+	private HttpClient httpClient;
+	private ExecutorService executor;
 	
 	public GoogleAnalyticsBuilder withConfig(GoogleAnalyticsConfig config) {
 		this.config = GaUtils.firstNotNull(config, new GoogleAnalyticsConfig());
@@ -59,7 +59,7 @@ public class GoogleAnalyticsBuilder {
 	public GoogleAnalytics build() {
 		if (config.isDiscoverRequestParameters()) {
 			RequestParameterDiscoverer discoverer = GaUtils.firstNotNull(config.getRequestParameterDiscoverer(),
-							DefaultRequestParameterDiscoverer.INSTANCE);
+					DefaultRequestParameterDiscoverer.INSTANCE);
 			
 			discoverer.discoverParameters(config, defaultRequest);
 		}
@@ -81,7 +81,7 @@ public class GoogleAnalyticsBuilder {
 		}
 		
 		return new ThreadPoolExecutor(config.getMinThreads(), config.getMaxThreads(), config.getThreadTimeoutSecs(), TimeUnit.SECONDS,
-						new LinkedBlockingDeque<Runnable>(config.getThreadQueueSize()), createThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
+				new LinkedBlockingDeque<Runnable>(config.getThreadQueueSize()), createThreadFactory(), new ThreadPoolExecutor.CallerRunsPolicy());
 	}
 	
 	protected ThreadFactory createThreadFactory() {

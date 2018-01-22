@@ -17,7 +17,6 @@ import static com.brsanthu.googleanalytics.internal.Constants.HIT_PAGEVIEW;
 
 /**
  * GA request to track a typical web page view
- *
  * <p>
  * For more information, see
  * <a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#content">GA Parameters
@@ -27,18 +26,18 @@ import static com.brsanthu.googleanalytics.internal.Constants.HIT_PAGEVIEW;
  * @author Santhosh Kumar
  */
 public class PageViewHit extends GoogleAnalyticsRequest<PageViewHit> {
-    public PageViewHit() {
-        this(null, null, null);
-    }
-
-    public PageViewHit(String url, String title) {
-        this(url, title, null);
-    }
-
-    public PageViewHit(String url, String title, String description) {
-        super(HIT_PAGEVIEW);
-        documentUrl(url);
-        documentTitle(title);
-        contentDescription(description);
-    }
+	public PageViewHit() {
+		this(null, null, null);
+	}
+	
+	public PageViewHit(String url, String title) {
+		this(url, title, null);
+	}
+	
+	public PageViewHit(String url, String title, String description) {
+		super(HIT_PAGEVIEW);
+		documentUrl(url);
+		documentTitle(title);
+		contentDescription(description);
+	}
 }

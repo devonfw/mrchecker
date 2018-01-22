@@ -12,9 +12,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class KeyPressesTest extends BaseTest {
 	
-	private TheInternetPage			theInternetPage;
-	private static KeyPressesPage	keyPressesPage;
-	private final String			key	= "You entered: Q";
+	private TheInternetPage theInternetPage;
+	private static KeyPressesPage keyPressesPage;
+	private final String key = "You entered: Q";
 	
 	@Override
 	public void setUp() {
@@ -37,7 +37,7 @@ public class KeyPressesTest extends BaseTest {
 		BFLogger.logDebug("Step 4 - Verify if the Url http://the-internet.herokuapp.com/key_presses opens");
 		assertTrue("The Key Presses Page was not open", keyPressesPage.isLoaded());
 		assertTrue("The expected key doesn't pressed", keyPressesPage.getSendKeyPress("Q")
-						.equals(key));
+				.equals(key));
 	}
 	
 }

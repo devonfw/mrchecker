@@ -17,8 +17,8 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class DropdownListTest extends BaseTest {
 	
-	private static final By		dropdownSelector	= By.cssSelector("select#dropdown_7");
-	private DropdownListElement	dropdownObject;
+	private static final By dropdownSelector = By.cssSelector("select#dropdown_7");
+	private DropdownListElement dropdownObject;
 	
 	@AfterClass
 	public static void tearDownAll() {
@@ -52,15 +52,15 @@ public class DropdownListTest extends BaseTest {
 	public void testAllSelectedOptions() {
 		dropdownObject.selectDropdownByIndex(5);
 		assertEquals(dropdownObject.getAllSelectedOptionsText()
-						.size(), 1);
+				.size(), 1);
 	}
 	
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
+				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
 		this.dropdownObject = BasePage.getDriver()
-						.elementDropdownList(DropdownListTest.dropdownSelector);
+				.elementDropdownList(DropdownListTest.dropdownSelector);
 	}
 	
 	@Override

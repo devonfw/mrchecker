@@ -24,91 +24,91 @@ import com.brsanthu.googleanalytics.GoogleAnalyticsStats;
  * @author Santhosh Kumar
  */
 public class GoogleAnalyticsStatsImpl implements GoogleAnalyticsStats {
-    private AtomicLong pageViewHits = new AtomicLong();
-    private AtomicLong eventHits = new AtomicLong();
-    private AtomicLong screenViewHits = new AtomicLong();
-    private AtomicLong itemHits = new AtomicLong();
-    private AtomicLong transactionHits = new AtomicLong();
-    private AtomicLong timingHits = new AtomicLong();
-    private AtomicLong socialHits = new AtomicLong();
-    private AtomicLong exceptionHits = new AtomicLong();
-
-    public void exceptionHit() {
-        exceptionHits.incrementAndGet();
-    }
-
-    public void pageViewHit() {
-        pageViewHits.incrementAndGet();
-    }
-
-    public void eventHit() {
-        eventHits.incrementAndGet();
-    }
-
-    public void screenViewHit() {
-        screenViewHits.incrementAndGet();
-    }
-
-    public void itemHit() {
-        itemHits.incrementAndGet();
-    }
-
-    public void transactionHit() {
-        transactionHits.incrementAndGet();
-    }
-
-    public void socialHit() {
-        socialHits.incrementAndGet();
-    }
-
-    public void timingHit() {
-        timingHits.incrementAndGet();
-    }
-
-    @Override
-    public long getPageViewHits() {
-        return pageViewHits.get();
-    }
-
-    @Override
-    public long getEventHits() {
-        return eventHits.get();
-    }
-
-    @Override
-    public long getScreenViewHits() {
-        return screenViewHits.get();
-    }
-
-    @Override
-    public long getItemHits() {
-        return itemHits.get();
-    }
-
-    @Override
-    public long getTransactionHits() {
-        return transactionHits.get();
-    }
-
-    @Override
-    public long getTimingHits() {
-        return timingHits.get();
-    }
-
-    @Override
-    public long getSocialHits() {
-        return socialHits.get();
-    }
-
-    @Override
-    public long getExceptionHits() {
-        return exceptionHits.get();
-    }
-
-    @Override
-    public String toString() {
-        return "GoogleAnalyticsStatsImpl [pageViewHits=" + pageViewHits + ", eventHits=" + eventHits + ", screenViewHits=" + screenViewHits
-                + ", itemHits=" + itemHits + ", transactionHits=" + transactionHits + ", timingHits=" + timingHits + ", socialHits=" + socialHits
-                + ", exceptionHits=" + exceptionHits + "]";
-    }
+	private AtomicLong pageViewHits = new AtomicLong();
+	private AtomicLong eventHits = new AtomicLong();
+	private AtomicLong screenViewHits = new AtomicLong();
+	private AtomicLong itemHits = new AtomicLong();
+	private AtomicLong transactionHits = new AtomicLong();
+	private AtomicLong timingHits = new AtomicLong();
+	private AtomicLong socialHits = new AtomicLong();
+	private AtomicLong exceptionHits = new AtomicLong();
+	
+	public void exceptionHit() {
+		exceptionHits.incrementAndGet();
+	}
+	
+	public void pageViewHit() {
+		pageViewHits.incrementAndGet();
+	}
+	
+	public void eventHit() {
+		eventHits.incrementAndGet();
+	}
+	
+	public void screenViewHit() {
+		screenViewHits.incrementAndGet();
+	}
+	
+	public void itemHit() {
+		itemHits.incrementAndGet();
+	}
+	
+	public void transactionHit() {
+		transactionHits.incrementAndGet();
+	}
+	
+	public void socialHit() {
+		socialHits.incrementAndGet();
+	}
+	
+	public void timingHit() {
+		timingHits.incrementAndGet();
+	}
+	
+	@Override
+	public long getPageViewHits() {
+		return pageViewHits.get();
+	}
+	
+	@Override
+	public long getEventHits() {
+		return eventHits.get();
+	}
+	
+	@Override
+	public long getScreenViewHits() {
+		return screenViewHits.get();
+	}
+	
+	@Override
+	public long getItemHits() {
+		return itemHits.get();
+	}
+	
+	@Override
+	public long getTransactionHits() {
+		return transactionHits.get();
+	}
+	
+	@Override
+	public long getTimingHits() {
+		return timingHits.get();
+	}
+	
+	@Override
+	public long getSocialHits() {
+		return socialHits.get();
+	}
+	
+	@Override
+	public long getExceptionHits() {
+		return exceptionHits.get();
+	}
+	
+	@Override
+	public String toString() {
+		return "GoogleAnalyticsStatsImpl [pageViewHits=" + pageViewHits + ", eventHits=" + eventHits + ", screenViewHits=" + screenViewHits
+				+ ", itemHits=" + itemHits + ", transactionHits=" + transactionHits + ", timingHits=" + timingHits + ", socialHits=" + socialHits
+				+ ", exceptionHits=" + exceptionHits + "]";
+	}
 }

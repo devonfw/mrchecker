@@ -18,7 +18,6 @@ import static com.brsanthu.googleanalytics.request.GoogleAnalyticsParameter.SCRE
 
 /**
  * GA request to track a typical web page view
- *
  * <p>
  * For more information, see
  * <a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#content">GA Parameters
@@ -28,23 +27,23 @@ import static com.brsanthu.googleanalytics.request.GoogleAnalyticsParameter.SCRE
  * @author Santhosh Kumar
  */
 public class ScreenViewHit extends GoogleAnalyticsRequest<ScreenViewHit> {
-    public ScreenViewHit() {
-        this(null, null);
-    }
-
-    public ScreenViewHit(String appName, String screenName) {
-        super(HIT_SCREENVIEW);
-        screenName(screenName);
-        applicationName(appName);
-    }
-
-    public ScreenViewHit screenName(String value) {
-        setString(SCREEN_NAME, value);
-        return this;
-    }
-
-    public String screenName() {
-        return getString(SCREEN_NAME);
-    }
-
+	public ScreenViewHit() {
+		this(null, null);
+	}
+	
+	public ScreenViewHit(String appName, String screenName) {
+		super(HIT_SCREENVIEW);
+		screenName(screenName);
+		applicationName(appName);
+	}
+	
+	public ScreenViewHit screenName(String value) {
+		setString(SCREEN_NAME, value);
+		return this;
+	}
+	
+	public String screenName() {
+		return getString(SCREEN_NAME);
+	}
+	
 }
