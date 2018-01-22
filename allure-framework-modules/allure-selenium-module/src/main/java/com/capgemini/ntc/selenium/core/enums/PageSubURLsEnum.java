@@ -23,12 +23,6 @@ public enum PageSubURLsEnum implements SubUrl {
 			return GetEnvironmentParam.WEB_SERVICE.getValue();
 		}
 	},
-	HEROKUAPP {
-		@Override
-		public String subURL() {
-			return GetEnvironmentParam.HEROKUAPP.getValue();
-		}
-	},
 	
 	REGISTRATION("registration/"),
 	FRAMEANDWINDOWS("frames-and-windows"),
@@ -37,8 +31,7 @@ public enum PageSubURLsEnum implements SubUrl {
 	AUTOMATION_PRACTICE_FORM("automation-practice-form"),
 	TABS("tabs/"),
 	TOOLTIP("tooltip/"),
-	MENU("menu/"),
-	CONTEXT_MENU("context_menu");
+	MENU("menu/");
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment
