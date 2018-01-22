@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import org.openqa.selenium.By;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheBasicAuthPage extends BasePage {
@@ -27,9 +28,8 @@ public class TheBasicAuthPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("is loaded");
-		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/basic_auth");
+		BFLogger.logDebug("is loaded: " + getDriver().getCurrentUrl());
+		return true;
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public class TheBasicAuthPage extends BasePage {
 	}
 	
 	private void enterLoginAndPasswordByUrl(String login, String password) {
-		getDriver().get("http://" + login + ":" + password + "@the-internet.herokuapp.com/basic_auth");
+		getDriver().get("http://" + login + ":" + password + "@" + "the-internet.herokuapp.com/" + PageSubURLsProjectYEnum.BASIC_AUTH.getValue());
 	}
 	
 	public void enterLoginAndPassword(String login, String password) throws AWTException, InterruptedException {
@@ -53,8 +53,8 @@ public class TheBasicAuthPage extends BasePage {
 		
 		StringSelection username = new StringSelection(login);
 		Toolkit.getDefaultToolkit()
-						.getSystemClipboard()
-						.setContents(username, null);
+				.getSystemClipboard()
+				.setContents(username, null);
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
 		rb.keyRelease(KeyEvent.VK_V);
@@ -66,8 +66,8 @@ public class TheBasicAuthPage extends BasePage {
 		
 		StringSelection pwd = new StringSelection(password);
 		Toolkit.getDefaultToolkit()
-						.getSystemClipboard()
-						.setContents(pwd, null);
+				.getSystemClipboard()
+				.setContents(pwd, null);
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
 		rb.keyRelease(KeyEvent.VK_V);
@@ -80,6 +80,6 @@ public class TheBasicAuthPage extends BasePage {
 	
 	public String getMessageValue() {
 		return getDriver().findElementDynamic(selectorTextMessage)
-						.getText();
+				.getText();
 	}
 }

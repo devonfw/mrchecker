@@ -10,7 +10,7 @@ public class PropertiesCoreTest {
 	@Inject(optional = true)
 	private void setIsAnalyticsEnabled(@Named("core.isAnalyticsEnabled") String status) {
 		this.coreIsAnalyticsEnabled = status.toLowerCase()
-						.equals("false") ? false : true;
+				.equals("false") ? false : true;
 		
 	}
 	

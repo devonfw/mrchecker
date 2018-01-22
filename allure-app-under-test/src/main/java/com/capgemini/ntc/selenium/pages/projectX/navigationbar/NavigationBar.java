@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
-import com.capgemini.ntc.selenium.pages.environment.PageSubURLsEnum;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectXEnum;
 import com.capgemini.ntc.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.ntc.selenium.pages.projectX.MainPage;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -20,7 +20,7 @@ public class NavigationBar extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getAddress() + PageSubURLsEnum.MAIN_PAGE.getAddress());
+		return isUrlAndPageTitleAsCurrentPage(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.MAIN_PAGE.getValue());
 	}
 	
 	@Override

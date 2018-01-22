@@ -15,7 +15,7 @@ public class ABtestPage extends BasePage {
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getCurrentUrl()
-						.contains("abtest");
+				.contains("abtest");
 	}
 	
 	@Override
@@ -38,6 +38,6 @@ public class ABtestPage extends BasePage {
 	public void switchToNextTab() {
 		ArrayList<String> tabsList = new ArrayList<String>(getDriver().getWindowHandles());
 		getDriver().switchTo()
-						.window(tabsList.get(1));
+				.window(tabsList.get(1));
 	}
 }

@@ -25,8 +25,8 @@ import com.google.inject.Guice;
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
 	
-	private static IEnvironmentService	environmentService;
-	private final static IAnalytics		analytics;
+	private static IEnvironmentService environmentService;
+	private final static IAnalytics analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
@@ -60,21 +60,21 @@ public abstract class BaseTest implements IBaseTest {
 	public static final void tearDownClass() {
 		BFLogger.logDebug("BaseTest.tearDownClass()");
 		BFLogger.logDebug("BaseTestWatcher.observers: " + BaseTestWatcher.observers.get()
-						.toString());
+				.toString());
 		BFLogger.logDebug("TestClassRule.classObservers: " + TestClassRule.classObservers.get()
-						.toString());
+				.toString());
 		
 		// Run observers
 		TestClassRule.classObservers.get()
-						.forEach(ITestObserver::onTestClassFinish);
+				.forEach(ITestObserver::onTestClassFinish);
 		BaseTestWatcher.observers.get()
-						.forEach(ITestObserver::onTestClassFinish);
+				.forEach(ITestObserver::onTestClassFinish);
 		
 		// Clear observers for all tests
 		BaseTestWatcher.observers.get()
-						.clear();
+				.clear();
 		TestClassRule.classObservers.get()
-						.clear();
+				.clear();
 		BFLogger.logDebug("All observers cleared.");
 		
 	}
@@ -99,7 +99,7 @@ public abstract class BaseTest implements IBaseTest {
 	private static void setEnvironmetInstance() {
 		// Environment variables either from environmnets.csv or any other input data.
 		IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
-						.getInstance(IEnvironmentService.class);
+				.getInstance(IEnvironmentService.class);
 		environmetInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
 		BaseTest.setEnvironmentService(environmetInstance);
 	}
@@ -118,7 +118,7 @@ public abstract class BaseTest implements IBaseTest {
 		
 		// Get and then set properties information from settings.properties file
 		PropertiesCoreTest propertiesCoreTest = Guice.createInjector(PropertiesSettingsModule.init())
-						.getInstance(PropertiesCoreTest.class);
+				.getInstance(PropertiesCoreTest.class);
 		return propertiesCoreTest;
 	}
 	

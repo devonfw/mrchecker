@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
-    <version>3.4.0.2</version>
+    <version>3.4.0.3</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:
@@ -28,6 +28,7 @@
             * against Selenium Grid through Jenkins
         * Page Object Model architecture
         * Selenium WebDriver with Java
+        * Update Observers
 
 Based on Selenium 3.4.0</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
@@ -63,7 +64,7 @@ Based on Selenium 3.4.0</description>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <allure-core-module.version>4.12.0.2</allure-core-module.version>
+        <allure-core-module.version>4.12.0.3</allure-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.4.0</selenium.version>

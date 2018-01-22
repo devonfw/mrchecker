@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-example-module</artifactId>
-    <version>3.4.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Example - Module</name>
     <description>Allure Test Framework name supports:
@@ -47,7 +47,7 @@
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <allure-core-module.version>4.12.0.2</allure-core-module.version>
+        <allure-core-module.version>4.12.0.3</allure-core-module.version>
 
         <!-- Lib/package version settings -->
         <!-- <package.version>0.0.0</selenium.version> -->

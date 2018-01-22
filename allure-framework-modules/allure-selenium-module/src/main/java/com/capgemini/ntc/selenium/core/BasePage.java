@@ -46,8 +46,8 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	private BasePage parent;
 	
-	private static IEnvironmentService	environmentService;
-	private final static IAnalytics		analytics;
+	private static IEnvironmentService environmentService;
+	private final static IAnalytics analytics;
 	public final static String			analitycsCategoryName	= "Selenium-NewDrivers";
 	
 	private final static PropertiesSelenium propertiesSelenium;
@@ -100,7 +100,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@Override
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 		makeScreenshotOnFailure();
 		makeSourcePageOnFailure();
 	}
@@ -108,20 +108,20 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@Override
 	public void onTestSuccess() {
 		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
 		DriverManager.closeDriver();
 	}

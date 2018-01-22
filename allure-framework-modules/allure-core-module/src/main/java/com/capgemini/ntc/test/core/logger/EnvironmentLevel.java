@@ -21,7 +21,7 @@ public class EnvironmentLevel extends Level {
 	
 	public static Level toLevel(String logArgument) {
 		if (logArgument != null && logArgument.toUpperCase()
-						.equals("ENVIRONMENT")) {
+				.equals("ENVIRONMENT")) {
 			return ENVIRONMENT;
 		}
 		return (Level) toLevel(logArgument);
@@ -43,7 +43,7 @@ public class EnvironmentLevel extends Level {
 	
 	public static Level toLevel(String logArgument, Level defaultLevel) {
 		if (logArgument != null && logArgument.toUpperCase()
-						.equals("ENVIRONMENT")) {
+				.equals("ENVIRONMENT")) {
 			return ENVIRONMENT;
 		}
 		return Level.toLevel(logArgument, defaultLevel);
