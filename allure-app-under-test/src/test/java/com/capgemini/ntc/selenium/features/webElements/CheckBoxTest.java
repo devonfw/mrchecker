@@ -18,9 +18,9 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class CheckBoxTest extends BaseTest {
 	
-	private static final By	hobbyCheckBoxSelector	= By
-					.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
-	CheckBox				checkBoxElement;
+	private static final By hobbyCheckBoxSelector = By
+			.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
+	CheckBox checkBoxElement;
 	
 	@AfterClass
 	public static void tearDownAll() {
@@ -54,7 +54,7 @@ public class CheckBoxTest extends BaseTest {
 	@Test
 	public void testNumberOfCheckBoxes() {
 		assertEquals(checkBoxElement.getTextList()
-						.size(), 3);
+				.size(), 3);
 	}
 	
 	@Test
@@ -68,9 +68,9 @@ public class CheckBoxTest extends BaseTest {
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
+				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
 		this.checkBoxElement = BasePage.getDriver()
-						.elementCheckbox(CheckBoxTest.hobbyCheckBoxSelector);
+				.elementCheckbox(CheckBoxTest.hobbyCheckBoxSelector);
 	}
 	
 	@Override

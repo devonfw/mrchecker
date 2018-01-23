@@ -16,8 +16,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class CheckboxesTest extends BaseTest {
 	
-	private static TheInternetPage	theInternetPage;
-	private static CheckboxesPage	checkboxesPage;
+	private static TheInternetPage theInternetPage;
+	private static CheckboxesPage checkboxesPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {

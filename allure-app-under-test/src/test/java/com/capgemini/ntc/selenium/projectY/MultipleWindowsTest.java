@@ -16,9 +16,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class MultipleWindowsTest extends BaseTest {
 	
-	private static TheInternetPage		theInternetPage;
-	private static MultipleWindowsPage	multipleWindowsPage;
-	private static NewWindowPage		newWindowPage;
+	private static TheInternetPage theInternetPage;
+	private static MultipleWindowsPage multipleWindowsPage;
+	private static NewWindowPage newWindowPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
