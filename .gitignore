@@ -26,6 +26,10 @@
 **/*.o
 **/*.so
 
+# Exclude #
+##############
+!/allure-app-under-test/lib/**/*
+
 # Packages #
 ############
 **/*.7z
@@ -42,7 +46,3 @@
 **/*.log
 **/*.sql
 **/*.sqlite
-
-# Exclude #
-##############
-!/allure-app-under-test/lib/**/**
