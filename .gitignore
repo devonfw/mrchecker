@@ -6,18 +6,17 @@
 **/logs/
 **/bin/
 **/.metadata/
-**.orig
+**/*.orig
 **/reports/
 **/.classpath
 **/.idea/
-**.iml
+**/*.iml
 **/.project
 **/secretData
 **/.settings/
-ajcore.*
+**/ajcore.*
 **/src/bin/
 ~*.docx
-phantomjsdriver.log
 
 # Exceptions #
 ##############
@@ -25,27 +24,27 @@ phantomjsdriver.log
 
 # Compiled source #
 ###################
-**.com
-**.class
-**.dll
-**.exe
-**.o
-**.so
+**/*.com
+**/*.class
+**/*.dll
+**/*.exe
+**/*.o
+**/*.so
 
 # Packages #
 ############
-**.7z
-**.dmg
-**.gz
-**.iso
-**.jar
-**.rar
-**.tar
-**.zip
+**/*.7z
+**/*.dmg
+**/*.gz
+**/*.iso
+**/*.jar
+**/*.rar
+**/*.tar
+**/*.zip
 
 # Logs and databases #
 ######################
-**.log
-**.sql
-**.sqlite
+**/*.log
+**/*.sql
+**/*.sqlite
 
