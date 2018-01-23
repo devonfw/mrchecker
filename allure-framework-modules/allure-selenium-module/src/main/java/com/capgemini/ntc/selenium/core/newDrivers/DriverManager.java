@@ -2,7 +2,6 @@ package com.capgemini.ntc.selenium.core.newDrivers;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -10,7 +9,6 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
@@ -28,8 +26,8 @@ public class DriverManager {
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
 	
 	// Setup default variables
-	private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
-	private static final int IMPLICITYWAITTIMER = 2; // in seconds
+	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
+	private static final int			IMPLICITYWAITTIMER	= 2;					// in seconds
 	
 	private static PropertiesSelenium propertiesSelenium;
 	
@@ -132,16 +130,14 @@ public class DriverManager {
 	private static INewWebDriver setupBrowser() {
 		String browser = RuntimeParametersSelenium.BROWSER.getValue();
 		switch (browser) {
-		case "chrome":
-			return Driver.CHROME.getDriver();
-		case "firefox":
-			return Driver.FIREFOX.getDriver();
-		case "internet explorer":
-			return Driver.IE.getDriver();
-		case "phantomjs":
-			return Driver.PHANTOMJS.getDriver();
-		default:
-			throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
+			case "chrome":
+				return Driver.CHROME.getDriver();
+			case "firefox":
+				return Driver.FIREFOX.getDriver();
+			case "internet explorer":
+				return Driver.IE.getDriver();
+			default:
+				throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
 		}
 	}
 	
@@ -165,23 +161,6 @@ public class DriverManager {
 				return driver;
 			}
 			
-		},
-		PHANTOMJS {
-			@Override
-			public INewWebDriver getDriver() {
-				String browserPath = DriverManager.propertiesSelenium.getSeleniumPhantomjs();
-				ArrayList<String> cliArgsCap = new ArrayList<String>();
-				cliArgsCap.add("--web-security=false");
-				cliArgsCap.add("--ssl-protocol=any");
-				cliArgsCap.add("--ignore-ssl-errors=true");
-				DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
-				capabilities.setCapability("takesScreenshot", true);
-				capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, cliArgsCap);
-				capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_GHOSTDRIVER_CLI_ARGS,
-						new String[] { "--logLevel=2" });
-				capabilities.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, browserPath);
-				return new NewPhantomJSDriver(capabilities);
-			}
 		},
 		FIREFOX {
 			@Override
@@ -226,15 +205,15 @@ public class DriverManager {
 				
 				// TODO add others os's
 				switch (operatingSystem) {
-				case "windows":
-					capabilities.setPlatform(Platform.WINDOWS);
-					break;
-				case "vista":
-					capabilities.setPlatform(Platform.VISTA);
-					break;
-				case "mac":
-					capabilities.setPlatform(Platform.MAC);
-					break;
+					case "windows":
+						capabilities.setPlatform(Platform.WINDOWS);
+						break;
+					case "vista":
+						capabilities.setPlatform(Platform.VISTA);
+						break;
+					case "mac":
+						capabilities.setPlatform(Platform.MAC);
+						break;
 				}
 				
 				capabilities.setVersion(RuntimeParametersSelenium.BROWSER_VERSION.getValue());
