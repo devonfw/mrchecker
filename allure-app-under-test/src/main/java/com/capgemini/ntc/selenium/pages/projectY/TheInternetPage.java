@@ -10,19 +10,19 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
 	
-	private static final By	selectorCheckboxesLink			= By.cssSelector("#content > ul > li:nth-child(5) > a");
-	private static final By	selectorElementClick			= By.cssSelector("li:nth-child(1) > a");
-	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li:nth-child(3) > a");
-	private static final By	selectorDropdownClickLink		= By.cssSelector("li:nth-child(9) > a");
-	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
-	private static final By	selectorBasicAuthLink			= By.cssSelector("li:nth-child(2) > a");
-	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
+	private static final By selectorCheckboxesLink = By.cssSelector("#content > ul > li:nth-child(5) > a");
+	private static final By selectorElementClick = By.cssSelector("li:nth-child(1) > a");
+	private static final By selectorBrokenImageClickLink = By.cssSelector("li:nth-child(3) > a");
+	private static final By selectorDropdownClickLink = By.cssSelector("li:nth-child(9) > a");
+	private static final By selectorMultipleWindowsLink = By.cssSelector("li > a[href*=windows]");
+	private static final By selectorBasicAuthLink = By.cssSelector("li:nth-child(2) > a");
+	private static final By selectorKeyPressesLink = By.cssSelector("li > a[href*=key_presses]");
 	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 		
 	}
 	

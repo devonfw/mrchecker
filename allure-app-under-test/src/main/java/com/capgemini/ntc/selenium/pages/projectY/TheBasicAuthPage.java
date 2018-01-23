@@ -53,8 +53,8 @@ public class TheBasicAuthPage extends BasePage {
 		
 		StringSelection username = new StringSelection(login);
 		Toolkit.getDefaultToolkit()
-						.getSystemClipboard()
-						.setContents(username, null);
+				.getSystemClipboard()
+				.setContents(username, null);
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
 		rb.keyRelease(KeyEvent.VK_V);
@@ -66,8 +66,8 @@ public class TheBasicAuthPage extends BasePage {
 		
 		StringSelection pwd = new StringSelection(password);
 		Toolkit.getDefaultToolkit()
-						.getSystemClipboard()
-						.setContents(pwd, null);
+				.getSystemClipboard()
+				.setContents(pwd, null);
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
 		rb.keyRelease(KeyEvent.VK_V);
@@ -80,6 +80,6 @@ public class TheBasicAuthPage extends BasePage {
 	
 	public String getMessageValue() {
 		return getDriver().findElementDynamic(selectorTextMessage)
-						.getText();
+				.getText();
 	}
 }

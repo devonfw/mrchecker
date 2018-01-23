@@ -17,7 +17,7 @@ enum GetEnvironmentParam {
 			throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
 		}
 		return environmentService
-						.getValue(this.name());
+				.getValue(this.name());
 		
 	}
 	
