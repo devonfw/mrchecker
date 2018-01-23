@@ -16,8 +16,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class BaseTestWatcher extends TestWatcher {
-	private BaseTest	baseTest;
-	private long		iStart;
+	private BaseTest baseTest;
+	private long iStart;
 	
 	static final ThreadLocal<List<ITestObserver>> observers = new ThreadLocal<List<ITestObserver>>() {
 		@Override
@@ -38,7 +38,7 @@ public class BaseTestWatcher extends TestWatcher {
 		@Override
 		protected void after() {
 			classObservers.get()
-							.clear();
+					.clear();
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logInfo(description.getDisplayName() + " STARTED.");
 		this.iStart = System.currentTimeMillis(); // start timing
 		BaseTest.getAnalytics()
-						.sendClassName();
+				.sendClassName();
 		
 		baseTest.setUp(); // Executed as a Before for each test
 	}
@@ -91,7 +91,7 @@ public class BaseTestWatcher extends TestWatcher {
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
 		
 		observers.get()
-						.forEach(ITestObserver::onTestFinish);
+				.forEach(ITestObserver::onTestFinish);
 	}
 	
 	@Override
@@ -100,9 +100,9 @@ public class BaseTestWatcher extends TestWatcher {
 		
 		// Run test observers
 		TestClassRule.classObservers.get()
-						.forEach(ITestObserver::onTestSuccess);
+				.forEach(ITestObserver::onTestSuccess);
 		observers.get()
-						.forEach(ITestObserver::onTestSuccess);
+				.forEach(ITestObserver::onTestSuccess);
 	}
 	
 	@Override
@@ -111,9 +111,9 @@ public class BaseTestWatcher extends TestWatcher {
 		
 		// Run test observers
 		TestClassRule.classObservers.get()
-						.forEach(ITestObserver::onTestFailure);
+				.forEach(ITestObserver::onTestFailure);
 		observers.get()
-						.forEach(ITestObserver::onTestFailure);
+				.forEach(ITestObserver::onTestFailure);
 	}
 	
 	@Attachment("Log file")
@@ -125,27 +125,27 @@ public class BaseTestWatcher extends TestWatcher {
 		BFLogger.logDebug("To add observer: " + observer.toString());
 		
 		boolean anyMatchTestClassObservers = TestClassRule.classObservers.get()
-						.stream()
-						.anyMatch(x -> x.getModuleType()
-										.equals(observer.getModuleType()));
+				.stream()
+				.anyMatch(x -> x.getModuleType()
+						.equals(observer.getModuleType()));
 		
 		boolean anyMatchMethodObservers = observers.get()
-						.stream()
-						.anyMatch(x -> x.getModuleType()
-										.equals(observer.getModuleType()));
+				.stream()
+				.anyMatch(x -> x.getModuleType()
+						.equals(observer.getModuleType()));
 		
 		BFLogger.logDebug("BaseTestWatcher.observers: " + BaseTestWatcher.observers.get()
-						.toString());
+				.toString());
 		BFLogger.logDebug("TestClassRule.classObservers: " + TestClassRule.classObservers.get()
-						.toString());
+				.toString());
 		
 		if (!(anyMatchMethodObservers | anyMatchTestClassObservers)) {
 			if (isAddedFromBeforeClassMethod()) {
 				TestClassRule.classObservers.get()
-								.add(observer);
+						.add(observer);
 			} else {
 				observers.get()
-								.add(observer);
+						.add(observer);
 			}
 			BFLogger.logDebug("Added observer: " + observer.toString());
 			
@@ -158,13 +158,13 @@ public class BaseTestWatcher extends TestWatcher {
 		
 		if (isAddedFromBeforeClassMethod()) {
 			TestClassRule.classObservers.get()
-							.remove(observer);
+					.remove(observer);
 			BFLogger.logDebug("Removed observer: " + observer.toString());
 		} else {
 			if (!TestClassRule.classObservers.get()
-							.isEmpty()) {
+					.isEmpty()) {
 				observers.get()
-								.remove(observer);
+						.remove(observer);
 				BFLogger.logDebug("Removed observer: " + observer.toString());
 			}
 		}
@@ -185,10 +185,10 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	private static boolean isAddedFromBeforeClassMethod() {
 		for (StackTraceElement elem : Thread.currentThread()
-						.getStackTrace()) {
+				.getStackTrace()) {
 			try {
 				Method method = Class.forName(elem.getClassName())
-								.getDeclaredMethod(elem.getMethodName());
+						.getDeclaredMethod(elem.getMethodName());
 				if (method.getDeclaredAnnotation(org.junit.BeforeClass.class) != null) {
 					// Adding from BeforeClass-annotated method
 					return true;
