@@ -46,4 +46,4 @@
 
 # Exclude #
 ##############
-!/allure-app-under-test/lib
+!/allure-app-under-test/lib/*
