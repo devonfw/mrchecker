@@ -24,3 +24,24 @@
 *.xml           text
 *.yml           text
 
+# These files are binary and should be left untouched #
+#######################################################
+*.class         binary
+*.dll           binary
+*.ear           binary
+*.gif           binary
+*.ico           binary
+*.jar           binary
+*.jpeg          binary
+*.png           binary
+*.so            binary
+*.war           binary
+
+# Project specific #
+####################
+*.pptx 			binary
+*.docx 			binary
+*.pdf 			binary
+*.xlsx 			binary
+*.jpg 			binary
+*.svg 			binary

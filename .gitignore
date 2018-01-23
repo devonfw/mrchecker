@@ -4,7 +4,6 @@
 **/target/
 **/lib/
 **/logs/
-**/bin/
 **/.metadata/
 **/*.orig
 **/reports/
@@ -46,4 +45,4 @@
 
 # Exclude #
 ##############
-!/allure-app-under-test/lib/
+!/allure-app-under-test/lib/**/**
