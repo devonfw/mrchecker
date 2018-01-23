@@ -21,7 +21,7 @@ phantomjsdriver.log
 
 # Exceptions #
 ##############
-!/allure-app-under-test/lib/*
+!allure-app-under-test/lib/*
 
 # Compiled source #
 ###################
