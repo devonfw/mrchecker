@@ -16,9 +16,9 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class TooltipTest extends BaseTest {
 	
-	private final static By	tooltipSelector		= By.cssSelector("div.ui-tooltip");
-	private final static By	inputTextSelector	= By.cssSelector("input[id='age']");
-	TooltipElement			tooltipElement;
+	private final static By tooltipSelector = By.cssSelector("div.ui-tooltip");
+	private final static By inputTextSelector = By.cssSelector("input[id='age']");
+	TooltipElement tooltipElement;
 	
 	@AfterClass
 	public static void tearDownAll() {
@@ -28,11 +28,11 @@ public class TooltipTest extends BaseTest {
 	public void test() {
 		// hover mouse on input text element
 		BasePage.getAction()
-						.moveToElement(BasePage.getDriver()
-										.findElementDynamic(TooltipTest.inputTextSelector))
-						.perform();
+				.moveToElement(BasePage.getDriver()
+						.findElementDynamic(TooltipTest.inputTextSelector))
+				.perform();
 		this.tooltipElement = BasePage.getDriver()
-						.elementTooltip(TooltipTest.tooltipSelector);
+				.elementTooltip(TooltipTest.tooltipSelector);
 		
 		// check if tooltip is displayed
 		assertTrue(this.tooltipElement.isDisplayed());
@@ -44,7 +44,7 @@ public class TooltipTest extends BaseTest {
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.TOOLTIP.subURL());
+				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.TOOLTIP.subURL());
 	}
 	
 	@Override

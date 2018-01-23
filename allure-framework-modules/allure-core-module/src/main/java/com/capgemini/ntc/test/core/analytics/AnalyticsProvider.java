@@ -17,10 +17,10 @@ public enum AnalyticsProvider implements IAnalytics {
 		public void setInstance() {
 			String testTrackingID = "UA-110726320-1";
 			instance = GoogleAnalytics.builder()
-							.withTrackingId(testTrackingID)
-							.withAppName("Allure-Test-Framework")
-							.withAppVersion("1.0.0") // TASK: Get app version from pom.xml
-							.build();
+					.withTrackingId(testTrackingID)
+					.withAppName("Allure-Test-Framework")
+					.withAppVersion("1.0.0") // TASK: Get app version from pom.xml
+					.build();
 			
 		}
 		
@@ -32,18 +32,18 @@ public enum AnalyticsProvider implements IAnalytics {
 		public void sendClassName(String packageName, String className, String description) {
 			
 			this.getInstance()
-							.pageView(packageName, className, description)
-							.postAsync();
+					.pageView(packageName, className, description)
+					.postAsync();
 			
 		}
 		
 		@Override
 		public void sendMethodEvent(String analitycsCategoryName, String eventName) {
 			this.getInstance()
-							.event()
-							.eventCategory(analitycsCategoryName)
-							.eventAction(eventName)
-							.postAsync();
+					.event()
+					.eventCategory(analitycsCategoryName)
+					.eventAction(eventName)
+					.postAsync();
 		}
 		
 	},

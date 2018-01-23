@@ -53,6 +53,6 @@ public class ABtestingTest extends BaseTest {
 		BFLogger.logInfo("Step5 - switch tab in browser to new opened Elemental Selenium link");
 		abTestPage.switchToNextTab();
 		assertTrue("Selenium Elemental page is not loaded", elementalSeleniumPage.pageTitle()
-						.contains("Elemental Selenium"));
+				.contains("Elemental Selenium"));
 	}
 }

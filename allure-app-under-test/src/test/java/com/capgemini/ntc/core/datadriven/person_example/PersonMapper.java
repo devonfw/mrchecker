@@ -25,8 +25,8 @@ public class PersonMapper extends CsvWithHeaderMapper {
 	
 	public static class Person {
 		
-		private String	name;
-		private Integer	age;
+		private String name;
+		private Integer age;
 		
 		// Arguments order depends on data in CSV line
 		public Person(String age, String name) {

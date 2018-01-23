@@ -26,7 +26,7 @@ public class InputTextTest extends BaseTest {
 	@Test()
 	public void testInputData() {
 		InputTextElement inputElement = BasePage.getDriver()
-						.elementInputText(InputTextTest.firstNameInputText);
+				.elementInputText(InputTextTest.firstNameInputText);
 		
 		// verify if input text is displayed
 		assertTrue(inputElement.isDisplayed());
@@ -44,7 +44,7 @@ public class InputTextTest extends BaseTest {
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
+				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
 		return;
 	}
 	
