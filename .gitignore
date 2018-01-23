@@ -18,10 +18,6 @@
 **/src/bin/
 ~*.docx
 
-# Exceptions #
-##############
-!allure-app-under-test/lib/*
-
 # Compiled source #
 ###################
 **/*.com
@@ -48,3 +44,6 @@
 **/*.sql
 **/*.sqlite
 
+# Exceptions #
+##############
+!allure-app-under-test/lib/*
