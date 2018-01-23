@@ -101,12 +101,15 @@ public class DataEncryptionService implements IDataEncryptionService {
 		if (!secret.trim()
 		        .equals(secret)) {
 			throw new BFSecureModuleException("Secret contains whitespaces which are trimable. "
-			        + "This can cause problems when using command line tools for encryption.");
+			        + "This can cause problems when using command line tools for encryption, due which is not allowed.");
 		}
 		if (secret.length() < 8) {
 			throw new BFSecureModuleException("Secrets must not be shorter than 8 characters");
 		}
 		
+		if (encryptor.isInitialized()) {
+			encryptor = new StandardPBEStringEncryptor();
+		}
 		encryptor.setPassword(secret);
 	}
 	

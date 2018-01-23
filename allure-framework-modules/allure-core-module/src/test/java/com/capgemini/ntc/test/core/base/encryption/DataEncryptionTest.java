@@ -1,6 +1,9 @@
 package com.capgemini.ntc.test.core.base.encryption;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -17,7 +20,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Provides;
 
-public class SecureDataTest {
+public class DataEncryptionTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -69,10 +72,8 @@ public class SecureDataTest {
 	public void secretdata_file_with_empty_key() {
 		DataEncryptionService.delInstance();
 		
-		IDataEncryptionService secureDataService = Guice.createInjector(securedataTestModel_secretdata_file_with_empty_key())
+		Guice.createInjector(securedataTestModel_secretdata_file_with_empty_key())
 		        .getInstance(IDataEncryptionService.class);
-		
-		secureDataService.decrypt("test");
 	}
 	
 	private AbstractModule securedataTestModel_secretdata_file_with_empty_key() {
@@ -91,29 +92,81 @@ public class SecureDataTest {
 		};
 	}
 	
-	@Test
 	public void secretdata_file_with_wrong_key() {
-		fail("Not yet implemented");
+		DataEncryptionService.delInstance();
+		Guice.createInjector(securedataTestModel_secretdata_file_with_wrong_key())
+		        .getInstance(IDataEncryptionService.class);
+		// That's ok. At this point we don't have any means to tell it's the wrong key.
+	}
+	
+	private AbstractModule securedataTestModel_secretdata_file_with_wrong_key() {
+		return new AbstractModule() {
+			
+			@Override
+			protected void configure() {
+			}
+			
+			@Provides
+			IDataEncryptionService provideSecuredataService() {
+				String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/secretData_test2");
+				DataEncryptionService.init(new File(path));
+				return DataEncryptionService.getInstance();
+			}
+		};
 	}
 	
 	@Test
 	public void validate_is_text_encrypted() {
-		fail("Not yet implemented");
+		assertTrue(systemUnderTest.isEncrypted("ENC(ffqqqsdf)"));
+		assertFalse(systemUnderTest.isEncrypted("ENC(ffqqqsdf"));
+		assertFalse(systemUnderTest.isEncrypted("enc(ffqqqsdf)"));
+		assertFalse(systemUnderTest.isEncrypted("ffqqqsdf"));
 	}
 	
-	@Test
+	@Test(expected = BFSecureModuleException.class)
 	public void decrypt_with_wrong_key() {
-		fail("Not yet implemented");
+		// given
+		String ciphertext = systemUnderTest.encrypt("test");
+		DataEncryptionService.delInstance();
+		IDataEncryptionService service = Guice.createInjector(securedataTestModel_secretdata_file_with_wrong_key())
+		        .getInstance(IDataEncryptionService.class);
+		
+		// when
+		service.decrypt(ciphertext);
 	}
 	
 	@Test
 	public void decrypt_with_good_key() {
-		fail("Not yet implemented");
+		// given
+		String plaintext = "test";
+		String ciphertext = systemUnderTest.encrypt(plaintext);
+		
+		// when
+		String plaintext2 = systemUnderTest.decrypt(ciphertext);
+		
+		// then
+		assertEquals(plaintext, plaintext2);
+		assertNotEquals(plaintext, ciphertext);
+	}
+	
+	@Test(expected = BFSecureModuleException.class)
+	public void set_secret_null() {
+		systemUnderTest.setSecret(null);
+	}
+	
+	@Test(expected = BFSecureModuleException.class)
+	public void set_secret_short() {
+		systemUnderTest.setSecret("1234567");
+	}
+	
+	@Test(expected = BFSecureModuleException.class)
+	public void set_secret_trimable() {
+		systemUnderTest.setSecret(" 1234567");
 	}
 	
 	@Test
-	public void setPassword() {
-		fail("Not yet implemented");
+	public void set_secret_ok() {
+		systemUnderTest.setSecret("12345678");
 	}
 	
 	private AbstractModule securedataTestModel() {
