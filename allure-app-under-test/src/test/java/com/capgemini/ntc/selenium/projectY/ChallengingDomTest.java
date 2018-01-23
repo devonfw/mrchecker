@@ -3,8 +3,7 @@ package com.capgemini.ntc.selenium.projectY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -41,11 +40,11 @@ public class ChallengingDomTest extends BaseTest {
 	@Test
 	public void valuesInTableCellsShouldNotChangeAfterClick() {
 		BFLogger.logDebug("Step 5 - Getting the table values (before click first button)");
-		HashMap<String, ArrayList<String>> tableValuesBeforeClick = challengingDom.getTableValues();
+		List<String> tableValuesBeforeClick = challengingDom.getTableValues();
 		BFLogger.logDebug("Step 6 - Click first button");
 		challengingDom.clickFirstButton();
 		BFLogger.logDebug("Step 7 - Getting the table values (after click first button)");
-		HashMap<String, ArrayList<String>> tableValuesAfterClick = challengingDom.getTableValues();
+		List<String> tableValuesAfterClick = challengingDom.getTableValues();
 		
 		BFLogger.logDebug("Step 8 - Comparing the table values before and after click");
 		assertEquals("Values from table cells was changed after click", tableValuesBeforeClick, tableValuesAfterClick);
