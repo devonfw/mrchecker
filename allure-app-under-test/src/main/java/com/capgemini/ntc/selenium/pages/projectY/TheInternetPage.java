@@ -18,6 +18,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
+
 	
 	@Override
 	public boolean isLoaded() {
@@ -48,6 +49,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementClickLink = getDriver().findElementDynamic(selectorElementClick);
 		elementClickLink.click();
 		return new ABtestPage();
+	}
+	
+	public ChallengingDomPage clickChallengingDomLink() {
+		WebElement elementClickLink = getDriver().findElementDynamic(selectorChallengingDomClick);
+		elementClickLink.click();
+		return new ChallengingDomPage();
 	}
 	
 	public BrokenImagePage clickBrokenImageLink() {
