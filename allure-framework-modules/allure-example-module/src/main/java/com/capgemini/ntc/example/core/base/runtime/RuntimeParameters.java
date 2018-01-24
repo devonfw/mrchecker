@@ -4,10 +4,8 @@ import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 /**
- * This class stores various system properties
- * These parameters are accessible while test case executes
- * Example : PARAM_3("param_3", "1410")
- * IS: mvn test -Dparam_3=1525 -Dtest=MyTestClass
+ * This class stores various system properties These parameters are accessible while test case executes Example :
+ * PARAM_3("param_3", "1410") IS: mvn test -Dparam_3=1525 -Dtest=MyTestClass
  * 
  * @author LUSTEFAN
  */
@@ -18,9 +16,9 @@ public enum RuntimeParameters implements RuntimeParametersI {
 	PARAM_2("param_2", "world"), // -Dparam_2=world
 	PARAM_3("param_3", "1410"); // -Dparam_3=1410
 	
-	private String	paramName;
-	private String	paramValue;
-	private String	defaultValue;
+	private String paramName;
+	private String paramValue;
+	private String defaultValue;
 	
 	private RuntimeParameters(String paramName, String defaultValue) {
 		this.paramName = paramName;
@@ -51,18 +49,18 @@ public enum RuntimeParameters implements RuntimeParametersI {
 		;
 		
 		switch (this.name()) {
-			case "PARAM_1":
-				if (paramValue.equals("Bye")) {
-					paramValue = "Hi";
-				}
-				break;
-			case "PARAM_2":
-				break;
-			case "PARAM_3":
-				break;
-			default:
-				BFLogger.logError("Unknown RuntimeParameter = " + this.name());
-				break;
+		case "PARAM_1":
+			if (paramValue.equals("Bye")) {
+				paramValue = "Hi";
+			}
+			break;
+		case "PARAM_2":
+			break;
+		case "PARAM_3":
+			break;
+		default:
+			BFLogger.logError("Unknown RuntimeParameter = " + this.name());
+			break;
 		}
 		
 		this.paramValue = paramValue;

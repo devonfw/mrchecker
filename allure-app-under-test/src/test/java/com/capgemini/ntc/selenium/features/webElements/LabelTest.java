@@ -25,24 +25,24 @@ public class LabelTest extends BaseTest {
 	public void test() {
 		// check if label is displayed
 		assertTrue(BasePage.getDriver()
-						.elementLabel(LabelTest.text1Label)
-						.isDisplayed());
+				.elementLabel(LabelTest.text1Label)
+				.isDisplayed());
 		
 		// check if label has properly text
 		assertEquals("Text1", BasePage.getDriver()
-						.elementLabel(LabelTest.text1Label)
-						.getText());
+				.elementLabel(LabelTest.text1Label)
+				.getText());
 		
 		// check if label has properly class field
 		assertEquals("bcd", BasePage.getDriver()
-						.elementLabel(LabelTest.text1Label)
-						.getClassName());
+				.elementLabel(LabelTest.text1Label)
+				.getClassName());
 	}
 	
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.TOOLS_QA.subURL() + PageSubURLsEnum.AUTOMATION_PRACTICE_FORM.subURL());
+				.get(PageSubURLsEnum.TOOLS_QA.subURL() + PageSubURLsEnum.AUTOMATION_PRACTICE_FORM.subURL());
 		return;
 	}
 	

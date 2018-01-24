@@ -20,11 +20,11 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class TabTest extends BaseTest {
 	
-	private final static By				tabSelector				= By.cssSelector("ul[role='tablist']");
-	private TabElement					tabObject;
-	private final static List<String>	possibleValues			= Arrays.asList("Tab 1", "Tab 2", "Tab 3");
-	private final static By				tabChildsSelector		= By.cssSelector("li");
-	private final static List<String>	listSelectedAttributes	= Arrays.asList("ui-tabs-active ui-state-active");
+	private final static By tabSelector = By.cssSelector("ul[role='tablist']");
+	private TabElement tabObject;
+	private final static List<String> possibleValues = Arrays.asList("Tab 1", "Tab 2", "Tab 3");
+	private final static By tabChildsSelector = By.cssSelector("li");
+	private final static List<String> listSelectedAttributes = Arrays.asList("ui-tabs-active ui-state-active");
 	
 	@AfterClass
 	public static void tearDownAll() {
@@ -59,8 +59,8 @@ public class TabTest extends BaseTest {
 	@Test
 	public void testSelectionSpecifiedItem() {
 		tabObject = BasePage.getDriver()
-						.elementTab(TabTest.tabSelector, TabTest.tabChildsSelector,
-										TabTest.listSelectedAttributes);
+				.elementTab(TabTest.tabSelector, TabTest.tabChildsSelector,
+						TabTest.listSelectedAttributes);
 		tabObject.selectItemByIndex(1);
 		assertEquals(tabObject.getSelectedItemIndex(), 1);
 		assertTrue(tabObject.isItemSelectedByIndex(1));
@@ -69,9 +69,9 @@ public class TabTest extends BaseTest {
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.TABS.subURL());
+				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.TABS.subURL());
 		this.tabObject = BasePage.getDriver()
-						.elementTab(TabTest.tabSelector);
+				.elementTab(TabTest.tabSelector);
 	}
 	
 	@Override

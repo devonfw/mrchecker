@@ -24,7 +24,6 @@ public class TheInternetPage extends BasePage {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
 						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
-		
 	}
 	
 	@Override

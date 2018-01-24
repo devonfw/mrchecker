@@ -20,10 +20,10 @@ import com.capgemini.ntc.test.core.BaseTest;
  */
 public class RadioButtonTest extends BaseTest {
 	
-	private RadioButtonElement			maritalStatusRadioButton;
-	private final static By				selectorMaritalStatus	= By.cssSelector("div[class='radio_wrap']");
-	private final static int			radioElementsCount		= 3;
-	private final static List<String>	possibleValues			= Arrays.asList("Single", "Married", "Divorced");
+	private RadioButtonElement maritalStatusRadioButton;
+	private final static By selectorMaritalStatus = By.cssSelector("div[class='radio_wrap']");
+	private final static int radioElementsCount = 3;
+	private final static List<String> possibleValues = Arrays.asList("Single", "Married", "Divorced");
 	
 	@AfterClass
 	public static void tearDownAll() {
@@ -60,8 +60,8 @@ public class RadioButtonTest extends BaseTest {
 	public void testSelectionSpecifiedItem() {
 		// example of usage Radio Button with other constructor's arguments
 		maritalStatusRadioButton = BasePage.getDriver()
-						.elementRadioButton(selectorMaritalStatus,
-										By.cssSelector("input"), Arrays.asList("selected"));
+				.elementRadioButton(selectorMaritalStatus,
+						By.cssSelector("input"), Arrays.asList("selected"));
 		maritalStatusRadioButton.selectItemByIndex(2);
 		assertEquals(maritalStatusRadioButton.getSelectedItemIndex(), 2);
 		assertTrue(maritalStatusRadioButton.isItemSelectedByIndex(2));
@@ -70,9 +70,9 @@ public class RadioButtonTest extends BaseTest {
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
+				.get(PageSubURLsEnum.WWW_FONT_URL.subURL() + PageSubURLsEnum.REGISTRATION.subURL());
 		this.maritalStatusRadioButton = BasePage.getDriver()
-						.elementRadioButton(selectorMaritalStatus);
+				.elementRadioButton(selectorMaritalStatus);
 	}
 	
 	@Override

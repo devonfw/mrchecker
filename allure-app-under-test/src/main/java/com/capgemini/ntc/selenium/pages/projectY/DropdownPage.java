@@ -14,7 +14,7 @@ public class DropdownPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("dropdown");
+				.contains("dropdown");
 	}
 	
 	@Override

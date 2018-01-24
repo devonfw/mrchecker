@@ -4,8 +4,7 @@ import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 
 /**
- * @author lucst
- *         Takes values saved in /src/resources/environments/environment.csv When -Denv is not set, then it takes
+ * @author lucst Takes values saved in /src/resources/environments/environment.csv When -Denv is not set, then it takes
  *         default DEV
  */
 public enum GetEnvironmentParam {
@@ -23,7 +22,7 @@ public enum GetEnvironmentParam {
 		}
 		
 		return BaseTest.getEnvironmentService()
-						.getValue(this.name());
+				.getValue(this.name());
 		
 	}
 	

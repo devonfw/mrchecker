@@ -26,9 +26,9 @@ public class DataDrivenInternalExampleTest extends BaseTest {
 	 **/
 	@Test
 	@Parameters({ "1, 2, 3",
-					"3, 4, 7",
-					"5, 6, 11",
-					"7, 8, 15" })
+			"3, 4, 7",
+			"5, 6, 11",
+			"7, 8, 15" })
 	public void addProducesCorrectValue_usingAnnotatedParameters(final int a, final int b, final int expectedResult) {
 		assertEquals(expectedResult, testSubject.add(a, b));
 	}
@@ -47,10 +47,10 @@ public class DataDrivenInternalExampleTest extends BaseTest {
 	
 	private Object[] addParameters() {
 		return new Object[] {
-						new Object[] { 1, 2, 3 },
-						new Object[] { 3, 4, 7 },
-						new Object[] { 5, 6, 11 },
-						new Object[] { 7, 8, 15 }
+				new Object[] { 1, 2, 3 },
+				new Object[] { 3, 4, 7 },
+				new Object[] { 5, 6, 11 },
+				new Object[] { 7, 8, 15 }
 		};
 	}
 	
@@ -69,19 +69,19 @@ public class DataDrivenInternalExampleTest extends BaseTest {
 	public static class MyContainsTestProvider {
 		public static Object[] provideContainsTrueParameters() {
 			return new Object[] {
-							new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "c", true },
-							new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "e", true },
-							new Object[] { Arrays.asList("a", "b"), "b", true },
-							new Object[] { Arrays.asList("a"), "a", true }
+					new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "c", true },
+					new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "e", true },
+					new Object[] { Arrays.asList("a", "b"), "b", true },
+					new Object[] { Arrays.asList("a"), "a", true }
 			};
 		}
 		
 		public static Object[] provideContainsFalseParameters() {
 			return new Object[] {
-							new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "f", false },
-							new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "z", false },
-							new Object[] { Arrays.asList("a", "b"), "e", false },
-							new Object[] { Arrays.asList(), "e", false }
+					new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "f", false },
+					new Object[] { Arrays.asList("a", "b", "c", "d", "e"), "z", false },
+					new Object[] { Arrays.asList("a", "b"), "e", false },
+					new Object[] { Arrays.asList(), "e", false }
 			};
 		}
 	}
