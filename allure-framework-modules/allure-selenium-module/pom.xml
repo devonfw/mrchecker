@@ -139,6 +139,11 @@ Based on Selenium 3.4.0</description>
             <artifactId>guava</artifactId>
         </dependency>
 
+        <dependency>
+           <groupId>io.github.bonigarcia</groupId>
+           <artifactId>webdrivermanager</artifactId>
+           <version>2.0.0</version>
+       </dependency>
     </dependencies>
 
 

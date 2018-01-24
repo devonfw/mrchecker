@@ -5,10 +5,11 @@ import com.google.inject.name.Named;
 
 public class PropertiesSelenium {
 	
-	private String seleniumChrome = "./lib/webdrivers/chrome/chromedriver.exe";// default value
-	private String seleniumPhantomjs = "./lib/webdrivers/phantomjs/bin/phantomjs.exe";// default value
-	private String seleniumFirefox = "./lib/webdrivers/firefox/geckodriver.exe";// default value
-	private String seleniumIE = "./lib/webdrivers/internetexplorer/IEDriverServer.exe";// default value
+	private String	seleniumChrome		= "./lib/webdrivers/chrome/chromedriver.exe";				// default value
+	private String	seleniumPhantomjs	= "./lib/webdrivers/phantomjs/bin/phantomjs.exe";			// default value
+	private String	seleniumFirefox		= "./lib/webdrivers/firefox/geckodriver.exe";				// default value
+	private String	seleniumIE			= "./lib/webdrivers/internetexplorer/IEDriverServer.exe";	// default value
+	private String	webDrivers			= "./lib/webdrivers";
 	
 	@Inject(optional = true)
 	private void setSeleniumChrome(@Named("selenium.chrome") String path) {
@@ -48,6 +49,10 @@ public class PropertiesSelenium {
 	
 	public String getSeleniumIE() {
 		return this.seleniumIE;
+	}
+	
+	public String getWebDriver() {
+		return this.webDrivers;
 	}
 	
 }
