@@ -270,29 +270,37 @@ public class DriverManager {
 					ChromeDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(browserEnumName, ChromeDriverManager.getInstance()
-									.getBinaryPath());
+					copyExecutableIntoTargetPath(
+									DriverManager.propertiesSelenium.getSeleniumChrome(),
+									ChromeDriverManager.getInstance()
+													.getBinaryPath());
 					break;
 				case "firefox":
 					FirefoxDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(browserEnumName, FirefoxDriverManager.getInstance()
-									.getBinaryPath());
+					copyExecutableIntoTargetPath(
+									DriverManager.propertiesSelenium.getSeleniumFirefox(),
+									FirefoxDriverManager.getInstance()
+													.getBinaryPath());
 					break;
 				case "ie":
 					InternetExplorerDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(browserEnumName, InternetExplorerDriverManager.getInstance()
-									.getBinaryPath());
+					copyExecutableIntoTargetPath(
+									DriverManager.propertiesSelenium.getSeleniumIE(),
+									InternetExplorerDriverManager.getInstance()
+													.getBinaryPath());
 					break;
 				case "phantomjs":
 					PhantomJsDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(browserEnumName, PhantomJsDriverManager.getInstance()
-									.getBinaryPath());
+					copyExecutableIntoTargetPath(
+									DriverManager.propertiesSelenium.getSeleniumPhantomjs(),
+									PhantomJsDriverManager.getInstance()
+													.getBinaryPath());
 					break;
 				default:
 					BFLogger.logError("Unsupported webdriver: [" + browserEnumName + "]");
@@ -303,10 +311,10 @@ public class DriverManager {
 			Path sourceExePath = FileSystems.getDefault()
 							.getPath(binaryPath);
 			Path targetExePath = FileSystems.getDefault()
-							.getPath(propMan.getProperty(browserName.toLowerCase()));
+							.getPath(browserName);
 			try {
 				createTargetDirIfNotExists(targetExePath);
-				copy(sourceExePath, targetExePath, StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(sourceExePath, targetExePath, StandardCopyOption.REPLACE_EXISTING);
 				removeFileAndParentsIfEmpty(sourceExePath);
 			} catch (IOException e) {
 				BFLogger.logError("Unable to copy webdriver file from: [" + sourceExePath + "] to: [" + targetExePath + "].");
