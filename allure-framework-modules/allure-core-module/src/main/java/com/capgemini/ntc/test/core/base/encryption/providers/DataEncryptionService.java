@@ -14,7 +14,7 @@ import com.google.common.base.Preconditions;
 /**
  * Basic data encryption service to encapsulate and isolate the encryption/decryption logic.
  *
- * @author Łukasz Sefaniszyn, Capgemini
+ * @author Lukasz Stefaniszyn, Capgemini
  * @author Marek Puchalski, Capgemini
  */
 public class DataEncryptionService implements IDataEncryptionService {
