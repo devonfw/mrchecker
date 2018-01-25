@@ -1,0 +1,40 @@
+package com.capgemini.ntc.selenium.projectY;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.projectY.DynamicContentPage;
+import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
+import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.test.core.logger.BFLogger;
+
+public class DynamicContentTest extends BaseTest {
+	
+	private TheInternetPage				theInternetPage;
+	private static DynamicContentPage	dynamicContentPage;
+	
+	@Override
+	public void setUp() {
+		BFLogger.logInfo("Step1 - open Chrome browser");
+		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
+		theInternetPage = new TheInternetPage();
+		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
+	}
+	
+	@Override
+	public void tearDown() {
+		BFLogger.logInfo("Step5 - navigate back to The-Internet page");
+		BasePage.navigateBack();
+	}
+	
+	@Test
+	public void pressKeyTest() {
+		BFLogger.logDebug("Step 3 - Click on the Key Presses link");
+		dynamicContentPage = theInternetPage.clickDynamicContentPage();
+		BFLogger.logDebug("Step 4 - Verify if the Url http://the-internet.herokuapp.com/dynamic_content opens");
+		
+	}
+	
+}
