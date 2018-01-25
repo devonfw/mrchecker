@@ -7,6 +7,7 @@ public enum PageSubURLsProjectYEnum {
 	WINDOW("windows"),
 	CHECKBOX("checkboxes"),
 	KEY_PRESS("key_presses"),
+	HOVERS("hovers"),
 	CHALLENGING_DOM("challenging_dom");
 	
 	/*
