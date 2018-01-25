@@ -7,7 +7,8 @@ public enum PageSubURLsProjectYEnum {
 	WINDOW("windows"),
 	CHECKBOX("checkboxes"),
 	CONTEXT_MENU("context_menu"),
-	KEY_PRESS("key_presses");
+	KEY_PRESS("key_presses"),
+	CHALLENGING_DOM("challenging_dom");
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment
