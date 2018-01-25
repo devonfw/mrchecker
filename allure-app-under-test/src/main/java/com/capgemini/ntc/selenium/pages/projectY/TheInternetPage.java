@@ -18,7 +18,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
-
+	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	
 	@Override
 	public boolean isLoaded() {
