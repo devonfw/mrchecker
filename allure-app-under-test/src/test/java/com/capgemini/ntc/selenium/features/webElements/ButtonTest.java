@@ -26,27 +26,27 @@ public class ButtonTest extends BaseTest {
 	public void test() {
 		// check if element is displayed
 		assertTrue(BasePage.getDriver()
-						.elementButton(ButtonTest.buttonSubmit)
-						.isDisplayed());
+				.elementButton(ButtonTest.buttonSubmit)
+				.isDisplayed());
 		
 		// check if element type equals Button
 		assertEquals("Button", BasePage.getDriver()
-						.elementButton(ButtonTest.buttonSubmit)
-						.getElementTypeName());
+				.elementButton(ButtonTest.buttonSubmit)
+				.getElementTypeName());
 		
 		// click on button and verify if url was changed
 		BasePage.getDriver()
-						.elementButton(ButtonTest.buttonSubmit)
-						.click();
+				.elementButton(ButtonTest.buttonSubmit)
+				.click();
 		assertTrue(BasePage.getDriver()
-						.getCurrentUrl()
-						.contains("&submit="));
+				.getCurrentUrl()
+				.contains("&submit="));
 	}
 	
 	@Override
 	public void setUp() {
 		BasePage.getDriver()
-						.get(PageSubURLsEnum.TOOLS_QA.subURL() + PageSubURLsEnum.AUTOMATION_PRACTICE_FORM.subURL());
+				.get(PageSubURLsEnum.TOOLS_QA.subURL() + PageSubURLsEnum.AUTOMATION_PRACTICE_FORM.subURL());
 		return;
 	}
 	

@@ -16,7 +16,7 @@ public enum UserAccountPredicate {
 		public boolean evaluate(Object object) {
 			AccountData accountsData = (AccountData) object;
 			return accountsData.getType()
-							.contains("SPS");
+					.contains("SPS");
 		}
 	}),
 	FPP_ACCOUNT(new Predicate() {
@@ -25,7 +25,7 @@ public enum UserAccountPredicate {
 		public boolean evaluate(Object object) {
 			AccountData accountsData = (AccountData) object;
 			return accountsData.getType()
-							.contains("FPP");
+					.contains("FPP");
 		}
 	}),
 	PAS_ACCOUNT(new Predicate() {
@@ -34,7 +34,7 @@ public enum UserAccountPredicate {
 		public boolean evaluate(Object object) {
 			AccountData accountsData = (AccountData) object;
 			return accountsData.getType()
-							.contains("PAS");
+					.contains("PAS");
 		}
 	}),
 	_401K_ACCOUNT(new Predicate() {
@@ -43,7 +43,7 @@ public enum UserAccountPredicate {
 		public boolean evaluate(Object object) {
 			AccountData accountsData = (AccountData) object;
 			return accountsData.getType()
-							.contains("401k");
+					.contains("401k");
 		}
 	});
 	

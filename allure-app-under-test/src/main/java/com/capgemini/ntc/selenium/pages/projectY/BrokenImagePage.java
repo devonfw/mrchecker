@@ -8,14 +8,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 public class BrokenImagePage extends BasePage {
 	
 	private static final By[] selectorsImages = { By.cssSelector("div > img:nth-child(2)"),
-					By.cssSelector("div > img:nth-child(3)"),
-					By.cssSelector("div > img:nth-child(4)") };
+			By.cssSelector("div > img:nth-child(3)"),
+			By.cssSelector("div > img:nth-child(4)") };
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("broken_images");
+				.contains("broken_images");
 	}
 	
 	@Override
@@ -30,14 +30,14 @@ public class BrokenImagePage extends BasePage {
 	
 	public int getHeightOfImage(int imageIndex) {
 		return getDriver().findElementDynamic(selectorsImages[imageIndex])
-						.getSize()
-						.getHeight();
+				.getSize()
+				.getHeight();
 	}
 	
 	public int getWidthOfImage(int imageIndex) {
 		return getDriver().findElementDynamic(selectorsImages[imageIndex])
-						.getSize()
-						.getWidth();
+				.getSize()
+				.getWidth();
 	}
 	
 }

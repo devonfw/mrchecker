@@ -15,7 +15,7 @@ public class KeyPressesPage extends BasePage {
 	public boolean isLoaded() {
 		BFLogger.logDebug("The KeyPresses page is loaded.");
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.KEY_PRESS.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.KEY_PRESS.getValue());
 	}
 	
 	@Override
@@ -31,9 +31,9 @@ public class KeyPressesPage extends BasePage {
 	
 	public String getSendKeyPress(String keyToPress) {
 		getAction().sendKeys(keyToPress)
-						.perform();
+				.perform();
 		return getDriver().findElementDynamic(selectorResult)
-						.getText();
+				.getText();
 	}
 	
 }

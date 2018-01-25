@@ -12,10 +12,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DropdownTest extends BaseTest {
 	
-	private TheInternetPage		theInternetPage;
-	private DropdownPage		dropdownPage;
-	private static final String	correctValueOneOnDropdownList	= "Option 1";
-	private static final String	correctValueTwoOnDropdownList	= "Option 2";
+	private TheInternetPage theInternetPage;
+	private DropdownPage dropdownPage;
+	private static final String correctValueOneOnDropdownList = "Option 1";
+	private static final String correctValueTwoOnDropdownList = "Option 2";
 	
 	@Override
 	public void setUp() {

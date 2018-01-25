@@ -15,7 +15,7 @@ public class MultipleWindowsPage extends BasePage {
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
 	}
 	
 	@Override
