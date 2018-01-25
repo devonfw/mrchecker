@@ -7,7 +7,7 @@ import com.capgemini.ntc.test.core.exceptions.BFSecureModuleException;
  * (services that need to handle encrypted, sensitive data that is needed for
  * testing purposes).
  * 
- * @author Łukasz Sefaniszyn, Capgemini
+ * @author Łukasz Stefaniszyn, Capgemini
  * @author Marek Puchalski, Capgemini
  */
 public interface IDataEncryptionService {
