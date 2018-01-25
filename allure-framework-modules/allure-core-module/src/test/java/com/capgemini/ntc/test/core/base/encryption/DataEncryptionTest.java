@@ -169,6 +169,22 @@ public class DataEncryptionTest {
 		systemUnderTest.setSecret("12345678");
 	}
 	
+	@Test()
+	public void dataEncryptions_with_default_secretdata_file() {
+		// given
+		IDataEncryptionService service = Guice.createInjector(new DataEncryptionModule())
+		        .getInstance(IDataEncryptionService.class);
+		String plaintext = "default";
+		
+		// when
+		String ciphertext = service.encrypt(plaintext);
+		String plaintext2 = service.decrypt(ciphertext);
+		
+		// then
+		assertEquals(plaintext, plaintext2);
+		assertNotEquals(ciphertext, plaintext);
+	}
+	
 	private AbstractModule securedataTestModel() {
 		return new AbstractModule() {
 			
