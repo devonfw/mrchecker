@@ -2,7 +2,6 @@ package com.capgemini.ntc.test.core;
 
 import java.net.MalformedURLException;
 
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -20,14 +19,14 @@ import com.capgemini.ntc.test.core.base.properties.PropertiesCoreTest;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersCore;
 import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner;
 import com.google.inject.Guice;
-import com.googlecode.junittoolbox.ParallelRunner;
 
-@RunWith(ParallelRunner.class)
+@RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
 	
-	private static IEnvironmentService environmentService;
-	private final static IAnalytics analytics;
+	private static IEnvironmentService	environmentService;
+	private final static IAnalytics		analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
