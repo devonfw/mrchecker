@@ -276,4 +276,9 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	public IFrame elementIFrame(By selector) {
 		return driverExtention.elementIFrame(selector);
 	}
+	
+	@Override
+	public void mouseRightClick(By selector) {
+		driverExtention.mouseRightClick(selector);
+	}
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -340,6 +341,13 @@ public class DriverExtention {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new IFrame(selector);
+	}
+	
+	public void mouseRightClick(By selector) {
+		WebElement element = findElementDynamic(selector);
+		Actions action = new Actions(getDriver()).contextClick(element);
+		action.build()
+						.perform();
 	}
 	
 }

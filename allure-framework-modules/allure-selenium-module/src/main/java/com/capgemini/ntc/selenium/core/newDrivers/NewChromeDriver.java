@@ -292,6 +292,11 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 		return driverExtention.elementMenu(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
 	}
 	
+	@Override
+	public void mouseRightClick(By selector) {
+		driverExtention.mouseRightClick(selector);
+	}
+	
 	public static void main(String[] args) {
 		BaseTest.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
