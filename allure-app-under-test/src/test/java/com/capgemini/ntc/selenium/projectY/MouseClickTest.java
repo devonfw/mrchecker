@@ -6,10 +6,11 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestFirefox;
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestLocal;
 import com.capgemini.ntc.selenium.pages.projectY.ContextMenuPage;
 import com.capgemini.ntc.test.core.BaseTest;
 
-@Category(TestFirefox.class)
+@Category({ TestLocal.class, TestFirefox.class })
 public class MouseClickTest extends BaseTest {
 	
 	private ContextMenuPage contextMenuPage;

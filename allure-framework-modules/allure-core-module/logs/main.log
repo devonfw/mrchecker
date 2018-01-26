@@ -1,7 +1,0 @@
-2018-01-04 at 10:37:35 CET logInfo - [main] testMethod(com.capgemini.ntc.test.core.unit.TestWatcherExceptionTest$SetUpExceptionTest) STARTED.
-2018-01-04 at 10:37:35 CET logInfo - [main] com.capgemini.ntc.test.core.unit.TestWatcherExceptionTest.SetUpExceptionTest -> setUp()
-2018-01-04 at 10:37:35 CET logError - [main] Text exception
-2018-01-04 at 10:37:35 CET logInfo - [main] testMethod(com.capgemini.ntc.test.core.unit.TestWatcherExceptionTest$SetUpExceptionTest) FAILED.
-2018-01-04 at 10:37:35 CET logInfo - [main] testMethod(com.capgemini.ntc.test.core.unit.TestWatcherExceptionTest$SetUpExceptionTest) duration: 0,00 min
-2018-01-04 at 10:37:35 CET logDebug - [main] Removed all observers
-2018-01-04 at 10:37:35 CET logInfo - [main] An exception has been thrown: Text exception
