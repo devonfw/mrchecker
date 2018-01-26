@@ -1,18 +1,47 @@
-/test-output/
-/target/
-/bin/
-.metadata/
-*.orig
-/reports/
-/logs/
-.classpath
-.idea/
-*.iml
-.project
-/secretData
-.settings/
-ajcore.*
-src/bin/
+# Project specific #
+####################
+**/test-output/
+**/target/
+**/logs/
+**/.metadata/
+**/*.orig
+**/reports/
+**/.classpath
+**/.idea/
+**/*.iml
+**/.project
+**/secretData
+**/.settings/
+**/ajcore.*
+**/src/bin/
 ~*.docx
-phantomjsdriver.log
 
+# Compiled source #
+###################
+**/*.com
+**/*.class
+**/*.dll
+**/*.exe
+**/*.o
+**/*.so
+
+# Exclude #
+##############
+!allure-app-under-test/lib/**/*
+
+# Packages #
+############
+**/*.7z
+**/*.dmg
+**/*.gz
+**/*.iso
+**/*.jar
+**/*.rar
+**/*.tar
+**/*.zip
+
+# Logs and databases #
+######################
+**/*.log
+**/*.sql
+**/*.sqlite
