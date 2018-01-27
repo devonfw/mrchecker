@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
@@ -181,13 +182,15 @@ public class DriverManager {
 		FIREFOX {
 			@Override
 			public INewWebDriver getDriver() {
-				FirefoxProfile profile = new FirefoxProfile();
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
 				String webDriversPath = DriverManager.propertiesSelenium.getWebDriver();
 				
 				createBrowserExecutable(name(), webDriversPath);
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
+				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
+				
+				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("webdriver.firefox.marionette", true);
 				profile.setPreference("browser.download.folderlist", 2);
 				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
@@ -196,7 +199,10 @@ public class DriverManager {
 				profile.setPreference("browser.download.useDownloadDir", true);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
-				return new NewFirefoxDriver(profile);
+				
+				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
+				
+				return new NewFirefoxDriver(options);
 			}
 		},
 		IE {
