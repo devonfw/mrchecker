@@ -9,7 +9,8 @@ public class PropertiesSelenium {
 	private String	seleniumPhantomjs	= "./lib/webdrivers/phantomjs/bin/phantomjs.exe";			// default value
 	private String	seleniumFirefox		= "./lib/webdrivers/firefox/geckodriver.exe";				// default value
 	private String	seleniumIE			= "./lib/webdrivers/internetexplorer/IEDriverServer.exe";	// default value
-	private String	webDrivers			= "./lib/webdrivers";
+	private String	webDrivers			= "./lib/webdrivers";										// default value
+	private String	proxy				= "";														// default value
 	
 	@Inject(optional = true)
 	private void setSeleniumChrome(@Named("selenium.chrome") String path) {
@@ -51,8 +52,24 @@ public class PropertiesSelenium {
 		return this.seleniumIE;
 	}
 	
-	public String getWebDriver() {
+	@Inject(optional = true)
+	private void setWebDrivers(@Named("selenium.webdrivers") String path) {
+		this.webDrivers = path;
+		
+	}
+	
+	public String getWebDrivers() {
 		return this.webDrivers;
+	}
+	
+	@Inject(optional = true)
+	private void setProxy(@Named("selenium.proxy") String path) {
+		this.proxy = path;
+		
+	}
+	
+	public String getProxy() {
+		return this.proxy;
 	}
 	
 }

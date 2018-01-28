@@ -1,13 +1,7 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +17,7 @@ import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
+import com.capgemini.ntc.selenium.core.utils.FilesUtils;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
@@ -31,7 +26,6 @@ import com.google.inject.name.Named;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
-import io.github.bonigarcia.wdm.PhantomJsDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManagerException;
 
 public class DriverManager {
@@ -160,9 +154,8 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
-				String webDriversPath = DriverManager.propertiesSelenium.getWebDriver();
 				
-				createBrowserExecutable(name(), webDriversPath);
+				createBrowserExecutable(name());
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -183,9 +176,8 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
-				String webDriversPath = DriverManager.propertiesSelenium.getWebDriver();
 				
-				createBrowserExecutable(name(), webDriversPath);
+				createBrowserExecutable(name());
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
@@ -209,9 +201,8 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumIE();
-				String webDriversPath = DriverManager.propertiesSelenium.getWebDriver();
 				
-				createBrowserExecutable(name(), webDriversPath);
+				createBrowserExecutable(name());
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
@@ -259,11 +250,12 @@ public class DriverManager {
 			}
 		};
 		
-		private static void createBrowserExecutable(String browserEnumName, String browserPath, String... proxy) {
-			String proxyValue = (proxy.length > 0) ? proxy[0] : "";
+		private static void createBrowserExecutable(String browserEnumName) {
+			String proxy = DriverManager.propertiesSelenium.getProxy();
+			String webDriversPath = DriverManager.propertiesSelenium.getWebDrivers();
 			try {
-				System.setProperty("wdm.targetPath", browserPath);
-				setupDriverManager(browserEnumName, proxyValue);
+				System.setProperty("wdm.targetPath", webDriversPath);
+				setupDriverManager(browserEnumName, proxy);
 			} catch (WebDriverManagerException e) {
 				String className = DriverManager.class.getName();
 				BFLogger.logError("Unable to download driver automatically. Probably setup proxy in : " + className + ", " + browserEnumName);
@@ -276,7 +268,7 @@ public class DriverManager {
 					ChromeDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(
+					FilesUtils.copyExecutableIntoTargetPath(
 									DriverManager.propertiesSelenium.getSeleniumChrome(),
 									ChromeDriverManager.getInstance()
 													.getBinaryPath());
@@ -285,7 +277,7 @@ public class DriverManager {
 					FirefoxDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(
+					FilesUtils.copyExecutableIntoTargetPath(
 									DriverManager.propertiesSelenium.getSeleniumFirefox(),
 									FirefoxDriverManager.getInstance()
 													.getBinaryPath());
@@ -294,66 +286,14 @@ public class DriverManager {
 					InternetExplorerDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					copyExecutableIntoTargetPath(
+					FilesUtils.copyExecutableIntoTargetPath(
 									DriverManager.propertiesSelenium.getSeleniumIE(),
 									InternetExplorerDriverManager.getInstance()
-													.getBinaryPath());
-					break;
-				case "phantomjs":
-					PhantomJsDriverManager.getInstance()
-									.proxy(proxy)
-									.setup();
-					copyExecutableIntoTargetPath(
-									DriverManager.propertiesSelenium.getSeleniumPhantomjs(),
-									PhantomJsDriverManager.getInstance()
 													.getBinaryPath());
 					break;
 				default:
 					BFLogger.logError("Unsupported webdriver: [" + browserEnumName + "]");
 			}
-		}
-		
-		private static void copyExecutableIntoTargetPath(String browserName, String binaryPath) {
-			Path sourceExePath = FileSystems.getDefault()
-							.getPath(binaryPath);
-			Path targetExePath = FileSystems.getDefault()
-							.getPath(browserName);
-			try {
-				createTargetDirIfNotExists(targetExePath);
-				Files.copy(sourceExePath, targetExePath, StandardCopyOption.REPLACE_EXISTING);
-				removeFileAndParentsIfEmpty(sourceExePath);
-			} catch (IOException e) {
-				BFLogger.logError("Unable to copy webdriver file from: [" + sourceExePath + "] to: [" + targetExePath + "].");
-			}
-		}
-		
-		private static void createTargetDirIfNotExists(Path targetExePath) {
-			Path targetDirPath = targetExePath.getParent();
-			if (!Files.exists(targetDirPath)) {
-				try {
-					Files.createDirectories(targetDirPath);
-				} catch (IOException e) {
-					BFLogger.logError("Unable to create directories: [" + targetDirPath + "].");
-				}
-			}
-		}
-		
-		private static void removeFileAndParentsIfEmpty(Path path)
-						throws IOException {
-			if (path == null || path.endsWith(DriverManager.propertiesSelenium.getWebDriver()))
-				return;
-			
-			if (Files.isRegularFile(path)) {
-				Files.deleteIfExists(path);
-			} else if (Files.isDirectory(path)) {
-				try {
-					Files.delete(path);
-				} catch (DirectoryNotEmptyException e) {
-					return;
-				}
-			}
-			
-			removeFileAndParentsIfEmpty(path.getParent());
 		}
 		
 		public INewWebDriver getDriver() {
