@@ -155,7 +155,7 @@ public class DriverManager {
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
 				
-				createBrowserExecutable(name());
+				downloadNewestVersionOfWebDriver(name());
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -177,7 +177,7 @@ public class DriverManager {
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
 				
-				createBrowserExecutable(name());
+				downloadNewestVersionOfWebDriver(name());
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
@@ -202,7 +202,7 @@ public class DriverManager {
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumIE();
 				
-				createBrowserExecutable(name());
+				downloadNewestVersionOfWebDriver(name());
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
@@ -250,7 +250,7 @@ public class DriverManager {
 			}
 		};
 		
-		private static void createBrowserExecutable(String browserEnumName) {
+		private static void downloadNewestVersionOfWebDriver(String browserEnumName) {
 			String proxy = DriverManager.propertiesSelenium.getProxy();
 			String webDriversPath = DriverManager.propertiesSelenium.getWebDrivers();
 			try {
@@ -268,28 +268,28 @@ public class DriverManager {
 					ChromeDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					FilesUtils.copyExecutableIntoTargetPath(
-									DriverManager.propertiesSelenium.getSeleniumChrome(),
+					FilesUtils.moveWithPruneEmptydirectories(
 									ChromeDriverManager.getInstance()
-													.getBinaryPath());
+													.getBinaryPath(),
+									DriverManager.propertiesSelenium.getSeleniumChrome());
 					break;
 				case "firefox":
 					FirefoxDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					FilesUtils.copyExecutableIntoTargetPath(
-									DriverManager.propertiesSelenium.getSeleniumFirefox(),
+					FilesUtils.moveWithPruneEmptydirectories(
 									FirefoxDriverManager.getInstance()
-													.getBinaryPath());
+													.getBinaryPath(),
+									DriverManager.propertiesSelenium.getSeleniumFirefox());
 					break;
 				case "ie":
 					InternetExplorerDriverManager.getInstance()
 									.proxy(proxy)
 									.setup();
-					FilesUtils.copyExecutableIntoTargetPath(
-									DriverManager.propertiesSelenium.getSeleniumIE(),
+					FilesUtils.moveWithPruneEmptydirectories(
 									InternetExplorerDriverManager.getInstance()
-													.getBinaryPath());
+													.getBinaryPath(),
+									DriverManager.propertiesSelenium.getSeleniumIE());
 					break;
 				default:
 					BFLogger.logError("Unsupported webdriver: [" + browserEnumName + "]");

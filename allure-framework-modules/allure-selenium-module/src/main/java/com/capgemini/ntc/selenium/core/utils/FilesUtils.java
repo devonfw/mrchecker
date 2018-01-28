@@ -1,6 +1,5 @@
 package com.capgemini.ntc.selenium.core.utils;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.FileSystems;
@@ -15,24 +14,22 @@ public class FilesUtils {
 	private FilesUtils() {
 	}
 	
-	public static void copyExecutableIntoTargetPath(String browserName, String binaryPath) {
-		BFLogger.logInfo("Source binary path: " + binaryPath);
-		Path sourceExePath = FileSystems.getDefault()
-						.getPath(binaryPath);
-		Path targetExePath = FileSystems.getDefault()
-						.getPath(browserName);
+	public static void moveWithPruneEmptydirectories(String source, String target) {
+		Path sourcePath = FileSystems.getDefault()
+						.getPath(source);
+		Path targetPath = FileSystems.getDefault()
+						.getPath(target);
 		try {
-			createTargetDirIfNotExists(targetExePath);
-			// Files.copy(sourceExePath, targetExePath, StandardCopyOption.REPLACE_EXISTING);
-			Files.move(sourceExePath, targetExePath, StandardCopyOption.REPLACE_EXISTING);
-			removeFileAndParentsIfEmpty(sourceExePath);
+			createDirectoryIfNotExists(targetPath);
+			Files.move(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+			removeFileAndParentsIfEmpty(sourcePath);
 		} catch (IOException e) {
-			BFLogger.logError("Unable to copy webdriver file from: [" + sourceExePath + "] to: [" + targetExePath + "].");
+			BFLogger.logError("Unable to move file from: [" + sourcePath + "] to: [" + targetPath + "].");
 		}
 	}
 	
-	private static void createTargetDirIfNotExists(Path targetExePath) {
-		Path targetDirPath = targetExePath.getParent();
+	public static void createDirectoryIfNotExists(Path directoryPath) {
+		Path targetDirPath = directoryPath.getParent();
 		if (!Files.exists(targetDirPath)) {
 			try {
 				Files.createDirectories(targetDirPath);
@@ -42,7 +39,7 @@ public class FilesUtils {
 		}
 	}
 	
-	private static void removeFileAndParentsIfEmpty(Path path)
+	public static void removeFileAndParentsIfEmpty(Path path)
 					throws IOException {
 		if (path == null)
 			return;
@@ -50,12 +47,6 @@ public class FilesUtils {
 			Files.deleteIfExists(path);
 		} else if (Files.isDirectory(path)) {
 			try {
-				File directory = new File(path.toString());
-				
-				File[] directoryFiles = directory.listFiles();
-				if (directoryFiles.length > 0)
-					return;
-				
 				Files.delete(path);
 			} catch (DirectoryNotEmptyException e) {
 				return;
