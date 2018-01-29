@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers.elementType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -28,4 +29,11 @@ public class ListElements extends BasicElement implements IBasicElement {
 				.findElementDynamics(this.cssSelector);
 	}
 	
+	public List<String> getTextList() {
+		List<String> list = new ArrayList<String>();
+		for (WebElement element : this.getList()) {
+			list.add(element.getText());
+		}
+		return list;
+	}
 }

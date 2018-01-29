@@ -54,8 +54,8 @@ public class TheInternetPage extends BasePage {
 	}
 	
 	public ChallengingDomPage clickChallengingDomLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorChallengingDomClick);
-		elementClickLink.click();
+		Button elementLink = new Button(selectorChallengingDomClick);
+		elementLink.click();
 		return new ChallengingDomPage();
 	}
 	
@@ -98,7 +98,7 @@ public class TheInternetPage extends BasePage {
 	}
 	
 	public HoversPage clickHoversLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorHoversLink);
+		Button elementLink = new Button(selectorHoversLink);
 		elementLink.click();
 		return new HoversPage();
 	}
