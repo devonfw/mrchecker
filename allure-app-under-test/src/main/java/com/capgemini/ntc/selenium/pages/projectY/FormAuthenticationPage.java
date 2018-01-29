@@ -37,11 +37,13 @@ public class FormAuthenticationPage extends BasePage {
 	
 	public void setUsername(String username) {
 		InputTextElement elementInputUsername = new InputTextElement(selectorInputUsername);
+		elementInputUsername.clearInputText();
 		elementInputUsername.setInputText(username);
 	}
 	
 	public void setUserPassword(String userPassword) {
 		InputTextElement elementInputPassword = new InputTextElement(selectorInputUserPassword);
+		elementInputPassword.clearInputText();
 		elementInputPassword.setInputText(userPassword);
 	}
 	
@@ -59,5 +61,4 @@ public class FormAuthenticationPage extends BasePage {
 		Button elementLogoutButton = new Button(selectorLogoutButton);
 		elementLogoutButton.click();
 	}
-	
 }
