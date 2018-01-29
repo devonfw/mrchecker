@@ -6,6 +6,7 @@ public enum PageSubURLsProjectYEnum {
 	NEW_WINDOW("windows/new"),
 	WINDOW("windows"),
 	CHECKBOX("checkboxes"),
+	CONTEXT_MENU("context_menu"),
 	KEY_PRESS("key_presses"),
 	DYNAMIC_CONTENT("dynamic_content"),
 	HOVERS("hovers"),
