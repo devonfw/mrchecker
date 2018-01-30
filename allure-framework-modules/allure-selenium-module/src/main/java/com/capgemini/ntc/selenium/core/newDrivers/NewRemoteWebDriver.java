@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFInitializationException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -295,6 +297,26 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	@Override
 	public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector, By childsSubMenuSelector) {
 		return driverExtention.elementMenu(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By selector) {
+		return driverExtention.elementHorizontalSlider(selector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector) {
+		return driverExtention.elementHorizontalSlider(cssSelector, sliderSelector, valueSelector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		return driverExtention.elementHorizontalSlider(cssSelector, sliderSelector, valueSelector, minRange, maxRange, step);
 	}
 	
 	@Override

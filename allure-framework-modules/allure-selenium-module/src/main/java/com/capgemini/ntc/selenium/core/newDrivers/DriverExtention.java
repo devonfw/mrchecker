@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -335,6 +337,29 @@ public class DriverExtention {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By selector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(selector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(cssSelector, sliderSelector, valueSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(cssSelector, sliderSelector, valueSelector, minRange, maxRange, step);
 	}
 	
 	public IFrame elementIFrame(By selector) {

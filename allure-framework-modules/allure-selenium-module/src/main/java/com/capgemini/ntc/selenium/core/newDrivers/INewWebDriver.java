@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -12,6 +13,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -247,6 +249,15 @@ public interface INewWebDriver extends WebDriver {
 					final By childsSelector,
 					final By subMenuSelector,
 					final By childsSubMenuSelector);
+	
+	/**
+	 * Operations on Slide
+	 */
+	HorizontalSliderElement elementHorizontalSlider(final By selector);
+	
+	HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector);
+	
+	HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector, final BigDecimal minRange, final BigDecimal maxRange, final BigDecimal step);
 	
 	/**
 	 * Operations on iFrame
