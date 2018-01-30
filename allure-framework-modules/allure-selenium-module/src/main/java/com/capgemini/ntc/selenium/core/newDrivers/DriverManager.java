@@ -7,25 +7,27 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
-import com.capgemini.ntc.selenium.core.utils.FilesUtils;
+import com.capgemini.ntc.selenium.core.utils.OperationsOnFiles;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManagerException;
 
 public class DriverManager {
@@ -155,7 +157,11 @@ public class DriverManager {
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
 				
-				downloadNewestVersionOfWebDriver(name());
+				downloadNewestVersionOfWebDriver(ChromeDriver.class);
+				OperationsOnFiles.moveWithPruneEmptydirectories(
+								WebDriverManager.getInstance(ChromeDriver.class)
+												.getBinaryPath(),
+								DriverManager.propertiesSelenium.getSeleniumChrome());
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -177,7 +183,11 @@ public class DriverManager {
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
 				
-				downloadNewestVersionOfWebDriver(name());
+				downloadNewestVersionOfWebDriver(FirefoxDriver.class);
+				OperationsOnFiles.moveWithPruneEmptydirectories(
+								WebDriverManager.getInstance(FirefoxDriver.class)
+												.getBinaryPath(),
+								DriverManager.propertiesSelenium.getSeleniumFirefox());
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
@@ -202,7 +212,11 @@ public class DriverManager {
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumIE();
 				
-				downloadNewestVersionOfWebDriver(name());
+				downloadNewestVersionOfWebDriver(InternetExplorerDriver.class);
+				OperationsOnFiles.moveWithPruneEmptydirectories(
+								WebDriverManager.getInstance(InternetExplorerDriver.class)
+												.getBinaryPath(),
+								DriverManager.propertiesSelenium.getSeleniumIE());
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
@@ -250,49 +264,20 @@ public class DriverManager {
 			}
 		};
 		
-		private static void downloadNewestVersionOfWebDriver(String browserEnumName) {
+		private static <T extends RemoteWebDriver> void downloadNewestVersionOfWebDriver(Class<T> webDriverType) {
 			String proxy = DriverManager.propertiesSelenium.getProxy();
 			String webDriversPath = DriverManager.propertiesSelenium.getWebDrivers();
 			try {
 				System.setProperty("wdm.targetPath", webDriversPath);
-				setupDriverManager(browserEnumName, proxy);
+				
+				WebDriverManager.getInstance(webDriverType)
+								.proxy(proxy)
+								.setup();
 			} catch (WebDriverManagerException e) {
 				String className = DriverManager.class.getName();
-				BFLogger.logError("Unable to download driver automatically. Probably setup proxy in : " + className + ", " + browserEnumName);
-			}
-		}
-		
-		private static void setupDriverManager(String browserEnumName, String proxy) {
-			switch (browserEnumName.toLowerCase()) {
-				case "chrome":
-					ChromeDriverManager.getInstance()
-									.proxy(proxy)
-									.setup();
-					FilesUtils.moveWithPruneEmptydirectories(
-									ChromeDriverManager.getInstance()
-													.getBinaryPath(),
-									DriverManager.propertiesSelenium.getSeleniumChrome());
-					break;
-				case "firefox":
-					FirefoxDriverManager.getInstance()
-									.proxy(proxy)
-									.setup();
-					FilesUtils.moveWithPruneEmptydirectories(
-									FirefoxDriverManager.getInstance()
-													.getBinaryPath(),
-									DriverManager.propertiesSelenium.getSeleniumFirefox());
-					break;
-				case "ie":
-					InternetExplorerDriverManager.getInstance()
-									.proxy(proxy)
-									.setup();
-					FilesUtils.moveWithPruneEmptydirectories(
-									InternetExplorerDriverManager.getInstance()
-													.getBinaryPath(),
-									DriverManager.propertiesSelenium.getSeleniumIE());
-					break;
-				default:
-					BFLogger.logError("Unsupported webdriver: [" + browserEnumName + "]");
+				BFLogger.logError("Unable to download driver automatically. Probably setup proxy in : " + className + ", " +
+								webDriverType.getClass()
+												.getName());
 			}
 		}
 		

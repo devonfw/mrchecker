@@ -9,9 +9,9 @@ import java.nio.file.StandardCopyOption;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-public class FilesUtils {
+public class OperationsOnFiles {
 	
-	private FilesUtils() {
+	private OperationsOnFiles() {
 	}
 	
 	public static void moveWithPruneEmptydirectories(String source, String target) {
@@ -28,7 +28,7 @@ public class FilesUtils {
 		}
 	}
 	
-	public static void createDirectoryIfNotExists(Path directoryPath) {
+	private static void createDirectoryIfNotExists(Path directoryPath) {
 		Path targetDirPath = directoryPath.getParent();
 		if (!Files.exists(targetDirPath)) {
 			try {
@@ -39,7 +39,7 @@ public class FilesUtils {
 		}
 	}
 	
-	public static void removeFileAndParentsIfEmpty(Path path)
+	private static void removeFileAndParentsIfEmpty(Path path)
 					throws IOException {
 		if (path == null)
 			return;

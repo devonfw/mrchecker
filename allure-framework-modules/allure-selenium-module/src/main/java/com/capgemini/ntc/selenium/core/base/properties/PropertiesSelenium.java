@@ -5,12 +5,12 @@ import com.google.inject.name.Named;
 
 public class PropertiesSelenium {
 	
-	private String	seleniumChrome		= "./lib/webdrivers/chrome/chromedriver.exe";				// default value
-	private String	seleniumPhantomjs	= "./lib/webdrivers/phantomjs/bin/phantomjs.exe";			// default value
-	private String	seleniumFirefox		= "./lib/webdrivers/firefox/geckodriver.exe";				// default value
-	private String	seleniumIE			= "./lib/webdrivers/internetexplorer/IEDriverServer.exe";	// default value
-	private String	webDrivers			= "./lib/webdrivers";										// default value
-	private String	proxy				= "";														// default value
+	private String	webDrivers			= "./lib/webdrivers";									// default value
+	private String	seleniumChrome		= webDrivers + "/chrome/chromedriver.exe";				// default value
+	private String	seleniumPhantomjs	= webDrivers + "/phantomjs/bin/phantomjs.exe";			// default value
+	private String	seleniumFirefox		= webDrivers + "/firefox/geckodriver.exe";				// default value
+	private String	seleniumIE			= webDrivers + "/internetexplorer/IEDriverServer.exe";	// default value
+	private String	proxy				= "";													// default value
 	
 	@Inject(optional = true)
 	private void setSeleniumChrome(@Named("selenium.chrome") String path) {
