@@ -122,28 +122,32 @@ public class EnvironmentMainTest {
 	@Test
 	public void testNoDataEncryptionServicePresent() {
 		// given
+		String serviceName = "PASSWORD";
+		String expected = "ENC(gD6S9sHAhNb6kVsCsZd81A==)";
 		systemUnderTest.setEnvironment("DEV");
 		systemUnderTest.setDataEncryptionService(null);
 		
 		// when
-		String value = systemUnderTest.getValue("PASSWORD");
+		String value = systemUnderTest.getValue(serviceName);
 		
 		// then
-		assertEquals("ENC(gD6S9sHAhNb6kVsCsZd81A==)", value);
+		assertEquals(expected, value);
 	}
 	
 	@Test
 	public void testDataEncryptionServicePresent() {
 		// given
+		String serviceName = "PASSWORD";
+		String expected = "test";
 		IDataEncryptionService encryptionService = Guice.createInjector(new DataEncryptionModule())
 		        .getInstance(IDataEncryptionService.class);
 		systemUnderTest.setDataEncryptionService(encryptionService);
 		
 		// when
-		String value = systemUnderTest.getValue("PASSWORD");
+		String value = systemUnderTest.getValue(serviceName);
 		
 		// then
-		assertEquals("test", value);
+		assertEquals(expected, value);
 	}
 	
 	private AbstractModule environmentTestModel() {
