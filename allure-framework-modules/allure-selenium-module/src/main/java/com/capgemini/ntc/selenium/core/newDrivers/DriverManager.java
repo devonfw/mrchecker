@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.UnreachableBrowserException;
@@ -83,7 +84,7 @@ public class DriverManager {
 			try {
 				BFLogger.logDebug("Closing WebDriver for this thread. " + RuntimeParametersSelenium.BROWSER.getValue());
 				driver.quit();
-			} catch (UnreachableBrowserException e) {
+			} catch (WebDriverException e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
 				e.printStackTrace();
 			} finally {
@@ -105,8 +106,8 @@ public class DriverManager {
 			driver = setupBrowser();
 		}
 		driver.manage()
-				.timeouts()
-				.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
+						.timeouts()
+						.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
 		
 		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
@@ -165,18 +166,23 @@ public class DriverManager {
 		FIREFOX {
 			@Override
 			public INewWebDriver getDriver() {
-				FirefoxProfile profile = new FirefoxProfile();
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
 				System.setProperty("webdriver.gecko.driver", browserPath);
+				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
+				
+				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("webdriver.firefox.marionette", true);
 				profile.setPreference("browser.download.folderlist", 2);
 				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
-						"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
+								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv,application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip,application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.download.useDownloadDir", true);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
-				return new NewFirefoxDriver(profile);
+				
+				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
+				
+				return new NewFirefoxDriver(options);
 			}
 		},
 		IE {
