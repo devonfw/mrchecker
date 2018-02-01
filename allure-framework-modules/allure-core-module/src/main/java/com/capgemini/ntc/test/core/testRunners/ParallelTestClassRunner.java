@@ -15,7 +15,7 @@ import org.junit.runners.model.Statement;
 import com.capgemini.ntc.test.core.testRunners.core.CustomRunAfters;
 
 /**
- * Use this runner to run Selenium tests in parallel, with separate driver for each thread.
+ * Use this runner to run test classes in parallel, with separate "driver" for each thread.
  * 
  * @author
  */

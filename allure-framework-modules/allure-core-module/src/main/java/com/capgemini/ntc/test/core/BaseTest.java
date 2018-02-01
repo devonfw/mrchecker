@@ -25,8 +25,8 @@ import com.google.inject.Guice;
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
 	
-	private static IEnvironmentService environmentService;
-	private final static IAnalytics analytics;
+	private static IEnvironmentService	environmentService;
+	private final static IAnalytics		analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
@@ -124,7 +124,7 @@ public abstract class BaseTest implements IBaseTest {
 	
 	private static IAnalytics setAnalytics(Boolean isAnalyticsEnabled) {
 		BFLogger.logAnalytics("Is analytics enabled:" + isAnalyticsEnabled);
-		return isAnalyticsEnabled ? AnalyticsProvider.GOOGLE : AnalyticsProvider.DISABLED;
+		return isAnalyticsEnabled ? AnalyticsProvider.DISABLED : AnalyticsProvider.DISABLED;
 		
 	}
 	
