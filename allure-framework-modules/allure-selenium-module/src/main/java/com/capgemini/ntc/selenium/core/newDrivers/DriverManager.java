@@ -92,7 +92,7 @@ public class DriverManager {
 			try {
 				BFLogger.logDebug("Closing WebDriver for this thread. " + RuntimeParametersSelenium.BROWSER.getValue());
 				driver.quit();
-			} catch (UnreachableBrowserException e) {
+			} catch (WebDriverException e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
 				e.printStackTrace();
 			} finally {
