@@ -54,8 +54,8 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <allure-core-module.version>4.12.0.4-SNAPSHOT</allure-core-module.version>
-        <allure-selenium-module.version>3.8.1.3-SNAPSHOT</allure-selenium-module.version>
+        <allure-core-module.version>4.12.0.4</allure-core-module.version>
+        <allure-selenium-module.version>3.8.1.4</allure-selenium-module.version>
 
 
         <!-- Java settings -->

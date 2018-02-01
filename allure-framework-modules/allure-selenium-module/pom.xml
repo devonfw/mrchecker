@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
-    <version>3.8.1.3-SNAPSHOT</version>
+    <version>3.8.1.4</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:
@@ -64,7 +64,7 @@ Based on Selenium 3.8.1</description>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <allure-core-module.version>4.12.0.4-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.4</allure-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.8.1</selenium.version>
