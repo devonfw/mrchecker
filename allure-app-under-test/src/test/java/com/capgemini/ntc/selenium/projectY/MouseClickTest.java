@@ -5,12 +5,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestFirefox;
-import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestLocal;
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestsLocal;
 import com.capgemini.ntc.selenium.pages.projectY.ContextMenuPage;
 import com.capgemini.ntc.test.core.BaseTest;
 
-@Category({ TestLocal.class, TestFirefox.class })
+@Category({ TestsLocal.class, TestsFirefox.class })
 public class MouseClickTest extends BaseTest {
 	
 	private ContextMenuPage contextMenuPage;
@@ -18,12 +18,7 @@ public class MouseClickTest extends BaseTest {
 	@Override
 	public void setUp() {
 		contextMenuPage = new ContextMenuPage();
-		
 		assertTrue("The-internet page is not loaded", contextMenuPage.isLoaded());
-		contextMenuPage.getDriver()
-						.manage()
-						.window()
-						.maximize();
 	}
 	
 	@Test

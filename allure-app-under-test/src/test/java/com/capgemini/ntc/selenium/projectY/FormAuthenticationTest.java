@@ -11,13 +11,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestsLocal;
 import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.ntc.selenium.pages.projectY.FormAuthenticationPage;
 import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-@Category({ TestsSelenium.class })
+@Category({ TestsSelenium.class, TestsLocal.class })
 public class FormAuthenticationTest extends BaseTest {
 	
 	private static TheInternetPage			theInternetPage;
@@ -37,12 +38,8 @@ public class FormAuthenticationTest extends BaseTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BFLogger.logDebug("Step 1: Open the Url http://the-internet.herokuapp.com/ with maximized window");
+		BFLogger.logDebug("Step 1: Open the Url http://the-internet.herokuapp.com/");
 		theInternetPage = new TheInternetPage();
-		theInternetPage.getDriver()
-						.manage()
-						.window()
-						.maximize();
 		
 		BFLogger.logDebug("Step 2: Verify if Url http://the-internet.herokuapp.com/ opens");
 		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
