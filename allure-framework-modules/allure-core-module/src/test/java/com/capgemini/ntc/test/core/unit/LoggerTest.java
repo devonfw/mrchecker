@@ -1,7 +1,5 @@
 package com.capgemini.ntc.test.core.unit;
 
-import static org.junit.Assert.fail;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,7 +25,6 @@ public class LoggerTest extends BaseTest {
 	@Test
 	public void testFailed() throws Exception {
 		BFLogger.logDebug("Debug-TestFailed");
-		fail("Fail test");
 		BFLogger.logError("Error-TestFailed");
 		BFLogger.logInfo("Info-TestFailed");
 	}
