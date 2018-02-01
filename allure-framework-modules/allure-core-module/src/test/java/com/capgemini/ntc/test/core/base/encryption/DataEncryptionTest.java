@@ -37,7 +37,7 @@ public class DataEncryptionTest {
 	public void setUp() throws Exception {
 		
 		systemUnderTest = Guice.createInjector(securedataTestModel())
-		        .getInstance(IDataEncryptionService.class);
+				.getInstance(IDataEncryptionService.class);
 		
 	}
 	
@@ -49,7 +49,7 @@ public class DataEncryptionTest {
 	public void secretdata_file_does_not_exsist() {
 		DataEncryptionService.delInstance();
 		Guice.createInjector(securedataTestModel_secretdata_file_does_not_exsist())
-		        .getInstance(IDataEncryptionService.class);
+				.getInstance(IDataEncryptionService.class);
 	}
 	
 	private AbstractModule securedataTestModel_secretdata_file_does_not_exsist() {
@@ -73,7 +73,7 @@ public class DataEncryptionTest {
 		DataEncryptionService.delInstance();
 		
 		Guice.createInjector(securedataTestModel_secretdata_file_with_empty_key())
-		        .getInstance(IDataEncryptionService.class);
+				.getInstance(IDataEncryptionService.class);
 	}
 	
 	private AbstractModule securedataTestModel_secretdata_file_with_empty_key() {
@@ -95,7 +95,7 @@ public class DataEncryptionTest {
 	public void secretdata_file_with_wrong_key() {
 		DataEncryptionService.delInstance();
 		Guice.createInjector(securedataTestModel_secretdata_file_with_wrong_key())
-		        .getInstance(IDataEncryptionService.class);
+				.getInstance(IDataEncryptionService.class);
 		// That's ok. At this point we don't have any means to tell it's the wrong key.
 	}
 	
@@ -129,7 +129,7 @@ public class DataEncryptionTest {
 		String ciphertext = systemUnderTest.encrypt("test");
 		DataEncryptionService.delInstance();
 		IDataEncryptionService service = Guice.createInjector(securedataTestModel_secretdata_file_with_wrong_key())
-		        .getInstance(IDataEncryptionService.class);
+				.getInstance(IDataEncryptionService.class);
 		
 		// when
 		service.decrypt(ciphertext);
@@ -173,7 +173,7 @@ public class DataEncryptionTest {
 	public void dataEncryptions_with_default_secretdata_file() {
 		// given
 		IDataEncryptionService service = Guice.createInjector(new DataEncryptionModule())
-		        .getInstance(IDataEncryptionService.class);
+				.getInstance(IDataEncryptionService.class);
 		String plaintext = "default";
 		
 		// when

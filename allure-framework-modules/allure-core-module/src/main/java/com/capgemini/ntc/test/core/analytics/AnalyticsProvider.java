@@ -9,8 +9,6 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  */
 public enum AnalyticsProvider implements IAnalytics {
 	
-	
-	
 	DISABLED() {
 		@Override
 		public void sendClassName(String url, String title, String description) {

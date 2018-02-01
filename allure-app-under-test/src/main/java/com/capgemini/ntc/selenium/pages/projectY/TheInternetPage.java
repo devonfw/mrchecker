@@ -10,21 +10,21 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
 	
-	private static final By	selectorCheckboxesLink			= By.cssSelector("li > a[href*=checkboxes]");
-	private static final By	selectorElementClick			= By.cssSelector("li > a[href*=abtest]");
-	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li > a[href*=broken_images]");
-	private static final By	selectorDropdownClickLink		= By.cssSelector("li > a[href*=dropdown]");
-	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
-	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
-	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
-	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
-	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
+	private static final By selectorCheckboxesLink = By.cssSelector("li > a[href*=checkboxes]");
+	private static final By selectorElementClick = By.cssSelector("li > a[href*=abtest]");
+	private static final By selectorBrokenImageClickLink = By.cssSelector("li > a[href*=broken_images]");
+	private static final By selectorDropdownClickLink = By.cssSelector("li > a[href*=dropdown]");
+	private static final By selectorMultipleWindowsLink = By.cssSelector("li > a[href*=windows]");
+	private static final By selectorBasicAuthLink = By.cssSelector("li > a[href*=basic_auth]");
+	private static final By selectorKeyPressesLink = By.cssSelector("li > a[href*=key_presses]");
+	private static final By selectorHoversLink = By.cssSelector("li > a[href*=hovers]");
+	private static final By selectorChallengingDomClick = By.cssSelector("li > a[href*=challenging_dom]");
 	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 	}
 	
 	@Override

@@ -21,9 +21,9 @@ public class MouseClickTest extends BaseTest {
 		
 		assertTrue("The-internet page is not loaded", contextMenuPage.isLoaded());
 		contextMenuPage.getDriver()
-						.manage()
-						.window()
-						.maximize();
+				.manage()
+				.window()
+				.maximize();
 	}
 	
 	@Test

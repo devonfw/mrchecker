@@ -15,8 +15,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ChallengingDomTest extends BaseTest {
 	
-	private TheInternetPage		theInternetPage;
-	private ChallengingDomPage	challengingDom;
+	private TheInternetPage theInternetPage;
+	private ChallengingDomPage challengingDom;
 	
 	@Override
 	public void setUp() {

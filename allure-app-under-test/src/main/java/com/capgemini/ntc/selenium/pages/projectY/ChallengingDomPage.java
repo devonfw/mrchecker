@@ -13,14 +13,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ChallengingDomPage extends BasePage {
 	
-	private final By	selectorTableRows	= By.cssSelector(".large-10 > table > tbody > tr");
-	private final By	selectorFirstButton	= By.cssSelector(".large-2.columns > .button:nth-child(1)");
+	private final By selectorTableRows = By.cssSelector(".large-10 > table > tbody > tr");
+	private final By selectorFirstButton = By.cssSelector(".large-2.columns > .button:nth-child(1)");
 	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The ChallengingDOM page is loaded.");
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
 	}
 	
 	@Override

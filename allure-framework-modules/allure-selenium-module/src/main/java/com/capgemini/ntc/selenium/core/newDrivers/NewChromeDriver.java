@@ -51,7 +51,7 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	@Override
 	public List<WebElement> findElements(By by) {
 		BaseTest.getAnalytics()
-						.sendMethodEvent(BasePage.analitycsCategoryName);
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		return DriverExtention.convertWebElementList(super.findElements(by));
 	}
 	
@@ -62,7 +62,7 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	@Override
 	public WebElement findElement(By by) throws BFElementNotFoundException {
 		BaseTest.getAnalytics()
-						.sendMethodEvent(BasePage.analitycsCategoryName);
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 		WebElement elementFromDriver = null;
 		try {
 			elementFromDriver = super.findElement(by);
@@ -207,8 +207,8 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	
 	@Override
 	public RadioButtonElement elementRadioButton(By selector,
-					By inputChildsSelector,
-					List<String> listSelectedAttributes) {
+			By inputChildsSelector,
+			List<String> listSelectedAttributes) {
 		return driverExtention.elementRadioButton(selector, inputChildsSelector, listSelectedAttributes);
 	}
 	
@@ -299,6 +299,6 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	
 	public static void main(String[] args) {
 		BaseTest.getAnalytics()
-						.sendMethodEvent(BasePage.analitycsCategoryName);
+				.sendMethodEvent(BasePage.analitycsCategoryName);
 	}
 }

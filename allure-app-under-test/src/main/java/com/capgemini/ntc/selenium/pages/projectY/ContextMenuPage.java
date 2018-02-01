@@ -18,15 +18,15 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ContextMenuPage extends BasePage {
 	
-	private static final String	validPageTitle		= "The Internet";
-	private static final By		seletorHotSpotArea	= id("hot-spot");
-	private static final String	expectedAlertText	= "You selected a context menu";
-	private int					timeoutInSec		= 5;
+	private static final String validPageTitle = "The Internet";
+	private static final By seletorHotSpotArea = id("hot-spot");
+	private static final String expectedAlertText = "You selected a context menu";
+	private int timeoutInSec = 5;
 	
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getTitle()
-						.equals(validPageTitle);
+				.equals(validPageTitle);
 	}
 	
 	@Override
@@ -46,9 +46,9 @@ public class ContextMenuPage extends BasePage {
 	
 	public void clickOnAgreeAtAlert() {
 		getDriver()
-						.switchTo()
-						.alert()
-						.accept();
+				.switchTo()
+				.alert()
+				.accept();
 	}
 	
 	public void chooseTheInternetOptionFromContextMenu() {
@@ -78,11 +78,11 @@ public class ContextMenuPage extends BasePage {
 		wait.until(ExpectedConditions.alertIsPresent());
 		
 		Alert alert = BasePage.getDriver()
-						.switchTo()
-						.alert();
+				.switchTo()
+				.alert();
 		
 		return alert.getText()
-						.equals(expectedAlertText) ? true : false;
+				.equals(expectedAlertText) ? true : false;
 	}
 	
 }

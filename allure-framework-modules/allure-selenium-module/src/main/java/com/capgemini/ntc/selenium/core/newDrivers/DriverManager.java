@@ -27,8 +27,8 @@ public class DriverManager {
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
 	
 	// Setup default variables
-	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
-	private static final int			IMPLICITYWAITTIMER	= 2;					// in seconds
+	private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
+	private static final int IMPLICITYWAITTIMER = 2; // in seconds
 	
 	private static PropertiesSelenium propertiesSelenium;
 	
@@ -106,8 +106,8 @@ public class DriverManager {
 			driver = setupBrowser();
 		}
 		driver.manage()
-						.timeouts()
-						.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
+				.timeouts()
+				.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
 		
 		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
@@ -131,14 +131,14 @@ public class DriverManager {
 	private static INewWebDriver setupBrowser() {
 		String browser = RuntimeParametersSelenium.BROWSER.getValue();
 		switch (browser) {
-			case "chrome":
-				return Driver.CHROME.getDriver();
-			case "firefox":
-				return Driver.FIREFOX.getDriver();
-			case "internet explorer":
-				return Driver.IE.getDriver();
-			default:
-				throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
+		case "chrome":
+			return Driver.CHROME.getDriver();
+		case "firefox":
+			return Driver.FIREFOX.getDriver();
+		case "internet explorer":
+			return Driver.IE.getDriver();
+		default:
+			throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
 		}
 	}
 	
@@ -174,7 +174,7 @@ public class DriverManager {
 				profile.setPreference("webdriver.firefox.marionette", true);
 				profile.setPreference("browser.download.folderlist", 2);
 				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
-								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv,application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip,application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
+						"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv,application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip,application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.download.useDownloadDir", true);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
@@ -211,15 +211,15 @@ public class DriverManager {
 				
 				// TODO add others os's
 				switch (operatingSystem) {
-					case "windows":
-						capabilities.setPlatform(Platform.WINDOWS);
-						break;
-					case "vista":
-						capabilities.setPlatform(Platform.VISTA);
-						break;
-					case "mac":
-						capabilities.setPlatform(Platform.MAC);
-						break;
+				case "windows":
+					capabilities.setPlatform(Platform.WINDOWS);
+					break;
+				case "vista":
+					capabilities.setPlatform(Platform.VISTA);
+					break;
+				case "mac":
+					capabilities.setPlatform(Platform.MAC);
+					break;
 				}
 				
 				capabilities.setVersion(RuntimeParametersSelenium.BROWSER_VERSION.getValue());

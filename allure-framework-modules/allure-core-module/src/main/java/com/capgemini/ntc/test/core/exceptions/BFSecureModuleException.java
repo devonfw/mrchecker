@@ -4,8 +4,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class BFSecureModuleException extends AssertionError {
 	
-	private static final long	serialVersionUID	= 6815162645071113994L;
-	private static String			exceptionMessage;
+	private static final long serialVersionUID = 6815162645071113994L;
+	private static String exceptionMessage;
 	
 	public BFSecureModuleException(String message) {
 		super(generateExceptionMessage(message));

@@ -1,0 +1,1447 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AllureTestFramework - List of Integration Test for Application Under Test 2.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://central.maven.org/maven2/com/capgemini/ntc/allure-core-module/4.12.0.4-SNAPSHOT/maven-metadata.xml
+Downloading: http://central.maven.org/maven2/com/capgemini/ntc/allure-selenium-module/3.8.1.3-SNAPSHOT/maven-metadata.xml
+[INFO] 
+[INFO] --- maven-clean-plugin:3.0.0:clean (default-clean) @ allure-app-under-test ---
+[INFO] Deleting D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target
+[INFO] Deleting D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\logs (includes = [], excludes = [])
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ allure-app-under-test ---
+[INFO] Using 'UTF8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\src\main\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.1:compile (default-compile) @ allure-app-under-test ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 25 source files to D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target\classes
+[INFO] /D:/eclipse/Allure_Test_Framework/workspace/devonfw-testing/allure-app-under-test/src/main/java/com/capgemini/ntc/selenium/pages/features/samples/readFromTable/EditableGridPage.java: Some input files use or override a deprecated API.
+[INFO] /D:/eclipse/Allure_Test_Framework/workspace/devonfw-testing/allure-app-under-test/src/main/java/com/capgemini/ntc/selenium/pages/features/samples/readFromTable/EditableGridPage.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ allure-app-under-test ---
+[INFO] Using 'UTF8' encoding to copy filtered resources.
+[INFO] Copying 5 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.1:testCompile (default-testCompile) @ allure-app-under-test ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 63 source files to D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target\test-classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ allure-app-under-test ---
+[INFO] Using 'UTF8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\src\main\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.1:compile (default-compile) @ allure-app-under-test ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ allure-app-under-test ---
+[INFO] Using 'UTF8' encoding to copy filtered resources.
+[INFO] Copying 5 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.1:testCompile (default-testCompile) @ allure-app-under-test ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.19.1:test (default-test) @ allure-app-under-test ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+2018-01-26 at 23:35:28 CET logDebug - [main] Properties settings file path=D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\src\resources\settings.properties
+[AppClassLoader@14dad5dc] warning javax.* types are not being woven because the weaver option '-Xset:weaveJavaxPackages=true' has not been specified
+2018-01-26 at 23:35:30 CET logDebug - [main] env=DEV
+2018-01-26 at 23:35:30 CET logInfo - [main] Selected Environment: DEV
+2018-01-26 at 23:35:30 CET logDebug - [main] Reading environment from: D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\src\resources\enviroments\environments.csv
+2018-01-26 at 23:35:30 CET logInfo - [main] Selected Environment: DEV
+2018-01-26 at 23:35:30 CET logAnalytics - [main] Is analytics enabled:true
+log4j:WARN No appenders could be found for logger (org.apache.http.client.protocol.RequestAddCookies).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+2018-01-26 at 23:35:32 CET logDebug - [pool-1-thread-1] OPEN BROWSER AND ENTER HTTP://WWW.EDITABLEGRID.NET/EN/
+2018-01-26 at 23:35:32 CET logDebug - [pool-1-thread-1] [browser=chrome, browserVersion=8.0, seleniumGrid=false, os=windows]
+2018-01-26 at 23:35:32 CET logDebug - [pool-1-thread-1] Creating new browser=chrome WebDriver.
+sty 26, 2018 11:35:32 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 12759
+Only local connections are allowed.
+sty 26, 2018 11:35:36 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+2018-01-26 at 23:35:37 CET logInfo - [pool-1-thread-1] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:38 CET logInfo - [pool-1-thread-1] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:38 CET logInfo - [pool-1-thread-1] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:38 CET logInfo - [pool-1-thread-1] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-1] driver:NewChromeDriver: chrome on XP (12215a4dac2dc3b390643da0e339087c)
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.features.samples.readFromTable.EditableGridPage@24c4a19
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: []
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-1] Added observer: com.capgemini.ntc.selenium.pages.features.samples.readFromTable.EditableGridPage@24c4a19
+2018-01-26 at 23:35:41 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.023 s]
+2018-01-26 at 23:35:41 CET logDebug - [pool-1-thread-1] VERIFY PAGE IS DISPLAYED
+2018-01-26 at 23:35:41 CET logInfo - [pool-1-thread-1] Test1_exercise1_printAllCells(com.capgemini.ntc.selenium.features.samples.readFromTable.JsoupTest) STARTED.
+2018-01-26 at 23:35:41 CET logInfo - [pool-1-thread-1] [TEST1] - Print all cells
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Hoffman
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Tatyana
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 88
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,32 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Nam@quisdiamluctus.json.org
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 17 Apr 2012
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Atkins
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Ishmael
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 44
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,42 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] arcu.et.pede@musProin.ca
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 12 Jan 2011
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Hamilton
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Mohammad
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 73
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,22 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] dui@duiCras.edu
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 25 Sep 2012
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Murray
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Troy
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 18
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,92 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] mollis@eutellus.co.uk
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 22 Jul 2012
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Schwartz
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Carla
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 79
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,50 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] ante@adipiscing.org
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 31 Mar 2012
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Bond
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Lenore
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 33
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,55 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] semper.tellus.id@sem.co.uk
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 4 Feb 2011
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Noble
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Georgia
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 88
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,90 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] mi.lacinia@nisiaodio.co.uk
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 17 Jan 2011
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Frederick
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Bradley
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 80
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,87 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] dapibus.id.blandit@aptenttacitisociosqu.com
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 27 Jul 2011
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Chambers
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Aphrodite
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 63
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,30 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] mattis@venenatisvel.co.uk
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 10 Sep 2011
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Schultz
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Allegra
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 90
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 1,70 m
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Fusce.feugiat.Lorem@Duis.net
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 3 Apr 2012
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] 
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Test1_exercise1_printAllCells(com.capgemini.ntc.selenium.features.samples.readFromTable.JsoupTest) PASSED.
+2018-01-26 at 23:35:42 CET logDebug - [pool-1-thread-1] BasePage.onTestSuccess    EditableGridPage
+2018-01-26 at 23:35:42 CET logInfo - [pool-1-thread-1] Test1_exercise1_printAllCells(com.capgemini.ntc.selenium.features.samples.readFromTable.JsoupTest) duration: 0,02 min
+2018-01-26 at 23:35:43 CET logDebug - [pool-1-thread-1] BaseTest.tearDownClass()
+2018-01-26 at 23:35:43 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:43 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: [com.capgemini.ntc.selenium.pages.features.samples.readFromTable.EditableGridPage@24c4a19]
+2018-01-26 at 23:35:43 CET logDebug - [pool-1-thread-1] BasePage.onTestClassFinish   EditableGridPage
+2018-01-26 at 23:35:43 CET logDebug - [pool-1-thread-1] driver:NewChromeDriver: chrome on XP (12215a4dac2dc3b390643da0e339087c)
+2018-01-26 at 23:35:43 CET logDebug - [pool-1-thread-1] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-1] All observers cleared.
+2018-01-26 at 23:35:55 CET logDebug - [Finalizer] closeDriver() was called but there was no driver for this thread.
+2018-01-26 at 23:35:55 CET logDebug - [Finalizer] Closing Driver in finalize()
+2018-01-26 at 23:36:47 CET logInfo - [pool-1-thread-1] Step1 - open Chrome browser
+Running com.capgemini.ntc.selenium.projectX.navigationbar.NavigationBarTest
+2018-01-26 at 23:36:47 CET logInfo - [pool-1-thread-1] Step2 - load http://the-internet.herokuapp.com/ page
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-1] Creating new browser=chrome WebDriver.
+sty 26, 2018 11:36:47 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-4] test(com.capgemini.ntc.selenium.projectX.navigationbar.NavigationBarTest) STARTED.
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-4] [Step 1] Open main page
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-4] Creating new browser=chrome WebDriver.
+sty 26, 2018 11:36:47 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+sty 26, 2018 11:36:47 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+2018-01-26 at 23:35:53 CET logInfo - [pool-1-thread-4] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-4] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-4] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-4] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:54 CET logDebug - [pool-1-thread-4] driver:NewChromeDriver: chrome on XP (40fab5c77ffb542e56ff4f002ca0d020)
+2018-01-26 at 23:35:54 CET logDebug - [pool-1-thread-4] To add observer: com.capgemini.ntc.selenium.pages.projectX.MainPage@4e7ad1ff
+2018-01-26 at 23:35:54 CET logDebug - [pool-1-thread-4] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:54 CET logDebug - [pool-1-thread-4] TestClassRule.classObservers: []
+2018-01-26 at 23:35:54 CET logDebug - [pool-1-thread-4] Added observer: com.capgemini.ntc.selenium.pages.projectX.MainPage@4e7ad1ff
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-4] Waiting for [waitForPageLoaded] took [0.073 s]
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-4] com.capgemini.ntc.selenium.pages.projectX.MainPage: Current loaded page (http://demoqa.com/) with pageTitle (). Page to load: (http://demoqa.com/) ,for page title: (Demoqa | Just another WordPress site)
+2018-01-26 at 23:36:03 CET logInfo - [pool-1-thread-4] [Step 2] Click navigation bar - Home
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] To add observer: com.capgemini.ntc.selenium.pages.projectX.navigationbar.NavigationBar@1707496e
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.MainPage@4e7ad1ff]
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] TestClassRule.classObservers: []
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] Waiting for [waitForPageLoaded] took [0.087 s]
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] Waiting for [findElementDynamic(): By.cssSelector: li[id='menu-item-38']] took [0.107 s]
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] Waiting for [findElementDynamic(): By.cssSelector: li[id='menu-item-38']] took [0.078 s]
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] Waiting for [waitForPageLoaded] took [0.133 s]
+2018-01-26 at 23:36:03 CET logDebug - [pool-1-thread-4] Waiting for [findElementDynamic(): By.cssSelector: li[id='menu-item-38']] took [0.022 s]
+2018-01-26 at 23:36:05 CET logInfo - [pool-1-thread-4] Clicking on Navigation bar link - Home
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] Waiting for [waitForPageLoaded] took [0.059 s]
+2018-01-26 at 23:36:05 CET logInfo - [pool-1-thread-4] [Step 3] Verify if main page is opened
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] To add observer: com.capgemini.ntc.selenium.pages.projectX.navigationbar.home.NavBarHome@534f5ee3
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.MainPage@4e7ad1ff]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] TestClassRule.classObservers: []
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] Waiting for [waitForPageLoaded] took [0.019 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] Waiting for [waitForPageLoaded] took [0.013 s]
+2018-01-26 at 23:36:05 CET logInfo - [pool-1-thread-4] test(com.capgemini.ntc.selenium.projectX.navigationbar.NavigationBarTest) PASSED.
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] BasePage.onTestSuccess    MainPage
+2018-01-26 at 23:36:05 CET logInfo - [pool-1-thread-4] test(com.capgemini.ntc.selenium.projectX.navigationbar.NavigationBarTest) duration: 0,26 min
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] BasePage.onTestFinish   MainPage
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] To remove observer: com.capgemini.ntc.selenium.pages.projectX.MainPage@4e7ad1ff
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] BaseTest.tearDownClass()
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.MainPage@4e7ad1ff]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] TestClassRule.classObservers: []
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] BasePage.onTestClassFinish   MainPage
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] driver:NewChromeDriver: chrome on XP (40fab5c77ffb542e56ff4f002ca0d020)
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-4] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-4] All observers cleared.
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.603 sec - in com.capgemini.ntc.selenium.projectX.navigationbar.NavigationBarTest
+Running registrationTest
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-6] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDExternalDataTest) STARTED.
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-6] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:35:53 CET logInfo - [pool-1-thread-6] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-6] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-6] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-6] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] driver:NewChromeDriver: chrome on XP (80cc891adeae6f166b49f1abd76fbbd7)
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@5e2cbaba
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] TestClassRule.classObservers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@5e2cbaba
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] Waiting for [waitForPageLoaded] took [0.038 s]
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-6] com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [waitForPageLoaded] took [0.013 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.074 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.071 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.02 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.04 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.015 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.017 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.036 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.026 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.017 s]
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@6b0a4452 isn't clicked.
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.059 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.02 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.049 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.049 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.038 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.036 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.028 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.015 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.016 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.013 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.026 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.017 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.032 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.036 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.033 s]
+2018-01-26 at 23:36:19 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.018 s]
+2018-01-26 at 23:36:19 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.017 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.016 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.027 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.014 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.016 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.034 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.029 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.018 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.028 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.025 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.015 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.03 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.021 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.036 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.039 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.036 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.032 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.029 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.013 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.014 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.043 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.017 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-6] Waiting for [waitForPageLoaded] took [0.012 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.019 s]
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-6] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.136 s]
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-6] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.02 s]
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-6] Error: Username already exists
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.01 s]
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.036 s]
+2018-01-26 at 23:36:28 CET logInfo - [pool-1-thread-6] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDExternalDataTest) PASSED.
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-6] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:36:28 CET logInfo - [pool-1-thread-6] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDExternalDataTest) duration: 0,65 min
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@5e2cbaba
+2018-01-26 at 23:36:30 CET logInfo - [pool-1-thread-6] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDExternalDataTest) STARTED.
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@2f818c8f
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@5e2cbaba]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] TestClassRule.classObservers: []
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [waitForPageLoaded] took [0.124 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [waitForPageLoaded] took [0.006 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.022 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.013 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.013 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.018 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.01 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.009 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.018 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.01 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.009 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.018 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.01 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.012 s]
+2018-01-26 at 23:36:30 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.01 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.018 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.018 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.019 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.01 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.018 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.01 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.02 s]
+2018-01-26 at 23:36:37 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.01 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.023 s]
+2018-01-26 at 23:36:39 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.014 s]
+2018-01-26 at 23:36:39 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.023 s]
+2018-01-26 at 23:36:39 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.011 s]
+2018-01-26 at 23:36:39 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.015 s]
+2018-01-26 at 23:36:41 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.011 s]
+2018-01-26 at 23:36:41 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.02 s]
+2018-01-26 at 23:36:41 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.017 s]
+2018-01-26 at 23:36:41 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.018 s]
+2018-01-26 at 23:36:41 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.021 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.014 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.019 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.025 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.011 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.013 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.022 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.011 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.019 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.024 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.011 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.017 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.024 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.012 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.016 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.022 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.011 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [waitForPageLoaded] took [0.007 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.012 s]
+2018-01-26 at 23:36:45 CET logDebug - [pool-1-thread-6] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.193 s]
+2018-01-26 at 23:36:45 CET logDebug - [pool-1-thread-6] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.027 s]
+2018-01-26 at 23:36:45 CET logDebug - [pool-1-thread-6] Error: Username already exists
+2018-01-26 at 23:36:45 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.011 s]
+2018-01-26 at 23:36:45 CET logDebug - [pool-1-thread-6] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.009 s]
+2018-01-26 at 23:36:45 CET logInfo - [pool-1-thread-6] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDExternalDataTest) PASSED.
+2018-01-26 at 23:36:45 CET logDebug - [pool-1-thread-6] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:36:45 CET logInfo - [pool-1-thread-6] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDExternalDataTest) duration: 0,26 min
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@5e2cbaba
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] BaseTest.tearDownClass()
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@5e2cbaba]
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] TestClassRule.classObservers: []
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] BasePage.onTestClassFinish   RegistrationPage
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] driver:NewChromeDriver: chrome on XP (80cc891adeae6f166b49f1abd76fbbd7)
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-6] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-6] All observers cleared.
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@19d432ca isn't clicked.
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 56.967 sec - in registrationTest
+Running com.capgemini.ntc.selenium.projectX.registration.RegisterOKTest
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-5] Register_OK(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTest) STARTED.
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-5] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:35:53 CET logInfo - [pool-1-thread-5] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-5] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-5] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-5] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] driver:NewChromeDriver: chrome on XP (45dc403b5c464963fd44fd58fca1e122)
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@78333040
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] TestClassRule.classObservers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@78333040
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] Waiting for [waitForPageLoaded] took [0.03 s]
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-5] com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-5] Waiting for [waitForPageLoaded] took [0.016 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.036 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.016 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.109 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.034 s]
+2018-01-26 at 23:36:05 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.021 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.027 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.038 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.017 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.015 s]
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@32eb726b isn't clicked.
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.05 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.023 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.02 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.024 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.033 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.02 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.04 s]
+2018-01-26 at 23:36:15 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.023 s]
+2018-01-26 at 23:36:15 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.053 s]
+2018-01-26 at 23:36:15 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.027 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.033 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.014 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.027 s]
+2018-01-26 at 23:36:16 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.015 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.016 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.014 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.026 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.018 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.018 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.014 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.027 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.017 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.015 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.032 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.015 s]
+2018-01-26 at 23:36:21 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.021 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.027 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.014 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.017 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.035 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.016 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.017 s]
+2018-01-26 at 23:36:22 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.039 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.025 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.025 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.046 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.02 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.022 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.047 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.021 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-5] Waiting for [waitForPageLoaded] took [0.019 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.02 s]
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.154 s]
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.022 s]
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] Error: Username already exists
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.046 s]
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.037 s]
+2018-01-26 at 23:36:27 CET logInfo - [pool-1-thread-5] Register_OK(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTest) PASSED.
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:36:27 CET logInfo - [pool-1-thread-5] Register_OK(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTest) duration: 0,63 min
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@78333040
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] BaseTest.tearDownClass()
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@78333040]
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] TestClassRule.classObservers: []
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] BasePage.onTestClassFinish   RegistrationPage
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] driver:NewChromeDriver: chrome on XP (45dc403b5c464963fd44fd58fca1e122)
+2018-01-26 at 23:36:27 CET logDebug - [pool-1-thread-5] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:36:28 CET logDebug - [pool-1-thread-5] All observers cleared.
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.97 sec - in com.capgemini.ntc.selenium.projectX.registration.RegisterOKTest
+Running resolution_test
+2018-01-26 at 23:35:32 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) STARTED.
+2018-01-26 at 23:35:32 CET logDebug - [pool-1-thread-2] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:35:37 CET logInfo - [pool-1-thread-2] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:38 CET logInfo - [pool-1-thread-2] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:38 CET logInfo - [pool-1-thread-2] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:38 CET logInfo - [pool-1-thread-2] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] driver:NewChromeDriver: chrome on XP (4888a568c4a9a9e5e8b5212e9b5ec769)
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] TestClassRule.classObservers: []
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] Waiting for [waitForPageLoaded] took [0.013 s]
+2018-01-26 at 23:35:38 CET logDebug - [pool-1-thread-2] com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:35:44 CET logDebug - [pool-1-thread-2] Waiting for [waitForPageLoaded] took [0.026 s]
+2018-01-26 at 23:35:44 CET logInfo - [pool-1-thread-2] Trying to set requested resolution: 768x576.
+2018-01-26 at 23:35:44 CET logInfo - [pool-1-thread-2] Resolution readed from device: 768x576
+2018-01-26 at 23:35:44 CET logInfo - [pool-1-thread-2] Trying to set increased resolution for 'View port': 801x576.
+2018-01-26 at 23:35:44 CET logInfo - [pool-1-thread-2] Resolution readed from device: 801x576
+2018-01-26 at 23:35:44 CET logDebug - [pool-1-thread-2] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.135 s]
+2018-01-26 at 23:35:45 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) PASSED.
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] BasePage.onTestSuccess    RegistryPage
+2018-01-26 at 23:35:45 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) duration: 0,22 min
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad
+2018-01-26 at 23:35:45 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) STARTED.
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@5c598c4a
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad]
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] TestClassRule.classObservers: []
+2018-01-26 at 23:35:45 CET logDebug - [pool-1-thread-2] Waiting for [waitForPageLoaded] took [0.014 s]
+2018-01-26 at 23:35:45 CET logInfo - [pool-1-thread-2] Trying to set requested resolution: 960x720.
+2018-01-26 at 23:35:46 CET logInfo - [pool-1-thread-2] Resolution readed from device: 960x720
+2018-01-26 at 23:35:46 CET logInfo - [pool-1-thread-2] Trying to set increased resolution for 'View port': 993x720.
+2018-01-26 at 23:35:46 CET logInfo - [pool-1-thread-2] Resolution readed from device: 993x720
+2018-01-26 at 23:35:46 CET logDebug - [pool-1-thread-2] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.013 s]
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) PASSED.
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] BasePage.onTestSuccess    RegistryPage
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) duration: 0,02 min
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) STARTED.
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@1c4ead0
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad]
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] TestClassRule.classObservers: []
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] Waiting for [waitForPageLoaded] took [0.016 s]
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] Trying to set requested resolution: 1920x1080.
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] Resolution readed from device: 1920x1080
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] Trying to set increased resolution for 'View port': 1953x1080.
+2018-01-26 at 23:35:47 CET logInfo - [pool-1-thread-2] Resolution readed from device: 1940x1080
+2018-01-26 at 23:35:47 CET logDebug - [pool-1-thread-2] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.13 s]
+2018-01-26 at 23:35:48 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) PASSED.
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] BasePage.onTestSuccess    RegistryPage
+2018-01-26 at 23:35:48 CET logInfo - [pool-1-thread-2] resolution_test(com.capgemini.ntc.selenium.features.samples.resolutions.ResolutionTest) duration: 0,02 min
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] BaseTest.tearDownClass()
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@2993f5ad]
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] TestClassRule.classObservers: []
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] BasePage.onTestClassFinish   RegistryPage
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] driver:NewChromeDriver: chrome on XP (4888a568c4a9a9e5e8b5212e9b5ec769)
+2018-01-26 at 23:35:48 CET logDebug - [pool-1-thread-2] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-2] All observers cleared.
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.235 sec - in resolution_test
+Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 46872
+Only local connections are allowed.
+Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 14756
+Only local connections are allowed.
+Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 4338
+Only local connections are allowed.
+sty 26, 2018 11:36:51 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+sty 26, 2018 11:36:51 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+2018-01-26 at 23:36:51 CET logInfo - [pool-1-thread-1] Trying to set requested resolution: 1600x1200.
+sty 26, 2018 11:36:52 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-1] Resolution readed from device: 1600x1100
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-1] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-1] Resolution readed from device: 1616x1100
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] driver:NewChromeDriver: chrome on XP (901ff0c8d38ede2b94c20433ed9c2526)
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@166f58
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: []
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] Added observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@166f58
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] The internet page is loaded: data:,
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-1] load page
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.104 s]
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-1] The internet page is loaded: http://the-internet.herokuapp.com/
+Running registrationTest
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-7] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) STARTED.
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-7] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:35:53 CET logInfo - [pool-1-thread-7] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-7] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-7] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-7] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] driver:NewChromeDriver: chrome on XP (5c3daed2ebdeb8cfcb9b491220fdf5b8)
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1afa0303
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] TestClassRule.classObservers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1afa0303
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.023 s]
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-7] com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.024 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.035 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.02 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.041 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.077 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.039 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.037 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.067 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.05 s]
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.071 s]
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@60b1dae3 isn't clicked.
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.051 s]
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.062 s]
+2018-01-26 at 23:36:09 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.045 s]
+2018-01-26 at 23:36:09 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.016 s]
+2018-01-26 at 23:36:09 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.021 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.027 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.051 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.089 s]
+2018-01-26 at 23:36:17 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.036 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.013 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.026 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.019 s]
+2018-01-26 at 23:36:18 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.025 s]
+2018-01-26 at 23:36:19 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.014 s]
+2018-01-26 at 23:36:19 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.026 s]
+2018-01-26 at 23:36:19 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.012 s]
+2018-01-26 at 23:36:20 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.019 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.04 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.041 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.019 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.037 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.03 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.018 s]
+2018-01-26 at 23:36:23 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.017 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.034 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.025 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.024 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.028 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.012 s]
+2018-01-26 at 23:36:24 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.019 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.059 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.034 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.026 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.03 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.016 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.016 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.026 s]
+2018-01-26 at 23:36:25 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.013 s]
+2018-01-26 at 23:36:26 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.009 s]
+2018-01-26 at 23:36:26 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.015 s]
+2018-01-26 at 23:36:29 CET logDebug - [pool-1-thread-7] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.18 s]
+2018-01-26 at 23:36:29 CET logDebug - [pool-1-thread-7] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.021 s]
+2018-01-26 at 23:36:29 CET logDebug - [pool-1-thread-7] Error: Username already exists
+2018-01-26 at 23:36:29 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.01 s]
+2018-01-26 at 23:36:29 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.01 s]
+2018-01-26 at 23:36:29 CET logInfo - [pool-1-thread-7] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) PASSED.
+2018-01-26 at 23:36:29 CET logDebug - [pool-1-thread-7] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:36:29 CET logInfo - [pool-1-thread-7] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) duration: 0,66 min
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1afa0303
+2018-01-26 at 23:36:31 CET logInfo - [pool-1-thread-7] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) STARTED.
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@75f35523
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1afa0303]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] TestClassRule.classObservers: []
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.215 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.011 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.032 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.014 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.017 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.042 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.012 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.01 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.022 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.012 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.013 s]
+2018-01-26 at 23:36:31 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.013 s]
+2018-01-26 at 23:36:32 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.023 s]
+2018-01-26 at 23:36:32 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.011 s]
+2018-01-26 at 23:36:32 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.018 s]
+2018-01-26 at 23:36:32 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.011 s]
+2018-01-26 at 23:36:32 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.013 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.013 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.022 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.01 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.017 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.012 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.026 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.014 s]
+2018-01-26 at 23:36:38 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.013 s]
+2018-01-26 at 23:36:40 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.019 s]
+2018-01-26 at 23:36:40 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.02 s]
+2018-01-26 at 23:36:40 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.013 s]
+2018-01-26 at 23:36:40 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.016 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.012 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.02 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.012 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.014 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.024 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.011 s]
+2018-01-26 at 23:36:42 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.021 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.031 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.019 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.014 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.026 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.012 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.013 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.032 s]
+2018-01-26 at 23:36:43 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.019 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.02 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.03 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.011 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.01 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.02 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.014 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.037 s]
+2018-01-26 at 23:36:44 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.026 s]
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-7] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.241 s]
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-7] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.03 s]
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-7] Error: Username already exists
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.012 s]
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-7] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.026 s]
+2018-01-26 at 23:36:46 CET logInfo - [pool-1-thread-7] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) PASSED.
+2018-01-26 at 23:36:46 CET logDebug - [pool-1-thread-7] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:36:46 CET logInfo - [pool-1-thread-7] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) duration: 0,26 min
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1afa0303
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] BaseTest.tearDownClass()
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1afa0303]
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] TestClassRule.classObservers: []
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] BasePage.onTestClassFinish   RegistrationPage
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] driver:NewChromeDriver: chrome on XP (5c3daed2ebdeb8cfcb9b491220fdf5b8)
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] All observers cleared.
+2018-01-26 at 23:36:47 CET logInfo - [pool-1-thread-7] Step 1: Open the Url http://the-internet.herokuapp.com/
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-7] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:36:52 CET logInfo - [pool-1-thread-7] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-7] Resolution readed from device: 1600x1100
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-7] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-7] Resolution readed from device: 1616x1100
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-7] driver:NewChromeDriver: chrome on XP (c070446ab5ddaed3f0953f56fad83e92)
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-7] To add observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3d42a41c
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-7] BaseTestWatcher.observers: []
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-7] TestClassRule.classObservers: []
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-7] Added observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3d42a41c
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-7] The internet page is loaded: data:,
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-7] load page
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-7] Waiting for [waitForPageLoaded] took [0.047 s]
+2018-01-26 at 23:37:12 CET logInfo - [pool-1-thread-7] Step 2: Verify if Url http://the-internet.herokuapp.com/ opens
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-7] The internet page is loaded: http://the-internet.herokuapp.com/
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@57c6ef57 isn't clicked.
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 57.639 sec - in registrationTest
+Running com.capgemini.ntc.selenium.features.samples.readFromTable.JsoupTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.883 sec - in com.capgemini.ntc.selenium.features.samples.readFromTable.JsoupTest
+2018-01-26 at 23:37:12 CET logInfo - [pool-1-thread-1] shouldOpenABtestWhenClickABtestingLink(com.capgemini.ntc.selenium.projectY.ABtestingTest) STARTED.
+2018-01-26 at 23:37:12 CET logInfo - [pool-1-thread-1] Step3 - click ABtesting link
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li > a[href*=abtest]] took [0.179 s]
+Running com.capgemini.ntc.selenium.projectX.MainPageTest
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-3] test(com.capgemini.ntc.selenium.projectX.MainPageTest) STARTED.
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-3] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:35:53 CET logInfo - [pool-1-thread-3] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-3] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-3] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-3] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] driver:NewChromeDriver: chrome on XP (59cca4b04cd748db33d6a9104bad30ec)
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] To add observer: com.capgemini.ntc.selenium.pages.projectX.MainPage@3c74a2ea
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] TestClassRule.classObservers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] Added observer: com.capgemini.ntc.selenium.pages.projectX.MainPage@3c74a2ea
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] Waiting for [waitForPageLoaded] took [0.086 s]
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-3] com.capgemini.ntc.selenium.pages.projectX.MainPage: Current loaded page (http://demoqa.com/) with pageTitle (). Page to load: (http://demoqa.com/) ,for page title: (Demoqa | Just another WordPress site)
+2018-01-26 at 23:36:04 CET logInfo - [pool-1-thread-3] test(com.capgemini.ntc.selenium.projectX.MainPageTest) PASSED.
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] BasePage.onTestSuccess    MainPage
+2018-01-26 at 23:36:04 CET logInfo - [pool-1-thread-3] test(com.capgemini.ntc.selenium.projectX.MainPageTest) duration: 0,25 min
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] BasePage.onTestFinish   MainPage
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] To remove observer: com.capgemini.ntc.selenium.pages.projectX.MainPage@3c74a2ea
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] BaseTest.tearDownClass()
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.MainPage@3c74a2ea]
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] TestClassRule.classObservers: []
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] BasePage.onTestClassFinish   MainPage
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] driver:NewChromeDriver: chrome on XP (59cca4b04cd748db33d6a9104bad30ec)
+2018-01-26 at 23:36:04 CET logDebug - [pool-1-thread-3] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:36:10 CET logDebug - [pool-1-thread-3] All observers cleared.
+2018-01-26 at 23:36:47 CET logInfo - [pool-1-thread-3] Step 1: Open the Url http://the-internet.herokuapp.com/
+2018-01-26 at 23:36:47 CET logDebug - [pool-1-thread-3] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:36:51 CET logInfo - [pool-1-thread-3] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-3] Resolution readed from device: 1600x1100
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-3] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-3] Resolution readed from device: 1616x1100
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] driver:NewChromeDriver: chrome on XP (ee4301758cb2648718c3038359c0dc98)
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] To add observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@5643e744
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] BaseTestWatcher.observers: []
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] TestClassRule.classObservers: []
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] Added observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@5643e744
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] The internet page is loaded: data:,
+2018-01-26 at 23:36:53 CET logDebug - [pool-1-thread-3] load page
+2018-01-26 at 23:37:11 CET logDebug - [pool-1-thread-3] Waiting for [waitForPageLoaded] took [0.025 s]
+2018-01-26 at 23:37:11 CET logInfo - [pool-1-thread-3] Step 2: Verify if Url http://the-internet.herokuapp.com/ opens
+2018-01-26 at 23:37:11 CET logDebug - [pool-1-thread-3] The internet page is loaded: http://the-internet.herokuapp.com/
+2018-01-26 at 23:37:11 CET logInfo - [pool-1-thread-3] Step 3: Click Checkboxes link
+2018-01-26 at 23:37:11 CET logDebug - [pool-1-thread-3] Waiting for [findElementDynamic(): By.cssSelector: li > a[href*=checkboxes]] took [0.06 s]
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-3] To add observer: com.capgemini.ntc.selenium.pages.projectY.CheckboxesPage@4b89227b
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-3] BaseTestWatcher.observers: []
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-3] TestClassRule.classObservers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@5643e744]
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-3] The checkboxes page is loaded.
+2018-01-26 at 23:37:13 CET logInfo - [pool-1-thread-3] Step 4: Verify if Checkboxes Page opens
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-3] The checkboxes page is loaded.
+2018-01-26 at 23:37:13 CET logInfo - [pool-1-thread-3] Step 5: Verify if checkboxes elements are visible
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-3] Waiting for [findElementDynamic(): By.cssSelector: #checkboxes] took [0.165 s]
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.964 sec - in com.capgemini.ntc.selenium.projectX.MainPageTest
+2018-01-26 at 23:37:14 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.projectY.ABtestPage@685771fc
+2018-01-26 at 23:37:14 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:37:14 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@166f58]
+2018-01-26 at 23:37:14 CET logInfo - [pool-1-thread-1] shouldOpenABtestWhenClickABtestingLink(com.capgemini.ntc.selenium.projectY.ABtestingTest) PASSED.
+2018-01-26 at 23:37:14 CET logDebug - [pool-1-thread-1] BasePage.onTestSuccess    TheInternetPage
+2018-01-26 at 23:37:14 CET logInfo - [pool-1-thread-1] shouldOpenABtestWhenClickABtestingLink(com.capgemini.ntc.selenium.projectY.ABtestingTest) duration: 0,03 min
+2018-01-26 at 23:37:15 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.067 s]
+2018-01-26 at 23:37:15 CET logInfo - [pool-1-thread-1] shouldOpenElementalSeleniumPageWhenClickElementalSeleniumLink(com.capgemini.ntc.selenium.projectY.ABtestingTest) STARTED.
+2018-01-26 at 23:37:15 CET logInfo - [pool-1-thread-1] Step3 - click ABtesting link
+2018-01-26 at 23:37:15 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li > a[href*=abtest]] took [0.106 s]
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.projectY.ABtestPage@7a448ff5
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@166f58]
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-1] Step4 - click Elemental Selenium link
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div > div > a] took [0.083 s]
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.049 s]
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.projectY.ElementalSeleniumPage@76dd72ec
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@166f58]
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-1] load()
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-1] Step5 - switch tab in browser to new opened Elemental Selenium link
+2018-01-26 at 23:37:18 CET logInfo - [pool-1-thread-1] shouldOpenElementalSeleniumPageWhenClickElementalSeleniumLink(com.capgemini.ntc.selenium.projectY.ABtestingTest) PASSED.
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-1] BasePage.onTestSuccess    TheInternetPage
+2018-01-26 at 23:37:18 CET logInfo - [pool-1-thread-1] shouldOpenElementalSeleniumPageWhenClickElementalSeleniumLink(com.capgemini.ntc.selenium.projectY.ABtestingTest) duration: 0,06 min
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [1.083 s]
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] BaseTest.tearDownClass()
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@166f58]
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] BasePage.onTestClassFinish   TheInternetPage
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] driver:NewChromeDriver: chrome on XP (901ff0c8d38ede2b94c20433ed9c2526)
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-1] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:37:20 CET logDebug - [pool-1-thread-1] All observers cleared.
+Running com.capgemini.ntc.selenium.projectY.MultipleWindowsTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.573 sec - in com.capgemini.ntc.selenium.projectY.MultipleWindowsTest
+sty 26, 2018 11:37:20 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+Running com.capgemini.ntc.selenium.projectY.ChallengingDomTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 27.562 sec - in com.capgemini.ntc.selenium.projectY.ChallengingDomTest
+Running com.capgemini.ntc.selenium.projectY.BrokenImagesTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.52 sec - in com.capgemini.ntc.selenium.projectY.BrokenImagesTest
+Running com.capgemini.ntc.selenium.projectY.DropdownTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 30.246 sec - in com.capgemini.ntc.selenium.projectY.DropdownTest
+Running com.capgemini.ntc.selenium.projectY.ABtestingTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.803 sec - in com.capgemini.ntc.selenium.projectY.ABtestingTest
+Running com.capgemini.ntc.selenium.projectY.CheckboxesTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.632 sec - in com.capgemini.ntc.selenium.projectY.CheckboxesTest
+2018-01-26 at 23:37:20 CET logInfo - [pool-1-thread-1] testSelectSubMenuItemByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+2018-01-26 at 23:37:20 CET logDebug - [pool-1-thread-1] Creating new browser=chrome WebDriver.
+Running com.capgemini.ntc.selenium.projectY.KeyPressesTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.842 sec - in com.capgemini.ntc.selenium.projectY.KeyPressesTest
+Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 28931
+Only local connections are allowed.
+sty 26, 2018 11:37:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+2018-01-26 at 23:37:24 CET logInfo - [pool-1-thread-1] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:37:25 CET logInfo - [pool-1-thread-1] Resolution readed from device: 1600x1100
+2018-01-26 at 23:37:25 CET logInfo - [pool-1-thread-1] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:37:25 CET logInfo - [pool-1-thread-1] Resolution readed from device: 1616x1100
+2018-01-26 at 23:37:25 CET logDebug - [pool-1-thread-1] driver:NewChromeDriver: chrome on XP (0a4ed506bb5914a28117389df055b78f)
+Running com.capgemini.ntc.selenium.projectY.HoversTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 29.069 sec - in com.capgemini.ntc.selenium.projectY.HoversTest
+Running com.capgemini.ntc.selenium.features.webElements.InputTextTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.224 sec - in com.capgemini.ntc.selenium.features.webElements.InputTextTest
+Running com.capgemini.ntc.selenium.features.webElements.LabelTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.903 sec - in com.capgemini.ntc.selenium.features.webElements.LabelTest
+2018-01-26 at 23:37:48 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.082 s]
+2018-01-26 at 23:37:48 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.021 s]
+2018-01-26 at 23:37:48 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.011 s]
+2018-01-26 at 23:37:48 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.02 s]
+2018-01-26 at 23:37:48 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.041 s]
+2018-01-26 at 23:37:48 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.016 s]
+2018-01-26 at 23:37:49 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: ul] took [0.057 s]
+2018-01-26 at 23:37:49 CET logInfo - [pool-1-thread-1] testSelectSubMenuItemByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:37:49 CET logInfo - [pool-1-thread-1] testSelectSubMenuItemByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,49 min
+2018-01-26 at 23:37:49 CET logInfo - [pool-1-thread-1] testMenuByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+2018-01-26 at 23:37:50 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.089 s]
+2018-01-26 at 23:37:50 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.023 s]
+2018-01-26 at 23:37:51 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.362 s]
+2018-01-26 at 23:37:51 CET logInfo - [pool-1-thread-1] testMenuByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:37:51 CET logInfo - [pool-1-thread-1] testMenuByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,04 min
+2018-01-26 at 23:37:51 CET logInfo - [pool-1-thread-1] testMenuItemsText(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+Running com.capgemini.ntc.selenium.features.webElements.RadioButtonTest
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@74c9a590 isn't clicked.
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@74c9a590 isn't clicked.
+Input text element: com.capgemini.ntc.selenium.core.newDrivers.elementType.RadioButtonElement@5229ba3a isn't clicked.
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.616 sec - in com.capgemini.ntc.selenium.features.webElements.RadioButtonTest
+2018-01-26 at 23:37:52 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.11 s]
+2018-01-26 at 23:37:52 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.095 s]
+2018-01-26 at 23:37:52 CET logInfo - [pool-1-thread-1] testMenuItemsText(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:37:52 CET logInfo - [pool-1-thread-1] testMenuItemsText(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,02 min
+2018-01-26 at 23:37:52 CET logInfo - [pool-1-thread-1] testLinkSubMenuItemByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+Running com.capgemini.ntc.selenium.features.webElements.CheckBoxTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.706 sec - in com.capgemini.ntc.selenium.features.webElements.CheckBoxTest
+2018-01-26 at 23:37:56 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.094 s]
+2018-01-26 at 23:37:56 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.025 s]
+2018-01-26 at 23:37:56 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.009 s]
+2018-01-26 at 23:37:56 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.022 s]
+2018-01-26 at 23:37:56 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.038 s]
+2018-01-26 at 23:37:56 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.013 s]
+2018-01-26 at 23:37:57 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: ul] took [0.066 s]
+2018-01-26 at 23:37:57 CET logInfo - [pool-1-thread-1] testLinkSubMenuItemByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:37:57 CET logInfo - [pool-1-thread-1] testLinkSubMenuItemByText(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,07 min
+2018-01-26 at 23:37:57 CET logInfo - [pool-1-thread-1] testLinkSubMenuItemByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+2018-01-26 at 23:37:57 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.143 s]
+2018-01-26 at 23:37:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.034 s]
+2018-01-26 at 23:37:58 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.016 s]
+2018-01-26 at 23:37:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.083 s]
+2018-01-26 at 23:37:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.06 s]
+2018-01-26 at 23:37:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.079 s]
+2018-01-26 at 23:37:59 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: div#tabs-2 ul.top-level] took [0.209 s]
+2018-01-26 at 23:38:00 CET logInfo - [pool-1-thread-1] testLinkSubMenuItemByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:38:00 CET logInfo - [pool-1-thread-1] testLinkSubMenuItemByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,05 min
+2018-01-26 at 23:38:00 CET logInfo - [pool-1-thread-1] testMenuByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+2018-01-26 at 23:38:01 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.19 s]
+2018-01-26 at 23:38:01 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.221 s]
+2018-01-26 at 23:38:02 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.055 s]
+2018-01-26 at 23:38:02 CET logInfo - [pool-1-thread-1] testMenuByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:38:02 CET logInfo - [pool-1-thread-1] testMenuByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,03 min
+2018-01-26 at 23:38:02 CET logInfo - [pool-1-thread-1] testSelectSubMenuItemByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+2018-01-26 at 23:38:02 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.068 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.039 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.023 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li[aria-controls='tabs-2']] took [0.021 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.053 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-2 ul.top-level] took [0.029 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: div#tabs-2 ul.top-level] took [0.049 s]
+2018-01-26 at 23:38:04 CET logInfo - [pool-1-thread-1] testSelectSubMenuItemByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:38:04 CET logInfo - [pool-1-thread-1] testSelectSubMenuItemByIndex(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,03 min
+2018-01-26 at 23:38:04 CET logInfo - [pool-1-thread-1] testMenuItemsCount(com.capgemini.ntc.selenium.features.webElements.MenuTest) STARTED.
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.125 s]
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div#tabs-1 ul.top-level] took [0.051 s]
+Running com.capgemini.ntc.selenium.features.webElements.TooltipTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.471 sec - in com.capgemini.ntc.selenium.features.webElements.TooltipTest
+2018-01-26 at 23:38:05 CET logInfo - [pool-1-thread-1] testMenuItemsCount(com.capgemini.ntc.selenium.features.webElements.MenuTest) PASSED.
+2018-01-26 at 23:38:05 CET logInfo - [pool-1-thread-1] testMenuItemsCount(com.capgemini.ntc.selenium.features.webElements.MenuTest) duration: 0,02 min
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] BaseTest.tearDownClass()
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: []
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] All observers cleared.
+Running com.capgemini.ntc.selenium.features.webElements.MenuTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.008 sec - in com.capgemini.ntc.selenium.features.webElements.MenuTest
+2018-01-26 at 23:38:05 CET logInfo - [pool-1-thread-1] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) STARTED.
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1b1e8b71
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: []
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: []
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1b1e8b71
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.091 s]
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-1] com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (Menu | Demoqa). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:38:07 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.076 s]
+2018-01-26 at 23:38:07 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.033 s]
+2018-01-26 at 23:38:07 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.033 s]
+2018-01-26 at 23:38:07 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.051 s]
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.064 s]
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.037 s]
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.051 s]
+Running com.capgemini.ntc.selenium.features.webElements.TabTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.763 sec - in com.capgemini.ntc.selenium.features.webElements.TabTest
+2018-01-26 at 23:38:09 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.069 s]
+2018-01-26 at 23:38:09 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.034 s]
+2018-01-26 at 23:38:09 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.04 s]
+2018-01-26 at 23:38:09 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.056 s]
+2018-01-26 at 23:38:09 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.033 s]
+2018-01-26 at 23:38:10 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.036 s]
+2018-01-26 at 23:38:10 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.015 s]
+2018-01-26 at 23:38:10 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.068 s]
+Running com.capgemini.ntc.selenium.features.webElements.NavigationBarTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.814 sec - in com.capgemini.ntc.selenium.features.webElements.NavigationBarTest
+2018-01-26 at 23:38:26 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.051 s]
+2018-01-26 at 23:38:27 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.09 s]
+2018-01-26 at 23:38:27 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.049 s]
+2018-01-26 at 23:38:27 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.151 s]
+2018-01-26 at 23:38:29 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.055 s]
+2018-01-26 at 23:38:29 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.038 s]
+2018-01-26 at 23:38:29 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.032 s]
+2018-01-26 at 23:38:30 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.036 s]
+2018-01-26 at 23:38:32 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.061 s]
+2018-01-26 at 23:38:32 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.034 s]
+2018-01-26 at 23:38:32 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.025 s]
+2018-01-26 at 23:38:33 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.034 s]
+sty 26, 2018 11:38:34 PM org.openqa.selenium.os.OsProcess destroy
+INFO: Unable to drain process streams. Ignoring but the exception being swallowed follows.
+org.apache.commons.exec.ExecuteException: The stop timeout of 2000 ms was exceeded (Exit value: -559038737)
+	at org.apache.commons.exec.PumpStreamHandler.stopThread(PumpStreamHandler.java:295)
+	at org.apache.commons.exec.PumpStreamHandler.stop(PumpStreamHandler.java:181)
+	at org.openqa.selenium.os.OsProcess.destroy(OsProcess.java:136)
+	at org.openqa.selenium.os.CommandLine.destroy(CommandLine.java:153)
+	at org.openqa.selenium.remote.service.DriverService.stop(DriverService.java:222)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:95)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:658)
+	at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:497)
+	at com.capgemini.ntc.selenium.core.newDrivers.DriverManager.closeDriver(DriverManager.java:86)
+	at com.capgemini.ntc.selenium.core.BasePage.onTestClassFinish(BasePage.java:126)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at com.capgemini.ntc.test.core.BaseTest.tearDownClass(BaseTest.java:71)
+	at sun.reflect.GeneratedMethodAccessor8.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at com.capgemini.ntc.test.core.testRunners.core.CustomRunAfters.evaluate(CustomRunAfters.java:43)
+	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner.run(ParallelTestClassRunner.java:33)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:393)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+sty 26, 2018 11:38:34 PM org.openqa.selenium.os.OsProcess destroy
+SEVERE: Unable to kill process java.lang.ProcessImpl@2e8a8bff
+sty 26, 2018 11:38:38 PM org.openqa.selenium.os.OsProcess destroy
+INFO: Unable to drain process streams. Ignoring but the exception being swallowed follows.
+org.apache.commons.exec.ExecuteException: The stop timeout of 2000 ms was exceeded (Exit value: -559038737)
+	at org.apache.commons.exec.PumpStreamHandler.stopThread(PumpStreamHandler.java:295)
+	at org.apache.commons.exec.PumpStreamHandler.stop(PumpStreamHandler.java:181)
+	at org.openqa.selenium.os.OsProcess.destroy(OsProcess.java:136)
+	at org.openqa.selenium.os.CommandLine.destroy(CommandLine.java:153)
+	at org.openqa.selenium.remote.service.DriverService.stop(DriverService.java:222)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:95)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:658)
+	at org.openqa.selenium.remote.RemoteWebDriver.quit(RemoteWebDriver.java:497)
+	at com.capgemini.ntc.selenium.core.newDrivers.DriverManager.closeDriver(DriverManager.java:86)
+	at com.capgemini.ntc.selenium.core.BasePage.onTestClassFinish(BasePage.java:126)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at com.capgemini.ntc.test.core.BaseTest.tearDownClass(BaseTest.java:71)
+	at sun.reflect.GeneratedMethodAccessor8.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at com.capgemini.ntc.test.core.testRunners.core.CustomRunAfters.evaluate(CustomRunAfters.java:43)
+	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:48)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at com.capgemini.ntc.test.core.testRunners.ParallelTestClassRunner.run(ParallelTestClassRunner.java:33)
+	at org.junit.runners.Suite.runChild(Suite.java:128)
+	at org.junit.runners.Suite.runChild(Suite.java:27)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:393)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+sty 26, 2018 11:38:38 PM org.openqa.selenium.os.OsProcess destroy
+SEVERE: Unable to kill process java.lang.ProcessImpl@454ff1da
+Running com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-8] QCID_12342343_StayOnResistryPage(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) STARTED.
+2018-01-26 at 23:35:49 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:35:49 CET logDebug - [pool-1-thread-8] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:35:53 CET logInfo - [pool-1-thread-8] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-8] Resolution readed from device: 1600x1100
+2018-01-26 at 23:35:54 CET logInfo - [pool-1-thread-8] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:35:55 CET logInfo - [pool-1-thread-8] Resolution readed from device: 1616x1100
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] driver:NewChromeDriver: chrome on XP (1857d2e9bfb41dbe0b8ba83b6ede97f9)
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.032 s]
+2018-01-26 at 23:35:55 CET logDebug - [pool-1-thread-8] com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.019 s]
+2018-01-26 at 23:36:06 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@42eba595
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.016 s]
+2018-01-26 at 23:36:06 CET logInfo - [pool-1-thread-8] [Step 2] As a standard user I click Submit button,  So that I will stay on Registry page
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.033 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.022 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.011 s]
+2018-01-26 at 23:36:06 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.018 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.018 s]
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] QCID_12342343_StayOnResistryPage(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) PASSED.
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] BasePage.onTestSuccess    RegistryPage
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] QCID_12342343_StayOnResistryPage(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) duration: 0,29 min
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) STARTED.
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@7205256e
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.047 s]
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@51b30508
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.043 s]
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] [Step 2] As a standard user I click Submit button,  So that my data will be saved
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.022 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.058 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.017 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.027 s]
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.043 s]
+2018-01-26 at 23:36:07 CET logInfo - [pool-1-thread-8] EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) FAILED.
+2018-01-26 at 23:36:07 CET logDebug - [pool-1-thread-8] BasePage.onTestFailure    RegistryPage
+2018-01-26 at 23:36:08 CET logInfo - [pool-1-thread-8] EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) duration: 0,02 min
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] BaseTest.tearDownClass()
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4619f2]
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] BasePage.onTestClassFinish   RegistryPage
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] driver:NewChromeDriver: chrome on XP (1857d2e9bfb41dbe0b8ba83b6ede97f9)
+2018-01-26 at 23:36:08 CET logDebug - [pool-1-thread-8] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:36:11 CET logDebug - [pool-1-thread-8] All observers cleared.
+2018-01-26 at 23:36:48 CET logInfo - [pool-1-thread-8] shouldDisplayCorrectTextOnDropdownWhenChooseValueOne(com.capgemini.ntc.selenium.projectY.DropdownTest) STARTED.
+2018-01-26 at 23:36:48 CET logInfo - [pool-1-thread-8] Step1 - open Chrome browser
+2018-01-26 at 23:36:48 CET logInfo - [pool-1-thread-8] Step2 - open web page http://the-internet.herokuapp.com/
+2018-01-26 at 23:36:48 CET logDebug - [pool-1-thread-8] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:36:52 CET logInfo - [pool-1-thread-8] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-8] Resolution readed from device: 1600x1100
+2018-01-26 at 23:36:53 CET logInfo - [pool-1-thread-8] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:36:54 CET logInfo - [pool-1-thread-8] Resolution readed from device: 1616x1100
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] driver:NewChromeDriver: chrome on XP (71a73922ea4362c2b4f216ba9273a9a3)
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: []
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] Added observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] The internet page is loaded: data:,
+2018-01-26 at 23:36:54 CET logDebug - [pool-1-thread-8] load page
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.02 s]
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-8] The internet page is loaded: http://the-internet.herokuapp.com/
+2018-01-26 at 23:37:12 CET logInfo - [pool-1-thread-8] Step3 - open 'dropdown' link
+2018-01-26 at 23:37:12 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: li > a[href*=dropdown]] took [0.036 s]
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectY.DropdownPage@480cf978
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2]
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.108 s]
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.042 s]
+2018-01-26 at 23:37:13 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.193 s]
+2018-01-26 at 23:37:14 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.092 s]
+2018-01-26 at 23:37:15 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.092 s]
+2018-01-26 at 23:37:15 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.138 s]
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] shouldDisplayCorrectTextOnDropdownWhenChooseValueOne(com.capgemini.ntc.selenium.projectY.DropdownTest) PASSED.
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] BasePage.onTestSuccess    TheInternetPage
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] shouldDisplayCorrectTextOnDropdownWhenChooseValueOne(com.capgemini.ntc.selenium.projectY.DropdownTest) duration: 0,47 min
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] Step5 - navigate back to The-Internet page
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.061 s]
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] BasePage.onTestFinish   TheInternetPage
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] To remove observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] shouldDisplayCorrectTextOnDropdownWhenChooseValueTwo(com.capgemini.ntc.selenium.projectY.DropdownTest) STARTED.
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] Step1 - open Chrome browser
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] Step2 - open web page http://the-internet.herokuapp.com/
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3aba68d3
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2]
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] The internet page is loaded: http://the-internet.herokuapp.com/
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] The internet page is loaded: http://the-internet.herokuapp.com/
+2018-01-26 at 23:37:16 CET logInfo - [pool-1-thread-8] Step3 - open 'dropdown' link
+2018-01-26 at 23:37:16 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: li > a[href*=dropdown]] took [0.051 s]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectY.DropdownPage@39f4fb
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.018 s]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.016 s]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.017 s]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.018 s]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.014 s]
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: #dropdown] took [0.015 s]
+2018-01-26 at 23:37:17 CET logInfo - [pool-1-thread-8] shouldDisplayCorrectTextOnDropdownWhenChooseValueTwo(com.capgemini.ntc.selenium.projectY.DropdownTest) PASSED.
+2018-01-26 at 23:37:17 CET logDebug - [pool-1-thread-8] BasePage.onTestSuccess    TheInternetPage
+2018-01-26 at 23:37:17 CET logInfo - [pool-1-thread-8] shouldDisplayCorrectTextOnDropdownWhenChooseValueTwo(com.capgemini.ntc.selenium.projectY.DropdownTest) duration: 0,02 min
+2018-01-26 at 23:37:17 CET logInfo - [pool-1-thread-8] Step5 - navigate back to The-Internet page
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.117 s]
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] BasePage.onTestFinish   TheInternetPage
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] To remove observer: com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] BaseTest.tearDownClass()
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectY.TheInternetPage@3ea181f2]
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] BasePage.onTestClassFinish   TheInternetPage
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] driver:NewChromeDriver: chrome on XP (71a73922ea4362c2b4f216ba9273a9a3)
+2018-01-26 at 23:37:18 CET logDebug - [pool-1-thread-8] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:37:19 CET logDebug - [pool-1-thread-8] All observers cleared.
+2018-01-26 at 23:37:20 CET logInfo - [pool-1-thread-8] test(com.capgemini.ntc.selenium.features.webElements.LabelTest) STARTED.
+2018-01-26 at 23:37:20 CET logDebug - [pool-1-thread-8] Creating new browser=chrome WebDriver.
+2018-01-26 at 23:37:24 CET logInfo - [pool-1-thread-8] Trying to set requested resolution: 1600x1200.
+2018-01-26 at 23:37:25 CET logInfo - [pool-1-thread-8] Resolution readed from device: 1600x1100
+2018-01-26 at 23:37:26 CET logInfo - [pool-1-thread-8] Trying to set increased resolution for 'View port': 1616x1200.
+2018-01-26 at 23:37:26 CET logInfo - [pool-1-thread-8] Resolution readed from device: 1616x1100
+2018-01-26 at 23:37:26 CET logDebug - [pool-1-thread-8] driver:NewChromeDriver: chrome on XP (b3d56765c8827407ec77ffdb4f0d38b8)
+2018-01-26 at 23:37:46 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: span.bcd] took [0.39 s]
+2018-01-26 at 23:37:46 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: span.bcd] took [0.045 s]
+2018-01-26 at 23:37:46 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: span.bcd] took [0.1 s]
+2018-01-26 at 23:37:47 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: span.bcd] took [0.033 s]
+2018-01-26 at 23:37:47 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: span.bcd] took [0.028 s]
+2018-01-26 at 23:37:47 CET logInfo - [pool-1-thread-8] test(com.capgemini.ntc.selenium.features.webElements.LabelTest) PASSED.
+2018-01-26 at 23:37:47 CET logInfo - [pool-1-thread-8] test(com.capgemini.ntc.selenium.features.webElements.LabelTest) duration: 0,45 min
+2018-01-26 at 23:37:47 CET logDebug - [pool-1-thread-8] BaseTest.tearDownClass()
+2018-01-26 at 23:37:47 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: []
+2018-01-26 at 23:37:47 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:37:47 CET logDebug - [pool-1-thread-8] All observers cleared.
+2018-01-26 at 23:37:47 CET logInfo - [pool-1-thread-8] testPossibleValues(com.capgemini.ntc.selenium.features.webElements.TabTest) STARTED.
+2018-01-26 at 23:37:54 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.042 s]
+2018-01-26 at 23:37:54 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.031 s]
+2018-01-26 at 23:37:54 CET logInfo - [pool-1-thread-8] testPossibleValues(com.capgemini.ntc.selenium.features.webElements.TabTest) PASSED.
+2018-01-26 at 23:37:54 CET logInfo - [pool-1-thread-8] testPossibleValues(com.capgemini.ntc.selenium.features.webElements.TabTest) duration: 0,12 min
+2018-01-26 at 23:37:54 CET logInfo - [pool-1-thread-8] testSelection(com.capgemini.ntc.selenium.features.webElements.TabTest) STARTED.
+2018-01-26 at 23:38:00 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.049 s]
+2018-01-26 at 23:38:00 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.166 s]
+2018-01-26 at 23:38:01 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.118 s]
+2018-01-26 at 23:38:01 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.058 s]
+2018-01-26 at 23:38:02 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.04 s]
+2018-01-26 at 23:38:02 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.068 s]
+2018-01-26 at 23:38:02 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.088 s]
+2018-01-26 at 23:38:03 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.023 s]
+2018-01-26 at 23:38:03 CET logInfo - [pool-1-thread-8] testSelection(com.capgemini.ntc.selenium.features.webElements.TabTest) PASSED.
+2018-01-26 at 23:38:03 CET logInfo - [pool-1-thread-8] testSelection(com.capgemini.ntc.selenium.features.webElements.TabTest) duration: 0,14 min
+2018-01-26 at 23:38:03 CET logInfo - [pool-1-thread-8] testSelectionSpecifiedItem(com.capgemini.ntc.selenium.features.webElements.TabTest) STARTED.
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.393 s]
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.101 s]
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.103 s]
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.021 s]
+2018-01-26 at 23:38:05 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.023 s]
+2018-01-26 at 23:38:06 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.022 s]
+2018-01-26 at 23:38:06 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.028 s]
+2018-01-26 at 23:38:06 CET logInfo - [pool-1-thread-8] testSelectionSpecifiedItem(com.capgemini.ntc.selenium.features.webElements.TabTest) PASSED.
+2018-01-26 at 23:38:06 CET logInfo - [pool-1-thread-8] testSelectionSpecifiedItem(com.capgemini.ntc.selenium.features.webElements.TabTest) duration: 0,05 min
+2018-01-26 at 23:38:06 CET logInfo - [pool-1-thread-8] testRadioButtonElementsCount(com.capgemini.ntc.selenium.features.webElements.TabTest) STARTED.
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.357 s]
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: ul[role='tablist']] took [0.066 s]
+2018-01-26 at 23:38:08 CET logInfo - [pool-1-thread-8] testRadioButtonElementsCount(com.capgemini.ntc.selenium.features.webElements.TabTest) PASSED.
+2018-01-26 at 23:38:08 CET logInfo - [pool-1-thread-8] testRadioButtonElementsCount(com.capgemini.ntc.selenium.features.webElements.TabTest) duration: 0,04 min
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] BaseTest.tearDownClass()
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: []
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] All observers cleared.
+2018-01-26 at 23:38:08 CET logInfo - [pool-1-thread-8] QCID_12342343_StayOnResistryPage(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) STARTED.
+2018-01-26 at 23:38:08 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: []
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] Added observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a
+2018-01-26 at 23:38:08 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.035 s]
+2018-01-26 at 23:38:09 CET logDebug - [pool-1-thread-8] com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage: Current loaded page (http://demoqa.com/registration/) with pageTitle (Tabs | Demoqa). Page to load: (http://demoqa.com/registration/) ,for page title: (Registration | Demoqa)
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.207 s]
+2018-01-26 at 23:38:12 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@22a8bfe1
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a]
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.036 s]
+2018-01-26 at 23:38:12 CET logInfo - [pool-1-thread-8] [Step 2] As a standard user I click Submit button,  So that I will stay on Registry page
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.039 s]
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.028 s]
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.008 s]
+2018-01-26 at 23:38:12 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.026 s]
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.06 s]
+2018-01-26 at 23:38:13 CET logInfo - [pool-1-thread-8] QCID_12342343_StayOnResistryPage(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) PASSED.
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] BasePage.onTestSuccess    RegistryPage
+2018-01-26 at 23:38:13 CET logInfo - [pool-1-thread-8] QCID_12342343_StayOnResistryPage(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) duration: 0,08 min
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a
+2018-01-26 at 23:38:13 CET logInfo - [pool-1-thread-8] EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) STARTED.
+2018-01-26 at 23:38:13 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@17afefa8
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a]
+2018-01-26 at 23:38:13 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.148 s]
+2018-01-26 at 23:38:14 CET logInfo - [pool-1-thread-8] [Step 1] As a standard user I will open Registry Page,  So that my I can fill data
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@4301925e
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a]
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.045 s]
+2018-01-26 at 23:38:14 CET logInfo - [pool-1-thread-8] [Step 2] As a standard user I click Submit button,  So that my data will be saved
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.088 s]
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.066 s]
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [waitForPageLoaded] took [0.034 s]
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.022 s]
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.043 s]
+2018-01-26 at 23:38:14 CET logInfo - [pool-1-thread-8] EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) FAILED.
+2018-01-26 at 23:38:14 CET logDebug - [pool-1-thread-8] BasePage.onTestFailure    RegistryPage
+2018-01-26 at 23:38:15 CET logInfo - [pool-1-thread-8] EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest) duration: 0,03 min
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] BasePage.onTestFinish   RegistryPage
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] BaseTest.tearDownClass()
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage@376d338a]
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] TestClassRule.classObservers: []
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] BasePage.onTestClassFinish   RegistryPage
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] driver:NewChromeDriver: chrome on XP (b3d56765c8827407ec77ffdb4f0d38b8)
+2018-01-26 at 23:38:15 CET logDebug - [pool-1-thread-8] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:38:38 CET logDebug - [pool-1-thread-8] All observers cleared.
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 145.915 sec <<< FAILURE! - in com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest
+EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest)  Time elapsed: 1.435 sec  <<< FAILURE!
+java.lang.AssertionError: 
+Submit display button was not visible
+Expected: is <true>
+     but: was <false>
+	at com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest.EXAMPLE_FAIL_TEST(RegistryPageTest.java:53)
+
+EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest)  Time elapsed: 1.586 sec  <<< FAILURE!
+java.lang.AssertionError: 
+Submit display button was not visible
+Expected: is <true>
+     but: was <false>
+	at com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest.EXAMPLE_FAIL_TEST(RegistryPageTest.java:53)
+
+2018-01-26 at 23:38:41 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.02 s]
+2018-01-26 at 23:38:42 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.039 s]
+2018-01-26 at 23:38:42 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.018 s]
+2018-01-26 at 23:38:42 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.116 s]
+2018-01-26 at 23:38:42 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.036 s]
+2018-01-26 at 23:38:42 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.02 s]
+2018-01-26 at 23:38:42 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.032 s]
+2018-01-26 at 23:38:43 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.047 s]
+2018-01-26 at 23:38:43 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.029 s]
+2018-01-26 at 23:38:43 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.039 s]
+2018-01-26 at 23:38:44 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.04 s]
+2018-01-26 at 23:38:44 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.018 s]
+2018-01-26 at 23:38:44 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.026 s]
+2018-01-26 at 23:38:44 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.042 s]
+2018-01-26 at 23:38:44 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.024 s]
+2018-01-26 at 23:38:45 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.11 s]
+2018-01-26 at 23:38:45 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.12 s]
+2018-01-26 at 23:38:45 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.044 s]
+2018-01-26 at 23:38:46 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.039 s]
+2018-01-26 at 23:38:47 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.034 s]
+2018-01-26 at 23:38:47 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.019 s]
+2018-01-26 at 23:38:47 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.016 s]
+2018-01-26 at 23:38:47 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.019 s]
+sty 26, 2018 11:38:52 PM org.openqa.selenium.os.OsProcess destroy
+SEVERE: Unable to kill process java.lang.ProcessImpl@18d18b44
+Running com.capgemini.ntc.selenium.features.webElements.DropdownListTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 92.335 sec - in com.capgemini.ntc.selenium.features.webElements.DropdownListTest
+2018-01-26 at 23:38:54 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.703 s]
+2018-01-26 at 23:38:54 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.077 s]
+2018-01-26 at 23:38:54 CET logDebug - [pool-1-thread-1] Error: Username already exists
+2018-01-26 at 23:38:54 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.021 s]
+2018-01-26 at 23:38:54 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.023 s]
+2018-01-26 at 23:38:54 CET logInfo - [pool-1-thread-1] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) PASSED.
+2018-01-26 at 23:38:54 CET logDebug - [pool-1-thread-1] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:38:54 CET logInfo - [pool-1-thread-1] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) duration: 0,82 min
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1b1e8b71
+2018-01-26 at 23:38:57 CET logInfo - [pool-1-thread-1] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) STARTED.
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] To add observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@7d01829
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1b1e8b71]
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: []
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.346 s]
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.055 s]
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.043 s]
+2018-01-26 at 23:38:57 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.055 s]
+2018-01-26 at 23:38:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_firstname']] took [0.101 s]
+2018-01-26 at 23:38:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.054 s]
+2018-01-26 at 23:38:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.047 s]
+2018-01-26 at 23:38:58 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='name_3_lastname']] took [0.059 s]
+Running com.capgemini.ntc.selenium.features.webElements.ButtonTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 79.823 sec - in com.capgemini.ntc.selenium.features.webElements.ButtonTest
+2018-01-26 at 23:38:59 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.101 s]
+2018-01-26 at 23:38:59 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.053 s]
+2018-01-26 at 23:38:59 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.033 s]
+2018-01-26 at 23:38:59 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: div[class='radio_wrap']] took [0.063 s]
+2018-01-26 at 23:39:00 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.129 s]
+2018-01-26 at 23:39:00 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: li.fields.pageFields_1:nth-child(3) div.radio_wrap] took [0.113 s]
+2018-01-26 at 23:39:01 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.137 s]
+2018-01-26 at 23:39:01 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.059 s]
+2018-01-26 at 23:39:02 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.052 s]
+sty 26, 2018 11:39:04 PM org.openqa.selenium.remote.DesiredCapabilities chrome
+INFO: Using `new ChromeOptions()` is preferred to `DesiredCapabilities.chrome()`
+Starting ChromeDriver 2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f) on port 32912
+Only local connections are allowed.
+sty 26, 2018 11:39:09 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+sty 26, 2018 11:39:09 PM org.openqa.selenium.os.OsProcess destroy
+SEVERE: Unable to kill process java.lang.ProcessImpl@17a618c1
+sty 26, 2018 11:39:09 PM org.openqa.selenium.os.OsProcess destroy
+SEVERE: Unable to kill process java.lang.ProcessImpl@58482f62
+2018-01-26 at 23:39:12 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dropdown_7']] took [0.01 s]
+2018-01-26 at 23:39:12 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.024 s]
+2018-01-26 at 23:39:12 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.011 s]
+2018-01-26 at 23:39:12 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.025 s]
+2018-01-26 at 23:39:13 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='mm_date_8']] took [0.094 s]
+2018-01-26 at 23:39:13 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.037 s]
+2018-01-26 at 23:39:13 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.028 s]
+2018-01-26 at 23:39:14 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.033 s]
+2018-01-26 at 23:39:15 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='dd_date_8']] took [0.02 s]
+2018-01-26 at 23:39:15 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.027 s]
+2018-01-26 at 23:39:15 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.014 s]
+2018-01-26 at 23:39:16 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.026 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: select[id='yy_date_8']] took [0.011 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.017 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.01 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='phone_9']] took [0.015 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.026 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.013 s]
+2018-01-26 at 23:39:18 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='username']] took [0.016 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.047 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.018 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='email_1']] took [0.021 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.025 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.012 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: textarea[ id='description' ]] took [0.013 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.035 s]
+2018-01-26 at 23:39:19 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.02 s]
+2018-01-26 at 23:39:20 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='password_2']] took [0.05 s]
+2018-01-26 at 23:39:20 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.032 s]
+2018-01-26 at 23:39:20 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.013 s]
+2018-01-26 at 23:39:20 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[id='confirm_password_password_2']] took [0.016 s]
+2018-01-26 at 23:39:20 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.027 s]
+2018-01-26 at 23:39:20 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.013 s]
+2018-01-26 at 23:39:21 CET logDebug - [pool-1-thread-1] Waiting for [waitForPageLoaded] took [0.006 s]
+2018-01-26 at 23:39:21 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: input[name='pie_submit']] took [0.013 s]
+2018-01-26 at 23:39:23 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.139 s]
+2018-01-26 at 23:39:23 CET logDebug - [pool-1-thread-1] Waiting for [waitForElementVisible(): By.cssSelector: p[class='piereg_login_error']] took [0.023 s]
+2018-01-26 at 23:39:23 CET logDebug - [pool-1-thread-1] Error: Username already exists
+2018-01-26 at 23:39:23 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.01 s]
+2018-01-26 at 23:39:23 CET logDebug - [pool-1-thread-1] Waiting for [findElementDynamic(): By.cssSelector: p[class='piereg_login_error']] took [0.01 s]
+2018-01-26 at 23:39:23 CET logInfo - [pool-1-thread-1] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) PASSED.
+2018-01-26 at 23:39:23 CET logDebug - [pool-1-thread-1] BasePage.onTestSuccess    RegistrationPage
+2018-01-26 at 23:39:23 CET logInfo - [pool-1-thread-1] registrationTest(com.capgemini.ntc.selenium.projectX.registration.RegisterOKTestDDInternalDataTest) duration: 0,44 min
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] BasePage.onTestFinish   RegistrationPage
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] To remove observer: com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1b1e8b71
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] BaseTest.tearDownClass()
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] BaseTestWatcher.observers: [com.capgemini.ntc.selenium.pages.projectX.registration.RegistrationPage@1b1e8b71]
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] TestClassRule.classObservers: []
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] BasePage.onTestClassFinish   RegistrationPage
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] driver:NewChromeDriver: chrome on XP (0a4ed506bb5914a28117389df055b78f)
+2018-01-26 at 23:39:27 CET logDebug - [pool-1-thread-1] Closing WebDriver for this thread. chrome
+2018-01-26 at 23:39:28 CET logDebug - [pool-1-thread-1] All observers cleared.
+
+Results :
+
+Failed tests: 
+com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest.EXAMPLE_FAIL_TEST(com.capgemini.ntc.selenium.projectX.registration.RegistryPageTest)
+  Run 1: RegistryPageTest.EXAMPLE_FAIL_TEST:53 Submit display button was not visible
+Expected: is <true>
+     but: was <false>
+  Run 2: RegistryPageTest.EXAMPLE_FAIL_TEST:53 Submit display button was not visible
+Expected: is <true>
+     but: was <false>
+
+
+Tests run: 61, Failures: 1, Errors: 0, Skipped: 0
+
+[ERROR] There are test failures.
+
+Please refer to D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target\surefire-reports for the individual test results.
+[INFO] 
+[INFO] --- maven-site-plugin:3.3:site (default-site) @ allure-app-under-test ---
+[INFO] configuring report plugin ru.yandex.qatools.allure:allure-maven-plugin:2.6
+[INFO] Relativizing decoration links with respect to project URL: https://github.com/devonfw/devonfw-testing
+[INFO] Rendering site with org.apache.maven.skins:maven-default-skin:jar:1.0 skin.
+[INFO] Skipped "Allure" report, file "allure-maven-plugin.html" already exists for the English version.
+[INFO] Skipped "Allure" report, file "allure-maven-plugin.html" already exists for the English version.
+[INFO] Generating "Allure" report    --- allure-maven-plugin:2.6
+[INFO] Generate Allure report (aggregate) with version 1.5.4
+[INFO] Generate Allure report to D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test/target//site/allure-report
+[INFO] Found results directory D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target\allure-results
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 04:24 min
+[INFO] Finished at: 2018-01-26T23:39:37+01:00
+[INFO] Final Memory: 51M/360M
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,47 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building AllureTestFramework - List of Integration Test for Application Under Test 2.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://central.maven.org/maven2/com/capgemini/ntc/allure-selenium-module/3.8.1.3-SNAPSHOT/maven-metadata.xml
+Downloading: http://central.maven.org/maven2/com/capgemini/ntc/allure-core-module/4.12.0.3-SNAPSHOT/maven-metadata.xml
+Downloading: http://central.maven.org/maven2/com/brsanthu/google-analytics-java/2.0.0-SNAPSHOT/maven-metadata.xml
+[INFO] 
+[INFO] --- maven-clean-plugin:3.0.0:clean (default-clean) @ allure-app-under-test ---
+[INFO] Deleting D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ allure-app-under-test ---
+[INFO] Using 'UTF8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\src\main\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.1:compile (default-compile) @ allure-app-under-test ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 25 source files to D:\eclipse\Allure_Test_Framework\workspace\devonfw-testing\allure-app-under-test\target\classes
+[INFO] /D:/eclipse/Allure_Test_Framework/workspace/devonfw-testing/allure-app-under-test/src/main/java/com/capgemini/ntc/selenium/pages/features/samples/readFromTable/EditableGridPage.java: Some input files use or override a deprecated API.
+[INFO] /D:/eclipse/Allure_Test_Framework/workspace/devonfw-testing/allure-app-under-test/src/main/java/com/capgemini/ntc/selenium/pages/features/samples/readFromTable/EditableGridPage.java: Recompile with -Xlint:deprecation for details.
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/eclipse/Allure_Test_Framework/workspace/devonfw-testing/allure-app-under-test/src/main/java/com/capgemini/ntc/selenium/pages/projectY/ContextMenuPage.java:[44,28] cannot find symbol
+  symbol:   method mouseRightClick(org.openqa.selenium.By)
+  location: interface com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.888 s
+[INFO] Finished at: 2018-01-26T23:03:06+01:00
+[INFO] Final Memory: 33M/274M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.6.1:compile (default-compile) on project allure-app-under-test: Compilation failure
+[ERROR] /D:/eclipse/Allure_Test_Framework/workspace/devonfw-testing/allure-app-under-test/src/main/java/com/capgemini/ntc/selenium/pages/projectY/ContextMenuPage.java:[44,28] cannot find symbol
+[ERROR] symbol:   method mouseRightClick(org.openqa.selenium.By)
+[ERROR] location: interface com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

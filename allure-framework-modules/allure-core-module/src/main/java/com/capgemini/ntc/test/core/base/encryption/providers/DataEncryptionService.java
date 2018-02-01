@@ -19,8 +19,8 @@ import com.google.common.base.Preconditions;
  */
 public class DataEncryptionService implements IDataEncryptionService {
 	
-	private static IDataEncryptionService	instance;
-	private StandardPBEStringEncryptor		encryptor	= new StandardPBEStringEncryptor();
+	private static IDataEncryptionService instance;
+	private StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 	
 	private DataEncryptionService(File path) {
 		Preconditions.checkNotNull(path);
@@ -28,13 +28,12 @@ public class DataEncryptionService implements IDataEncryptionService {
 	}
 	
 	/**
-	 * Initializes the service based on the path to a file containing the secret.
-	 * NOTE: This is the best way to instantiate the service, as you should be holding
-	 * the secret in a file that is not checked into your repository, and is passed
-	 * among your team members over a different channel.
+	 * Initializes the service based on the path to a file containing the secret. NOTE: This is the best way to
+	 * instantiate the service, as you should be holding the secret in a file that is not checked into your repository,
+	 * and is passed among your team members over a different channel.
 	 *
 	 * @param path
-	 *          path to the file with the secret (only first line is relevant).
+	 *            path to the file with the secret (only first line is relevant).
 	 * @return Class instance.
 	 */
 	public static IDataEncryptionService init(File path) {
@@ -99,9 +98,9 @@ public class DataEncryptionService implements IDataEncryptionService {
 			throw new BFSecureModuleException("Secret must not be null");
 		}
 		if (!secret.trim()
-		        .equals(secret)) {
+				.equals(secret)) {
 			throw new BFSecureModuleException("Secret contains whitespaces which are trimable. "
-			        + "This can cause problems when using command line tools for encryption, due which is not allowed.");
+					+ "This can cause problems when using command line tools for encryption, due which is not allowed.");
 		}
 		if (secret.length() < 8) {
 			throw new BFSecureModuleException("Secrets must not be shorter than 8 characters");

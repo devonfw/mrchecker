@@ -25,8 +25,8 @@ import com.google.inject.Guice;
 @RunWith(ParallelTestClassRunner.class)
 public abstract class BaseTest implements IBaseTest {
 	
-	private static IEnvironmentService	environmentService;
-	private final static IAnalytics		analytics;
+	private static IEnvironmentService environmentService;
+	private final static IAnalytics analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {

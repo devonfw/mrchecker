@@ -29,10 +29,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 @Ignore
 public class TestWatcherExceptionTest {
-	private static Computer		computer;
-	private static JUnitCore	jUnitCore;
-	private static Throwable	thrownException;
-	private static Object		object;
+	private static Computer computer;
+	private static JUnitCore jUnitCore;
+	private static Throwable thrownException;
+	private static Object object;
 	
 	@BeforeClass
 	public static void initJUnit() {

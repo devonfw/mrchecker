@@ -14,9 +14,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class HoversTest extends BaseTest {
 	
-	private TheInternetPage		theInternetPage;
-	private static HoversPage	hoversPage;
-	private final String		names[]	= { "name: user1", "name: user2", "name: user3" };
+	private TheInternetPage theInternetPage;
+	private static HoversPage hoversPage;
+	private final String names[] = { "name: user1", "name: user2", "name: user3" };
 	
 	@Override
 	public void setUp() {
@@ -42,7 +42,7 @@ public class HoversTest extends BaseTest {
 		int randomIndex = new Random().nextInt(names.length);
 		hoversPage.hoverUnderAvatar(randomIndex);
 		assertTrue("Text under first avatar doesn't appear", hoversPage.getTextUnderAvatar(randomIndex)
-						.equals(names[randomIndex]));
+				.equals(names[randomIndex]));
 	}
 	
 }
