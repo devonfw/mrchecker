@@ -23,7 +23,7 @@ public class BasePageTest extends BaseTest {
 	@Test
 	public void testGetDriver() {
 		TestPage testPage = new TestPage();
-		assertEquals("", "Google_WrongPage", testPage.pageTitle());
+		assertEquals("", "Google", testPage.pageTitle());
 		
 	}
 	

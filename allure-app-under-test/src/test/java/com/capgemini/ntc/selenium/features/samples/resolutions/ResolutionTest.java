@@ -16,13 +16,13 @@ import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
 import com.capgemini.ntc.selenium.pages.projectX.registration.RegistryPage;
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.test.core.testRunners.ParallelParameterized;
 
+import junitparams.JUnitParamsRunner;
 import ru.yandex.qatools.allure.annotations.Features;
 
 @Features("Resolution")
 @Category({ TestsResolution.class, TestsSelenium.class })
-@RunWith(ParallelParameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class ResolutionTest extends BaseTest {
 	private RegistryPage registryPage;
 	
