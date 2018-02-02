@@ -253,11 +253,16 @@ public interface INewWebDriver extends WebDriver {
 	/**
 	 * Operations on Slide
 	 */
-	HorizontalSliderElement elementHorizontalSlider(final By selector);
+	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector);
 	
-	HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector);
+	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector);
 	
-	HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector, final BigDecimal minRange, final BigDecimal maxRange, final BigDecimal step);
+	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step);
 	
 	/**
 	 * Operations on iFrame

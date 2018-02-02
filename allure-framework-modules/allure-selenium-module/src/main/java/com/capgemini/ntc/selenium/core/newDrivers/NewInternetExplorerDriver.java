@@ -271,23 +271,23 @@ public final class NewInternetExplorerDriver extends InternetExplorerDriver impl
 	}
 	
 	@Override
-	public HorizontalSliderElement elementHorizontalSlider(final By selector) {
-		return driverExtention.elementHorizontalSlider(selector);
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector);
 	}
 	
 	@Override
-	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector) {
-		return driverExtention.elementHorizontalSlider(cssSelector, sliderSelector, valueSelector);
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector, sliderSelector, valueSelector);
 	}
 	
 	@Override
-	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector,
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
 					final By sliderSelector,
 					final By valueSelector,
 					final BigDecimal minRange,
 					final BigDecimal maxRange,
 					final BigDecimal step) {
-		return driverExtention.elementHorizontalSlider(cssSelector, sliderSelector, valueSelector, minRange, maxRange, step);
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
 	}
 	
 	@Override

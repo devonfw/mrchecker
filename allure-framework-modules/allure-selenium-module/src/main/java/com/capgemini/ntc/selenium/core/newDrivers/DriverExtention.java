@@ -339,19 +339,19 @@ public class DriverExtention {
 		return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
 	}
 	
-	public HorizontalSliderElement elementHorizontalSlider(final By selector) {
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
-		return new HorizontalSliderElement(selector);
+		return new HorizontalSliderElement(sliderContainerSelector);
 	}
 	
-	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector, final By sliderSelector, final By valueSelector) {
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
-		return new HorizontalSliderElement(cssSelector, sliderSelector, valueSelector);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector);
 	}
 	
-	public HorizontalSliderElement elementHorizontalSlider(final By cssSelector,
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
 					final By sliderSelector,
 					final By valueSelector,
 					final BigDecimal minRange,
@@ -359,7 +359,7 @@ public class DriverExtention {
 					final BigDecimal step) {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
-		return new HorizontalSliderElement(cssSelector, sliderSelector, valueSelector, minRange, maxRange, step);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
 	}
 	
 	public IFrame elementIFrame(By selector) {

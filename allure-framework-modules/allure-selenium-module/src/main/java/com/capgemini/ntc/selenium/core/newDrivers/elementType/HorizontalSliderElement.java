@@ -15,18 +15,18 @@ public class HorizontalSliderElement extends BasicElement {
 	private By	sliderSelector;
 	private By	valueSelector;
 	
-	public HorizontalSliderElement(By cssSelector) {
-		super(ElementType.HORIZONTAL_SLIDER, cssSelector);
+	public HorizontalSliderElement(By sliderContainerSelector) {
+		super(ElementType.HORIZONTAL_SLIDER, sliderContainerSelector);
 	}
 	
-	public HorizontalSliderElement(By cssSelector, By sliderSelector, By valueSelector) {
-		this(cssSelector);
+	public HorizontalSliderElement(By sliderContainerSelector, By sliderSelector, By valueSelector) {
+		this(sliderContainerSelector);
 		this.sliderSelector = sliderSelector;
 		this.valueSelector = valueSelector;
 	}
 	
-	public HorizontalSliderElement(By cssSelector, By sliderSelector, By valueSelector, BigDecimal minRange, BigDecimal maxRange, BigDecimal step) {
-		this(cssSelector);
+	public HorizontalSliderElement(By sliderContainerSelector, By sliderSelector, By valueSelector, BigDecimal minRange, BigDecimal maxRange, BigDecimal step) {
+		this(sliderContainerSelector);
 		this.sliderSelector = sliderSelector;
 		this.valueSelector = valueSelector;
 		this.minRange = minRange;
@@ -38,9 +38,8 @@ public class HorizontalSliderElement extends BasicElement {
 		WebElement currentValueElement = this.getElement()
 						.findElement(this.valueSelector);
 		String value = currentValueElement.getText();
-		// when value is unreachable by getText(), then there is attempt to read "value" attribute instead
 		if (value == null || value.isEmpty()) {
-			value = currentValueElement.getAttribute("value");
+			value = getValueAttributeOfWebElement(currentValueElement);
 		}
 		return new BigDecimal(value);
 	}
@@ -84,6 +83,10 @@ public class HorizontalSliderElement extends BasicElement {
 		BigDecimal numberOfSteps = rangeDiff.setScale(1)
 						.divide(step.setScale(1));
 		return new BigDecimal(getWidth()).divide(numberOfSteps);
+	}
+	
+	private String getValueAttributeOfWebElement(WebElement element) {
+		return element.getAttribute("value");
 	}
 	
 }
