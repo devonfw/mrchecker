@@ -45,6 +45,7 @@ public class DynamicContentTest extends BaseTest {
 		
 		BFLogger.logInfo("Step5 - Refres page");
 		dynamicContentPage.refreshPage();
+		assertTrue("The Dynamic Content page is not loaded", dynamicContentPage.isLoaded());
 		
 		BFLogger.logInfo("Step6 - Read images and descriptions after refresh");
 		List<String> descriptionListActual = dynamicContentPage.getDescriptions();
