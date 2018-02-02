@@ -9,6 +9,7 @@ public enum PageSubURLsProjectYEnum {
 	CONTEXT_MENU("context_menu"),
 	KEY_PRESS("key_presses"),
 	HOVERS("hovers"),
+	JAVASCRIPT_ALERTS("javascript_alerts"),
 	CHALLENGING_DOM("challenging_dom");
 	
 	/*
