@@ -124,7 +124,7 @@ public abstract class BaseTest implements IBaseTest {
 	
 	private static IAnalytics setAnalytics(Boolean isAnalyticsEnabled) {
 		BFLogger.logAnalytics("Is analytics enabled:" + isAnalyticsEnabled);
-		return isAnalyticsEnabled ? AnalyticsProvider.GOOGLE : AnalyticsProvider.DISABLED;
+		return isAnalyticsEnabled ? AnalyticsProvider.DISABLED : AnalyticsProvider.DISABLED;
 		
 	}
 	

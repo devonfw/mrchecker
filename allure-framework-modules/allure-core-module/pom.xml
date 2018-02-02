@@ -65,7 +65,7 @@ Based on Junit4.12</description>
         <JUnitParams.version>1.0.4</JUnitParams.version>
 
         <!-- Tests executors -->
-        <thread.count>8</thread.count>
+        <thread.count>1</thread.count>
         <junit-toolbox.version>2.4</junit-toolbox.version>
 
         <!-- Logger -->
