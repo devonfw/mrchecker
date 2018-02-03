@@ -15,7 +15,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.UnreachableBrowserException;
 
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
@@ -161,7 +160,7 @@ public class DriverManager {
 				OperationsOnFiles.moveWithPruneEmptydirectories(
 								WebDriverManager.getInstance(ChromeDriver.class)
 												.getBinaryPath(),
-								DriverManager.propertiesSelenium.getSeleniumChrome());
+								browserPath);
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -187,7 +186,7 @@ public class DriverManager {
 				OperationsOnFiles.moveWithPruneEmptydirectories(
 								WebDriverManager.getInstance(FirefoxDriver.class)
 												.getBinaryPath(),
-								DriverManager.propertiesSelenium.getSeleniumFirefox());
+								browserPath);
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
@@ -216,7 +215,7 @@ public class DriverManager {
 				OperationsOnFiles.moveWithPruneEmptydirectories(
 								WebDriverManager.getInstance(InternetExplorerDriver.class)
 												.getBinaryPath(),
-								DriverManager.propertiesSelenium.getSeleniumIE());
+								browserPath);
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
@@ -274,10 +273,10 @@ public class DriverManager {
 								.proxy(proxy)
 								.setup();
 			} catch (WebDriverManagerException e) {
-				String className = DriverManager.class.getName();
-				BFLogger.logError("Unable to download driver automatically. Probably setup proxy in : " + className + ", " +
-								webDriverType.getClass()
-												.getName());
+				BFLogger.logInfo("Unable to download driver automatically. "
+								+ "Please try to set up the proxy in properties file. "
+								+ "If you want to download them manually, go to the "
+								+ "http://www.seleniumhq.org/projects/webdriver/ site.");
 			}
 		}
 		

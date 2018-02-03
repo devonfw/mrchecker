@@ -24,7 +24,7 @@ public class OperationsOnFiles {
 			Files.move(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 			removeFileAndParentsIfEmpty(sourcePath);
 		} catch (IOException e) {
-			BFLogger.logError("Unable to move file from: [" + sourcePath + "] to: [" + targetPath + "].");
+			BFLogger.logError("Unable to move file from: [" + sourcePath + "] to: [" + targetPath + "]. Original message - " + e.getMessage());
 		}
 	}
 	
