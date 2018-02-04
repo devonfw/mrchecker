@@ -1,7 +1,7 @@
 package com.capgemini.ntc.selenium.core.utils;
 
 import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.FileSystemException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,16 +39,18 @@ public class OperationsOnFiles {
 		}
 	}
 	
-	private static void removeFileAndParentsIfEmpty(Path path)
+	public static void removeFileAndParentsIfEmpty(Path path)
 					throws IOException {
 		if (path == null)
 			return;
 		if (Files.isRegularFile(path)) {
 			Files.deleteIfExists(path);
+			BFLogger.logInfo("Deleted file - " + path.toAbsolutePath());
 		} else if (Files.isDirectory(path)) {
 			try {
 				Files.delete(path);
-			} catch (DirectoryNotEmptyException e) {
+				BFLogger.logInfo("Deleted directory - " + path.toAbsolutePath());
+			} catch (FileSystemException e) {
 				return;
 			}
 		}

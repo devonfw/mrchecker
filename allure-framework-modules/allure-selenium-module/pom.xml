@@ -133,12 +133,13 @@ Based on Selenium 3.8.1</description>
             <version>${jsoup.version}</version>
         </dependency>
 
+        <!-- For auto-download the newest version of web drivers -->
         <dependency>
            <groupId>io.github.bonigarcia</groupId>
            <artifactId>webdrivermanager</artifactId>
            <version>2.0.0</version>
        </dependency>
-       
+        
     </dependencies>
 
 
