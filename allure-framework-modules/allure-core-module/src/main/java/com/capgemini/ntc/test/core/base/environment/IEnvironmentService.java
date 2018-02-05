@@ -1,5 +1,7 @@
 package com.capgemini.ntc.test.core.base.environment;
 
+import com.capgemini.ntc.test.core.base.encryption.IDataEncryptionService;
+
 /**
  * @author LUSTEFAN
  */
@@ -31,5 +33,11 @@ public interface IEnvironmentService {
 	 * @return source from Environment variables are taken. This could be file path
 	 */
 	public String dataSource();
+	
+	/**
+	 * @param service
+	 *          Optional encryption service to deal with encrypted test data.
+	 */
+	public void setDataEncryptionService(IDataEncryptionService service);
 	
 }

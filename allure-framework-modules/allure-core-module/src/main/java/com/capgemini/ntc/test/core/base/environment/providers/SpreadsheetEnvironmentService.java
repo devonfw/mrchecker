@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import com.capgemini.ntc.test.core.base.encryption.IDataEncryptionService;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -29,12 +31,11 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	private static IEnvironmentService instance;
 	
-	private List<CSVRecord> records;
-	private Map<String, String> services;
-	
-	private String path;
-	
-	private String environmentName;
+	private List<CSVRecord>										records;
+	private Map<String, String>								services;
+	private Optional<IDataEncryptionService>	encryptionService	= Optional.empty();
+	private String														path;
+	private String														environmentName;
 	
 	private SpreadsheetEnvironmentService(String path, String environmentName) {
 		this.path = path;
@@ -45,7 +46,7 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 	
 	public static IEnvironmentService init() {
 		String path = SpreadsheetEnvironmentService.class.getResource("")
-				.getPath() + "/environments/environments.csv";
+		        .getPath() + "/environments/environments.csv";
 		String environment = "DEV";
 		return init(path, environment);
 	}
@@ -117,8 +118,19 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 			CSVRecord record = it.next();
 			String key = record.get(0);
 			String value = record.get(environmentNumber)
-					.trim();
+			        .trim();
+			value = optionalDecrypt(value);
 			services.put(key, value);
+		}
+	}
+	
+	private String optionalDecrypt(String value) {
+		if (encryptionService.isPresent() && encryptionService.get()
+		        .isEncrypted(value)) {
+			return encryptionService.get()
+			        .decrypt(value);
+		} else {
+			return value;
 		}
 	}
 	
@@ -134,13 +146,15 @@ public class SpreadsheetEnvironmentService implements IEnvironmentService {
 		throw new BFInputDataException("There is no Environment with name '" + environmentName + "' available");
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.capgemini.ntc.test.core.base.environments.EnvironmentService#dataSource()
-	 */
 	@Override
 	public String dataSource() {
 		return this.path;
+	}
+	
+	@Override
+	public void setDataEncryptionService(IDataEncryptionService service) {
+		this.encryptionService = Optional.ofNullable(service);
+		setEnvironment(getEnvironment()); // enforce value update
 	}
 	
 }
