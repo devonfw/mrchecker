@@ -11,6 +11,7 @@ public class HorizontalSliderElement extends BasicElement {
 	private BigDecimal	minRange;
 	private BigDecimal	maxRange;
 	private BigDecimal	step	= BigDecimal.ONE;
+	private int			maxNumberOfSteps;
 	
 	private By	sliderSelector;
 	private By	valueSelector;
@@ -32,6 +33,7 @@ public class HorizontalSliderElement extends BasicElement {
 		this.minRange = minRange;
 		this.maxRange = maxRange;
 		this.step = step;
+		this.maxNumberOfSteps = calculateMaxNumberOfSteps();
 	}
 	
 	public BigDecimal getCurrentSliderValue() throws NumberFormatException {
@@ -68,6 +70,10 @@ public class HorizontalSliderElement extends BasicElement {
 		this.step = step;
 	}
 	
+	public int getMaxNumberOfSteps() {
+		return maxNumberOfSteps;
+	}
+	
 	public Dimension getDimensions() {
 		return this.getElement()
 						.findElement(sliderSelector)
@@ -87,6 +93,12 @@ public class HorizontalSliderElement extends BasicElement {
 	
 	private String getValueAttributeOfWebElement(WebElement element) {
 		return element.getAttribute("value");
+	}
+	
+	private int calculateMaxNumberOfSteps() {
+		return getMaxRange().subtract(getMinRange())
+						.divide(getStep())
+						.intValueExact();
 	}
 	
 }
