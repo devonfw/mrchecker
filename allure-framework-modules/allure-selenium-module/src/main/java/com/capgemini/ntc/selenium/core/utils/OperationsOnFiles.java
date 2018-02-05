@@ -15,16 +15,20 @@ public class OperationsOnFiles {
 	}
 	
 	public static void moveWithPruneEmptydirectories(String source, String target) {
-		Path sourcePath = FileSystems.getDefault()
-						.getPath(source);
-		Path targetPath = FileSystems.getDefault()
-						.getPath(target);
+		Path sourcePath;
+		Path targetPath;
+		
 		try {
+			sourcePath = FileSystems.getDefault()
+							.getPath(source);
+			targetPath = FileSystems.getDefault()
+							.getPath(target);
+			
 			createDirectoryIfNotExists(targetPath);
 			Files.move(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 			removeFileAndParentsIfEmpty(sourcePath);
-		} catch (IOException e) {
-			BFLogger.logError("Unable to move file from: [" + sourcePath + "] to: [" + targetPath + "]. Original message - " + e.getMessage());
+		} catch (IOException | NullPointerException e) {
+			BFLogger.logError("Unable to move file from: [" + source + "] to: [" + target + "]");
 		}
 	}
 	

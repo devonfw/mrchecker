@@ -42,6 +42,10 @@ public class OperationsOnFilesTest {
 		OperationsOnFiles.removeFileAndParentsIfEmpty(goodSourceFile.toPath());
 		OperationsOnFiles.removeFileAndParentsIfEmpty(goodTargetFile.toPath());
 		OperationsOnFiles.removeFileAndParentsIfEmpty(badTargetfile.toPath());
+		
+		Assert.assertFalse("Failed to remove source file.", goodSourceFile.exists());
+		Assert.assertFalse("Failed to remove target file from existing directory.", goodTargetFile.exists());
+		Assert.assertFalse("Failed to remove target file from created directory.", badTargetfile.exists());
 	}
 	
 	@Test
@@ -68,6 +72,13 @@ public class OperationsOnFilesTest {
 	@Test
 	public void movingFileFromNotExisitingToNotExitsingPath() {
 		OperationsOnFiles.moveWithPruneEmptydirectories(badSourceFilePath, badTargetFilePath);
+		Assert.assertFalse("File was moved properly into the target directory.", badTargetfile.exists());
+		Assert.assertFalse("File still exist in source path after moving.", badSourceFile.exists());
+	}
+	
+	@Test
+	public void movingFileFromNullToNotExitsingPath() {
+		OperationsOnFiles.moveWithPruneEmptydirectories(null, badTargetFilePath);
 		Assert.assertFalse("File was moved properly into the target directory.", badTargetfile.exists());
 		Assert.assertFalse("File still exist in source path after moving.", badSourceFile.exists());
 	}
