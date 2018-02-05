@@ -18,7 +18,7 @@ public class DataEncryptionModule extends AbstractModule {
 	@Provides
 	@Singleton
 	IDataEncryptionService provideSpreadsheetEnvironmentService() {
-		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/secretData");
+		String path = System.getProperty("user.dir") + Paths.get("/src/resources/secretData");
 		DataEncryptionService.init(new File(path));
 		return DataEncryptionService.getInstance();
 	}
