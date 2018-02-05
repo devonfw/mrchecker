@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -77,7 +78,7 @@ public class TheInternetPage extends BasePage {
 	}
 	
 	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorJavaScriptAlertLink);
+		Button elementLink = new Button(selectorJavaScriptAlertLink);
 		elementLink.click();
 		return new JavaScriptAlertsPage();
 	}
