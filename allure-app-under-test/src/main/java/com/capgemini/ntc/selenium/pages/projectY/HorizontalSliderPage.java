@@ -170,13 +170,16 @@ public class HorizontalSliderPage extends BasePage {
 	 */
 	public BigDecimal verifyAndCorrectPositionValue(BigDecimal position) {
 		if (position.compareTo(getStartPosition()) == -1) {
+			BFLogger.logInfo("Position value: " + position + " will be set to minimum value: " + getStartPosition());
 			position = getStartPosition();
 		} else if (position.compareTo(getEndPosition()) == 1) {
+			BFLogger.logInfo("Position value: " + position + " will be set to maximum value: " + getEndPosition());
 			position = getEndPosition();
 		}
 		BigDecimal step = horizontalSlider.getStep();
 		BigDecimal rest = position.remainder(step);
 		if (rest.compareTo(BigDecimal.ZERO) != 0) {
+			BigDecimal oldPosition = position;
 			BigDecimal sub = step.subtract(rest);
 			int result = sub.compareTo(rest);
 			switch (result) {
@@ -190,9 +193,10 @@ public class HorizontalSliderPage extends BasePage {
 				default:
 					break;
 			}
+			if (position.scale() > 0)
+				position = position.stripTrailingZeros();
+			BFLogger.logInfo("Position value: " + oldPosition + " must be a multiply of " + step + ". It will be rounded to: " + position);
 		}
-		if (position.scale() > 0)
-			position = position.stripTrailingZeros();
 		return position;
 	}
 	

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -87,7 +88,7 @@ public class SliderTest extends BaseTest {
 		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
 		
-		position = new BigDecimal(2.33234);
+		position = new BigDecimal(new BigInteger("233234"), 5);
 		BFLogger.logInfo("Step 12: Move slider to improperly defined random position: " + position);
 		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
@@ -127,7 +128,7 @@ public class SliderTest extends BaseTest {
 		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
 		
-		position = new BigDecimal(2.12348);
+		position = new BigDecimal(new BigInteger("212348"), 5);
 		BFLogger.logInfo("Step 12: Move slider to improperly defined random position: " + position);
 		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
