@@ -35,16 +35,18 @@ public class FormAuthenticationPage extends BasePage {
 		return getDriver().getTitle();
 	}
 	
-	public void setUsername(String username) {
+	public FormAuthenticationPage setUsername(String username) {
 		InputTextElement elementInputUsername = new InputTextElement(selectorInputUsername);
 		elementInputUsername.clearInputText();
 		elementInputUsername.setInputText(username);
+		return this;
 	}
 	
-	public void setUserPassword(String userPassword) {
+	public FormAuthenticationPage setUserPassword(String userPassword) {
 		InputTextElement elementInputPassword = new InputTextElement(selectorInputUserPassword);
 		elementInputPassword.clearInputText();
 		elementInputPassword.setInputText(userPassword);
+		return this;
 	}
 	
 	public String getLoginMessageText() {

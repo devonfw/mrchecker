@@ -72,36 +72,28 @@ public class FormAuthenticationTest extends BaseTest {
 	
 	@Test
 	public void loginWithEmptyUsernameAndValidPasswordTest() {
-		formAuthenticationPage.setUsername(emptyUsername);
-		formAuthenticationPage.setUserPassword(validPassword);
-		formAuthenticationPage.clickLoginButton();
+		formAuthenticationPage.setUsername(emptyUsername).setUserPassword(validPassword).clickLoginButton();
 		assertEquals("The user can login with empty username", errorUsernameMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithValidUsernameAndEmptyPasswordTest() {
-		formAuthenticationPage.setUsername(validUsername);
-		formAuthenticationPage.setUserPassword(emptyUserPassword);
-		formAuthenticationPage.clickLoginButton();
+		formAuthenticationPage.setUsername(validUsername).setUserPassword(errorPasswordMessage).clickLoginButton();
 		assertEquals("The user can login with empty password", errorPasswordMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithRandomUsernameAndRandomPasswordTest() {
-		formAuthenticationPage.setUsername(randomUsername);
-		formAuthenticationPage.setUserPassword(randomUserPassword);
-		formAuthenticationPage.clickLoginButton();
+		formAuthenticationPage.setUsername(randomUsername).setUserPassword(randomUserPassword).clickLoginButton();
 		assertEquals("The user can login with random credentials", errorUsernameMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithValidCredentials() {
-		formAuthenticationPage.setUsername(validUsername);
-		formAuthenticationPage.setUserPassword(validPassword);
-		formAuthenticationPage.clickLoginButton();
+		formAuthenticationPage.setUsername(validUsername).setUserPassword(validPassword).clickLoginButton();
 		assertEquals("The user can't login with valid credentials", loginMessage,
 						formAuthenticationPage.getLoginMessageText());
 		formAuthenticationPage.clickLogoutButton();
@@ -109,11 +101,8 @@ public class FormAuthenticationTest extends BaseTest {
 	
 	@Test
 	public void logoutTest() {
-		formAuthenticationPage.setUsername(validUsername);
-		formAuthenticationPage.setUserPassword(validPassword);
-		formAuthenticationPage.clickLoginButton();
+		formAuthenticationPage.setUsername(validUsername).setUserPassword(validPassword).clickLoginButton();
 		formAuthenticationPage.clickLogoutButton();
 		assertEquals("The user can't logout", logoutMessage, formAuthenticationPage.getLoginMessageText());
-		
 	}
 }
