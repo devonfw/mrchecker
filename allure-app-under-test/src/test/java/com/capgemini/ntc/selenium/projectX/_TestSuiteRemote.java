@@ -8,7 +8,7 @@ import com.googlecode.junittoolbox.WildcardPatternSuite;
 
 @RunWith(WildcardPatternSuite.class)
 @ExcludeCategories({})
-@SuiteClasses({ "*Test.class" })
+@SuiteClasses({ "**/*Test.class" })
 
 public class _TestSuiteRemote {
 	

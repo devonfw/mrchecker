@@ -13,6 +13,8 @@ import org.junit.runner.RunWith;
 import com.capgemini.ntc.test.core.BaseTestWatcher.TestClassRule;
 import com.capgemini.ntc.test.core.analytics.AnalyticsProvider;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
+import com.capgemini.ntc.test.core.base.encryption.DataEncryptionModule;
+import com.capgemini.ntc.test.core.base.encryption.IDataEncryptionService;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesCoreTest;
@@ -26,13 +28,14 @@ import com.google.inject.Guice;
 public abstract class BaseTest implements IBaseTest {
 	
 	private static IEnvironmentService	environmentService;
-	private final static IAnalytics		analytics;
+  private final static IAnalytics		analytics;
+
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
 		setPropertiesSettings = setPropertiesSettings();
 		setRuntimeParametersCore();
-		setEnvironmetInstance();
+		setEnvironmetInstance(setPropertiesSettings.isEncryptionEnabled());
 		analytics = setAnalytics(setPropertiesSettings.isAnalyticsEnabled());
 	}
 	
@@ -60,21 +63,21 @@ public abstract class BaseTest implements IBaseTest {
 	public static final void tearDownClass() {
 		BFLogger.logDebug("BaseTest.tearDownClass()");
 		BFLogger.logDebug("BaseTestWatcher.observers: " + BaseTestWatcher.observers.get()
-						.toString());
+		        .toString());
 		BFLogger.logDebug("TestClassRule.classObservers: " + TestClassRule.classObservers.get()
-						.toString());
+		        .toString());
 		
 		// Run observers
 		TestClassRule.classObservers.get()
-						.forEach(ITestObserver::onTestClassFinish);
+		        .forEach(ITestObserver::onTestClassFinish);
 		BaseTestWatcher.observers.get()
-						.forEach(ITestObserver::onTestClassFinish);
+		        .forEach(ITestObserver::onTestClassFinish);
 		
 		// Clear observers for all tests
 		BaseTestWatcher.observers.get()
-						.clear();
+		        .clear();
 		TestClassRule.classObservers.get()
-						.clear();
+		        .clear();
 		BFLogger.logDebug("All observers cleared.");
 		
 	}
@@ -96,12 +99,17 @@ public abstract class BaseTest implements IBaseTest {
 	@ClassRule
 	public static TestClassRule classRule = new TestClassRule();
 	
-	private static void setEnvironmetInstance() {
+	private static void setEnvironmetInstance(boolean isEncryptionEnabled) {
 		// Environment variables either from environmnets.csv or any other input data.
-		IEnvironmentService environmetInstance = Guice.createInjector(new EnvironmentModule())
-						.getInstance(IEnvironmentService.class);
-		environmetInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
-		BaseTest.setEnvironmentService(environmetInstance);
+		IEnvironmentService environmentInstance = Guice.createInjector(new EnvironmentModule())
+		        .getInstance(IEnvironmentService.class);
+		environmentInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
+		if (isEncryptionEnabled) {
+			IDataEncryptionService encryptionService = Guice.createInjector(new DataEncryptionModule())
+			        .getInstance(IDataEncryptionService.class);
+			environmentInstance.setDataEncryptionService(encryptionService);
+		}
+		BaseTest.setEnvironmentService(environmentInstance);
 	}
 	
 	private static void setRuntimeParametersCore() {
@@ -118,13 +126,13 @@ public abstract class BaseTest implements IBaseTest {
 		
 		// Get and then set properties information from settings.properties file
 		PropertiesCoreTest propertiesCoreTest = Guice.createInjector(PropertiesSettingsModule.init())
-						.getInstance(PropertiesCoreTest.class);
+		        .getInstance(PropertiesCoreTest.class);
 		return propertiesCoreTest;
 	}
 	
 	private static IAnalytics setAnalytics(Boolean isAnalyticsEnabled) {
 		BFLogger.logAnalytics("Is analytics enabled:" + isAnalyticsEnabled);
-		return isAnalyticsEnabled ? AnalyticsProvider.GOOGLE : AnalyticsProvider.DISABLED;
+		return isAnalyticsEnabled ? AnalyticsProvider.DISABLED : AnalyticsProvider.DISABLED;
 		
 	}
 	
