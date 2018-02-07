@@ -19,6 +19,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
+	private static final By	selectorStatusCodesLink			= By.cssSelector("li > a[href*=status_codes]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -95,4 +96,9 @@ public class TheInternetPage extends BasePage {
 		return new HoversPage();
 	}
 	
+	public StatusCodesHomePage clickStatusCodesLink() {
+		getDriver().findElementDynamic(selectorStatusCodesLink)
+						.click();
+		return new StatusCodesHomePage();
+	}
 }
