@@ -1,0 +1,3 @@
+sudo docker build -t docker.com/java:v1-8.1 .
+sudo docker login docker.com
+sudo docker push docker.com/java:v1-8.1 .
