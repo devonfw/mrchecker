@@ -20,6 +20,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
+	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -100,6 +101,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementClickLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
 		elementClickLink.click();
 		return new HorizontalSliderPage();
+	}
+	
+	public FormAuthenticationPage clickFormAuthenticationLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorFormAuthenticationLink);
+		elementLink.click();
+		return new FormAuthenticationPage();
 	}
 	
 }
