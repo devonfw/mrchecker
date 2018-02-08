@@ -375,4 +375,19 @@ public class DriverExtention {
 						.perform();
 	}
 	
+	public void mouseLeftClick(By selector) {
+		WebElement element = getDriver().findElementQuietly(selector);
+		if (element != null) {
+			mouseLeftClick(element);
+		} else {
+			BFLogger.logDebug("Unable to perform left mouse click due to null WebElement");
+		}
+	}
+	
+	public void mouseLeftClick(WebElement element) {
+		new Actions(getDriver()).click(element)
+						.build()
+						.perform();
+	}
+	
 }

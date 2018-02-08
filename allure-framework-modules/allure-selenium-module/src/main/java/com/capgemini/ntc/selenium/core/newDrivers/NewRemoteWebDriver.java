@@ -328,4 +328,14 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	public void mouseRightClick(By selector) {
 		driverExtention.mouseRightClick(selector);
 	}
+	
+	@Override
+	public void mouseLeftClick(By selector) {
+		driverExtention.mouseLeftClick(selector);
+	}
+	
+	@Override
+	public void mouseLeftClick(WebElement element) {
+		driverExtention.mouseLeftClick(element);
+	}
 }

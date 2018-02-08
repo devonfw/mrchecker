@@ -319,6 +319,16 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 		driverExtention.mouseRightClick(selector);
 	}
 	
+	@Override
+	public void mouseLeftClick(By selector) {
+		driverExtention.mouseLeftClick(selector);
+	}
+	
+	@Override
+	public void mouseLeftClick(WebElement element) {
+		driverExtention.mouseLeftClick(element);
+	}
+	
 	public static void main(String[] args) {
 		BaseTest.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);

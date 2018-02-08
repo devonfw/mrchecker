@@ -251,12 +251,42 @@ public interface INewWebDriver extends WebDriver {
 					final By childsSubMenuSelector);
 	
 	/**
-	 * Operations on Slide
+	 * Operations on Horizontal Slider
+	 */
+	
+	/**
+	 * Returns horizontal slider object for given container selector.
+	 * 
+	 * @param sliderContainerSelector
+	 * @return HorizontalSliderElement
+	 * @see HorizontalSliderElement
 	 */
 	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector);
 	
+	/**
+	 * Returns horizontal slider object for given container selector, slider selector and value selector.
+	 * 
+	 * @param sliderContainerSelector
+	 * @param sliderSelector
+	 * @param valueSelector
+	 * @return HorizontalSliderElement
+	 * @see HorizontalSliderElement
+	 */
 	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector);
 	
+	/**
+	 * Returns horizontal slider object for given container selector, slider selector and value selector.
+	 * Also a range of possible steps and step's size should be defined to perform operations/
+	 * 
+	 * @param sliderContainerSelector
+	 * @param sliderSelector
+	 * @param valueSelector
+	 * @param minRange
+	 * @param maxRange
+	 * @param step
+	 * @return HorizontalSliderElement
+	 * @see HorizontalSliderElement
+	 */
 	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
 					final By sliderSelector,
 					final By valueSelector,
@@ -273,4 +303,19 @@ public interface INewWebDriver extends WebDriver {
 	 * Mouse right click on specific element defined by @param selector
 	 */
 	void mouseRightClick(final By selector);
+	
+	/**
+	 * Performs left mouse click on specific element
+	 * 
+	 * @param selector
+	 */
+	void mouseLeftClick(final By selector);
+	
+	/**
+	 * Performs left mouse click on specific element
+	 * 
+	 * @param web
+	 *            element
+	 */
+	void mouseLeftClick(WebElement element);
 }

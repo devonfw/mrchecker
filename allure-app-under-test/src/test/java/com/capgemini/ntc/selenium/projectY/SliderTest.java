@@ -11,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.pages.projectY.HorizontalSliderPage;
 import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.ntc.test.core.BaseTest;
@@ -62,39 +63,39 @@ public class SliderTest extends BaseTest {
 	public void moveHorizontalSliderUsingKeyboardTest() {
 		BigDecimal position;
 		BFLogger.logInfo("Step 6: Move slider to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
 		
 		BFLogger.logInfo("Step 7: Move slider to middle position: " + middlePosition);
-		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition), horizontalSliderPage.getCurrentPosition());
 		
 		BFLogger.logInfo("Step 8: Move slider to end position: " + endPosition);
-		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
 		
 		position = startPosition.subtract(BigDecimal.ONE);
 		BFLogger.logInfo("Step 9: Move slider to position before start position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
 		
 		position = endPosition.add(BigDecimal.ONE);
 		BFLogger.logInfo("Step 10: Move slider to position after end position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
 		
 		position = middlePosition.divide(new BigDecimal(2));
 		BFLogger.logInfo("Step 11: Move slider to improperly defined position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
 		
 		position = new BigDecimal(new BigInteger("233234"), 5);
 		BFLogger.logInfo("Step 12: Move slider to improperly defined random position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
 		
 		BFLogger.logInfo("Step 13: Move slider back to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderPage.KEYBOARD);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
 		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
 	}
 	
@@ -102,39 +103,39 @@ public class SliderTest extends BaseTest {
 	public void moveHorizontalSliderUsingMouseTest() {
 		BigDecimal position;
 		BFLogger.logInfo("Step 6: Move slider to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
 		
 		BFLogger.logInfo("Step 7: Move slider to middle position: " + middlePosition);
-		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition), horizontalSliderPage.getCurrentPosition());
 		
 		BFLogger.logInfo("Step 8: Move slider to end position: " + endPosition);
-		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
 		
 		position = startPosition.subtract(BigDecimal.ONE);
 		BFLogger.logInfo("Step 9: Move slider to position before start position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
 		
 		position = endPosition.add(BigDecimal.ONE);
 		BFLogger.logInfo("Step 10: Move slider to position after end position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
 		
 		position = middlePosition.divide(new BigDecimal(2));
 		BFLogger.logInfo("Step 11: Move slider to improperly defined position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
 		
 		position = new BigDecimal(new BigInteger("212348"), 5);
 		BFLogger.logInfo("Step 12: Move slider to improperly defined random position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
 		
 		BFLogger.logInfo("Step 13: Move slider back to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderPage.MOUSE);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
 		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
 	}
 	
