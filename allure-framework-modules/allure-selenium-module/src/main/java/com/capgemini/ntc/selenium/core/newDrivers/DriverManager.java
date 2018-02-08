@@ -155,12 +155,15 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
 				
-				downloadNewestVersionOfWebDriver(ChromeDriver.class);
-				OperationsOnFiles.moveWithPruneEmptydirectories(
-								WebDriverManager.getInstance(ChromeDriver.class)
-												.getBinaryPath(),
-								browserPath);
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(ChromeDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(
+									WebDriverManager.getInstance(ChromeDriver.class)
+													.getBinaryPath(),
+									browserPath);
+				}
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -181,12 +184,15 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
 				
-				downloadNewestVersionOfWebDriver(FirefoxDriver.class);
-				OperationsOnFiles.moveWithPruneEmptydirectories(
-								WebDriverManager.getInstance(FirefoxDriver.class)
-												.getBinaryPath(),
-								browserPath);
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(FirefoxDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(
+									WebDriverManager.getInstance(FirefoxDriver.class)
+													.getBinaryPath(),
+									browserPath);
+				}
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
@@ -210,12 +216,15 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumIE();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
 				
-				downloadNewestVersionOfWebDriver(InternetExplorerDriver.class);
-				OperationsOnFiles.moveWithPruneEmptydirectories(
-								WebDriverManager.getInstance(InternetExplorerDriver.class)
-												.getBinaryPath(),
-								browserPath);
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(InternetExplorerDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(
+									WebDriverManager.getInstance(InternetExplorerDriver.class)
+													.getBinaryPath(),
+									browserPath);
+				}
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
