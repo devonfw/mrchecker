@@ -47,7 +47,7 @@ public class JavaScriptAlertsTest extends BaseTest {
 		BFLogger.logInfo("Step 5: Click OK Button on alert");
 		javaScriptAlertsPage.clickAlertAccept();
 		
-		BFLogger.logInfo("Step 6: Chcek the message");
+		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Ok button inside Alert Box doesn't click",
 						"You successfuly clicked an alert",
 						javaScriptAlertsPage.readResultLabel());
@@ -61,7 +61,7 @@ public class JavaScriptAlertsTest extends BaseTest {
 		BFLogger.logInfo("Step 5: Click OK Button on alert");
 		javaScriptAlertsPage.clickAlertAccept();
 		
-		BFLogger.logInfo("Step 6: Chcek the message");
+		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Ok button inside Confirm Box doesn't click",
 						"You clicked: Ok",
 						javaScriptAlertsPage.readResultLabel());
@@ -75,7 +75,7 @@ public class JavaScriptAlertsTest extends BaseTest {
 		BFLogger.logInfo("Step 5: Click Cancel Button on alert");
 		javaScriptAlertsPage.clickAlertDismiss();
 		
-		BFLogger.logInfo("Step 6: Chcek the message");
+		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Cancel Button inside Confirm Box doesn't work",
 						"You clicked: Cancel",
 						javaScriptAlertsPage.readResultLabel());
@@ -93,7 +93,7 @@ public class JavaScriptAlertsTest extends BaseTest {
 		BFLogger.logInfo("Step 6: Click OK Button on alert");
 		javaScriptAlertsPage.clickAlertAccept();
 		
-		BFLogger.logInfo("Step 7: Chcek the message");
+		BFLogger.logInfo("Step 7: Check the message");
 		assertEquals("The entered text doesn't match",
 						"You entered: " + randomString,
 						javaScriptAlertsPage.readResultLabel());
@@ -107,7 +107,7 @@ public class JavaScriptAlertsTest extends BaseTest {
 		BFLogger.logInfo("Step 5: Click Cancel Button on alert");
 		javaScriptAlertsPage.clickAlertDismiss();
 		
-		BFLogger.logInfo("Step 6: Chcek the message");
+		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Cancel Button inside Prompt Box doesn't work",
 						"You entered: null",
 						javaScriptAlertsPage.readResultLabel());
