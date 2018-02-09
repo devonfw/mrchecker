@@ -1,8 +1,11 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 
@@ -14,12 +17,16 @@ public class FloatingMenuPage extends BasePage {
 	private final static By		newsLinkLocator		= By.partialLinkText("News");
 	private final static By		contactLinkLocator	= By.partialLinkText("Contact");
 	private final static By		aboutLinkLocator	= By.partialLinkText("About");
+	private final static By		paragraphLocator	= By.xpath("//div[@class='scroll large-10 columns large-centered']/p");
+	private final static By		githubLinkLocator	= By.xpath("");
 	
-	private static WebElement	menuDiv;
-	private static WebElement	homeLink;
-	private static WebElement	newsLink;
-	private static WebElement	contactLink;
-	private static WebElement	aboutLink;
+	private static WebElement		menuDiv;
+	private static WebElement		homeLink;
+	private static WebElement		newsLink;
+	private static WebElement		contactLink;
+	private static WebElement		aboutLink;
+	private static List<WebElement>	paragraphs;
+	private static WebElement		githubLink;
 	
 	@Override
 	public boolean isLoaded() {
@@ -29,16 +36,15 @@ public class FloatingMenuPage extends BasePage {
 	
 	@Override
 	public void load() {
-		BasePage.getDriver()
-				.get(URL);
+		getDriver().get(URL);
 		
-		menuDiv = getDriver()
-				.findElementQuietly(menuDivLocator);
-		
+		menuDiv = getDriver().findElementQuietly(menuDivLocator);
 		homeLink = getDriver().findElementQuietly(homeLinkLocator);
 		newsLink = getDriver().findElementQuietly(newsLinkLocator);
 		contactLink = getDriver().findElementQuietly(contactLinkLocator);
 		aboutLink = getDriver().findElementQuietly(aboutLinkLocator);
+		paragraphs = getDriver().findElements(paragraphLocator);
+		githubLink = getDriver().findElementQuietly(githubLinkLocator);
 	}
 	
 	public void scrollPageDown(int scrollValue) {
@@ -67,12 +73,27 @@ public class FloatingMenuPage extends BasePage {
 		aboutLink.click();
 	}
 	
+	public void clickGithubLink() {
+		githubLink.click();
+		WebDriverWait wait;
+	}
+	
 	public boolean isMenuDisplayed() {
 		return menuDiv.isDisplayed()
 				&& homeLink.isDisplayed()
 				&& newsLink.isDisplayed()
 				&& contactLink.isDisplayed()
 				&& aboutLink.isDisplayed();
+	}
+	
+	public boolean isPageTextDisplayed() {
+		boolean displayed = !paragraphs.isEmpty();
+		
+		for (WebElement para : paragraphs) {
+			displayed = displayed && para.isDisplayed();
+		}
+		
+		return displayed;
 	}
 	
 	public int getPageHeight() {
@@ -84,8 +105,7 @@ public class FloatingMenuPage extends BasePage {
 	
 	@Override
 	public String pageTitle() {
-		// TASK Auto-generated method stub
-		return null;
+		return getDriver().getTitle();
 	}
 	
 }

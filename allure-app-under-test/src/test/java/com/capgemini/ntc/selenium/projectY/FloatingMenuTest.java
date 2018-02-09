@@ -94,6 +94,24 @@ public class FloatingMenuTest extends BaseTest {
 		floatingMenuPage.scrollPageUp(floatingMenuPage.getPageHeight());
 	}
 	
+	@Test
+	public void testMainTextVisibilityWithScrolling() {
+		assertTrue(floatingMenuPage.isPageTextDisplayed());
+		floatingMenuPage.scrollPageDown(floatingMenuPage.getPageHeight());
+		assertTrue(floatingMenuPage.isPageTextDisplayed());
+		floatingMenuPage.scrollPageUp(floatingMenuPage.getPageHeight());
+	}
+	
+	@Test
+	public void testGithubLink() {
+		floatingMenuPage.clickGithubLink();
+		assertEquals("http://www.github.com/theinternet", FloatingMenuPage.getDriver()
+				.getCurrentUrl());
+		FloatingMenuPage.getDriver()
+				.navigate()
+				.back();
+	}
+	
 	@Override
 	public void tearDown() {
 		// TODO Auto-generated method stub
