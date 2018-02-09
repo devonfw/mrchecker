@@ -68,7 +68,5 @@ public class DynamicContentTest extends BaseTest {
 							imagesListPrevious.get(i),
 							imagesListActual.get(i));
 		}
-		
 	}
-	
 }
