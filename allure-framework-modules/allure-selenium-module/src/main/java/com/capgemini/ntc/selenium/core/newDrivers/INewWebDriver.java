@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -12,6 +13,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -249,6 +251,50 @@ public interface INewWebDriver extends WebDriver {
 					final By childsSubMenuSelector);
 	
 	/**
+	 * Operations on Horizontal Slider
+	 */
+	
+	/**
+	 * Returns horizontal slider object for given container selector.
+	 * 
+	 * @param sliderContainerSelector
+	 * @return HorizontalSliderElement
+	 * @see HorizontalSliderElement
+	 */
+	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector);
+	
+	/**
+	 * Returns horizontal slider object for given container selector, slider selector and value selector.
+	 * 
+	 * @param sliderContainerSelector
+	 * @param sliderSelector
+	 * @param valueSelector
+	 * @return HorizontalSliderElement
+	 * @see HorizontalSliderElement
+	 */
+	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector);
+	
+	/**
+	 * Returns horizontal slider object for given container selector, slider selector and value selector.
+	 * Also a range of possible steps and step's size should be defined to perform operations/
+	 * 
+	 * @param sliderContainerSelector
+	 * @param sliderSelector
+	 * @param valueSelector
+	 * @param minRange
+	 * @param maxRange
+	 * @param step
+	 * @return HorizontalSliderElement
+	 * @see HorizontalSliderElement
+	 */
+	HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step);
+	
+	/**
 	 * Operations on iFrame
 	 */
 	IFrame elementIFrame(By selector);
@@ -257,4 +303,19 @@ public interface INewWebDriver extends WebDriver {
 	 * Mouse right click on specific element defined by @param selector
 	 */
 	void mouseRightClick(final By selector);
+	
+	/**
+	 * Performs left mouse click on specific element
+	 * 
+	 * @param selector
+	 */
+	void mouseLeftClick(final By selector);
+	
+	/**
+	 * Performs left mouse click on specific element
+	 * 
+	 * @param web
+	 *            element
+	 */
+	void mouseLeftClick(WebElement element);
 }
