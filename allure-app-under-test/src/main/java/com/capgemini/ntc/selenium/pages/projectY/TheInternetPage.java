@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -19,6 +20,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
+	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
 	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
 	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
 	
@@ -42,44 +44,50 @@ public class TheInternetPage extends BasePage {
 	}
 	
 	public CheckboxesPage clickCheckboxesLink() {
-		WebElement elementCheckbox = getDriver().findElementDynamic(selectorCheckboxesLink);
-		elementCheckbox.click();
+		Button elementLink = new Button(selectorCheckboxesLink);
+		elementLink.click();
 		return new CheckboxesPage();
 	}
 	
 	public ABtestPage clickABtestingLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorElementClick);
-		elementClickLink.click();
+		Button elementLink = new Button(selectorElementClick);
+		elementLink.click();
 		return new ABtestPage();
 	}
 	
 	public ChallengingDomPage clickChallengingDomLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorChallengingDomClick);
-		elementClickLink.click();
+		Button elementLink = new Button(selectorChallengingDomClick);
+		elementLink.click();
 		return new ChallengingDomPage();
 	}
 	
 	public BrokenImagePage clickBrokenImageLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorBrokenImageClickLink);
-		elementClickLink.click();
+		Button elementLink = new Button(selectorBrokenImageClickLink);
+		elementLink.click();
 		return new BrokenImagePage();
 	}
 	
 	public DropdownPage clickDropdownLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorDropdownClickLink);
-		elementClickLink.click();
+		Button elementLink = new Button(selectorDropdownClickLink);
+		elementLink.click();
 		return new DropdownPage();
 	}
 	
 	public KeyPressesPage clickKeyPressesLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorKeyPressesLink);
+		Button elementLink = new Button(selectorKeyPressesLink);
 		elementLink.click();
 		return new KeyPressesPage();
 	}
 	
+	public DynamicContentPage clickDynamicContentPage() {
+		Button elementLink = new Button(selectorDynamicContent);
+		elementLink.click();
+		return new DynamicContentPage();
+	}
+	
 	public MultipleWindowsPage clickmultipleWindowsPageLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorMultipleWindowsLink);
-		elementClickLink.click();
+		Button elementLink = new Button(selectorMultipleWindowsLink);
+		elementLink.click();
 		return new MultipleWindowsPage();
 	}
 	
@@ -92,7 +100,7 @@ public class TheInternetPage extends BasePage {
 	}
 	
 	public HoversPage clickHoversLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorHoversLink);
+		Button elementLink = new Button(selectorHoversLink);
 		elementLink.click();
 		return new HoversPage();
 	}
