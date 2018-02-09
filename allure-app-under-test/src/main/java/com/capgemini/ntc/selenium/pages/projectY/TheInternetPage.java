@@ -21,6 +21,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
+	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -101,6 +102,12 @@ public class TheInternetPage extends BasePage {
 		Button elementLink = new Button(selectorHoversLink);
 		elementLink.click();
 		return new HoversPage();
+	}
+	
+	public FormAuthenticationPage clickFormAuthenticationLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorFormAuthenticationLink);
+		elementLink.click();
+		return new FormAuthenticationPage();
 	}
 	
 }
