@@ -31,7 +31,8 @@ public enum PageSubURLsEnum implements SubUrl {
 	AUTOMATION_PRACTICE_FORM("automation-practice-form"),
 	TABS("tabs/"),
 	TOOLTIP("tooltip/"),
-	MENU("menu/");
+	MENU("menu/"),
+	SLIDER("slider/");
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment

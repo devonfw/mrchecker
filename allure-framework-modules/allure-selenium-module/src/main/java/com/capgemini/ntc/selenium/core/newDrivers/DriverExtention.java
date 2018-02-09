@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -337,6 +339,29 @@ public class DriverExtention {
 		return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
 	}
 	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
+	}
+	
 	public IFrame elementIFrame(By selector) {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
@@ -347,6 +372,21 @@ public class DriverExtention {
 		WebElement element = findElementDynamic(selector);
 		Actions action = new Actions(getDriver()).contextClick(element);
 		action.build()
+						.perform();
+	}
+	
+	public void mouseLeftClick(By selector) {
+		WebElement element = getDriver().findElementQuietly(selector);
+		if (element != null) {
+			mouseLeftClick(element);
+		} else {
+			BFLogger.logDebug("Unable to perform left mouse click due to null WebElement");
+		}
+	}
+	
+	public void mouseLeftClick(WebElement element) {
+		new Actions(getDriver()).click(element)
+						.build()
 						.perform();
 	}
 	
