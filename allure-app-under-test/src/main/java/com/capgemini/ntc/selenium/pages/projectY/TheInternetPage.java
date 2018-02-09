@@ -18,6 +18,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
+	private static final By	selectorJavaScriptAlertLink		= By.cssSelector("li > a[href*=javascript_alerts]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
@@ -79,7 +80,13 @@ public class TheInternetPage extends BasePage {
 		return new KeyPressesPage();
 	}
 	
-	public DynamicContentPage clickDynamicContentPage() {
+	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
+		Button elementLink = new Button(selectorJavaScriptAlertLink);
+		elementLink.click();
+		return new JavaScriptAlertsPage();
+  }
+	
+  public DynamicContentPage clickDynamicContentPage() {
 		Button elementLink = new Button(selectorDynamicContent);
 		elementLink.click();
 		return new DynamicContentPage();
