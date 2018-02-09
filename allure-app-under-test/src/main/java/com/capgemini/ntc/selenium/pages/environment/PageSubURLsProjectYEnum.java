@@ -10,7 +10,8 @@ public enum PageSubURLsProjectYEnum {
 	KEY_PRESS("key_presses"),
 	HOVERS("hovers"),
 	JAVASCRIPT_ALERTS("javascript_alerts"),
-	CHALLENGING_DOM("challenging_dom");
+	CHALLENGING_DOM("challenging_dom"),
+	LOGIN("login");
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment

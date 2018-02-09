@@ -82,7 +82,7 @@ public class ContextMenuPage extends BasePage {
 						.alert();
 		
 		return alert.getText()
-						.equals(expectedAlertText) ? true : false;
+				.equals(expectedAlertText);
 	}
 	
 }

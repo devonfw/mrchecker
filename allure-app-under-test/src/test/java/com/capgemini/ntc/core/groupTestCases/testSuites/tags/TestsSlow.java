@@ -1,5 +1,5 @@
 package com.capgemini.ntc.core.groupTestCases.testSuites.tags;
 
-public interface TestSlow {
+public interface TestsSlow {
 	/* For test which are slow */
 }
