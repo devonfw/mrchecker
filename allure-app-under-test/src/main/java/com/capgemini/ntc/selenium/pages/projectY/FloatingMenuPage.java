@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class FloatingMenuPage extends BasePage {
 	
@@ -18,7 +19,7 @@ public class FloatingMenuPage extends BasePage {
 	private final static By		contactLinkLocator	= By.partialLinkText("Contact");
 	private final static By		aboutLinkLocator	= By.partialLinkText("About");
 	private final static By		paragraphLocator	= By.xpath("//div[@class='scroll large-10 columns large-centered']/p");
-	private final static By		githubLinkLocator	= By.xpath("");
+	private final static By		githubLinkLocator	= By.xpath("//div[@class='row'][2]/a/img");
 	
 	private static WebElement		menuDiv;
 	private static WebElement		homeLink;
@@ -29,14 +30,9 @@ public class FloatingMenuPage extends BasePage {
 	private static WebElement		githubLink;
 	
 	@Override
-	public boolean isLoaded() {
-		
-		return false;
-	}
-	
-	@Override
 	public void load() {
 		getDriver().get(URL);
+		BFLogger.logInfo("" + isLoaded());
 		
 		menuDiv = getDriver().findElementQuietly(menuDivLocator);
 		homeLink = getDriver().findElementQuietly(homeLinkLocator);
@@ -45,6 +41,7 @@ public class FloatingMenuPage extends BasePage {
 		aboutLink = getDriver().findElementQuietly(aboutLinkLocator);
 		paragraphs = getDriver().findElements(paragraphLocator);
 		githubLink = getDriver().findElementQuietly(githubLinkLocator);
+		BFLogger.logInfo("" + isLoaded());
 	}
 	
 	public void scrollPageDown(int scrollValue) {
@@ -75,7 +72,10 @@ public class FloatingMenuPage extends BasePage {
 	
 	public void clickGithubLink() {
 		githubLink.click();
-		WebDriverWait wait;
+		
+		WebDriverWait waitForGithub = new WebDriverWait(getDriver(), 25);
+		waitForGithub.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
+				.equals("complete"));
 	}
 	
 	public boolean isMenuDisplayed() {
@@ -96,6 +96,10 @@ public class FloatingMenuPage extends BasePage {
 		return displayed;
 	}
 	
+	public int getParagraphsCount() {
+		return paragraphs.size();
+	}
+	
 	public int getPageHeight() {
 		return getDriver().manage()
 				.window()
@@ -106,6 +110,16 @@ public class FloatingMenuPage extends BasePage {
 	@Override
 	public String pageTitle() {
 		return getDriver().getTitle();
+	}
+	
+	@Override
+	public boolean isLoaded() {
+		boolean loadCompleted = ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
+				.equals("complete");
+		boolean addressOk = getDriver().getCurrentUrl()
+				.equals(URL);
+		
+		return loadCompleted && addressOk;
 	}
 	
 }

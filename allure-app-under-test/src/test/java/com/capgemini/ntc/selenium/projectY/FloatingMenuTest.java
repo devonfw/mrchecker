@@ -103,10 +103,17 @@ public class FloatingMenuTest extends BaseTest {
 	}
 	
 	@Test
+	public void testParagraphsCount() {
+		assertEquals(10, floatingMenuPage.getParagraphsCount());
+	}
+	
+	@Test
 	public void testGithubLink() {
 		floatingMenuPage.clickGithubLink();
-		assertEquals("http://www.github.com/theinternet", FloatingMenuPage.getDriver()
+		
+		assertEquals("https://github.com/tourdedave/the-internet", FloatingMenuPage.getDriver()
 				.getCurrentUrl());
+		
 		FloatingMenuPage.getDriver()
 				.navigate()
 				.back();
