@@ -11,7 +11,7 @@ public class SessionManagerModule extends AbstractModule {
 	
 	@Override
 	protected void configure() {
-		bind(ISessionManager.class).to(SessionManager.class); // Singleton
+		bind(ISessionManager.class).to(SessionManager.class);
 	}
 	
 }
