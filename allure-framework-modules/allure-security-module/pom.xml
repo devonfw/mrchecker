@@ -54,7 +54,7 @@
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <allure-core-module.version>4.12.0.4-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.4</allure-core-module.version>
         <rest-assured.version>3.0.6</rest-assured.version>
 
     </properties>

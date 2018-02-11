@@ -11,7 +11,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.capgemini.ntc.security.EnvironmentParam;
-import com.capgemini.ntc.security.SecurityPage;
+import com.capgemini.ntc.security.SecurityTest;
 import com.capgemini.ntc.security.SubUrlEnum;
 import com.capgemini.ntc.security.session.SessionEnum;
 
@@ -33,7 +33,7 @@ import io.restassured.specification.RequestSpecification;
  * @author Marek Puchalski, Capgemini
  */
 @RunWith(Parameterized.class)
-public class DirectoryBrowsingTest extends SecurityPage {
+public class DirectoryBrowsingTest extends SecurityTest {
 	
 	private SessionEnum				session;
 	private SubUrlEnum				path;

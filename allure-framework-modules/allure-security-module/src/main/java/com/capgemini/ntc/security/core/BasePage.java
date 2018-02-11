@@ -1,7 +1,5 @@
 package com.capgemini.ntc.security.core;
 
-import com.capgemini.ntc.security.core.base.properties.PropertiesFileSettings;
-import com.capgemini.ntc.security.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
@@ -9,26 +7,18 @@ import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
 import com.capgemini.ntc.test.core.base.environment.EnvironmentModule;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
-import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
 abstract public class BasePage implements ITestObserver {
 	
-	private final static PropertiesFileSettings	propertiesFileSettings;
-	private static IEnvironmentService					environmentService;
-	private final static IAnalytics							analytics;
-	public final static String									analitycsCategoryName	= "Security-Module";
+	private static IEnvironmentService	environmentService;
+	private final static IAnalytics			analytics;
+	public final static String					analitycsCategoryName	= "Security-Module";
 	
 	static {
 		// Get analytics instance created in BaseTets
 		analytics = BaseTest.getAnalytics();
-		
-		// Get and then set properties information from selenium.settings file
-		propertiesFileSettings = createPropertiesSettings();
-		
-		// Read System or maven parameters
-		setRuntimeParametersSelenium();
 		
 		// Read Environment variables either from environmnets.csv or any other input data.
 		setEnvironmetInstance();
@@ -77,20 +67,6 @@ abstract public class BasePage implements ITestObserver {
 	@Override
 	public ModuleType getModuleType() {
 		return ModuleType.EXAMPLE;
-	}
-	
-	private static PropertiesFileSettings createPropertiesSettings() {
-		// Get and then set properties information from settings.properties file
-		PropertiesFileSettings propertiesFileSettings = Guice.createInjector(PropertiesSettingsModule.init())
-		        .getInstance(PropertiesFileSettings.class);
-		return propertiesFileSettings;
-	}
-	
-	private static void setRuntimeParametersSelenium() {
-		// Read System or maven parameters
-		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
-		        .toString());
-		
 	}
 	
 	private static void setEnvironmetInstance() {
