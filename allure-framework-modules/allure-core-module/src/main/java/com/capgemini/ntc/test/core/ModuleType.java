@@ -4,5 +4,6 @@ public enum ModuleType {
 	SELENIUM,
 	WEBAPI,
 	DATABASE,
+	SECURITY,
 	EXAMPLE
 }

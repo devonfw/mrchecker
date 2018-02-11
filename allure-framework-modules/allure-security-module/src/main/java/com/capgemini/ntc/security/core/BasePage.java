@@ -66,7 +66,7 @@ abstract public class BasePage implements ITestObserver {
 	
 	@Override
 	public ModuleType getModuleType() {
-		return ModuleType.EXAMPLE;
+		return ModuleType.SECURITY;
 	}
 	
 	private static void setEnvironmetInstance() {
