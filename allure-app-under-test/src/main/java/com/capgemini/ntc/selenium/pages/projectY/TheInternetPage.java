@@ -24,6 +24,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
 	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
 	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
+	private static final By	selectorFileDownloadLink		= By.cssSelector("li > a[href='/download']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -84,9 +85,9 @@ public class TheInternetPage extends BasePage {
 		Button elementLink = new Button(selectorJavaScriptAlertLink);
 		elementLink.click();
 		return new JavaScriptAlertsPage();
-  }
+	}
 	
-  public DynamicContentPage clickDynamicContentPage() {
+	public DynamicContentPage clickDynamicContentPage() {
 		Button elementLink = new Button(selectorDynamicContent);
 		elementLink.click();
 		return new DynamicContentPage();
@@ -122,6 +123,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementLink = getDriver().findElementDynamic(selectorFormAuthenticationLink);
 		elementLink.click();
 		return new FormAuthenticationPage();
+	}
+	
+	public FileDownloadPage clickFileDownloadLink() {
+		Button elementLink = new Button(selectorFileDownloadLink);
+		elementLink.click();
+		return new FileDownloadPage();
 	}
 	
 }
