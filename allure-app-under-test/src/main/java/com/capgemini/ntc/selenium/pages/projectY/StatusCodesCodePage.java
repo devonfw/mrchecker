@@ -47,7 +47,7 @@ public class StatusCodesCodePage extends BasePage {
 	public String getDisplayedCodeNumber() {
 		String wholeText = getDriver().findElementDynamic(selectorDisplayedText)
 				.getText();
-		return wholeText.substring(21, 24);
+		return wholeText.substring(21, 24); // Get from text "This page returned a 200 status code." status code value
 	}
 	
 	public StatusCodesHomePage clickLinkToCodePage() {

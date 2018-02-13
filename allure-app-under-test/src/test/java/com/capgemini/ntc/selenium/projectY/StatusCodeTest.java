@@ -5,13 +5,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import com.capgemini.ntc.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.ntc.selenium.pages.projectY.StatusCodesCodePage;
 import com.capgemini.ntc.selenium.pages.projectY.StatusCodesHomePage;
 import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
+@Category({ TestsSelenium.class })
 public class StatusCodeTest extends BaseTest {
 	
 	private static TheInternetPage		theInternetPage;
