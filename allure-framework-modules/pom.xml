@@ -40,7 +40,7 @@
     <modules>
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
-        <!-- <module>allure-security-module</module> -->
+        <module>allure-security-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
 

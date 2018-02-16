@@ -22,6 +22,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorSortableDataTablesLink	= By.cssSelector("li > a[href*=tables]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
+	private static final By	selectorStatusCodesLink			= By.cssSelector("li > a[href*=status_codes]");
 	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
 	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
 	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
@@ -119,6 +120,12 @@ public class TheInternetPage extends BasePage {
 		return new HoversPage();
 	}
 	
+	public StatusCodesHomePage clickStatusCodesLink() {
+		getDriver().findElementDynamic(selectorStatusCodesLink)
+						.click();
+		return new StatusCodesHomePage();
+	}
+
 	public HorizontalSliderPage clickHorizontalSliderLink() {
 		WebElement elementClickLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
 		elementClickLink.click();
@@ -130,5 +137,4 @@ public class TheInternetPage extends BasePage {
 		elementLink.click();
 		return new FormAuthenticationPage();
 	}
-	
 }

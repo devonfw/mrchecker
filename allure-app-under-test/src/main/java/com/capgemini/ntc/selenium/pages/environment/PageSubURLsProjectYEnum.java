@@ -13,7 +13,9 @@ public enum PageSubURLsProjectYEnum {
 	SORTABLE_DATA_TABLES("tables"),
 	JAVASCRIPT_ALERTS("javascript_alerts"),
 	CHALLENGING_DOM("challenging_dom"),
+	STATUS_CODES("status_codes"),
 	LOGIN("login");
+
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment
