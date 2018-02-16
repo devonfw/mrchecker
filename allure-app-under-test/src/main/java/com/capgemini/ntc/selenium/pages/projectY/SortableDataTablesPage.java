@@ -1,15 +1,21 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.ListElements;
+import com.capgemini.ntc.selenium.jsoupHelper.JsoupHelper;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class SortableDataTablesPage extends BasePage {
+	
+	private static final By	selectorTable	= By.cssSelector("table.tablesorter");
+	private static final By	selectorHeader	= By.cssSelector("th");
 	
 	@Override
 	public boolean isLoaded() {
@@ -29,36 +35,35 @@ public class SortableDataTablesPage extends BasePage {
 		return getDriver().getTitle();
 	}
 	
-	public ListElements getTableHeaders(int tableNumber) {
-		By headerSelector = By.cssSelector("table#table" + (tableNumber + 1) + " th");
-		return new ListElements(headerSelector);
-	}
-	
 	public void sortColumnAscending(int columnNumber, int tableNumber) {
-		WebElement header = this.getTableHeaders(tableNumber)
-						.getList()
-						.get(columnNumber);
+		this.getTableHeaders(columnNumber, tableNumber)
+						.click();
+	}
+	
+	public void sortColumnDescending(int columnNumber, int tableNumber) {
+		WebElement header = this.getTableHeaders(columnNumber, tableNumber);
+		header.click();
 		header.click();
 	}
 	
-	public void sortColumnDescending(int columnNumber, ListElements tableHeaders) {
-		WebElement header = tableHeaders.getList()
-						.get(columnNumber);
-		header.click();
-		header.click();
+	public List<String> getColumnValues(int columnNumber, int tableNumber) {
+		WebElement table = getTable(tableNumber);
+		return JsoupHelper.findTexts(table, By.cssSelector("tr > td:nth-child(" + (columnNumber + 1) + ")"));
 	}
 	
 	public String readColumnClass(int columnNumber, int tableNumber) {
-		WebElement header = this.getTableHeaders(tableNumber)
-						.getList()
-						.get(columnNumber);
-		
-		BFLogger.logDebug("class: " + header.getAttribute("class"));
-		return header.getAttribute("class");
+		return this.getTableHeaders(columnNumber, tableNumber)
+						.getAttribute("class");
 	}
 	
-	public boolean isColumnSortedAscending(int columnNumber, int tableNumber) {
-		return true;
+	private WebElement getTable(int tableNumber) {
+		return new ListElements(selectorTable).getList()
+						.get(tableNumber);
+	}
+	
+	private WebElement getTableHeaders(int columnNumber, int tableNumber) {
+		return getTable(tableNumber).findElements(selectorHeader)
+						.get(columnNumber);
 	}
 	
 }
