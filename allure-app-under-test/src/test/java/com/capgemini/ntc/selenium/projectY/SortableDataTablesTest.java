@@ -30,7 +30,7 @@ public class SortableDataTablesTest extends BaseTest {
 	}
 	
 	@Before
-	public void clickJavaScriptAlertPage() {
+	public void clickSortableDataTablesPage() {
 		BFLogger.logInfo("Step 3: Click Sortable data tables link");
 		sortableDataTablesPage = theInternetPage.clickSortableDataTablesLink();
 		assertTrue("Sortable data tables page is not loaded", sortableDataTablesPage.isLoaded());
