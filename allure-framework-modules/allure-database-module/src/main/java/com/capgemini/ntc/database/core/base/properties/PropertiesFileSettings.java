@@ -1,4 +1,4 @@
-package com.capgemini.ntc.example.core.base.properties;
+package com.capgemini.ntc.database.core.base.properties;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;

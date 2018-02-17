@@ -1,4 +1,4 @@
-package com.capgemini.ntc.example.core.base.runtime;
+package com.capgemini.ntc.database.core.base.runtime;
 
 import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
 import com.capgemini.ntc.test.core.logger.BFLogger;

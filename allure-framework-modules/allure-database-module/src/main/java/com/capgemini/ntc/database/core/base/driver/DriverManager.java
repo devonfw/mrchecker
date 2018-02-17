@@ -1,7 +1,7 @@
-package com.capgemini.ntc.example.core.base.driver;
+package com.capgemini.ntc.database.core.base.driver;
 
-import com.capgemini.ntc.example.core.base.properties.PropertiesFileSettings;
-import com.capgemini.ntc.example.core.base.runtime.RuntimeParameters;
+import com.capgemini.ntc.database.core.base.properties.PropertiesFileSettings;
+import com.capgemini.ntc.database.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;

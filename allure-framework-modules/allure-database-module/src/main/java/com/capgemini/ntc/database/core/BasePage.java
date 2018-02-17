@@ -1,8 +1,8 @@
-package com.capgemini.ntc.example.core;
+package com.capgemini.ntc.database.core;
 
-import com.capgemini.ntc.example.core.base.driver.DriverManager;
-import com.capgemini.ntc.example.core.base.properties.PropertiesFileSettings;
-import com.capgemini.ntc.example.core.base.runtime.RuntimeParameters;
+import com.capgemini.ntc.database.core.base.driver.DriverManager;
+import com.capgemini.ntc.database.core.base.properties.PropertiesFileSettings;
+import com.capgemini.ntc.database.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
@@ -22,7 +22,7 @@ abstract public class BasePage implements ITestObserver {
 	private final static PropertiesFileSettings propertiesFileSettings;
 	private static IEnvironmentService environmentService;
 	private final static IAnalytics analytics;
-	public final static String analitycsCategoryName = "NAME-OF-MODULE"; // Selenium-Module
+	public final static String analitycsCategoryName = "Database-Module";
 	
 	static {
 		// Get analytics instance created in BaseTets

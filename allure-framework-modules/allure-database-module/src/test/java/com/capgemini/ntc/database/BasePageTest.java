@@ -1,8 +1,8 @@
-package com.capgemini.ntc.example;
+package com.capgemini.ntc.batabase;
 
 import org.junit.Test;
 
-import com.capgemini.ntc.example.core.BasePage;
+import com.capgemini.ntc.database.core.BasePage;
 
 public class BasePageTest {
 	
