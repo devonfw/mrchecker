@@ -7,25 +7,25 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class DriverManager {
-	
+
 	private static ThreadLocal<String> drivers = new ThreadLocal<String>();
-	
+
 	private static PropertiesFileSettings propertiesFileSettings;
-	
+
 	@Inject
 	public DriverManager(@Named("properties") PropertiesFileSettings propertiesFileSettings) {
-		
+
 		if (null == DriverManager.propertiesFileSettings) {
 			DriverManager.propertiesFileSettings = propertiesFileSettings;
 		}
-		
+
 		this.start();
 	}
-	
+
 	public void start() {
 		DriverManager.getDriver();
 	}
-	
+
 	public void stop() {
 		try {
 			closeDriver();
@@ -33,7 +33,7 @@ public class DriverManager {
 		} catch (Exception e) {
 		}
 	}
-	
+
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
@@ -42,9 +42,9 @@ public class DriverManager {
 			BFLogger.logDebug("Closed Driver in finalize()");
 		} catch (Exception e) {
 		}
-		
+
 	}
-	
+
 	public static String getDriver() {
 		String driver = drivers.get();
 		if (driver == null) {
@@ -54,7 +54,7 @@ public class DriverManager {
 		}
 		return driver;
 	}
-	
+
 	public static void closeDriver() {
 		String driver = drivers.get();
 		if (driver == null) {
@@ -72,15 +72,15 @@ public class DriverManager {
 			}
 		}
 	}
-	
+
 	/**
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static String createDriver() {
 		BFLogger.logDebug("Creating new " + RuntimeParameters.PARAM_1.toString() + "  driver.");
-		
+
 		String driver = "created driver";
 		return driver;
 	}
-	
+
 }

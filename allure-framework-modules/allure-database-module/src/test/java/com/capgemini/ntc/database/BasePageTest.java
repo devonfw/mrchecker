@@ -1,4 +1,4 @@
-package com.capgemini.ntc.batabase;
+package com.capgemini.ntc.database;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class BasePageTest {
 	}
 	
 	private static class MyPage extends BasePage {
-		
+
 		public String myMethod() {
 			return "Welcome";
 		}
