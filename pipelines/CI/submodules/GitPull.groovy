@@ -46,8 +46,8 @@ def void tryMerge(){
 		echo ("Merge exception");
         def String message = ""+e+"\n";
        //SendMail with e
-        def mailSender = load "${env.COMMONS_DIR}/MailSender.groovy"; 
-        mailSender(e);
+       // def mailSender = load "${env.COMMONS_DIR}/MailSender.groovy";
+       // mailSender(e);
         sh"git request-pull ${TARGET_MERGE_BRANCH} origin ${WORKING_BRANCH}"    
         sh"git merge --abort" 
         message = utils.loadFile("git_merge_result.txt") + "\n" +e
