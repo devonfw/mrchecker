@@ -2,12 +2,13 @@ node(){
 	
     setJobNameVariables();
     stagePrepareEnv();
-    stageGitPull(); 
+    stageGitPull();
+	echo("After git pull");
    // setCurrentBranchName();
     
     def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";	
     try{
-    
+    	echo("Jenkins node script run")
 		stashNotification("INPROGRESS");
 		utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
         docker.image('teste2e:v1-0.0').inside("-u ${env.USER_ID}:${env.USER_GROUP}"){

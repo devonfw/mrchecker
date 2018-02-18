@@ -36,12 +36,17 @@ def void setGitAuthor() {
 def void tryMerge(){ 	
 	setGitAuthor()
 
+	echo ("before execute tryMerge");
+
 	def TARGET_MERGE_BRANCH = "origin/develop";
 	def WORKING_BRANCH  = env.WORKING_BRANCH;
 	def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     try{
+		echo ("Try command merge");
+
         sh"git merge --no-commit --no-ff ${TARGET_MERGE_BRANCH} > git_merge_result.txt"
     }catch (Exception e){
+		echo ("Merge exception");
         def String message = ""+e+"\n";
        //SendMail with e
         def mailSender = load "${env.COMMONS_DIR}/MailSender.groovy"; 
