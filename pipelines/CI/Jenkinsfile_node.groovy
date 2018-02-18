@@ -99,7 +99,7 @@ void getCurrentBranchName(){
 
 void stagePrepareEnv(){
     stage('Prepare environment'){
-        cleanWorkspace();
+      //  cleanWorkspace();
         setWorkspace();
 	}
 }
