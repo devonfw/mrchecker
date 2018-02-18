@@ -99,7 +99,7 @@ void getCurrentBranchName(){
 
 void stagePrepareEnv(){
     stage('Prepare environment'){
-      //  cleanWorkspace();
+        cleanWorkspace();
         setWorkspace();
 	}
 }
@@ -350,7 +350,7 @@ void stageGitPull(){
     //Set branch name   
     
     //Clone jenkins files	
-//	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
+	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
 	echo("enter- stageGitPull")
 
 	sh "pwd"
