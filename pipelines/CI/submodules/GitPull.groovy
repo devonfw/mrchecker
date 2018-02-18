@@ -18,13 +18,10 @@ def void setGitAuthor() {
 		echo GIT_COMMIT=$GIT_COMMIT >> build.properties
 		GIT_AUTHOR=$(git --no-pager show -s --format='%an' $GIT_COMMIT)
 		GIT_AUTHOR_EMAIL=$(git --no-pager show -s --format='%ae' $GIT_COMMIT)
-		echo GIT_AUTHOR=$GIT_AUTHOR >> build.properties
-		echo GIT_AUTHOR_EMAIL=$GIT_AUTHOR_EMAIL >> build.properties
-	'''
-
-	sh'''
 		git config --global user.email $GIT_AUTHOR_EMAIL
 		git config --global user.name $GIT_AUTHOR
+		echo GIT_AUTHOR=$GIT_AUTHOR >> build.properties
+		echo GIT_AUTHOR_EMAIL=$GIT_AUTHOR_EMAIL >> build.properties
 	'''
 
 	sh "ls; cd ${env.SUBMODULES_DIR}; ls";
