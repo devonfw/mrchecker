@@ -353,6 +353,10 @@ void stageGitPull(){
 //	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
 	echo("enter- stageGitPull")
 
+	sh "pwd"
+	sh "echo check directory status: "
+	sh "ls"
+
     boolean isCurrentBranchFeature = "feature/".equals(env.BRANCH_TYPE_OVERRIDE) ? true : false;
 	echo("isCurrentBranchFeature= ${isCurrentBranchFeature}");
 	
