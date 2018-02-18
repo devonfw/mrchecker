@@ -13,8 +13,8 @@ node(){
 		utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
         docker.image('teste2e:v1-0.0').inside("-u ${env.USER_ID}:${env.USER_GROUP}"){
 			//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.ARTIFACTORY_USER}", passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME']]) {
-                stageBuildCompile();    
-                // stageUnitTestsAndStaticAnalyze();   -- temporary commented
+                //stageBuildCompile();
+                 stageUnitTestsAndStaticAnalyze();
                 // stageIntegrationTests();			-- temporary commented
            // }
         }
@@ -188,7 +188,7 @@ void setWorkspace(){
 		echo("env.SONAR_URL=${env.SONAR_URL}");
     } catch (Exception e){
 		echo("SONAR_URL was not overwritten");
-		env.SONAR_URL="https://sonar.com/prod";
+		env.SONAR_URL="http://\$(boot2docker ip):9000";
     }
     
     try{
@@ -307,20 +307,20 @@ void stageIntegrationTests(){
 }
 
 void publishHtml(){ 
-	if (fileExists('devonfw-testing/target/site/allure-report/index.html')) {
-        publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'devonfw-testing/target/site/allure-report', reportFiles: 'index.html', reportName: "allure"]);
+	if (fileExists('target/site/allure-report/index.html')) {
+        publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/allure-report', reportFiles: 'index.html', reportName: "allure"]);
     } else {
         echo("Any HTML report found.");
     }
     
    try{     
-        step([$class: 'JUnitResultArchiver', testResults: '**/devonfw-testing//target/surefire-reports/TEST-*.xml']);
+        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml']);
    }catch (e){ 
         echo("Any JUnit HTML report found.");
    }
    try{
     step([$class: 'CucumberTestResultArchiver', ignoreBadSteps: true, testResults: '**/target/cucumber-parallel/*.json'])
-    step([$class: 'CucumberReportPublisher', fileExcludePattern: '', fileIncludePattern: '*.json', ignoreFailedTests: true, jenkinsBasePath: '', jsonReportDirectory: 'devonfw-testing/target/cucumber-parallel', missingFails: false, parallelTesting: false, pendingFails: false, skippedFails: false, undefinedFails: false])
+    step([$class: 'CucumberReportPublisher', fileExcludePattern: '', fileIncludePattern: '*.json', ignoreFailedTests: true, jenkinsBasePath: '', jsonReportDirectory: 'target/cucumber-parallel', missingFails: false, parallelTesting: false, pendingFails: false, skippedFails: false, undefinedFails: false])
    }catch(e){
     echo("Any Cucumber report ")
     }

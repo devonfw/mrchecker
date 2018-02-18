@@ -6,7 +6,7 @@ def call(){
     echo("env.TAGNAME=${env.TAGNAME}");
 	echo("env.TAGNAME_FOR_ONE_THREAD_RUN=${env.TAGNAME_FOR_ONE_THREAD_RUN}");
 	try{
-        if (env.TAGNAME == '' && env.TESTNAME == '' && env.TAGNAME_FOR_ONE_THREAD_RUN == ''){
+        if (env.TAGNAME == '' && env.TAGNAME_FOR_ONE_THREAD_RUN == ''){
             echo "No tags and test names found."
             runIntegrationTests();
 		} else if (env.TAGNAME != '' && env.TAGNAME_FOR_ONE_THREAD_RUN != '') {
