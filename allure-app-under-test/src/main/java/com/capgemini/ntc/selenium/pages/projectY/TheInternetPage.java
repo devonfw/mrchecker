@@ -10,124 +10,124 @@ import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
-	
-	private static final By	selectorCheckboxesLink			= By.cssSelector("li > a[href*=checkboxes]");
-	private static final By	selectorElementClick			= By.cssSelector("li > a[href*=abtest]");
-	private static final By	selectorBrokenImageClickLink	= By.cssSelector("li > a[href*=broken_images]");
-	private static final By	selectorDropdownClickLink		= By.cssSelector("li > a[href*=dropdown]");
-	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
-	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
-	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
-	private static final By	selectorJavaScriptAlertLink		= By.cssSelector("li > a[href*=javascript_alerts]");
-	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
-	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
-	private static final By	selectorStatusCodesLink			= By.cssSelector("li > a[href*=status_codes]");
-	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
-	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
-	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
 
-	@Override
-	public boolean isLoaded() {
-		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
-		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
-	}
+    private static final By selectorCheckboxesLink = By.cssSelector("li > a[href*=checkboxes]");
+    private static final By selectorElementClick = By.cssSelector("li > a[href*=abtest]");
+    private static final By selectorBrokenImageClickLink = By.cssSelector("li > a[href*=broken_images]");
+    private static final By selectorDropdownClickLink = By.cssSelector("li > a[href*=dropdown]");
+    private static final By selectorMultipleWindowsLink = By.cssSelector("li > a[href*=windows]");
+    private static final By selectorBasicAuthLink = By.cssSelector("li > a[href*=basic_auth]");
+    private static final By selectorKeyPressesLink = By.cssSelector("li > a[href*=key_presses]");
+    private static final By selectorJavaScriptAlertLink = By.cssSelector("li > a[href*=javascript_alerts]");
+    private static final By selectorHoversLink = By.cssSelector("li > a[href*=hovers]");
+    private static final By selectorChallengingDomClick = By.cssSelector("li > a[href*=challenging_dom]");
+    private static final By selectorStatusCodesLink = By.cssSelector("li > a[href*=status_codes]");
+    private static final By selectorDynamicContent = By.cssSelector("li > a[href*=dynamic_content]");
+    private static final By selectorHorizontalSliderLink = By.cssSelector("li > a[href*=horizontal_slider]");
+    private static final By selectorFormAuthenticationLink = By.cssSelector("li > a[href*=login]");
 
-	@Override
-	public void load() {
-		BFLogger.logDebug("load page");
-		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
-		getDriver().waitForPageLoaded();
-	}
+    @Override
+    public boolean isLoaded() {
+        BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
+        return getDriver().getCurrentUrl()
+                .equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
+    }
 
-	@Override
-	public String pageTitle() {
-		return getDriver().getTitle();
-	}
+    @Override
+    public void load() {
+        BFLogger.logDebug("load page");
+        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
+        getDriver().waitForPageLoaded();
+    }
 
-	public CheckboxesPage clickCheckboxesLink() {
-		Button elementLink = new Button(selectorCheckboxesLink);
-		elementLink.click();
-		return new CheckboxesPage();
-	}
+    @Override
+    public String pageTitle() {
+        return getDriver().getTitle();
+    }
 
-	public ABtestPage clickABtestingLink() {
-		Button elementLink = new Button(selectorElementClick);
-		elementLink.click();
-		return new ABtestPage();
-	}
+    public CheckboxesPage clickCheckboxesLink() {
+        Button elementLink = new Button(selectorCheckboxesLink);
+        elementLink.click();
+        return new CheckboxesPage();
+    }
 
-	public ChallengingDomPage clickChallengingDomLink() {
-		Button elementLink = new Button(selectorChallengingDomClick);
-		elementLink.click();
-		return new ChallengingDomPage();
-	}
+    public ABtestPage clickABtestingLink() {
+        Button elementLink = new Button(selectorElementClick);
+        elementLink.click();
+        return new ABtestPage();
+    }
 
-	public BrokenImagePage clickBrokenImageLink() {
-		Button elementLink = new Button(selectorBrokenImageClickLink);
-		elementLink.click();
-		return new BrokenImagePage();
-	}
+    public ChallengingDomPage clickChallengingDomLink() {
+        Button elementLink = new Button(selectorChallengingDomClick);
+        elementLink.click();
+        return new ChallengingDomPage();
+    }
 
-	public DropdownPage clickDropdownLink() {
-		Button elementLink = new Button(selectorDropdownClickLink);
-		elementLink.click();
-		return new DropdownPage();
-	}
+    public BrokenImagePage clickBrokenImageLink() {
+        Button elementLink = new Button(selectorBrokenImageClickLink);
+        elementLink.click();
+        return new BrokenImagePage();
+    }
 
-	public KeyPressesPage clickKeyPressesLink() {
-		Button elementLink = new Button(selectorKeyPressesLink);
-		elementLink.click();
-		return new KeyPressesPage();
-	}
+    public DropdownPage clickDropdownLink() {
+        Button elementLink = new Button(selectorDropdownClickLink);
+        elementLink.click();
+        return new DropdownPage();
+    }
 
-	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
-		Button elementLink = new Button(selectorJavaScriptAlertLink);
-		elementLink.click();
-		return new JavaScriptAlertsPage();
-  }
+    public KeyPressesPage clickKeyPressesLink() {
+        Button elementLink = new Button(selectorKeyPressesLink);
+        elementLink.click();
+        return new KeyPressesPage();
+    }
 
-  public DynamicContentPage clickDynamicContentPage() {
-		Button elementLink = new Button(selectorDynamicContent);
-		elementLink.click();
-		return new DynamicContentPage();
-	}
+    public JavaScriptAlertsPage clickJavaScriptAlertLink() {
+        Button elementLink = new Button(selectorJavaScriptAlertLink);
+        elementLink.click();
+        return new JavaScriptAlertsPage();
+    }
 
-	public MultipleWindowsPage clickmultipleWindowsPageLink() {
-		Button elementLink = new Button(selectorMultipleWindowsLink);
-		elementLink.click();
-		return new MultipleWindowsPage();
-	}
+    public DynamicContentPage clickDynamicContentPage() {
+        Button elementLink = new Button(selectorDynamicContent);
+        elementLink.click();
+        return new DynamicContentPage();
+    }
 
-	public TheBasicAuthPage clickBasicAuthLink() {
-		getDriver().waitForPageLoaded();
-		WebElement link = getDriver().findElementDynamic(selectorBasicAuthLink);
-		JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-		executor.executeScript("var elem=arguments[0]; setTimeout(function() {elem.click();}, 100)", link);
-		return new TheBasicAuthPage();
-	}
+    public MultipleWindowsPage clickmultipleWindowsPageLink() {
+        Button elementLink = new Button(selectorMultipleWindowsLink);
+        elementLink.click();
+        return new MultipleWindowsPage();
+    }
 
-	public HoversPage clickHoversLink() {
-		Button elementLink = new Button(selectorHoversLink);
-		elementLink.click();
-		return new HoversPage();
-	}
+    public TheBasicAuthPage clickBasicAuthLink() {
+        getDriver().waitForPageLoaded();
+        WebElement link = getDriver().findElementDynamic(selectorBasicAuthLink);
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("var elem=arguments[0]; setTimeout(function() {elem.click();}, 100)", link);
+        return new TheBasicAuthPage();
+    }
 
-	public StatusCodesHomePage clickStatusCodesLink() {
-		getDriver().findElementDynamic(selectorStatusCodesLink)
-						.click();
-		return new StatusCodesHomePage();
-	}
+    public HoversPage clickHoversLink() {
+        Button elementLink = new Button(selectorHoversLink);
+        elementLink.click();
+        return new HoversPage();
+    }
 
-	public HorizontalSliderPage clickHorizontalSliderLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
-		elementClickLink.click();
-		return new HorizontalSliderPage();
-	}
+    public StatusCodesHomePage clickStatusCodesLink() {
+        getDriver().findElementDynamic(selectorStatusCodesLink)
+                .click();
+        return new StatusCodesHomePage();
+    }
 
-	public FormAuthenticationPage clickFormAuthenticationLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorFormAuthenticationLink);
-		elementLink.click();
-		return new FormAuthenticationPage();
-	}
+    public HorizontalSliderPage clickHorizontalSliderLink() {
+        WebElement elementClickLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
+        elementClickLink.click();
+        return new HorizontalSliderPage();
+    }
+
+    public FormAuthenticationPage clickFormAuthenticationLink() {
+        WebElement elementLink = getDriver().findElementDynamic(selectorFormAuthenticationLink);
+        elementLink.click();
+        return new FormAuthenticationPage();
+    }
 }
