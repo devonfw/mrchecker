@@ -13,7 +13,8 @@ enum ElementType {
 	TOOLTIP("Tooltip"),
 	NAVIGATION_BAR("Navigation Bar"),
 	MENU("Menu"),
-	IFRAME("iFrame");
+	IFRAME("iFrame"),
+	HORIZONTAL_SLIDER("Horizontal Slider");
 	
 	private String value;
 	

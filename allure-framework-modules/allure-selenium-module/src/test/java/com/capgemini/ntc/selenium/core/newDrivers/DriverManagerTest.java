@@ -1,6 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,10 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
-import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.google.inject.Guice;
-import com.google.inject.name.Names;
 
 public class DriverManagerTest {
 	
@@ -30,7 +28,7 @@ public class DriverManagerTest {
 	public void setUp() throws Exception {
 		
 		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
-				.getInstance(PropertiesSelenium.class);
+						.getInstance(PropertiesSelenium.class);
 		
 		driverManager = new DriverManager(propertiesSelenium);
 		

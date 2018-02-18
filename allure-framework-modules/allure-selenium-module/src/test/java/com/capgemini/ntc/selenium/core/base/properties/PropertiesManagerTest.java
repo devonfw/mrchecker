@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
@@ -47,11 +46,6 @@ public class PropertiesManagerTest {
 	@Test
 	public void testParamterGetFirefox() {
 		assertEquals("", "geckodriver.exe", propertiesSelenium.getSeleniumFirefox());
-	}
-	
-	@Test
-	public void testParamterGetPahantomJS() {
-		assertEquals("", "phantomjs.exe", propertiesSelenium.getSeleniumPhantomjs());
 	}
 	
 	@Test
