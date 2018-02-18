@@ -10,6 +10,7 @@ def call(){
 def void setGitAuthor() {
 	//Save build properties into file. Generated variables will be used in all Downstream jobs
 	echo "setGitAuthor"
+
 	sh "ls;";
 	sh'''
 		GIT_C="$(git rev-parse HEAD)"
@@ -20,9 +21,14 @@ def void setGitAuthor() {
 		echo GIT_AUTHOR=$GIT_AUTHOR >> build.properties
 		echo GIT_AUTHOR_EMAIL=$GIT_AUTHOR_EMAIL >> build.properties
 	'''
-	
+
+	sh'''
+		git config --global user.email $GIT_AUTHOR_EMAIL
+		git config --global user.name $GIT_AUTHOR
+	'''
+
 	sh "ls; cd ${env.SUBMODULES_DIR}; ls";
-	
+
 	def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
 	utils.loadProperties('build.properties');
 }
