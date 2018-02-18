@@ -3,7 +3,7 @@ node(){
     setJobNameVariables();
     stagePrepareEnv();
     stageGitPull(); 
-    setCurrentBranchName();
+   // setCurrentBranchName();
     
     def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";	
     try{
@@ -119,7 +119,9 @@ void setJobNameVariables(){
 }
 
 def private void cleanWorkspace(){
-	sh "sudo rm -rf *";
+	env.checkDir = sh(returnStdout: true, script: 'pwd').trim();
+	echo("Data removed from: " + env.checkDir);
+	sh "rm -rf *";
 }
 
 /**
@@ -132,11 +134,11 @@ void setWorkspace(){
     
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
     echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
-    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-app-under-test";
+    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/devonfw-testing";
     echo("Variable Project home: " + env.PROJECT_HOME);
-	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/../pipelines/CI/submodules";
+	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/pipelines/CI/submodules";
     echo("Variable submodules: " + env.SUBMODULES_DIR);
-	env.COMMONS_DIR = "${env.PROJECT_HOME}/../pipelines/commons";
+	env.COMMONS_DIR = "${env.PROJECT_HOME}/pipelines/commons";
     echo("Variable commons: " + env.COMMONS_DIR);
     env.FEATURE_BUILD = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals('develop');
     echo("Variable FEATURE_BUILD: " + env.FEATURE_BUILD);
@@ -162,8 +164,7 @@ void setWorkspace(){
     } catch (Exception e){
 		echo("WORKING_BRANCH was not overwritten");
 		env.WORKING_BRANCH = "develop";
-    } 
-    echo("env.WORKING_BRANCH=${env.WORKING_BRANCH}");
+    }
 
     try{
 		env.GIT_REPO = GIT_REPO;
@@ -350,6 +351,7 @@ void stageGitPull(){
     
     //Clone jenkins files	
 //	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
+	echo("enter- stageGitPull")
 
     boolean isCurrentBranchFeature = "feature/".equals(env.BRANCH_TYPE_OVERRIDE) ? true : false;
 	echo("isCurrentBranchFeature= ${isCurrentBranchFeature}");
