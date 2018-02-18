@@ -9,7 +9,7 @@ node(){
     def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";	
     try{
     	echo("Jenkins node script run")
-		stashNotification("INPROGRESS");
+	//	stashNotification("INPROGRESS");
 		utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
         docker.image('teste2e:v1-0.0').inside("-u ${env.USER_ID}:${env.USER_GROUP}"){
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.ARTIFACTORY_USER}", passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME']]) {
@@ -19,10 +19,10 @@ node(){
             } 
         }
 		
-		stashNotification("SUCCESSFUL");
+		//stashNotification("SUCCESSFUL");
         currentBuild.result = 'SUCCESS';
 	} catch (Exception e) {
-		stashNotification("FAILED");
+		//stashNotification("FAILED");
 		
 		sendMail(e);
 		error 'Error: ' + e
@@ -115,7 +115,7 @@ void setJobNameVariables(){
 	//env.ARTIFACTORY_CREDENTIALS=""
 	//env.SONAR_CREDENTIALS_ID=''
 	//env.USER_CREDENTIALS=env.STASH_CREDENTIALS
-    //env.ARTIFACTORY_USER = ''
+    env.ARTIFACTORY_USER = ''
     echo("AfterSetJobNameVariables");
 }
 
