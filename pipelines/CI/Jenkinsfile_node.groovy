@@ -134,11 +134,11 @@ void setWorkspace(){
     
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
     echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
-    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/devonfw-testing";
+    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-app-under-test";
     echo("Variable Project home: " + env.PROJECT_HOME);
-	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/pipelines/CI/submodules";
+	env.SUBMODULES_DIR = "${WORKSPACE_LOCAL}/pipelines/CI/submodules";
     echo("Variable submodules: " + env.SUBMODULES_DIR);
-	env.COMMONS_DIR = "${env.PROJECT_HOME}/pipelines/commons";
+	env.COMMONS_DIR = "${WORKSPACE_LOCAL}/pipelines/commons";
     echo("Variable commons: " + env.COMMONS_DIR);
     env.FEATURE_BUILD = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals('develop');
     echo("Variable FEATURE_BUILD: " + env.FEATURE_BUILD);
