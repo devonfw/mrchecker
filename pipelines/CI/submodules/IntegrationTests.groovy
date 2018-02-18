@@ -6,21 +6,24 @@ def call(){
     echo("env.TAGNAME=${env.TAGNAME}");
 	echo("env.TAGNAME_FOR_ONE_THREAD_RUN=${env.TAGNAME_FOR_ONE_THREAD_RUN}");
 	try{
-        if (env.TAGNAME == '' && env.TAGNAME_FOR_ONE_THREAD_RUN == ''){
-            echo "No tags and test names found."
-            runIntegrationTests();
-		} else if (env.TAGNAME != '' && env.TAGNAME_FOR_ONE_THREAD_RUN != '') {
-			echo "Run tests in parallel and sequentially together"
-			runAllTaggedTests();
-		} else if (env.TAGNAME != '') {
-			echo "Run tests only in paralell execution"
-			runTaggedTestsParalelly();
-		} else if (env.TAGNAME_FOR_ONE_THREAD_RUN != '') {
-			echo "Run tests only in sequential execution"
-			runTaggedTestsSequentially();
-		} else if (env.TESTNAME != ''){
-            runConcreteTests();                           
-        } 
+
+		runFirstTest();
+
+//        if (env.TAGNAME == '' && env.TAGNAME_FOR_ONE_THREAD_RUN == ''){
+//            echo "No tags and test names found."
+//            runIntegrationTests();
+//		} else if (env.TAGNAME != '' && env.TAGNAME_FOR_ONE_THREAD_RUN != '') {
+//			echo "Run tests in parallel and sequentially together"
+//			runAllTaggedTests();
+//		} else if (env.TAGNAME != '') {
+//			echo "Run tests only in paralell execution"
+//			runTaggedTestsParalelly();
+//		} else if (env.TAGNAME_FOR_ONE_THREAD_RUN != '') {
+//			echo "Run tests only in sequential execution"
+//			runTaggedTestsSequentially();
+//		} else if (env.TESTNAME != ''){
+//            runConcreteTests();
+//        }
 	}catch(Exception e){
 			echo("Test failed.");
 			error(e.toString());
@@ -41,6 +44,13 @@ private generateAllureReport(){
 		else
 			echo "No allure results found."
 		fi
+    """
+}
+
+private runFirstTest() {
+	sh """
+        cd ${env.PROJECT_HOME}
+        mvn clean test-compile test site -Dtest=RegisterOKTest
     """
 }
 

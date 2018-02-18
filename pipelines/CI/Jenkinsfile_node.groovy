@@ -14,8 +14,8 @@ node(){
         docker.image('teste2e:v1-0.0').inside("-u ${env.USER_ID}:${env.USER_GROUP}"){
 			//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.ARTIFACTORY_USER}", passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME']]) {
                 //stageBuildCompile();
-                 stageUnitTestsAndStaticAnalyze();
-                // stageIntegrationTests();			-- temporary commented
+                 //stageUnitTestsAndStaticAnalyze();
+                 stageIntegrationTests();
            // }
         }
 		
