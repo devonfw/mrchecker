@@ -30,7 +30,7 @@ abstract public class BasePage implements ITestObserver {
 		propertiesFileSettings = setPropertiesSettings();
 		
 		// Read System or maven parameters
-		setRuntimeParametersSelenium();
+		setRuntimeParametersWebApi();
 		
 		// Read Environment variables either from environmnets.csv or any other input data.
 		setEnvironmetInstance();
@@ -47,7 +47,6 @@ abstract public class BasePage implements ITestObserver {
 	public BasePage(DriverManager driver) {
 		// Add given module to Test core Observable list
 		this.addObserver();
-		
 	}
 	
 	@Override
@@ -95,7 +94,6 @@ abstract public class BasePage implements ITestObserver {
 			BasePage.driver = new DriverManager(propertiesFileSettings);
 		}
 		return BasePage.driver;
-		
 	}
 	
 	private static PropertiesFileSettings setPropertiesSettings() {
@@ -105,7 +103,7 @@ abstract public class BasePage implements ITestObserver {
 		return propertiesFileSettings;
 	}
 	
-	private static void setRuntimeParametersSelenium() {
+	private static void setRuntimeParametersWebApi() {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
 				.toString());
