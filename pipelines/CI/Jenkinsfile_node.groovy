@@ -105,15 +105,17 @@ void stagePrepareEnv(){
 }
 
 void setJobNameVariables(){
+    echo("BeforeSetJobNameVariables");
     env.JOB_NAME_UPSTREAM="Training project"
 	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
 	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
-	env.GIT_CREDENTIALS=""
-	env.STASH_CREDENTIALS=""
-	env.ARTIFACTORY_CREDENTIALS=""
-	env.SONAR_CREDENTIALS_ID=''
-	env.USER_CREDENTIALS=env.STASH_CREDENTIALS
-    env.ARTIFACTORY_USER = ''
+	//env.GIT_CREDENTIALS=""
+	//env.STASH_CREDENTIALS=""
+	//env.ARTIFACTORY_CREDENTIALS=""
+	//env.SONAR_CREDENTIALS_ID=''
+	//env.USER_CREDENTIALS=env.STASH_CREDENTIALS
+    //env.ARTIFACTORY_USER = ''
+    echo("AfterSetJobNameVariables");
 }
 
 def private void cleanWorkspace(){
@@ -129,10 +131,15 @@ void setWorkspace(){
     // env.WORKSPACE_LOCAL = readFile('pwd.current').trim();
     
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
-    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/devonfw-testing/allure-app-under-test";
-	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/../resources/pipelines/CI/submodules";
-	env.COMMONS_DIR = "${env.PROJECT_HOME}/../resources/pipelines/commons";
+    echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
+    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-app-under-test";
+    echo("Variable Project home: " + env.PROJECT_HOME);
+	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/../pipelines/CI/submodules";
+    echo("Variable submodules: " + env.SUBMODULES_DIR);
+	env.COMMONS_DIR = "${env.PROJECT_HOME}/../pipelines/commons";
+    echo("Variable commons: " + env.COMMONS_DIR);
     env.FEATURE_BUILD = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals('develop');
+    echo("Variable FEATURE_BUILD: " + env.FEATURE_BUILD);
 
     try{
 		env.ENVIRONMENT = ENVIRONMENT;
@@ -229,6 +236,8 @@ void setWorkspace(){
 		echo("MINIMUM_BRANCH_COVERAGE was not overwritten");
 		env.MINIMUM_BRANCH_COVERAGE="80";
     }
+
+    echo("After env variables setter");
 
 }
 
@@ -340,7 +349,7 @@ void stageGitPull(){
     //Set branch name   
     
     //Clone jenkins files	
-	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
+//	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
 
     boolean isCurrentBranchFeature = "feature/".equals(env.BRANCH_TYPE_OVERRIDE) ? true : false;
 	echo("isCurrentBranchFeature= ${isCurrentBranchFeature}");
