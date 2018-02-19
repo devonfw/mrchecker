@@ -28,6 +28,11 @@ public class GmailAboutPage extends BasePage {
 		return GMAIL_ABOUT_PAGE_TITLE;
 	}
 	
+	/**
+	 * Performs left mouse button click on 'Sign in' button element.
+	 * 
+	 * @return new GmailSignInPage object.
+	 */
 	public GmailSignInPage clickSignInButton() {
 		getDriver().elementButton(selectorSignInButton)
 						.click();

@@ -1,6 +1,8 @@
 package com.capgemini.ntc.selenium.pages.projectY.gmail;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -28,15 +30,29 @@ public class GmailSignInPage extends BasePage {
 		return getDriver().getTitle();
 	}
 	
+	/**
+	 * Inserts an email address into text input web element.
+	 * 
+	 * @param emailAddress
+	 *            An email address given by user.
+	 * @return this.
+	 */
 	public GmailSignInPage enterEmailAddress(String emailAddress) {
 		getDriver().elementInputText(selectorEmailInputField)
 						.setInputText(emailAddress);
 		return this;
 	}
 	
+	/**
+	 * Performs left mouse button click on 'Next' button element.
+	 * 
+	 * @return new GmailWelcomePage object.
+	 */
 	public GmailWelcomePage clickNextButton() {
 		getDriver().elementButton(selectorNextButton)
 						.click();
+		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
+		wait.until(ExpectedConditions.urlContains("pwd"));
 		return new GmailWelcomePage();
 	}
 	

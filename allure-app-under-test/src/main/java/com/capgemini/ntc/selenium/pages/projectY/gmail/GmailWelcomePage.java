@@ -1,6 +1,8 @@
 package com.capgemini.ntc.selenium.pages.projectY.gmail;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.test.core.logger.BFLogger;
@@ -9,7 +11,6 @@ public class GmailWelcomePage extends BasePage {
 	
 	private static final By	selectorPasswordInputField	= By.cssSelector("div#password input");
 	private static final By	selectorNextButton			= By.cssSelector("div#passwordNext > content");
-	private static final By	selectorGoogleLetter		= By.cssSelector("#logo > div.Bt4Beb > span.uOGS3.LHvJZ");
 	
 	@Override
 	public boolean isLoaded() {
@@ -29,15 +30,30 @@ public class GmailWelcomePage extends BasePage {
 		return getDriver().getTitle();
 	}
 	
-	public void enterPassword(String password) {
+	/**
+	 * Inserts a password into text input web element.
+	 * 
+	 * @param password
+	 *            A password given by user.
+	 * @return this.
+	 */
+	public GmailWelcomePage enterPassword(String password) {
 		getDriver().elementInputText(selectorPasswordInputField)
 						.setInputText(password);
+		return this;
 	}
-	/*
-	 * public GmailInboxPage clickNextButton() {
-	 * getDriver().findDynamicElement(selectorNextButton)
-	 * .click();
-	 * return new GmailInboxPage();
-	 * }
+	
+	/**
+	 * Performs left mouse button click on 'Next' button element.
+	 * 
+	 * @return new GmailInboxPage object.
 	 */
+	public GmailInboxPage clickNextButton() {
+		getDriver().elementButton(selectorNextButton)
+						.click();
+		WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+		wait.until(ExpectedConditions.urlContains("#inbox"));
+		return new GmailInboxPage();
+	}
+	
 }
