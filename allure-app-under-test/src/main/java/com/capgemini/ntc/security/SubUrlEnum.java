@@ -7,9 +7,13 @@ package com.capgemini.ntc.security;
  */
 public enum SubUrlEnum {
 	
+	ROOT("/"),
 	LOGIN("mythaistar/login"),
 	IMG_DIR("/assets/images/"),
-	REST_ROOT("/mythaistar/services/rest");
+	REST_ROOT("/mythaistar/services/rest"),
+	CURRENT_USER("/mythaistar/services/rest/security/v1/currentuser/"),
+	ORDER_SEARCH("/mythaistar/services/rest/ordermanagement/v1/order/search"),
+	DISH_SEARCH("/mythaistar/services/rest/dishmanagement/v1/dish/search");
 	
 	private String subURL;
 	
