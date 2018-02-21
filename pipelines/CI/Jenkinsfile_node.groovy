@@ -13,9 +13,9 @@ node(){
 		utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
         docker.image('docker.com/devonfwe2e:v1-0.0').inside("-u ${env.USER_ID}:${env.USER_GROUP}"){
 			//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.ARTIFACTORY_USER}", passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME']]) {
-                //stageBuildCompile();
+                stageBuildCompile();
                  //stageUnitTestsAndStaticAnalyze();
-                 stageIntegrationTests();
+                 //stageIntegrationTests();
            // }
         }
 		
