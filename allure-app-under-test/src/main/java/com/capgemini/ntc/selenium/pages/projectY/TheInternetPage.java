@@ -18,6 +18,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
+	private static final By	selectorRedirectLink			= By.cssSelector("li > a[href*=redirector]");
 	private static final By	selectorJavaScriptAlertLink		= By.cssSelector("li > a[href*=javascript_alerts]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
@@ -31,7 +32,7 @@ public class TheInternetPage extends BasePage {
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 	}
 	
 	@Override
@@ -100,6 +101,12 @@ public class TheInternetPage extends BasePage {
 		return new MultipleWindowsPage();
 	}
 	
+	public RedirectLinkPage clickRedirectLinkPage() {
+		Button elementLink = new Button(selectorRedirectLink);
+		elementLink.click();
+		return new RedirectLinkPage();
+	}
+	
 	public TheBasicAuthPage clickBasicAuthLink() {
 		getDriver().waitForPageLoaded();
 		WebElement link = getDriver().findElementDynamic(selectorBasicAuthLink);
@@ -116,7 +123,7 @@ public class TheInternetPage extends BasePage {
 	
 	public StatusCodesHomePage clickStatusCodesLink() {
 		getDriver().findElementDynamic(selectorStatusCodesLink)
-						.click();
+				.click();
 		return new StatusCodesHomePage();
 	}
 	
