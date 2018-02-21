@@ -44,8 +44,8 @@ public class SortableDataTablesTest extends BaseTest {
 		BFLogger.logInfo("Step 4: Sorting column: Last Name");
 		sortableDataTablesPage.sortColumnAscending(columnNumber, tableNumber);
 		assertTrue("Header Last Name was not clicked",
-						sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
-										.contains("headerSortDown"));
+				sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
+						.contains("headerSortDown"));
 		
 		BFLogger.logInfo("Step 5: Checking order of column: Last Name");
 		List<String> columnValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
@@ -53,7 +53,7 @@ public class SortableDataTablesTest extends BaseTest {
 		Collections.sort(expectedList);
 		BFLogger.logInfo("Expected list: " + expectedList + " Actual list: " + columnValues);
 		assertTrue("Column Last Name column is not ordered ascending",
-						columnValues.equals(expectedList));
+				columnValues.equals(expectedList));
 	}
 	
 	@Test // TC2
@@ -64,8 +64,8 @@ public class SortableDataTablesTest extends BaseTest {
 		BFLogger.logInfo("Step 4: Sorting column: First Name");
 		sortableDataTablesPage.sortColumnDescending(columnNumber, tableNumber);
 		assertTrue("Header First Name was not clicked",
-						sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
-										.contains("headerSortUp"));
+				sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
+						.contains("headerSortUp"));
 		
 		BFLogger.logInfo("Step 5: Checking order of column: First Name");
 		List<String> columnValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
@@ -74,7 +74,7 @@ public class SortableDataTablesTest extends BaseTest {
 		Collections.reverse(expectedList);
 		BFLogger.logInfo("Expected list: " + expectedList + " Actual list: " + columnValues);
 		assertTrue("Column First Name column is not ordered descending",
-						columnValues.equals(expectedList));
+				columnValues.equals(expectedList));
 	}
 	
 	@Override

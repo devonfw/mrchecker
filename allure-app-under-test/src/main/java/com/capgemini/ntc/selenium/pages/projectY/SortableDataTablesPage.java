@@ -21,7 +21,7 @@ public class SortableDataTablesPage extends BasePage {
 	public boolean isLoaded() {
 		BFLogger.logDebug("The Sortable data tables page is loaded.");
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.SORTABLE_DATA_TABLES.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.SORTABLE_DATA_TABLES.getValue());
 	}
 	
 	@Override
@@ -36,14 +36,22 @@ public class SortableDataTablesPage extends BasePage {
 	}
 	
 	public void sortColumnAscending(int columnNumber, int tableNumber) {
-		this.getTableHeaders(columnNumber, tableNumber)
-						.click();
+		WebElement header = this.getTableHeaders(columnNumber, tableNumber);
+		String className = header.getAttribute("class");
+		if (className.contains("headerSortUp") || !className.contains("headerSortDown")) {
+			header.click();
+		}
 	}
 	
 	public void sortColumnDescending(int columnNumber, int tableNumber) {
 		WebElement header = this.getTableHeaders(columnNumber, tableNumber);
-		header.click();
-		header.click();
+		String className = header.getAttribute("class");
+		if (!className.contains("headerSortUp")) {
+			header.click();
+			if (!className.contains("headerSortDown")) {
+				header.click();
+			}
+		}
 	}
 	
 	public List<String> getColumnValues(int columnNumber, int tableNumber) {
@@ -53,17 +61,17 @@ public class SortableDataTablesPage extends BasePage {
 	
 	public String readColumnClass(int columnNumber, int tableNumber) {
 		return this.getTableHeaders(columnNumber, tableNumber)
-						.getAttribute("class");
+				.getAttribute("class");
 	}
 	
 	private WebElement getTable(int tableNumber) {
 		return new ListElements(selectorTable).getList()
-						.get(tableNumber);
+				.get(tableNumber);
 	}
 	
 	private WebElement getTableHeaders(int columnNumber, int tableNumber) {
 		return getTable(tableNumber).findElements(selectorHeader)
-						.get(columnNumber);
+				.get(columnNumber);
 	}
 	
 }
