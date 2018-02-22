@@ -10,6 +10,7 @@ public enum PageSubURLsProjectYEnum {
 	KEY_PRESS("key_presses"),
 	DYNAMIC_CONTENT("dynamic_content"),
 	HOVERS("hovers"),
+	SORTABLE_DATA_TABLES("tables"),
 	REDIRECT("redirector"),
 	JAVASCRIPT_ALERTS("javascript_alerts"),
 	CHALLENGING_DOM("challenging_dom"),

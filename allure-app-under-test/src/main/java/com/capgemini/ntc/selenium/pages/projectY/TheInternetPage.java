@@ -21,6 +21,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorRedirectLink			= By.cssSelector("li > a[href*=redirector]");
 	private static final By	selectorJavaScriptAlertLink		= By.cssSelector("li > a[href*=javascript_alerts]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
+	private static final By	selectorSortableDataTablesLink	= By.cssSelector("li > a[href*=tables]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	private static final By	selectorStatusCodesLink			= By.cssSelector("li > a[href*=status_codes]");
 	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
@@ -81,6 +82,12 @@ public class TheInternetPage extends BasePage {
 		Button elementLink = new Button(selectorKeyPressesLink);
 		elementLink.click();
 		return new KeyPressesPage();
+	}
+	
+	public SortableDataTablesPage clickSortableDataTablesLink() {
+		Button elementLink = new Button(selectorSortableDataTablesLink);
+		elementLink.click();
+		return new SortableDataTablesPage();
 	}
 	
 	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
