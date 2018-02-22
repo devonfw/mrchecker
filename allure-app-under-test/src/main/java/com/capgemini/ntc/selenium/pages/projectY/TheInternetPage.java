@@ -26,6 +26,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
 	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
 	private static final By	selectorForgotPasswordLink		= By.cssSelector("li > a[href*=forgot_password]");
+	private static final By	selectorExitIntentLink			= By.cssSelector("li > a[href*=exit_intent]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -121,8 +122,8 @@ public class TheInternetPage extends BasePage {
 	}
 	
 	public HorizontalSliderPage clickHorizontalSliderLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
-		elementClickLink.click();
+		WebElement elementLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
+		elementLink.click();
 		return new HorizontalSliderPage();
 	}
 	
@@ -136,6 +137,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementLink = getDriver().findElementDynamic(selectorForgotPasswordLink);
 		elementLink.click();
 		return new ForgotPasswordPage();
+	}
+	
+	public ExitIntentPage clickExitIntentPage() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorExitIntentLink);
+		elementLink.click();
+		return new ExitIntentPage();
 	}
 	
 }
