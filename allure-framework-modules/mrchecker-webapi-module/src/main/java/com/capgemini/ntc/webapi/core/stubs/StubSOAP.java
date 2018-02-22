@@ -1,4 +1,4 @@
-package com.capgemini.ntc.example.soap.tempconvert;
+package com.capgemini.ntc.webapi.core.stubs;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;

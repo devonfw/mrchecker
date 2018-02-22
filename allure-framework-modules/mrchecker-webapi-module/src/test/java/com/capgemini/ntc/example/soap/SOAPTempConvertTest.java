@@ -8,15 +8,15 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.capgemini.ntc.example.soap.tempconvert.FarenheitToCelsiusMethod;
-import com.capgemini.ntc.example.soap.tempconvert.StubSOAP;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
+import com.capgemini.ntc.webapi.core.stubs.StubSOAP;
 import com.capgemini.ntc.webapi.testsupport.TestHttpHeader;
 import com.capgemini.ntc.webapi.testsupport.WireMockResponse;
 import com.capgemini.ntc.webapi.testsupport.WireMockTestClient;
 
-public class TempConvertTest extends BaseTest {
+public class SOAPTempConvertTest extends BaseTest {
 	
 	@Test
 	public void test1() throws IOException {
@@ -51,7 +51,7 @@ public class TempConvertTest extends BaseTest {
 	@Test
 	public void test2() throws Exception {
 		FarenheitToCelsiusMethod farenheitToCelsiusMethod = new FarenheitToCelsiusMethod();
-		System.out.println(farenheitToCelsiusMethod.fromFile_request());
+		// System.out.println(farenheitToCelsiusMethod.fromFile_request());
 		
 	}
 	
