@@ -37,7 +37,7 @@ public class Stub {
 		
 		// optional parameters
 		private int		statusCode;
-		private String	response;
+		private String	response	= "JESTES WIELKI";
 		
 		public StubBuilder(String conversionEndpointURI) {
 			this.conversionEndpointURI = conversionEndpointURI;
