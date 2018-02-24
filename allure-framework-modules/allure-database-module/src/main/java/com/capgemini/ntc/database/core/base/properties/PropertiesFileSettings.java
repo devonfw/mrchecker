@@ -4,28 +4,29 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
 public class PropertiesFileSettings {
-	
-	private String property_1 = "How are you"; // default value
-	private String property_2 = "What is your today success"; // default value
+
+	private String dbDrivers = "./lib/dbdrivers";
+	private String jdbcOracle = dbDrivers + "/oracle/ojdbc8.jar";
+	private String proxy = "";
 	
 	@Inject(optional = true)
-	private void setProperty_1(@Named("name.property_1") String path) {
-		this.property_1 = path;
+	private void setJdbcOracle(@Named("database.oracle") String path) {
+		this.jdbcOracle = path;
 		
 	}
 	
-	public String getProperty_1() {
-		return this.property_1;
+	public String getJdbcOracle() {
+		return this.jdbcOracle;
 	}
-	
+
 	@Inject(optional = true)
-	private void setProperty_2(@Named("name.property_2") String path) {
-		this.property_2 = path;
-		
+	private void setProxy(@Named("database.proxy") String path) {
+		this.proxy = path;
+
 	}
-	
-	public String getProperty_2() {
-		return this.property_2;
+
+	public String getProxy() {
+		return this.proxy;
 	}
 	
 }

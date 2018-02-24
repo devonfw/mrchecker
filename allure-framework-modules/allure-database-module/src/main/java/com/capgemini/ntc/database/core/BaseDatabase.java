@@ -15,48 +15,48 @@ import com.google.inject.Guice;
 
 import ru.yandex.qatools.allure.annotations.Attachment;
 
-abstract public class BasePage implements ITestObserver {
-	
+abstract public class BaseDatabase implements ITestObserver {
+
 	private static DriverManager driver = null;
-	
+
 	private final static PropertiesFileSettings propertiesFileSettings;
-	private static IEnvironmentService environmentService;
-	private final static IAnalytics analytics;
+	private static       IEnvironmentService    environmentService;
+	private final static IAnalytics             analytics;
 	public final static String analitycsCategoryName = "Database-Module";
-	
+
 	static {
 		// Get analytics instance created in BaseTets
 		analytics = BaseTest.getAnalytics();
-		
+
 		// Get and then set properties information from selenium.settings file
 		propertiesFileSettings = setPropertiesSettings();
-		
+
 		// Read System or maven parameters
-		setRuntimeParametersSelenium();
-		
+		setRuntimeParametersDatabase();
+
 		// Read Environment variables either from environmnets.csv or any other input data.
 		setEnvironmetInstance();
 	}
-	
+
 	public static IAnalytics getAnalytics() {
-		return BasePage.analytics;
+		return BaseDatabase.analytics;
 	}
-	
-	public BasePage() {
+
+	public BaseDatabase() {
 		this(getDriver());
 	}
-	
-	public BasePage(DriverManager driver) {
+
+	public BaseDatabase(DriverManager driver) {
 		// Add given module to Test core Observable list
 		this.addObserver();
-		
+
 	}
-	
+
 	@Override
 	public void addObserver() {
 		BaseTestWatcher.addObserver(this);
 	}
-	
+
 	@Override
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
@@ -64,14 +64,14 @@ abstract public class BasePage implements ITestObserver {
 		makeScreenshotOnFailure();
 		makeSourcePageOnFailure();
 	}
-	
+
 	@Override
 	public void onTestSuccess() {
 		// All actions needed while test method is success
 		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
 				.getSimpleName());
 	}
-	
+
 	@Override
 	public void onTestFinish() {
 		// All actions needed while test class is finishing
@@ -79,7 +79,7 @@ abstract public class BasePage implements ITestObserver {
 				.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
-	
+
 	@Override
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
@@ -87,52 +87,52 @@ abstract public class BasePage implements ITestObserver {
 		BFLogger.logDebug("driver:" + getDriver().toString());
 		DriverManager.closeDriver();
 	}
-	
+
 	@Override
 	public ModuleType getModuleType() {
 		return ModuleType.EXAMPLE;
 	}
-	
+
 	@Attachment("Screenshot on failure")
 	public String makeScreenshotOnFailure() {
 		return "";
 	}
-	
+
 	@Attachment("Source Page on failure")
 	public String makeSourcePageOnFailure() {
 		return "";
 	}
-	
+
 	public static DriverManager getDriver() {
-		if (BasePage.driver == null) {
+		if (BaseDatabase.driver == null) {
 			// Create module driver
-			BasePage.driver = new DriverManager(propertiesFileSettings);
+			BaseDatabase.driver = new DriverManager(propertiesFileSettings);
 		}
-		return BasePage.driver;
-		
+		return BaseDatabase.driver;
+
 	}
-	
+
 	private static PropertiesFileSettings setPropertiesSettings() {
 		// Get and then set properties information from settings.properties file
 		PropertiesFileSettings propertiesFileSettings = Guice.createInjector(PropertiesSettingsModule.init())
 				.getInstance(PropertiesFileSettings.class);
 		return propertiesFileSettings;
 	}
-	
-	private static void setRuntimeParametersSelenium() {
+
+	private static void setRuntimeParametersDatabase() {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
 				.toString());
-		
+
 	}
-	
+
 	private static void setEnvironmetInstance() {
 		/*
 		 * Environment variables either from environmnets.csv or any other input data. For now there is no properties
 		 * settings file for Selenium module. In future, please have a look on Core Module IEnvironmentService
 		 * environmetInstance = Guice.createInjector(new EnvironmentModule()) .getInstance(IEnvironmentService.class);
 		 */
-		
+
 	}
-	
+
 }
