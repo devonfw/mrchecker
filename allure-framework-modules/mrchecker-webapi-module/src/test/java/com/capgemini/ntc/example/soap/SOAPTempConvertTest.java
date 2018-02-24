@@ -12,9 +12,9 @@ import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 import com.capgemini.ntc.webapi.core.stubs.StubSOAP;
-import com.capgemini.ntc.webapi.testsupport.TestHttpHeader;
-import com.capgemini.ntc.webapi.testsupport.WireMockResponse;
-import com.capgemini.ntc.webapi.testsupport.WireMockTestClient;
+import com.capgemini.ntc.webapi.wiremock.TestHttpHeader;
+import com.capgemini.ntc.webapi.wiremock.WireMockResponse;
+import com.capgemini.ntc.webapi.wiremock.WireMockTestClient;
 
 public class SOAPTempConvertTest extends BaseTest {
 	

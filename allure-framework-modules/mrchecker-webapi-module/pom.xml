@@ -53,6 +53,7 @@
 
         <!-- Lib/package version settings -->
         <wiremock.version>2.15.0</wiremock.version>
+        <java-xmlbuilder.version>1.2</java-xmlbuilder.version>
 
     </properties>
 
@@ -65,13 +66,19 @@
             <version>${allure-core-module.version}</version>
         </dependency>
 
-
+        <!-- Dependency to start mock API  -->
         <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock</artifactId>
             <version>${wiremock.version}</version>
         </dependency>
 
+        <!-- Dependency to build xml structure  -->
+        <dependency>
+            <groupId>com.jamesmurty.utils</groupId>
+            <artifactId>java-xmlbuilder</artifactId>
+            <version>${java-xmlbuilder.version}</version>
+        </dependency>
 
     </dependencies>
 

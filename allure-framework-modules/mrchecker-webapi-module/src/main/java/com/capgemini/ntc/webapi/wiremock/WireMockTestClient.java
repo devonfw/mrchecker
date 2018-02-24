@@ -1,16 +1,4 @@
-/*
- * Copyright (C) 2011 Thomas Akehurst
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.capgemini.ntc.webapi.testsupport;
+package com.capgemini.ntc.webapi.wiremock;
 
 import static com.github.tomakehurst.wiremock.common.Exceptions.throwUnchecked;
 import static com.github.tomakehurst.wiremock.http.MimeType.JSON;
@@ -95,7 +83,8 @@ public class WireMockTestClient {
 		return String.format(LOCAL_WIREMOCK_RESET_DEFAULT_MAPPINS_URL, address, port);
 	}
 	
-	public WireMockResponse get(String url, TestHttpHeader... headers) {
+	public WireMockResponse get(String url,
+			TestHttpHeader... headers) {
 		String actualUrl = URI.create(url)
 				.isAbsolute() ? url : mockServiceUrlFor(url);
 		HttpUriRequest httpRequest = new HttpGet(actualUrl);
@@ -106,7 +95,8 @@ public class WireMockTestClient {
 		return getViaProxy(url, port);
 	}
 	
-	public WireMockResponse getViaProxy(String url, int proxyPort) {
+	public WireMockResponse getViaProxy(String url,
+			int proxyPort) {
 		URI targetUri = URI.create(url);
 		HttpHost proxy = new HttpHost(address, proxyPort, targetUri.getScheme());
 		HttpClient httpClientUsingProxy = HttpClientBuilder.create()
@@ -131,17 +121,24 @@ public class WireMockTestClient {
 		}
 	}
 	
-	public WireMockResponse put(String url, TestHttpHeader... headers) {
+	public WireMockResponse put(String url,
+			TestHttpHeader... headers) {
 		HttpUriRequest httpRequest = new HttpPut(mockServiceUrlFor(url));
 		return executeMethodAndConvertExceptions(httpRequest, headers);
 	}
 	
-	public WireMockResponse putWithBody(String url, String body, String contentType, TestHttpHeader... headers) {
+	public WireMockResponse putWithBody(String url,
+			String body,
+			String contentType,
+			TestHttpHeader... headers) {
 		HttpPut httpPut = new HttpPut(mockServiceUrlFor(url));
 		return requestWithBody(httpPut, body, contentType, headers);
 	}
 	
-	public WireMockResponse patchWithBody(String url, String body, String contentType, TestHttpHeader... headers) {
+	public WireMockResponse patchWithBody(String url,
+			String body,
+			String contentType,
+			TestHttpHeader... headers) {
 		HttpPatch httpPatch = new HttpPatch(mockServiceUrlFor(url));
 		return requestWithBody(httpPatch, body, contentType, headers);
 	}
@@ -155,37 +152,51 @@ public class WireMockTestClient {
 		return executeMethodAndConvertExceptions(request, headers);
 	}
 	
-	public WireMockResponse postWithBody(String url, String body, String bodyMimeType, String bodyEncoding) {
+	public WireMockResponse postWithBody(String url,
+			String body,
+			String bodyMimeType,
+			String bodyEncoding) {
 		return post(url, new StringEntity(body, ContentType.create(bodyMimeType, bodyEncoding)));
 	}
 	
-	public WireMockResponse postWithChunkedBody(String url, byte[] body) {
+	public WireMockResponse postWithChunkedBody(String url,
+			byte[] body) {
 		return post(url, new InputStreamEntity(new ByteArrayInputStream(body), -1));
 	}
 	
-	public WireMockResponse post(String url, HttpEntity entity, TestHttpHeader... headers) {
+	public WireMockResponse post(String url,
+			HttpEntity entity,
+			TestHttpHeader... headers) {
 		HttpPost httpPost = new HttpPost(mockServiceUrlFor(url));
 		httpPost.setEntity(entity);
 		return executeMethodAndConvertExceptions(httpPost, headers);
 	}
 	
-	public WireMockResponse postJson(String url, String body, TestHttpHeader... headers) {
+	public WireMockResponse postJson(String url,
+			String body,
+			TestHttpHeader... headers) {
 		HttpPost httpPost = new HttpPost(mockServiceUrlFor(url));
 		httpPost.setEntity(new StringEntity(body, APPLICATION_JSON));
 		return executeMethodAndConvertExceptions(httpPost, headers);
 	}
 	
-	public WireMockResponse postXml(String url, String body, TestHttpHeader... headers) {
+	public WireMockResponse postXml(String url,
+			String body,
+			TestHttpHeader... headers) {
 		HttpPost httpPost = new HttpPost(mockServiceUrlFor(url));
 		httpPost.setEntity(new StringEntity(body, APPLICATION_XML));
 		return executeMethodAndConvertExceptions(httpPost, headers);
 	}
 	
-	public WireMockResponse patchWithBody(String url, String body, String bodyMimeType, String bodyEncoding) {
+	public WireMockResponse patchWithBody(String url,
+			String body,
+			String bodyMimeType,
+			String bodyEncoding) {
 		return patch(url, new StringEntity(body, ContentType.create(bodyMimeType, bodyEncoding)));
 	}
 	
-	public WireMockResponse patch(String url, HttpEntity entity) {
+	public WireMockResponse patch(String url,
+			HttpEntity entity) {
 		HttpPatch httpPatch = new HttpPatch(mockServiceUrlFor(url));
 		httpPatch.setEntity(entity);
 		return executeMethodAndConvertExceptions(httpPatch);
@@ -196,7 +207,8 @@ public class WireMockTestClient {
 		return executeMethodAndConvertExceptions(httpDelete);
 	}
 	
-	public WireMockResponse options(String url, TestHttpHeader... headers) {
+	public WireMockResponse options(String url,
+			TestHttpHeader... headers) {
 		HttpOptions httpOptions = new HttpOptions(mockServiceUrlFor(url));
 		return executeMethodAndConvertExceptions(httpOptions, headers);
 	}
@@ -205,7 +217,8 @@ public class WireMockTestClient {
 		addResponse(responseSpecJson, "utf-8");
 	}
 	
-	public void addResponse(String responseSpecJson, String charset) {
+	public void addResponse(String responseSpecJson,
+			String charset) {
 		int status = postJsonAndReturnStatus(newMappingUrl(), responseSpecJson, charset);
 		if (status != HTTP_CREATED) {
 			throw new RuntimeException("Returned status code was " + status);
@@ -234,11 +247,14 @@ public class WireMockTestClient {
 		return response.content();
 	}
 	
-	private int postJsonAndReturnStatus(String url, String json) {
+	private int postJsonAndReturnStatus(String url,
+			String json) {
 		return postJsonAndReturnStatus(url, json, "utf-8");
 	}
 	
-	private int postJsonAndReturnStatus(String url, String json, String charset) {
+	private int postJsonAndReturnStatus(String url,
+			String json,
+			String charset) {
 		HttpPost post = new HttpPost(url);
 		try {
 			if (json != null) {
@@ -258,7 +274,8 @@ public class WireMockTestClient {
 		return postJsonAndReturnStatus(url, null);
 	}
 	
-	private WireMockResponse executeMethodAndConvertExceptions(HttpUriRequest httpRequest, TestHttpHeader... headers) {
+	private WireMockResponse executeMethodAndConvertExceptions(HttpUriRequest httpRequest,
+			TestHttpHeader... headers) {
 		try {
 			for (TestHttpHeader header : headers) {
 				httpRequest.addHeader(header.getName(), header.getValue());
@@ -270,7 +287,10 @@ public class WireMockTestClient {
 		}
 	}
 	
-	public WireMockResponse getWithPreemptiveCredentials(String url, int port, String username, String password) {
+	public WireMockResponse getWithPreemptiveCredentials(String url,
+			int port,
+			String username,
+			String password) {
 		HttpHost target = new HttpHost("localhost", port);
 		HttpClient httpClient = httpClientWithPreemptiveAuth(target, username, password);
 		
@@ -289,7 +309,9 @@ public class WireMockTestClient {
 		}
 	}
 	
-	public WireMockResponse request(final String methodName, String url, TestHttpHeader... headers) {
+	public WireMockResponse request(final String methodName,
+			String url,
+			TestHttpHeader... headers) {
 		HttpUriRequest httpRequest = new GenericHttpUriRequest(methodName, mockServiceUrlFor(url));
 		return executeMethodAndConvertExceptions(httpRequest, headers);
 	}
@@ -304,7 +326,9 @@ public class WireMockTestClient {
 				.build();
 	}
 	
-	private static HttpClient httpClientWithPreemptiveAuth(HttpHost target, String username, String password) {
+	private static HttpClient httpClientWithPreemptiveAuth(HttpHost target,
+			String username,
+			String password) {
 		CredentialsProvider credsProvider = new BasicCredentialsProvider();
 		credsProvider.setCredentials(
 				new AuthScope(target),
