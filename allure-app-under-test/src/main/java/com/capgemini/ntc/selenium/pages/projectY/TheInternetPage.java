@@ -29,12 +29,13 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
 	private static final By	selectorForgotPasswordLink		= By.cssSelector("li > a[href*=forgot_password]");
 	private static final By	selectorExitIntentLink			= By.cssSelector("li > a[href*=exit_intent]");
+	private static final By	selectorDynamicLoadingLink		= By.cssSelector("li > a[href*=dynamic_loading]");
 	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 	}
 	
 	@Override
@@ -131,7 +132,7 @@ public class TheInternetPage extends BasePage {
 	
 	public StatusCodesHomePage clickStatusCodesLink() {
 		getDriver().findElementDynamic(selectorStatusCodesLink)
-				.click();
+						.click();
 		return new StatusCodesHomePage();
 	}
 	
@@ -153,10 +154,16 @@ public class TheInternetPage extends BasePage {
 		return new ForgotPasswordPage();
 	}
 	
-	public ExitIntentPage clickExitIntentPage() {
+	public ExitIntentPage clickExitIntentLink() {
 		WebElement elementLink = getDriver().findElementDynamic(selectorExitIntentLink);
 		elementLink.click();
 		return new ExitIntentPage();
+	}
+	
+	public DynamicLoadingPage clickDynamicLoadingLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorDynamicLoadingLink);
+		elementLink.click();
+		return new DynamicLoadingPage();
 	}
 	
 }
