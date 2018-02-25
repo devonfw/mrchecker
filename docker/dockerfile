@@ -13,7 +13,7 @@ LABEL name=ubuntu_java \
             description="This basic docker to use in java and maven dev env."
 
 # Update and install needed applications
-COPY 80proxy /etc/apt/apt.conf.d/80proxy
+
 RUN apt-get update
 RUN apt-get install -y \
             wget \
@@ -23,8 +23,6 @@ RUN apt-get install -y \
             ksh \
             curl \
             git
-
-COPY wgetrc /etc/wgetrc
 
 #Env parameters
 ENV M2_HOME=/opt/apache-maven-3.3.9
@@ -46,19 +44,18 @@ RUN wget -q http://mirror.cogentco.com/pub/apache/maven/maven-3/3.3.9/binaries/a
 ## Install sonar runner
 RUN wget -q https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip && unzip -qq sonar-scanner-cli-3.0.3.778-linux.zip -d /opt/ && rm sonar-scanner-cli-3.0.3.778-linux.zip  && ln -s /opt/sonar-scanner-3.0.3.778-linux/bin/sonar-scanner /usr/bin/sonar-scanner && sonar-scanner --version && chmod 755 -R /opt/sonar-scanner-3.0.3.778-linux/
 
-## COPY Maven setting.xml file
-COPY settings.xml /opt/apache-maven-3.3.9/conf/settings.xml
 
-## Install dependencies
-RUN mkdir /opt/tmp
-COPY pom.xml /opt/tmp
-RUN mkdir /usr/share/maven2 && chmod 777 -R /usr/share/maven2
-RUN cd /opt/tmp && mvn clean; exit 0
-RUN cd /opt/tmp && mvn install -e -DskipTests=true; exit 0
-RUN cd /opt/tmp && mvn test -DskipTests=true; exit 0
-RUN cd /opt/tmp && mvn site -DskipTests=true; exit 0
-RUN chmod 777 -R /usr/share/maven2
+## Copy and Install dependencies
+
 RUN chmod 755 /usr/bin/java && chmod 755 /usr/bin/mvn
+RUN mkdir /usr/share/maven2 && chmod 777 -R /usr/share/maven2
+RUN mkdir /opt/tmp
+COPY dependencies /opt/tmp
+RUN cp /opt/tmp/settings.xml /opt/apache-maven-3.3.9/conf/settings.xml
+RUN cp /opt/tmp/wgetrc /etc/wgetrc
+
+RUN cd /opt/tmp/poms/main/allure-core-module/ && mvn clean install -DskipTests=true; exit 0
+RUN cd /opt/tmp/poms/main/ && mvn clean install -DskipTests=true; exit 0
 
 ## Create app folder
 RUN mkdir -p -m 777 /app
