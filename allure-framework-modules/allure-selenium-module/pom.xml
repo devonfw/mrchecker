@@ -64,7 +64,7 @@ Based on Selenium 3.8.1</description>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <allure-core-module.version>4.12.0.4-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.8.1</selenium.version>
