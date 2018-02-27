@@ -2,11 +2,13 @@ package com.capgemini.ntc.test.core.unit;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
+@Ignore
 public class LoggerTest extends BaseTest {
 	
 	@BeforeClass
