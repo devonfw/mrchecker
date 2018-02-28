@@ -14,7 +14,7 @@ node(){
         docker.image('docker.com/devonfwe2e:v1-0.0').inside("-u root:root"){
 			//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.ARTIFACTORY_USER}", passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME']]) {
                 stageBuildCompile();
-                 //stageUnitTestsAndStaticAnalyze();
+                 stageUnitTestsAndStaticAnalyze();
                  //stageIntegrationTests();
            // }
         }
