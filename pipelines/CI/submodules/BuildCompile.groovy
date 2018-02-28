@@ -7,14 +7,10 @@ def call(){
 		sh """
 			cd ${env.WORKSPACE_LOCAL}/allure-framework-modules
 			cd allure-core-module
-			mvn -q clean
-			mvn -q compile -DskipTests=true
-			mvn -q test-compile
+			mvn clean install -DskipTests=true
 			cd ..
 			cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
-			mvn -q clean
-			mvn -q compile -DskipTests=true
-			mvn -q test-compile
+			mvn clean install -DskipTests=true
 		"""
 	}
 }
