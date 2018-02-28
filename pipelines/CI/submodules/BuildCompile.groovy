@@ -11,11 +11,6 @@ def call(){
 			mvn -q compile -DskipTests=true
 			mvn -q test-compile
 			cd ..
-			cd allure-example-module
-			mvn -q clean
-			mvn -q compile -DskipTests=true
-			mvn -q test-compile
-			cd ..
 			cd allure-security-module
 			mvn -q clean
 			mvn -q compile -DskipTests=true
