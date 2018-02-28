@@ -9,8 +9,10 @@ def call(){
 			cd allure-core-module
 			mvn clean install -DskipTests=true
 			cd ..
+			mvn clean install -DskipTests=true
 			cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
 			mvn clean install -DskipTests=true
+
 		"""
 	}
 }
