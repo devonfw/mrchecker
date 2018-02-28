@@ -61,12 +61,6 @@ public class LargeDeepDomTest extends BaseTest {
 	}
 	
 	@Test
-	public void test() {
-		largeDeepDomPage.getSiblingTiersCount();
-		
-	}
-	
-	@Test
 	public void testVisibility() {
 		assertTrue(largeDeepDomPage.areElementsVisible());
 	}

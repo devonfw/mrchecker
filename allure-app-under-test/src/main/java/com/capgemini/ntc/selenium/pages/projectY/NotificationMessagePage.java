@@ -11,7 +11,7 @@ import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 public class NotificationMessagePage extends BasePage {
 	
 	private final static String	URL					= GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue()
-			+ PageSubURLsProjectYEnum.NOTIFICATIONS.getValue();;
+			+ PageSubURLsProjectYEnum.NOTIFICATIONS.getValue();
 	private final static By		flashMessageLocator	= By.id("flash");
 	private final static By		loadMsgLinkLocator	= By.linkText("Click here");
 	
@@ -26,15 +26,9 @@ public class NotificationMessagePage extends BasePage {
 	
 	public void findElements() {
 		getDriver().waitForPageLoaded();
-		
 		flashMessage = getDriver().findElementQuietly(flashMessageLocator); // Element
 																			// [By.xpath://*[contains(text(),'LEFT')]]
 		loadMsgLink = getDriver().findElementQuietly(loadMsgLinkLocator);
-	}
-	
-	public void reload() {
-		((JavascriptExecutor) getDriver()).executeScript("window.location.reload()");
-		getDriver().waitForPageLoaded();
 	}
 	
 	public void clickLoadMessageLink() {

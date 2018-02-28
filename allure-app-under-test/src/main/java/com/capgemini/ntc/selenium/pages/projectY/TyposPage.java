@@ -13,11 +13,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TyposPage extends BasePage {
 	
-	private final static String	URL				= GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue()
+	private static final String		URL				= GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue()
 			+ PageSubURLsProjectYEnum.TYPOS.getValue();
-	private final static By		headerLocator	= By.xpath("//div[@class='example']/h3");
-	private final static By		linesLocator	= By.xpath("//div[@class='example']/p");
-	
+	private static final By			headerLocator	= By.xpath("//div[@class='example']/h3");
+	private static final By			linesLocator	= By.xpath("//div[@class='example']/p");
 	private static WebElement		header;
 	private static List<WebElement>	lines;
 	
@@ -30,7 +29,7 @@ public class TyposPage extends BasePage {
 	}
 	
 	public void findElements() {
-		header = getDriver().findElementQuietly(headerLocator); // Element [By.xpath://*[contains(text(),'LEFT')]]
+		header = getDriver().findElementQuietly(headerLocator);
 		lines = getDriver().findElementDynamics(linesLocator);
 	}
 	
@@ -52,7 +51,6 @@ public class TyposPage extends BasePage {
 	public boolean isLoaded() {
 		boolean loadCompleted = ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
 				.equals("complete");
-		
 		return loadCompleted && isUrlAndPageTitleAsCurrentPage(URL);
 	}
 	

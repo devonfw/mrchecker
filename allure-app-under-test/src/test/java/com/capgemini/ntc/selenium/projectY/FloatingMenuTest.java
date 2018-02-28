@@ -22,7 +22,7 @@ public final class FloatingMenuTest extends BaseTest {
 	}
 	
 	@Test
-	public void testVisibiltyWhileScrolling() {
+	public void testVisibilityWhileScrolling() {
 		assertTrue(floatingMenuPage.isMenuDisplayed());
 		int scrollPosition = 0;
 		int singleScrollVal = 250;

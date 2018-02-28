@@ -37,14 +37,18 @@ public class IFrameTest extends BaseTest {
 	public void testMenuVisibility() {
 		assertTrue(iFramePage.getMenuVisibility());
 	}
-	
+
+	@Test
+	public void testToolbarVisibility() {
+		assertTrue(iFramePage.getToolbarVisibility());
+	}
+
 	@Test
 	public void testTypingBoldText() {
 		iFramePage.createNewDocument();
 		iFramePage.clickBoldButton();
-		
-		for (int i = 0; i < invocationTestData.length; i++)
-			iFramePage.addTextToEditor(invocationTestData[i]);
+
+		for (String anInvocationTestData : invocationTestData) iFramePage.addTextToEditor(anInvocationTestData);
 		
 		assertEquals("p » strong", iFramePage.getStatusbarText());
 		assertEquals(invocationTestData[0].concat(invocationTestData[1]), iFramePage.getTextFromEditor());
@@ -109,7 +113,7 @@ public class IFrameTest extends BaseTest {
 	public void tearDown() {
 	}
 	
-	private final void typeInvocation() {
+	private void typeInvocation() {
 		iFramePage.putTextToEditor(invocationTestData[0]);
 		
 		for (int i = 1; i < invocationTestData.length; i++)

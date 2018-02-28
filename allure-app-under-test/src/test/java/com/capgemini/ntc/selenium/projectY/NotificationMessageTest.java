@@ -9,7 +9,7 @@ import com.capgemini.ntc.test.core.BaseTest;
 
 public class NotificationMessageTest extends BaseTest {
 	
-	private static NotificationMessagePage notificationMsgPage = new NotificationMessagePage();
+	private final static NotificationMessagePage notificationMsgPage = new NotificationMessagePage();
 	
 	@Override
 	public void setUp() {
@@ -18,7 +18,8 @@ public class NotificationMessageTest extends BaseTest {
 	
 	@Test
 	public void testMessageChange() {
-		final String unsuccessfulMsg = "Action unsuccesful, please try again";
+		final String unsuccessfulMsg = "Action unsuccesful, please try again";// Page has a typo - should be
+																				// 'unsuccessful'
 		final String successfulMsg = "Action successful";
 		
 		int clickCount = 7;
