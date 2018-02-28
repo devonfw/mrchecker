@@ -262,7 +262,7 @@ void stageUnitTestsAndStaticAnalyze(){
             stageUnitTests();
         }, 	
         staticAnalysis: {
-            stageStaticAnalyze();
+           // stageStaticAnalyze();
         }
     )
 	stageStaticAnalyzeSonar();
