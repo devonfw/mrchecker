@@ -5,12 +5,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.selenium.pages.projectY.FloatingMenuPage;
 import com.capgemini.ntc.test.core.BaseTest;
 
-public class FloatingMenuTest extends BaseTest {
+public final class FloatingMenuTest extends BaseTest {
 	
-	private final static FloatingMenuPage floatingMenuPage = new FloatingMenuPage();
+	private static final String				FLOATING_MENU_URL	= GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue()
+			.concat(PageSubURLsProjectYEnum.FLOATING_MENU.getValue());
+	private final static FloatingMenuPage	floatingMenuPage	= new FloatingMenuPage();
 	
 	@Override
 	public void setUp() {
@@ -33,37 +37,49 @@ public class FloatingMenuTest extends BaseTest {
 	@Test
 	public void testHomeLink() {
 		floatingMenuPage.clickHomeLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#home", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#home"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
 	}
 	
 	@Test
 	public void testNewsLink() {
 		floatingMenuPage.clickNewsLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#news", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#news"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
 	}
 	
 	@Test
 	public void testContactLink() {
 		floatingMenuPage.clickContactLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#contact", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#contact"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
 	}
 	
 	@Test
 	public void testAboutLink() {
 		floatingMenuPage.clickAboutLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#about", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#about"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
+		
 	}
 	
 	@Test
 	public void testHomeLinkWithScrolling() {
 		floatingMenuPage.scrollPageDown(floatingMenuPage.getPageHeight() - 100);
 		floatingMenuPage.clickHomeLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#home", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#home"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
+		
 		floatingMenuPage.scrollPageUp(floatingMenuPage.getPageHeight() - 100);
 	}
 	
@@ -71,8 +87,11 @@ public class FloatingMenuTest extends BaseTest {
 	public void testNewsLinkWithScrolling() {
 		floatingMenuPage.scrollPageDown(floatingMenuPage.getPageHeight());
 		floatingMenuPage.clickNewsLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#news", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#news"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
+		
 		floatingMenuPage.scrollPageUp(floatingMenuPage.getPageHeight());
 	}
 	
@@ -80,8 +99,10 @@ public class FloatingMenuTest extends BaseTest {
 	public void testContactLinkWithScrolling() {
 		floatingMenuPage.scrollPageDown(floatingMenuPage.getPageHeight() - 200);
 		floatingMenuPage.clickContactLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#contact", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#contact"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
 		floatingMenuPage.scrollPageUp(floatingMenuPage.getPageHeight() - 200);
 	}
 	
@@ -89,8 +110,10 @@ public class FloatingMenuTest extends BaseTest {
 	public void testAboutLinkWithScrolling() {
 		floatingMenuPage.scrollPageDown(floatingMenuPage.getPageHeight());
 		floatingMenuPage.clickAboutLink();
-		assertEquals("http://the-internet.herokuapp.com/floating_menu#about", FloatingMenuPage.getDriver()
-				.getCurrentUrl());
+		assertEquals(FloatingMenuTest.FLOATING_MENU_URL
+				.concat("#about"),
+				FloatingMenuPage.getDriver()
+						.getCurrentUrl());
 		floatingMenuPage.scrollPageUp(floatingMenuPage.getPageHeight());
 	}
 	

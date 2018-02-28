@@ -5,14 +5,16 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-public class FloatingMenuPage extends BasePage {
+public final class FloatingMenuPage extends BasePage {
 	
-	private final static String	URL					= "http://the-internet.herokuapp.com/floating_menu";
+	private final static String	URL					= GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue()
+			+ PageSubURLsProjectYEnum.FLOATING_MENU.getValue();;
 	private final static By		menuDivLocator		= By.id("menu");
 	private final static By		homeLinkLocator		= By.partialLinkText("Home");
 	private final static By		newsLinkLocator		= By.partialLinkText("News");
@@ -39,7 +41,7 @@ public class FloatingMenuPage extends BasePage {
 		newsLink = getDriver().findElementQuietly(newsLinkLocator);
 		contactLink = getDriver().findElementQuietly(contactLinkLocator);
 		aboutLink = getDriver().findElementQuietly(aboutLinkLocator);
-		paragraphs = getDriver().findElements(paragraphLocator);
+		paragraphs = getDriver().findElementDynamics(paragraphLocator);
 		githubLink = getDriver().findElementQuietly(githubLinkLocator);
 		BFLogger.logInfo("" + isLoaded());
 	}
@@ -72,10 +74,7 @@ public class FloatingMenuPage extends BasePage {
 	
 	public void clickGithubLink() {
 		githubLink.click();
-		
-		WebDriverWait waitForGithub = new WebDriverWait(getDriver(), 25);
-		waitForGithub.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
-				.equals("complete"));
+		getDriver().waitForPageLoaded();
 	}
 	
 	public boolean isMenuDisplayed() {
@@ -116,10 +115,8 @@ public class FloatingMenuPage extends BasePage {
 	public boolean isLoaded() {
 		boolean loadCompleted = ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
 				.equals("complete");
-		boolean addressOk = getDriver().getCurrentUrl()
-				.equals(URL);
 		
-		return loadCompleted && addressOk;
+		return loadCompleted && isUrlAndPageTitleAsCurrentPage(URL);
 	}
 	
 }

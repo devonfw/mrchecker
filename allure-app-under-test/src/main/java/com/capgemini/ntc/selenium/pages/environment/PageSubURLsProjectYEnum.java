@@ -6,16 +6,22 @@ public enum PageSubURLsProjectYEnum {
 	NEW_WINDOW("windows/new"),
 	WINDOW("windows"),
 	CHECKBOX("checkboxes"),
-	KEY_PRESS("key_presses");
+	KEY_PRESS("key_presses"),
+	TYPOS("typos"),
+	NOTIFICATIONS("notification_message_rendered"),
+	NESTED_FRAMES("nested_frames"),
+	LARGE_DEEP_DOM("large"),
+	IFRAME("iframe"),
+	FLOATING_MENU("floating_menu");
 	
 	/*
-	 * Sub urls are used as real locations in Bank test environment
+	 * Sub urls are used as real locations in Bank test environment and for The Internet page
 	 */
 	private String subURL;
 	
 	private PageSubURLsProjectYEnum(String subURL) {
 		this.subURL = subURL;
-	};
+	}
 	
 	private PageSubURLsProjectYEnum() {
 		
