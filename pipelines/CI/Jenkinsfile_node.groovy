@@ -122,7 +122,7 @@ void setJobNameVariables(){
 def private void cleanWorkspace(){
 	env.checkDir = sh(returnStdout: true, script: 'pwd').trim();
 	echo("Data removed from: " + env.checkDir);
-	sh "rm -rf *";
+	//sh "rm -rf *";
 }
 
 /**
