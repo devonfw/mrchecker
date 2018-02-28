@@ -113,7 +113,7 @@ void setJobNameVariables(){
 	//env.GIT_CREDENTIALS=""
 	//env.STASH_CREDENTIALS=""
 	//env.ARTIFACTORY_CREDENTIALS=""
-	//env.SONAR_CREDENTIALS_ID=''
+	env.SONAR_CREDENTIALS_ID='e507e834-62bc-4ec2-8412-fedeeee8fc84'
 	//env.USER_CREDENTIALS=env.STASH_CREDENTIALS
     env.ARTIFACTORY_USER = ''
     echo("AfterSetJobNameVariables");

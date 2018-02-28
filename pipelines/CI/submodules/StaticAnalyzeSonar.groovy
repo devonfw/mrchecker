@@ -9,7 +9,7 @@ def call(){
 			-Dsonar.projectKey=\"${env.SONAR_RESOURCE_ID}\" \
 			-Dsonar.projectName=\"${env.SONAR_PROJECT_NAME}\" \
 			-Dsonar.projectVersion=\"${env.BUILD_VERSION_BATCH}\" \
-			-Dsonar.sources=\"src/\" \
+			-Dsonar.sources=\"${env.PROJECT_HOME}/src/\" \
 			-Dsonar.projectBaseDir=\"${env.PROJECT_HOME}\" \
 			-Dsonar.junit.reportsPath=\"target/\" \
 			-Dsonar.host.url=\"${env.SONAR_URL}\" \
