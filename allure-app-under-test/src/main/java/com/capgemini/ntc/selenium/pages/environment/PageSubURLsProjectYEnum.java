@@ -19,11 +19,11 @@ public enum PageSubURLsProjectYEnum {
 	 */
 	private String subURL;
 	
-	private PageSubURLsProjectYEnum(String subURL) {
+	PageSubURLsProjectYEnum(String subURL) {
 		this.subURL = subURL;
 	}
 	
-	private PageSubURLsProjectYEnum() {
+	PageSubURLsProjectYEnum() {
 		
 	}
 	

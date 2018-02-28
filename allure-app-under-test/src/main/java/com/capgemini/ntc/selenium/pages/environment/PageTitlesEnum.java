@@ -17,7 +17,7 @@ public enum PageTitlesEnum {
 	
 	private String value;
 	
-	private PageTitlesEnum(String value) {
+	PageTitlesEnum(String value) {
 		this.value = value;
 	}
 	
