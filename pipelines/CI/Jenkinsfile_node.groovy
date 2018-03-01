@@ -328,7 +328,9 @@ void stageIntegrationTests(){
 void publishHtml(){
     echo "Before publish HTML"
 	sh """
-				cd ${env.TESTMODULE}
+				cd ${env.TESTMODULE}/target
+				ls;
+				cd allure-report
 				ls;
 	"""
 	if (fileExists('target/site/allure-report/index.html')) {
