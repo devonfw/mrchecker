@@ -288,7 +288,7 @@ void stageUnitTestsAndStaticAnalyze(){
 }	
 
 void stageUnitTests(){
-	echo("stageUnitTests")
+	echo("stageUnitTests");
 	//Load UnitTests file and run call() method
 	//def module = load "${env.SUBMODULES_DIR}/UnitTests.groovy";
 	//module();
