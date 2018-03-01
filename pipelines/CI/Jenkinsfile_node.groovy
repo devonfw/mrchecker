@@ -150,7 +150,15 @@ void setWorkspace(){
     } catch (Exception e){
 		echo("ENVIRONMENT was not overwritten");
 		env.ENVIRONMENT = "DEV";
-    } 
+    }
+
+	try{
+		env.HUBURL = HUBURL;
+		echo("env.HUBURL=${env.HUBURL}");
+	} catch (Exception e){
+		echo("HUBURL was not overwritten");
+		env.HUBURL = "http://10.40.234.103:4444/wd/hub";
+	}
 
     try{
 		env.BRANCH_TYPE_OVERRIDE = BRANCH_TYPE_OVERRIDE;
