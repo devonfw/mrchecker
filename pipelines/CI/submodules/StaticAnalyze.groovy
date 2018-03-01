@@ -1,8 +1,8 @@
 def call(){
 	stage("Static anaylize"){
 		runStyleValidation();
-		runStaticAnalyzeTools();
-		publishReports();
+	//	runStaticAnalyzeTools();
+	//	publishReports();
 	}
 }
 
