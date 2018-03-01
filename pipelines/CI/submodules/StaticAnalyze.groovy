@@ -10,16 +10,16 @@ private runStyleValidation(){
 
 	try{
 		if(env.TESTMODULE.equals("allure-app-under-test")) {
-			sh """
-				cd ${env.WORKSPACE_LOCAL}/${env.TESTMODULE}
-				mvn -q formatter:validate
-			"""
+//			sh """
+//				cd ${env.WORKSPACE_LOCAL}/${env.TESTMODULE}
+//				mvn -q formatter:validate
+//			"""
 		}
 		else {
-			sh """
-				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/${env.TESTMODULE}
-				mvn -q formatter:validate
-			"""
+//			sh """
+//				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/${env.TESTMODULE}
+//				mvn -q formatter:validate
+//			"""
 		}
 	} catch(Exception e){
 		
