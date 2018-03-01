@@ -33,7 +33,7 @@ public class ExitIntentTest extends BaseTest {
 		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
 		
 		BFLogger.logInfo("Step 3: Click Exit Intent link");
-		exitIntentPage = theInternetPage.clickExitIntentPage();
+		exitIntentPage = theInternetPage.clickExitIntentLink();
 		
 		BFLogger.logInfo("Step 4: Verify if Exit Intent Page is opened");
 		assertTrue("The Exit Intent Page was not open", exitIntentPage.isLoaded());
