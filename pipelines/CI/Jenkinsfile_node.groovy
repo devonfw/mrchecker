@@ -12,18 +12,21 @@ node(){
 	//	stashNotification("INPROGRESS");
 		utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
         docker.image('docker.com/devonfwe2e:v1-0.0').inside("-u root:root"){
-			//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.ARTIFACTORY_USER}", passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME']]) {
-                stageBuildCompile();
-                 //stageUnitTestsAndStaticAnalyze();
-                 stageIntegrationTests();
-           // }
+			if (env.TESTMODULE.equals("allure-app-under-test")) {
+				stageBuildCompile();
+				stageUnitTestsAndStaticAnalyze();
+				stageIntegrationTests();
+			}
+			else {
+				stageBuildCompile();
+				stageUnitTestsAndStaticAnalyze();
+			}
         }
 		
 		//stashNotification("SUCCESSFUL");
         currentBuild.result = 'SUCCESS';
 	} catch (Exception e) {
 		//stashNotification("FAILED");
-		
 		sendMail(e);
 		error 'Error: ' + e
         currentBuild.result = 'FAILURE';
@@ -113,9 +116,9 @@ void setJobNameVariables(){
 	//env.GIT_CREDENTIALS=""
 	//env.STASH_CREDENTIALS=""
 	//env.ARTIFACTORY_CREDENTIALS=""
-	env.SONAR_CREDENTIALS_ID='e507e834-62bc-4ec2-8412-fedeeee8fc84'
+	//env.SONAR_CREDENTIALS_ID='e507e834-62bc-4ec2-8412-fedeeee8fc84'
 	//env.USER_CREDENTIALS=env.STASH_CREDENTIALS
-    env.ARTIFACTORY_USER = ''
+    //env.ARTIFACTORY_USER = ''
     echo("AfterSetJobNameVariables");
 }
 
@@ -158,6 +161,14 @@ void setWorkspace(){
 	} catch (Exception e){
 		echo("HUBURL was not overwritten");
 		env.HUBURL = "http://10.40.234.103:4444/wd/hub";
+	}
+
+	try{
+		env.TESTMODULE = TESTMODULE;
+		echo("env.TESTMODULE=${env.TESTMODULE}");
+	} catch (Exception e){
+		echo("TESTMODULE was not overwritten");
+		env.TESTMODULE = "allure-app-under-test";
 	}
 
     try{
@@ -270,10 +281,10 @@ void stageUnitTestsAndStaticAnalyze(){
             stageUnitTests();
         }, 	
         staticAnalysis: {
-           // stageStaticAnalyze();
+        	stageStaticAnalyze();
         }
     )
-	stageStaticAnalyzeSonar();
+	// stageStaticAnalyzeSonar();
 }	
 
 void stageUnitTests(){
@@ -314,7 +325,10 @@ void stageIntegrationTests(){
     }
 }
 
-void publishHtml(){ 
+void publishHtml(){
+    echo "Before publish HTML"
+
+    sh "ls;";
 	if (fileExists('target/site/allure-report/index.html')) {
         publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/allure-report', reportFiles: 'index.html', reportName: "allure"]);
     } else {

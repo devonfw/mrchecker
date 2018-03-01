@@ -4,10 +4,12 @@ def call(){
 	stage('Unit test'){
 		
 		try{
-		sh """
-			cd ${env.PROJECT_HOME}
-			mvn test
-		"""
+			if(!env.TESTMODULE.equals("allure-app-under-test")) {
+				sh """
+				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/${env.TESTMODULE}
+				mvn test
+				"""
+			}
 		} catch (Exception e) {
 			error ( e.toString() );
 		} finally{
