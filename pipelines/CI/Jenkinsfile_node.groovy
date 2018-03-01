@@ -330,8 +330,12 @@ void publishHtml(){
 	sh """
 				cd ${env.TESTMODULE}/target
 				ls;
+				cd site
+				ls;
 				cd allure-report
 				ls;
+				cd ${env.TESTMODULE}/target/allure-results
+                ls;
 	"""
 	if (fileExists('target/site/allure-report/index.html')) {
         publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/allure-report', reportFiles: 'index.html', reportName: "allure"]);
