@@ -39,18 +39,18 @@ private runStyleValidation(){
 
 private runStaticAnalyzeTools(){
 
-	if(env.TESTMODULE.equals("allure-app-under-test")) {
-		sh """
-				cd ${env.WORKSPACE_LOCAL}/${env.TESTMODULE}
-				mvn -q site
-			"""
-	}
-	else {
-		sh """
-				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/${env.TESTMODULE}
-				mvn -q site
-			"""
-	}
+//	if(env.TESTMODULE.equals("allure-app-under-test")) {
+//		sh """
+//				cd ${env.WORKSPACE_LOCAL}/${env.TESTMODULE}
+//				mvn -q site
+//			"""
+//	}
+//	else {
+//		sh """
+//				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/${env.TESTMODULE}
+//				mvn -q site
+//			"""
+//	}
 }
 
 private publishReports(){
