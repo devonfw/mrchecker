@@ -327,8 +327,10 @@ void stageIntegrationTests(){
 
 void publishHtml(){
     echo "Before publish HTML"
-
-    sh "ls;";
+	sh """
+				cd ${env.TESTMODULE}
+				ls;
+	"""
 	if (fileExists('target/site/allure-report/index.html')) {
         publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/allure-report', reportFiles: 'index.html', reportName: "allure"]);
     } else {
