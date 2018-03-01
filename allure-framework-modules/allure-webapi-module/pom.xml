@@ -8,7 +8,7 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>2.0.0</version>
     </parent>
-    <artifactId>allure-example-module</artifactId>
+    <artifactId>allure-webapi-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - WebApi - Module</name>
