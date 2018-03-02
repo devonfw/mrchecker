@@ -337,20 +337,20 @@ void publishHtml(){
 				cd ${env.TESTMODULE}/target/allure-results
                 ls;
 	"""
-	if (fileExists('target/site/allure-report/index.html')) {
-        publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target/site/allure-report', reportFiles: 'index.html', reportName: "allure"]);
+	if (fileExists("${env.PROJECT_HOME}/target/site/allure-report/index.html")) {
+        publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "${env.PROJECT_HOME}/target/site/allure-report", reportFiles: 'index.html', reportName: "allure"]);
     } else {
         echo("Any HTML report found.");
     }
     
    try{     
-        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml']);
+        step([$class: 'JUnitResultArchiver', testResults: "${env.PROJECT_HOME}/target/surefire-reports/TEST-*.xml"]);
    }catch (e){ 
         echo("Any JUnit HTML report found.");
    }
    try{
-    step([$class: 'CucumberTestResultArchiver', ignoreBadSteps: true, testResults: '**/target/cucumber-parallel/*.json'])
-    step([$class: 'CucumberReportPublisher', fileExcludePattern: '', fileIncludePattern: '*.json', ignoreFailedTests: true, jenkinsBasePath: '', jsonReportDirectory: 'target/cucumber-parallel', missingFails: false, parallelTesting: false, pendingFails: false, skippedFails: false, undefinedFails: false])
+    step([$class: 'CucumberTestResultArchiver', ignoreBadSteps: true, testResults: "${env.PROJECT_HOME}" + '/target/cucumber-parallel/*.json'])
+    step([$class: 'CucumberReportPublisher', fileExcludePattern: '', fileIncludePattern: '*.json', ignoreFailedTests: true, jenkinsBasePath: '', jsonReportDirectory: "${env.PROJECT_HOME}/target/cucumber-parallel", missingFails: false, parallelTesting: false, pendingFails: false, skippedFails: false, undefinedFails: false])
    }catch(e){
     echo("Any Cucumber report ")
     }

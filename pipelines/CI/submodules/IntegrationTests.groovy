@@ -52,6 +52,7 @@ private runFirstTest() {
         cd ${env.PROJECT_HOME}
         mvn clean test-compile test site -Dtest=RegisterOKTest -DcustomHubUrl=${env.HUBURL}
     """
+	//clean compile test site -Dtest=
 }
 
 private runAllTaggedTests(){
