@@ -334,13 +334,13 @@ void publishHtml(){
 				ls;
 				cd allure-report
 				ls;
-				cd ${env.TESTMODULE}/target/allure-results
-                ls;
 	"""
 	if (fileExists("${env.PROJECT_HOME}/target/site/allure-report/index.html")) {
+        echo("Before publish allure");
         publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "${env.PROJECT_HOME}/target/site/allure-report", reportFiles: 'index.html', reportName: "allure"]);
+        echo("After publish allure");
     } else {
-        echo("Any HTML report found.");
+        echo("Any HTML report found!");
     }
     
    try{     
