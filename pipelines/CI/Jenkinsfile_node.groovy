@@ -27,7 +27,7 @@ node(){
         currentBuild.result = 'SUCCESS';
 	} catch (Exception e) {
 		//stashNotification("FAILED");
-		sendMail(e);
+		//sendMail(e);
 		error 'Error: ' + e
         currentBuild.result = 'FAILURE';
 	}
