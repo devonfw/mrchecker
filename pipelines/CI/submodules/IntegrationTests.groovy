@@ -50,8 +50,9 @@ private generateAllureReport(){
 private runFirstTest() {
 	sh """
         cd ${env.PROJECT_HOME}
-        mvn clean test-compile test site -Dtest=RegisterOKTest -DcustomHubUrl=${env.HUBURL}
+        mvn clean compile test site -Dtest=RegisterOKTest -DcustomHubUrl=${env.HUBURL} -Dbrowser=chrome
     """
+	//clean test-compile test site -Dtest=RegisterOKTest
 	//clean compile test site -Dtest=
 }
 
