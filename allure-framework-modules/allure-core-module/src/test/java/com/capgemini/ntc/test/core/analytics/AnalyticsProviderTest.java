@@ -17,24 +17,6 @@ public class AnalyticsProviderTest {
 	}
 	
 	@Test
-	public void testGoogleProvider_sendClassName() {
-		AnalyticsProvider analyticsProvider = AnalyticsProvider.GOOGLE;
-		analyticsProvider.sendClassName("/com/capgemini/ntc/test/core/analytics", "AnalyticsProviderTest", "testGoogleProvider");
-	}
-	
-	@Test
-	public void testGoogleProvider_sendMethodEventShort() {
-		AnalyticsProvider analyticsProvider = AnalyticsProvider.GOOGLE;
-		analyticsProvider.sendMethodEvent("Selenium-Test-AnalyticsGoogleProvider");
-	}
-	
-	@Test
-	public void testGoogleProvider_sendMethodEventLong() {
-		AnalyticsProvider analyticsProvider = AnalyticsProvider.GOOGLE;
-		analyticsProvider.sendMethodEvent("Selenium-Test-AnalyticsGoogleProvider", "sendMethodEventLong");
-	}
-	
-	@Test
 	public void testDisabledProvider_sendClassName() {
 		AnalyticsProvider analyticsProvider = AnalyticsProvider.DISABLED;
 		analyticsProvider.sendClassName("/com/capgemini/ntc/test/core/analytics", "AnalyticsProviderTest", "testDisabledProvider");

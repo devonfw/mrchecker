@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +20,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -47,7 +50,7 @@ public class DriverExtention {
 	
 	public WebElement findElementQuietly(WebElement elementToSearchIn, By by) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		
 		WebElement element = null;
 		try {
@@ -74,7 +77,7 @@ public class DriverExtention {
 	
 	public WebElement findElementDynamic(WebElement elementToSearchIn, By by) throws BFElementNotFoundException {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element;
 		if (null == elementToSearchIn) {
@@ -105,7 +108,7 @@ public class DriverExtention {
 	
 	public List<WebElement> findElementsDynamic(By by, int timeOut) throws BFElementNotFoundException {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = webDriverWait(timeOut);
 		List<WebElement> elements = new ArrayList<WebElement>();
@@ -127,7 +130,7 @@ public class DriverExtention {
 	
 	public WebElement waitForElement(final By by) throws BFElementNotFoundException {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element = null;
 		try {
@@ -147,7 +150,7 @@ public class DriverExtention {
 	
 	public WebElement waitUntilElementIsClickable(final By by) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element = null;
 		try {
@@ -162,7 +165,7 @@ public class DriverExtention {
 	
 	public WebElement waitForElementVisible(final By by) throws BFElementNotFoundException {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		
 		WebElement element = null;
@@ -182,7 +185,7 @@ public class DriverExtention {
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				return ((JavascriptExecutor) driver).executeScript(jsVariable)
-						.equals("complete");
+								.equals("complete");
 			}
 		};
 		int progressBarWaitTimer = BasePage.PROGRESSBARWAITTIMER;
@@ -218,128 +221,173 @@ public class DriverExtention {
 	
 	public Button elementButton(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new Button(selector);
 	}
 	
 	public RadioButtonElement elementRadioButton(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new RadioButtonElement(selector);
 	}
 	
 	public RadioButtonElement elementRadioButton(By selector, By childs) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new RadioButtonElement(selector, childs);
 	}
 	
 	public RadioButtonElement elementRadioButton(By selector, By childs, List<String> selectedAttributes) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new RadioButtonElement(selector, childs, selectedAttributes);
 	}
 	
 	public InputTextElement elementInputText(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new InputTextElement(selector);
 	}
 	
 	public DropdownListElement elementDropdownList(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new DropdownListElement(selector);
 	}
 	
 	public ListElements elementList(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new ListElements(selector);
 	}
 	
 	public CheckBox elementCheckbox(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new CheckBox(selector);
 	}
 	
 	public CheckBox elementCheckbox(By selector, By childs) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new CheckBox(selector, childs);
 	}
 	
 	public LabelElement elementLabel(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new LabelElement(selector);
 	}
 	
 	public TabElement elementTab(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TabElement(selector);
 	}
 	
 	public TabElement elementTab(By selector, By childs) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TabElement(selector, childs);
 	}
 	
 	public TabElement elementTab(By selector, By childs, List<String> selectedAttributes) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TabElement(selector, childs, selectedAttributes);
 	}
 	
 	public NavigationBarElement elementNavigationBar(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new NavigationBarElement(selector);
 	}
 	
 	public NavigationBarElement elementNavigationBar(By selector, By inputChildsSelector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new NavigationBarElement(selector, inputChildsSelector);
 	}
 	
 	public TooltipElement elementTooltip(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new TooltipElement(selector);
 	}
 	
 	public MenuElement elementMenu(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector);
 	}
 	
 	public MenuElement elementMenu(By selector, By childsSelector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector);
 	}
 	
 	public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector, subMenuSelector);
 	}
 	
 	public MenuElement elementMenu(By selector, By childsSelector, By subMenuSelector, By childsSubMenuSelector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
 	}
 	
 	public IFrame elementIFrame(By selector) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new IFrame(selector);
+	}
+	
+	public void mouseRightClick(By selector) {
+		WebElement element = findElementDynamic(selector);
+		Actions action = new Actions(getDriver()).contextClick(element);
+		action.build()
+						.perform();
+	}
+	
+	public void mouseLeftClick(By selector) {
+		WebElement element = getDriver().findElementQuietly(selector);
+		if (element != null) {
+			mouseLeftClick(element);
+		} else {
+			BFLogger.logDebug("Unable to perform left mouse click due to null WebElement");
+		}
+	}
+	
+	public void mouseLeftClick(WebElement element) {
+		new Actions(getDriver()).click(element)
+						.build()
+						.perform();
 	}
 	
 }

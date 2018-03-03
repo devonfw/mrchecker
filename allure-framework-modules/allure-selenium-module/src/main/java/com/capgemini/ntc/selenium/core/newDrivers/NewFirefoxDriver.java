@@ -1,19 +1,20 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -32,13 +33,8 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 		driverExtention = new DriverExtention(this);
 	}
 	
-	public NewFirefoxDriver(FirefoxProfile profile) {
-		super(profile);
-		driverExtention = new DriverExtention(this);
-	}
-	
-	public NewFirefoxDriver(Capabilities capabilities) {
-		super(capabilities);
+	public NewFirefoxDriver(FirefoxOptions options) {
+		super(options);
 		driverExtention = new DriverExtention(this);
 	}
 	
@@ -49,7 +45,7 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	@Override
 	public List<WebElement> findElements(By by) {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return DriverExtention.convertWebElementList(super.findElements(by));
 	}
 	
@@ -60,7 +56,7 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	@Override
 	public WebElement findElement(By by) throws BFElementNotFoundException {
 		BasePage.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		WebElement elementFromDriver = null;
 		try {
 			elementFromDriver = super.findElement(by);
@@ -198,8 +194,8 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	
 	@Override
 	public RadioButtonElement elementRadioButton(By selector,
-			By inputChildsSelector,
-			List<String> listSelectedAttributes) {
+					By inputChildsSelector,
+					List<String> listSelectedAttributes) {
 		return driverExtention.elementRadioButton(selector, inputChildsSelector, listSelectedAttributes);
 	}
 	
@@ -279,7 +275,42 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	}
 	
 	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector, sliderSelector, valueSelector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
+	}
+	
+	@Override
 	public IFrame elementIFrame(By selector) {
 		return driverExtention.elementIFrame(selector);
+	}
+	
+	@Override
+	public void mouseRightClick(By selector) {
+		driverExtention.mouseRightClick(selector);
+	}
+	
+	@Override
+	public void mouseLeftClick(By selector) {
+		driverExtention.mouseLeftClick(selector);
+	}
+	
+	@Override
+	public void mouseLeftClick(WebElement element) {
+		driverExtention.mouseLeftClick(element);
 	}
 }

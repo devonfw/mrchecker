@@ -10,7 +10,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-core-module</artifactId>
-    <version>4.12.0.3</version>
+    <version>4.12.0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Test core - Module</name>
     <description>Allure Test Framework Core is responsible for:
@@ -65,7 +65,7 @@ Based on Junit4.12</description>
         <JUnitParams.version>1.0.4</JUnitParams.version>
 
         <!-- Tests executors -->
-        <thread.count>8</thread.count>
+        <thread.count>1</thread.count>
         <junit-toolbox.version>2.4</junit-toolbox.version>
 
         <!-- Logger -->

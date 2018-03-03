@@ -54,8 +54,9 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <allure-core-module.version>4.12.0.3</allure-core-module.version>
-        <allure-selenium-module.version>3.4.0.3</allure-selenium-module.version>
+        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
+        <allure-selenium-module.version>3.8.1.3-SNAPSHOT</allure-selenium-module.version>
+        <allure-security-module.version>0.0.1-SNAPSHOT</allure-security-module.version>
 
 
         <!-- Java settings -->
@@ -100,7 +101,7 @@
         <guice.version>4.1.0</guice.version>
 
         <!-- Guava is a set of core libraries -->
-        <google.guava.version>21.0</google.guava.version>
+        <google.guava.version>23.0</google.guava.version>
         
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
@@ -129,6 +130,12 @@
             <version>${allure-selenium-module.version}</version>
         </dependency>
 
+        <!-- Security module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-security-module</artifactId>
+            <version>${allure-security-module.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>

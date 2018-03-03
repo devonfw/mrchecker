@@ -10,11 +10,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  */
 public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
-	BROWSER("browser", "chrome"), BROWSER_VERSION("browserVersion", "8.0"), SELENIUM_GRID("seleniumGrid", "false"), OS("os", "windows");
+	BROWSER("browser", "chrome"),
+	BROWSER_VERSION("browserVersion", "8.0"),
+	SELENIUM_GRID("seleniumGrid", "false"),
+	OS("os", "windows");
 	
-	private String paramName;
-	private String paramValue;
-	private String defaultValue;
+	private String	paramName;
+	private String	paramValue;
+	private String	defaultValue;
 	
 	private RuntimeParametersSelenium(String paramName, String defaultValue) {
 		this.paramName = paramName;
@@ -45,20 +48,20 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 		;
 		
 		switch (this.name()) {
-		case "BROWSER":
-			if (paramValue.equals("ie")) {
-				paramValue = "internet explorer";
-			}
-			break;
-		case "BROWSER_VERSION":
-			break;
-		case "SELENIUM_GRID":
-			break;
-		case "OS":
-			break;
-		default:
-			BFLogger.logError("Unknown RuntimeParameter = " + this.name());
-			break;
+			case "BROWSER":
+				if (paramValue.equals("ie")) {
+					paramValue = "internet explorer";
+				}
+				break;
+			case "BROWSER_VERSION":
+				break;
+			case "SELENIUM_GRID":
+				break;
+			case "OS":
+				break;
+			default:
+				BFLogger.logError("Unknown RuntimeParameter = " + this.name());
+				break;
 		}
 		
 		this.paramValue = paramValue;

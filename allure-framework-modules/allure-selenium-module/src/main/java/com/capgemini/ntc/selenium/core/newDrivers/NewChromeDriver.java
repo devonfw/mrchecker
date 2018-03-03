@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -51,7 +53,7 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	@Override
 	public List<WebElement> findElements(By by) {
 		BaseTest.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return DriverExtention.convertWebElementList(super.findElements(by));
 	}
 	
@@ -62,7 +64,7 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	@Override
 	public WebElement findElement(By by) throws BFElementNotFoundException {
 		BaseTest.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 		WebElement elementFromDriver = null;
 		try {
 			elementFromDriver = super.findElement(by);
@@ -207,8 +209,8 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 	
 	@Override
 	public RadioButtonElement elementRadioButton(By selector,
-			By inputChildsSelector,
-			List<String> listSelectedAttributes) {
+					By inputChildsSelector,
+					List<String> listSelectedAttributes) {
 		return driverExtention.elementRadioButton(selector, inputChildsSelector, listSelectedAttributes);
 	}
 	
@@ -292,8 +294,43 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 		return driverExtention.elementMenu(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
 	}
 	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector, sliderSelector, valueSelector);
+	}
+	
+	@Override
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		return driverExtention.elementHorizontalSlider(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
+	}
+	
+	@Override
+	public void mouseRightClick(By selector) {
+		driverExtention.mouseRightClick(selector);
+	}
+	
+	@Override
+	public void mouseLeftClick(By selector) {
+		driverExtention.mouseLeftClick(selector);
+	}
+	
+	@Override
+	public void mouseLeftClick(WebElement element) {
+		driverExtention.mouseLeftClick(element);
+	}
+	
 	public static void main(String[] args) {
 		BaseTest.getAnalytics()
-				.sendMethodEvent(BasePage.analitycsCategoryName);
+						.sendMethodEvent(BasePage.analitycsCategoryName);
 	}
 }

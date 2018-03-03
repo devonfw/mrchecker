@@ -40,7 +40,7 @@
     <modules>
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
-        <!-- <module>allure-security-module</module> -->
+        <module>allure-security-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
 
@@ -160,14 +160,6 @@
                 <version>${joda-time.version}</version>
             </dependency>
 
-
-            <!-- Guava is a set of core libraries -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${google.guava.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
@@ -185,14 +177,6 @@
         <pluginManagement>
 
             <plugins>
-
-                <!-- Generate Project info such as licenses and plugins -->
-                <!-- <plugin> -->
-                <!-- <groupId>org.apache.maven.plugins</groupId> -->
-                <!-- <artifactId>maven-project-info-reports-plugin</artifactId> -->
-                <!-- <version>2.9</version> -->
-                <!-- </plugin> -->
-
 
                 <!-- CLEAN -->
                 <plugin>
