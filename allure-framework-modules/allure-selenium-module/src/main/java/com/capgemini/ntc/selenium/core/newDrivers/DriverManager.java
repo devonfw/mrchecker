@@ -199,13 +199,14 @@ public class DriverManager {
 				
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("webdriver.firefox.marionette", true);
-				profile.setPreference("browser.download.folderlist", 2);
-				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
+				profile.setPreference("browser.download.folderList", 2);
+				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
+				profile.setPreference("browser.download.useDownloadDir", true);
+				
+				profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
 								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
-				profile.setPreference("browser.download.useDownloadDir", true);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
-				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
 				
 				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 				
