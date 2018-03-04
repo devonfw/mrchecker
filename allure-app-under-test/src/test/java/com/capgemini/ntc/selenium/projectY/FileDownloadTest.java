@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.projectY;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -7,7 +8,6 @@ import java.io.File;
 import org.junit.Test;
 
 import com.capgemini.ntc.selenium.core.BasePage;
-import com.capgemini.ntc.selenium.download.DownloadManager;
 import com.capgemini.ntc.selenium.pages.projectY.FileDownloadPage;
 import com.capgemini.ntc.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.ntc.test.core.BaseTest;
@@ -35,22 +35,23 @@ public class FileDownloadTest extends BaseTest {
 	
 	@Override
 	public void tearDown() {
-		BFLogger.logDebug("Step 8 - navigate back to The-Internet page");
+		BFLogger.logDebug("Step 9 - navigate back to The-Internet page");
 		BasePage.navigateBack();
 	}
 	
 	@Test
 	public void fileShouldBeDownloaded() {
-		BFLogger.logDebug("Step 5 - Download the file");
-		fileDownloadPage.downloadTheFile();
+		BFLogger.logDebug("Step 5 - Download the some-file.txt");
+		File downloadedFile = fileDownloadPage.downloadTheSomeFileTxt();
 		
 		BFLogger.logDebug("Step 6 - Check if downloaded file exist");
-		DownloadManager downloadManager = new DownloadManager(BasePage.getDriver());
-		File downloadedFile = downloadManager.handleDownload();
-		assertTrue("Downloaded file does not exist", downloadManager.isLastDownloadedFileExist());
+		assertTrue("Downloaded file does not exist", downloadedFile.exists());
 		
 		BFLogger.logDebug("Step 7 - Remove the downloaded file");
-		DownloadManager.deleteFile(downloadedFile);
+		downloadedFile.delete();
+		
+		BFLogger.logDebug("Step 8 - Check if downloaded file has been removed");
+		assertFalse("Downloaded file still exist", downloadedFile.exists());
 	}
 	
 }
