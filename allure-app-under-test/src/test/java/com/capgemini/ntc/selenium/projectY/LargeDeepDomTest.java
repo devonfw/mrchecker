@@ -24,6 +24,11 @@ public class LargeDeepDomTest extends BaseTest {
 	}
 	
 	@Test
+	public void testSiblingsCount() {
+		assertEquals(50, largeDeepDomPage.getSiblingTiersCount());
+	}
+	
+	@Test
 	public void testSiblingsContent() {
 		for (int tier = 1; tier < EXPECTED_TIER_COUNT; tier++)
 			for (int item = 1; item < EXPECTED_ITEM_COUNT; item++)
