@@ -54,8 +54,9 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <allure-core-module.version>4.12.0.4-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
         <allure-selenium-module.version>3.8.1.3-SNAPSHOT</allure-selenium-module.version>
+        <allure-security-module.version>0.0.1-SNAPSHOT</allure-security-module.version>
 
 
         <!-- Java settings -->
@@ -129,6 +130,12 @@
             <version>${allure-selenium-module.version}</version>
         </dependency>
 
+        <!-- Security module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-security-module</artifactId>
+            <version>${allure-security-module.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>
