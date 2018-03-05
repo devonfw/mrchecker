@@ -15,6 +15,7 @@ node(){
 			if (env.TESTMODULE.equals("allure-app-under-test")) {
 				stageBuildCompile();
 				stageUnitTestsAndStaticAnalyze();
+				copySecretData();
 				stageIntegrationTests();
 			}
 			else {
@@ -371,6 +372,12 @@ void stashNotification(String state){
 	//Load StashNotification file and run call() method
 	def module = load "${env.COMMONS_DIR}/StashNotification.groovy";
 	module(state);
+}
+
+void copySecretData() {
+	sh """
+        cp ${env.PROJECT_HOME}/src/test/resources/secretData ${env.PROJECT_HOME}/src/resources
+	"""
 }
 
 /**
