@@ -172,6 +172,14 @@ void setWorkspace(){
 		env.TESTMODULE = "allure-app-under-test";
 	}
 
+	try{
+		env.LOGINURL = LOGINURL;
+		echo("env.LOGINURL=${env.LOGINURL}");
+	} catch (Exception e){
+		echo("LOGINURL was not overwritten");
+		env.LOGINURL = "http://toolsqa.com/";
+	}
+
     try{
 		env.BRANCH_TYPE_OVERRIDE = BRANCH_TYPE_OVERRIDE;
     } catch (Exception e){
