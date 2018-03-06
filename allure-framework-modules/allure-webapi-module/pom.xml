@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
     <name>AllureTestFramework - WebApi - Module</name>
     <description>Allure Test Framework WebApi supports:
-        ?????????????????
+        TODO
 </description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
@@ -47,7 +47,7 @@
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <allure-core-module.version>4.12.0.4-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
 
         <!-- rest-assured version -->
         <io.rest-assured.version>3.0.2</io.rest-assured.version>
