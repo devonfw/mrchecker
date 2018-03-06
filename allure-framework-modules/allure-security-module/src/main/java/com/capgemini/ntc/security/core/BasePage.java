@@ -13,8 +13,8 @@ import com.google.inject.Guice;
 abstract public class BasePage implements ITestObserver {
 	
 	private static IEnvironmentService	environmentService;
-	private final static IAnalytics			analytics;
-	public final static String					analitycsCategoryName	= "Security-Module";
+	private final static IAnalytics		analytics;
+	public final static String			analitycsCategoryName	= "Security-Module";
 	
 	static {
 		// Get analytics instance created in BaseTets
@@ -40,28 +40,28 @@ abstract public class BasePage implements ITestObserver {
 	@Override
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
-		        .getSimpleName());
+				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestSuccess() {
 		// All actions needed while test method is success
 		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
-		        .getSimpleName());
+				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		// All actions needed while test class is finishing
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
-		        .getSimpleName());
+				.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
-		        .getSimpleName());
+				.getSimpleName());
 	}
 	
 	@Override
@@ -71,7 +71,7 @@ abstract public class BasePage implements ITestObserver {
 	
 	private static void setEnvironmetInstance() {
 		environmentService = Guice.createInjector(new EnvironmentModule())
-		        .getInstance(IEnvironmentService.class);
+				.getInstance(IEnvironmentService.class);
 	}
 	
 }
