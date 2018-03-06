@@ -10,7 +10,7 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
  */
 public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
-	BROWSER("browser", "firefox"),
+	BROWSER("browser", "chrome"),
 	BROWSER_VERSION("browserVersion", "8.0"),
 	SELENIUM_GRID("seleniumGrid", "false"),
 	OS("os", "windows");

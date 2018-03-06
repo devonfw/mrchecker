@@ -44,6 +44,7 @@ public class FileDownloadPage extends BasePage {
 		
 		getDriver().elementButton(selectorSomeFileTxt)
 						.click();
+		
 		waitForFileDownload(2000, fileToDownload);
 		return fileToDownload;
 	}
