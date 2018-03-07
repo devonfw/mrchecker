@@ -18,13 +18,19 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorMultipleWindowsLink		= By.cssSelector("li > a[href*=windows]");
 	private static final By	selectorBasicAuthLink			= By.cssSelector("li > a[href*=basic_auth]");
 	private static final By	selectorKeyPressesLink			= By.cssSelector("li > a[href*=key_presses]");
+	private static final By	selectorRedirectLink			= By.cssSelector("li > a[href*=redirector]");
 	private static final By	selectorJavaScriptAlertLink		= By.cssSelector("li > a[href*=javascript_alerts]");
 	private static final By	selectorHoversLink				= By.cssSelector("li > a[href*=hovers]");
+	private static final By	selectorSortableDataTablesLink	= By.cssSelector("li > a[href*=tables]");
 	private static final By	selectorChallengingDomClick		= By.cssSelector("li > a[href*=challenging_dom]");
 	private static final By	selectorStatusCodesLink			= By.cssSelector("li > a[href*=status_codes]");
 	private static final By	selectorDynamicContent			= By.cssSelector("li > a[href*=dynamic_content]");
 	private static final By	selectorHorizontalSliderLink	= By.cssSelector("li > a[href*=horizontal_slider]");
 	private static final By	selectorFormAuthenticationLink	= By.cssSelector("li > a[href*=login]");
+	private static final By	selectorFileDownloadLink		= By.cssSelector("li > a[href='/download']");
+	private static final By	selectorForgotPasswordLink		= By.cssSelector("li > a[href*=forgot_password]");
+	private static final By	selectorExitIntentLink			= By.cssSelector("li > a[href*=exit_intent]");
+	private static final By	selectorDynamicLoadingLink		= By.cssSelector("li > a[href*=dynamic_loading]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -81,13 +87,19 @@ public class TheInternetPage extends BasePage {
 		return new KeyPressesPage();
 	}
 	
+	public SortableDataTablesPage clickSortableDataTablesLink() {
+		Button elementLink = new Button(selectorSortableDataTablesLink);
+		elementLink.click();
+		return new SortableDataTablesPage();
+	}
+	
 	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
 		Button elementLink = new Button(selectorJavaScriptAlertLink);
 		elementLink.click();
 		return new JavaScriptAlertsPage();
-  }
+	}
 	
-  public DynamicContentPage clickDynamicContentPage() {
+	public DynamicContentPage clickDynamicContentPage() {
 		Button elementLink = new Button(selectorDynamicContent);
 		elementLink.click();
 		return new DynamicContentPage();
@@ -97,6 +109,12 @@ public class TheInternetPage extends BasePage {
 		Button elementLink = new Button(selectorMultipleWindowsLink);
 		elementLink.click();
 		return new MultipleWindowsPage();
+	}
+	
+	public RedirectLinkPage clickRedirectLinkPage() {
+		Button elementLink = new Button(selectorRedirectLink);
+		elementLink.click();
+		return new RedirectLinkPage();
 	}
 	
 	public TheBasicAuthPage clickBasicAuthLink() {
@@ -118,10 +136,10 @@ public class TheInternetPage extends BasePage {
 						.click();
 		return new StatusCodesHomePage();
 	}
-
+	
 	public HorizontalSliderPage clickHorizontalSliderLink() {
-		WebElement elementClickLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
-		elementClickLink.click();
+		WebElement elementLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
+		elementLink.click();
 		return new HorizontalSliderPage();
 	}
 	
@@ -130,4 +148,29 @@ public class TheInternetPage extends BasePage {
 		elementLink.click();
 		return new FormAuthenticationPage();
 	}
+	
+	public FileDownloadPage clickFileDownloadLink() {
+		Button elementLink = new Button(selectorFileDownloadLink);
+		elementLink.click();
+		return new FileDownloadPage();
+	}
+	
+	public ForgotPasswordPage clickForgotPasswordLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorForgotPasswordLink);
+		elementLink.click();
+		return new ForgotPasswordPage();
+	}
+	
+	public ExitIntentPage clickExitIntentLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorExitIntentLink);
+		elementLink.click();
+		return new ExitIntentPage();
+	}
+	
+	public DynamicLoadingPage clickDynamicLoadingLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorDynamicLoadingLink);
+		elementLink.click();
+		return new DynamicLoadingPage();
+	}
+	
 }
