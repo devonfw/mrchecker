@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -19,11 +19,11 @@
 
         In case of driver leak at mvn repositories, please insert drivers file into 'lib/dbdrivers' directory.
         Examples build on Hibernate as a JPA provider.
-</description>
+    </description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
     <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
 
@@ -31,13 +31,13 @@
         <developer>
             <name>Lukasz Stefaniszyn</name>
             <email>lukasz.stefaniszyn@capgemini.com</email>
-            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
         <developer>
             <name>Przemyslaw Wojtkow</name>
             <email>przemyslaw.wojtkow@capgemini.com</email>
-            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
     </developers>
@@ -74,13 +74,13 @@
             <version>${allure-core-module.version}</version>
         </dependency>
 
-		
-		<!--This dependency is necessary for ???????? plugin. -->
+
+        <!--This dependency is necessary for ???????? plugin. -->
         <!--<dependency>
             <groupId>reuse.package.from.parent.pom</groupId>
             <artifactId>lib-name</artifactId>
         </dependency> -->
-		
+
         <!--This dependency is necessary for ???????? plugin. -->
         <!--<dependency>
             <groupId>new.added.package</groupId>
@@ -88,7 +88,7 @@
             <version>${package.version}</version>
         </dependency> -->
 
-    </dependencies>    
+    </dependencies>
 
 
     <!-- Build goals/actions -->

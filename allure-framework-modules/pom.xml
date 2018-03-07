@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini.ntc</groupId>
     <artifactId>allure-test-framework</artifactId>
@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
 
@@ -19,7 +19,7 @@
         <developer>
             <name>Lukasz Stefaniszyn</name>
             <email>lukasz.stefaniszyn@capgemini.com</email>
-            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
     </developers>
@@ -41,10 +41,9 @@
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
         <module>allure-security-module</module>
-		<module>mrchecker-database-module</module>
+        <module>mrchecker-database-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
-
 
 
     <repositories>
@@ -130,7 +129,6 @@
             </dependency>
 
 
-
             <!--This dependency is necessary for JUnit plugin. -->
             <dependency>
                 <groupId>junit</groupId>
@@ -170,7 +168,6 @@
 
         </dependencies>
     </dependencyManagement>
-
 
 
     <!-- Build goals/actions -->
@@ -396,7 +393,7 @@
                     </plugin>
                 </plugins>
             </build>
-            
+
             <reporting>
                 <plugins>
                     <!-- Report project information -->
@@ -407,7 +404,7 @@
                     </plugin>
                 </plugins>
             </reporting>
-        
+
         </profile>
 
 
@@ -460,7 +457,6 @@
 
 
     </profiles>
-
 
 
     <reporting>
