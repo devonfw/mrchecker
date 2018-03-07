@@ -8,11 +8,11 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>2.0.0</version>
     </parent>
-    <artifactId>allure-database-module</artifactId>
+    <artifactId>mrchecker-database-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - Database - Module</name>
-    <description>Allure Test Framework Database Module:
+    <name>MrChecker - Database - Module</name>
+    <description>MrChecker Database Module:
         - based od JPA interfaces,
         - structure build on ORM methodology,
         - supports all database engines with JDBC drivers.
@@ -58,7 +58,7 @@
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <allure-core-module.version>4.12.0.3-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
 
         <!-- Lib/package version settings -->
         <!-- <package.version>0.0.0</selenium.version> -->

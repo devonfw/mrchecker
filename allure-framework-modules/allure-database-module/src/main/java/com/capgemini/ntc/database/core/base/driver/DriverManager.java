@@ -61,7 +61,6 @@ public class DriverManager {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
 			try {
-				BFLogger.logDebug("Closing WebDriver for this thread. " + RuntimeParameters.PARAM_1.getValue());
 				// driver.quit();
 			} catch (Exception e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
@@ -77,7 +76,6 @@ public class DriverManager {
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static String createDriver() {
-		BFLogger.logDebug("Creating new " + RuntimeParameters.PARAM_1.toString() + "  driver.");
 
 		String driver = "created driver";
 		return driver;
