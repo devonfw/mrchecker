@@ -61,8 +61,11 @@ abstract public class BaseDatabase implements ITestObserver {
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
 				.getSimpleName());
-		makeScreenshotOnFailure();
-		makeSourcePageOnFailure();
+		saveAllUsedQueries();
+	}
+
+	private void saveAllUsedQueries() {
+
 	}
 
 	@Override
