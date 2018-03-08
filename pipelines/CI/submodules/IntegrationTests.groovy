@@ -50,7 +50,8 @@ private generateAllureReport(){
 private runFirstTest() {
 	sh """
         cd ${env.PROJECT_HOME}
-        surefire:test -Dtest=RegisterOKTest -DseleniumGrid=${env.HUBURL} -Dlogin.url=${env.LOGINURL} -Dos=LINUX -Dbrowser=chrome
+		curl https://api.twitter.com/1/help/configuration.xml
+        mvn clean compile test site -Dtest=RegisterOKTest -DseleniumGrid=${env.HUBURL} -Dlogin.url=${env.LOGINURL} -Dos=LINUX -Dbrowser=chrome
     """
 	//clean test-compile test site -Dtest=RegisterOKTest
 	//clean compile test site -Dtest=
