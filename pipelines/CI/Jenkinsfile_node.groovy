@@ -15,7 +15,7 @@ node(){
 			if (env.TESTMODULE.equals("allure-app-under-test")) {
 				stageBuildCompile();
 				stageUnitTestsAndStaticAnalyze();
-				copySecretData();
+				//copySecretData();
 				stageIntegrationTests();
 			}
 			else {
