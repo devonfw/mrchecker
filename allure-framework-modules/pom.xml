@@ -41,7 +41,7 @@
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
         <module>allure-security-module</module>
-        <module>allure-webapi-module</module>
+        <module>mrchecker-webapi-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
 
@@ -165,6 +165,12 @@
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>${org.json.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${org.jasypt.version}</version>
             </dependency>
 
 

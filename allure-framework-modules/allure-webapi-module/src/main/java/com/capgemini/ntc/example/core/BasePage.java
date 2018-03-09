@@ -13,16 +13,14 @@ import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
-import ru.yandex.qatools.allure.annotations.Attachment;
-
 abstract public class BasePage implements ITestObserver {
 	
 	private static DriverManager driver = null;
 	
-	private final static PropertiesFileSettings propertiesFileSettings;
-	private static IEnvironmentService environmentService;
-	private final static IAnalytics analytics;
-	public final static String analitycsCategoryName = "NAME-OF-MODULE"; // Selenium-Module
+	private final static PropertiesFileSettings	propertiesFileSettings;
+	private static IEnvironmentService			environmentService;
+	private final static IAnalytics				analytics;
+	public final static String					analitycsCategoryName	= "WebApi-Module";
 	
 	static {
 		// Get analytics instance created in BaseTets
@@ -32,7 +30,7 @@ abstract public class BasePage implements ITestObserver {
 		propertiesFileSettings = setPropertiesSettings();
 		
 		// Read System or maven parameters
-		setRuntimeParametersSelenium();
+		setRuntimeParameters();
 		
 		// Read Environment variables either from environmnets.csv or any other input data.
 		setEnvironmetInstance();
@@ -61,8 +59,6 @@ abstract public class BasePage implements ITestObserver {
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
 				.getSimpleName());
-		makeScreenshotOnFailure();
-		makeSourcePageOnFailure();
 	}
 	
 	@Override
@@ -90,17 +86,7 @@ abstract public class BasePage implements ITestObserver {
 	
 	@Override
 	public ModuleType getModuleType() {
-		return ModuleType.EXAMPLE;
-	}
-	
-	@Attachment("Screenshot on failure")
-	public String makeScreenshotOnFailure() {
-		return "";
-	}
-	
-	@Attachment("Source Page on failure")
-	public String makeSourcePageOnFailure() {
-		return "";
+		return ModuleType.WEBAPI;
 	}
 	
 	public static DriverManager getDriver() {
@@ -109,7 +95,6 @@ abstract public class BasePage implements ITestObserver {
 			BasePage.driver = new DriverManager(propertiesFileSettings);
 		}
 		return BasePage.driver;
-		
 	}
 	
 	private static PropertiesFileSettings setPropertiesSettings() {
@@ -119,7 +104,7 @@ abstract public class BasePage implements ITestObserver {
 		return propertiesFileSettings;
 	}
 	
-	private static void setRuntimeParametersSelenium() {
+	private static void setRuntimeParameters() {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
 				.toString());

@@ -8,11 +8,11 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>2.0.0</version>
     </parent>
-    <artifactId>allure-webapi-module</artifactId>
+    <artifactId>mrchecker-webapi-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - WebApi - Module</name>
-    <description>Allure Test Framework WebApi supports:
+    <name>MrChecker - WebApi - Module</name>
+    <description>MrChecker WebApi supports:
         TODO
 </description>
     <url>https://github.com/devonfw/devonfw-testing</url>
@@ -26,6 +26,20 @@
         <developer>
             <name>Lukasz Stefaniszyn</name>
             <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        
+        <developer>
+            <name>Tomasz Supel</name>
+            <email>tomasz.supel@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        
+         <developer>
+            <name>Pawel Szczesny</name>
+            <email>pawel.szczesny@capgemini.com</email>
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
@@ -77,12 +91,7 @@
             <artifactId>json-schema-validator</artifactId>
             <version>${io.rest-assured.version}</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.jasypt</groupId>
-            <artifactId>jasypt</artifactId>
-            <version>${org.jasypt.version}</version>
-        </dependency>
+
 
     </dependencies>    
 
