@@ -52,14 +52,14 @@ public class DisappearingElementsTest extends BaseTest {
 	@Test
 	public void shouldMenuButtonElementAppearAndDisappearAfterRefreshTest() {
 		BFLogger.logInfo("Step 6: Click refresh button until menu button appears");
-		disappearingElementsPage.refreshUntilAppear(true);
+		disappearingElementsPage.refreshPageUntilWebElementAppears(true);
 		
 		BFLogger.logInfo("Step 7: Verify if menu button element appeared");
 		assertNotNull("Unable to disappear menu button element", disappearingElementsPage.getGalleryMenuElement());
 		assertEquals("The number of button elements after refresh is incorrect", totalNumberOfMenuButtons, disappearingElementsPage.getNumberOfMenuButtons());
 		
 		BFLogger.logInfo("Step 8: Click refresh button until menu button disappears");
-		disappearingElementsPage.refreshUntilAppear(false);
+		disappearingElementsPage.refreshPageUntilWebElementAppears(false);
 		
 		BFLogger.logInfo("Step 9: Verify if menu button element disappeared");
 		assertNull("Unable to appear menu button element", disappearingElementsPage.getGalleryMenuElement());

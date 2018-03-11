@@ -50,16 +50,20 @@ public class DisappearingElementsPage extends BasePage {
 	/**
 	 * Refreshes web page as many times as it is required to appear/disappear menu button WebElement.
 	 * 
-	 * @param appearance
+	 * @param shouldAppear
 	 *            Determines if element should appear (true) or disappear (false).
 	 */
-	public void refreshUntilAppear(boolean appearance) {
+	public void refreshPageUntilWebElementAppears(boolean shouldAppear) {
 		int numberOfAttempts = 5;
 		int counter = 0;
-		while (!(!(isGalleryMenuElementVisible() ^ appearance)) || counter > numberOfAttempts) {
+		while (!isVisibilityAsExpected(shouldAppear) || isMaxNumberOfAttemptsReached(counter++, numberOfAttempts)) {
 			refreshPage();
-			counter++;
 		}
+	}
+	
+	private boolean isVisibilityAsExpected(boolean expected) {
+		boolean isVisibilityDifferentThanExpected = isGalleryMenuElementVisible() ^ expected;
+		return !isVisibilityDifferentThanExpected;
 	}
 	
 	private boolean isGalleryMenuElementVisible() {
@@ -68,6 +72,10 @@ public class DisappearingElementsPage extends BasePage {
 		if (gallery != null)
 			result = gallery.isDisplayed();
 		return result;
+	}
+	
+	private boolean isMaxNumberOfAttemptsReached(int attemptNo, int maxNumberOfAttempts) {
+		return attemptNo == maxNumberOfAttempts;
 	}
 	
 }
