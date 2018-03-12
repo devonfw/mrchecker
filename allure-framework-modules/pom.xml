@@ -165,12 +165,7 @@
                 <artifactId>json</artifactId>
                 <version>${org.json.version}</version>
             </dependency>
-            
-            <dependency>
-                <groupId>org.jasypt</groupId>
-                <artifactId>jasypt</artifactId>
-                <version>${org.jasypt.version}</version>
-            </dependency>
+           
 
 
         </dependencies>

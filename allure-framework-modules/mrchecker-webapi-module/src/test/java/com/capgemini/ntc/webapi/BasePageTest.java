@@ -1,9 +1,9 @@
-package com.capgemini.ntc.example;
+package com.capgemini.ntc.webapi;
 
 import org.junit.Test;
 
-import com.capgemini.ntc.example.core.BasePage;
 import com.capgemini.ntc.test.core.BaseTest;
+import com.capgemini.ntc.webapi.core.BasePage;
 
 public class BasePageTest extends BaseTest {
 	

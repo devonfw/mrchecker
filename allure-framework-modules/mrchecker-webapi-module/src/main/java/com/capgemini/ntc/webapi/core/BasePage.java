@@ -1,8 +1,5 @@
-package com.capgemini.ntc.example.core;
+package com.capgemini.ntc.webapi.core;
 
-import com.capgemini.ntc.example.core.base.driver.DriverManager;
-import com.capgemini.ntc.example.core.base.properties.PropertiesFileSettings;
-import com.capgemini.ntc.example.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
@@ -11,6 +8,9 @@ import com.capgemini.ntc.test.core.analytics.IAnalytics;
 import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
+import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
+import com.capgemini.ntc.webapi.core.base.runtime.RuntimeParameters;
 import com.google.inject.Guice;
 
 abstract public class BasePage implements ITestObserver {

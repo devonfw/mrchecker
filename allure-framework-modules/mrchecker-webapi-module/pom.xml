@@ -91,6 +91,12 @@
             <artifactId>json-schema-validator</artifactId>
             <version>${io.rest-assured.version}</version>
         </dependency>
+        
+        <dependency>
+           <groupId>org.jasypt</groupId>
+           <artifactId>jasypt</artifactId>
+           <version>${org.jasypt.version}</version>
+        </dependency>
 
 
     </dependencies>    
