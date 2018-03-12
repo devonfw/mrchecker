@@ -23,7 +23,7 @@ public class DriverManager {
 	}
 	
 	public void start() {
-		DriverManager.getDriver();
+		getDriver();
 	}
 	
 	public void stop() {
