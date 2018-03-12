@@ -20,33 +20,35 @@ public class ChallengingDomTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		BFLogger.logDebug("Step1 - open Chrome browser");
-		BFLogger.logDebug("Step2 - load http://the-internet.herokuapp.com/ page");
+		BFLogger.logDebug("Step 1 - Open the Url http://the-internet.herokuapp.com/ page");
 		theInternetPage = new TheInternetPage();
 		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-		BFLogger.logDebug("Step 3 - Click on the Challenging DOM link");
+		
+		BFLogger.logDebug("Step 2 - Click on the Challenging DOM link");
 		challengingDom = theInternetPage.clickChallengingDomLink();
 		
-		BFLogger.logDebug("Step 4 - Verify if Challenging DOM Page opens");
+		BFLogger.logDebug("Step 3 - Verify if Challenging DOM Page opens");
 		assertTrue("The Challenging DOM Page was not open", challengingDom.isLoaded());
 	}
 	
 	@Override
 	public void tearDown() {
-		BFLogger.logDebug("Step 9 - navigate back to The-Internet page");
+		BFLogger.logDebug("Step 8 - navigate back to The-Internet page");
 		BasePage.navigateBack();
 	}
 	
 	@Test
 	public void valuesInTableCellsShouldNotChangeAfterClick() {
-		BFLogger.logDebug("Step 5 - Getting the table values (before click first button)");
+		BFLogger.logDebug("Step 4 - Getting the table values (before click first button)");
 		List<String> tableValuesBeforeClick = challengingDom.getTableValues();
-		BFLogger.logDebug("Step 6 - Click first button");
+		
+		BFLogger.logDebug("Step 5 - Click first button");
 		challengingDom.clickFirstButton();
-		BFLogger.logDebug("Step 7 - Getting the table values (after click first button)");
+		
+		BFLogger.logDebug("Step 6 - Getting the table values (after click first button)");
 		List<String> tableValuesAfterClick = challengingDom.getTableValues();
 		
-		BFLogger.logDebug("Step 8 - Comparing the table values before and after click");
+		BFLogger.logDebug("Step 7 - Comparing the table values before and after click");
 		assertEquals("Values from table cells was changed after click", tableValuesBeforeClick, tableValuesAfterClick);
 	}
 }
