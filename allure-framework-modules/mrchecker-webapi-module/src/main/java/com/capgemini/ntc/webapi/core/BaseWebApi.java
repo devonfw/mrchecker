@@ -5,7 +5,6 @@ import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
 import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
-import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
@@ -13,12 +12,11 @@ import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
 import com.capgemini.ntc.webapi.core.base.runtime.RuntimeParameters;
 import com.google.inject.Guice;
 
-abstract public class BasePage implements ITestObserver {
+abstract public class BaseWebApi implements ITestObserver {
 	
 	private static DriverManager driver = null;
 	
 	private final static PropertiesFileSettings	propertiesFileSettings;
-	private static IEnvironmentService			environmentService;
 	private final static IAnalytics				analytics;
 	public final static String					analitycsCategoryName	= "WebApi-Module";
 	
@@ -37,17 +35,16 @@ abstract public class BasePage implements ITestObserver {
 	}
 	
 	public static IAnalytics getAnalytics() {
-		return BasePage.analytics;
+		return BaseWebApi.analytics;
 	}
 	
-	public BasePage() {
+	public BaseWebApi() {
 		this(getDriver());
 	}
 	
-	public BasePage(DriverManager driver) {
+	public BaseWebApi(DriverManager driver) {
 		// Add given module to Test core Observable list
 		this.addObserver();
-		
 	}
 	
 	@Override
@@ -57,28 +54,28 @@ abstract public class BasePage implements ITestObserver {
 	
 	@Override
 	public void onTestFailure() {
-		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
+		BFLogger.logDebug("BaseWebApi.onTestFailure    " + this.getClass()
 				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestSuccess() {
 		// All actions needed while test method is success
-		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
+		BFLogger.logDebug("BaseWebApi.onTestSuccess    " + this.getClass()
 				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		// All actions needed while test class is finishing
-		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
+		BFLogger.logDebug("BaseWebApi.onTestFinish   " + this.getClass()
 				.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override
 	public void onTestClassFinish() {
-		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
+		BFLogger.logDebug("BaseWebApi.onTestClassFinish   " + this.getClass()
 				.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
 		DriverManager.closeDriver();
@@ -90,11 +87,11 @@ abstract public class BasePage implements ITestObserver {
 	}
 	
 	public static DriverManager getDriver() {
-		if (BasePage.driver == null) {
+		if (BaseWebApi.driver == null) {
 			// Create module driver
-			BasePage.driver = new DriverManager(propertiesFileSettings);
+			BaseWebApi.driver = new DriverManager(propertiesFileSettings);
 		}
-		return BasePage.driver;
+		return BaseWebApi.driver;
 	}
 	
 	private static PropertiesFileSettings setPropertiesSettings() {

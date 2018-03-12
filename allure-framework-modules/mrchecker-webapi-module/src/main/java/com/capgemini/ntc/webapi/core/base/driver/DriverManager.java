@@ -2,7 +2,6 @@ package com.capgemini.ntc.webapi.core.base.driver;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
-import com.capgemini.ntc.webapi.core.base.runtime.RuntimeParameters;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
@@ -41,6 +40,7 @@ public class DriverManager {
 			closeDriver();
 			BFLogger.logDebug("Closed Driver in finalize()");
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 	}
@@ -61,10 +61,10 @@ public class DriverManager {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
 			try {
-				BFLogger.logDebug("Closing WebDriver for this thread. " + RuntimeParameters.PARAM_1.getValue());
+				BFLogger.logDebug("Closing WebDriver for this thread.");
 				// driver.quit();
 			} catch (Exception e) {
-				BFLogger.logDebug("Ooops! Something went wrong while closing the driver: ");
+				BFLogger.logDebug("An exception occurred during closing the driver: " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				driver = null;
@@ -77,7 +77,7 @@ public class DriverManager {
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
 	private static String createDriver() {
-		BFLogger.logDebug("Creating new " + RuntimeParameters.PARAM_1.toString() + "  driver.");
+		BFLogger.logDebug("Creating new driver.");
 		
 		String driver = "created driver";
 		return driver;
