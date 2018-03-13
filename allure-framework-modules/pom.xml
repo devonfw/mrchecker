@@ -97,10 +97,15 @@
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
 
+        <!-- Hashes sensitive data -->
+        <org.jasypt.version>1.9.2</org.jasypt.version>
+
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
         <style_format.directory>${pom.basedir}/../../resources/style_format</style_format.directory>
 
+        <!--This dependency is necessary for Rest assured plugin. -->
+        <rest-assured.version>3.0.6</rest-assured.version>
     </properties>
 
 
@@ -166,8 +171,25 @@
                 <version>${org.json.version}</version>
             </dependency>
            
+           <!-- Hashes sensitive data -->
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${org.jasypt.version}</version>
+            </dependency>
 
-
+        <!--This dependency is necessary for Rest assured plugin. -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
         </dependencies>
     </dependencyManagement>
 

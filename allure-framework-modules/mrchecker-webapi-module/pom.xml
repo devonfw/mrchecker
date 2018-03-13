@@ -63,10 +63,6 @@
 
         <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
 
-        <!-- rest-assured version -->
-        <io.rest-assured.version>3.0.2</io.rest-assured.version>
-        <org.jasypt.version>1.9.2</org.jasypt.version>
-
     </properties>
 
     <dependencies>
@@ -83,19 +79,17 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>${io.rest-assured.version}</version>
         </dependency>
         
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>${io.rest-assured.version}</version>
         </dependency>
         
+        <!-- Hashes sensitive data -->
         <dependency>
            <groupId>org.jasypt</groupId>
            <artifactId>jasypt</artifactId>
-           <version>${org.jasypt.version}</version>
         </dependency>
 
 

@@ -30,6 +30,7 @@ public class DriverManager {
 			closeDriver();
 			BFLogger.logDebug("Closing Driver in stop()");
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -42,7 +43,6 @@ public class DriverManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public static String getDriver() {
