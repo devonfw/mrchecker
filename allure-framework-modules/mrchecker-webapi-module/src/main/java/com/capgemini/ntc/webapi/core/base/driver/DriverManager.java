@@ -1,13 +1,17 @@
 package com.capgemini.ntc.webapi.core.base.driver;
 
+import static io.restassured.RestAssured.given;
+
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+import io.restassured.specification.RequestSpecification;
+
 public class DriverManager {
 	
-	private static ThreadLocal<String> drivers = new ThreadLocal<String>();
+	private static ThreadLocal<RequestSpecification> drivers = new ThreadLocal<RequestSpecification>();
 	
 	private static PropertiesFileSettings propertiesFileSettings;
 	
@@ -45,42 +49,32 @@ public class DriverManager {
 		}
 	}
 	
-	public static String getDriver() {
-		String driver = drivers.get();
+	public static RequestSpecification getDriver() {
+		RequestSpecification driver = drivers.get();
 		if (driver == null) {
 			driver = createDriver();
 			drivers.set(driver);
-			BFLogger.logDebug("driver:" + driver.toString());
+			BFLogger.logDebug("driver: " + driver.toString());
 		}
 		return driver;
 	}
 	
 	public static void closeDriver() {
-		String driver = drivers.get();
+		RequestSpecification driver = drivers.get();
 		if (driver == null) {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
-			try {
-				BFLogger.logDebug("Closing WebDriver for this thread.");
-				// driver.quit();
-			} catch (Exception e) {
-				BFLogger.logDebug("An exception occurred during closing the driver: " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				driver = null;
-				drivers.remove();
-			}
+			driver = null;
+			drivers.remove();
 		}
 	}
 	
 	/**
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
-	private static String createDriver() {
+	private static RequestSpecification createDriver() {
 		BFLogger.logDebug("Creating new driver.");
-		
-		String driver = "created driver";
-		return driver;
+		return given();
 	}
 	
 }

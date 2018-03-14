@@ -45,7 +45,6 @@
         <!-- <module>build-tools</module> -->
     </modules>
 
-
     <repositories>
         <repository>
             <id>Local repository</id>
@@ -118,7 +117,6 @@
                 <version>${guice.version}</version>
             </dependency>
 
-
             <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
             <dependency>
                 <groupId>org.hamcrest</groupId>
@@ -132,8 +130,6 @@
                 <artifactId>commons-csv</artifactId>
                 <version>${commons-csv.version}</version>
             </dependency>
-
-
 
             <!--This dependency is necessary for JUnit plugin. -->
             <dependency>
@@ -178,22 +174,20 @@
                 <version>${org.jasypt.version}</version>
             </dependency>
 
-        <!--This dependency is necessary for Rest assured plugin. -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>${rest-assured.version}</version>
-        </dependency>
+            <!--This dependency is necessary for Rest assured plugin. -->
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest-assured.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>json-schema-validator</artifactId>
+                <version>${rest-assured.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-
 
     <!-- Build goals/actions -->
     <build>

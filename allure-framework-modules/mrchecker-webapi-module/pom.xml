@@ -12,13 +12,18 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>MrChecker - WebApi - Module</name>
-    <description>MrChecker WebApi supports:
-        TODO
-</description>
+    <description> 
+        MrChecker WebApi supports:
+        - testing REST and SOAP services,
+        - sending REST queries (POST, GET, PUT, PATCH, DELETE),
+        - parsing XML, JSON and HTML documents,
+        - handling Cookies,
+        - SSO (Single Sign-On) authentication process. 
+    </description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
     <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
 
@@ -66,14 +71,12 @@
     </properties>
 
     <dependencies>
-
         <!-- Dependency to other Allure Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>
             <version>${allure-core-module.version}</version>
         </dependency>
-
 		
 		<!--This dependency is necessary for Rest assured plugin. -->
         <dependency>
@@ -91,10 +94,7 @@
            <groupId>org.jasypt</groupId>
            <artifactId>jasypt</artifactId>
         </dependency>
-
-
     </dependencies>    
-
 
     <!-- Build goals/actions -->
     <build>
@@ -102,6 +102,5 @@
             <!-- Plugins are taken from parent pom.xml -->
         </plugins>
     </build>
-
 
 </project>

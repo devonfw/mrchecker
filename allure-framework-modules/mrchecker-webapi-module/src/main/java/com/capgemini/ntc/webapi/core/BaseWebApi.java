@@ -14,8 +14,7 @@ import com.google.inject.Guice;
 
 abstract public class BaseWebApi implements ITestObserver {
 	
-	private static DriverManager driver = null;
-	
+	private static DriverManager				driver					= null;
 	private final static PropertiesFileSettings	propertiesFileSettings;
 	private final static IAnalytics				analytics;
 	public final static String					analitycsCategoryName	= "WebApi-Module";
@@ -43,7 +42,6 @@ abstract public class BaseWebApi implements ITestObserver {
 	}
 	
 	public BaseWebApi(DriverManager driver) {
-		// Add given module to Test core Observable list
 		this.addObserver();
 	}
 	
@@ -60,14 +58,12 @@ abstract public class BaseWebApi implements ITestObserver {
 	
 	@Override
 	public void onTestSuccess() {
-		// All actions needed while test method is success
 		BFLogger.logDebug("BaseWebApi.onTestSuccess    " + this.getClass()
 				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
-		// All actions needed while test class is finishing
 		BFLogger.logDebug("BaseWebApi.onTestFinish   " + this.getClass()
 				.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
@@ -77,7 +73,7 @@ abstract public class BaseWebApi implements ITestObserver {
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BaseWebApi.onTestClassFinish   " + this.getClass()
 				.getSimpleName());
-		BFLogger.logDebug("driver:" + getDriver().toString());
+		BFLogger.logDebug("driver: " + getDriver().toString());
 		DriverManager.closeDriver();
 	}
 	
@@ -88,14 +84,12 @@ abstract public class BaseWebApi implements ITestObserver {
 	
 	public static DriverManager getDriver() {
 		if (BaseWebApi.driver == null) {
-			// Create module driver
 			BaseWebApi.driver = new DriverManager(propertiesFileSettings);
 		}
 		return BaseWebApi.driver;
 	}
 	
 	private static PropertiesFileSettings setPropertiesSettings() {
-		// Get and then set properties information from settings.properties file
 		PropertiesFileSettings propertiesFileSettings = Guice.createInjector(PropertiesSettingsModule.init())
 				.getInstance(PropertiesFileSettings.class);
 		return propertiesFileSettings;
@@ -114,7 +108,6 @@ abstract public class BaseWebApi implements ITestObserver {
 		 * settings file for Selenium module. In future, please have a look on Core Module IEnvironmentService
 		 * environmetInstance = Guice.createInjector(new EnvironmentModule()) .getInstance(IEnvironmentService.class);
 		 */
-		
 	}
 	
 }
