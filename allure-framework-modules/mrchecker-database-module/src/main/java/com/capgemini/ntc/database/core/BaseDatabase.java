@@ -22,6 +22,9 @@ abstract public class BaseDatabase implements ITestObserver {
 	private final static PropertiesFileSettings propertiesFileSettings;
 	private static       IEnvironmentService    environmentService;
 	private final static IAnalytics             analytics;
+
+	protected String dbPrefix = "default";
+
 	public final static String analitycsCategoryName = "Database-Module";
 
 	static {
@@ -42,14 +45,9 @@ abstract public class BaseDatabase implements ITestObserver {
 		return BaseDatabase.analytics;
 	}
 
-	public BaseDatabase() {
-		this(getDriver());
-	}
-
 	public BaseDatabase(DriverManager driver) {
 		// Add given module to Test core Observable list
 		this.addObserver();
-
 	}
 
 	@Override
@@ -61,11 +59,8 @@ abstract public class BaseDatabase implements ITestObserver {
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
 				.getSimpleName());
-		saveAllUsedQueries();
-	}
-
-	private void saveAllUsedQueries() {
-
+		makeScreenshotOnFailure();
+		makeSourcePageOnFailure();
 	}
 
 	@Override
@@ -85,10 +80,8 @@ abstract public class BaseDatabase implements ITestObserver {
 
 	@Override
 	public void onTestClassFinish() {
-		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
-				.getSimpleName());
-		BFLogger.logDebug("driver:" + getDriver().toString());
-		DriverManager.closeDriver();
+		closeSession();
+		BFLogger.logDebug("Session for connection: [" + dbPrefix + "] closed.");
 	}
 
 	@Override
@@ -106,15 +99,6 @@ abstract public class BaseDatabase implements ITestObserver {
 		return "";
 	}
 
-	public static DriverManager getDriver() {
-		if (BaseDatabase.driver == null) {
-			// Create module driver
-			BaseDatabase.driver = new DriverManager(propertiesFileSettings);
-		}
-		return BaseDatabase.driver;
-
-	}
-
 	private static PropertiesFileSettings setPropertiesSettings() {
 		// Get and then set properties information from settings.properties file
 		PropertiesFileSettings propertiesFileSettings = Guice.createInjector(PropertiesSettingsModule.init())
@@ -126,6 +110,10 @@ abstract public class BaseDatabase implements ITestObserver {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
 				.toString());
+
+	}
+
+	private void closeSession() {
 
 	}
 
