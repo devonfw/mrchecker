@@ -1,6 +1,5 @@
 package com.capgemini.ntc.database.core;
 
-import com.capgemini.ntc.database.core.base.driver.DriverManager;
 import com.capgemini.ntc.database.core.base.properties.PropertiesFileSettings;
 import com.capgemini.ntc.database.core.base.runtime.RuntimeParameters;
 import com.capgemini.ntc.test.core.BaseTest;
@@ -13,22 +12,29 @@ import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
+import lombok.Getter;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
-abstract public class BaseDatabase implements ITestObserver {
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-	private static DriverManager driver = null;
+abstract public class BaseDatabase implements ITestObserver {
 
 	private final static PropertiesFileSettings propertiesFileSettings;
 	private static       IEnvironmentService    environmentService;
 	private final static IAnalytics             analytics;
 
+	@Getter
 	protected String dbPrefix = "default";
+	protected EntityManagerFactory emf;
+	protected EntityManagerFactory getConnection() {
+		return emf != null ? this.emf : Persistence.createEntityManagerFactory(getDbPrefix());
+	}
 
 	public final static String analitycsCategoryName = "Database-Module";
 
 	static {
-		// Get analytics instance created in BaseTets
+		// Get analytics instance created in BaseTest
 		analytics = BaseTest.getAnalytics();
 
 		// Get and then set properties information from selenium.settings file
@@ -37,17 +43,12 @@ abstract public class BaseDatabase implements ITestObserver {
 		// Read System or maven parameters
 		setRuntimeParametersDatabase();
 
-		// Read Environment variables either from environmnets.csv or any other input data.
+		// Read Environment variables either from environments.csv or any other input data.
 		setEnvironmetInstance();
 	}
 
 	public static IAnalytics getAnalytics() {
 		return BaseDatabase.analytics;
-	}
-
-	public BaseDatabase(DriverManager driver) {
-		// Add given module to Test core Observable list
-		this.addObserver();
 	}
 
 	@Override
