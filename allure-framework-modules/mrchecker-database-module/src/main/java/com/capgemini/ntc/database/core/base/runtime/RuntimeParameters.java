@@ -15,7 +15,6 @@ public enum RuntimeParameters implements RuntimeParametersI {
 		this.paramName = paramName;
 		this.defaultValue = defaultValue;
 		setValue();
-
 	}
 
 	@Override
@@ -37,13 +36,11 @@ public enum RuntimeParameters implements RuntimeParametersI {
 
 		String paramValue = System.getProperty(this.paramName);
 		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue.toLowerCase();
-		;
 
 		switch (this.name()) {
 		}
 
 		this.paramValue = paramValue;
-
 	}
 
 	private boolean isSystemParameterEmpty(String systemParameterValue) {
