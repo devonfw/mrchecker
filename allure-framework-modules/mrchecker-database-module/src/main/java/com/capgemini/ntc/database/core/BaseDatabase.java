@@ -87,7 +87,7 @@ abstract public class BaseDatabase implements ITestObserver {
 
 	@Override
 	public ModuleType getModuleType() {
-		return ModuleType.EXAMPLE;
+		return ModuleType.DATABASE;
 	}
 
 	@Attachment("Screenshot on failure")
