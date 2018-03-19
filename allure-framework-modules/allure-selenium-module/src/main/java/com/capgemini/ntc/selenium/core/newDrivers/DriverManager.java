@@ -108,7 +108,8 @@ public class DriverManager {
 	private static INewWebDriver createDriver() {
 		BFLogger.logDebug("Creating new " + RuntimeParametersSelenium.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
-		if (new Boolean(RuntimeParametersSelenium.SELENIUM_GRID.getValue())) {
+		String seleniumGridParameter = RuntimeParametersSelenium.SELENIUM_GRID.getValue();
+		if (!seleniumGridParameter.equals("false")){
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
