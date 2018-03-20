@@ -1,5 +1,6 @@
 package com.capgemini.ntc.example.soap;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -15,6 +16,11 @@ import com.capgemini.ntc.webapi.core.stubs.StubSOAP;
 import com.capgemini.ntc.webapi.wiremock.TestHttpHeader;
 import com.capgemini.ntc.webapi.wiremock.WireMockResponse;
 import com.capgemini.ntc.webapi.wiremock.WireMockTestClient;
+
+import io.restassured.RestAssured;
+import io.restassured.config.EncoderConfig;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.response.Response;
 
 public class SOAPTempConvertTest extends BaseTest {
 	
@@ -36,24 +42,24 @@ public class SOAPTempConvertTest extends BaseTest {
 		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		new StubSOAP.StubBuilder(endpointURI)
-						.setRequestXPathQuery(requestXPathQuery)
-						.setResponse(farenheitToCelsiusMethod.fromFile_response())
-						.setStatusCode(200)
-						.build();
+				.setRequestXPathQuery(requestXPathQuery)
+				.setResponse(farenheitToCelsiusMethod.fromFile_response())
+				.setStatusCode(200)
+				.build();
 		
 		/*
 		 * ----------
-		 * Time to validate virtualized response
+		 * Time to validate virtual response
 		 * -----------
 		 */
 		
 		BFLogger.logInfo("#4 Send request to generated stub");
 		// TASK: Switch from WireMockTestClient to RestAssure
 		WireMockTestClient testClient = new WireMockTestClient(DriverManager.getDriver()
-						.port());
+				.port());
 		WireMockResponse postXml = testClient.postXml(endpointURI,
-						farenheitToCelsiusMethod.fromFile_request(),
-						new TestHttpHeader("Content-Type", "application/soap+xml"));
+				farenheitToCelsiusMethod.fromFile_request(),
+				new TestHttpHeader("Content-Type", "application/soap+xml"));
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
 		BFLogger.logDebug("RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: \n" + postXml.content());
@@ -77,28 +83,47 @@ public class SOAPTempConvertTest extends BaseTest {
 		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		new StubSOAP.StubBuilder(endpointURI)
-						.setRequestXPathQuery(requestXPathQuery)
-						.setResponse(farenheitToCelsiusMethod.setFahrenheitToCelsiusResult(37.8888)
-										.fromCode_response())
-						.setStatusCode(200)
-						.build();
+				.setRequestXPathQuery(requestXPathQuery)
+				.setResponse(farenheitToCelsiusMethod.setFahrenheitToCelsiusResult(37.8888)
+						.fromCode_response())
+				.setStatusCode(200)
+				.build();
 		
 		/*
 		 * ----------
-		 * Time to validate virtualized response
+		 * Time to validate virtual response
 		 * -----------
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		// TASK: Switch from WireMockTestClient to RestAssure
-		WireMockTestClient testClient = new WireMockTestClient(DriverManager.getDriver()
-						.port());
-		WireMockResponse postXml = testClient.postXml(endpointURI,
-						farenheitToCelsiusMethod.fromFile_request(),
-						new TestHttpHeader("Content-Type", "application/soap+xml"));
+		
+		RestAssured.baseURI = "http://localhost";
+		RestAssured.port = DriverManager.getDriver()
+				.port();
+		RestAssured.config = new RestAssuredConfig().encoderConfig(new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
+		
+		Response response = given()
+				.with()
+				.contentType("application/soap+xml")
+				.body(farenheitToCelsiusMethod.fromFile_request())
+				.log()
+				.all()
+				.post(endpointURI)
+				.andReturn();
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
-		BFLogger.logDebug("RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + postXml.content());
-		assertThat(postXml.statusCode(), is(200));
+		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.asString());
+		assertThat(response.statusCode(), is(200));
+		
+		// WireMockTestClient testClient = new WireMockTestClient(DriverManager.getDriver()
+		// .port());
+		// WireMockResponse postXml = testClient.postXml(endpointURI,
+		// farenheitToCelsiusMethod.fromFile_request(),
+		// new TestHttpHeader("Content-Type", "application/soap+xml"));
+		//
+		// BFLogger.logInfo("#5 Validate reposponse ");
+		// BFLogger.logDebug("RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + postXml.content());
+		// assertThat(postXml.statusCode(), is(200));
 		
 	}
 	
