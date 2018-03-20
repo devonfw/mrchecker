@@ -16,11 +16,11 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.webapi.core.BasePage;
+import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 import com.capgemini.ntc.webapi.soap.SOAPClient;
 import com.jamesmurty.utils.XMLBuilder;
 
-public class FarenheitToCelsiusMethod extends BasePage {
+public class FarenheitToCelsiusMethod extends BasePageWebAPI {
 	
 	private double fahrenheitToCelsiusResult;
 	

@@ -24,7 +24,7 @@ public class WireMockResponse {
 	
 	public int statusCode() {
 		return httpResponse.getStatusLine()
-				.getStatusCode();
+						.getStatusCode();
 	}
 	
 	public String content() {
@@ -54,6 +54,6 @@ public class WireMockResponse {
 	
 	public String statusMessage() {
 		return httpResponse.getStatusLine()
-				.getReasonPhrase();
+						.getReasonPhrase();
 	}
 }

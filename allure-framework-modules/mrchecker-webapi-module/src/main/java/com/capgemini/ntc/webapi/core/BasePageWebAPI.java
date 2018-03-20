@@ -13,7 +13,7 @@ import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
 import com.capgemini.ntc.webapi.core.base.runtime.RuntimeParameters;
 import com.google.inject.Guice;
 
-abstract public class BasePage implements ITestObserver {
+abstract public class BasePageWebAPI implements ITestObserver {
 	
 	private static DriverManager driver = null;
 	
@@ -37,14 +37,14 @@ abstract public class BasePage implements ITestObserver {
 	}
 	
 	public static IAnalytics getAnalytics() {
-		return BasePage.analytics;
+		return BasePageWebAPI.analytics;
 	}
 	
-	public BasePage() {
+	public BasePageWebAPI() {
 		this(getDriver());
 	}
 	
-	public BasePage(DriverManager driver) {
+	public BasePageWebAPI(DriverManager driver) {
 		// Add given module to Test core Observable list
 		this.addObserver();
 	}
@@ -89,11 +89,11 @@ abstract public class BasePage implements ITestObserver {
 	}
 	
 	public static DriverManager getDriver() {
-		if (BasePage.driver == null) {
+		if (BasePageWebAPI.driver == null) {
 			// Create module driver
-			BasePage.driver = new DriverManager(propertiesFileSettings);
+			BasePageWebAPI.driver = new DriverManager(propertiesFileSettings);
 		}
-		return BasePage.driver;
+		return BasePageWebAPI.driver;
 	}
 	
 	private static PropertiesFileSettings setPropertiesSettings() {

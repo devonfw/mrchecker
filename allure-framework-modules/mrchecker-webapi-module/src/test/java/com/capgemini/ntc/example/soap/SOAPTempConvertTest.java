@@ -19,7 +19,7 @@ import com.capgemini.ntc.webapi.wiremock.WireMockTestClient;
 public class SOAPTempConvertTest extends BaseTest {
 	
 	@Test
-	public void test1() throws IOException {
+	public void testSoapMessageFromFileWithVitualResponse() throws IOException {
 		
 		BFLogger.logInfo("#1 Start wiremock server");
 		DriverManager.getDriver();
@@ -29,27 +29,39 @@ public class SOAPTempConvertTest extends BaseTest {
 		String endpointURI = "/tempconvert.asmx?op=FahrenheitToCelsius";
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
+		/*
+		 * ----------
+		 * Mock response. Map request with virtual asset from file
+		 * -----------
+		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		new StubSOAP.StubBuilder(endpointURI)
-				.setRequestXPathQuery(requestXPathQuery)
-				.setResponse(farenheitToCelsiusMethod.fromFile_response())
-				.setStatusCode(200)
-				.build();
+						.setRequestXPathQuery(requestXPathQuery)
+						.setResponse(farenheitToCelsiusMethod.fromFile_response())
+						.setStatusCode(200)
+						.build();
+		
+		/*
+		 * ----------
+		 * Time to validate virtualized response
+		 * -----------
+		 */
 		
 		BFLogger.logInfo("#4 Send request to generated stub");
+		// TASK: Switch from WireMockTestClient to RestAssure
 		WireMockTestClient testClient = new WireMockTestClient(DriverManager.getDriver()
-				.port());
+						.port());
 		WireMockResponse postXml = testClient.postXml(endpointURI,
-				farenheitToCelsiusMethod.fromFile_request(),
-				new TestHttpHeader("Content-Type", "application/soap+xml"));
+						farenheitToCelsiusMethod.fromFile_request(),
+						new TestHttpHeader("Content-Type", "application/soap+xml"));
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
-		BFLogger.logDebug("RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + postXml.content());
+		BFLogger.logDebug("RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: \n" + postXml.content());
 		assertThat(postXml.statusCode(), is(200));
 	}
 	
 	@Test
-	public void testGenerateSOAPMessageFromCode() throws Exception {
+	public void testSoapMessageFromClassObjectWithVitualResponse() throws Exception {
 		BFLogger.logInfo("#1 Start wiremock server");
 		DriverManager.getDriver();
 		
@@ -58,31 +70,35 @@ public class SOAPTempConvertTest extends BaseTest {
 		String endpointURI = "/tempconvert.asmx?op=FahrenheitToCelsius";
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
+		/*
+		 * ----------
+		 * Mock response. Map request with virtual asset from Object SOAP representation
+		 * -----------
+		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		new StubSOAP.StubBuilder(endpointURI)
-				.setRequestXPathQuery(requestXPathQuery)
-				.setResponse(farenheitToCelsiusMethod.setFahrenheitToCelsiusResult(37.8888)
-						.fromCode_response())
-				.setStatusCode(200)
-				.build();
+						.setRequestXPathQuery(requestXPathQuery)
+						.setResponse(farenheitToCelsiusMethod.setFahrenheitToCelsiusResult(37.8888)
+										.fromCode_response())
+						.setStatusCode(200)
+						.build();
 		
+		/*
+		 * ----------
+		 * Time to validate virtualized response
+		 * -----------
+		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
+		// TASK: Switch from WireMockTestClient to RestAssure
 		WireMockTestClient testClient = new WireMockTestClient(DriverManager.getDriver()
-				.port());
+						.port());
 		WireMockResponse postXml = testClient.postXml(endpointURI,
-				farenheitToCelsiusMethod.fromFile_request(),
-				new TestHttpHeader("Content-Type", "application/soap+xml"));
+						farenheitToCelsiusMethod.fromFile_request(),
+						new TestHttpHeader("Content-Type", "application/soap+xml"));
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
 		BFLogger.logDebug("RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + postXml.content());
 		assertThat(postXml.statusCode(), is(200));
-		
-	}
-	
-	@Test
-	public void test2() throws Exception {
-		FarenheitToCelsiusMethod farenheitToCelsiusMethod = new FarenheitToCelsiusMethod().setFahrenheitToCelsiusResult(37.888888);
-		// System.out.println(farenheitToCelsiusMethod.fromFile_request());
 		
 	}
 	

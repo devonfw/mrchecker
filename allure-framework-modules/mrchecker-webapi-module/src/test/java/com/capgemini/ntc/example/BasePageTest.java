@@ -3,7 +3,7 @@ package com.capgemini.ntc.example;
 import org.junit.Test;
 
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.webapi.core.BasePage;
+import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 
 public class BasePageTest extends BaseTest {
 	
@@ -14,7 +14,7 @@ public class BasePageTest extends BaseTest {
 		myPage.myMethod();
 	}
 	
-	private static class MyPage extends BasePage {
+	private static class MyPage extends BasePageWebAPI {
 		
 		public String myMethod() {
 			return "Welcome";
