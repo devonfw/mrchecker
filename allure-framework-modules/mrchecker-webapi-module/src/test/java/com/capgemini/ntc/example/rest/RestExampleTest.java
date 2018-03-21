@@ -17,6 +17,7 @@ import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class RestExampleTest extends BaseTest {
@@ -44,13 +45,12 @@ public class RestExampleTest extends BaseTest {
 		DriverManager.getDriver()
 						.givenThat(get(urlEqualTo("/some/thing"))
 										.willReturn(aResponse()
-														.withHeader("Content-Type", "text/plain")
+														.withHeader("Content-Type", ContentType.JSON.toString())
 														.withBody("Hello world!")));
 	}
 	
 	@Override
 	public void tearDown() {
-		// TASK Auto-generated method stub
 	}
 	
 	@Test

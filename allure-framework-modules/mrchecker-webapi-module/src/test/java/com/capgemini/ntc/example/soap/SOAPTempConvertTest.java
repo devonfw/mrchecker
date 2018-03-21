@@ -35,14 +35,10 @@ public class SOAPTempConvertTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		// TASK Auto-generated method stub
-		
 	}
 	
 	@Override
 	public void tearDown() {
-		// TASK Auto-generated method stub
-		
 	}
 	
 	@Test
