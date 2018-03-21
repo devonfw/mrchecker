@@ -8,7 +8,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 
-public class StubSOAP {
+public class StubSOAP_Builder {
 	
 	// required parameters
 	private String endpointURI;
@@ -24,7 +24,7 @@ public class StubSOAP {
 		return statusCode;
 	}
 	
-	private StubSOAP(StubBuilder builder) {
+	private StubSOAP_Builder(StubBuilder builder) {
 		this.endpointURI = builder.endpointURI;
 		this.statusCode = builder.statusCode;
 	}
@@ -60,7 +60,7 @@ public class StubSOAP {
 			
 		}
 		
-		public StubSOAP build() {
+		public StubSOAP_Builder build() {
 			
 			DriverManager.getDriver()
 					.givenThat(
@@ -73,7 +73,7 @@ public class StubSOAP {
 											.withBody(this.response))
 									.withHeader("Content-Type", equalTo("application/soap+xml")));
 			
-			return new StubSOAP(this);
+			return new StubSOAP_Builder(this);
 		}
 		
 	}

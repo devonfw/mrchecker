@@ -1,4 +1,4 @@
-package com.capgemini.ntc.example.soap.tempconvert;
+package com.capgemini.ntc.endpoint.soap;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,61 +20,25 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 import com.capgemini.ntc.webapi.soap.SOAPClient;
 import com.jamesmurty.utils.XMLBuilder;
 
-public class FarenheitToCelsiusMethod extends BasePageWebAPI {
+public class FarenheitToCelsiusMethod_Response extends BasePageWebAPI {
 	
 	private double fahrenheitToCelsiusResult;
 	
 	/**
+	 * Set value for node "FahrenheitToCelsiusResult" in response body
 	 * <FahrenheitToCelsiusResult>100</FahrenheitToCelsiusResult>
 	 * 
 	 * @param value
 	 * @return
 	 */
-	public FarenheitToCelsiusMethod setFahrenheitToCelsiusResult(double value) {
-		
+	public FarenheitToCelsiusMethod_Response setFahrenheitToCelsiusResult(double value) {
 		this.fahrenheitToCelsiusResult = value;
 		return this;
 	}
 	
-	private String getFahrenheitToCelsiusResult() {
-		return String.valueOf(this.fahrenheitToCelsiusResult);
-	}
-	
-	// https://github.com/buildscientist/wiremock-demo/
-	
-	/**
-	 * SOAP endpoint for a SOAP web service that matches a response body with the following SOAP envelope:
-	 * <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-	 * xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	 * <soap:Body>
-	 * <FahrenheitToCelsiusResponse>
-	 * <FahrenheitToCelsiusResult>100</FahrenheitToCelsiusResult> </FahrenheitToCelsiusResponse>
-	 * </soap:Body>
-	 * </soap:Envelope>
-	 * 
-	 * @throws IOException
-	 **/
-	public String fromFile_request() throws IOException {
-		return getStringOutOfFile("/src/test/resources/soapInput/farenheittocelsius/samplerequest.xml");
-	}
-	
-	/**
-	 * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
-	 * <?xml version="1.0" encoding="utf-8"?>
-	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
-	 * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-	 * <soap12:Body>
-	 * <FahrenheitToCelsiusResponse>
-	 * <FahrenheitToCelsiusResult>37.7777777777778</FahrenheitToCelsiusResult>
-	 * </FahrenheitToCelsiusResponse>
-	 * </soap12:Body>
-	 * </soap12:Envelope>
-	 * 
-	 * @throws IOException
-	 **/
-	public String fromFile_response() throws IOException {
-		return getStringOutOfFile("/src/test/resources/soapInput/farenheittocelsius/sampleresponse.xml");
-	}
+	/*
+	 * Build SOAP response builded from Java code
+	 */
 	
 	/**
 	 * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
@@ -106,6 +70,39 @@ public class FarenheitToCelsiusMethod extends BasePageWebAPI {
 		
 		return SOAPClient.printSoapMessage(soapMessage);
 		
+	}
+	
+	/*
+	 * OR
+	 * Build SOAP response from static file
+	 */
+	
+	/**
+	 * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
+	 * <?xml version="1.0" encoding="utf-8"?>
+	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
+	 * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+	 * <soap12:Body>
+	 * <FahrenheitToCelsiusResponse>
+	 * <FahrenheitToCelsiusResult>37.7777777777778</FahrenheitToCelsiusResult>
+	 * </FahrenheitToCelsiusResponse>
+	 * </soap12:Body>
+	 * </soap12:Envelope>
+	 * 
+	 * @throws IOException
+	 **/
+	public String fromFile_response() throws IOException {
+		return getStringOutOfFile("/src/test/resources/soapInput/farenheittocelsius/sampleresponse.xml");
+	}
+	
+	/*
+	 * ------------
+	 * Util methods
+	 * ------------
+	 */
+	
+	private String getFahrenheitToCelsiusResult() {
+		return String.valueOf(this.fahrenheitToCelsiusResult);
 	}
 	
 	private String getStringOutOfFile(final String filePath) throws IOException {

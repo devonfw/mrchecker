@@ -1,4 +1,4 @@
-package com.capgemini.ntc.example.rest;
+package com.capgemini.ntc.endpoint.rest;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;

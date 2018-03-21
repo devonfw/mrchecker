@@ -1,4 +1,4 @@
-package com.capgemini.ntc.example;
+package com.capgemini.ntc.endpoint;
 
 import org.junit.Test;
 
