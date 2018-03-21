@@ -6,8 +6,14 @@ def call(){
 		//# compile
 		if(env.TESTMODULE.equals("allure-app-under-test")) {
 			sh """
+				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/allure-selenium-module
+				mvn -q clena
+				mvn -q deploy
+
 				cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
 				mvn -q clean
+				mvn -q deploy
+
 				mvn -q compile -DskipTests=true
 				mvn -q test-compile
 			"""
