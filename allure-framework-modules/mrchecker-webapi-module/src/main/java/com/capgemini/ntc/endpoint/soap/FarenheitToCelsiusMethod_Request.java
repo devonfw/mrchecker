@@ -17,7 +17,7 @@ import org.xml.sax.SAXException;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.BasePageWebAPI;
-import com.capgemini.ntc.webapi.soap.SOAPClient;
+import com.capgemini.ntc.webapi.soap.SoapMessageGenerator;
 import com.jamesmurty.utils.XMLBuilder;
 
 public class FarenheitToCelsiusMethod_Request extends BasePageWebAPI {
@@ -52,8 +52,8 @@ public class FarenheitToCelsiusMethod_Request extends BasePageWebAPI {
 				.element("Fahrenheit").text("100");
 		//@formatter:on
 		
-		SOAPMessage soapMessage = SOAPClient.createSOAPmessage(xmlBody.asString());
-		return SOAPClient.printSoapMessage(soapMessage);
+		SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(xmlBody.asString());
+		return SoapMessageGenerator.printSoapMessage(soapMessage);
 		
 	}
 	

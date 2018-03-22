@@ -10,8 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPConnection;
-import javax.xml.soap.SOAPConnectionFactory;
 import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
@@ -29,92 +27,35 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
-
 /**
  * This is an example of a simple SOAP Client class to send request body to a
  * SOAP Server.
  * Useful when you want to test a SOAP server and you don't want to generate all
  * SOAP client class from the WSDL.
  */
-public class SOAPClient {
-	
-	// The SOAP server URI
-	private String uriSOAPServer;
-	// The SOAP connection
-	private SOAPConnection soapConnection = null;
+public class SoapMessageGenerator {
 	
 	// If you want to add namespace to the header, follow this constant
 	private static final String	PREFIX_NAMESPACE	= "ns";
 	private static final String	NAMESPACE			= "http://namespace.to.header";
 	
 	/**
-	 * A constructor who create a SOAP connection
-	 * 
-	 * @param url
-	 *            the SOAP server URI
-	 */
-	public SOAPClient(final String url) {
-		this.uriSOAPServer = url;
-		
-		try {
-			createSOAPConnection();
-		} catch (UnsupportedOperationException | SOAPException e) {
-			BFLogger.logError(e.getMessage());
-		}
-	}
-	
-	/**
-	 * Send a SOAP request for a specific operation
+	 * Create a SOAP request
+	 * Example structure
+	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
+	 * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+	 * <soap12:Body>
+	 * <FahrenheitToCelsius>
+	 * <Fahrenheit>100</Fahrenheit>
+	 * </FahrenheitToCelsius>
+	 * </soap12:Body>
+	 * </soap12:Envelope>
 	 * 
 	 * @param xmlRequestBody
-	 *            the body of the SOAP message
-	 * @param operation
-	 *            the operation from the SOAP server invoked
-	 * @return a response from the server
-	 * @throws SOAPException
-	 * @throws ParserConfigurationException
-	 * @throws IOException
-	 * @throws SAXException
-	 */
-	public String sendMessageToSOAPServer(String xmlRequestBody,
-			String operation)
-			throws SOAPException, SAXException, IOException,
-			ParserConfigurationException {
-		
-		// Send SOAP Message to SOAP Server
-		final SOAPMessage soapResponse = soapConnection.call(
-				createSOAPmessage(xmlRequestBody),
-				uriSOAPServer);
-		
-		// Print SOAP Response
-		BFLogger.logDebug("Response SOAP Message : " + soapResponse.toString());
-		return soapResponse.toString();
-	}
-	
-	/**
-	 * Create a SOAP connection
-	 * 
-	 * @throws UnsupportedOperationException
-	 * @throws SOAPException
-	 */
-	private void createSOAPConnection()
-			throws UnsupportedOperationException,
-			SOAPException {
-		
-		// Create SOAP Connection
-		SOAPConnectionFactory soapConnectionFactory;
-		soapConnectionFactory = SOAPConnectionFactory.newInstance();
-		soapConnection = soapConnectionFactory.createConnection();
-	}
-	
-	/**
-	 * Create a SOAP request
-	 * 
-	 * @param body
-	 *            the body of the SOAP message
-	 * @param operation
-	 *            the operation from the SOAP server invoked
+	 *            the body of the SOAP message pasted in XML format
+	 *            <FahrenheitToCelsius>
+	 *            <Fahrenheit>100</Fahrenheit>
+	 *            </FahrenheitToCelsius>
 	 * @return the SOAP message request completed
 	 * @throws SOAPException
 	 * @throws ParserConfigurationException
@@ -122,7 +63,7 @@ public class SOAPClient {
 	 * @throws SAXException
 	 */
 	public static SOAPMessage createSOAPmessage(String xmlRequestBody)
-			throws SOAPException, SAXException, IOException, ParserConfigurationException {
+					throws SOAPException, SAXException, IOException, ParserConfigurationException {
 		
 		SOAPElement body = stringToSOAPElement(xmlRequestBody);
 		
@@ -147,8 +88,8 @@ public class SOAPClient {
 	}
 	
 	public static String printSoapMessage(final SOAPMessage soapMessage)
-			throws TransformerFactoryConfigurationError,
-			TransformerConfigurationException, SOAPException, TransformerException {
+					throws TransformerFactoryConfigurationError,
+					TransformerConfigurationException, SOAPException, TransformerException {
 		final TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		final Transformer transformer = transformerFactory.newTransformer();
 		
@@ -157,7 +98,7 @@ public class SOAPClient {
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		
 		final Source soapContent = soapMessage.getSOAPPart()
-				.getContent();
+						.getContent();
 		
 		final ByteArrayOutputStream streamOut = new ByteArrayOutputStream();
 		final StreamResult result = new StreamResult(streamOut);
@@ -178,17 +119,17 @@ public class SOAPClient {
 	 * @throws ParserConfigurationException
 	 */
 	private static SOAPElement stringToSOAPElement(String xmlRequestBody)
-			throws SOAPException, SAXException, IOException,
-			ParserConfigurationException {
+					throws SOAPException, SAXException, IOException,
+					ParserConfigurationException {
 		
 		// Load the XML text into a DOM Document
 		final DocumentBuilderFactory builderFactory = DocumentBuilderFactory
-				.newInstance();
+						.newInstance();
 		builderFactory.setNamespaceAware(true);
 		final InputStream stream = new ByteArrayInputStream(
-				xmlRequestBody.getBytes());
+						xmlRequestBody.getBytes());
 		final Document doc = builderFactory.newDocumentBuilder()
-				.parse(stream);
+						.parse(stream);
 		
 		// Use SAAJ to convert Document to SOAPElement
 		// Create SoapMessage
