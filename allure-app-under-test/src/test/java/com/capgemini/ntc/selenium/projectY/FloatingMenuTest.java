@@ -144,6 +144,5 @@ public final class FloatingMenuTest extends BaseTest {
 	
 	@Override
 	public void tearDown() {
-		// TODO Auto-generated method stub
 	}
 }

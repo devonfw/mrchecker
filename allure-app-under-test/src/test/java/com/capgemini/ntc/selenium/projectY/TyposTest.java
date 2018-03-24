@@ -54,8 +54,6 @@ public class TyposTest extends BaseTest {
 	
 	@Override
 	public void tearDown() {
-		// TASK Auto-generated method stub
-		
 	}
 	
 }

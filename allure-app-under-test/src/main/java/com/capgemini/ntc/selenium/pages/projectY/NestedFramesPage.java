@@ -123,7 +123,7 @@ public class NestedFramesPage extends BasePage {
     }
 
     @Override
-    public boolean isLoaded() {
+    private boolean isLoaded() {
         boolean loadCompleted = ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
                 .equals("complete");
 

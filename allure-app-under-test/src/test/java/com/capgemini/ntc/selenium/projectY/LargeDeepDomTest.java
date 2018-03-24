@@ -25,7 +25,7 @@ public class LargeDeepDomTest extends BaseTest {
 	
 	@Test
 	public void testSiblingsCount() {
-		assertEquals(50, largeDeepDomPage.getSiblingTiersCount());
+		assertEquals(51, largeDeepDomPage.getSiblingTiersCount());
 	}
 	
 	@Test

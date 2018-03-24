@@ -40,8 +40,6 @@ public class NotificationMessageTest extends BaseTest {
 	
 	@Override
 	public void tearDown() {
-		// TASK Auto-generated method stub
-		
 	}
 	
 }
