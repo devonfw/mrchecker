@@ -85,6 +85,7 @@ public class StubSOAP_Builder {
 			DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
+							// post(urlEqualTo(this.endpointURI))
 							post(urlMatching(this.endpointURI))
 									.withHeader("Content-Type", equalTo("application/soap+xml"))
 									.withRequestBody(matchingXPath(this.requestXPathQuery))
