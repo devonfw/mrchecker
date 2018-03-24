@@ -21,7 +21,7 @@ import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 
-public class FarenheitToCelsiusMethod_Test extends BaseTest {
+public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 	
 	private static String endpointBaseUri;
 	

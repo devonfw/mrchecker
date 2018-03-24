@@ -18,7 +18,7 @@ import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class RestExampleTest extends BaseTest {
+public class REST_FarenheitToCelsiusMethod_Test extends BaseTest {
 	
 	private static String endpointBaseUri;
 	
@@ -41,9 +41,10 @@ public class RestExampleTest extends BaseTest {
 		BFLogger.logInfo("#1 Create Stub content message");
 		BFLogger.logInfo("#2 Add resource to wiremock server");
 		new StubREST_Builder.StubBuilder("/some/thing")
-				.setResponse("{ \"message\": \"Hello world!\" }")
+				.setResponse("{ \"FahrenheitToCelsiusResponse\":{\"FahrenheitToCelsiusResult\":37.7777777777778}}")
 				.setStatusCode(200)
 				.build();
+		
 	}
 	
 	@Override
@@ -64,7 +65,8 @@ public class RestExampleTest extends BaseTest {
 				.thenReturn();
 		
 		BFLogger.logInfo("#4 Validate response ");
-		BFLogger.logDebug("/some/thing: " + response.asString());
+		BFLogger.logDebug("/some/thing: " + response.jsonPath()
+				.prettyPrint());
 		assertThat(response.statusCode(), is(200));
 	}
 	
@@ -82,7 +84,6 @@ public class RestExampleTest extends BaseTest {
 				.thenReturn();
 		
 		BFLogger.logInfo("#4 Validate response ");
-		BFLogger.logDebug("/some/thing/else: " + response.asString());
 		assertThat(response.statusCode(), is(404));
 		
 	}
