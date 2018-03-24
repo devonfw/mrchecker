@@ -10,6 +10,7 @@ import com.github.tomakehurst.wiremock.common.FatalStartupException;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import com.opentable.extension.BodyTransformer;
 
 public class DriverManager {
 	
@@ -98,7 +99,7 @@ public class DriverManager {
 		
 		WIREMOCK {
 			
-			private WireMockConfiguration wireMockConfig = wireMockConfig();
+			private WireMockConfiguration wireMockConfig = wireMockConfig().extensions(new BodyTransformer());
 			
 			public WireMockServer getDriver() throws FatalStartupException {
 				

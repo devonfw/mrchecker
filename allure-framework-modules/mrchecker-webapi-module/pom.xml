@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -53,6 +54,7 @@
 
         <!-- Lib/package version settings -->
         <wiremock.version>2.15.0</wiremock.version>
+        <wiremock-body-transformer.version>1.1.6</wiremock-body-transformer.version>
         <java-xmlbuilder.version>1.2</java-xmlbuilder.version>
 
     </properties>
@@ -68,9 +70,18 @@
 
         <!-- Dependency to start mock API -->
         <dependency>
+            <!-- http://wiremock.org/docs/ -->
+            <!-- https://github.com/tomakehurst/wiremock/blob/master/src/test/java/ignored/Examples.java#374 -->
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock</artifactId>
             <version>${wiremock.version}</version>
+        </dependency>
+
+        <dependency> 
+            <!-- https://github.com/opentable/wiremock-body-transformer -->
+            <groupId>com.opentable</groupId>
+            <artifactId>wiremock-body-transformer</artifactId>
+            <version>${wiremock-body-transformer.version}</version>
         </dependency>
 
         <!-- Dependency to build xml structure -->

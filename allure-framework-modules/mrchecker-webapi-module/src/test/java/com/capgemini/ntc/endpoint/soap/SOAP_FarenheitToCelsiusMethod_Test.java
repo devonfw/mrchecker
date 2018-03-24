@@ -9,8 +9,6 @@ import java.io.IOException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.capgemini.ntc.endpoint.soap.FarenheitToCelsiusMethod_Request;
-import com.capgemini.ntc.endpoint.soap.FarenheitToCelsiusMethod_Response;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
@@ -83,7 +81,8 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 				.thenReturn();
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
-		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.asString());
+		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.xmlPath()
+				.prettyPrint());
 		assertThat(response.statusCode(), is(200));
 	}
 	
@@ -128,7 +127,8 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 				.thenReturn();
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
-		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.asString());
+		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.xmlPath()
+				.prettyPrint());
 		assertThat(response.statusCode(), is(200));
 	}
 	
