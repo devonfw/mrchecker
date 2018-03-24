@@ -48,7 +48,7 @@ public class DriverManagerTest {
 		System.setProperty("mock_http_port", "8081");
 		RuntimeParameters.MOCK_HTTP_PORT.refreshParameterValue();
 		RuntimeParameters.MOCK_HTTPS_PORT.refreshParameterValue();
-		driver = DriverManager.getDriver();
+		driver = DriverManager.getDriverVirtualService();
 		assertTrue("Mock server does not run", driver.isRunning());
 		assertEquals("Mock server for http does not run o port 8081", 8081, driver.port());
 		assertTrue("Mock server for https does not run on random port", (Integer) driver.httpsPort() instanceof Integer);
@@ -59,7 +59,7 @@ public class DriverManagerTest {
 		System.setProperty("mock_https_port", "8080");
 		RuntimeParameters.MOCK_HTTP_PORT.refreshParameterValue();
 		RuntimeParameters.MOCK_HTTPS_PORT.refreshParameterValue();
-		driver = DriverManager.getDriver();
+		driver = DriverManager.getDriverVirtualService();
 		assertTrue("Mock server does not run", driver.isRunning());
 		assertEquals("Mock server for https does not run o port 8080", 8080, driver.httpsPort());
 		assertTrue("Mock server for http does not run on random port", (Integer) driver.port() instanceof Integer);
@@ -75,7 +75,7 @@ public class DriverManagerTest {
 		WireMockServer driver2 = null;
 		try {
 			// Start #1 server
-			driver1 = DriverManager.getDriver();
+			driver1 = DriverManager.getDriverVirtualService();
 			assertTrue("Mock server does not run", driver1.isRunning());
 			assertEquals("Mock server for http does not run o port 8081", 8081, driver1.port());
 			assertTrue("Mock server for https does not run on random port", (Integer) driver1.httpsPort() instanceof Integer);
@@ -84,7 +84,7 @@ public class DriverManagerTest {
 			DriverManager.clearAllDrivers();
 			
 			// Start #2 server
-			driver2 = DriverManager.getDriver();
+			driver2 = DriverManager.getDriverVirtualService();
 			assertTrue("Mock server does not run", driver2.isRunning());
 			assertEquals("Mock server for http does not run o port 8081", 8081, driver2.port());
 			assertTrue("Mock server for https does not run on random port", (Integer) driver2.httpsPort() instanceof Integer);

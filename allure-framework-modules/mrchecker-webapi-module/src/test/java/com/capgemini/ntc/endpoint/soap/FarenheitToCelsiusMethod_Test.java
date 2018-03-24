@@ -28,7 +28,7 @@ public class FarenheitToCelsiusMethod_Test extends BaseTest {
 	@BeforeClass
 	public static void beforeClass() {
 		String baseURI = "http://localhost";
-		int port = DriverManager.getDriver()
+		int port = DriverManager.getDriverVirtualService()
 				.port();
 		endpointBaseUri = baseURI + ":" + port;
 		RestAssured.config = new RestAssuredConfig().encoderConfig(new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
@@ -46,7 +46,7 @@ public class FarenheitToCelsiusMethod_Test extends BaseTest {
 	public void testSoapMessageFromFileWithVitualResponse() throws IOException {
 		
 		BFLogger.logInfo("#1 Start wiremock server");
-		DriverManager.getDriver();
+		DriverManager.getDriverVirtualService();
 		
 		BFLogger.logInfo("#2 Create Stub content message");
 		FarenheitToCelsiusMethod_Response farenheitToCelsiusMethod_Response = new FarenheitToCelsiusMethod_Response();
@@ -90,7 +90,7 @@ public class FarenheitToCelsiusMethod_Test extends BaseTest {
 	@Test
 	public void testSoapMessageFromClassObjectWithVitualResponse() throws Exception {
 		BFLogger.logInfo("#1 Start wiremock server");
-		DriverManager.getDriver();
+		DriverManager.getDriverVirtualService();
 		
 		BFLogger.logInfo("#2 Create Stub content message");
 		FarenheitToCelsiusMethod_Response farenheitToCelsiusMethod_Response = new FarenheitToCelsiusMethod_Response();

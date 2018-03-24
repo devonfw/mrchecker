@@ -28,7 +28,7 @@ public class DriverManager {
 	}
 	
 	public void start() {
-		DriverManager.getDriver();
+		DriverManager.getDriverVirtualService();
 	}
 	
 	public void stop() {
@@ -54,7 +54,7 @@ public class DriverManager {
 		drivers.remove();
 	}
 	
-	public static WireMockServer getDriver() {
+	public static WireMockServer getDriverVirtualService() {
 		WireMockServer driver = drivers.get();
 		if (driver == null) {
 			driver = createDriver();

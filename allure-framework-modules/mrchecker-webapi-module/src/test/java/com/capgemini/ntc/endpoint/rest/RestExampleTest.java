@@ -1,8 +1,5 @@
 package com.capgemini.ntc.endpoint.rest;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -13,6 +10,7 @@ import org.junit.Test;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
+import com.capgemini.ntc.webapi.core.stubs.StubREST_Builder;
 
 import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;
@@ -27,8 +25,8 @@ public class RestExampleTest extends BaseTest {
 	@BeforeClass
 	public static void beforeClass() {
 		String baseURI = "http://localhost";
-		int port = DriverManager.getDriver()
-						.port();
+		int port = DriverManager.getDriverVirtualService()
+				.port();
 		endpointBaseUri = baseURI + ":" + port;
 		RestAssured.config = new RestAssuredConfig().encoderConfig(new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
 	}
@@ -42,11 +40,10 @@ public class RestExampleTest extends BaseTest {
 		 */
 		BFLogger.logInfo("#1 Create Stub content message");
 		BFLogger.logInfo("#2 Add resource to wiremock server");
-		DriverManager.getDriver()
-						.givenThat(get(urlEqualTo("/some/thing"))
-										.willReturn(aResponse()
-														.withHeader("Content-Type", ContentType.JSON.toString())
-														.withBody("Hello world!")));
+		new StubREST_Builder.StubBuilder("/some/thing")
+				.setResponse("{ \"message\": \"Hello world!\" }")
+				.setStatusCode(200)
+				.build();
 	}
 	
 	@Override
@@ -58,12 +55,13 @@ public class RestExampleTest extends BaseTest {
 		
 		BFLogger.logInfo("#3 Send request to generated stub");
 		Response response = given()
-						.with()
-						.log()
-						.all()
-						.when()
-						.get(endpointBaseUri + "/some/thing")
-						.thenReturn();
+				.with()
+				.header("Content-Type", ContentType.JSON.toString())
+				.log()
+				.all()
+				.when()
+				.get(endpointBaseUri + "/some/thing")
+				.thenReturn();
 		
 		BFLogger.logInfo("#4 Validate response ");
 		BFLogger.logDebug("/some/thing: " + response.asString());
@@ -75,12 +73,13 @@ public class RestExampleTest extends BaseTest {
 		
 		BFLogger.logInfo("#3 Send request to generated stub");
 		Response response = given()
-						.with()
-						.log()
-						.all()
-						.when()
-						.get(endpointBaseUri + "/some/thing/else")
-						.thenReturn();
+				.with()
+				.header("Content-Type", ContentType.JSON.toString())
+				.log()
+				.all()
+				.when()
+				.get(endpointBaseUri + "/some/thing/else")
+				.thenReturn();
 		
 		BFLogger.logInfo("#4 Validate response ");
 		BFLogger.logDebug("/some/thing/else: " + response.asString());

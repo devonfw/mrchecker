@@ -2,13 +2,14 @@ package com.capgemini.ntc.webapi.core.stubs;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
-import static com.github.tomakehurst.wiremock.client.WireMock.matchingXPath;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 
-public class StubSOAP_Builder {
+import io.restassured.http.ContentType;
+
+public class StubREST_Builder {
 	
 	// required parameters
 	private String endpointURI;
@@ -24,7 +25,7 @@ public class StubSOAP_Builder {
 		return statusCode;
 	}
 	
-	private StubSOAP_Builder(StubBuilder builder) {
+	private StubREST_Builder(StubBuilder builder) {
 		this.endpointURI = builder.endpointURI;
 		this.statusCode = builder.statusCode;
 	}
@@ -36,9 +37,8 @@ public class StubSOAP_Builder {
 		private String endpointURI;
 		
 		// optional parameters
-		private int		statusCode			= 200;
-		private String	response			= "Hello";
-		private String	requestXPathQuery	= "";
+		private int		statusCode	= 200;
+		private String	response	= "{ \"message\": \"Hello\" }";
 		
 		public StubBuilder(String endpointURI) {
 			this.endpointURI = endpointURI;
@@ -54,26 +54,20 @@ public class StubSOAP_Builder {
 			return this;
 		}
 		
-		public StubBuilder setRequestXPathQuery(String requestXPathQuery) {
-			this.requestXPathQuery = requestXPathQuery;
-			return this;
-			
-		}
-		
-		public StubSOAP_Builder build() {
+		public StubREST_Builder build() {
 			
 			DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
-							post(urlEqualTo(this.endpointURI))
-									.withHeader("Content-Type", equalTo("application/soap+xml"))
-									.withRequestBody(matchingXPath(this.requestXPathQuery))
+							get(urlEqualTo(this.endpointURI))
+									.withHeader("Content-Type", equalTo(ContentType.JSON.toString()))
 									// Return given response ...
-									.willReturn(aResponse().withStatus(this.statusCode)
-											.withBody(this.response))
-									.withHeader("Content-Type", equalTo("application/soap+xml")));
+									.willReturn(aResponse()
+											.withStatus(this.statusCode)
+											.withHeader("Content-Type", ContentType.JSON.toString())
+											.withBody(this.response)));
 			
-			return new StubSOAP_Builder(this);
+			return new StubREST_Builder(this);
 		}
 		
 	}
