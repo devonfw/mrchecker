@@ -32,6 +32,7 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorExitIntentLink				= By.cssSelector("li > a[href*=exit_intent]");
 	private static final By	selectorDynamicLoadingLink			= By.cssSelector("li > a[href*=dynamic_loading]");
 	private static final By	selectorDisappearingElementsLink	= By.cssSelector("li > a[href*=disappearing_elements]");
+	private static final By	selectorDragAndDrop					= By.cssSelector("li > a[href*=drag_and_drop]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -178,6 +179,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementLink = getDriver().findElementDynamic(selectorDisappearingElementsLink);
 		elementLink.click();
 		return new DisappearingElementsPage();
+	}
+	
+	public DragAndDropPage clickDragAndDropLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorDragAndDrop);
+		elementLink.click();
+		return new DragAndDropPage();
 	}
 	
 }
