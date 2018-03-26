@@ -2,14 +2,9 @@ package com.capgemini.ntc.security.headers;
 
 import static io.restassured.RestAssured.given;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import com.capgemini.ntc.security.EnvironmentParam;
 import com.capgemini.ntc.security.SecurityTest;
@@ -17,6 +12,8 @@ import com.capgemini.ntc.security.SubUrlEnum;
 import com.capgemini.ntc.security.session.SessionEnum;
 
 import io.restassured.specification.RequestSpecification;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 
 /**
  * The test verifies the presence and proper configuration of the
@@ -37,39 +34,29 @@ import io.restassured.specification.RequestSpecification;
  * @author Marek Puchalski, Capgemini
  */
 @Ignore // currently fails on the reference environment
-@RunWith(Parameterized.class)
+@RunWith(JUnitParamsRunner.class)
 public class XXssProtectionTest extends SecurityTest {
 	
-	private SessionEnum				session;
-	private SubUrlEnum				path;
-	private EnvironmentParam	origin;
-	
-	@Parameters(name = "{index}: Accessing {1}{2} as {0}, expecting valid header definition")
-	public static Collection<Object[]> data() {
-		return Arrays.asList(new Object[][] {
-		        { SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
-		        { SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
-		});
-	}
-	
-	public XXssProtectionTest(SessionEnum session, EnvironmentParam origin, SubUrlEnum path) {
-		this.session = session;
-		this.origin = origin;
-		this.path = path;
+	public static Object[] addParameters() {
+		return new Object[][] {
+						{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
+						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
+		};
 	}
 	
 	@Test
-	public void testHeader() {
+	@Parameters(method = "addParameters")
+	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path) {
 		RequestSpecification rs = getSessionManager()
-		        .initBuilder(session)
-		        .setBaseUri(origin.getValue())
-		        .setBasePath(path.getValue())
-		        .build();
+				.initBuilder(session)
+				.setBaseUri(origin.getValue())
+				.setBasePath(path.getValue())
+				.build();
 		given(rs)
-		        .when()
-		        .get()
-		        .then()
-		        .statusCode(200)
-		        .header("X-XSS-Protection", "1; mode=block");
+				.when()
+				.get()
+				.then()
+				.statusCode(200)
+				.header("X-XSS-Protection", "1; mode=block");
 	}
 }
