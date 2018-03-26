@@ -35,7 +35,8 @@ public class DriverManager {
 	
 	// Setup default variables
 	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
-	private static final int			IMPLICITYWAITTIMER	= 2;					// in seconds
+	private static final int			IMPLICITYWAITTIMER	= 2;									// in seconds
+	private static final String			DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
 	
 	private static PropertiesSelenium propertiesSelenium;
 	
@@ -107,7 +108,8 @@ public class DriverManager {
 	private static INewWebDriver createDriver() {
 		BFLogger.logDebug("Creating new " + RuntimeParametersSelenium.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
-		if (new Boolean(RuntimeParametersSelenium.SELENIUM_GRID.getValue())) {
+		String seleniumGridParameter = RuntimeParametersSelenium.SELENIUM_GRID.getValue();
+		if (!seleniumGridParameter.equals("false")){
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
@@ -159,15 +161,13 @@ public class DriverManager {
 				
 				if (isDriverAutoUpdateActivated) {
 					downloadNewestVersionOfWebDriver(ChromeDriver.class);
-					OperationsOnFiles.moveWithPruneEmptydirectories(
-									WebDriverManager.getInstance(ChromeDriver.class)
-													.getBinaryPath(),
-									browserPath);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(ChromeDriver.class)
+									.getBinaryPath(), browserPath);
 				}
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-				chromePrefs.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+				chromePrefs.put("download.default_directory", DOWNLOAD_DIR);
 				chromePrefs.put("profile.content_settings.pattern_pairs.*.multiple-automatic-downloads", 1);
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
@@ -199,13 +199,14 @@ public class DriverManager {
 				
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("webdriver.firefox.marionette", true);
-				profile.setPreference("browser.download.folderlist", 2);
-				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
+				profile.setPreference("browser.download.folderList", 2);
+				profile.setPreference("browser.download.dir", DOWNLOAD_DIR);
+				profile.setPreference("browser.download.useDownloadDir", true);
+				
+				profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
 								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
-				profile.setPreference("browser.download.useDownloadDir", true);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
-				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
 				
 				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 				
@@ -220,14 +221,13 @@ public class DriverManager {
 				
 				if (isDriverAutoUpdateActivated) {
 					downloadNewestVersionOfWebDriver(InternetExplorerDriver.class);
-					OperationsOnFiles.moveWithPruneEmptydirectories(
-									WebDriverManager.getInstance(InternetExplorerDriver.class)
-													.getBinaryPath(),
-									browserPath);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(InternetExplorerDriver.class)
+									.getBinaryPath(), browserPath);
 				}
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+				
 				// Due to some issues with IE11 this line must be commented
 				// ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 				// true);
