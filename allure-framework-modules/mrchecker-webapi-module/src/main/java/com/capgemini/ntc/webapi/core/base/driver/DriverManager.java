@@ -3,9 +3,7 @@ package com.capgemini.ntc.webapi.core.base.driver;
 import static io.restassured.RestAssured.given;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 import io.restassured.specification.RequestSpecification;
 
@@ -13,15 +11,8 @@ public class DriverManager {
 	
 	private static ThreadLocal<RequestSpecification> drivers = new ThreadLocal<RequestSpecification>();
 	
-	private static PropertiesFileSettings propertiesFileSettings;
-	
 	@Inject
-	public DriverManager(@Named("properties") PropertiesFileSettings propertiesFileSettings) {
-		
-		if (null == DriverManager.propertiesFileSettings) {
-			DriverManager.propertiesFileSettings = propertiesFileSettings;
-		}
-		
+	public DriverManager() {
 		this.start();
 	}
 	

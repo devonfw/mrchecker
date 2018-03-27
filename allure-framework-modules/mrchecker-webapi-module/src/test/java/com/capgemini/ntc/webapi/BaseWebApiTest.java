@@ -5,7 +5,7 @@ import org.junit.Test;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.webapi.core.BaseWebApi;
 
-public class BasePageTest extends BaseTest {
+public class BaseWebApiTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
