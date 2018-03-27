@@ -70,11 +70,11 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		String endpointUri = "/tempconvert.asmx";
-		FarenheitToCelsiusMethod_Request farenheitToCelsiusMethod_Request = new FarenheitToCelsiusMethod_Request();
 		Response response = given()
 				.with()
 				.contentType("application/soap+xml")
-				.body(farenheitToCelsiusMethod_Request.fromFile_request())
+				.body(new FarenheitToCelsiusMethod_Request_FromCode.Builder().setFahrenheit(30)
+						.build())
 				.log()
 				.all()
 				.when()
@@ -118,11 +118,10 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		String endpointUri = "/tempconvert.asmx?op=FahrenheitToCelsius";
-		FarenheitToCelsiusMethod_Request farenheitToCelsiusMethod_Request = new FarenheitToCelsiusMethod_Request();
 		Response response = given()
 				.with()
 				.contentType("application/soap+xml")
-				.body(farenheitToCelsiusMethod_Request.fromFile_request())
+				.body(new FarenheitToCelsiusMethod_Request_FromFile.Builder().build())
 				.log()
 				.all()
 				.when()

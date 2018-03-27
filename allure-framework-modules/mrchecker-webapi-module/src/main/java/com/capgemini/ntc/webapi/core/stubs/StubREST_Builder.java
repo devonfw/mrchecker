@@ -60,6 +60,7 @@ public class StubREST_Builder {
 		}
 		
 		public StubREST_Builder build() {
+			
 			// GET
 			DriverManager.getDriverVirtualService()
 					.givenThat(
