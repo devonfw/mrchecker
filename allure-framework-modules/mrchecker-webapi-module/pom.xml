@@ -8,17 +8,22 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>2.0.0</version>
     </parent>
-    <artifactId>allure-example-module</artifactId>
+    <artifactId>mrchecker-webapi-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - Example - Module</name>
-    <description>Allure Test Framework name supports:
-        ?????????????????
-</description>
+    <name>MrChecker - WebApi - Module</name>
+    <description> 
+        MrChecker WebApi supports:
+        - testing REST and SOAP services,
+        - sending REST queries (POST, GET, PUT, PATCH, DELETE),
+        - parsing XML, JSON and HTML documents,
+        - handling Cookies,
+        - SSO (Single Sign-On) authentication process. 
+    </description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
     <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
 
@@ -26,6 +31,20 @@
         <developer>
             <name>Lukasz Stefaniszyn</name>
             <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        
+        <developer>
+            <name>Tomasz Supel</name>
+            <email>tomasz.supel@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        
+         <developer>
+            <name>Pawel Szczesny</name>
+            <email>pawel.szczesny@capgemini.com</email>
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
@@ -49,36 +68,33 @@
 
         <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
 
-        <!-- Lib/package version settings -->
-        <!-- <package.version>0.0.0</selenium.version> -->
-
     </properties>
 
     <dependencies>
-
         <!-- Dependency to other Allure Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>
             <version>${allure-core-module.version}</version>
         </dependency>
-
 		
-		<!--This dependency is necessary for ???????? plugin. -->
-        <!--<dependency>
-            <groupId>reuse.package.from.parent.pom</groupId>
-            <artifactId>lib-name</artifactId>
-        </dependency> -->
-		
-        <!--This dependency is necessary for ???????? plugin. -->
-        <!--<dependency>
-            <groupId>new.added.package</groupId>
-            <artifactId>lib-name</artifactId>
-            <version>${package.version}</version>
-        </dependency> -->
-
+		<!--This dependency is necessary for Rest assured plugin. -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+        </dependency>
+        
+        <!-- Hashes sensitive data -->
+        <dependency>
+           <groupId>org.jasypt</groupId>
+           <artifactId>jasypt</artifactId>
+        </dependency>
     </dependencies>    
-
 
     <!-- Build goals/actions -->
     <build>
@@ -86,6 +102,5 @@
             <!-- Plugins are taken from parent pom.xml -->
         </plugins>
     </build>
-
 
 </project>
