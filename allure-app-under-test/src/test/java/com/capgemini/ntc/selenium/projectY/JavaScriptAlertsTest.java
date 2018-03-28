@@ -36,7 +36,7 @@ public class JavaScriptAlertsTest extends BaseTest {
 	public void clickJavaScriptAlertPage() {
 		BFLogger.logInfo("Step 3: Click JavaScritpt Alert link");
 		javaScriptAlertsPage = theInternetPage.clickJavaScriptAlertLink();
-		assertTrue("JavaScritp Alert page is not loaded", javaScriptAlertsPage.isLoaded());
+		assertTrue("JavaScript Alert page is not loaded", javaScriptAlertsPage.isLoaded());
 	}
 	
 	@Test // TC1

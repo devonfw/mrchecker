@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,19 +7,23 @@
         <artifactId>allure-test-framework</artifactId>
         <groupId>com.capgemini.ntc</groupId>
         <version>2.0.0</version>
-        <relativePath>..</relativePath>
     </parent>
     <artifactId>mrchecker-webapi-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - Example - Module</name>
-    <description>Allure Test Framework name supports:
-        ?????????????????
-</description>
+    <name>MrChecker - WebApi - Module</name>
+    <description> 
+        MrChecker WebApi supports:
+        - testing REST and SOAP services,
+        - sending REST queries (POST, GET, PUT, PATCH, DELETE),
+        - parsing XML, JSON and HTML documents,
+        - handling Cookies,
+        - SSO (Single Sign-On) authentication process. 
+    </description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
     <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
 
@@ -28,6 +31,20 @@
         <developer>
             <name>Lukasz Stefaniszyn</name>
             <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        
+        <developer>
+            <name>Tomasz Supel</name>
+            <email>tomasz.supel@capgemini.com</email>
+            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        
+         <developer>
+            <name>Pawel Szczesny</name>
+            <email>pawel.szczesny@capgemini.com</email>
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
@@ -60,14 +77,19 @@
     </properties>
 
     <dependencies>
-
         <!-- Dependency to other Allure Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>
             <version>${allure-core-module.version}</version>
         </dependency>
-
+		
+        
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+        </dependency>
+        
         <!-- Dependency to start mock API -->
         <dependency>
             <!-- http://wiremock.org/docs/ -->
@@ -77,31 +99,34 @@
             <version>${wiremock.version}</version>
         </dependency>
 
-        <dependency> 
+        <dependency>
             <!-- https://github.com/opentable/wiremock-body-transformer -->
             <groupId>com.opentable</groupId>
             <artifactId>wiremock-body-transformer</artifactId>
             <version>${wiremock-body-transformer.version}</version>
         </dependency>
-
+        
         <!-- Dependency to build xml structure -->
         <dependency>
             <groupId>com.jamesmurty.utils</groupId>
             <artifactId>java-xmlbuilder</artifactId>
             <version>${java-xmlbuilder.version}</version>
         </dependency>
+        
 
+        <!-- Hashes sensitive data -->
         <dependency>
+           <groupId>org.jasypt</groupId>
+           <artifactId>jasypt</artifactId>
+        </dependency>
+        
+                        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>3.0.7</version>
             <scope>test</scope>
         </dependency>
-
-
-
-    </dependencies>
-
+    </dependencies>    
 
     <!-- Build goals/actions -->
     <build>
@@ -109,6 +134,5 @@
             <!-- Plugins are taken from parent pom.xml -->
         </plugins>
     </build>
-
 
 </project>
