@@ -2,7 +2,6 @@ package com.capgemini.ntc.webapi.core.base.driver;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static io.restassured.RestAssured.given;
-import io.restassured.specification.RequestSpecification;
 
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
@@ -14,10 +13,12 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.opentable.extension.BodyTransformer;
 
-public class DriverManager {
+import io.restassured.specification.RequestSpecification;
 
-	private static ThreadLocal<WireMockServer> drivers = new ThreadLocal<WireMockServer>();
-	private static ThreadLocal<RequestSpecification> drivers = new ThreadLocal<RequestSpecification>();
+public class DriverManager {
+	
+	private static ThreadLocal<WireMockServer>			driversVirtualServer	= new ThreadLocal<WireMockServer>();
+	private static ThreadLocal<RequestSpecification>	driversWebAPI	= new ThreadLocal<RequestSpecification>();
 	
 	private static PropertiesFileSettings propertiesFileSettings;
 	
@@ -33,12 +34,13 @@ public class DriverManager {
 	
 	public void start() {
 		DriverManager.getDriverVirtualService();
-		getDriver();
+		DriverManager.getDriverWebAPI();
 	}
 	
 	public void stop() {
 		try {
-			closeDriver();
+			closeDriverWebApi();
+			closeDriverVirtualServer();
 			BFLogger.logDebug("Closing Driver in stop()");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,59 +51,77 @@ public class DriverManager {
 	protected void finalize() throws Throwable {
 		super.finalize();
 		try {
-			closeDriver();
+			closeDriverWebApi();
+			closeDriverVirtualServer();
 			BFLogger.logDebug("Closed Driver in finalize()");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-public static void clearAllDrivers() {
-		drivers.remove();
+	public static void clearAllDrivers() {
+		driversVirtualServer.remove();
+		driversWebAPI.remove();
 	}
 	
 	public static WireMockServer getDriverVirtualService() {
-		WireMockServer driver = drivers.get();
+		WireMockServer driver = driversVirtualServer.get();
 		if (driver == null) {
-			driver = createDriver();
-			drivers.set(driver);
+			driver = createDriverVirtualServer();
+			driversVirtualServer.set(driver);
 			BFLogger.logDebug("driver:" + driver.toString());
 		}
 		return driver;
 	}
 	
-
-	
-	public static RequestSpecification getDriver() {
-		RequestSpecification driver = drivers.get();	
-	
-	public static void closeDriver() {
-		WireMockServer driver = drivers.get();
-		RequestSpecification driver = drivers.get();
+	public static RequestSpecification getDriverWebAPI() {
+		RequestSpecification driver = driversWebAPI.get();
 		if (driver == null) {
+			driver = createDriverWebAPI();
+			driversWebAPI.set(driver);
+			BFLogger.logDebug("driver:" + driver.toString());
+		}
+		return driver;
+	}
+	
+	public static void closeDriverVirtualServer() {
+		WireMockServer driverVirtualServer = driversVirtualServer.get();
+		if (driverVirtualServer == null) {
 			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
 		} else {
 			try {
-				BFLogger.logDebug("Closing Mock Server under http://localhost:" + driver.port() + " https://localhost:" + driver.httpsPort());
-				driver.stop();
+				BFLogger.logDebug("Closing Mock Server under http://localhost:" + driverVirtualServer.port() + " https://localhost:" + driverVirtualServer.httpsPort());
+				driverVirtualServer.stop();
 			} catch (Exception e) {
 				BFLogger.logDebug("Ooops! Something went wrong while closing the driver");
 				e.printStackTrace();
 			} finally {
-			driver = null;
-			drivers.remove();
+				driverVirtualServer = null;
+				driversVirtualServer.remove();
+			}
 		}
 	}
+	
+	public static void closeDriverWebApi() {
+		RequestSpecification driverWebAPI = driversWebAPI.get();
+		if (driverWebAPI == null) {
+			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
+		} else {
+			driverWebAPI = null;
+			driversWebAPI.remove();
+		}
+		
 	}
 	
 	/**
 	 * Method sets desired 'driver' depends on chosen parameters
 	 */
-private static RequestSpecification createDriver() {
+	private static RequestSpecification createDriverWebAPI() {
 		BFLogger.logDebug("Creating new driver.");
 		return given();
-
-private static WireMockServer createDriver() {
+	}
+	
+	private static WireMockServer createDriverVirtualServer() {
 		BFLogger.logDebug("Creating new Mock Server");
 		
 		WireMockServer driver = Driver.WIREMOCK.getDriver();
@@ -172,6 +192,4 @@ private static WireMockServer createDriver() {
 		}
 		
 	}
-	}
-	
 }

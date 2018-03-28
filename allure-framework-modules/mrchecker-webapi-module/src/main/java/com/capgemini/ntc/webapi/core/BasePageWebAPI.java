@@ -80,7 +80,7 @@ abstract public class BasePageWebAPI implements ITestObserver {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
 				.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
-		DriverManager.closeDriver();
+		DriverManager.closeDriverWebApi();
 	}
 	
 	@Override

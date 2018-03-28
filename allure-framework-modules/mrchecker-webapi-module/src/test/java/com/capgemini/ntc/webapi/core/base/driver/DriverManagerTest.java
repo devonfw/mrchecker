@@ -105,7 +105,7 @@ public class DriverManagerTest {
 	@After
 	public void afterTest() {
 		try {
-			DriverManager.closeDriver();
+			DriverManager.closeDriverVirtualServer();
 		} catch (Exception e) {
 		}
 	}
