@@ -18,7 +18,7 @@ import io.restassured.specification.RequestSpecification;
 public class DriverManager {
 	
 	private static ThreadLocal<WireMockServer>			driversVirtualServer	= new ThreadLocal<WireMockServer>();
-	private static ThreadLocal<RequestSpecification>	driversWebAPI	= new ThreadLocal<RequestSpecification>();
+	private static ThreadLocal<RequestSpecification>	driversWebAPI			= new ThreadLocal<RequestSpecification>();
 	
 	private static PropertiesFileSettings propertiesFileSettings;
 	
@@ -121,7 +121,7 @@ public class DriverManager {
 		return given();
 	}
 	
-	private static WireMockServer createDriverVirtualServer() {
+	static WireMockServer createDriverVirtualServer() {
 		BFLogger.logDebug("Creating new Mock Server");
 		
 		WireMockServer driver = Driver.WIREMOCK.getDriver();

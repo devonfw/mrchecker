@@ -14,26 +14,14 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 import com.capgemini.ntc.webapi.soap.SoapMessageGenerator;
 import com.jamesmurty.utils.XMLBuilder;
 
-/**
- * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
- * <?xml version="1.0" encoding="utf-8"?>
- * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
- * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
- * <soap12:Body>
- * <FahrenheitToCelsius>
- * <Fahrenheit>100</Fahrenheit>
- * </FahrenheitToCelsius>
- * </soap12:Body>
- * </soap12:Envelope>
- **/
-public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
+public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	
 	/*
 	 * Build SOAP response builded from Java code
 	 */
 	
-	public FarenheitToCelsiusMethod_Request_FromCode() {
-		setRoot("FahrenheitToCelsius");
+	public FarenheitToCelsiusMethod_Response_FromCode() {
+		setRoot("FahrenheitToCelsiusResponse");
 	}
 	
 	/**
@@ -65,20 +53,21 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	 *         <Fahrenheit>100</Fahrenheit>
 	 *         </FahrenheitToCelsius>
 	 */
-	public FarenheitToCelsiusMethod_Request_FromCode setFahrenheit(int fahrenheit) {
-		getRoot().element("Fahrenheit")
-				.text(Integer.toString(fahrenheit));
+	public FarenheitToCelsiusMethod_Response_FromCode setFahrenheitToCelsiusResult(double value) {
+		getRoot()
+				.element("FahrenheitToCelsiusResult")
+				.text(Double.toString(value));
 		return this;
 	}
 	
 	// Set any nodes under xml Root
 	/**
 	 * @param fahrenheit
-	 * @return <FahrenheitToCelsius>
-	 *         <Fahrenheit>100</Fahrenheit>
-	 *         </FahrenheitToCelsius>
+	 * @return <FahrenheitToCelsiusResponse>
+	 *         <FahrenheitToCelsiusResult>37.7777777777778</FahrenheitToCelsiusResult>
+	 *         </FahrenheitToCelsiusResponse>
 	 */
-	public FarenheitToCelsiusMethod_Request_FromCode setSmth(String Smth) {
+	public FarenheitToCelsiusMethod_Response_FromCode setSmth(String Smth) {
 		getRoot().element("Smth")
 				.text(Smth);
 		return this;
@@ -98,5 +87,37 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 			new Exception(e);
 		}
 	}
+	
+	/**
+	 * Set value for node "FahrenheitToCelsiusResult" in response body
+	 * <FahrenheitToCelsiusResult>100</FahrenheitToCelsiusResult>
+	 * 
+	 * @param value
+	 * @return
+	 */
+	
+	/*
+	 * Build SOAP response builded from Java code
+	 */
+	
+	/**
+	 * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
+	 * <?xml version="1.0" encoding="utf-8"?>
+	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
+	 * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+	 * <soap12:Body>
+	 * <FahrenheitToCelsiusResponse>
+	 * <FahrenheitToCelsiusResult>37.7777777777778</FahrenheitToCelsiusResult>
+	 * </FahrenheitToCelsiusResponse>
+	 * </soap12:Body>
+	 * </soap12:Envelope>
+	 * 
+	 * @throws FactoryConfigurationError
+	 * @throws ParserConfigurationException
+	 * @throws TransformerException
+	 * @throws SAXException
+	 * @throws SOAPException
+	 * @throws IOException
+	 **/
 	
 }

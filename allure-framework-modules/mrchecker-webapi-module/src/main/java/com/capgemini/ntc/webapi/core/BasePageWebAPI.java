@@ -13,7 +13,7 @@ import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
 import com.capgemini.ntc.webapi.core.base.runtime.RuntimeParameters;
 import com.google.inject.Guice;
 
-abstract public class BasePageWebAPI implements ITestObserver {
+abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	
 	private static DriverManager driver = null;
 	

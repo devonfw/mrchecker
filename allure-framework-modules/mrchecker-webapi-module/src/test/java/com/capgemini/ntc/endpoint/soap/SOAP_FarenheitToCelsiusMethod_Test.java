@@ -47,7 +47,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		DriverManager.getDriverVirtualService();
 		
 		BFLogger.logInfo("#2 Create Stub content message");
-		FarenheitToCelsiusMethod_Response farenheitToCelsiusMethod_Response = new FarenheitToCelsiusMethod_Response();
+		final String responseMessage = new FarenheitToCelsiusMethod_Response_FromFile().getMessage();
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
@@ -59,7 +59,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		String endpointUriRegExp = "/tempconvert.asmx.*";
 		new StubSOAP_Builder.StubBuilder(endpointUriRegExp)
 				.setRequestXPathQuery(requestXPathQuery)
-				.setResponse(farenheitToCelsiusMethod_Response.fromFile_response())
+				.setResponse(responseMessage)
 				.setStatusCode(200)
 				.build();
 		
@@ -73,8 +73,10 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		Response response = given()
 				.with()
 				.contentType("application/soap+xml")
-				.body(new FarenheitToCelsiusMethod_Request_FromCode.Builder().setFahrenheit(30)
-						.build())
+				.body(new FarenheitToCelsiusMethod_Request_FromCode()
+						.setFahrenheit(30)
+						.setSmth("Hello")
+						.getMessage())
 				.log()
 				.all()
 				.when()
@@ -93,8 +95,8 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		DriverManager.getDriverVirtualService();
 		
 		BFLogger.logInfo("#2 Create Stub content message");
-		FarenheitToCelsiusMethod_Response farenheitToCelsiusMethod_Response = new FarenheitToCelsiusMethod_Response();
-		
+		final String responseMessage = new FarenheitToCelsiusMethod_Response_FromCode().setFahrenheitToCelsiusResult(37.8888)
+				.getMessage();
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
@@ -104,10 +106,10 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		String endpointUriRegExp = "/tempconvert.asmx\\?op=FahrenheitToCelsius";
+		
 		new StubSOAP_Builder.StubBuilder(endpointUriRegExp)
 				.setRequestXPathQuery(requestXPathQuery)
-				.setResponse(farenheitToCelsiusMethod_Response.setFahrenheitToCelsiusResult(37.8888)
-						.fromCode_response())
+				.setResponse(responseMessage)
 				.setStatusCode(200)
 				.build();
 		
@@ -121,7 +123,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		Response response = given()
 				.with()
 				.contentType("application/soap+xml")
-				.body(new FarenheitToCelsiusMethod_Request_FromFile.Builder().build())
+				.body(new FarenheitToCelsiusMethod_Request_FromFile().getMessage())
 				.log()
 				.all()
 				.when()

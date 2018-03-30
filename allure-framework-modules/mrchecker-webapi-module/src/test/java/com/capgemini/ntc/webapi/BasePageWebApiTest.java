@@ -29,6 +29,11 @@ public class BasePageWebApiTest extends BaseTest {
 		public String myMethod() {
 			return "Welcome";
 		}
+		
+		@Override
+		public String getMessage() {
+			return null;
+		}
 	}
 	
 }
