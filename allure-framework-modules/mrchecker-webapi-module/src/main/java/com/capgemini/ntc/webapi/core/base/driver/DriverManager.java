@@ -13,6 +13,9 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.opentable.extension.BodyTransformer;
 
+import io.restassured.RestAssured;
+import io.restassured.config.EncoderConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.specification.RequestSpecification;
 
 public class DriverManager {
@@ -39,8 +42,8 @@ public class DriverManager {
 	
 	public void stop() {
 		try {
-			closeDriverWebApi();
 			closeDriverVirtualServer();
+			closeDriverWebApi();
 			BFLogger.logDebug("Closing Driver in stop()");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,8 +54,8 @@ public class DriverManager {
 	protected void finalize() throws Throwable {
 		super.finalize();
 		try {
-			closeDriverWebApi();
 			closeDriverVirtualServer();
+			closeDriverWebApi();
 			BFLogger.logDebug("Closed Driver in finalize()");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,6 +121,7 @@ public class DriverManager {
 	 */
 	private static RequestSpecification createDriverWebAPI() {
 		BFLogger.logDebug("Creating new driver.");
+		RestAssured.config = new RestAssuredConfig().encoderConfig(new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
 		return given();
 	}
 	
