@@ -36,7 +36,10 @@ public class DriverManager {
 	}
 	
 	public void start() {
-		DriverManager.getDriverVirtualService();
+		
+		if (DriverManager.propertiesFileSettings.isVirtualServerEnabled()) {
+			DriverManager.getDriverVirtualService();
+		}
 		DriverManager.getDriverWebAPI();
 	}
 	
@@ -53,13 +56,7 @@ public class DriverManager {
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
-		try {
-			closeDriverVirtualServer();
-			closeDriverWebApi();
-			BFLogger.logDebug("Closed Driver in finalize()");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		this.stop();
 	}
 	
 	public static void clearAllDrivers() {
@@ -90,7 +87,7 @@ public class DriverManager {
 	public static void closeDriverVirtualServer() {
 		WireMockServer driverVirtualServer = driversVirtualServer.get();
 		if (driverVirtualServer == null) {
-			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
+			BFLogger.logDebug("closeDriverVirtualServer() was called but there was no driver for this thread.");
 		} else {
 			try {
 				BFLogger.logDebug("Closing Mock Server under http://localhost:" + driverVirtualServer.port() + " https://localhost:" + driverVirtualServer.httpsPort());
@@ -108,7 +105,7 @@ public class DriverManager {
 	public static void closeDriverWebApi() {
 		RequestSpecification driverWebAPI = driversWebAPI.get();
 		if (driverWebAPI == null) {
-			BFLogger.logDebug("closeDriver() was called but there was no driver for this thread.");
+			BFLogger.logDebug("closeDriverWebApi() was called but there was no driver for this thread.");
 		} else {
 			driverWebAPI = null;
 			driversWebAPI.remove();

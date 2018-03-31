@@ -45,12 +45,12 @@ public class DriverManagerTest {
 	
 	@Test
 	public void testWiremockServerStartPortHttpRandomPortHttps() {
-		System.setProperty("mock_http_port", "8081");
+		System.setProperty("mock_http_port", "8083");
 		RuntimeParameters.MOCK_HTTP_PORT.refreshParameterValue();
 		RuntimeParameters.MOCK_HTTPS_PORT.refreshParameterValue();
 		driver = DriverManager.getDriverVirtualService();
 		assertTrue("Mock server does not run", driver.isRunning());
-		assertEquals("Mock server for http does not run o port 8081", 8081, driver.port());
+		assertEquals("Mock server for http does not run o port 8083", 8083, driver.port());
 		assertTrue("Mock server for https does not run on random port", (Integer) driver.httpsPort() instanceof Integer);
 	}
 	
@@ -73,6 +73,7 @@ public class DriverManagerTest {
 		
 		WireMockServer driver1 = null;
 		WireMockServer driver2 = null;
+		DriverManager.closeDriverVirtualServer();
 		try {
 			// Start #1 server
 			driver1 = DriverManager.getDriverVirtualService();
@@ -104,10 +105,8 @@ public class DriverManagerTest {
 	
 	@After
 	public void afterTest() {
-		try {
-			DriverManager.createDriverVirtualServer();
-		} catch (Exception e) {
-		}
+		DriverManager.closeDriverVirtualServer();
+		
 	}
 	
 }
