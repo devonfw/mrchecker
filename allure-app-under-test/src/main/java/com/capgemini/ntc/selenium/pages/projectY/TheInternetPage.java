@@ -32,6 +32,24 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorExitIntentLink				= By.cssSelector("li > a[href*=exit_intent]");
 	private static final By	selectorDynamicLoadingLink			= By.cssSelector("li > a[href*=dynamic_loading]");
 	private static final By	selectorDisappearingElementsLink	= By.cssSelector("li > a[href*=disappearing_elements]");
+	private static final By	selectorDragAndDropLink				= By.cssSelector("li > a[href*=drag_and_drop]");
+	private static final By	selectorContextMenuLink				= By.cssSelector("li > a[href*=context_menu]");
+	private static final By	selectorDynamicControlsLink			= By.cssSelector("li > a[href*=dynamic_controls]");
+	private static final By	selectorFileUploadLink				= By.cssSelector("li > a[href*=upload]");
+	private static final By	selectorFloatingMenuLink			= By.cssSelector("li > a[href*=floating_menu]");
+	private static final By	selectorFramesLink					= By.cssSelector("li > a[href*=frames]");
+	private static final By	selectorGeolocationLink				= By.cssSelector("li > a[href*=geolocation]");
+	private static final By	selectorInfiniteScrollLink			= By.cssSelector("li > a[href*=infinite_scroll]");
+	private static final By	selectorJQueryUIMenuLink			= By.cssSelector("li > a[href*=jqueryui/menu]");
+	private static final By	selectorJavaScriptErrorLink			= By.cssSelector("li > a[href*=javascript_error]");
+	private static final By	selectorLargeAndDeepDOMLink			= By.cssSelector("li > a[href*=large]");
+	private static final By	selectorNestedFramesLink			= By.cssSelector("li > a[href*=nested_frames]");
+	private static final By	selectorNotificationMessagesLink	= By.cssSelector("li > a[href*=notification_message]");
+	private static final By	selectorSecureFileDownloadLink		= By.cssSelector("li > a[href*=download_secure]");
+	private static final By	selectorShiftingContentLink			= By.cssSelector("li > a[href*=shifting_content]");
+	private static final By	selectorSlowResourcesLink			= By.cssSelector("li > a[href*=slow]");
+	private static final By	selectorTyposLink					= By.cssSelector("li > a[href*=typos]");
+	private static final By	selectorWYSIWYGEditorLink			= By.cssSelector("li > a[href*=tinymce]");
 	
 	@Override
 	public boolean isLoaded() {
@@ -178,6 +196,108 @@ public class TheInternetPage extends BasePage {
 		WebElement elementLink = getDriver().findElementDynamic(selectorDisappearingElementsLink);
 		elementLink.click();
 		return new DisappearingElementsPage();
+	}
+	
+	public ContextMenuPage clickContextMenuLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorContextMenuLink);
+		elementLink.click();
+		return new ContextMenuPage();
+	}
+	
+	public DynamicControlsPage clickDynamicControlsLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorDynamicControlsLink);
+		elementLink.click();
+		return new DynamicControlsPage();
+	}
+	
+	public FileUploadPage clickFileUploadLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorFileUploadLink);
+		elementLink.click();
+		return new FileUploadPage();
+	}
+	
+	public FloatingMenuPage clickFloatingMenuLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorFloatingMenuLink);
+		elementLink.click();
+		return new FloatingMenuPage();
+	}
+	
+	public FramesPage clickFramesLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorFramesLink);
+		elementLink.click();
+		return new FramesPage();
+	}
+	
+	public GeolocationPage clickGeolocationLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorGeolocationLink);
+		elementLink.click();
+		return new GeolocationPage();
+	}
+	
+	public InfiniteScrollPage clickInfiniteScrollLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorInfiniteScrollLink);
+		elementLink.click();
+		return new InfiniteScrollPage();
+	}
+	
+	public JQueryUIMenuPage clickJQueryUIMenuLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorJQueryUIMenuLink);
+		elementLink.click();
+		return new JQueryUIMenuPage();
+	}
+	
+	public JavaScriptErrorPage clickJavaScriptErrorLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorJavaScriptErrorLink);
+		elementLink.click();
+		return new JavaScriptErrorPage();
+	}
+	
+	public LargeAndDeepDOMPage clickLargeAndDeepDOMLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorLargeAndDeepDOMLink);
+		elementLink.click();
+		return new LargeAndDeepDOMPage();
+	}
+	
+	public NestedFramesPage clickNestedFramesLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorNestedFramesLink);
+		elementLink.click();
+		return new NestedFramesPage();
+	}
+	
+	public NotificationMessagesPage clickNotificationMessagesLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorNotificationMessagesLink);
+		elementLink.click();
+		return new NotificationMessagesPage();
+	}
+	
+	public SecureFileDownloadPage clickSecureFileDownloadLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorSecureFileDownloadLink);
+		elementLink.click();
+		return new SecureFileDownloadPage();
+	}
+	
+	public ShiftingContentPage clickShiftingContentLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorShiftingContentLink);
+		elementLink.click();
+		return new ShiftingContentPage();
+	}
+	
+	public SlowResourcesPage clickSlowResourcesLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorSlowResourcesLink);
+		elementLink.click();
+		return new SlowResourcesPage();
+	}
+	
+	public TyposPage clickTyposLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorTyposLink);
+		elementLink.click();
+		return new TyposPage();
+	}
+	
+	public WYSIWYGEditorPage clickWYSIWYGEditorLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorWYSIWYGEditorLink);
+		elementLink.click();
+		return new WYSIWYGEditorPage();
 	}
 	
 }
