@@ -11,45 +11,45 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class TheInternetPage extends BasePage {
 	
-	private static final By	selectorCheckboxesLink				= By.cssSelector("li > a[href*=checkboxes]");
-	private static final By	selectorElementClick				= By.cssSelector("li > a[href*=abtest]");
-	private static final By	selectorBrokenImageClickLink		= By.cssSelector("li > a[href*=broken_images]");
-	private static final By	selectorDropdownClickLink			= By.cssSelector("li > a[href*=dropdown]");
-	private static final By	selectorMultipleWindowsLink			= By.cssSelector("li > a[href*=windows]");
-	private static final By	selectorBasicAuthLink				= By.cssSelector("li > a[href*=basic_auth]");
-	private static final By	selectorKeyPressesLink				= By.cssSelector("li > a[href*=key_presses]");
-	private static final By	selectorRedirectLink				= By.cssSelector("li > a[href*=redirector]");
-	private static final By	selectorJavaScriptAlertLink			= By.cssSelector("li > a[href*=javascript_alerts]");
-	private static final By	selectorHoversLink					= By.cssSelector("li > a[href*=hovers]");
-	private static final By	selectorSortableDataTablesLink		= By.cssSelector("li > a[href*=tables]");
-	private static final By	selectorChallengingDomClick			= By.cssSelector("li > a[href*=challenging_dom]");
-	private static final By	selectorStatusCodesLink				= By.cssSelector("li > a[href*=status_codes]");
-	private static final By	selectorDynamicContent				= By.cssSelector("li > a[href*=dynamic_content]");
-	private static final By	selectorHorizontalSliderLink		= By.cssSelector("li > a[href*=horizontal_slider]");
-	private static final By	selectorFormAuthenticationLink		= By.cssSelector("li > a[href*=login]");
-	private static final By	selectorFileDownloadLink			= By.cssSelector("li > a[href='/download']");
-	private static final By	selectorForgotPasswordLink			= By.cssSelector("li > a[href*=forgot_password]");
-	private static final By	selectorExitIntentLink				= By.cssSelector("li > a[href*=exit_intent]");
-	private static final By	selectorDynamicLoadingLink			= By.cssSelector("li > a[href*=dynamic_loading]");
-	private static final By	selectorDisappearingElementsLink	= By.cssSelector("li > a[href*=disappearing_elements]");
-	private static final By	selectorDragAndDropLink				= By.cssSelector("li > a[href*=drag_and_drop]");
-	private static final By	selectorContextMenuLink				= By.cssSelector("li > a[href*=context_menu]");
-	private static final By	selectorDynamicControlsLink			= By.cssSelector("li > a[href*=dynamic_controls]");
-	private static final By	selectorFileUploadLink				= By.cssSelector("li > a[href*=upload]");
-	private static final By	selectorFloatingMenuLink			= By.cssSelector("li > a[href*=floating_menu]");
-	private static final By	selectorFramesLink					= By.cssSelector("li > a[href*=frames]");
-	private static final By	selectorGeolocationLink				= By.cssSelector("li > a[href*=geolocation]");
-	private static final By	selectorInfiniteScrollLink			= By.cssSelector("li > a[href*=infinite_scroll]");
-	private static final By	selectorJQueryUIMenuLink			= By.cssSelector("li > a[href*=jqueryui/menu]");
-	private static final By	selectorJavaScriptErrorLink			= By.cssSelector("li > a[href*=javascript_error]");
-	private static final By	selectorLargeAndDeepDOMLink			= By.cssSelector("li > a[href*=large]");
-	private static final By	selectorNestedFramesLink			= By.cssSelector("li > a[href*=nested_frames]");
-	private static final By	selectorNotificationMessagesLink	= By.cssSelector("li > a[href*=notification_message]");
-	private static final By	selectorSecureFileDownloadLink		= By.cssSelector("li > a[href*=download_secure]");
-	private static final By	selectorShiftingContentLink			= By.cssSelector("li > a[href*=shifting_content]");
-	private static final By	selectorSlowResourcesLink			= By.cssSelector("li > a[href*=slow]");
-	private static final By	selectorTyposLink					= By.cssSelector("li > a[href*=typos]");
-	private static final By	selectorWYSIWYGEditorLink			= By.cssSelector("li > a[href*=tinymce]");
+	private static final By	selectorCheckboxesLink				= By.cssSelector("li > a[href*='checkboxes']");
+	private static final By	selectorElementClick				= By.cssSelector("li > a[href*='abtest']");
+	private static final By	selectorBrokenImageClickLink		= By.cssSelector("li > a[href*='broken_images']");
+	private static final By	selectorDropdownClickLink			= By.cssSelector("li > a[href*='dropdown']");
+	private static final By	selectorMultipleWindowsLink			= By.cssSelector("li > a[href*='windows']");
+	private static final By	selectorBasicAuthLink				= By.cssSelector("li > a[href*='basic_auth']");
+	private static final By	selectorKeyPressesLink				= By.cssSelector("li > a[href*='key_presses']");
+	private static final By	selectorRedirectLink				= By.cssSelector("li > a[href*='redirector']");
+	private static final By	selectorJavaScriptAlertLink			= By.cssSelector("li > a[href*='javascript_alerts']");
+	private static final By	selectorHoversLink					= By.cssSelector("li > a[href*='hovers']");
+	private static final By	selectorSortableDataTablesLink		= By.cssSelector("li > a[href*='tables']");
+	private static final By	selectorChallengingDomClick			= By.cssSelector("li > a[href*='challenging_dom']");
+	private static final By	selectorStatusCodesLink				= By.cssSelector("li > a[href*='status_codes']");
+	private static final By	selectorDynamicContent				= By.cssSelector("li > a[href*='dynamic_content']");
+	private static final By	selectorHorizontalSliderLink		= By.cssSelector("li > a[href*='horizontal_slider']");
+	private static final By	selectorFormAuthenticationLink		= By.cssSelector("li > a[href*='login']");
+	private static final By	selectorFileDownloadLink			= By.cssSelector("li > a[href$='download']");
+	private static final By	selectorForgotPasswordLink			= By.cssSelector("li > a[href*='forgot_password']");
+	private static final By	selectorExitIntentLink				= By.cssSelector("li > a[href*='exit_intent']");
+	private static final By	selectorDynamicLoadingLink			= By.cssSelector("li > a[href*='dynamic_loading']");
+	private static final By	selectorDisappearingElementsLink	= By.cssSelector("li > a[href*='disappearing_elements']");
+	private static final By	selectorDragAndDropLink				= By.cssSelector("li > a[href*='drag_and_drop']");
+	private static final By	selectorContextMenuLink				= By.cssSelector("li > a[href*='context_menu']");
+	private static final By	selectorDynamicControlsLink			= By.cssSelector("li > a[href*='dynamic_controls']");
+	private static final By	selectorFileUploadLink				= By.cssSelector("li > a[href*='upload']");
+	private static final By	selectorFloatingMenuLink			= By.cssSelector("li > a[href*='floating_menu']");
+	private static final By	selectorFramesLink					= By.cssSelector("li > a[href*='frames']");
+	private static final By	selectorGeolocationLink				= By.cssSelector("li > a[href*='geolocation']");
+	private static final By	selectorInfiniteScrollLink			= By.cssSelector("li > a[href*='infinite_scroll']");
+	private static final By	selectorJQueryUIMenuLink			= By.cssSelector("li > a[href*='jqueryui/menu']");
+	private static final By	selectorJavaScriptErrorLink			= By.cssSelector("li > a[href*='javascript_error']");
+	private static final By	selectorLargeAndDeepDOMLink			= By.cssSelector("li > a[href*='large']");
+	private static final By	selectorNestedFramesLink			= By.cssSelector("li > a[href*='nested_frames']");
+	private static final By	selectorNotificationMessagesLink	= By.cssSelector("li > a[href*='notification_message']");
+	private static final By	selectorSecureFileDownloadLink		= By.cssSelector("li > a[href*='download_secure']");
+	private static final By	selectorShiftingContentLink			= By.cssSelector("li > a[href*='shifting_content']");
+	private static final By	selectorSlowResourcesLink			= By.cssSelector("li > a[href*='slow']");
+	private static final By	selectorTyposLink					= By.cssSelector("li > a[href*='typos']");
+	private static final By	selectorWYSIWYGEditorLink			= By.cssSelector("li > a[href*='tinymce']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -196,6 +196,12 @@ public class TheInternetPage extends BasePage {
 		WebElement elementLink = getDriver().findElementDynamic(selectorDisappearingElementsLink);
 		elementLink.click();
 		return new DisappearingElementsPage();
+	}
+	
+	public DragAndDropPage clickDragAndDropLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorDragAndDropLink);
+		elementLink.click();
+		return new DragAndDropPage();
 	}
 	
 	public ContextMenuPage clickContextMenuLink() {
