@@ -13,7 +13,7 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 	
 	/*
-	 * Build SOAP response builded from Java code
+	 * SOAP response built from Java code
 	 */
 	private String path = "/src/test/resources/soapInput/farenheittocelsius/sampleresponse.xml";
 	
