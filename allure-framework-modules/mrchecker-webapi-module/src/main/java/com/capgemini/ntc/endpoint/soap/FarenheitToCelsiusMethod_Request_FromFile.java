@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 
 /**
@@ -58,7 +57,6 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	private String getStringOutOfFile(final String filePath) throws IOException {
 		String path = System.getProperty("user.dir") + Paths.get(filePath);
 		if (!exists(path)) {
-			BFLogger.logError("Could not find file. Path='" + path + "' does not exist");
 			throw new IOException("Could not find file. Path='" + path + "' does not exist");
 		}
 		
@@ -68,15 +66,10 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
 	private boolean exists(String path) {
 		File f = new File(path);
-		if (f.exists())
-			return true;
-		
-		return false;
+		return f.exists();
 	}
 	
-	private String readFile(String path,
-			Charset encoding)
-			throws IOException {
+	private String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
