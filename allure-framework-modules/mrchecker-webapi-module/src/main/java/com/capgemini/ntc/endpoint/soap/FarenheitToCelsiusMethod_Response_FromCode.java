@@ -17,7 +17,7 @@ import com.jamesmurty.utils.XMLBuilder;
 public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	
 	/*
-	 * Build SOAP response builded from Java code
+	 * SOAP response built from Java code
 	 */
 	
 	public FarenheitToCelsiusMethod_Response_FromCode() {
@@ -28,15 +28,15 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	 * @return Generate SOAP response in String format
 	 */
 	public String getMessage() {
-		String messageInString = "";
+		String message = "";
 		try {
 			SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
 					.asString());
-			messageInString = SoapMessageGenerator.printSoapMessage(soapMessage);
+			message = SoapMessageGenerator.printSoapMessage(soapMessage);
 		} catch (SOAPException | SAXException | IOException | ParserConfigurationException | TransformerException e) {
 			new Exception(e);
 		}
-		return messageInString;
+		return message;
 	}
 	
 	/**
@@ -60,8 +60,9 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 		return this;
 	}
 	
-	// Set any nodes under xml Root
+	// Set any nodes type under xml Root
 	/**
+	 * Set "FahrenheitToCelsiusResult" node under xml Root
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsiusResponse>
 	 *         <FahrenheitToCelsiusResult>37.7777777777778</FahrenheitToCelsiusResult>
@@ -87,37 +88,4 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 			new Exception(e);
 		}
 	}
-	
-	/**
-	 * Set value for node "FahrenheitToCelsiusResult" in response body
-	 * <FahrenheitToCelsiusResult>100</FahrenheitToCelsiusResult>
-	 * 
-	 * @param value
-	 * @return
-	 */
-	
-	/*
-	 * Build SOAP response builded from Java code
-	 */
-	
-	/**
-	 * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
-	 * <?xml version="1.0" encoding="utf-8"?>
-	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
-	 * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-	 * <soap12:Body>
-	 * <FahrenheitToCelsiusResponse>
-	 * <FahrenheitToCelsiusResult>37.7777777777778</FahrenheitToCelsiusResult>
-	 * </FahrenheitToCelsiusResponse>
-	 * </soap12:Body>
-	 * </soap12:Envelope>
-	 * 
-	 * @throws FactoryConfigurationError
-	 * @throws ParserConfigurationException
-	 * @throws TransformerException
-	 * @throws SAXException
-	 * @throws SOAPException
-	 * @throws IOException
-	 **/
-	
 }
