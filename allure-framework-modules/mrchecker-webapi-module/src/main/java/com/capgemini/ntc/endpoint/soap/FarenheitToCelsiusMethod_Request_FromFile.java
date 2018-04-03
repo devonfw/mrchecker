@@ -21,8 +21,6 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
  * </FahrenheitToCelsius>
  * </soap12:Body>
  * </soap12:Envelope>
- * 
- * @throws IOException
  **/
 public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
@@ -41,7 +39,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	}
 	
 	@Override
-	public String getMessage() {
+	public String getMessage() thrown Exception{
 		String message = "";
 		try {
 			message = getStringOutOfFile(this.path);
@@ -70,10 +68,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
 	private boolean exists(String path) {
 		File f = new File(path);
-		if (f.exists())
-			return true;
-		
-		return false;
+		return f.exists();
 	}
 	
 	private String readFile(String path,
