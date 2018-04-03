@@ -89,7 +89,6 @@ public class DriverManagerTest {
 			assertTrue("Mock server does not run", driver2.isRunning());
 			assertEquals("Mock server for http does not run o port 8081", 8081, driver2.port());
 			assertTrue("Mock server for https does not run on random port", (Integer) driver2.httpsPort() instanceof Integer);
-			fail();
 		} catch (FatalStartupException e) {
 			assertTrue("No information about bind error", e.getMessage()
 					.contains("Address already in use: bind"));
