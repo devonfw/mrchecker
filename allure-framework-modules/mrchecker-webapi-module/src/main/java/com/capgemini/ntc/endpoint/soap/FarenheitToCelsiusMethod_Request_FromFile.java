@@ -39,7 +39,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	}
 	
 	@Override
-	public String getMessage() thrown Exception{
+	public String getMessage() {
 		String message = "";
 		try {
 			message = getStringOutOfFile(this.path);
@@ -68,7 +68,10 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
 	private boolean exists(String path) {
 		File f = new File(path);
-		return f.exists();
+		if (f.exists())
+			return true;
+		
+		return false;
 	}
 	
 	private String readFile(String path,
