@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,15 +35,15 @@
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
-        
+
         <developer>
             <name>Tomasz Supel</name>
             <email>tomasz.supel@capgemini.com</email>
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
-        
-         <developer>
+
+        <developer>
             <name>Pawel Szczesny</name>
             <email>pawel.szczesny@capgemini.com</email>
             <organization>Capgemini  - Nearshore Test Center - Poland</organization>
@@ -68,6 +69,12 @@
 
         <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
 
+
+        <!-- Lib/package version settings -->
+        <wiremock.version>2.15.0</wiremock.version>
+        <wiremock-body-transformer.version>1.1.6</wiremock-body-transformer.version>
+        <java-xmlbuilder.version>1.2</java-xmlbuilder.version>
+
     </properties>
 
     <dependencies>
@@ -77,24 +84,44 @@
             <artifactId>allure-core-module</artifactId>
             <version>${allure-core-module.version}</version>
         </dependency>
-		
-		<!--This dependency is necessary for Rest assured plugin. -->
+
+        <!-- Dependency to REST and SOAP lib -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
         </dependency>
-        
+
+        <!-- Dependency to start mock API -->
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
+            <!-- http://wiremock.org/docs/ -->
+            <!-- https://github.com/tomakehurst/wiremock/blob/master/src/test/java/ignored/Examples.java#374 -->
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>${wiremock.version}</version>
         </dependency>
-        
+
+        <dependency>
+            <!-- https://github.com/opentable/wiremock-body-transformer -->
+            <groupId>com.opentable</groupId>
+            <artifactId>wiremock-body-transformer</artifactId>
+            <version>${wiremock-body-transformer.version}</version>
+        </dependency>
+
+        <!-- Dependency to build xml structure -->
+        <dependency>
+            <groupId>com.jamesmurty.utils</groupId>
+            <artifactId>java-xmlbuilder</artifactId>
+            <version>${java-xmlbuilder.version}</version>
+        </dependency>
+
+
         <!-- Hashes sensitive data -->
         <dependency>
-           <groupId>org.jasypt</groupId>
-           <artifactId>jasypt</artifactId>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
         </dependency>
-    </dependencies>    
+
+    </dependencies>
 
     <!-- Build goals/actions -->
     <build>
