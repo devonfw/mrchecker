@@ -29,7 +29,7 @@ import com.jamesmurty.utils.XMLBuilder;
 public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	
 	/*
-	 * Build SOAP response builded from Java code
+	 * SOAP response built from Java code
 	 */
 	
 	public FarenheitToCelsiusMethod_Request_FromCode() {
@@ -40,15 +40,15 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	 * @return Generate SOAP response in String format
 	 */
 	public String getMessage() {
-		String messageInString = "";
+		String message = "";
 		try {
 			SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
 					.asString());
-			messageInString = SoapMessageGenerator.printSoapMessage(soapMessage);
+			message = SoapMessageGenerator.printSoapMessage(soapMessage);
 		} catch (SOAPException | SAXException | IOException | ParserConfigurationException | TransformerException e) {
 			new Exception(e);
 		}
-		return messageInString;
+		return message;
 	}
 	
 	/**
