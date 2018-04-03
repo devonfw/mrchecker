@@ -58,8 +58,9 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 		return xmlBody;
 	}
 	
-	// Set any nodes under xml Root
+	// Set any type of "nodes" under xml Root
 	/**
+	 * Set "Fahrenheit" node under xml Root
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsius>
 	 *         <Fahrenheit>100</Fahrenheit>
@@ -73,9 +74,10 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	
 	// Set any nodes under xml Root
 	/**
+	 * Set "Smth" node under xml Root
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsius>
-	 *         <Fahrenheit>100</Fahrenheit>
+	 *         <Smth>Hello</Smth>
 	 *         </FahrenheitToCelsius>
 	 */
 	public FarenheitToCelsiusMethod_Request_FromCode setSmth(String Smth) {
