@@ -36,7 +36,7 @@ public class PropertiesFileSettingsTest {
 	}
 	
 	@Test
-	public void testParamterEnableVirtualServer_True() {
+	public void testParameterEnableVirtualServer_True() {
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings.properties");
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesFileSettings = i.getInstance(PropertiesFileSettings.class);
@@ -45,7 +45,7 @@ public class PropertiesFileSettingsTest {
 	}
 	
 	@Test
-	public void testParamterEnableVirtualServer_False() {
+	public void testParameterEnableVirtualServer_False() {
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings2.properties");
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesFileSettings = i.getInstance(PropertiesFileSettings.class);
@@ -54,7 +54,7 @@ public class PropertiesFileSettingsTest {
 	}
 	
 	@Test
-	public void testParamterEnableVirtualServer_NoValue() {
+	public void testParameterEnableVirtualServer_NoValue() {
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings3.properties");
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesFileSettings = i.getInstance(PropertiesFileSettings.class);
@@ -63,7 +63,7 @@ public class PropertiesFileSettingsTest {
 	}
 	
 	@Test
-	public void testParamterEnableVirtualServer_Text() {
+	public void testParameterEnableVirtualServer_Text() {
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings4.properties");
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesFileSettings = i.getInstance(PropertiesFileSettings.class);
@@ -72,7 +72,7 @@ public class PropertiesFileSettingsTest {
 	}
 	
 	@Test
-	public void testParamterEnableVirtualServer_NoParameter() {
+	public void testParameterEnableVirtualServer_NoParameter() {
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings5.properties");
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
 		this.propertiesFileSettings = i.getInstance(PropertiesFileSettings.class);
@@ -80,9 +80,8 @@ public class PropertiesFileSettingsTest {
 		assertEquals("", true, propertiesFileSettings.isVirtualServerEnabled());
 	}
 	
-	// @Ignore
 	@Test
-	public void testDefaultParamters() {
+	public void testDefaultParameters() {
 		PropertiesSettingsModule.delInstance();
 		
 		Injector i = Guice.createInjector(PropertiesSettingsModule.init());
