@@ -19,20 +19,21 @@ public class DynamicContentPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The DynamicContent page is loaded.");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DYNAMIC_CONTENT.getValue());
+						.contains(PageSubURLsProjectYEnum.DYNAMIC_CONTENT.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load");
+		BFLogger.logDebug("Load 'Dynamic Content' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DYNAMIC_CONTENT.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public void refreshPage() {

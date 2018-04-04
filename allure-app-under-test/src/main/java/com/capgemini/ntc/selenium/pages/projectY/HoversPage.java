@@ -16,20 +16,21 @@ public class HoversPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The Hovers page is loaded.");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.HOVERS.getValue());
+						.contains(PageSubURLsProjectYEnum.HOVERS.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load");
+		BFLogger.logDebug("Load 'Hovers' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.HOVERS.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public void hoverUnderAvatar(int index) {

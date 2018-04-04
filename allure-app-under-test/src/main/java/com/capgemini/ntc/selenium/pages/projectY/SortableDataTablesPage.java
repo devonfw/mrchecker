@@ -19,20 +19,21 @@ public class SortableDataTablesPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The Sortable data tables page is loaded.");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.SORTABLE_DATA_TABLES.getValue());
+						.contains(PageSubURLsProjectYEnum.SORTABLE_DATA_TABLES.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load");
+		BFLogger.logDebug("Load 'Data Tables' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.SORTABLE_DATA_TABLES.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public void sortColumnAscending(int columnNumber, int tableNumber) {
@@ -61,17 +62,17 @@ public class SortableDataTablesPage extends BasePage {
 	
 	public String readColumnClass(int columnNumber, int tableNumber) {
 		return this.getTableHeaders(columnNumber, tableNumber)
-				.getAttribute("class");
+						.getAttribute("class");
 	}
 	
 	private WebElement getTable(int tableNumber) {
 		return new ListElements(selectorTable).getList()
-				.get(tableNumber);
+						.get(tableNumber);
 	}
 	
 	private WebElement getTableHeaders(int columnNumber, int tableNumber) {
 		return getTable(tableNumber).findElements(selectorHeader)
-				.get(columnNumber);
+						.get(columnNumber);
 	}
 	
 }

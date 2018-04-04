@@ -14,20 +14,21 @@ public class MultipleWindowsPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
+						.contains(PageSubURLsProjectYEnum.WINDOW.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load page");
+		BFLogger.logDebug("Load 'Opening a new window' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.WINDOW.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public NewWindowPage clickHereLink() {

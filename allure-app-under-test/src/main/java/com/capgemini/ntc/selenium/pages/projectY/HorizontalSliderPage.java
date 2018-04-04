@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class HorizontalSliderPage extends BasePage {
@@ -24,18 +26,19 @@ public class HorizontalSliderPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("horizontal_slider");
+						.contains(PageSubURLsProjectYEnum.HORIZONTAL_SLIDER.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
-		
+		BFLogger.logDebug("Load 'Horizontal Slider' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.HORIZONTAL_SLIDER.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getActualPageTitle();
 	}
 	
 	/**

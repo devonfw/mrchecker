@@ -60,14 +60,14 @@ public class TheInternetPage extends BasePage {
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load page");
+		BFLogger.logDebug("Load 'The internet' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public CheckboxesPage clickCheckboxesLink() {

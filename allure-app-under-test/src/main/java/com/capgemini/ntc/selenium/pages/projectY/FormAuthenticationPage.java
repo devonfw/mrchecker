@@ -8,10 +8,10 @@ import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class FormAuthenticationPage extends BasePage {
 	
-	private final String	validPageTitle				= "The Internet";
 	private final static By	selectorInputUsername		= By.cssSelector("#username");
 	private final static By	selectorInputUserPassword	= By.cssSelector("#password");
 	private final static By	selectorLoginMessage		= By.cssSelector("#flash");
@@ -20,19 +20,21 @@ public class FormAuthenticationPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
 		return getDriver().getTitle()
-						.equals(validPageTitle);
+						.contains(PageSubURLsProjectYEnum.LOGIN.getValue());
 	}
 	
 	@Override
 	public void load() {
+		BFLogger.logDebug("Load 'Login Page' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.LOGIN.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public FormAuthenticationPage setUsername(String username) {

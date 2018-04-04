@@ -13,7 +13,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.base.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DragAndDropPage extends BasePage {
@@ -29,17 +31,19 @@ public class DragAndDropPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("drag_and_drop");
+						.contains(PageSubURLsProjectYEnum.DRAG_AND_DROP.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
+		BFLogger.logDebug("Load 'Drag and Drop' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DRAG_AND_DROP.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getActualPageTitle();
 	}
 	
 	/**

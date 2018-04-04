@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class FileDownloadPage extends BasePage {
 	
@@ -18,19 +19,21 @@ public class FileDownloadPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/download");
+						.contains(PageSubURLsProjectYEnum.DOWNLOAD.getValue());
 	}
 	
 	@Override
 	public void load() {
-		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
+		BFLogger.logDebug("Load 'File Downloader' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DOWNLOAD.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public File downloadTheSomeFileTxt() {

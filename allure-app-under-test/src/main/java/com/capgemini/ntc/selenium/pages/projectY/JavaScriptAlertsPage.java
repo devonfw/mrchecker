@@ -20,20 +20,21 @@ public class JavaScriptAlertsPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The KeyPresses page is loaded.");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+						.contains(PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load");
+		BFLogger.logDebug("Load 'JavaScript Alerts' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public void clickAlertButton() {
