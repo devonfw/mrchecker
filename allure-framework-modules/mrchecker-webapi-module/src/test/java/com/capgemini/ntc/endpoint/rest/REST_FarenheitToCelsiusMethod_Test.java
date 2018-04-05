@@ -11,6 +11,7 @@ import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 import com.capgemini.ntc.webapi.core.stubs.StubREST_Builder;
+import com.github.tomakehurst.wiremock.WireMockServer;
 
 import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;
@@ -24,10 +25,20 @@ public class REST_FarenheitToCelsiusMethod_Test extends BaseTest {
 	
 	@BeforeClass
 	public static void beforeClass() {
+		
+		// Start Virtual Server
+		WireMockServer driverVirtualService = DriverManager.getDriverVirtualService();
+		
+		// Get Virtual Server running http and https ports
+		int httpPort = driverVirtualService.port();
+		int httpsPort = driverVirtualService.httpsPort();
+		
+		// Print is Virtual server running
+		BFLogger.logDebug("Is Virtual server running: " + driverVirtualService.isRunning());
+		
 		String baseURI = "http://localhost";
-		int port = DriverManager.getDriverVirtualService()
-				.port();
-		endpointBaseUri = baseURI + ":" + port;
+		endpointBaseUri = baseURI + ":" + httpPort;
+		
 		RestAssured.config = new RestAssuredConfig().encoderConfig(new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
 	}
 	

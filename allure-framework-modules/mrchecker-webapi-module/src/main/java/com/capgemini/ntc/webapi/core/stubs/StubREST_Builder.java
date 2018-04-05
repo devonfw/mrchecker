@@ -10,6 +10,9 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.put;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 
+import java.util.UUID;
+
+import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 
 import io.restassured.http.ContentType;
@@ -60,9 +63,10 @@ public class StubREST_Builder {
 		}
 		
 		public StubREST_Builder build() {
+			UUID id;
 			
 			// GET
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							get(urlMatching(this.endpointURI))
@@ -72,10 +76,12 @@ public class StubREST_Builder {
 											.withStatus(this.statusCode)
 											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped GET with ID=" + id.toString());
 			
 			// POST
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							post(urlMatching(this.endpointURI))
@@ -85,10 +91,12 @@ public class StubREST_Builder {
 											.withStatus(this.statusCode)
 											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped POST with ID=" + id.toString());
 			
 			// PUT
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							put(urlMatching(this.endpointURI))
@@ -98,10 +106,12 @@ public class StubREST_Builder {
 											.withStatus(this.statusCode)
 											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped PUT with ID=" + id.toString());
 			
 			// DELETE
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							delete(urlMatching(this.endpointURI))
@@ -111,10 +121,12 @@ public class StubREST_Builder {
 											.withStatus(this.statusCode)
 											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped DELETE with ID=" + id.toString());
 			
 			// CATCH any other requests
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							any(anyUrl())
 									.atPriority(10)
@@ -122,7 +134,9 @@ public class StubREST_Builder {
 											.withStatus(404)
 											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody("{\"status\":\"Error\",\"message\":\"Endpoint not found\"}")
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped AnyOther with ID=" + id.toString());
 			
 			return new StubREST_Builder(this);
 		}
