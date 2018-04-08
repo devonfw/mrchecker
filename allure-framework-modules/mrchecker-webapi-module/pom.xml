@@ -72,7 +72,7 @@
 
         <!-- Lib/package version settings -->
         <wiremock.version>2.15.0</wiremock.version>
-        <wiremock-body-transformer.version>1.1.6</wiremock-body-transformer.version>
+        <wiremock-body-transformer.version>1.1.5</wiremock-body-transformer.version>
         <java-xmlbuilder.version>1.2</java-xmlbuilder.version>
 
     </properties>
