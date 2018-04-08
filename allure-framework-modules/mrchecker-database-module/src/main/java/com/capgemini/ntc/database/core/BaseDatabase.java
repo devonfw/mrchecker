@@ -11,25 +11,21 @@ import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Guice;
-
+import lombok.AccessLevel;
 import lombok.Getter;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
 
+@Getter(AccessLevel.PROTECTED)
 abstract public class BaseDatabase implements ITestObserver {
 
 	private final static PropertiesFileSettings propertiesFileSettings;
 	private static       IEnvironmentService    environmentService;
 	private final static IAnalytics             analytics;
 
-	@Getter
-	protected String dbPrefix = "default";
-	protected EntityManagerFactory emf;
-	protected EntityManagerFactory getConnection() {
-		return emf != null ? this.emf : Persistence.createEntityManagerFactory(getDbPrefix());
-	}
+	protected String        dbPrefix      = "default";
+	protected EntityManager entityManager = null;
 
 	public final static String analitycsCategoryName = "Database-Module";
 
@@ -44,7 +40,11 @@ abstract public class BaseDatabase implements ITestObserver {
 		setRuntimeParametersDatabase();
 
 		// Read Environment variables either from environments.csv or any other input data.
-		setEnvironmetInstance();
+		setEnvironmentInstance();
+	}
+
+	public BaseDatabase() {
+		assignEntityManager();
 	}
 
 	public static IAnalytics getAnalytics() {
@@ -118,7 +118,13 @@ abstract public class BaseDatabase implements ITestObserver {
 
 	}
 
-	private static void setEnvironmetInstance() {
+	private void assignEntityManager() {
+		if (entityManager != null) {
+			this.entityManager = DBDriverManager.createEntityManager(this.dbPrefix);
+		}
+	}
+
+	private static void setEnvironmentInstance() {
 		/*
 		 * Environment variables either from environmnets.csv or any other input data. For now there is no properties
 		 * settings file for Selenium module. In future, please have a look on Core Module IEnvironmentService
