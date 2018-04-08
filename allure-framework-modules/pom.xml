@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini.ntc</groupId>
     <artifactId>allure-test-framework</artifactId>
@@ -41,6 +41,7 @@
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
         <module>allure-security-module</module>
+        <module>mrchecker-webapi-module</module>
         <module>mrchecker-database-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
@@ -97,10 +98,15 @@
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
 
+        <!-- Hashes sensitive data -->
+        <org.jasypt.version>1.9.2</org.jasypt.version>
+
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
         <style_format.directory>${pom.basedir}/../../resources/style_format</style_format.directory>
 
+        <!--This dependency is necessary for Rest assured plugin. -->
+        <rest-assured.version>3.0.6</rest-assured.version>
     </properties>
 
 
@@ -112,7 +118,6 @@
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
             </dependency>
-
 
             <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
             <dependency>
@@ -165,7 +170,25 @@
                 <version>${org.json.version}</version>
             </dependency>
 
+           <!-- Hashes sensitive data -->
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${org.jasypt.version}</version>
+            </dependency>
 
+            <!--This dependency is necessary for Rest assured plugin. -->
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest-assured.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>json-schema-validator</artifactId>
+                <version>${rest-assured.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -393,7 +416,7 @@
                     </plugin>
                 </plugins>
             </build>
-
+            
             <reporting>
                 <plugins>
                     <!-- Report project information -->
@@ -404,7 +427,7 @@
                     </plugin>
                 </plugins>
             </reporting>
-
+        
         </profile>
 
 
