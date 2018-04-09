@@ -139,7 +139,7 @@ Based on Selenium 3.8.1</description>
            <artifactId>webdrivermanager</artifactId>
            <version>2.0.0</version>
        </dependency>
-        
+
     </dependencies>
 
 
