@@ -22,9 +22,8 @@ public enum PageSubURLsProjectYEnum {
 	CHALLENGING_DOM("challenging_dom"),
 	STATUS_CODES("status_codes"),
 	LOGIN("login");
-
+	
 	/*
-	 
 	 * Sub urls are used as real locations in Bank test environment and for The Internet page
 	 */
 	private String subURL;
