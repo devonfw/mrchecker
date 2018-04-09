@@ -15,7 +15,7 @@ public class DisappearingElementsPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.contains("disappearing_elements");
+						.contains("disappearing_elements");
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class DisappearingElementsPage extends BasePage {
 	 */
 	public int getNumberOfMenuButtons() {
 		return getDriver().findElementDynamics(selectorMenuButtons)
-				.size();
+						.size();
 	}
 	
 	/**

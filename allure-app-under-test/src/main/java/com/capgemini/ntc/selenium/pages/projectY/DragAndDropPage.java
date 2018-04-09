@@ -29,7 +29,7 @@ public class DragAndDropPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.contains("drag_and_drop");
+						.contains("drag_and_drop");
 	}
 	
 	@Override
@@ -49,7 +49,7 @@ public class DragAndDropPage extends BasePage {
 	 */
 	public boolean isDragAndDropMessageVisible() {
 		return getDriver().findElementDynamic(selectorDragAndDropText)
-				.isDisplayed();
+						.isDisplayed();
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class DragAndDropPage extends BasePage {
 	 */
 	public boolean isElementPlacedInCorrectContainer(String element) {
 		return getDescriptionElement(findElementByDescription(element)).getText()
-				.equals(element);
+						.equals(element);
 	}
 	
 	private WebElement findElementByDescription(String element) {
@@ -103,7 +103,7 @@ public class DragAndDropPage extends BasePage {
 		WebElement description = getDescriptionElement(source);
 		WebElement destination = findElementByDescription(destinationDesc);
 		if (description.getText()
-				.equals(element))
+						.equals(element))
 			dragElement(source, destination);
 	}
 	
@@ -142,14 +142,14 @@ public class DragAndDropPage extends BasePage {
 		String targetId = target.getAttribute("id");
 		String script = null;
 		if (draggable.getAttribute("draggable")
-				.contains("true")) {
+						.contains("true")) {
 			if (driver instanceof JavascriptExecutor) {
 				js = (JavascriptExecutor) driver;
 				Path path = Paths.get(dndHelperPath);
 				try {
 					fileContent = Files.readAllLines(path);
 					script = fileContent.stream()
-							.collect(Collectors.joining());
+									.collect(Collectors.joining());
 				} catch (IOException e) {
 					BFLogger.logDebug("Unable to read file content: " + e.getMessage());
 				}
