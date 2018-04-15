@@ -8,7 +8,7 @@ public interface IWebAPI {
 	public String getMessage();
 	
 	/**
-	 * @return Enpoint in String format
+	 * @return URL Endpoint in String format
 	 */
 	public String getEndpoint();
 }

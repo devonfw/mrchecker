@@ -10,21 +10,22 @@ public class SimpleGETPage extends BasePageWebAPI {
 	
 	private final static String	HOSTNAME	= GetEnvironmentParam.HTTPBIN.getValue();
 	private final static String	PATH		= "/get";
+	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
 	public Response sendGETQuery() {
 		return DriverManager.getDriverWebAPI()
 						.when()
-						.get(HOSTNAME + PATH);
+						.get(ENDPOINT);
 	}
 	
 	@Override
 	public String getEndpoint() {
-		return HOSTNAME + PATH;
+		return ENDPOINT;
 	}
 	
 	@Override
 	public String getMessage() {
-		// Useful only for SOAP messages
+		// Useful only for SOAP queries
 		return null;
 	}
 }

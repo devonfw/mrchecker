@@ -76,7 +76,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
 	@Override
 	public String getEndpoint() {
-		// TASK Auto-generated method stub
+		// Useful only for REST queries
 		return null;
 	}
 	
