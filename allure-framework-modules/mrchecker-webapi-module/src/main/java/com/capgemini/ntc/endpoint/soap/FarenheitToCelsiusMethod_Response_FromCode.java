@@ -31,7 +31,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 		String message = "";
 		try {
 			SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
-					.asString());
+							.asString());
 			message = SoapMessageGenerator.printSoapMessage(soapMessage);
 		} catch (SOAPException | SAXException | IOException | ParserConfigurationException | TransformerException e) {
 			new Exception(e);
@@ -48,9 +48,9 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	
 	// Set any nodes type under xml Root
 	
-	
 	/**
 	 * Set "FahrenheitToCelsiusResult" node under xml Root
+	 * 
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsius>
 	 *         <FahrenheitToCelsiusResult>37.777</FahrenheitToCelsiusResult>
@@ -58,14 +58,14 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	 */
 	public FarenheitToCelsiusMethod_Response_FromCode setFahrenheitToCelsiusResult(double value) {
 		getRoot()
-				.element("FahrenheitToCelsiusResult")
-				.text(Double.toString(value));
+						.element("FahrenheitToCelsiusResult")
+						.text(Double.toString(value));
 		return this;
 	}
 	
-
 	/**
 	 * Set "Smth" node under xml Root
+	 * 
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsiusResponse>
 	 *         <Smth>Hello</Smth>
@@ -73,7 +73,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	 */
 	public FarenheitToCelsiusMethod_Response_FromCode setSmth(String Smth) {
 		getRoot().element("Smth")
-				.text(Smth);
+						.text(Smth);
 		return this;
 	}
 	
@@ -90,5 +90,11 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 		} catch (ParserConfigurationException | FactoryConfigurationError e) {
 			new Exception(e);
 		}
+	}
+	
+	@Override
+	public String getEndpoint() {
+		// TASK Auto-generated method stub
+		return null;
 	}
 }

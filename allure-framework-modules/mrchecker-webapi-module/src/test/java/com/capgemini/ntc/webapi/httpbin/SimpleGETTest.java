@@ -19,10 +19,10 @@ public class SimpleGETTest extends BasePageWebApiTest {
 	public void sendSimpleGETQuery() {
 		simpleGETPage = new SimpleGETPage();
 		
-		BFLogger.logInfo("Step 1 - Send GET query to " + simpleGETPage);
+		BFLogger.logInfo("Step 1 - Send GET query to " + simpleGETPage.getEndpoint());
 		Response response = simpleGETPage.sendGETQuery();
 		
-		BFLogger.logInfo("Step 2 - Validate response: ");
+		BFLogger.logInfo("Step 2 - Validate response status code: ");
 		assertThat(response.statusCode(), is(200));
 	}
 	

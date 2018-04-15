@@ -12,15 +12,19 @@ public class SimpleGETPage extends BasePageWebAPI {
 	private final static String	PATH		= "/get";
 	
 	public Response sendGETQuery() {
-		getDriver();
 		return DriverManager.getDriverWebAPI()
 						.when()
 						.get(HOSTNAME + PATH);
 	}
 	
 	@Override
+	public String getEndpoint() {
+		return HOSTNAME + PATH;
+	}
+	
+	@Override
 	public String getMessage() {
-		// TASK Auto-generated method stub
+		// Useful only for SOAP messages
 		return null;
 	}
 }
