@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
     <name>MrChecker - Database - Module</name>
     <description>MrChecker Database Module:
-        - based od JPA interfaces,
+        - based on JPA interfaces,
         - structure build on ORM methodology,
         - supports all database engines with JDBC drivers.
 
@@ -62,7 +62,7 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
-        <jpa.version>1.0</jpa.version>
+        <jpa.version>2.2</jpa.version>
 
         <!-- Lib/package version settings -->
         <!-- <package.version>0.0.0</selenium.version> -->
@@ -81,7 +81,7 @@
         <!-- JPA dependencies -->
         <dependency>
             <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
+            <artifactId>javax.persistence-api</artifactId>
             <version>${jpa.version}</version>
         </dependency>
 
