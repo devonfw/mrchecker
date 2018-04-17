@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -9,7 +10,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
-    <version>3.8.1.4-SNAPSHOT</version>
+    <version>3.8.1.4</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:
@@ -64,7 +65,7 @@ Based on Selenium 3.8.1</description>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
+        <allure-core-module.version>4.12.0.5</allure-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.8.1</selenium.version>
@@ -87,6 +88,14 @@ Based on Selenium 3.8.1</description>
             <version>${allure-core-module.version}</version>
         </dependency>
 
+
+        <!--This dependency is necessary for Report Allure annotation. -->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-java-annotations</artifactId>
+        </dependency>
+
+
         <!--This dependency is necessary for Selenium plugin. -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -98,6 +107,10 @@ Based on Selenium 3.8.1</description>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-surefire-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
 
 
@@ -135,11 +148,14 @@ Based on Selenium 3.8.1</description>
 
         <!-- For auto-download the newest version of web drivers -->
         <dependency>
-           <groupId>io.github.bonigarcia</groupId>
-           <artifactId>webdrivermanager</artifactId>
-           <version>2.0.0</version>
-       </dependency>
-        
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+
+
+
     </dependencies>
 
 

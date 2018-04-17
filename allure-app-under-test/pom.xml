@@ -54,9 +54,10 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <allure-core-module.version>4.12.0.5-SNAPSHOT</allure-core-module.version>
-        <allure-selenium-module.version>3.8.1.4-SNAPSHOT</allure-selenium-module.version>
-        <allure-security-module.version>0.0.1-SNAPSHOT</allure-security-module.version>
+        <allure-core-module.version>4.12.0.5</allure-core-module.version>
+        <allure-selenium-module.version>3.8.1.4</allure-selenium-module.version>
+        <allure-security-module.version>1.0.0</allure-security-module.version>
+        <mrchecker-webapi-module.version>1.0.0</mrchecker-webapi-module.version>
 
 
         <!-- Java settings -->
@@ -136,6 +137,14 @@
             <artifactId>allure-security-module</artifactId>
             <version>${allure-security-module.version}</version>
         </dependency>
+        
+        <!-- WebAPI + Service Virtualization module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mrchecker-webapi-module</artifactId>
+            <version>${mrchecker-webapi-module.version}</version>
+        </dependency>
+        
 
         <dependency>
             <groupId>org.aspectj</groupId>

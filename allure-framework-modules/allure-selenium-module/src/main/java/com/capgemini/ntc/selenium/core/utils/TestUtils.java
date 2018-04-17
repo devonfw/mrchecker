@@ -4,11 +4,9 @@ import java.io.File;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.core.enums.SubUrl;
-import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.exceptions.BFInputDataException;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
@@ -32,14 +30,14 @@ public class TestUtils {
 	 */
 	public static boolean isCurrentUrlContains(String url) {
 		if (BasePage.getDriver()
-				.getCurrentUrl()
-				.contains(url)) {
+						.getCurrentUrl()
+						.contains(url)) {
 			BFLogger.logDebug("Current page as expected: " + BasePage.getDriver()
-					.getCurrentUrl());
+							.getCurrentUrl());
 			return true;
 		} else {
 			BFLogger.logDebug("Not on " + url + " page. Current page: " + BasePage.getDriver()
-					.getCurrentUrl());
+							.getCurrentUrl());
 			return false;
 		}
 	}
@@ -51,8 +49,8 @@ public class TestUtils {
 	public static boolean isCurrentUrlMatchesPattern(String toMatch) {
 		Pattern pattern = Pattern.compile(toMatch);
 		return pattern.matcher(BasePage.getDriver()
-				.getCurrentUrl())
-				.matches();
+						.getCurrentUrl())
+						.matches();
 	}
 	
 	public static boolean isCurrentUrlContains(String[] pageSubUrls) {
@@ -67,14 +65,14 @@ public class TestUtils {
 	
 	public static boolean isCurrentPageTitle(String title) {
 		if (BasePage.getDriver()
-				.getTitle()
-				.contains(title)) {
+						.getTitle()
+						.contains(title)) {
 			BFLogger.logDebug("Current page as expected: " + BasePage.getDriver()
-					.getTitle());
+							.getTitle());
 			return true;
 		} else {
 			BFLogger.logDebug("Not on " + title + " page. Current page: " + BasePage.getDriver()
-					.getTitle());
+							.getTitle());
 			return false;
 		}
 	}
@@ -86,12 +84,12 @@ public class TestUtils {
 	 */
 	public void goToPage(String pageUrl) {
 		BasePage.getDriver()
-				.get(pageUrl);
+						.get(pageUrl);
 	}
 	
 	public String getCurrentPageURL() {
 		return BasePage.getDriver()
-				.getCurrentUrl();
+						.getCurrentUrl();
 	}
 	
 	/**
@@ -99,11 +97,12 @@ public class TestUtils {
 	 *            to find
 	 * @return true if text was found anywhere on the page, false otherwise
 	 */
+	@SuppressWarnings("deprecation")
 	public boolean isTextOnPage(String text) {
 		return BasePage.getDriver()
-				.findElement(By.cssSelector("body"))
-				.getText()
-				.contains(text);
+						.findElement(By.cssSelector("body"))
+						.getText()
+						.contains(text);
 	}
 	
 	/**
@@ -114,8 +113,8 @@ public class TestUtils {
 		String absolutePath = "";
 		try {
 			String resourceFile = TestUtils.class.getClassLoader()
-					.getResource(path)
-					.getFile();
+							.getResource(path)
+							.getFile();
 			absolutePath = new File(resourceFile).getAbsolutePath();
 		} catch (NullPointerException e) {
 			throw new BFInputDataException("Given path: (" + path + ") does not exists in src/test/resources");

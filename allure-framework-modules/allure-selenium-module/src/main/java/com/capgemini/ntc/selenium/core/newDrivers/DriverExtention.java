@@ -48,6 +48,7 @@ public class DriverExtention {
 		return this.findElementQuietly(null, by);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public WebElement findElementQuietly(WebElement elementToSearchIn, By by) {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);

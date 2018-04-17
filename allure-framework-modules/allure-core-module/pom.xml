@@ -10,7 +10,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-core-module</artifactId>
-    <version>4.12.0.5-SNAPSHOT</version>
+    <version>4.12.0.5</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Test core - Module</name>
     <description>Allure Test Framework Core is responsible for:
@@ -160,6 +160,12 @@ Based on Junit4.12</description>
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-junit-adaptor</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-java-annotations</artifactId>
             <version>${allure.version}</version>
         </dependency>
 

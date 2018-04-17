@@ -77,8 +77,9 @@ public class WebElementUtils {
 	 *            - element to wait for after hovering mouse on element specified by elementSelector
 	 */
 	public static WebElement hoverOnElement(By elementSelector, By waitForSelector) {
+		@SuppressWarnings("deprecation")
 		WebElement element = BasePage.getDriver()
-				.findElement(elementSelector);
+						.findElement(elementSelector);
 		
 		return hoverOnElement(element, waitForSelector);
 	}
@@ -95,9 +96,9 @@ public class WebElementUtils {
 	public static WebElement hoverOnElement(WebElement elementToHoverOn, By waitForSelector) {
 		long startTime = System.currentTimeMillis();
 		BasePage.getAction()
-				.moveToElement(elementToHoverOn)
-				.build()
-				.perform();
+						.moveToElement(elementToHoverOn)
+						.build()
+						.perform();
 		
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(waitForSelector));
@@ -117,9 +118,9 @@ public class WebElementUtils {
 	public static WebElement hoverOnElement(WebElement elementToHoverOn, WebElement waitForElement) {
 		long startTime = System.currentTimeMillis();
 		BasePage.getAction()
-				.moveToElement(elementToHoverOn)
-				.build()
-				.perform();
+						.moveToElement(elementToHoverOn)
+						.build()
+						.perform();
 		
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		WebElement element = wait.until(ExpectedConditions.visibilityOf(waitForElement));
@@ -196,7 +197,7 @@ public class WebElementUtils {
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), BasePage.EXPLICITYWAITTIMER);
 		Boolean elementInvisibility = wait
-				.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(elementToWaitFor)));
+						.until(ExpectedConditions.not(ExpectedConditions.visibilityOf(elementToWaitFor)));
 		BFLogger.logTime(startTime, "waitForElementNotVisible", elementToWaitFor.toString());
 		return elementInvisibility;
 	}
@@ -208,8 +209,8 @@ public class WebElementUtils {
 	 */
 	public static void dynamicClick(By selector) {
 		BasePage.getDriver()
-				.waitUntilElementIsClickable(selector)
-				.click();
+						.waitUntilElementIsClickable(selector)
+						.click();
 	}
 	
 	/**
@@ -222,9 +223,9 @@ public class WebElementUtils {
 	 */
 	public static void moveMousePointer(int xOffset, int yOffset) {
 		BasePage.getAction()
-				.moveByOffset(xOffset, yOffset)
-				.build()
-				.perform();
+						.moveByOffset(xOffset, yOffset)
+						.build()
+						.perform();
 	}
 	
 	/**
@@ -277,15 +278,15 @@ public class WebElementUtils {
 	 * @return WebElement matching selector
 	 */
 	public static <T> WebElement getExpectedElement(WebElement parent,
-			By selector,
-			Class<T> retriever,
-			String expectedElementDescription) {
+					By selector,
+					Class<T> retriever,
+					String expectedElementDescription) {
 		WebElement e;
 		try {
 			e = parent.findElement(selector);
 		} catch (NoSuchElementException ex) {
 			throw new BFComponentStateException(retriever.getSimpleName(), "get " + expectedElementDescription,
-					"not found");
+							"not found");
 		}
 		return e;
 	}
@@ -323,8 +324,9 @@ public class WebElementUtils {
 	 */
 	public static void waitForAnimationEnd(By selector) {
 		long startTime = System.currentTimeMillis();
+		@SuppressWarnings("deprecation")
 		WebElement sliderElement = BasePage.getDriver()
-				.findElement(selector);
+						.findElement(selector);
 		String leftOffset = "";
 		while (!leftOffset.equals(sliderElement.getAttribute("style"))) {
 			if (System.currentTimeMillis() - startTime > BasePage.EXPLICITYWAITTIMER * 1000) {
@@ -344,11 +346,12 @@ public class WebElementUtils {
 	 * @param elementName
 	 *            to print in exception
 	 */
+	@SuppressWarnings("deprecation")
 	public static void clickIfVisible(By selector, String elementName) {
 		if (BasePage.isElementDisplayedNoException(selector)) {
 			BasePage.getDriver()
-					.findElement(selector)
-					.click();
+							.findElement(selector)
+							.click();
 		} else {
 			throw new BFComponentStateException(elementName, "click", "element not found");
 		}

@@ -1,4 +1,4 @@
-package com.capgemini.ntc.endpoint.soap;
+package com.capgemini.ntc.webapi.endpoint.soap;
 
 import java.io.IOException;
 
