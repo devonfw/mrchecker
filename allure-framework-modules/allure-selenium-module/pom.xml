@@ -10,7 +10,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
-    <version>3.8.1.5-SNAPSHOT</version>
+    <version>3.8.1.6-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:
@@ -106,8 +106,14 @@ Based on Selenium 3.8.1</description>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
             <version>1.22.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava-jdk5</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        
+
         <!--This dependency is necessary for JUnit plugin. -->
         <dependency>
             <groupId>org.junit.platform</groupId>
