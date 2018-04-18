@@ -77,9 +77,21 @@ Based on Selenium 3.8.1</description>
         <!-- Tests executors -->
         <surefire.provider.version>1.0.0-M2</surefire.provider.version>
 
+        <!-- Guava is a set of core libraries -->
+        <google.guava.version>23.0</google.guava.version>
+
     </properties>
 
     <dependencies>
+
+        <!-- Guava is a set of core libraries -->
+        <!-- NOTE: given Guava lib is not backward compatible, therefore must be used as first dependency import to overwrite any other imports -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google.guava.version}</version>
+        </dependency>
+
 
         <!-- Dependency to other Allure Test Framework modules -->
         <dependency>

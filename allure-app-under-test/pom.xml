@@ -102,9 +102,6 @@
         <picocontainer.version>2.15</picocontainer.version>
         <guice.version>4.1.0</guice.version>
 
-        <!-- Guava is a set of core libraries -->
-        <google.guava.version>23.0</google.guava.version>
-
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
         <style_format.directory>${pom.basedir}/../resources/style_format</style_format.directory>
@@ -116,15 +113,6 @@
 
 
     <dependencies>
-
-
-        <!-- Guava is a set of core libraries -->
-        <!-- NOTE: given Guava lib is not backward compatible, therefore must be used as first dependency import to overwrite any other imports -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${google.guava.version}</version>
-        </dependency>
 
         <!-- Dependency to other Allure Test Framework modules -->
         <!-- Test core module -->
