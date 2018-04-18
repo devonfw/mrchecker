@@ -17,30 +17,30 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class RegistrationPage extends BasePage {
 	
-	private BasePage parent;
-	private boolean loaded;
+	private BasePage	parent;
+	private boolean		loaded;
 	
-	private final static By selectorFirstName = By.cssSelector("input[id='name_3_firstname']");
-	private final static By selectorLastName = By.cssSelector("input[id='name_3_lastname']");
-	private final static By selectorMaritalStatus = By.cssSelector("div[class='radio_wrap']");
-	private final static By selectorHobby = By.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
-	private final static By selectorCountry = By.cssSelector("select[id='dropdown_7']");
-	private final static By selectorBirthDateDay = By.cssSelector("select[id='dd_date_8']");
-	private final static By selectorBirthDateMonth = By.cssSelector("select[id='mm_date_8']");
-	private final static By selectorBirthDateYear = By.cssSelector("select[id='yy_date_8']");
-	private final static By selectorPhoneNumber = By.cssSelector("input[id='phone_9']");
-	private final static By selectorUsername = By.cssSelector("input[id='username']");
-	private final static By selectorEmail = By.cssSelector("input[id='email_1']");
-	private final static By selectorYourProfilePhotoPath = By.cssSelector("input[type='file']");
-	private final static By selectorAboutYourself = By.cssSelector("textarea[ id='description' ]");
-	private final static By selectorPassword = By.cssSelector("input[id='password_2']");
-	private final static By selectorConfirmPassword = By.cssSelector("input[id='confirm_password_password_2']");
-	private final static By selectorSubmitButton = By.cssSelector("input[name='pie_submit']");
-	private final static By selectorRegistrationSucceed = By.cssSelector("p[class='piereg_message']");
-	private final static By selectorRegistrationError = By.cssSelector("p[class='piereg_login_error']");
+	private final static By	selectorFirstName				= By.cssSelector("input[id='name_3_firstname']");
+	private final static By	selectorLastName				= By.cssSelector("input[id='name_3_lastname']");
+	private final static By	selectorMaritalStatus			= By.cssSelector("div[class='radio_wrap']");
+	private final static By	selectorHobby					= By.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
+	private final static By	selectorCountry					= By.cssSelector("select[id='dropdown_7']");
+	private final static By	selectorBirthDateDay			= By.cssSelector("select[id='dd_date_8']");
+	private final static By	selectorBirthDateMonth			= By.cssSelector("select[id='mm_date_8']");
+	private final static By	selectorBirthDateYear			= By.cssSelector("select[id='yy_date_8']");
+	private final static By	selectorPhoneNumber				= By.cssSelector("input[id='phone_9']");
+	private final static By	selectorUsername				= By.cssSelector("input[id='username']");
+	private final static By	selectorEmail					= By.cssSelector("input[id='email_1']");
+	private final static By	selectorYourProfilePhotoPath	= By.cssSelector("input[type='file']");
+	private final static By	selectorAboutYourself			= By.cssSelector("textarea[ id='description' ]");
+	private final static By	selectorPassword				= By.cssSelector("input[id='password_2']");
+	private final static By	selectorConfirmPassword			= By.cssSelector("input[id='confirm_password_password_2']");
+	private final static By	selectorSubmitButton			= By.cssSelector("input[name='pie_submit']");
+	private final static By	selectorRegistrationSucceed		= By.cssSelector("p[class='piereg_message']");
+	private final static By	selectorRegistrationError		= By.cssSelector("p[class='piereg_login_error']");
 	
-	private static String registrationSucceedText = "Thank you for your registration";
-	private static String registrationErrorText = "Error: Username already exists";
+	private static String	registrationSucceedText	= "Thank you for your registration";
+	private static String	registrationErrorText	= "Error: Username already exists";
 	
 	private final String pattern = "(.*)-(.*)-(.*)";
 	
@@ -66,13 +66,13 @@ public class RegistrationPage extends BasePage {
 	@Override
 	public void load() {
 		BasePage.getDriver()
-				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
+						.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
 		loaded = true;
 	}
 	
 	public void load(PageSubURLsProjectXEnum subUrl) {
 		BasePage.getDriver()
-				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + subUrl.getValue());
+						.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + subUrl.getValue());
 		loaded = true;
 	}
 	
@@ -90,14 +90,14 @@ public class RegistrationPage extends BasePage {
 	
 	public void clickSubmit() {
 		getDriver().elementButton(selectorSubmitButton)
-				.click();
+						.click();
 	}
 	
 	public boolean isRegistrationSuceedTextVisible() {
 		try {
 			return getDriver().findElementDynamic(selectorRegistrationSucceed)
-					.getText()
-					.equals(registrationSucceedText);
+							.getText()
+							.equals(registrationSucceedText);
 		} catch (BFElementNotFoundException e) {
 			return false;
 		}
@@ -107,10 +107,10 @@ public class RegistrationPage extends BasePage {
 		try {
 			getDriver().waitForElementVisible(selectorRegistrationError);
 			BFLogger.logDebug(getDriver().waitForElementVisible(selectorRegistrationError)
-					.getText());
+							.getText());
 			return getDriver().elementLabel(selectorRegistrationError)
-					.getText()
-					.equals(registrationErrorText);
+							.getText()
+							.equals(registrationErrorText);
 		} catch (BFElementNotFoundException e) {
 			return false;
 		}
@@ -119,7 +119,7 @@ public class RegistrationPage extends BasePage {
 	public String getRegistryErrorText() {
 		getDriver().waitForElementVisible(selectorRegistrationError);
 		return getDriver().elementLabel(selectorRegistrationError)
-				.getText();
+						.getText();
 	}
 	
 	@Override
@@ -142,31 +142,31 @@ public class RegistrationPage extends BasePage {
 	public void setMaritalStatus(MaritalStatus maritalStatus) {
 		
 		switch (maritalStatus) {
-		case SINGLE: {
-			getDriver().elementRadioButton(selectorMaritalStatus)
-					.selectItemByValue("single");
-			
-			// radioButtonElement.selectElement("Single");
-			break;
-		}
-		case MARRIED: {
-			getDriver().elementRadioButton(selectorMaritalStatus)
-					.selectItemByValue("married");
-			// radioButtonElement.selectElement("Married");
-			break;
-		}
-		case DIVORCED: {
-			getDriver().elementRadioButton(selectorMaritalStatus)
-					.selectItemByValue("divorced");
-			// radioButtonElement.selectElement("Divorced");
-			break;
-		}
+			case SINGLE: {
+				getDriver().elementRadioButton(selectorMaritalStatus)
+								.selectItemByValue("single");
+				
+				// radioButtonElement.selectElement("Single");
+				break;
+			}
+			case MARRIED: {
+				getDriver().elementRadioButton(selectorMaritalStatus)
+								.selectItemByValue("married");
+				// radioButtonElement.selectElement("Married");
+				break;
+			}
+			case DIVORCED: {
+				getDriver().elementRadioButton(selectorMaritalStatus)
+								.selectItemByValue("divorced");
+				// radioButtonElement.selectElement("Divorced");
+				break;
+			}
 		}
 	}
 	
 	public void setHobby(com.capgemini.ntc.selenium.pages.projectX.registration.Hobby hobby) {
 		getDriver().elementCheckbox(selectorHobby)
-				.setCheckBoxByValue(hobby.toString());
+						.setCheckBoxByValue(hobby.toString());
 	}
 	
 	public void setHobby(com.capgemini.ntc.selenium.pages.projectX.registration.Hobby[] hobbies) {
@@ -215,8 +215,8 @@ public class RegistrationPage extends BasePage {
 	}
 	
 	public void setProfilePicture(String value) {
-		getDriver().findElement(selectorYourProfilePhotoPath)
-				.sendKeys(value);
+		getDriver().findElementDynamic(selectorYourProfilePhotoPath)
+						.sendKeys(value);
 	}
 	
 	public void setAboutYourself(String value) {

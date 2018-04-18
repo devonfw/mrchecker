@@ -2,9 +2,11 @@ package com.capgemini.ntc.selenium.pages.projectY.gmail;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -95,7 +97,7 @@ public class GmailInboxPage extends BasePage {
 	 */
 	public void waitUntilEmailShowUp(int waitTime) {
 		WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
-		wait.until(ExpectedConditions.visibilityOf(getDriver().findElementDynamic(selectorEmailRow)));
+		wait.until((Function<? super WebDriver, WebElement>) ExpectedConditions.visibilityOf(getDriver().findElementDynamic(selectorEmailRow)));
 	}
 	
 	/**
