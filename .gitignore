@@ -15,8 +15,8 @@
 **/ajcore.*
 **/src/bin/
 ~*.docx
-**/chromedriver/win32/
-**/geckodriver/win64/
+**/chromedriver/
+**/geckodriver/
 
 # Compiled source #
 ###################
