@@ -53,7 +53,9 @@ public class HorizontalSliderElement extends BasicElement {
 	 * @return BigDecimal representing position's value.
 	 * @throws NumberFormatException
 	 */
+	
 	public BigDecimal getCurrentSliderValue() throws NumberFormatException {
+		@SuppressWarnings("deprecation")
 		WebElement currentValueElement = this.getElement()
 						.findElement(this.valueSelector);
 		String value = currentValueElement.getText();

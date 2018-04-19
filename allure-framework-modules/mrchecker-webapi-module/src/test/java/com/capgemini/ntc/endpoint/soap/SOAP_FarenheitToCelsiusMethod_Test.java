@@ -12,7 +12,11 @@ import org.junit.Test;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
-import com.capgemini.ntc.webapi.core.stubs.StubSOAP_Builder;
+import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Request_FromCode;
+import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Request_FromFile;
+import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Response_FromCode;
+import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Response_FromFile;
+import com.capgemini.ntc.webapi.endpoint.stubs.StubSOAP_Builder;
 
 import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;

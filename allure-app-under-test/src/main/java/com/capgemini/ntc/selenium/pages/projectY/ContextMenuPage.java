@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -75,14 +76,14 @@ public class ContextMenuPage extends BasePage {
 	
 	public boolean isAlertTextValid() {
 		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), timeoutInSec);
-		wait.until(ExpectedConditions.alertIsPresent());
+		wait.until((java.util.function.Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
 		
 		Alert alert = BasePage.getDriver()
 						.switchTo()
 						.alert();
 		
 		return alert.getText()
-				.equals(expectedAlertText);
+						.equals(expectedAlertText);
 	}
 	
 }

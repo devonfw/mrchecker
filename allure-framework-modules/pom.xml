@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini.ntc</groupId>
     <artifactId>allure-test-framework</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <name>AllureTestFramework</name>
     <description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
@@ -92,9 +93,6 @@
         <!-- Dependency Injection -->
         <guice.version>4.1.0</guice.version>
 
-        <!-- Guava is a set of core libraries -->
-        <google.guava.version>21.0</google.guava.version>
-
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
 
@@ -107,6 +105,10 @@
 
         <!--This dependency is necessary for Rest assured plugin. -->
         <rest-assured.version>3.0.6</rest-assured.version>
+        
+        <!-- Allure Annotation lib -->
+        <allure.version>1.5.4</allure.version>
+        
     </properties>
 
 
@@ -170,7 +172,7 @@
                 <version>${org.json.version}</version>
             </dependency>
 
-           <!-- Hashes sensitive data -->
+            <!-- Hashes sensitive data -->
             <dependency>
                 <groupId>org.jasypt</groupId>
                 <artifactId>jasypt</artifactId>
@@ -189,6 +191,20 @@
                 <artifactId>json-schema-validator</artifactId>
                 <version>${rest-assured.version}</version>
             </dependency>
+
+
+            <!--This dependency is necessary for Report Allure annotation. -->
+            <dependency>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-java-annotations</artifactId>
+                <version>${allure.version}</version>
+            </dependency>
+
+
+
+
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -385,7 +401,8 @@
                         </executions>
                     </plugin>
 
-                    <!-- Generate list of licenses.  mvn -P release -DskipTests=true site -->
+                    <!-- Generate list of licenses. mvn -P release -DskipTests=true
+                        site -->
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>license-maven-plugin</artifactId>
@@ -416,7 +433,7 @@
                     </plugin>
                 </plugins>
             </build>
-            
+
             <reporting>
                 <plugins>
                     <!-- Report project information -->
@@ -427,7 +444,7 @@
                     </plugin>
                 </plugins>
             </reporting>
-        
+
         </profile>
 
 

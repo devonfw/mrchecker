@@ -3,11 +3,11 @@ package com.capgemini.ntc.selenium.core.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.selenium.core.BasePage;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 /**
  * This class contains uncategorized utility functions. If more 2 or more functions can be put into a separate Utils
@@ -18,7 +18,8 @@ import org.openqa.selenium.WebElement;
 public class Utility {
 	
 	static public enum SortOrder {
-		ASCENDING(1), DESCENDING(-1);
+		ASCENDING(1),
+		DESCENDING(-1);
 		int param;
 		
 		SortOrder(int param) {
@@ -101,8 +102,8 @@ public class Utility {
 	
 	public static String convertValueColorFromRgbToHex(String colorAsString) {
 		String[] numbers = colorAsString.replace("rgba(", "")
-				.replace(")", "")
-				.split(",");
+						.replace(")", "")
+						.split(",");
 		int number1 = Integer.parseInt(numbers[0]);
 		numbers[1] = numbers[1].trim();
 		int number2 = Integer.parseInt(numbers[1]);
@@ -119,8 +120,9 @@ public class Utility {
 	 * @author
 	 */
 	public static String[] getCssClassesFromWebElement(By selector) {
+		@SuppressWarnings("deprecation")
 		WebElement messagesPopupWindow = BasePage.getDriver()
-				.findElement(selector);
+						.findElement(selector);
 		String cssClasses = messagesPopupWindow.getAttribute("class");
 		return cssClasses.split(" ");
 	}

@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
-import com.capgemini.ntc.webapi.core.stubs.StubREST_Builder;
+import com.capgemini.ntc.webapi.endpoint.stubs.StubREST_Builder;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 import io.restassured.RestAssured;

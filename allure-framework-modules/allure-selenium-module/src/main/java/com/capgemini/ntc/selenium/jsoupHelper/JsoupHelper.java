@@ -1,6 +1,5 @@
 /**
  * The MIT License Copyright © 2009 - 2013 Jonathan Hedley (jonathan@hedley.net)
- *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
  * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
@@ -10,7 +9,6 @@
 package com.capgemini.ntc.selenium.jsoupHelper;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -182,12 +180,12 @@ public class JsoupHelper {
 		String selector = createStringSelector(elementToReturn);
 		
 		Elements rowListE = doc.body()
-				.select(selector);
+						.select(selector);
 		for (Element row : rowListE) {
 			String selectorOfElementTocheck = createStringSelector(elementToCheck);
 			String containsQuery = valueToCheck == null || valueToCheck.isEmpty()
-					? ""
-					: ":contains(" + valueToCheck + ")";
+							? ""
+							: ":contains(" + valueToCheck + ")";
 			Elements returnCandidates = row.select(selectorOfElementTocheck + containsQuery);
 			if (!returnCandidates.isEmpty())
 				result.add(row.cssSelector());
@@ -266,8 +264,9 @@ public class JsoupHelper {
 		List<WebElement> elementsToReturn = new ArrayList<WebElement>();
 		for (String selector : selectors) {
 			By elementSelector = By.cssSelector(selector);
+			@SuppressWarnings("deprecation")
 			WebElement foundElement = BasePage.getDriver()
-					.findElement(elementSelector);
+							.findElement(elementSelector);
 			elementsToReturn.add(foundElement);
 		}
 		return elementsToReturn;
@@ -334,14 +333,14 @@ public class JsoupHelper {
 	
 	private static Document initDocument() {
 		Document doc = Jsoup.parse(BasePage.getDriver()
-				.getPageSource());
+						.getPageSource());
 		return doc;
 	}
 	
 	private static String createStringSelector(By from) {
 		String selector = from.toString();
 		int substringBegin = from.toString()
-				.indexOf(":") + 2;
+						.indexOf(":") + 2;
 		selector = selector.substring(substringBegin);
 		selector = removeQuotes(selector);
 		return selector;
