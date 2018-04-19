@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>allure-app-under-test</artifactId>
     <groupId>com.capgemini.ntc</groupId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>2.1.0</version>
     <packaging>jar</packaging>
 
     <name>AllureTestFramework - List of Integration Test for Application Under Test </name>
@@ -55,10 +55,10 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <allure-core-module.version>4.12.0.5</allure-core-module.version>
-        <allure-selenium-module.version>3.8.1.5-SNAPSHOT</allure-selenium-module.version>
-        <allure-security-module.version>1.0.0</allure-security-module.version>
-        <mrchecker-webapi-module.version>1.0.0</mrchecker-webapi-module.version>
+        <allure-core-module.version>4.12.0.6</allure-core-module.version>
+        <allure-selenium-module.version>3.8.1.6</allure-selenium-module.version>
+        <allure-security-module.version>1.0.1</allure-security-module.version>
+        <mrchecker-webapi-module.version>1.0.1</mrchecker-webapi-module.version>
 
 
         <!-- Java settings -->
@@ -102,9 +102,6 @@
         <picocontainer.version>2.15</picocontainer.version>
         <guice.version>4.1.0</guice.version>
 
-        <!-- Guava is a set of core libraries -->
-        <google.guava.version>21.0</google.guava.version>
-
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
         <style_format.directory>${pom.basedir}/../resources/style_format</style_format.directory>
@@ -116,6 +113,36 @@
 
 
     <dependencies>
+
+        <!-- Dependency to other Allure Test Framework modules -->
+        <!-- Test core module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-core-module</artifactId>
+            <version>${allure-core-module.version}</version>
+        </dependency>
+
+        <!-- Selenium module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-selenium-module</artifactId>
+            <version>${allure-selenium-module.version}</version>
+        </dependency>
+
+        <!-- Security module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-security-module</artifactId>
+            <version>${allure-security-module.version}</version>
+        </dependency>
+
+        <!-- WebAPI + Service Virtualization module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>mrchecker-webapi-module</artifactId>
+            <version>${mrchecker-webapi-module.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -196,50 +223,6 @@
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-cucumber-jvm-adaptor</artifactId>
             <version>${allure-cucumber-jvm-adaptor.version}</version>
-        </dependency>
-
-
-        <!-- <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>3.11.0</version>
-            </dependency>
-        -->
-
-        <!-- Dependency to other Allure Test Framework modules -->
-        <!-- Test core module -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>allure-core-module</artifactId>
-            <version>${allure-core-module.version}</version>
-        </dependency>
-
-        <!-- Selenium module -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>allure-selenium-module</artifactId>
-            <version>${allure-selenium-module.version}</version>
-        </dependency>
-
-        <!-- Security module -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>allure-security-module</artifactId>
-            <version>${allure-security-module.version}</version>
-        </dependency>
-
-        <!-- WebAPI + Service Virtualization module -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>mrchecker-webapi-module</artifactId>
-            <version>${mrchecker-webapi-module.version}</version>
-        </dependency>
-
-        <!-- Guava is a set of core libraries -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${google.guava.version}</version>
         </dependency>
 
 
