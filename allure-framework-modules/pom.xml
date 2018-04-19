@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
 
     <organization>
-        <name>Capgemini  - Nearshore Test Center - Poland</name>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
         <url>http://nsc.capgemini.com/nearshoretestcenter</url>
     </organization>
 
@@ -20,7 +20,7 @@
         <developer>
             <name>Lukasz Stefaniszyn</name>
             <email>lukasz.stefaniszyn@capgemini.com</email>
-            <organization>Capgemini  - Nearshore Test Center - Poland</organization>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
     </developers>
@@ -43,7 +43,10 @@
         <module>allure-selenium-module</module>
         <module>allure-security-module</module>
         <module>mrchecker-webapi-module</module>
+        <module>mrchecker-database-module</module>
+        <!-- <module>build-tools</module> -->
     </modules>
+
 
     <repositories>
         <repository>
@@ -135,6 +138,7 @@
                 <version>${commons-csv.version}</version>
             </dependency>
 
+
             <!--This dependency is necessary for JUnit plugin. -->
             <dependency>
                 <groupId>junit</groupId>
@@ -206,6 +210,7 @@
 
         </dependencies>
     </dependencyManagement>
+
 
     <!-- Build goals/actions -->
     <build>
@@ -495,7 +500,6 @@
 
 
     </profiles>
-
 
 
     <reporting>
