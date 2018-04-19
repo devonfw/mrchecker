@@ -44,6 +44,7 @@
 
 # Logs and databases #
 ######################
+**/*.orig
 **/*.log
 **/*.sql
 **/*.sqlite
