@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-public class TheInternetPage extends BasePage {
+public class TheInternetPage<V> extends BasePage {
 	
 	private static final By	selectorCheckboxesLink				= By.cssSelector("li > a[href*='checkboxes']");
 	private static final By	selectorElementClick				= By.cssSelector("li > a[href*='abtest']");
@@ -112,10 +113,10 @@ public class TheInternetPage extends BasePage {
 		return new SortableDataTablesPage();
 	}
 	
-	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
+	public JavaScriptAlertsPage<V, Alert> clickJavaScriptAlertLink() {
 		Button elementLink = new Button(selectorJavaScriptAlertLink);
 		elementLink.click();
-		return new JavaScriptAlertsPage();
+		return new JavaScriptAlertsPage<V, Alert>();
 	}
 	
 	public DynamicContentPage clickDynamicContentPage() {

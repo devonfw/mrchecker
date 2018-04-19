@@ -3,9 +3,9 @@ package com.capgemini.ntc.webapi;
 import org.junit.Test;
 
 import com.capgemini.ntc.test.core.BaseTest;
-import com.capgemini.ntc.webapi.core.BaseWebApi;
+import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 
-public class BaseWebApiTest extends BaseTest {
+public class BasePageWebApiTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
@@ -24,10 +24,15 @@ public class BaseWebApiTest extends BaseTest {
 		myPage.myMethod();
 	}
 	
-	private static class MyPage extends BaseWebApi {
+	private static class MyPage extends BasePageWebAPI {
 		
 		public String myMethod() {
 			return "Welcome";
+		}
+		
+		@Override
+		public String getMessage() {
+			return null;
 		}
 	}
 	

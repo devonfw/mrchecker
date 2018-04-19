@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>allure-test-framework</artifactId>
+        <groupId>com.capgemini.ntc</groupId>
+        <version>2.1.0</version>
+    </parent>
+    <artifactId>mrchecker-database-module</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>MrChecker - Database - Module</name>
+    <description>MrChecker Database Module:
+        - based od JPA interfaces,
+        - structure build on ORM methodology,
+        - supports all database engines with JDBC drivers.
+
+        In case of driver leak at mvn repositories, please insert drivers file into 'lib/dbdrivers' directory.
+        Examples build on Hibernate as a JPA provider.
+
+        IMPORTANT:
+        For easy of use Lombok library was used. In case of compilation issues please apply newest Lombok plugin for your IDE.
+    </description>
+    <url>https://github.com/devonfw/devonfw-testing</url>
+
+    <organization>
+        <name>Capgemini - Nearshore Test Center - Poland</name>
+        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Lukasz Stefaniszyn</name>
+            <email>lukasz.stefaniszyn@capgemini.com</email>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+        <developer>
+            <name>Przemyslaw Wojtkow</name>
+            <email>przemyslaw.wojtkow@capgemini.com</email>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
+        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+
+        <allure-core-module.version>4.12.0.6</allure-core-module.version>
+        <jpa.version>1.0</jpa.version>
+
+        <!-- Lib/package version settings -->
+        <!-- <package.version>0.0.0</selenium.version> -->
+
+    </properties>
+
+    <dependencies>
+
+        <!-- Dependency to other Allure Test Framework modules -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>allure-core-module</artifactId>
+            <version>${allure-core-module.version}</version>
+        </dependency>
+
+        <!-- JPA dependencies -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>${jpa.version}</version>
+        </dependency>
+
+        <!-- Additional tools -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--This dependency is necessary for ???????? plugin. -->
+        <!--<dependency>
+            <groupId>reuse.package.from.parent.pom</groupId>
+            <artifactId>lib-name</artifactId>
+        </dependency> -->
+
+        <!--This dependency is necessary for ???????? plugin. -->
+        <!--<dependency>
+            <groupId>new.added.package</groupId>
+            <artifactId>lib-name</artifactId>
+            <version>${package.version}</version>
+        </dependency> -->
+
+    </dependencies>
+
+
+    <!-- Build goals/actions -->
+    <build>
+        <plugins>
+            <!-- Plugins are taken from parent pom.xml -->
+        </plugins>
+    </build>
+
+
+</project>
