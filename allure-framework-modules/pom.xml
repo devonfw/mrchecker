@@ -90,9 +90,6 @@
         <!-- Dependency Injection -->
         <guice.version>4.1.0</guice.version>
 
-        <!-- Guava is a set of core libraries -->
-        <google.guava.version>21.0</google.guava.version>
-
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
 

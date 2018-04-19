@@ -166,7 +166,6 @@ Based on Junit4.12</description>
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-java-annotations</artifactId>
-            <version>${allure.version}</version>
         </dependency>
 
         <dependency>
