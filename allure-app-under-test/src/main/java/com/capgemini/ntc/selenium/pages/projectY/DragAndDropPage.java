@@ -18,10 +18,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DragAndDropPage extends BasePage {
 	
-	private static final By	selectorDragAndDropText		= By.cssSelector("div#content h3");
-	private static final By	selectorAElementContainer	= By.cssSelector("div#column-a");
-	private static final By	selectorBElementContainer	= By.cssSelector("div#column-b");
-	private static final By	selectorDescriptionElement	= By.cssSelector("header");
+	private static final By selectorDragAndDropText = By.cssSelector("div#content h3");
+	private static final By selectorAElementContainer = By.cssSelector("div#column-a");
+	private static final By selectorBElementContainer = By.cssSelector("div#column-b");
+	private static final By selectorDescriptionElement = By.cssSelector("header");
 	
 	private static final String dndHelperPath = "src/test/resources/js/drag_and_drop_helper.js";
 	
@@ -29,7 +29,7 @@ public class DragAndDropPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("drag_and_drop");
+				.contains("drag_and_drop");
 	}
 	
 	@Override
@@ -49,7 +49,7 @@ public class DragAndDropPage extends BasePage {
 	 */
 	public boolean isDragAndDropMessageVisible() {
 		return getDriver().findElementDynamic(selectorDragAndDropText)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -61,21 +61,21 @@ public class DragAndDropPage extends BasePage {
 	 */
 	public boolean isElementPlacedInCorrectContainer(String element) {
 		return getDescriptionElement(findElementByDescription(element)).getText()
-						.equals(element);
+				.equals(element);
 	}
 	
 	private WebElement findElementByDescription(String element) {
 		WebElement result;
 		switch (element) {
-			case "A":
-				result = getContainerElement(selectorAElementContainer);
-				break;
-			case "B":
-				result = getContainerElement(selectorBElementContainer);
-				break;
-			default:
-				result = null;
-				BFLogger.logDebug("Chosen element doesn't exist on web page");
+		case "A":
+			result = getContainerElement(selectorAElementContainer);
+			break;
+		case "B":
+			result = getContainerElement(selectorBElementContainer);
+			break;
+		default:
+			result = null;
+			BFLogger.logDebug("Chosen element doesn't exist on web page");
 		}
 		return result;
 	}
@@ -103,27 +103,24 @@ public class DragAndDropPage extends BasePage {
 		WebElement description = getDescriptionElement(source);
 		WebElement destination = findElementByDescription(destinationDesc);
 		if (description.getText()
-						.equals(element))
+				.equals(element))
 			dragElement(source, destination);
 	}
 	
 	/**
 	 * Drags and drops given WebElement to it's destination location.
 	 * <p>
-	 * Since HTML5 all Selenium Actions performing drag and drop operations stopped working as expected, e.g.
-	 * original implementation, which was:
-	 * <code>
+	 * Since HTML5 all Selenium Actions performing drag and drop operations stopped working as expected, e.g. original
+	 * implementation, which was: <code>
 	 *  BasePage.getAction()
 	 * 			.clickAndHold(draggable)
 	 * 			.moveToElement(target)
 	 * 			.release()
 	 * 			.build()
 	 * 			.perform();
-	 * </code>
-	 * had finished with no effect. For this reason, there is javaScript function used, to make sure that
-	 * drag and drop operation will be successful.
-	 * JavaScript function is stored under following path: 'src/test/resources/js/drag_and_drop_helper.js'.
-	 * Original source of the script:
+	 * </code> had finished with no effect. For this reason, there is javaScript function used, to make sure that drag
+	 * and drop operation will be successful. JavaScript function is stored under following path:
+	 * 'src/test/resources/js/drag_and_drop_helper.js'. Original source of the script:
 	 * <a href="https://gist.github.com/rcorreia/2362544">drag_and_drop_helper</a>
 	 * </p>
 	 * 
@@ -142,14 +139,14 @@ public class DragAndDropPage extends BasePage {
 		String targetId = target.getAttribute("id");
 		String script = null;
 		if (draggable.getAttribute("draggable")
-						.contains("true")) {
+				.contains("true")) {
 			if (driver instanceof JavascriptExecutor) {
 				js = (JavascriptExecutor) driver;
 				Path path = Paths.get(dndHelperPath);
 				try {
 					fileContent = Files.readAllLines(path);
 					script = fileContent.stream()
-									.collect(Collectors.joining());
+							.collect(Collectors.joining());
 				} catch (IOException e) {
 					BFLogger.logDebug("Unable to read file content: " + e.getMessage());
 				}

@@ -17,17 +17,11 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 /**
- * The test verifies, that protected resources can not be accessed by unauthenticated
- * users.
- * OWASP ASVS requirement V2.1: Verify all pages and resources by default
- * require authentication except those specifically intended to be public
- * (Principle of complete mediation)
- * Purpose: This is one of the most basic protection mechanisms. Unit test
- * verifies only a part of this requirement (resources that require authentication -
- * enforce authentication). The second part of this requirement ("by default
- * require") must be validated manually.
- * Read also:
- * [1]
+ * The test verifies, that protected resources can not be accessed by unauthenticated users. OWASP ASVS requirement
+ * V2.1: Verify all pages and resources by default require authentication except those specifically intended to be
+ * public (Principle of complete mediation) Purpose: This is one of the most basic protection mechanisms. Unit test
+ * verifies only a part of this requirement (resources that require authentication - enforce authentication). The second
+ * part of this requirement ("by default require") must be validated manually. Read also: [1]
  * https://www.owasp.org/index.php/Authentication_Cheat_Sheet
  *
  * @author Marek Puchalski, Capgemini
@@ -38,14 +32,14 @@ public class AuthRequiredTest extends SecurityTest {
 	private Object[] addParameters() {
 		String body = "{\"pagination\":{\"size\":8,\"page\":1,\"total\":1},\"sort\":[]}";
 		return new Object[][] {
-						// Negative case
-						{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
-										body, HttpStatus.SC_FORBIDDEN
-						},
-						// Positive case
-						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
-										body, HttpStatus.SC_OK
-						}
+				// Negative case
+				{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
+						body, HttpStatus.SC_FORBIDDEN
+				},
+				// Positive case
+				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
+						body, HttpStatus.SC_OK
+				}
 		};
 		
 	}

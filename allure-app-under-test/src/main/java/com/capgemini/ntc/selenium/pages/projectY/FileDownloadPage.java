@@ -13,13 +13,13 @@ import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 
 public class FileDownloadPage extends BasePage {
 	
-	private static final By	selectorSomeFileTxt	= By.cssSelector("a[href*=some-file]");
-	private final String	DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
+	private static final By selectorSomeFileTxt = By.cssSelector("a[href*=some-file]");
+	private final String DOWNLOAD_DIR = System.getProperty("java.io.tmpdir");
 	
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getCurrentUrl()
-						.equals("http://the-internet.herokuapp.com/download");
+				.equals("http://the-internet.herokuapp.com/download");
 	}
 	
 	@Override
@@ -39,11 +39,11 @@ public class FileDownloadPage extends BasePage {
 		
 		if (fileToDownload.exists()) {
 			throw new RuntimeException("File that you want to download already exists. "
-							+ "Please remove it manually. Path to this file: " + fileToDownload.getPath());
+					+ "Please remove it manually. Path to this file: " + fileToDownload.getPath());
 		}
 		
 		getDriver().elementButton(selectorSomeFileTxt)
-						.click();
+				.click();
 		
 		waitForFileDownload(2000, fileToDownload);
 		return fileToDownload;
@@ -51,15 +51,15 @@ public class FileDownloadPage extends BasePage {
 	
 	private void waitForFileDownload(int totalTimeoutInMillis, File expectedFile) {
 		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
-						.withTimeout(totalTimeoutInMillis, TimeUnit.MILLISECONDS)
-						.pollingEvery(200, TimeUnit.MILLISECONDS);
+				.withTimeout(totalTimeoutInMillis, TimeUnit.MILLISECONDS)
+				.pollingEvery(200, TimeUnit.MILLISECONDS);
 		
 		wait.until((WebDriver wd) -> expectedFile.exists());
 	}
 	
 	private String getNameOfDownloadFile() {
 		String urlToDownload = getDriver().findElementDynamic(selectorSomeFileTxt)
-						.getAttribute("href");
+				.getAttribute("href");
 		String[] urlHierachy = urlToDownload.split("/");
 		return urlHierachy[urlHierachy.length - 1];
 	}

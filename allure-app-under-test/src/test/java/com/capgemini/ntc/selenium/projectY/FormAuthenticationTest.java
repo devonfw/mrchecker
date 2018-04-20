@@ -21,20 +21,20 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 @Category({ TestsSelenium.class, TestsLocal.class })
 public class FormAuthenticationTest extends BaseTest {
 	
-	private static TheInternetPage			theInternetPage;
-	private static FormAuthenticationPage	formAuthenticationPage;
-	private String							errorUsernameMessage	= "Your username is invalid!\n" + "×";
-	private String							errorPasswordMessage	= "Your password is invalid!\n" + "×";
-	private String							loginMessage			= "You logged into a secure area!\n" + "×";
-	private String							logoutMessage			= "You logged out of the secure area!\n" + "×";
-	private String							emptyUsername			= "";
-	private String							emptyUserPassword		= "";
-	private String							validUsername			= "tomsmith";
-	private String							validPassword			= "SuperSecretPassword!";
-	private String							randomUsername			= UUID.randomUUID()
-					.toString();
-	private String							randomUserPassword		= UUID.randomUUID()
-					.toString();;
+	private static TheInternetPage theInternetPage;
+	private static FormAuthenticationPage formAuthenticationPage;
+	private String errorUsernameMessage = "Your username is invalid!\n" + "×";
+	private String errorPasswordMessage = "Your password is invalid!\n" + "×";
+	private String loginMessage = "You logged into a secure area!\n" + "×";
+	private String logoutMessage = "You logged out of the secure area!\n" + "×";
+	private String emptyUsername = "";
+	private String emptyUserPassword = "";
+	private String validUsername = "tomsmith";
+	private String validPassword = "SuperSecretPassword!";
+	private String randomUsername = UUID.randomUUID()
+			.toString();
+	private String randomUserPassword = UUID.randomUUID()
+			.toString();;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -67,41 +67,51 @@ public class FormAuthenticationTest extends BaseTest {
 		formAuthenticationPage.setUserPassword(emptyUserPassword);
 		formAuthenticationPage.clickLoginButton();
 		assertEquals("The user can login with empty data", errorUsernameMessage,
-						formAuthenticationPage.getLoginMessageText());
+				formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithEmptyUsernameAndValidPasswordTest() {
-		formAuthenticationPage.setUsername(emptyUsername).setUserPassword(validPassword).clickLoginButton();
+		formAuthenticationPage.setUsername(emptyUsername)
+				.setUserPassword(validPassword)
+				.clickLoginButton();
 		assertEquals("The user can login with empty username", errorUsernameMessage,
-						formAuthenticationPage.getLoginMessageText());
+				formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithValidUsernameAndEmptyPasswordTest() {
-		formAuthenticationPage.setUsername(validUsername).setUserPassword(errorPasswordMessage).clickLoginButton();
+		formAuthenticationPage.setUsername(validUsername)
+				.setUserPassword(errorPasswordMessage)
+				.clickLoginButton();
 		assertEquals("The user can login with empty password", errorPasswordMessage,
-						formAuthenticationPage.getLoginMessageText());
+				formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithRandomUsernameAndRandomPasswordTest() {
-		formAuthenticationPage.setUsername(randomUsername).setUserPassword(randomUserPassword).clickLoginButton();
+		formAuthenticationPage.setUsername(randomUsername)
+				.setUserPassword(randomUserPassword)
+				.clickLoginButton();
 		assertEquals("The user can login with random credentials", errorUsernameMessage,
-						formAuthenticationPage.getLoginMessageText());
+				formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
 	public void loginWithValidCredentials() {
-		formAuthenticationPage.setUsername(validUsername).setUserPassword(validPassword).clickLoginButton();
+		formAuthenticationPage.setUsername(validUsername)
+				.setUserPassword(validPassword)
+				.clickLoginButton();
 		assertEquals("The user can't login with valid credentials", loginMessage,
-						formAuthenticationPage.getLoginMessageText());
+				formAuthenticationPage.getLoginMessageText());
 		formAuthenticationPage.clickLogoutButton();
 	}
 	
 	@Test
 	public void logoutTest() {
-		formAuthenticationPage.setUsername(validUsername).setUserPassword(validPassword).clickLoginButton();
+		formAuthenticationPage.setUsername(validUsername)
+				.setUserPassword(validPassword)
+				.clickLoginButton();
 		formAuthenticationPage.clickLogoutButton();
 		assertEquals("The user can't logout", logoutMessage, formAuthenticationPage.getLoginMessageText());
 	}

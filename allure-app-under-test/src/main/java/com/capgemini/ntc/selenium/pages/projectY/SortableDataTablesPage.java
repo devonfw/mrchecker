@@ -14,8 +14,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class SortableDataTablesPage extends BasePage {
 	
-	private static final By	selectorTable	= By.cssSelector("table.tablesorter");
-	private static final By	selectorHeader	= By.cssSelector("th");
+	private static final By selectorTable = By.cssSelector("table.tablesorter");
+	private static final By selectorHeader = By.cssSelector("th");
 	
 	@Override
 	public boolean isLoaded() {

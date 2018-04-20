@@ -55,9 +55,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
-		 * ----------
-		 * Mock response. Map request with virtual asset from file
-		 * -----------
+		 * ---------- Mock response. Map request with virtual asset from file -----------
 		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		String endpointUriRegExp = "/tempconvert.asmx.*";
@@ -68,9 +66,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 				.build();
 		
 		/*
-		 * ----------
-		 * Time to validate virtual response
-		 * -----------
+		 * ---------- Time to validate virtual response -----------
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		String endpointUri = "/tempconvert.asmx";
@@ -104,9 +100,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
-		 * ----------
-		 * Mock response. Map request with virtual asset from Object SOAP representation
-		 * -----------
+		 * ---------- Mock response. Map request with virtual asset from Object SOAP representation -----------
 		 */
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		String endpointUriRegExp = "/tempconvert.asmx\\?op=FahrenheitToCelsius";
@@ -118,9 +112,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 				.build();
 		
 		/*
-		 * ----------
-		 * Time to validate virtual response
-		 * -----------
+		 * ---------- Time to validate virtual response -----------
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		String endpointUri = "/tempconvert.asmx?op=FahrenheitToCelsius";

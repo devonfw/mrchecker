@@ -16,19 +16,13 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 /**
- * The test verifies the presence and proper configuration of the
- * X-XSS-Protection header.
- * OWASP ASVS requirement V11.8: Verify that the X-XSS-Protection: 1; mode=block
- * header is in place.
- * Purpose: The header in this form may prevent some cases of reflected XSS. It
- * is supported by the IE [1] and Chrome-based browsers. It is turned on by
- * default, but the header like "1; mode=block" enforces the more rigorous mode
- * where the rendering of the whole page is stopped. This is the preferred mode,
- * as the less rigorous one can introduce vulnerabilities that would not exist
- * otherwise [2].
- * Read also: [1]
- * https://blogs.msdn.microsoft.com/ieinternals/2011/01/31/controlling-the-xss-filter/
- * [2] https://www.slideshare.net/masatokinugawa/xxn-en [3]
+ * The test verifies the presence and proper configuration of the X-XSS-Protection header. OWASP ASVS requirement V11.8:
+ * Verify that the X-XSS-Protection: 1; mode=block header is in place. Purpose: The header in this form may prevent some
+ * cases of reflected XSS. It is supported by the IE [1] and Chrome-based browsers. It is turned on by default, but the
+ * header like "1; mode=block" enforces the more rigorous mode where the rendering of the whole page is stopped. This is
+ * the preferred mode, as the less rigorous one can introduce vulnerabilities that would not exist otherwise [2]. Read
+ * also: [1] https://blogs.msdn.microsoft.com/ieinternals/2011/01/31/controlling-the-xss-filter/ [2]
+ * https://www.slideshare.net/masatokinugawa/xxn-en [3]
  * https://www.quora.com/How-effective-is-x-xss-protection-response-header
  *
  * @author Marek Puchalski, Capgemini
@@ -39,8 +33,8 @@ public class XXssProtectionTest extends SecurityTest {
 	
 	public static Object[] addParameters() {
 		return new Object[][] {
-						{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
-						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
+				{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
+				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
 		};
 	}
 	

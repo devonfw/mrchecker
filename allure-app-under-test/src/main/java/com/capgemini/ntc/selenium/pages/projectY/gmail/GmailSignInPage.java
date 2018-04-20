@@ -12,14 +12,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class GmailSignInPage extends BasePage {
 	
-	private static final By	selectorEmailInputField	= By.id("identifierId");
-	private static final By	selectorNextButton		= By.cssSelector("div#identifierNext > content");
+	private static final By selectorEmailInputField = By.id("identifierId");
+	private static final By selectorNextButton = By.cssSelector("div#identifierNext > content");
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("signin/v2/identifier") && pageTitle().equals("Gmail");
+				.contains("signin/v2/identifier") && pageTitle().equals("Gmail");
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class GmailSignInPage extends BasePage {
 	 */
 	public GmailSignInPage enterEmailAddress(String emailAddress) {
 		getDriver().elementInputText(selectorEmailInputField)
-						.setInputText(emailAddress);
+				.setInputText(emailAddress);
 		return this;
 	}
 	
@@ -53,7 +53,7 @@ public class GmailSignInPage extends BasePage {
 	 */
 	public GmailWelcomePage clickNextButton() {
 		getDriver().elementButton(selectorNextButton)
-						.click();
+				.click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
 		wait.until((Function<? super WebDriver, Boolean>) ExpectedConditions.urlContains("pwd"));
 		return new GmailWelcomePage();

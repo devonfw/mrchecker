@@ -11,8 +11,7 @@ import io.restassured.http.Headers;
 public interface ISessionManager {
 	
 	/**
-	 * Initializes the RestAssured request builder with information about the
-	 * session authorization headers.
+	 * Initializes the RestAssured request builder with information about the session authorization headers.
 	 *
 	 * @param session
 	 *            Identifies the session.
@@ -21,17 +20,16 @@ public interface ISessionManager {
 	RequestSpecBuilder initBuilder(SessionEnum session);
 	
 	/**
-	 * Initializes the builder without pointing to a particular session. Although every
-	 * test could do it for itself, it makes sense to make this operation global in case
-	 * changes to all system requests need to be made.
+	 * Initializes the builder without pointing to a particular session. Although every test could do it for itself, it
+	 * makes sense to make this operation global in case changes to all system requests need to be made.
 	 *
 	 * @return Initialized builder.
 	 */
 	RequestSpecBuilder initBuilder();
 	
 	/**
-	 * The most common case to authenticate requests is over the request headers. Some security
-	 * tests will need direct access to the headers to manipulate the data for the test reasons.
+	 * The most common case to authenticate requests is over the request headers. Some security tests will need direct
+	 * access to the headers to manipulate the data for the test reasons.
 	 * 
 	 * @param session
 	 *            Identifies the session.

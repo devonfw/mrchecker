@@ -14,20 +14,20 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ExitIntentPage extends BasePage {
 	
-	private static final String	MODAL_WINDOW_HIDDEN				= "display: none;";
-	private static final String	MODAL_WINDOW_DISPLAYED			= "display: block;";
-	private static final String	MODAL_WINDOW_STYLE_ATTRIBUTTE	= "style";
+	private static final String MODAL_WINDOW_HIDDEN = "display: none;";
+	private static final String MODAL_WINDOW_DISPLAYED = "display: block;";
+	private static final String MODAL_WINDOW_STYLE_ATTRIBUTTE = "style";
 	
-	private static final By	selectorModalWindow				= By.cssSelector("div#ouibounce-modal");
-	private static final By	selectorExitIntentText			= By.cssSelector("div#content h3");
-	private static final By	selectorModalWindowTitle		= By.cssSelector("h3");
-	private static final By	selectorModalWindowCloseButton	= By.cssSelector("div.modal-footer > p");
+	private static final By selectorModalWindow = By.cssSelector("div#ouibounce-modal");
+	private static final By selectorExitIntentText = By.cssSelector("div#content h3");
+	private static final By selectorModalWindowTitle = By.cssSelector("h3");
+	private static final By selectorModalWindowCloseButton = By.cssSelector("div.modal-footer > p");
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("exit_intent");
+				.contains("exit_intent");
 	}
 	
 	@Override
@@ -47,7 +47,7 @@ public class ExitIntentPage extends BasePage {
 	 */
 	public boolean isIntentMessageVisible() {
 		return getDriver().findElementDynamic(selectorExitIntentText)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -57,8 +57,8 @@ public class ExitIntentPage extends BasePage {
 	 */
 	public boolean isModalWindowHidden() {
 		return getDriver().findElementDynamic(selectorModalWindow)
-						.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
-						.equals(MODAL_WINDOW_HIDDEN);
+				.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
+				.equals(MODAL_WINDOW_HIDDEN);
 	}
 	
 	/**
@@ -68,8 +68,8 @@ public class ExitIntentPage extends BasePage {
 	 */
 	public boolean isModalWindowVisible() {
 		return getDriver().findElementDynamic(selectorModalWindow)
-						.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
-						.equals(MODAL_WINDOW_DISPLAYED);
+				.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
+				.equals(MODAL_WINDOW_DISPLAYED);
 	}
 	
 	/**
@@ -81,8 +81,8 @@ public class ExitIntentPage extends BasePage {
 	 */
 	public boolean verifyModalWindowTitle(String expectedValue) {
 		return getDriver().elementLabel(new ByChained(selectorModalWindow, selectorModalWindowTitle))
-						.getText()
-						.equals(expectedValue);
+				.getText()
+				.equals(expectedValue);
 	}
 	
 	/**
@@ -90,14 +90,14 @@ public class ExitIntentPage extends BasePage {
 	 */
 	public void closeModalWindow() {
 		getDriver().elementButton(new ByChained(selectorModalWindow, selectorModalWindowCloseButton))
-						.click();
+				.click();
 	}
 	
 	/**
 	 * Moves mouse pointer to the middle of screen at the top, then to the middle of screen and again to the top.
 	 * <p>
-	 * This move simulates leave of the viewport and encourages the modal to show up. There is java.awt.Robot used
-	 * to move mouse pointer out of viewport. There are timeouts used to let the browser detect mouse move.
+	 * This move simulates leave of the viewport and encourages the modal to show up. There is java.awt.Robot used to
+	 * move mouse pointer out of viewport. There are timeouts used to let the browser detect mouse move.
 	 * </p>
 	 * 
 	 * @see java.awt.Robot
@@ -105,8 +105,8 @@ public class ExitIntentPage extends BasePage {
 	public void moveMouseOutOfViewport() {
 		Robot robot;
 		Dimension screenSize = getDriver().manage()
-						.window()
-						.getSize();
+				.window()
+				.getSize();
 		int halfWidth = new BigDecimal(screenSize.getWidth() / 2).intValue();
 		int halfHeight = new BigDecimal(screenSize.getHeight() / 2).intValue();
 		
@@ -114,12 +114,12 @@ public class ExitIntentPage extends BasePage {
 			robot = new Robot();
 			robot.mouseMove(halfWidth, 1);
 			getDriver().manage()
-							.timeouts()
-							.implicitlyWait(1, TimeUnit.SECONDS);
+					.timeouts()
+					.implicitlyWait(1, TimeUnit.SECONDS);
 			robot.mouseMove(halfWidth, halfHeight);
 			getDriver().manage()
-							.timeouts()
-							.implicitlyWait(1, TimeUnit.SECONDS);
+					.timeouts()
+					.implicitlyWait(1, TimeUnit.SECONDS);
 			robot.mouseMove(halfWidth, 1);
 		} catch (AWTException e) {
 			BFLogger.logError("Unable to connect with remote mouse");

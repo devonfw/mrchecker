@@ -16,16 +16,16 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class JavaScriptAlertsPage<V, Alert> extends BasePage {
 	
-	private static final By	selectorAlertButton		= By.cssSelector("button[onclick*=jsAlert]");
-	private static final By	selectorConfirmButton	= By.cssSelector("button[onclick*=jsConfirm]");
-	private static final By	selectorPromptButton	= By.cssSelector("button[onclick*=jsPrompt]");
-	private static final By	resultLabelSelector		= By.cssSelector("p#result");
+	private static final By selectorAlertButton = By.cssSelector("button[onclick*=jsAlert]");
+	private static final By selectorConfirmButton = By.cssSelector("button[onclick*=jsConfirm]");
+	private static final By selectorPromptButton = By.cssSelector("button[onclick*=jsPrompt]");
+	private static final By resultLabelSelector = By.cssSelector("p#result");
 	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The KeyPresses page is loaded.");
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
 	}
 	
 	@Override
@@ -63,20 +63,20 @@ public class JavaScriptAlertsPage<V, Alert> extends BasePage {
 	
 	public void clickAlertAccept() {
 		getDriver().switchTo()
-						.alert()
-						.accept();
+				.alert()
+				.accept();
 	}
 	
 	public void clickAlertDismiss() {
 		getDriver().switchTo()
-						.alert()
-						.dismiss();
+				.alert()
+				.dismiss();
 	}
 	
 	public void writeTextInAlert(String text) {
 		getDriver().switchTo()
-						.alert()
-						.sendKeys(text);
+				.alert()
+				.sendKeys(text);
 	}
 	
 }

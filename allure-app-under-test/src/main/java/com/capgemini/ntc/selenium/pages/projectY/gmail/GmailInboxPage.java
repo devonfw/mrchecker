@@ -19,11 +19,11 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class GmailInboxPage extends BasePage {
 	
-	private static final By	selectorSelectAllCheckbox	= By.cssSelector("div.J-J5-Ji.J-JN-M-I-Jm > span");
-	private static final By	selectorDeleteButton		= By.cssSelector("div.ar9.T-I-J3.J-J5-Ji");
-	private static final By	selectorEmailTable			= By.cssSelector("div.UI tbody");
-	private static final By	selectorEmailRow			= By.cssSelector("tr.zA.zE");
-	private static final By	selectorEmailCell			= By.cssSelector("td");
+	private static final By selectorSelectAllCheckbox = By.cssSelector("div.J-J5-Ji.J-JN-M-I-Jm > span");
+	private static final By selectorDeleteButton = By.cssSelector("div.ar9.T-I-J3.J-J5-Ji");
+	private static final By selectorEmailTable = By.cssSelector("div.UI tbody");
+	private static final By selectorEmailRow = By.cssSelector("tr.zA.zE");
+	private static final By selectorEmailCell = By.cssSelector("td");
 	
 	private static final String unread = "unread";
 	
@@ -33,8 +33,8 @@ public class GmailInboxPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.equals("https://mail.google.com/mail/u/0/#inbox")
-						&& pageTitle().contains("Inbox");
+				.equals("https://mail.google.com/mail/u/0/#inbox")
+				&& pageTitle().contains("Inbox");
 	}
 	
 	@Override
@@ -62,12 +62,12 @@ public class GmailInboxPage extends BasePage {
 	
 	private void clickSelectAllCheckox() {
 		getDriver().elementButton(selectorSelectAllCheckbox)
-						.click();
+				.click();
 	}
 	
 	private void clickDeleteButton() {
 		getDriver().elementButton(selectorDeleteButton)
-						.click();
+				.click();
 	}
 	
 	/**
@@ -110,8 +110,8 @@ public class GmailInboxPage extends BasePage {
 		List<WebElement> rows = getEmailRows();
 		for (WebElement row : rows) {
 			List<String> matches = getAllTextFromMessage(row).stream()
-							.filter(element -> element.contains(unread))
-							.collect(Collectors.toList());
+					.filter(element -> element.contains(unread))
+					.collect(Collectors.toList());
 			if (matches.size() > 0)
 				unreadEmails.add(row);
 		}
@@ -129,8 +129,8 @@ public class GmailInboxPage extends BasePage {
 		List<WebElement> sendersEmails = new ArrayList<>();
 		for (WebElement row : unreadEmails) {
 			List<String> matches = getAllTextFromMessage(row).stream()
-							.filter(element -> element.contains(sender))
-							.collect(Collectors.toList());
+					.filter(element -> element.contains(sender))
+					.collect(Collectors.toList());
 			if (matches.size() > 0)
 				sendersEmails.add(row);
 		}
@@ -141,8 +141,8 @@ public class GmailInboxPage extends BasePage {
 		List<WebElement> resultEmails = new ArrayList<>();
 		for (WebElement row : emails) {
 			List<String> matches = getAllTextFromMessage(row).stream()
-							.filter(element -> element.contains(title))
-							.collect(Collectors.toList());
+					.filter(element -> element.contains(title))
+					.collect(Collectors.toList());
 			if (matches.size() > 0)
 				resultEmails.add(row);
 		}

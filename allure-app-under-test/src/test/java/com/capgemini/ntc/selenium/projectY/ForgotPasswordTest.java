@@ -23,20 +23,20 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ForgotPasswordTest extends BaseTest {
 	
-	private static final int	WAIT_TIME	= 30;
-	private static final String	SENDER		= "no-reply@the-internet";
-	private static final String	TITLE		= "Forgot Password from the-internet";
+	private static final int WAIT_TIME = 30;
+	private static final String SENDER = "no-reply@the-internet";
+	private static final String TITLE = "Forgot Password from the-internet";
 	
-	private static String	emailAddress	= "";
-	private static String	emailPassword	= "";
+	private static String emailAddress = "";
+	private static String emailPassword = "";
 	
-	private static TheInternetPage				theInternetPage;
-	private static ForgotPasswordPage			forgotPasswordPage;
-	private static ForgotPasswordEmailSentPage	forgotPasswordEmailSentPage;
-	private static GmailAboutPage				gmailAboutPage;
-	private static GmailSignInPage				gmailSignInPage;
-	private static GmailWelcomePage				gmailWelcomePage;
-	private static GmailInboxPage				gmailInboxPage;
+	private static TheInternetPage theInternetPage;
+	private static ForgotPasswordPage forgotPasswordPage;
+	private static ForgotPasswordEmailSentPage forgotPasswordEmailSentPage;
+	private static GmailAboutPage gmailAboutPage;
+	private static GmailSignInPage gmailSignInPage;
+	private static GmailWelcomePage gmailWelcomePage;
+	private static GmailInboxPage gmailInboxPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -54,14 +54,14 @@ public class ForgotPasswordTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 5: Enter email address and press 'Next' button");
 		gmailWelcomePage = gmailSignInPage.enterEmailAddress(emailAddress)
-						.clickNextButton();
+				.clickNextButton();
 		
 		BFLogger.logInfo("Step 6: Verify if 'Welcome' page is opened");
 		assertTrue("Unable to open 'Welcome' page", gmailWelcomePage.isLoaded());
 		
 		BFLogger.logInfo("Step 7: Enter password and press 'Next' button");
 		gmailInboxPage = gmailWelcomePage.enterPassword(emailPassword)
-						.clickNextButton();
+				.clickNextButton();
 		
 		BFLogger.logInfo("Step 8: Verify if 'Inbox' page is opened");
 		assertTrue("Unable to open 'Inbox' page", gmailInboxPage.isLoaded());
@@ -94,7 +94,7 @@ public class ForgotPasswordTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 15: Insert email address and click 'Retrieve password' button");
 		forgotPasswordEmailSentPage = forgotPasswordPage.enterEmailAddress(emailAddress)
-						.clickRetrievePasswordButton();
+				.clickRetrievePasswordButton();
 		
 		BFLogger.logInfo("Step 16: Verify if 'Forgot password - email sent' page is opened");
 		assertTrue("Unable to open 'Forgot password - email sent' page", forgotPasswordEmailSentPage.isLoaded());
@@ -123,7 +123,7 @@ public class ForgotPasswordTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 24: Verify if there is new email with proper title: " + TITLE);
 		assertFalse("Unable to find any email from proper sender with proper title", gmailInboxPage.findEmailsForTitle(emails, TITLE)
-						.isEmpty());
+				.isEmpty());
 		
 	}
 	

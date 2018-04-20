@@ -9,8 +9,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class StatusCodesCodePage extends BasePage {
 	
-	private static final By	selectorDisplayedText	= By.cssSelector("#content > div > p");
-	private static final By	selectorLinkToCodesPage	= By.cssSelector("#content > div > p > a");
+	private static final By selectorDisplayedText = By.cssSelector("#content > div > p");
+	private static final By selectorLinkToCodesPage = By.cssSelector("#content > div > p > a");
 	
 	private String codeNumber;
 	

@@ -13,18 +13,18 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DynamicLoadingPage extends BasePage {
 	
-	private static final By	selectorExampleOneLink		= By.cssSelector("a[href*='dynamic_loading/1']");
-	private static final By	selectorExampleTwoLink		= By.cssSelector("a[href*='dynamic_loading/2']");
-	private static final By	selectorDynamicLoadingText	= By.cssSelector("div#content h3");
-	private static final By	selectorStartButton			= By.cssSelector("div#start button");
-	private static final By	selectorLoadingBar			= By.cssSelector("div#loading");
-	private static final By	selectorExampleText			= By.cssSelector("div#finish h4");
+	private static final By selectorExampleOneLink = By.cssSelector("a[href*='dynamic_loading/1']");
+	private static final By selectorExampleTwoLink = By.cssSelector("a[href*='dynamic_loading/2']");
+	private static final By selectorDynamicLoadingText = By.cssSelector("div#content h3");
+	private static final By selectorStartButton = By.cssSelector("div#start button");
+	private static final By selectorLoadingBar = By.cssSelector("div#loading");
+	private static final By selectorExampleText = By.cssSelector("div#finish h4");
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("dynamic_loading");
+				.contains("dynamic_loading");
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public boolean isDynamicLoadingMessageVisible() {
 		return getDriver().findElementDynamic(selectorDynamicLoadingText)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public void clickExampleOneLink() {
 		getDriver().findElementDynamic(selectorExampleOneLink)
-						.click();
+				.click();
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public void clickExampleTwoLink() {
 		getDriver().findElementDynamic(selectorExampleTwoLink)
-						.click();
+				.click();
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public boolean isStartButtonVisible() {
 		return getDriver().findElementDynamic(selectorStartButton)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public void clickStartButton() {
 		getDriver().findElementDynamic(selectorStartButton)
-						.click();
+				.click();
 	}
 	
 	/**
@@ -93,14 +93,14 @@ public class DynamicLoadingPage extends BasePage {
 		WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
 		wait.until((Function<? super WebDriver, Boolean>) ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
 		return getDriver().findElementDynamic(selectorExampleText)
-						.getText();
+				.getText();
 	}
 	
 	/**
 	 * Returns example text.
 	 * <p>
-	 * Waits until WebElement representing waiting bar disappear. Then waits until example text will show up.
-	 * And after that returns example text.
+	 * Waits until WebElement representing waiting bar disappear. Then waits until example text will show up. And after
+	 * that returns example text.
 	 * </p>
 	 * 
 	 * @param waitTime
@@ -112,6 +112,6 @@ public class DynamicLoadingPage extends BasePage {
 		wait.until((Function<? super WebDriver, Boolean>) ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
 		wait.until((Function<? super WebDriver, WebElement>) ExpectedConditions.visibilityOfElementLocated(selectorExampleText));
 		return getDriver().findElementDynamic(selectorExampleText)
-						.getText();
+				.getText();
 	}
 }

@@ -7,14 +7,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ForgotPasswordEmailSentPage extends BasePage {
 	
-	private static final By		selectorInfoLabel	= By.cssSelector("div#content");
-	private static final String	successMessage		= "Your e-mail's been sent!";
+	private static final By selectorInfoLabel = By.cssSelector("div#content");
+	private static final String successMessage = "Your e-mail's been sent!";
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("email_sent");
+				.contains("email_sent");
 	}
 	
 	@Override
@@ -30,9 +30,9 @@ public class ForgotPasswordEmailSentPage extends BasePage {
 	
 	public boolean isEmailSentSuccessfully() {
 		return getDriver().findElementDynamic(selectorInfoLabel)
-						.getText()
-						.trim()
-						.equals(successMessage);
+				.getText()
+				.trim()
+				.equals(successMessage);
 	}
 	
 }

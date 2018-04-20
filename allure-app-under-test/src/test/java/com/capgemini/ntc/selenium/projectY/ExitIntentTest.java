@@ -19,8 +19,8 @@ public class ExitIntentTest extends BaseTest {
 	
 	private static final String MODAL_WINDOW_TITLE = "This is a modal window";
 	
-	private static TheInternetPage	theInternetPage;
-	private static ExitIntentPage	exitIntentPage;
+	private static TheInternetPage theInternetPage;
+	private static ExitIntentPage exitIntentPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {

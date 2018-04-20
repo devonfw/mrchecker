@@ -13,9 +13,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class RedirectLinkTest extends BaseTest {
 	
-	private TheInternetPage				theInternetPage;
-	private static RedirectLinkPage		redirectLinkPage;
-	private static StatusCodesHomePage	statusCodesHomePage;
+	private TheInternetPage theInternetPage;
+	private static RedirectLinkPage redirectLinkPage;
+	private static StatusCodesHomePage statusCodesHomePage;
 	
 	@Override
 	public void setUp() {

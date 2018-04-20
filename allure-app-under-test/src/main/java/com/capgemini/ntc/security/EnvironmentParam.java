@@ -21,7 +21,7 @@ public enum EnvironmentParam {
 		}
 		
 		return BaseTest.getEnvironmentService()
-		        .getValue(this.name());
+				.getValue(this.name());
 		
 	}
 	

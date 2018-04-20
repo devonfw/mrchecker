@@ -16,8 +16,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DynamicContentTest extends BaseTest {
 	
-	private TheInternetPage				theInternetPage;
-	private static DynamicContentPage	dynamicContentPage;
+	private TheInternetPage theInternetPage;
+	private static DynamicContentPage dynamicContentPage;
 	
 	@Override
 	public void setUp() {
@@ -56,8 +56,8 @@ public class DynamicContentTest extends BaseTest {
 		
 		for (int i = 0; i < descriptionListActual.size(); i++) {
 			assertNotEquals("Descriptions should be different",
-							descriptionListActual.get(i),
-							descriptionListPrevious.get(i));
+					descriptionListActual.get(i),
+					descriptionListPrevious.get(i));
 		}
 		
 		BFLogger.logInfo("Step8 - Compare images");
@@ -65,8 +65,8 @@ public class DynamicContentTest extends BaseTest {
 		
 		for (int i = 0; i < imagesListActual.size(); i++) {
 			assertNotEquals("Images should be different",
-							imagesListPrevious.get(i),
-							imagesListActual.get(i));
+					imagesListPrevious.get(i),
+					imagesListActual.get(i));
 		}
 	}
 }

@@ -8,14 +8,14 @@ public class GmailAboutPage extends BasePage {
 	
 	private static final By selectorSignInButton = By.cssSelector("a.gmail-nav__nav-link__sign-in");
 	
-	private static final String	GMAIL_ABOUT_URL			= "https://www.google.com/gmail/about/#";
-	private static final String	GMAIL_ABOUT_PAGE_TITLE	= "Gmail - Free Storage and Email from Google";
+	private static final String GMAIL_ABOUT_URL = "https://www.google.com/gmail/about/#";
+	private static final String GMAIL_ABOUT_PAGE_TITLE = "Gmail - Free Storage and Email from Google";
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("gmail/about/#");
+				.contains("gmail/about/#");
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class GmailAboutPage extends BasePage {
 	 */
 	public GmailSignInPage clickSignInButton() {
 		getDriver().elementButton(selectorSignInButton)
-						.click();
+				.click();
 		return new GmailSignInPage();
 	}
 	

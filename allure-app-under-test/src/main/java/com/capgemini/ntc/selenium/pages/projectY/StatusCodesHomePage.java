@@ -9,10 +9,10 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class StatusCodesHomePage extends BasePage {
 	
-	private static final By	selectorLink200Code	= By.linkText("200");
-	private static final By	selectorLink301Code	= By.linkText("301");
-	private static final By	selectorLink404Code	= By.linkText("404");
-	private static final By	selectorLink500Code	= By.linkText("500");
+	private static final By selectorLink200Code = By.linkText("200");
+	private static final By selectorLink301Code = By.linkText("301");
+	private static final By selectorLink404Code = By.linkText("404");
+	private static final By selectorLink500Code = By.linkText("500");
 	
 	@Override
 	public boolean isLoaded() {

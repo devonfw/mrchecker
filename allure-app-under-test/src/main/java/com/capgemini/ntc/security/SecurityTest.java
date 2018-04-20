@@ -13,8 +13,8 @@ import com.google.inject.Injector;
  */
 public abstract class SecurityTest extends BaseTest {
 	
-	private static final Injector	injector	= Guice.createInjector(new SessionManagerModule());
-	private ISessionManager				sessionManager;
+	private static final Injector injector = Guice.createInjector(new SessionManagerModule());
+	private ISessionManager sessionManager;
 	
 	public SecurityTest() {
 		super();

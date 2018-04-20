@@ -11,16 +11,11 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Request_FromFile;
 
 /**
- * SOAP endpoint for a SOAP web service that matches a response body with the following SOAP envelope:
- * <?xml version="1.0" encoding="utf-8"?>
- * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
- * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
- * <soap12:Body>
- * <FahrenheitToCelsius>
- * <Fahrenheit>100</Fahrenheit>
- * </FahrenheitToCelsius>
- * </soap12:Body>
- * </soap12:Envelope>
+ * SOAP endpoint for a SOAP web service that matches a response body with the following SOAP envelope: <?xml
+ * version="1.0" encoding="utf-8"?>
+ * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd= "http://www.w3.org/2001/XMLSchema"
+ * xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"> <soap12:Body> <FahrenheitToCelsius>
+ * <Fahrenheit>100</Fahrenheit> </FahrenheitToCelsius> </soap12:Body> </soap12:Envelope>
  **/
 public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
@@ -50,9 +45,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	}
 	
 	/*
-	 * ------------
-	 * Util methods
-	 * ------------
+	 * ------------ Util methods ------------
 	 */
 	
 	private String getStringOutOfFile(final String filePath) throws IOException {

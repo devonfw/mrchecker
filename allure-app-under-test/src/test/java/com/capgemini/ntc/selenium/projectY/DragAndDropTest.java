@@ -15,13 +15,13 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DragAndDropTest extends BaseTest {
 	
-	private static final String	ELEMENT_A	= "A";
-	private static final String	CONTAINER_A	= "A";
-	private static final String	ELEMENT_B	= "B";
-	private static final String	CONTAINER_B	= "B";
+	private static final String ELEMENT_A = "A";
+	private static final String CONTAINER_A = "A";
+	private static final String ELEMENT_B = "B";
+	private static final String CONTAINER_B = "B";
 	
-	private static TheInternetPage	theInternetPage;
-	private static DragAndDropPage	dragAndDropPage;
+	private static TheInternetPage theInternetPage;
+	private static DragAndDropPage dragAndDropPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {

@@ -11,17 +11,17 @@ import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 
 public class FormAuthenticationPage extends BasePage {
 	
-	private final String	validPageTitle				= "The Internet";
-	private final static By	selectorInputUsername		= By.cssSelector("#username");
-	private final static By	selectorInputUserPassword	= By.cssSelector("#password");
-	private final static By	selectorLoginMessage		= By.cssSelector("#flash");
-	private final static By	selectorLoginButton			= By.cssSelector("#login > button > i");
-	private final static By	selectorLogoutButton		= By.cssSelector("#content > div > a ");
+	private final String validPageTitle = "The Internet";
+	private final static By selectorInputUsername = By.cssSelector("#username");
+	private final static By selectorInputUserPassword = By.cssSelector("#password");
+	private final static By selectorLoginMessage = By.cssSelector("#flash");
+	private final static By selectorLoginButton = By.cssSelector("#login > button > i");
+	private final static By selectorLogoutButton = By.cssSelector("#content > div > a ");
 	
 	@Override
 	public boolean isLoaded() {
 		return getDriver().getTitle()
-						.equals(validPageTitle);
+				.equals(validPageTitle);
 	}
 	
 	@Override

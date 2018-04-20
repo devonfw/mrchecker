@@ -15,11 +15,11 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DynamicLoadingTest extends BaseTest {
 	
-	private static final int	EXAMPLE_WAITING_TIME	= 30;
-	private static final String	EXAMPLE_TEXT			= "Hello World!";
+	private static final int EXAMPLE_WAITING_TIME = 30;
+	private static final String EXAMPLE_TEXT = "Hello World!";
 	
-	private static TheInternetPage		theInternetPage;
-	private static DynamicLoadingPage	dynamicLoadingPage;
+	private static TheInternetPage theInternetPage;
+	private static DynamicLoadingPage dynamicLoadingPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {

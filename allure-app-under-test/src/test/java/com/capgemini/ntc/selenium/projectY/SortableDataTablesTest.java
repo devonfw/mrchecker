@@ -18,8 +18,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class SortableDataTablesTest extends BaseTest {
 	
-	private TheInternetPage					theInternetPage;
-	private static SortableDataTablesPage	sortableDataTablesPage;
+	private TheInternetPage theInternetPage;
+	private static SortableDataTablesPage sortableDataTablesPage;
 	
 	@Override
 	public void setUp() {

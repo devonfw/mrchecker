@@ -1,8 +1,7 @@
 package com.capgemini.ntc.security.session;
 
 /**
- * This enumeration defines various user sessions (based on the role names)
- * available in the application.
+ * This enumeration defines various user sessions (based on the role names) available in the application.
  * 
  * @author Marek Puchalski, Capgemini
  */

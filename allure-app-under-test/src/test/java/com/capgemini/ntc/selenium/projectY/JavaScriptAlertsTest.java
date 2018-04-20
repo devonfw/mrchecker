@@ -14,9 +14,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class JavaScriptAlertsTest extends BaseTest {
 	
-	private TheInternetPage				theInternetPage;
-	private static JavaScriptAlertsPage	javaScriptAlertsPage;
-	private final String				randomString	= "random";
+	private TheInternetPage theInternetPage;
+	private static JavaScriptAlertsPage javaScriptAlertsPage;
+	private final String randomString = "random";
 	
 	@Override
 	public void setUp() {
@@ -49,8 +49,8 @@ public class JavaScriptAlertsTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Ok button inside Alert Box doesn't click",
-						"You successfuly clicked an alert",
-						javaScriptAlertsPage.readResultLabel());
+				"You successfuly clicked an alert",
+				javaScriptAlertsPage.readResultLabel());
 	}
 	
 	@Test // TC2
@@ -63,8 +63,8 @@ public class JavaScriptAlertsTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Ok button inside Confirm Box doesn't click",
-						"You clicked: Ok",
-						javaScriptAlertsPage.readResultLabel());
+				"You clicked: Ok",
+				javaScriptAlertsPage.readResultLabel());
 	}
 	
 	@Test // TC3
@@ -77,8 +77,8 @@ public class JavaScriptAlertsTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Cancel Button inside Confirm Box doesn't work",
-						"You clicked: Cancel",
-						javaScriptAlertsPage.readResultLabel());
+				"You clicked: Cancel",
+				javaScriptAlertsPage.readResultLabel());
 	}
 	
 	@Test // TC4
@@ -95,8 +95,8 @@ public class JavaScriptAlertsTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 7: Check the message");
 		assertEquals("The entered text doesn't match",
-						"You entered: " + randomString,
-						javaScriptAlertsPage.readResultLabel());
+				"You entered: " + randomString,
+				javaScriptAlertsPage.readResultLabel());
 	}
 	
 	@Test // TC5
@@ -109,8 +109,8 @@ public class JavaScriptAlertsTest extends BaseTest {
 		
 		BFLogger.logInfo("Step 6: Check the message");
 		assertEquals("Cancel Button inside Prompt Box doesn't work",
-						"You entered: null",
-						javaScriptAlertsPage.readResultLabel());
+				"You entered: null",
+				javaScriptAlertsPage.readResultLabel());
 	}
 	
 }

@@ -14,14 +14,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DynamicContentPage extends BasePage {
 	
-	private static final By	selectorImages			= By.cssSelector("div#content > div.row img");
-	private static final By	selectorDescriptions	= By.cssSelector("div#content > div.row div.large-10");
+	private static final By selectorImages = By.cssSelector("div#content > div.row img");
+	private static final By selectorDescriptions = By.cssSelector("div#content > div.row div.large-10");
 	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The DynamicContent page is loaded.");
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DYNAMIC_CONTENT.getValue());
+				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DYNAMIC_CONTENT.getValue());
 	}
 	
 	@Override
@@ -37,7 +37,7 @@ public class DynamicContentPage extends BasePage {
 	
 	public void refreshPage() {
 		getDriver().navigate()
-						.refresh();
+				.refresh();
 	}
 	
 	public List<String> getDescriptions() {

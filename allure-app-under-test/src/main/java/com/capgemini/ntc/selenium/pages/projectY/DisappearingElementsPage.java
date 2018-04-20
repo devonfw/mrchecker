@@ -8,14 +8,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DisappearingElementsPage extends BasePage {
 	
-	private static final By	selectorGalleryMenuButton	= By.cssSelector("li > a[href*=gallery]");
-	private static final By	selectorMenuButtons			= By.cssSelector("li");
+	private static final By selectorGalleryMenuButton = By.cssSelector("li > a[href*=gallery]");
+	private static final By selectorMenuButtons = By.cssSelector("li");
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("disappearing_elements");
+				.contains("disappearing_elements");
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class DisappearingElementsPage extends BasePage {
 	 */
 	public int getNumberOfMenuButtons() {
 		return getDriver().findElementDynamics(selectorMenuButtons)
-						.size();
+				.size();
 	}
 	
 	/**

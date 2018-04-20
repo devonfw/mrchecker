@@ -16,16 +16,11 @@ import com.capgemini.ntc.webapi.soap.SoapMessageGenerator;
 import com.jamesmurty.utils.XMLBuilder;
 
 /**
- * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope:
- * <?xml version="1.0" encoding="utf-8"?>
- * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
- * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
- * <soap12:Body>
- * <FahrenheitToCelsius>
- * <Fahrenheit>100</Fahrenheit>
- * </FahrenheitToCelsius>
- * </soap12:Body>
- * </soap12:Envelope>
+ * SOAP endpoint for a SOAP web service that matches a request body with the following SOAP envelope: <?xml
+ * version="1.0" encoding="utf-8"?>
+ * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd= "http://www.w3.org/2001/XMLSchema"
+ * xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"> <soap12:Body> <FahrenheitToCelsius>
+ * <Fahrenheit>100</Fahrenheit> </FahrenheitToCelsius> </soap12:Body> </soap12:Envelope>
  **/
 public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	
@@ -62,10 +57,9 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	// Set any type of "nodes" under xml Root
 	/**
 	 * Set "Fahrenheit" node under xml Root
+	 * 
 	 * @param fahrenheit
-	 * @return <FahrenheitToCelsius>
-	 *         <Fahrenheit>100</Fahrenheit>
-	 *         </FahrenheitToCelsius>
+	 * @return <FahrenheitToCelsius> <Fahrenheit>100</Fahrenheit> </FahrenheitToCelsius>
 	 */
 	public FarenheitToCelsiusMethod_Request_FromCode setFahrenheit(int fahrenheit) {
 		getRoot().element("Fahrenheit")
@@ -76,10 +70,9 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	// Set any nodes under xml Root
 	/**
 	 * Set "Smth" node under xml Root
+	 * 
 	 * @param fahrenheit
-	 * @return <FahrenheitToCelsius>
-	 *         <Smth>Hello</Smth>
-	 *         </FahrenheitToCelsius>
+	 * @return <FahrenheitToCelsius> <Smth>Hello</Smth> </FahrenheitToCelsius>
 	 */
 	public FarenheitToCelsiusMethod_Request_FromCode setSmth(String Smth) {
 		getRoot().element("Smth")
@@ -88,9 +81,7 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	}
 	
 	/*
-	 * ----------------------------------
-	 * Any handy actions after this point
-	 * ----------------------------------
+	 * ---------------------------------- Any handy actions after this point ----------------------------------
 	 */
 	private XMLBuilder xmlBody;
 	

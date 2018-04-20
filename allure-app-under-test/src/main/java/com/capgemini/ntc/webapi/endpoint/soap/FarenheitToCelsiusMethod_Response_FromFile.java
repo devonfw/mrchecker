@@ -37,9 +37,7 @@ public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 	}
 	
 	/*
-	 * ------------
-	 * Util methods
-	 * ------------
+	 * ------------ Util methods ------------
 	 */
 	
 	private String getStringOutOfFile(final String filePath) throws IOException {

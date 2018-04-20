@@ -15,8 +15,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class FileDownloadTest extends BaseTest {
 	
-	private static TheInternetPage	theInternetPage;
-	private static FileDownloadPage	fileDownloadPage;
+	private static TheInternetPage theInternetPage;
+	private static FileDownloadPage fileDownloadPage;
 	
 	@Override
 	public void setUp() {

@@ -17,11 +17,11 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DisappearingElementsTest extends BaseTest {
 	
-	private static TheInternetPage			theInternetPage;
-	private static DisappearingElementsPage	disappearingElementsPage;
+	private static TheInternetPage theInternetPage;
+	private static DisappearingElementsPage disappearingElementsPage;
 	
-	private static int			numberOfMenuButtons			= 0;
-	private static final int	totalNumberOfMenuButtons	= 5;
+	private static int numberOfMenuButtons = 0;
+	private static final int totalNumberOfMenuButtons = 5;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {

@@ -7,14 +7,14 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ForgotPasswordPage extends BasePage {
 	
-	private static final By	selectorEmailInput				= By.cssSelector("input#email");
-	private static final By	selectorRetrievePasswordButton	= By.cssSelector("button#form_submit > i");
+	private static final By selectorEmailInput = By.cssSelector("input#email");
+	private static final By selectorRetrievePasswordButton = By.cssSelector("button#form_submit > i");
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("forgot_password");
+				.contains("forgot_password");
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class ForgotPasswordPage extends BasePage {
 	 */
 	public boolean isEmailInputVisible() {
 		return getDriver().findElementDynamic(selectorEmailInput)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class ForgotPasswordPage extends BasePage {
 	 */
 	public ForgotPasswordPage enterEmailAddress(String emailAddress) {
 		getDriver().elementInputText(selectorEmailInput)
-						.setInputText(emailAddress);
+				.setInputText(emailAddress);
 		return this;
 	}
 	
@@ -57,7 +57,7 @@ public class ForgotPasswordPage extends BasePage {
 	 */
 	public ForgotPasswordEmailSentPage clickRetrievePasswordButton() {
 		getDriver().elementButton(selectorRetrievePasswordButton)
-						.click();
+				.click();
 		return new ForgotPasswordEmailSentPage();
 	}
 	

@@ -19,12 +19,12 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class SliderTest extends BaseTest {
 	
-	private static TheInternetPage		theInternetPage;
-	private static HorizontalSliderPage	horizontalSliderPage;
+	private static TheInternetPage theInternetPage;
+	private static HorizontalSliderPage horizontalSliderPage;
 	
-	BigDecimal	startPosition;
-	BigDecimal	middlePosition;
-	BigDecimal	endPosition;
+	BigDecimal startPosition;
+	BigDecimal middlePosition;
+	BigDecimal endPosition;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {

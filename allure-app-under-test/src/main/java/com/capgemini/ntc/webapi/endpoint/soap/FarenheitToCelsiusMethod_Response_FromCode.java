@@ -49,12 +49,11 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	
 	// Set any nodes type under xml Root
 	
-	
 	/**
 	 * Set "FahrenheitToCelsiusResult" node under xml Root
+	 * 
 	 * @param fahrenheit
-	 * @return <FahrenheitToCelsius>
-	 *         <FahrenheitToCelsiusResult>37.777</FahrenheitToCelsiusResult>
+	 * @return <FahrenheitToCelsius> <FahrenheitToCelsiusResult>37.777</FahrenheitToCelsiusResult>
 	 *         </FahrenheitToCelsius>
 	 */
 	public FarenheitToCelsiusMethod_Response_FromCode setFahrenheitToCelsiusResult(double value) {
@@ -64,13 +63,11 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 		return this;
 	}
 	
-
 	/**
 	 * Set "Smth" node under xml Root
+	 * 
 	 * @param fahrenheit
-	 * @return <FahrenheitToCelsiusResponse>
-	 *         <Smth>Hello</Smth>
-	 *         </FahrenheitToCelsiusResponse>
+	 * @return <FahrenheitToCelsiusResponse> <Smth>Hello</Smth> </FahrenheitToCelsiusResponse>
 	 */
 	public FarenheitToCelsiusMethod_Response_FromCode setSmth(String Smth) {
 		getRoot().element("Smth")
@@ -79,9 +76,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	}
 	
 	/*
-	 * ----------------------------------
-	 * Any handy actions after this point
-	 * ----------------------------------
+	 * ---------------------------------- Any handy actions after this point ----------------------------------
 	 */
 	private XMLBuilder xmlBody;
 	

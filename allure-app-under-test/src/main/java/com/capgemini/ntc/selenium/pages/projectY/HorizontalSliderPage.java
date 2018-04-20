@@ -10,9 +10,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class HorizontalSliderPage extends BasePage {
 	
-	private static final By	selectorHorizontalSlider	= By.cssSelector("div.sliderContainer");
-	private static final By	sliderSelector				= By.cssSelector("input");
-	private static final By	valueSelector				= By.cssSelector("#range");
+	private static final By selectorHorizontalSlider = By.cssSelector("div.sliderContainer");
+	private static final By sliderSelector = By.cssSelector("input");
+	private static final By valueSelector = By.cssSelector("#range");
 	
 	private HorizontalSliderElement horizontalSlider;
 	
@@ -24,7 +24,7 @@ public class HorizontalSliderPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("horizontal_slider");
+				.contains("horizontal_slider");
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class HorizontalSliderPage extends BasePage {
 	 */
 	public boolean isElementHorizontalSliderVisible() {
 		return getDriver().elementHorizontalSlider(selectorHorizontalSlider)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -64,8 +64,8 @@ public class HorizontalSliderPage extends BasePage {
 	 */
 	public BigDecimal getMiddlePosition() {
 		return horizontalSlider.getMaxRange()
-						.subtract(horizontalSlider.getMinRange())
-						.divide(new BigDecimal(2));
+				.subtract(horizontalSlider.getMinRange())
+				.divide(new BigDecimal(2));
 	}
 	
 	/**
@@ -87,8 +87,7 @@ public class HorizontalSliderPage extends BasePage {
 	}
 	
 	/**
-	 * Sets horizontal slider to given position using one of available methods: using keyboard
-	 * or using mouse move.
+	 * Sets horizontal slider to given position using one of available methods: using keyboard or using mouse move.
 	 * 
 	 * @param position
 	 * @param method

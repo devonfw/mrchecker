@@ -17,9 +17,9 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 @Category({ TestsSelenium.class })
 public class StatusCodeTest extends BaseTest {
 	
-	private static TheInternetPage		theInternetPage;
-	private static StatusCodesHomePage	statusCodesHomePage;
-	private StatusCodesCodePage			statusCodesCodePage;
+	private static TheInternetPage theInternetPage;
+	private static StatusCodesHomePage statusCodesHomePage;
+	private StatusCodesCodePage statusCodesCodePage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

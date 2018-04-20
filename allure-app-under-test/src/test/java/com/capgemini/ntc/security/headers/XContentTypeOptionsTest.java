@@ -16,18 +16,14 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
 /**
- * The test verifies the presence and proper configuration of the
- * X-Content-Type-Options header.
- * OWASP ASVS requirement V11.6: Verify that all API responses contain
- * X-Content-Type-Options: nosniff and Content-Disposition: attachment;
- * filename="api.json" (or other appropriate filename for the content type).
- * Purpose: There is a strong urge for the browser vendors to show, that their browser is
- * better than the competition. This has lead to the point, where the browser is capable
- * of ignoring the content type set by the developer and override it with what the browser
- * sniffed out of the downloaded file content. This might improve the usability in cases,
- * where the dev has set the content type incorrectly, and open door to to attacks performed
- * by polyglot files (e.g. files being both post script documents and javascript).
- * Read also: [1]
+ * The test verifies the presence and proper configuration of the X-Content-Type-Options header. OWASP ASVS requirement
+ * V11.6: Verify that all API responses contain X-Content-Type-Options: nosniff and Content-Disposition: attachment;
+ * filename="api.json" (or other appropriate filename for the content type). Purpose: There is a strong urge for the
+ * browser vendors to show, that their browser is better than the competition. This has lead to the point, where the
+ * browser is capable of ignoring the content type set by the developer and override it with what the browser sniffed
+ * out of the downloaded file content. This might improve the usability in cases, where the dev has set the content type
+ * incorrectly, and open door to to attacks performed by polyglot files (e.g. files being both post script documents and
+ * javascript). Read also: [1]
  * https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)
  * 
  * @author Marek Puchalski, Capgemini
@@ -38,8 +34,8 @@ public class XContentTypeOptionsTest extends SecurityTest {
 	
 	private Object[] addParameters() {
 		return new Object[][] {
-						{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
-						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
+				{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
+				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
 		};
 	}
 	

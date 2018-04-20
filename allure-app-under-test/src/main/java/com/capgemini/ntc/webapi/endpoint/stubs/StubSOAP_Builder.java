@@ -42,9 +42,9 @@ public class StubSOAP_Builder {
 		private String endpointURI;
 		
 		// optional parameters
-		private int		statusCode			= 200;
-		private String	response			= "Hello";
-		private String	requestXPathQuery	= "";
+		private int statusCode = 200;
+		private String response = "Hello";
+		private String requestXPathQuery = "";
 		
 		public StubBuilder(String endpointURI) {
 			this.endpointURI = endpointURI;

@@ -46,8 +46,8 @@ public class StubREST_Builder {
 		private String endpointURI;
 		
 		// optional parameters
-		private int		statusCode	= 200;
-		private String	response	= "{ \"message\": \"Hello\" }";
+		private int statusCode = 200;
+		private String response = "{ \"message\": \"Hello\" }";
 		
 		public StubBuilder(String endpointURI) {
 			this.endpointURI = endpointURI;
