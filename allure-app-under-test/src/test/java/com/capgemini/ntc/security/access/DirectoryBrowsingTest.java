@@ -5,6 +5,7 @@ import static io.restassured.RestAssured.given;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -43,8 +44,8 @@ public class DirectoryBrowsingTest extends SecurityTest {
 	@Parameters(name = "{index}: Accessing {1}{2} as {0}, expecting HTTP {3}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-		        { SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.IMG_DIR, 403 },
-		        { SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.REST_ROOT, 403 },
+		        { SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.IMG_DIR, HttpStatus.SC_FORBIDDEN },
+		        { SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.REST_ROOT, HttpStatus.SC_FORBIDDEN },
 		});
 	}
 	

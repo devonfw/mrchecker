@@ -1,6 +1,10 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
+import java.util.function.Function;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -87,7 +91,7 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public String getExampleOneDynamicText(int waitTime) {
 		WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
-		wait.until(ExpectedConditions.invisibilityOf(getDriver().findElementDynamic(selectorLoadingBar)));
+		wait.until((Function<? super WebDriver, Boolean>) ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
 		return getDriver().findElementDynamic(selectorExampleText)
 						.getText();
 	}
@@ -105,8 +109,8 @@ public class DynamicLoadingPage extends BasePage {
 	 */
 	public String getExampleTwoDynamicText(int waitTime) {
 		WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
-		wait.until(ExpectedConditions.invisibilityOf(getDriver().findElementDynamic(selectorLoadingBar)));
-		wait.until(ExpectedConditions.visibilityOf(getDriver().findElementDynamic(selectorExampleText)));
+		wait.until((Function<? super WebDriver, Boolean>) ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
+		wait.until((Function<? super WebDriver, WebElement>) ExpectedConditions.visibilityOfElementLocated(selectorExampleText));
 		return getDriver().findElementDynamic(selectorExampleText)
 						.getText();
 	}

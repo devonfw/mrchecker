@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.ExecuteMethod;
 import org.openqa.selenium.remote.RemoteExecuteMethod;
 
@@ -36,8 +36,8 @@ public final class NewChromeDriver extends ChromeDriver implements INewWebDriver
 		driverExtention = new DriverExtention(this);
 	}
 	
-	public NewChromeDriver(DesiredCapabilities cap) {
-		super(cap);
+	public NewChromeDriver(ChromeOptions options) {
+		super(options);
 		driverExtention = new DriverExtention(this);
 	}
 	

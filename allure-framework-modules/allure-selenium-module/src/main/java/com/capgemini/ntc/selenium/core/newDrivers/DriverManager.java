@@ -109,7 +109,7 @@ public class DriverManager {
 		BFLogger.logDebug("Creating new " + RuntimeParametersSelenium.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
 		String seleniumGridParameter = RuntimeParametersSelenium.SELENIUM_GRID.getValue();
-		if (!seleniumGridParameter.equals("false")){
+		if (!seleniumGridParameter.equals("false")) {
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
@@ -172,10 +172,10 @@ public class DriverManager {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("--test-type");
-				DesiredCapabilities cap = DesiredCapabilities.chrome();
-				cap.setCapability(ChromeOptions.CAPABILITY, options);
+				// DesiredCapabilities cap = DesiredCapabilities.chrome();
+				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
-				INewWebDriver driver = new NewChromeDriver(cap);
+				INewWebDriver driver = new NewChromeDriver(options);
 				return driver;
 			}
 			

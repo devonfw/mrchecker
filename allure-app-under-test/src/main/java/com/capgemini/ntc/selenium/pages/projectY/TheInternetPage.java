@@ -1,5 +1,6 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-public class TheInternetPage extends BasePage {
+public class TheInternetPage<V> extends BasePage {
 	
 	private static final By	selectorCheckboxesLink				= By.cssSelector("li > a[href*=checkboxes]");
 	private static final By	selectorElementClick				= By.cssSelector("li > a[href*=abtest]");
@@ -32,7 +33,8 @@ public class TheInternetPage extends BasePage {
 	private static final By	selectorExitIntentLink				= By.cssSelector("li > a[href*=exit_intent]");
 	private static final By	selectorDynamicLoadingLink			= By.cssSelector("li > a[href*=dynamic_loading]");
 	private static final By	selectorDisappearingElementsLink	= By.cssSelector("li > a[href*=disappearing_elements]");
-	
+	private static final By	selectorDragAndDrop					= By.cssSelector("li > a[href*=drag_and_drop]");
+
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
@@ -94,10 +96,10 @@ public class TheInternetPage extends BasePage {
 		return new SortableDataTablesPage();
 	}
 	
-	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
+	public JavaScriptAlertsPage<V, Alert> clickJavaScriptAlertLink() {
 		Button elementLink = new Button(selectorJavaScriptAlertLink);
 		elementLink.click();
-		return new JavaScriptAlertsPage();
+		return new JavaScriptAlertsPage<V, Alert>();
 	}
 	
 	public DynamicContentPage clickDynamicContentPage() {
@@ -173,11 +175,17 @@ public class TheInternetPage extends BasePage {
 		elementLink.click();
 		return new DynamicLoadingPage();
 	}
-
+	
 	public DisappearingElementsPage clickDisappearingElementsLink() {
 		WebElement elementLink = getDriver().findElementDynamic(selectorDisappearingElementsLink);
 		elementLink.click();
 		return new DisappearingElementsPage();
+	}
+
+	public DragAndDropPage clickDragAndDropLink() {
+		WebElement elementLink = getDriver().findElementDynamic(selectorDragAndDrop);
+		elementLink.click();
+		return new DragAndDropPage();
 	}
 
 }

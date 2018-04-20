@@ -1,6 +1,9 @@
 package com.capgemini.ntc.selenium.pages.projectY.gmail;
 
+import java.util.function.Function;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -52,7 +55,7 @@ public class GmailSignInPage extends BasePage {
 		getDriver().elementButton(selectorNextButton)
 						.click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until(ExpectedConditions.urlContains("pwd"));
+		wait.until((Function<? super WebDriver, Boolean>) ExpectedConditions.urlContains("pwd"));
 		return new GmailWelcomePage();
 	}
 	
