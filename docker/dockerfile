@@ -56,8 +56,17 @@ RUN cp /opt/tmp/wgetrc /etc/wgetrc
 
 RUN cd /opt/tmp/poms/main/allure-core-module/ && mvn clean install -DskipTests=true; exit 0
 RUN cd /opt/tmp/poms/main/ && mvn clean install -DskipTests=true; exit 0
+#RUN cd /opt/tmp/poms/main/allure-example-module/ && mvn clean install -DskipTests=true; exit 0
+#RUN cd /opt/tmp/poms/main/mrchecker-database-module/ && mvn clean install -DskipTests=true; exit 0
+#RUN cd /opt/tmp/poms/main/mrchecker-webapi-module/ && mvn clean install -DskipTests=true; exit 0
+#RUN cd /opt/tmp/poms/main/allure-selenium-module/ && mvn clean install -DskipTests=true; exit 0
+#RUN cd /opt/tmp/poms/main/allure-security-module/ && mvn clean install -DskipTests=true; exit 0
+RUN cd /opt/tmp/poms/under-test && mvn clean install -DskipTests=true; exit 0
 
 ## Create app folder
+RUN apt-get install -y libglib2.0-0
+RUN apt-get install -y libnss3
 RUN mkdir -p -m 777 /app
 RUN useradd -u 29001 -g 100 eeuser
 WORKDIR /app
+

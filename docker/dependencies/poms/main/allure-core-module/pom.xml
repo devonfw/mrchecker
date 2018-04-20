@@ -7,10 +7,10 @@
     <parent>
         <artifactId>allure-test-framework</artifactId>
         <groupId>com.capgemini.ntc</groupId>
-        <version>2.0.0</version>
+        <version>2.1.0</version>
     </parent>
     <artifactId>allure-core-module</artifactId>
-    <version>4.12.0.5-SNAPSHOT</version>
+    <version>4.12.0.6</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Test core - Module</name>
     <description>Allure Test Framework Core is responsible for:
@@ -86,9 +86,6 @@
 
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
-
-        <!-- Hashes sensitive data -->
-        <org.jasypt.version>1.9.2</org.jasypt.version>
 
         <!-- spring version -->
         <spring.version>4.3.7.RELEASE</spring.version>
@@ -168,6 +165,11 @@
 
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-java-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-report-data</artifactId>
             <version>${allure.version}</version>
         </dependency>
@@ -202,8 +204,6 @@
             <artifactId>json</artifactId>
         </dependency>
 
-
-
         <!--This dependency is necessary for Dependency Injection plugin. -->
         <dependency>
             <groupId>com.google.inject</groupId>
@@ -213,13 +213,9 @@
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
-            <version>${org.jasypt.version}</version>
         </dependency>
 
     </dependencies>
-
-
-
 
 
     <!-- Build goals/actions -->
