@@ -47,6 +47,11 @@ public class PropertiesManagerTest {
 	}
 	
 	@Test
+	public void testParamterIsEncryptionEnabled() {
+		assertEquals("", true, properties.isEncryptionEnabled());
+	}
+	
+	@Test
 	public void testParamterIsAnalyticsEnabledWithUnkonwText() throws Exception {
 		PropertiesSettingsModule.delInstance();
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings3.properties");
@@ -57,6 +62,16 @@ public class PropertiesManagerTest {
 	}
 	
 	@Test
+	public void testParamterIsEncryptionEnabledWithUnkonwText() throws Exception {
+		PropertiesSettingsModule.delInstance();
+		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings3.properties");
+		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
+		properties = i.getInstance(PropertiesCoreTest.class);
+		
+		assertFalse("", properties.isEncryptionEnabled());
+	}
+	
+	@Test
 	public void testParamterIsAnalyticsEnabledWithFalse() throws Exception {
 		PropertiesSettingsModule.delInstance();
 		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings2.properties");
@@ -64,6 +79,16 @@ public class PropertiesManagerTest {
 		properties = i.getInstance(PropertiesCoreTest.class);
 		
 		assertFalse("", properties.isAnalyticsEnabled());
+	}
+	
+	@Test
+	public void testParamterIsEncryptionEnabledWithFalse() throws Exception {
+		PropertiesSettingsModule.delInstance();
+		String path = System.getProperty("user.dir") + Paths.get("/src/test/resources/settings2.properties");
+		Injector i = Guice.createInjector(PropertiesSettingsModule.init(path));
+		properties = i.getInstance(PropertiesCoreTest.class);
+		
+		assertFalse("", properties.isEncryptionEnabled());
 	}
 	
 	@Test

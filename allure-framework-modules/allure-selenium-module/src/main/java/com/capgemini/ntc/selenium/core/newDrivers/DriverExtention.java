@@ -1,7 +1,10 @@
 package com.capgemini.ntc.selenium.core.newDrivers;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
@@ -19,6 +23,7 @@ import com.capgemini.ntc.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.ntc.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.ntc.selenium.core.newDrivers.elementType.LabelElement;
@@ -46,6 +51,7 @@ public class DriverExtention {
 		return this.findElementQuietly(null, by);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public WebElement findElementQuietly(WebElement elementToSearchIn, By by) {
 		BasePage.getAnalytics()
 				.sendMethodEvent(BasePage.analitycsCategoryName);
@@ -95,7 +101,7 @@ public class DriverExtention {
 		WebElement element = null;
 		WebDriverWait wait = webDriverWait(timeOut);
 		try {
-			element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
+			element = wait.until((Function<? super WebDriver, WebElement>) ExpectedConditions.presenceOfElementLocated(by));
 		} catch (TimeoutException | NoSuchElementException e) {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, timeOut);
@@ -111,7 +117,7 @@ public class DriverExtention {
 		WebDriverWait wait = webDriverWait(timeOut);
 		List<WebElement> elements = new ArrayList<WebElement>();
 		try {
-			elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+			elements = wait.until((Function<? super WebDriver, List<WebElement>>) ExpectedConditions.presenceOfAllElementsLocatedBy(by));
 		} catch (BFElementNotFoundException | TimeoutException e) {
 			throw new BFElementNotFoundException(by, true, timeOut);
 		}
@@ -131,8 +137,12 @@ public class DriverExtention {
 				.sendMethodEvent(BasePage.analitycsCategoryName);
 		long startTime = System.currentTimeMillis();
 		WebElement element = null;
+		
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
+		wait.pollingEvery(250, TimeUnit.MILLISECONDS);
+		wait.withTimeout(2, TimeUnit.MINUTES);
 		try {
-			element = webDriverWait().until(new ExpectedCondition<WebElement>() {
+			element = webDriverWait().until(new Function<WebDriver, WebElement>() {
 				@Override
 				public WebElement apply(WebDriver driver) {
 					return driver.findElement(by);
@@ -152,7 +162,7 @@ public class DriverExtention {
 		long startTime = System.currentTimeMillis();
 		WebElement element = null;
 		try {
-			element = webDriverWait().until(ExpectedConditions.elementToBeClickable(by));
+			element = webDriverWait().until((Function<? super WebDriver, WebElement>) ExpectedConditions.elementToBeClickable(by));
 		} catch (TimeoutException | NoSuchElementException e) {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, BasePage.EXPLICITYWAITTIMER);
@@ -168,7 +178,7 @@ public class DriverExtention {
 		
 		WebElement element = null;
 		try {
-			element = webDriverWait().until(ExpectedConditions.visibilityOfElementLocated(by));
+			element = webDriverWait().until((Function<? super WebDriver, WebElement>) ExpectedConditions.visibilityOfElementLocated(by));
 		} catch (TimeoutException | NoSuchElementException e) {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(by, isTimeout, BasePage.EXPLICITYWAITTIMER);
@@ -189,7 +199,7 @@ public class DriverExtention {
 		int progressBarWaitTimer = BasePage.PROGRESSBARWAITTIMER;
 		WebDriverWait wait = webDriverWait(progressBarWaitTimer);
 		try {
-			wait.until(expectation);
+			wait.until((Function<? super WebDriver, Boolean>) expectation);
 		} catch (TimeoutException | NoSuchElementException e) {
 			boolean isTimeout = true;
 			throw new BFElementNotFoundException(By.cssSelector(jsVariable), isTimeout, progressBarWaitTimer);
@@ -337,6 +347,29 @@ public class DriverExtention {
 		return new MenuElement(selector, childsSelector, subMenuSelector, childsSubMenuSelector);
 	}
 	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector, final By sliderSelector, final By valueSelector) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector);
+	}
+	
+	public HorizontalSliderElement elementHorizontalSlider(final By sliderContainerSelector,
+					final By sliderSelector,
+					final By valueSelector,
+					final BigDecimal minRange,
+					final BigDecimal maxRange,
+					final BigDecimal step) {
+		BasePage.getAnalytics()
+						.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new HorizontalSliderElement(sliderContainerSelector, sliderSelector, valueSelector, minRange, maxRange, step);
+	}
+	
 	public IFrame elementIFrame(By selector) {
 		BasePage.getAnalytics()
 				.sendMethodEvent(BasePage.analitycsCategoryName);
@@ -348,6 +381,21 @@ public class DriverExtention {
 		Actions action = new Actions(getDriver()).contextClick(element);
 		action.build()
 				.perform();
+	}
+	
+	public void mouseLeftClick(By selector) {
+		WebElement element = getDriver().findElementQuietly(selector);
+		if (element != null) {
+			mouseLeftClick(element);
+		} else {
+			BFLogger.logDebug("Unable to perform left mouse click due to null WebElement");
+		}
+	}
+	
+	public void mouseLeftClick(WebElement element) {
+		new Actions(getDriver()).click(element)
+						.build()
+						.perform();
 	}
 	
 }

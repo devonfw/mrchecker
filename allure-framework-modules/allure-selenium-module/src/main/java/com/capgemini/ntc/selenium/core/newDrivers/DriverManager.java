@@ -7,28 +7,41 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.capgemini.ntc.selenium.core.base.properties.PropertiesSelenium;
 import com.capgemini.ntc.selenium.core.base.runtime.RuntimeParametersSelenium;
 import com.capgemini.ntc.selenium.core.enums.ResolutionEnum;
 import com.capgemini.ntc.selenium.core.exceptions.BFSeleniumGridNotConnectedException;
+import com.capgemini.ntc.selenium.core.utils.OperationsOnFiles;
 import com.capgemini.ntc.selenium.core.utils.ResolutionUtils;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManagerException;
 
 public class DriverManager {
 	
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
 	
 	// Setup default variables
+<<<<<<< HEAD
 	private static final ResolutionEnum DEFAULT_RESOLUTION = ResolutionEnum.w1600;
 	private static final int IMPLICITYWAITTIMER = 2; // in seconds
+=======
+	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
+	private static final int			IMPLICITYWAITTIMER	= 2;									// in seconds
+	private static final String			DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
+>>>>>>> refs/remotes/origin/develop
 	
 	private static PropertiesSelenium propertiesSelenium;
 	
@@ -100,7 +113,8 @@ public class DriverManager {
 	private static INewWebDriver createDriver() {
 		BFLogger.logDebug("Creating new " + RuntimeParametersSelenium.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
-		if (new Boolean(RuntimeParametersSelenium.SELENIUM_GRID.getValue())) {
+		String seleniumGridParameter = RuntimeParametersSelenium.SELENIUM_GRID.getValue();
+		if (!seleniumGridParameter.equals("false")) {
 			driver = setupGrid();
 		} else {
 			driver = setupBrowser();
@@ -148,17 +162,25 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
+				
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(ChromeDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(ChromeDriver.class)
+									.getBinaryPath(), browserPath);
+				}
+				
 				System.setProperty("webdriver.chrome.driver", browserPath);
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-				chromePrefs.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+				chromePrefs.put("download.default_directory", DOWNLOAD_DIR);
 				chromePrefs.put("profile.content_settings.pattern_pairs.*.multiple-automatic-downloads", 1);
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("--test-type");
-				DesiredCapabilities cap = DesiredCapabilities.chrome();
-				cap.setCapability(ChromeOptions.CAPABILITY, options);
+				// DesiredCapabilities cap = DesiredCapabilities.chrome();
+				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
-				INewWebDriver driver = new NewChromeDriver(cap);
+				INewWebDriver driver = new NewChromeDriver(options);
 				return driver;
 			}
 			
@@ -167,18 +189,36 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumFirefox();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
+				
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(FirefoxDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(
+									WebDriverManager.getInstance(FirefoxDriver.class)
+													.getBinaryPath(),
+									browserPath);
+				}
+				
 				System.setProperty("webdriver.gecko.driver", browserPath);
 				System.setProperty("webdriver.firefox.logfile", "logs\\firefox_logs.txt");
 				
 				FirefoxProfile profile = new FirefoxProfile();
 				profile.setPreference("webdriver.firefox.marionette", true);
+<<<<<<< HEAD
 				profile.setPreference("browser.download.folderlist", 2);
 				profile.setPreference("browser.helperapps.neverAsk.saveToDisk",
 						"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv,application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip,application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
+=======
+				profile.setPreference("browser.download.folderList", 2);
+				profile.setPreference("browser.download.dir", DOWNLOAD_DIR);
+>>>>>>> refs/remotes/origin/develop
 				profile.setPreference("browser.download.useDownloadDir", true);
+				
+				profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
+								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
+				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
-				profile.setPreference("browser.download.dir", System.getProperty("java.io.tmpdir"));
 				
 				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 				
@@ -189,8 +229,17 @@ public class DriverManager {
 			@Override
 			public INewWebDriver getDriver() {
 				String browserPath = DriverManager.propertiesSelenium.getSeleniumIE();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
+				
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(InternetExplorerDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(InternetExplorerDriver.class)
+									.getBinaryPath(), browserPath);
+				}
+				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+				
 				// Due to some issues with IE11 this line must be commented
 				// ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 				// true);
@@ -234,6 +283,23 @@ public class DriverManager {
 				return newRemoteWebDriver;
 			}
 		};
+		
+		private static <T extends RemoteWebDriver> void downloadNewestVersionOfWebDriver(Class<T> webDriverType) {
+			String proxy = DriverManager.propertiesSelenium.getProxy();
+			String webDriversPath = DriverManager.propertiesSelenium.getWebDrivers();
+			try {
+				System.setProperty("wdm.targetPath", webDriversPath);
+				
+				WebDriverManager.getInstance(webDriverType)
+								.proxy(proxy)
+								.setup();
+			} catch (WebDriverManagerException e) {
+				BFLogger.logInfo("Unable to download driver automatically. "
+								+ "Please try to set up the proxy in properties file. "
+								+ "If you want to download them manually, go to the "
+								+ "http://www.seleniumhq.org/projects/webdriver/ site.");
+			}
+		}
 		
 		public INewWebDriver getDriver() {
 			return null;

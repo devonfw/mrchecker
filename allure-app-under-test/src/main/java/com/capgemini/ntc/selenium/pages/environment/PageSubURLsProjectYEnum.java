@@ -8,8 +8,14 @@ public enum PageSubURLsProjectYEnum {
 	CHECKBOX("checkboxes"),
 	CONTEXT_MENU("context_menu"),
 	KEY_PRESS("key_presses"),
+	DYNAMIC_CONTENT("dynamic_content"),
 	HOVERS("hovers"),
-	CHALLENGING_DOM("challenging_dom");
+	SORTABLE_DATA_TABLES("tables"),
+	REDIRECT("redirector"),
+	JAVASCRIPT_ALERTS("javascript_alerts"),
+	CHALLENGING_DOM("challenging_dom"),
+	STATUS_CODES("status_codes"),
+	LOGIN("login");
 	
 	/*
 	 * Sub urls are used as real locations in Bank test environment

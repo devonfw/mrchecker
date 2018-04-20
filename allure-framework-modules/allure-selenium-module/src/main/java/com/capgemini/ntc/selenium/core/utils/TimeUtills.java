@@ -1,7 +1,6 @@
 package com.capgemini.ntc.selenium.core.utils;
 
 import java.text.DateFormat;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,10 +30,10 @@ public class TimeUtills {
 	private TimeUtills() {
 	}
 	
-	private static final String MARKET_CLOSE = "MARKET_CLOSE";
-	private static final String IS_OPEN = "IS_OPEN";
-	private static String urlService = "https://www.Bank.com/service/quote/json?productid=embeddedquotes&subproductid=default&market_close=1&symbols=.DJI%2C.IXIC%2C.SPX&dojo.preventCache=1436276037737&callback=dojo.io.script.jsonp_dojoIoScript1._jsonpCallback";
-	public static final int TEN_MINUTES_IN_SECONDS = 600;
+	private static final String	MARKET_CLOSE			= "MARKET_CLOSE";
+	private static final String	IS_OPEN					= "IS_OPEN";
+	private static String		urlService				= "https://www.Bank.com/service/quote/json?productid=embeddedquotes&subproductid=default&market_close=1&symbols=.DJI%2C.IXIC%2C.SPX&dojo.preventCache=1436276037737&callback=dojo.io.script.jsonp_dojoIoScript1._jsonpCallback";
+	public static final int		TEN_MINUTES_IN_SECONDS	= 600;
 	
 	/**
 	 * Check is timestamp has valid format
@@ -133,14 +132,14 @@ public class TimeUtills {
 		String orginalUrl = iNewWebDriver.getCurrentUrl();
 		iNewWebDriver.get(urlService);
 		String preElement = iNewWebDriver.findElementDynamic(By.cssSelector("pre"))
-				.getText();
+						.getText();
 		JsonParser parser = new JsonParser();
 		String jsonString = preElement.substring(preElement.indexOf("{"), preElement.length() - 1);
 		JsonObject jobject = (JsonObject) parser.parse(jsonString);
 		JsonObject marketClosedObject = jobject.getAsJsonObject(MARKET_CLOSE);
 		String result = marketClosedObject.get(IS_OPEN)
-				.toString()
-				.replace("\"", "");
+						.toString()
+						.replace("\"", "");
 		BFLogger.logInfo("isThisIsTradingHoursinNY - result: " + result);
 		iNewWebDriver.get(orginalUrl);
 		if (result.equals("N")) {
@@ -267,7 +266,7 @@ public class TimeUtills {
 	private static boolean isPassXYearsSinceGivenDate(long dateEpoch, int passYears) {
 		DateTime currentDate = new DateTime();
 		DateTime today = new DateTime(currentDate.getYear(), currentDate.getMonthOfYear(), currentDate.getDayOfMonth(),
-				0, 0, 0, 0);
+						0, 0, 0, 0);
 		DateTime date = new DateTime(dateEpoch * 1000L);
 		Period period = new Period(date, today);
 		int years = period.getYears();
@@ -311,8 +310,9 @@ public class TimeUtills {
 	 * @return true if timestamp value is delayed (older than current time), false otherwise
 	 */
 	public static boolean isTimestampValueDelayed(By selectorTimestamp) {
+		@SuppressWarnings("deprecation")
 		WebElement timestampElement = BasePage.getDriver()
-				.findElement(selectorTimestamp);
+						.findElement(selectorTimestamp);
 		String timestampText = timestampElement.getText();
 		int timestampBeginIndex = timestampText.indexOf("AS OF") + 6;
 		int timestampEndIndex = timestampText.indexOf("ET") - 1;
@@ -352,7 +352,7 @@ public class TimeUtills {
 	private static String getDateTimestamp(String format, Date date) {
 		DateFormat dateFormat = new SimpleDateFormat(format);
 		if (Calendar.getInstance()
-				.getTimeZone() != TimeZone.getTimeZone("EST")) {
+						.getTimeZone() != TimeZone.getTimeZone("EST")) {
 			dateFormat.setTimeZone(TimeZone.getTimeZone("EST"));
 		}
 		return dateFormat.format(date);

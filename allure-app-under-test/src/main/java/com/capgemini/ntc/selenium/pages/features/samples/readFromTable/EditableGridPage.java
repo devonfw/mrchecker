@@ -10,8 +10,8 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class EditableGridPage extends BasePage {
 	
-	private final static By searchArea = By.cssSelector("#tableid");
-	private final By selectorAllCellsInRows = By.cssSelector("tr > td");
+	private final static By	searchArea				= By.cssSelector("#tableid");
+	private final By		selectorAllCellsInRows	= By.cssSelector("tr > td");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,6 +31,7 @@ public class EditableGridPage extends BasePage {
 	}
 	
 	public void printAllCells() {
+		@SuppressWarnings("deprecation")
 		List<String> cellsValues = JsoupHelper.findTexts(getDriver().findElement(searchArea), selectorAllCellsInRows);
 		for (String cellValue : cellsValues) {
 			BFLogger.logInfo(cellValue);

@@ -18,12 +18,7 @@ public class MouseClickTest extends BaseTest {
 	@Override
 	public void setUp() {
 		contextMenuPage = new ContextMenuPage();
-		
 		assertTrue("The-internet page is not loaded", contextMenuPage.isLoaded());
-		contextMenuPage.getDriver()
-				.manage()
-				.window()
-				.maximize();
 	}
 	
 	@Test
