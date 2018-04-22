@@ -9,13 +9,12 @@ def call(){
                 cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/allure-core-module
                 mvn -q clean
                 mvn -q deploy
+                mvn -q compile -DskipTests=true
 
                 cd ${env.WORKSPACE_LOCAL}/allure-framework-modules
-                mvn -q clean
                 mvn -q compile -DskipTests=true
 
 				cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
-				mvn -q clean
 				mvn -q compile -DskipTests=true
 			"""
 		}
