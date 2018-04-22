@@ -49,13 +49,9 @@ private generateAllureReport(){
 
 private runFirstTest() {
 	sh """
-		cd ${env.WORKSPACE_LOCAL}/allure-app-under-test/lib/webdrivers/chrome/
-		ls -lah
-		chmod a+x chromedriver.exe
-
-
-        cd ${env.PROJECT_HOME}
 		curl https://api.twitter.com/1/help/configuration.xml
+        cd ${env.PROJECT_HOME}
+
         mvn clean compile test site -Dtest=RegisterOKTest -DseleniumGrid=${env.HUBURL} -Dlogin.url=${env.LOGINURL} -Dos=LINUX -Dbrowser=chrome
     """
 	//clean test-compile test site -Dtest=RegisterOKTest
