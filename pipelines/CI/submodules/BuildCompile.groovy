@@ -10,16 +10,13 @@ def call(){
                 mvn -q clean
                 mvn -q deploy
 
-				cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/allure-selenium-module
-				mvn -q clean
-				mvn -q deploy
+                cd ${env.WORKSPACE_LOCAL}/allure-framework-modules
+                mvn -q clean
+                mvn -q compile -DskipTests=true
 
 				cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
 				mvn -q clean
-				mvn -q deploy
-
 				mvn -q compile -DskipTests=true
-				mvn -q test-compile
 			"""
 		}
 		else {
