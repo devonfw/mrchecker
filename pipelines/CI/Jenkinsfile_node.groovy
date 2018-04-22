@@ -13,7 +13,7 @@ node(){
 		utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
         docker.image('docker.com/devonfwe2e:v1-0.0').inside("-u root:root"){
 			if (env.TESTMODULE.equals("allure-app-under-test")) {
-			//	stageBuildCompile();
+				stageBuildCompile();
 			//	stageUnitTestsAndStaticAnalyze();
 				//copySecretData();
 				stageIntegrationTests();
