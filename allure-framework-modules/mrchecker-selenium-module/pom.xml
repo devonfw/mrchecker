@@ -9,11 +9,11 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>2.1.0</version>
     </parent>
-    <artifactId>allure-selenium-module</artifactId>
+    <artifactId>mrchecker-selenium-module</artifactId>
     <version>3.8.1.6</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - Selenium - Module</name>
-    <description>Allure Test Framework Selenium supports:
+    <name>MrCheckerTestFramework - Selenium - Module</name>
+    <description>MrChecker Test Framework Selenium supports:
         * Malleable resolution
             * Remote Web Design
             * Mobile browsers 
@@ -93,7 +93,7 @@ Based on Selenium 3.8.1</description>
         </dependency>
 
 
-        <!-- Dependency to other Allure Test Framework modules -->
+        <!-- Dependency to other MrChecker Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>

@@ -56,7 +56,7 @@
 
         <!-- Allure test framework modules -->
         <allure-core-module.version>4.12.0.6</allure-core-module.version>
-        <allure-selenium-module.version>3.8.1.6</allure-selenium-module.version>
+        <mrchecker-selenium-module.version>3.8.1.6</mrchecker-selenium-module.version>
         <mrchecker-security-module.version>1.0.1</mrchecker-security-module.version>
         <mrchecker-webapi-module.version>1.0.1</mrchecker-webapi-module.version>
 
@@ -125,8 +125,8 @@
         <!-- Selenium module -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>allure-selenium-module</artifactId>
-            <version>${allure-selenium-module.version}</version>
+            <artifactId>mrchecker-selenium-module</artifactId>
+            <version>${mrchecker-selenium-module.version}</version>
         </dependency>
 
         <!-- Security module -->
