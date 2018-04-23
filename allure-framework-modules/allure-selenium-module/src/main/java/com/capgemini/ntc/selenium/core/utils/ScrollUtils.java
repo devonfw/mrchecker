@@ -1,13 +1,13 @@
 package com.capgemini.ntc.selenium.core.utils;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.selenium.core.BasePage;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+
+import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 /**
  * This class contains methods related to scrolling the page. Some methods were moved here from BasePage since they
@@ -41,8 +41,8 @@ public class ScrollUtils {
 	
 	public static void scrollToBottom() {
 		BasePage.getAction()
-				.sendKeys(Keys.END)
-				.perform();
+						.sendKeys(Keys.END)
+						.perform();
 	}
 	
 	public static void scrollToTop() {
@@ -61,25 +61,26 @@ public class ScrollUtils {
 	public static void scrollElementIntoView(WebElement element) {
 		Point point = element.getLocation();
 		int windowHeight = BasePage.getDriver()
-				.manage()
-				.window()
-				.getSize()
-				.getHeight();
+						.manage()
+						.window()
+						.getSize()
+						.getHeight();
 		int center = windowHeight / 2;
 		int toMove = point.getY();
+		@SuppressWarnings("deprecation")
 		int toMoveCenter = (toMove >= center
-				|| toMove <= BasePage.getDriver()
-						.findElement(By.tagName("body"))
-						.getSize()
-						.getHeight())
-								? toMove - center
-								: toMove;
+						|| toMove <= BasePage.getDriver()
+										.findElement(By.tagName("body"))
+										.getSize()
+										.getHeight())
+														? toMove - center
+														: toMove;
 		
 		JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
 		
 		jse.executeScript("window.scrollTo(0, arguments[0]);", toMoveCenter);
 		BasePage.getDriver()
-				.waitForPageLoaded();
+						.waitForPageLoaded();
 	}
 	
 	/**
@@ -90,13 +91,13 @@ public class ScrollUtils {
 		JavascriptExecutor jse = (JavascriptExecutor) BasePage.getDriver();
 		long verticalOffset = (long) jse.executeScript("return window.scrollY;");
 		long elementTopPosition = element.getLocation()
-				.getY();
+						.getY();
 		long elementBottomPosition = elementTopPosition + element.getSize().height;
 		long windowHeight = BasePage.getDriver()
-				.manage()
-				.window()
-				.getSize()
-				.getHeight();
+						.manage()
+						.window()
+						.getSize()
+						.getHeight();
 		long windowHeightCenter = (windowHeight / 2) + verticalOffset;
 		return elementTopPosition < windowHeightCenter && elementBottomPosition > windowHeightCenter;
 	}

@@ -31,6 +31,7 @@ public class EditableGridPage extends BasePage {
 	}
 	
 	public void printAllCells() {
+		@SuppressWarnings("deprecation")
 		List<String> cellsValues = JsoupHelper.findTexts(getDriver().findElement(searchArea), selectorAllCellsInRows);
 		for (String cellValue : cellsValues) {
 			BFLogger.logInfo(cellValue);
