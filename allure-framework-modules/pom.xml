@@ -6,8 +6,8 @@
     <groupId>com.capgemini.ntc</groupId>
     <artifactId>allure-test-framework</artifactId>
     <version>2.1.0</version>
-    <name>AllureTestFramework</name>
-    <description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
+    <name>MrCheckerTestFramework</name>
+    <description>MrChecker Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
     <packaging>pom</packaging>
 
@@ -39,7 +39,7 @@
     </scm>
 
     <modules>
-        <module>allure-core-module</module>
+        <module>mrchecker-core-module</module>
         <module>mrchecker-selenium-module</module>
         <module>mrchecker-security-module</module>
         <module>mrchecker-webapi-module</module>

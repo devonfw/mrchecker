@@ -9,11 +9,11 @@
         <groupId>com.capgemini.ntc</groupId>
         <version>2.1.0</version>
     </parent>
-    <artifactId>allure-core-module</artifactId>
+    <artifactId>mrchecker-core-module</artifactId>
     <version>4.12.0.6</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - Test core - Module</name>
-    <description>Allure Test Framework Core is responsible for:
+    <name>MrCheckerTestFramework - Test core - Module</name>
+    <description>MrChecker Test Framework Core is responsible for:
         * Test report with logs and/or screenshots
         * Test groups/tags
         * Data Driven (inside test case, external file) 

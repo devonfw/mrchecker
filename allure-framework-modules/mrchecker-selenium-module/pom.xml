@@ -96,7 +96,7 @@ Based on Selenium 3.8.1</description>
         <!-- Dependency to other MrChecker Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>allure-core-module</artifactId>
+            <artifactId>mrchecker-core-module</artifactId>
             <version>${allure-core-module.version}</version>
         </dependency>
 
