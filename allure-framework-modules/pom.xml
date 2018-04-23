@@ -41,7 +41,7 @@
     <modules>
         <module>allure-core-module</module>
         <module>allure-selenium-module</module>
-        <module>allure-security-module</module>
+        <module>mrchecker-security-module</module>
         <module>mrchecker-webapi-module</module>
         <module>mrchecker-database-module</module>
         <!-- <module>build-tools</module> -->

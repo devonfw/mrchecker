@@ -8,8 +8,8 @@
     <version>2.4.0</version>
     <packaging>jar</packaging>
 
-    <name>AllureTestFramework - List of Integration Test for Application Under Test </name>
-    <description>Allure Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.
+    <name>MrCheckerTestFramework - List of Integration Test for Application Under Test</name>
+    <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.
 * Adding examples,   projectX, projectY, datadriven</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
@@ -57,7 +57,7 @@
         <!-- Allure test framework modules -->
         <allure-core-module.version>4.12.0.6</allure-core-module.version>
         <allure-selenium-module.version>3.8.1.6</allure-selenium-module.version>
-        <allure-security-module.version>1.0.1</allure-security-module.version>
+        <mrchecker-security-module.version>1.0.1</mrchecker-security-module.version>
         <mrchecker-webapi-module.version>1.0.1</mrchecker-webapi-module.version>
 
 
@@ -132,8 +132,8 @@
         <!-- Security module -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>allure-security-module</artifactId>
-            <version>${allure-security-module.version}</version>
+            <artifactId>mrchecker-security-module</artifactId>
+            <version>${mrchecker-security-module.version}</version>
         </dependency>
 
         <!-- WebAPI + Service Virtualization module -->
