@@ -4,17 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>allure-test-framework</artifactId>
+        <artifactId>mrchecker-test-framework</artifactId>
         <groupId>com.capgemini.ntc</groupId>
         <version>2.1.0</version>
     </parent>
-    <artifactId>allure-example-module</artifactId>
+    <artifactId>mrchecker-example-module</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>AllureTestFramework - Example - Module</name>
-    <description>Allure Test Framework name supports:
-        ?????????????????
-</description>
+    <name>MrCheckerTestFramework - Example - Module</name>
+    <description>MrChecker Test Framework name supports:
+        ?????????????????</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
     <organization>
@@ -56,7 +55,7 @@
 
     <dependencies>
 
-        <!-- Dependency to other Allure Test Framework modules -->
+        <!-- Dependency to other MrChecker Test Framework modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>allure-core-module</artifactId>
