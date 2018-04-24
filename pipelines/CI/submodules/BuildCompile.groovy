@@ -5,18 +5,22 @@ def call(){
 	stage('Build Compile'){
 		//# compile
 		if(env.TESTMODULE.equals("allure-app-under-test")) {
-			sh """
-                cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/allure-core-module
-                mvn -q clean
-                mvn -q deploy
-                mvn -q compile -DskipTests=true
-
-                cd ${env.WORKSPACE_LOCAL}/allure-framework-modules
-                mvn -q compile -DskipTests=true
-
-				cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
-				mvn -q compile -DskipTests=true
-			"""
+            sh """
+                cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
+                mvn clean install
+            """
+//			sh """
+//                cd ${env.WORKSPACE_LOCAL}/allure-framework-modules/allure-core-module
+//                mvn -q clean
+//                mvn -q deploy
+//                mvn -q compile -DskipTests=true
+//
+//                cd ${env.WORKSPACE_LOCAL}/allure-framework-modules
+//                mvn -q compile -DskipTests=true
+//
+//				cd ${env.WORKSPACE_LOCAL}/allure-app-under-test
+//				mvn -q compile -DskipTests=true
+//			"""
 		}
 		else {
 			sh """
