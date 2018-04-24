@@ -5,7 +5,6 @@ import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
 import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
-import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
@@ -18,7 +17,6 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	private static DriverManager driver = null;
 	
 	private final static PropertiesFileSettings	propertiesFileSettings;
-	private static IEnvironmentService			environmentService;
 	private final static IAnalytics				analytics;
 	public final static String					analitycsCategoryName	= "WebAPI-Module";
 	
@@ -57,30 +55,29 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	@Override
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 	}
 	
 	@Override
 	public void onTestSuccess() {
 		// All actions needed while test method is success
 		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		// All actions needed while test class is finishing
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
-		DriverManager.closeDriverWebApi();
 	}
 	
 	@Override
@@ -99,14 +96,14 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	private static PropertiesFileSettings setPropertiesSettings() {
 		// Get and then set properties information from settings.properties file
 		PropertiesFileSettings propertiesFileSettings = Guice.createInjector(PropertiesSettingsModule.init())
-				.getInstance(PropertiesFileSettings.class);
+						.getInstance(PropertiesFileSettings.class);
 		return propertiesFileSettings;
 	}
 	
 	private static void setRuntimeParametersWebApi() {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
-				.toString());
+						.toString());
 		
 	}
 	
