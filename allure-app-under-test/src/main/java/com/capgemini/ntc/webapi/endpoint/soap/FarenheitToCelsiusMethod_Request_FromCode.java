@@ -103,7 +103,6 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 		}
 	}
 	
-	@Override
 	public String getEndpoint() {
 		// TASK Auto-generated method stub
 		return null;
