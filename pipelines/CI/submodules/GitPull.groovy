@@ -39,7 +39,7 @@ def void tryMerge(){
 	def WORKING_BRANCH  = env.WORKING_BRANCH;
 	def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     try{
-		echo ("Try command merge");
+		echo ("Try merge command");
 
         sh"git merge --no-commit --no-ff ${TARGET_MERGE_BRANCH} > git_merge_result.txt"
     }catch (Exception e){
