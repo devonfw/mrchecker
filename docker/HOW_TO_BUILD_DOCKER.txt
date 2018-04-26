@@ -1,3 +1,4 @@
-sudo docker build -t docker.com/java:v1-8.1 .
-sudo docker login docker.com
-sudo docker push docker.com/java:v1-8.1 .
+cd ..
+docker build -t lucst/devonfwe2e:v2-0.0 -f docker/dockerfile .
+docker login docker.com
+docker push -t lucst/devonfwe2e:v2-0.0

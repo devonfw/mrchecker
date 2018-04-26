@@ -91,7 +91,11 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 			new Exception(e);
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> develop
 	public String getEndpoint() {
 		// TASK Auto-generated method stub
 		return null;
