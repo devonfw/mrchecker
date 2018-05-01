@@ -51,7 +51,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		DriverManager.getDriverVirtualService();
 		
 		BFLogger.logInfo("#2 Create Stub content message");
-		final String responseMessage = new FarenheitToCelsiusMethod_Response_FromFile().getMessage();
+		final String responseMessage = new FarenheitToCelsiusMethod_Response_FromFile().getEndpoint();
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
@@ -80,7 +80,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 				.body(new FarenheitToCelsiusMethod_Request_FromCode()
 						.setFahrenheit(30)
 						.setSmth("Hello")
-						.getMessage())
+						.getEndpoint())
 				.log()
 				.all()
 				.when()
@@ -100,7 +100,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		
 		BFLogger.logInfo("#2 Create Stub content message");
 		final String responseMessage = new FarenheitToCelsiusMethod_Response_FromCode().setFahrenheitToCelsiusResult(37.8888)
-				.getMessage();
+				.getEndpoint();
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
@@ -127,7 +127,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		Response response = given()
 				.with()
 				.contentType("application/soap+xml")
-				.body(new FarenheitToCelsiusMethod_Request_FromFile().getMessage())
+				.body(new FarenheitToCelsiusMethod_Request_FromFile().getEndpoint())
 				.log()
 				.all()
 				.when()
