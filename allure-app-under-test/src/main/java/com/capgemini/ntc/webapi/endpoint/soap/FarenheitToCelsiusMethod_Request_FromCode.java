@@ -37,9 +37,9 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 	}
 	
 	/**
-	 * @return Generate SOAP response in String format
+	 * @return Generate SOAP request in String format
 	 */
-	public String getEndpoint() {
+	public String getMessage() {
 		String message = "";
 		try {
 			SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
@@ -101,5 +101,10 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 		} catch (ParserConfigurationException | FactoryConfigurationError e) {
 			new Exception(e);
 		}
+	}
+	
+	public String getEndpoint() {
+		// Useful only for REST Tests
+		return null;
 	}
 }

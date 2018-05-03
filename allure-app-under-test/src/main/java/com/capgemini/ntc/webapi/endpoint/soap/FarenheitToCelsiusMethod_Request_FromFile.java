@@ -37,7 +37,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 		return this;
 	}
 	
-	public String getEndpoint() {
+	public String getMessage() {
 		String message = "";
 		try {
 			message = getStringOutOfFile(this.path);
@@ -71,5 +71,10 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	private String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
+	}
+	
+	public String getEndpoint() {
+		// Useful only for REST Tests
+		return null;
 	}
 }
