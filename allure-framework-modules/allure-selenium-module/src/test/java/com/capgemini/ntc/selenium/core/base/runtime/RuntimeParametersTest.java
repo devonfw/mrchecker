@@ -70,7 +70,7 @@ public class RuntimeParametersTest {
 		assertEquals("System parameters for empty property 'browser' should be 'chrome'", "chrome", RuntimeParametersSelenium.BROWSER.getValue());
 		assertEquals("System parameters for empty property 'browserVersion' should be 'null'", "", RuntimeParametersSelenium.BROWSER_VERSION.getValue());
 		assertEquals("System parameters for empty property 'seleniumGrid' should be 'false'", "false", RuntimeParametersSelenium.SELENIUM_GRID.getValue());
-		assertEquals("System parameters for empty property 'os' should be 'windows'", "windows", RuntimeParametersSelenium.OS.getValue());
+		assertEquals("System parameters for empty property 'os' should be 'null'", "", RuntimeParametersSelenium.OS.getValue());
 		
 	}
 	
