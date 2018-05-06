@@ -74,4 +74,10 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 		return new String(encoded, encoding);
 	}
 	
+	@Override
+	public String getEndpoint() {
+		// Useful only for REST queries
+		return null;
+	}
+	
 }

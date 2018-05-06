@@ -1,6 +1,5 @@
 package com.capgemini.ntc.endpoint.soap;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,7 +30,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 	public static void beforeClass() {
 		String baseURI = "http://localhost";
 		int port = DriverManager.getDriverVirtualService()
-				.port();
+						.port();
 		endpointBaseUri = baseURI + ":" + port;
 		RestAssured.config = new RestAssuredConfig().encoderConfig(new EncoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false));
 	}
@@ -62,10 +61,10 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		BFLogger.logInfo("#3 Add resource to wiremock server");
 		String endpointUriRegExp = "/tempconvert.asmx.*";
 		new StubSOAP_Builder.StubBuilder(endpointUriRegExp)
-				.setRequestXPathQuery(requestXPathQuery)
-				.setResponse(responseMessage)
-				.setStatusCode(200)
-				.build();
+						.setRequestXPathQuery(requestXPathQuery)
+						.setResponse(responseMessage)
+						.setStatusCode(200)
+						.build();
 		
 		/*
 		 * ----------
@@ -74,22 +73,22 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		String endpointUri = "/tempconvert.asmx";
-		Response response = given()
-				.with()
-				.contentType("application/soap+xml")
-				.body(new FarenheitToCelsiusMethod_Request_FromCode()
-						.setFahrenheit(30)
-						.setSmth("Hello")
-						.getMessage())
-				.log()
-				.all()
-				.when()
-				.post(endpointBaseUri + endpointUri)
-				.thenReturn();
+		Response response = DriverManager.getDriverWebAPI()
+						.with()
+						.contentType("application/soap+xml")
+						.body(new FarenheitToCelsiusMethod_Request_FromCode()
+										.setFahrenheit(30)
+										.setSmth("Hello")
+										.getMessage())
+						.log()
+						.all()
+						.when()
+						.post(endpointBaseUri + endpointUri)
+						.thenReturn();
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
 		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.xmlPath()
-				.prettyPrint());
+						.prettyPrint());
 		assertThat(response.statusCode(), is(200));
 	}
 	
@@ -100,7 +99,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		
 		BFLogger.logInfo("#2 Create Stub content message");
 		final String responseMessage = new FarenheitToCelsiusMethod_Response_FromCode().setFahrenheitToCelsiusResult(37.8888)
-				.getMessage();
+						.getMessage();
 		String requestXPathQuery = "//soap12:Envelope | //soap12:Body | //FahrenheitToCelsius | //Fahrenheit";
 		
 		/*
@@ -112,10 +111,10 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		String endpointUriRegExp = "/tempconvert.asmx\\?op=FahrenheitToCelsius";
 		
 		new StubSOAP_Builder.StubBuilder(endpointUriRegExp)
-				.setRequestXPathQuery(requestXPathQuery)
-				.setResponse(responseMessage)
-				.setStatusCode(200)
-				.build();
+						.setRequestXPathQuery(requestXPathQuery)
+						.setResponse(responseMessage)
+						.setStatusCode(200)
+						.build();
 		
 		/*
 		 * ----------
@@ -124,19 +123,19 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		 */
 		BFLogger.logInfo("#4 Send request to generated stub");
 		String endpointUri = "/tempconvert.asmx?op=FahrenheitToCelsius";
-		Response response = given()
-				.with()
-				.contentType("application/soap+xml")
-				.body(new FarenheitToCelsiusMethod_Request_FromFile().getMessage())
-				.log()
-				.all()
-				.when()
-				.post(endpointBaseUri + endpointUri)
-				.thenReturn();
+		Response response = DriverManager.getDriverWebAPI()
+						.with()
+						.contentType("application/soap+xml")
+						.body(new FarenheitToCelsiusMethod_Request_FromFile().getMessage())
+						.log()
+						.all()
+						.when()
+						.post(endpointBaseUri + endpointUri)
+						.thenReturn();
 		
 		BFLogger.logInfo("#5 Validate reposponse ");
 		BFLogger.logDebug("NEW RESPONSE /tempconvert.asmx?op=FahrenheitToCelsius: " + response.xmlPath()
-				.prettyPrint());
+						.prettyPrint());
 		assertThat(response.statusCode(), is(200));
 	}
 	

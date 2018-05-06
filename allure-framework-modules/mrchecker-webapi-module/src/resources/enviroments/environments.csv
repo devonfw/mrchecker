@@ -4,3 +4,4 @@ DMA_URL,"https://dma.company.com",,,,
 MY_RESEARCH_URL_VALUE,,,,https://myresearchqa1.company.com/,https://myresearchqa2.company.com/
 TOOLS_QA,http://toolsqa.com/,,,,
 WEB_SERVICE,http://jsonplaceholder.typicode.com,http://jsonplaceholder.typicode.com,http://jsonplaceholder.typicode.com,,
+HTTPBIN,http://httpbin.org,,,,

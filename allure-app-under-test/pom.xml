@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>allure-app-under-test</artifactId>
     <groupId>com.capgemini.ntc</groupId>
-    <version>2.1.0</version>
+    <version>2.4.0</version>
     <packaging>jar</packaging>
 
     <name>AllureTestFramework - List of Integration Test for Application Under Test </name>
@@ -55,8 +55,8 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <allure-core-module.version>4.12.0.6</allure-core-module.version>
-        <allure-selenium-module.version>3.8.1.6</allure-selenium-module.version>
+        <allure-core-module.version>4.12.0.7-SNAPSHOT</allure-core-module.version>
+        <allure-selenium-module.version>3.8.1.7-SNAPSHOT</allure-selenium-module.version>
         <allure-security-module.version>1.0.1</allure-security-module.version>
         <mrchecker-webapi-module.version>1.0.1</mrchecker-webapi-module.version>
 
