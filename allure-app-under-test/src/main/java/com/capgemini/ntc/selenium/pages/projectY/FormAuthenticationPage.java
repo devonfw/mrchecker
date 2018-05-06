@@ -21,7 +21,7 @@ public class FormAuthenticationPage extends BasePage {
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
-		return getDriver().getTitle()
+		return getDriver().getCurrentUrl()
 						.contains(PageSubURLsProjectYEnum.LOGIN.getValue());
 	}
 	
