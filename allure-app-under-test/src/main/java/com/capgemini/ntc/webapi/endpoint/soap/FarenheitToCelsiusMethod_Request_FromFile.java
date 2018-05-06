@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.capgemini.ntc.webapi.core.BasePageWebAPI;
-import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Request_FromFile;
 
 /**
  * SOAP endpoint for a SOAP web service that matches a response body with the following SOAP envelope:
@@ -73,6 +72,11 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	private String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
+	}
+	
+	public String getEndpoint() {
+		// TASK Auto-generated method stub
+		return null;
 	}
 	
 }
