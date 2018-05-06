@@ -24,7 +24,6 @@ public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 		return this;
 	}
 	
-	@Override
 	public String getMessage() {
 		String message = "";
 		try {
@@ -61,10 +60,8 @@ public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 		return new String(encoded, encoding);
 	}
 	
-	@Override
 	public String getEndpoint() {
-		// Useful only for REST queries
+		// Useful only for REST Tests
 		return null;
 	}
-	
 }

@@ -37,7 +37,6 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 		return this;
 	}
 	
-	@Override
 	public String getMessage() {
 		String message = "";
 		try {
@@ -75,8 +74,7 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	}
 	
 	public String getEndpoint() {
-		// TASK Auto-generated method stub
+		// Useful only for REST Tests
 		return null;
 	}
-	
 }
