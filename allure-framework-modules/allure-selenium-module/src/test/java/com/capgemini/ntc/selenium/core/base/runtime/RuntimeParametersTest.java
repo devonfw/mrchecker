@@ -68,7 +68,7 @@ public class RuntimeParametersTest {
 		RuntimeParametersSelenium.SELENIUM_GRID.refreshParameterValue();
 		
 		assertEquals("System parameters for empty property 'browser' should be 'chrome'", "chrome", RuntimeParametersSelenium.BROWSER.getValue());
-		assertEquals("System parameters for empty property 'browserVersion' should be '8.0'", "8.0", RuntimeParametersSelenium.BROWSER_VERSION.getValue());
+		assertEquals("System parameters for empty property 'browserVersion' should be 'null'", "", RuntimeParametersSelenium.BROWSER_VERSION.getValue());
 		assertEquals("System parameters for empty property 'seleniumGrid' should be 'false'", "false", RuntimeParametersSelenium.SELENIUM_GRID.getValue());
 		assertEquals("System parameters for empty property 'os' should be 'windows'", "windows", RuntimeParametersSelenium.OS.getValue());
 		
@@ -78,8 +78,8 @@ public class RuntimeParametersTest {
 	public void testParamsToString() throws Exception {
 		
 		RuntimeParametersSelenium.valueOf("BROWSER")
-				.toString()
-				.equals("browser=magicBrowser");
+						.toString()
+						.equals("browser=magicBrowser");
 		
 	}
 	
