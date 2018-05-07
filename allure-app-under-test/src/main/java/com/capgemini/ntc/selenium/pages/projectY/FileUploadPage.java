@@ -2,21 +2,22 @@ package com.capgemini.ntc.selenium.pages.projectY;
 
 import com.capgemini.ntc.selenium.core.BasePage;
 import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-public class ElementalSeleniumPage extends BasePage {
+public class FileUploadPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains(GetEnvironmentParam.ELEMENTAL_SELENIUM_PAGE.getValue());
+						.contains(PageSubURLsProjectYEnum.UPLOAD.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("Load 'Elemental Selenium' page.");
-		getDriver().get(GetEnvironmentParam.ELEMENTAL_SELENIUM_PAGE.getValue());
+		BFLogger.logDebug("Load 'File Uploader' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.UPLOAD.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
@@ -24,4 +25,5 @@ public class ElementalSeleniumPage extends BasePage {
 	public String pageTitle() {
 		return getActualPageTitle();
 	}
+	
 }

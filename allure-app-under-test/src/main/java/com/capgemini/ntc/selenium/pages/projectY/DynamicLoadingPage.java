@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DynamicLoadingPage extends BasePage {
@@ -24,18 +26,19 @@ public class DynamicLoadingPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("dynamic_loading");
+						.contains(PageSubURLsProjectYEnum.DYNAMIC_LOADING.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
-		
+		BFLogger.logDebug("Load 'Dynamically Loaded Page Elements' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DYNAMIC_LOADING.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getActualPageTitle();
 	}
 	
 	/**

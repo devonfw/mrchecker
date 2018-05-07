@@ -20,19 +20,21 @@ public class StatusCodesCodePage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.STATUS_CODES.getValue() + "/");
+						.contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue() + '/');
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logError("Unable to load page");
-		
+		BFLogger.logDebug("Load 'Status Codes' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.STATUS_CODES.getValue() + '/' + codeNumber);
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public String getCodeNumber() {
@@ -41,18 +43,18 @@ public class StatusCodesCodePage extends BasePage {
 	
 	public boolean isLoadedWithStatusCode(String codeNumber) {
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.STATUS_CODES.getValue() + "/" + codeNumber);
+						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.STATUS_CODES.getValue() + "/" + codeNumber);
 	}
 	
 	public String getDisplayedCodeNumber() {
 		String wholeText = getDriver().findElementDynamic(selectorDisplayedText)
-				.getText();
+						.getText();
 		return wholeText.substring(21, 24); // Get from text "This page returned a 200 status code." status code value
 	}
 	
 	public StatusCodesHomePage clickLinkToCodePage() {
 		getDriver().findElementDynamic(selectorLinkToCodesPage)
-				.click();
+						.click();
 		return new StatusCodesHomePage();
 	}
 	

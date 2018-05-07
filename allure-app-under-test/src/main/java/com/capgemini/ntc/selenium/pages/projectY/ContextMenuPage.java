@@ -19,26 +19,27 @@ import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ContextMenuPage extends BasePage {
 	
-	private static final String	validPageTitle		= "The Internet";
 	private static final By		seletorHotSpotArea	= id("hot-spot");
 	private static final String	expectedAlertText	= "You selected a context menu";
 	private int					timeoutInSec		= 5;
 	
 	@Override
 	public boolean isLoaded() {
-		return getDriver().getTitle()
-						.equals(validPageTitle);
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+						.contains(PageSubURLsProjectYEnum.CONTEXT_MENU.getValue());
 	}
 	
 	@Override
 	public void load() {
+		BFLogger.logDebug("Load 'Context Menu' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CONTEXT_MENU.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return pageTitle();
+		return getActualPageTitle();
 	}
 	
 	public void rightClickOnHotSpotArea() {
