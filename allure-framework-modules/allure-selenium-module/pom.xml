@@ -10,7 +10,7 @@
         <version>2.1.0</version>
     </parent>
     <artifactId>allure-selenium-module</artifactId>
-    <version>3.8.1.6</version>
+    <version>3.8.1.7-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Selenium - Module</name>
     <description>Allure Test Framework Selenium supports:

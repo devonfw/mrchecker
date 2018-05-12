@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.core.base.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class DisappearingElementsPage extends BasePage {
@@ -15,17 +17,19 @@ public class DisappearingElementsPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("disappearing_elements");
+						.contains(PageSubURLsProjectYEnum.DISAPPEARING_ELEMENTS.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
+		BFLogger.logDebug("Load 'Disappearing Elements' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DISAPPEARING_ELEMENTS.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getActualPageTitle();
 	}
 	
 	/**

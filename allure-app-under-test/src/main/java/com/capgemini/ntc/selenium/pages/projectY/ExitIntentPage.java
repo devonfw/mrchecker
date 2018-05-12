@@ -10,6 +10,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ExitIntentPage extends BasePage {
@@ -27,17 +29,19 @@ public class ExitIntentPage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains("exit_intent");
+						.contains(PageSubURLsProjectYEnum.EXIT_INTENT.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
+		BFLogger.logDebug("Load 'Exit Intent' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.EXIT_INTENT.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getActualPageTitle();
 	}
 	
 	/**

@@ -9,20 +9,20 @@ public class NewWindowPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("is loaded");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
+						.contains(PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load page");
+		BFLogger.logDebug("Load 'New window' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 }
