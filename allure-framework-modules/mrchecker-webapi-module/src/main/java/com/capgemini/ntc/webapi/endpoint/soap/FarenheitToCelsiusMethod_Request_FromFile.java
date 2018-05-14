@@ -1,4 +1,4 @@
-package com.capgemini.ntc.endpoint.soap;
+package com.capgemini.ntc.webapi.endpoint.soap;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +37,6 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 		return this;
 	}
 	
-	@Override
 	public String getMessage() {
 		String message = "";
 		try {
@@ -74,4 +73,8 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 		return new String(encoded, encoding);
 	}
 	
+	public String getEndpoint() {
+		// Useful only for REST Tests
+		return null;
+	}
 }

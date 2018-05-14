@@ -18,9 +18,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.selenium.core.newDrivers.INewWebDriver;
 import com.capgemini.ntc.selenium.core.utils.WebElementUtils;
+import com.capgemini.ntc.test.core.logger.BFLogger;
 
 /**
  * Web Driver utility class
@@ -45,11 +45,11 @@ public class WdUtility {
 	 * @return
 	 */
 	public static String getStylePropertyByJS(final INewWebDriver driver,
-			String querySelector,
-			String pseudoElement,
-			String cssProperty) {
+					String querySelector,
+					String pseudoElement,
+					String cssProperty) {
 		String script = "return window.getComputedStyle(document.querySelector('" + querySelector + "'),'"
-				+ pseudoElement + "').getPropertyValue('" + cssProperty + "')";
+						+ pseudoElement + "').getPropertyValue('" + cssProperty + "')";
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return (String) js.executeScript(script);
 	}
@@ -124,9 +124,10 @@ public class WdUtility {
 	 * @return true if text is displayed inside the element, false otherwise
 	 */
 	public static boolean isTextDisplayedInsideElement(By selector, String text) {
+		@SuppressWarnings("deprecation")
 		WebElement element = getDriver().findElement(selector);
 		return element.getText()
-				.contains(text);
+						.contains(text);
 	}
 	
 	/**
@@ -141,9 +142,9 @@ public class WdUtility {
 	 */
 	public static boolean isTooltipDisplayed(WebElement element, WebElement tooltip) {
 		getAction().moveToElement(element)
-				.perform();
+						.perform();
 		return !tooltip.getCssValue("display")
-				.equals("none");
+						.equals("none");
 	}
 	
 	/**
@@ -172,6 +173,7 @@ public class WdUtility {
 	 * @return true if text matches the given format, false otherwise
 	 */
 	public static boolean isTextInCorrectFormat(By selector, String format) {
+		@SuppressWarnings("deprecation")
 		WebElement element = getDriver().findElement(selector);
 		String elementText = element.getText();
 		Pattern pattern = Pattern.compile(format);
@@ -188,7 +190,9 @@ public class WdUtility {
 	 * @return map combined from the list of keys and values (their text values)
 	 */
 	public static Map<String, String> getMapFromLists(By selectorKey, By selectorValue) {
+		@SuppressWarnings("deprecation")
 		List<WebElement> keys = getDriver().findElements(selectorKey);
+		@SuppressWarnings("deprecation")
 		List<WebElement> values = getDriver().findElements(selectorValue);
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		if (keys.size() != values.size() || keys.size() == 0) {
@@ -200,9 +204,9 @@ public class WdUtility {
 		Iterator<WebElement> valueIterator = values.iterator();
 		while (keyIterator.hasNext() && valueIterator.hasNext()) {
 			map.put(keyIterator.next()
-					.getText(),
-					valueIterator.next()
-							.getText());
+							.getText(),
+							valueIterator.next()
+											.getText());
 		}
 		return map;
 	}
@@ -218,8 +222,8 @@ public class WdUtility {
 	public static boolean isElementTextCropped(String selectorForElement) {
 		JavascriptExecutor executor = (JavascriptExecutor) getDriver();
 		return (boolean) executor.executeScript(
-				"var element = document.querySelector(arguments[0]); return (element.offsetWidth < element.scrollWidth);",
-				selectorForElement);
+						"var element = document.querySelector(arguments[0]); return (element.offsetWidth < element.scrollWidth);",
+						selectorForElement);
 	}
 	
 	/**
@@ -231,6 +235,7 @@ public class WdUtility {
 	 * @return true if element contains the text, false otherwise
 	 */
 	public static boolean isElementContainsText(By selectorElement, String expectedText) {
+		@SuppressWarnings("deprecation")
 		WebElement element = getDriver().findElement(selectorElement);
 		String elementText = element.getText();
 		return elementText.contains(expectedText);

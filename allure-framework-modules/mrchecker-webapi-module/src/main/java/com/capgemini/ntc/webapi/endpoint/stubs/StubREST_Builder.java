@@ -1,4 +1,4 @@
-package com.capgemini.ntc.webapi.core.stubs;
+package com.capgemini.ntc.webapi.endpoint.stubs;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.any;
@@ -6,14 +6,18 @@ import static com.github.tomakehurst.wiremock.client.WireMock.anyUrl;
 import static com.github.tomakehurst.wiremock.client.WireMock.delete;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.matchingXPath;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.put;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 
+import java.util.UUID;
+
+import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 
-public class StubSOAP_Builder {
+import io.restassured.http.ContentType;
+
+public class StubREST_Builder {
 	
 	// required parameters
 	private String endpointURI;
@@ -29,10 +33,15 @@ public class StubSOAP_Builder {
 		return statusCode;
 	}
 	
-	private StubSOAP_Builder(StubBuilder builder) {
+	private StubREST_Builder(StubBuilder builder) {
 		this.endpointURI = builder.endpointURI;
 		this.statusCode = builder.statusCode;
 	}
+	
+	
+	
+	
+	
 	
 	// Builder Class
 	public static class StubBuilder {
@@ -41,9 +50,8 @@ public class StubSOAP_Builder {
 		private String endpointURI;
 		
 		// optional parameters
-		private int		statusCode			= 200;
-		private String	response			= "Hello";
-		private String	requestXPathQuery	= "";
+		private int		statusCode	= 200;
+		private String	response	= "{ \"message\": \"Hello\" }";
 		
 		public StubBuilder(String endpointURI) {
 			this.endpointURI = endpointURI;
@@ -59,83 +67,82 @@ public class StubSOAP_Builder {
 			return this;
 		}
 		
-		public StubBuilder setRequestXPathQuery(String requestXPathQuery) {
-			this.requestXPathQuery = requestXPathQuery;
-			return this;
-			
-		}
-		
-		public StubSOAP_Builder build() {
+		public StubREST_Builder build() {
+			UUID id;
 			
 			// GET
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							get(urlMatching(this.endpointURI))
-									.withHeader("Content-Type", equalTo("application/soap+xml"))
-									.withRequestBody(matchingXPath(this.requestXPathQuery))
+									.withHeader("Content-Type", equalTo(ContentType.JSON.toString()))
 									// Return given response ...
-									.willReturn(aResponse().withStatus(this.statusCode)
+									.willReturn(aResponse()
 											.withStatus(this.statusCode)
-											.withHeader("Content-Type", "application/soap+xml")
+											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped GET with ID=" + id.toString());
 			
 			// POST
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
-							// post(urlEqualTo(this.endpointURI))
 							post(urlMatching(this.endpointURI))
-									.withHeader("Content-Type", equalTo("application/soap+xml"))
-									.withRequestBody(matchingXPath(this.requestXPathQuery))
+									.withHeader("Content-Type", equalTo(ContentType.JSON.toString()))
 									// Return given response ...
-									.willReturn(aResponse().withStatus(this.statusCode)
+									.willReturn(aResponse()
 											.withStatus(this.statusCode)
-											.withHeader("Content-Type", "application/soap+xml")
+											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped POST with ID=" + id.toString());
 			
 			// PUT
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							put(urlMatching(this.endpointURI))
-									.withHeader("Content-Type", equalTo("application/soap+xml"))
-									.withRequestBody(matchingXPath(this.requestXPathQuery))
+									.withHeader("Content-Type", equalTo(ContentType.JSON.toString()))
 									// Return given response ...
-									.willReturn(aResponse().withStatus(this.statusCode)
+									.willReturn(aResponse()
 											.withStatus(this.statusCode)
-											.withHeader("Content-Type", "application/soap+xml")
+											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped PUT with ID=" + id.toString());
 			
 			// DELETE
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							// Given that request with ...
 							delete(urlMatching(this.endpointURI))
-									.withHeader("Content-Type", equalTo("application/soap+xml"))
-									.withRequestBody(matchingXPath(this.requestXPathQuery))
+									.withHeader("Content-Type", equalTo(ContentType.JSON.toString()))
 									// Return given response ...
-									.willReturn(aResponse().withStatus(this.statusCode)
+									.willReturn(aResponse()
 											.withStatus(this.statusCode)
-											.withHeader("Content-Type", "application/soap+xml")
+											.withHeader("Content-Type", ContentType.JSON.toString())
 											.withBody(this.response)
-											.withTransformers("body-transformer")));
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped DELETE with ID=" + id.toString());
 			
 			// CATCH any other requests
-			DriverManager.getDriverVirtualService()
+			id = DriverManager.getDriverVirtualService()
 					.givenThat(
 							any(anyUrl())
 									.atPriority(10)
 									.willReturn(aResponse()
 											.withStatus(404)
-											.withHeader("Content-Type", "application/soap+xml")
-											.withBody("<status><error_message>Endpoint not found</error_message></status>")
-											.withTransformers("body-transformer")));
-			
-			return new StubSOAP_Builder(this);
+											.withHeader("Content-Type", ContentType.JSON.toString())
+											.withBody("{\"status\":\"Error\",\"message\":\"Endpoint not found\"}")
+											.withTransformers("body-transformer")))
+					.getId();
+			BFLogger.logDebug("Mapped AnyOther with ID=" + id.toString());
+			return new StubREST_Builder(this);
 		}
 		
 	}

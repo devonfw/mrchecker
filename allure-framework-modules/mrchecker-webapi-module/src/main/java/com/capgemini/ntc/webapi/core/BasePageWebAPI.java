@@ -1,24 +1,34 @@
 package com.capgemini.ntc.webapi.core;
 
+import java.io.IOException;
+
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPMessage;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
+
 import com.capgemini.ntc.test.core.BaseTest;
 import com.capgemini.ntc.test.core.BaseTestWatcher;
 import com.capgemini.ntc.test.core.ITestObserver;
 import com.capgemini.ntc.test.core.ModuleType;
 import com.capgemini.ntc.test.core.analytics.IAnalytics;
-import com.capgemini.ntc.test.core.base.environment.IEnvironmentService;
 import com.capgemini.ntc.test.core.base.properties.PropertiesSettingsModule;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 import com.capgemini.ntc.webapi.core.base.properties.PropertiesFileSettings;
 import com.capgemini.ntc.webapi.core.base.runtime.RuntimeParameters;
+import com.capgemini.ntc.webapi.soap.SoapMessageGenerator;
 import com.google.inject.Guice;
+import com.jamesmurty.utils.XMLBuilder;
 
 abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	
 	private static DriverManager driver = null;
 	
 	private final static PropertiesFileSettings	propertiesFileSettings;
-	private static IEnvironmentService			environmentService;
 	private final static IAnalytics				analytics;
 	public final static String					analitycsCategoryName	= "WebAPI-Module";
 	
@@ -57,30 +67,29 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	@Override
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 	}
 	
 	@Override
 	public void onTestSuccess() {
 		// All actions needed while test method is success
 		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		// All actions needed while test class is finishing
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
-				.getSimpleName());
+						.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
-		DriverManager.closeDriverWebApi();
 	}
 	
 	@Override
@@ -99,14 +108,14 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	private static PropertiesFileSettings setPropertiesSettings() {
 		// Get and then set properties information from settings.properties file
 		PropertiesFileSettings propertiesFileSettings = Guice.createInjector(PropertiesSettingsModule.init())
-				.getInstance(PropertiesFileSettings.class);
+						.getInstance(PropertiesFileSettings.class);
 		return propertiesFileSettings;
 	}
 	
 	private static void setRuntimeParametersWebApi() {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParameters.values())
-				.toString());
+						.toString());
 		
 	}
 	
@@ -117,6 +126,60 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 		 * environmetInstance = Guice.createInjector(new EnvironmentModule()) .getInstance(IEnvironmentService.class);
 		 */
 		
+	}
+	
+	public class SOAPTemplate {
+		
+		private XMLBuilder xmlBody;
+		
+		/*
+		 * SOAP response built from Java code
+		 */
+		public SOAPTemplate(String root) {
+			setRoot(root);
+		}
+		
+		/**
+		 * @return Generate SOAP request in String format
+		 */
+		public String getMessage() {
+			String message = "";
+			try {
+				SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
+								.asString());
+				message = SoapMessageGenerator.printSoapMessage(soapMessage);
+			} catch (SOAPException | SAXException | IOException | ParserConfigurationException | TransformerException e) {
+				new Exception(e);
+			}
+			return message;
+		}
+		
+		/**
+		 * @return Root XML structure
+		 */
+		public XMLBuilder getRoot() {
+			return xmlBody;
+		}
+		
+		/*
+		 * ----------------------------------
+		 * Any handy actions after this point
+		 * ----------------------------------
+		 */
+		private void setRoot(String nodeName) {
+			try {
+				this.xmlBody = XMLBuilder.create(nodeName);
+			} catch (ParserConfigurationException | FactoryConfigurationError e) {
+				new Exception(e);
+			}
+		}
+		
+		/*
+		 * Set up an attribute for root
+		 */
+		public void addAttributeToRoot(String name, String value) {
+			this.xmlBody.attribute(name, value);
+		}
 	}
 	
 }

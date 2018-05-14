@@ -9,6 +9,7 @@ mvn -P release deploy
 #3. Go to Nexus staging repo 
 https://oss.sonatype.org/#stagingRepositories   
 and release 
+WAIT ~15min to update Maven Central Repo
 
 #4. Verify release OR snapshot repo
 Release

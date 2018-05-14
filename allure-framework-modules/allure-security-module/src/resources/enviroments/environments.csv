@@ -1,0 +1,5 @@
+service variable,DEV,QA,PROD
+SECURITY_CLIENT_ORIGIN,http://de-mucdevondepl01:8090,http://de-mucdevondepl01:8090,
+SECURITY_SERVER_ORIGIN,http://de-mucdevondepl01:9090,http://de-mucdevondepl01:9090,
+SECURITY_USER1_NAME,waiter,waiter,,,
+SECURITY_USER1_PASSWD,ENC(4Bf6vuKreMLOxKxEnqCfBg==),ENC(4Bf6vuKreMLOxKxEnqCfBg==),,,

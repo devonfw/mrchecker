@@ -36,8 +36,8 @@ public class BrokenImagesTest extends BaseTest {
 		BrokenImagePage brokenImagePage = theInternetPage.clickBrokenImageLink();
 		for (int i = 0; i < 3; i++) {
 			BFLogger.logInfo("Step4 - check sizes of image with index: " + i);
-			assertTrue("Height of image with index " + i + " is incorrect", brokenImagePage.getHeightOfImage(i) == CorrectHeight);
-			assertTrue("Width of image with index " + i + " is incorrect", brokenImagePage.getWidthOfImage(i) == CorrectWidth);
+			assertTrue("Height of image with index " + i + " is incorrect", brokenImagePage.getImageHeight(i) == CorrectHeight);
+			assertTrue("Width of image with index " + i + " is incorrect", brokenImagePage.getImageWidth(i) == CorrectWidth);
 		}
 	}
 	

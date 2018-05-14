@@ -1,6 +1,9 @@
 package com.capgemini.ntc.selenium.pages.projectY;
 
+import java.util.function.Function;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,7 +14,7 @@ import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
-public class JavaScriptAlertsPage extends BasePage {
+public class JavaScriptAlertsPage<V, Alert> extends BasePage {
 	
 	private static final By	selectorAlertButton		= By.cssSelector("button[onclick*=jsAlert]");
 	private static final By	selectorConfirmButton	= By.cssSelector("button[onclick*=jsConfirm]");
@@ -20,38 +23,39 @@ public class JavaScriptAlertsPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The KeyPresses page is loaded.");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+						.contains(PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load");
+		BFLogger.logDebug("Load 'JavaScript Alerts' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public void clickAlertButton() {
 		new Button(selectorAlertButton).click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until(ExpectedConditions.alertIsPresent());
+		wait.until((Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
 	}
 	
 	public void clickConfirmButton() {
 		new Button(selectorConfirmButton).click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until(ExpectedConditions.alertIsPresent());
+		wait.until((Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
 	}
 	
 	public void clickPromptButton() {
 		new Button(selectorPromptButton).click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until(ExpectedConditions.alertIsPresent());
+		wait.until((Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
 	}
 	
 	public String readResultLabel() {
