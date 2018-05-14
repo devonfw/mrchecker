@@ -1,10 +1,10 @@
-package com.capgemini.mrchecker.database.core;
+package com.capgemini.ntc.database.core;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DBDriverManager {
+public class DriverManager {
 
 	private static EntityManagerFactory emf;
 
