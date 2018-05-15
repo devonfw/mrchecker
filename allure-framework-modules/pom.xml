@@ -51,7 +51,7 @@
     <repositories>
         <repository>
             <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
+            <url>/usr/share/maven2</url>
         </repository>
     </repositories>
 
