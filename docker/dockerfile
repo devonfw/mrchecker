@@ -60,12 +60,13 @@ COPY ./allure-app-under-test/ /opt/tmp/allure-app-under-test/
 COPY ./allure-framework-modules/ /opt/tmp/allure-framework-modules/
 COPY ./settings.xml /opt/apache-maven-3.3.9/conf/settings.xml
 
-RUN cd /opt/tmp/allure-app-under-test/ && mvn clean install compile test-compile site deploy -DskipTests=true; exit 0
-RUN cd /opt/tmp/allure-framework-modules/allure-core-module/ && mvn clean install compile test-compile site -DskipTests=true; exit 0
-RUN cd /opt/tmp/allure-framework-modules/mrchecker-database-module/ && mvn clean install compile test-compile site -DskipTests=true; exit 0
-RUN cd /opt/tmp/allure-framework-modules/mrchecker-webapi-module/ && mvn clean install compile test-compile site -DskipTests=true; exit 0
-RUN cd /opt/tmp/allure-framework-modules/allure-selenium-module/ && mvn clean install compile test-compile site -DskipTests=true; exit 0
-RUN cd /opt/tmp/allure-framework-modules/allure-security-module/ && mvn clean install compile test-compile site -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-app-under-test/ && mvn dependency:go-offline clean install -U compile test-compile site deploy -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-framework-modules/allure-core-module/ && mvn dependency:go-offline clean install -U compile test-compile site deploy -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-framework-modules/mrchecker-database-module/ && mvn dependency:go-offline clean install -U compile test-compile site deploy -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-framework-modules/mrchecker-webapi-module/ && mvn dependency:go-offline clean install -U  compile test-compile site deploy -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-framework-modules/allure-selenium-module/ && mvn dependency:go-offline clean install -U compile test-compile site deploy -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-framework-modules/allure-security-module/ && mvn dependency:go-offline clean install -U compile test-compile site deploy -DskipTests=true; exit 0
+RUN cd /opt/tmp/allure-framework-modules/allure-security-module/ && mvn dependency:go-offline clean install -U compile test-compile site deploy -DskipTests=true; exit 0
 
 RUN rm -f -r /opt/tmp/allure-app-under-test/
 RUN rm -f -r /opt/tmp/allure-framework-modules/
