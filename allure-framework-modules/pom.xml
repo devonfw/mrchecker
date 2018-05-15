@@ -107,6 +107,7 @@
         <rest-assured.version>3.0.6</rest-assured.version>
         
         <!-- Allure Annotation lib -->
+        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
         <allure.version>1.5.4</allure.version>
         
     </properties>
