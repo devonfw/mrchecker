@@ -79,7 +79,6 @@ Based on Junit4.12</description>
         <allure.version>1.5.4</allure.version>
         <allure-report.version>1.4.19</allure-report.version>
         <aspectj.version>1.8.9</aspectj.version>
-        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
         <allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
         <report-directory>${pom.basedir}/test-output/</report-directory>
         <jetty.version>9.2.10.v20150310</jetty.version>

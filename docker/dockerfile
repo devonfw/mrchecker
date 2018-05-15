@@ -56,6 +56,7 @@ RUN addgroup --gid ${gid} ${group} && adduser --disabled-password  --uid ${uid} 
 
 ## Copy and Install dependencies
 RUN mkdir /opt/tmp
+RUN mkdir /usr/share/maven2
 COPY ./allure-app-under-test/ /opt/tmp/allure-app-under-test/
 COPY ./allure-framework-modules/ /opt/tmp/allure-framework-modules/
 COPY ./settings.xml /opt/apache-maven-3.3.9/conf/settings.xml
