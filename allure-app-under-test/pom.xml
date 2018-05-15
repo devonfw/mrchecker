@@ -46,7 +46,8 @@
         <!-- Repository used as default deploy phase. -->
         <repository>
             <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
+            <url>/usr/share/maven2</url>
+            <!-- <url>file://${env.BASE_PATH}/m2/repository</url> -->
         </repository>
     </distributionManagement>
 
