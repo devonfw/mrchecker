@@ -24,14 +24,9 @@ node(){
 def private void stagePrepareEnv(){
     stage('Prepare environment'){
         setJenkinsJobVariables();
-        cleanWorkspace();
-        //setWorkspace();
+        setWorkspace();
 	}
 }
-
-/* def private void cleanWorkspace(){
-	sh "sudo rm -rf *";
-} */
 
 def private void setJenkinsJobVariables(){
     env.JOB_NAME_UPSTREAM="Mr Checker"
