@@ -13,7 +13,8 @@ public enum GetEnvironmentParam {
 	WWW_FONT_URL,
 	TOOLS_QA,
 	WEB_SERVICE,
-	THE_INTERNET_MAIN_PAGE;
+	THE_INTERNET_MAIN_PAGE,
+	ELEMENTAL_SELENIUM_PAGE;
 	
 	public String getValue() {
 		
@@ -22,7 +23,7 @@ public enum GetEnvironmentParam {
 		}
 		
 		return BaseTest.getEnvironmentService()
-				.getValue(this.name());
+						.getValue(this.name());
 		
 	}
 	

@@ -54,9 +54,10 @@
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <!-- MrChecker test framework modules -->
-        <mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
-        <mrchecker-selenium-module.version>3.8.1.6</mrchecker-selenium-module.version>
+
+        <!-- Allure test framework modules -->
+        <mrchecker-core-module.version>4.12.0.7-SNAPSHOT</mrchecker-core-module.version>
+        <mrchecker-selenium-module.version>3.8.1.7-SNAPSHOT</mrchecker-selenium-module.version>
         <mrchecker-security-module.version>1.0.1</mrchecker-security-module.version>
         <mrchecker-webapi-module.version>1.0.1</mrchecker-webapi-module.version>
 
