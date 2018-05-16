@@ -155,9 +155,7 @@ void stageGitPull(){
         //Load GitPull file
         def module = load "${env.SUBMODULES_DIR}/GitPull.groovy";
         module.setGitAuthor();
-        if(isCurrentBranchFeature){ 
-            module.tryMerge();
-        }
+        module.tryMerge();
     }       
 }
 
