@@ -1,15 +1,14 @@
 def call(){
 
-//# Unit test run
+//# Build deployable app
     stage('Deploy'){
         sh"""
-            mkdir -p ${env.WORKSPACE_LOCAL}/m2/repository
-            set BASE_PATH=${env.WORKSPACE_LOCAL}
-            cd ${env.WORKSPACE_LOCAL}/${env.ANALIZEDMODULE}
+            mkdir -p ${env.WORKSPACE}/m2/repository
+            set BASE_PATH=${env.WORKSPACE}
+            cd ${env.APP_WORKSPACE}
             mvn -q deploy -DskipTests=true
-            """
-        archive "${env.WORKSPACE_LOCAL}/${env.ANALIZEDMODULE}target/*.jar"
+        """
+        archive "${env.APP_WORKSPACE}target/*.jar"
     }
 }
-
 return this

@@ -31,9 +31,7 @@ def void setGitAuthor() {
 }
 	
 def void tryMerge(){ 	
-	setGitAuthor()
 
-	echo ("before execute tryMerge");
 
 	def TARGET_MERGE_BRANCH = "origin/develop";
 	def WORKING_BRANCH  = env.WORKING_BRANCH;

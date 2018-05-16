@@ -1,56 +1,52 @@
 node(){
 	
-    setJobNameVariables();
     stagePrepareEnv();
     stageGitPull();
     
     //def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
-    try{
-	//	utils.generateUserIDVariable(); //Generate USER_ID and USER_GROUP
-        docker.image('lucst/devonfwe2e:v2-0.0').inside("-u root:root"){
-				stageBuildCompile();
-				stageUnitTests();
-				stageDeploy();
+    timestamps {
+        try{
+                docker.image('lucst/devonfwe2e:v2-0.3').inside(){
+                    stageBuildCompile();
+                    stageUnitTests();
+                    stageDeploy();
+                }
+            currentBuild.result = 'SUCCESS';
+        } catch (Exception e) {
+            //sendMail(e);
+            error 'Error: ' + e
+            currentBuild.result = 'FAILURE';
         }
-
-        currentBuild.result = 'SUCCESS';
-	} catch (Exception e) {
-		//sendMail(e);
-		error 'Error: ' + e
-        currentBuild.result = 'FAILURE';
-	}
-    
+    }
 }
 
 
-void stagePrepareEnv(){
+def private void stagePrepareEnv(){
     stage('Prepare environment'){
-        //cleanWorkspace();
+        setJenkinsJobVariables();
+        cleanWorkspace();
         setWorkspace();
 	}
-}
-
-void setJobNameVariables(){
-    env.JOB_NAME_UPSTREAM="Mr Checker"
-	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
-	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
-	env.GIT_CREDENTIALS = "gitchudzik"
-	env.STASH_CREDENTIALS="gitchudzik"
-	env.USER_CREDENTIALS=env.STASH_CREDENTIALS
 }
 
 def private void cleanWorkspace(){
 	sh "sudo rm -rf *";
 }
+def private void setJenkinsJobVariables(){
+    env.JOB_NAME_UPSTREAM="Mr Checker"
+	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
+	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
+	env.GIT_CREDENTIALS = "gitchudzik"
+
+} 
+
+
 
 /**
 Creates an environment variable with path to local workspace. This is required because when using pipeline plugin 
 Jenkins does not create the WORKSPACE env var
 **/
-void setWorkspace(){
-    // sh 'pwd > pwd.current'
-    // env.WORKSPACE_LOCAL = readFile('pwd.current').trim();
-    
+void setWorkspace(){ 
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
     echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
     env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-app-under-test/";
@@ -59,9 +55,29 @@ void setWorkspace(){
     echo("Variable submodules: " + env.SUBMODULES_DIR);
 	env.COMMONS_DIR = "${WORKSPACE_LOCAL}/pipelines/commons";
     echo("Variable commons: " + env.COMMONS_DIR);
-    env.FEATURE_BUILD = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals('develop');
-    echo("Variable FEATURE_BUILD: " + env.FEATURE_BUILD);
+    
+    env.MAIN_BRANCH = 'develop'
+    
+    env.NON_DEVELOP_BRANCH = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals("$env.MAIN_BRANCH");
+    echo("Variable NON_DEVELOP_BRANCH: " + env.NON_DEVELOP_BRANCH);
 
+    
+    try{
+        env.APP_WORKSPACE = APP_WORKSPACE;
+        echo("env.APP_WORKSPACE=${env.APP_WORKSPACE}");
+    } catch (Exception e){
+        error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-framework-modules/allure-core-module/")
+    }
+    
+    
+    try{
+        env.TEST_NAME = TEST_NAME;
+        echo("env.TEST_NAME=${env.TEST_NAME}");
+    } catch (Exception e){
+        echo("env.TEST_NAME was not overwritten");
+        env.TEST_NAME = "*";
+    }
+    
     try{
 		env.ENVIRONMENT = ENVIRONMENT;
         echo("env.ENVIRONMENT=${env.ENVIRONMENT}");
@@ -78,27 +94,12 @@ void setWorkspace(){
 		env.HUBURL = "http://10.40.234.103:4444/wd/hub";
 	}
 
-	try{
-		env.TESTMODULE = TESTMODULE;
-		echo("env.TESTMODULE=${env.TESTMODULE}");
-	} catch (Exception e){
-		echo("TESTMODULE was not overwritten");
-		env.TESTMODULE = "allure-app-under-test";
-	}
-
     try{
-		env.BRANCH_TYPE_OVERRIDE = BRANCH_TYPE_OVERRIDE;
-    } catch (Exception e){
-		echo("BRANCH_TYPE_OVERRIDE was not overwritten");
-		env.BRANCH_TYPE_OVERRIDE = "feature/";
-    } 
-    
-    try{
-		env.WORKING_BRANCH = WORKING_BRANCH.trim().isEmpty() ? env.GIT_BRANCH : WORKING_BRANCH;
+		env.WORKING_BRANCH = WORKING_BRANCH.trim().isEmpty() ? env.BRANCH_NAME : WORKING_BRANCH;
         echo("env.WORKING_BRANCH=${env.WORKING_BRANCH}");
     } catch (Exception e){
 		echo("WORKING_BRANCH was not overwritten");
-		env.WORKING_BRANCH = "develop";
+		env.WORKING_BRANCH = "${env.MAIN_BRANCH}";
     }
 
     try{
@@ -131,7 +132,7 @@ void stageUnitTests(){
 
 void stageDeploy(){
 	echo("stageDeploy");
-	//Load UnitTests file and run call() method
+	//Load Deploy process and run call() method
 	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
 	module();
 }
@@ -147,21 +148,17 @@ void stageDeploy(){
 Pull sources from repository
 **/
 void stageGitPull(){
-	
-    //Set branch name   
-    
-    //Clone jenkins files	
-	git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
-
-    boolean isCurrentBranchFeature = "feature/".equals(env.BRANCH_TYPE_OVERRIDE) ? true : false;
-	echo("isCurrentBranchFeature= ${isCurrentBranchFeature}");
-
-    //Load GitPull file and run call() method
-	def module = load "${env.SUBMODULES_DIR}/GitPull.groovy";
-	module();
-    if(isCurrentBranchFeature){ 
-		module.tryMerge();
-	}   
+    stage('Git Pull'){
+        //Clone jenkins files	
+        git branch: "${env.WORKING_BRANCH}", credentialsId: "${env.GIT_CREDENTIALS}", url: "${env.GIT_REPO}"
+ 
+        //Load GitPull file
+        def module = load "${env.SUBMODULES_DIR}/GitPull.groovy";
+        module.setGitAuthor();
+        if(isCurrentBranchFeature){ 
+            module.tryMerge();
+        }
+    }       
 }
 
 return this
