@@ -21,7 +21,7 @@ def call(){
                 echo("Any HTML report found!");
             }
         } catch (Exception e){
-            echo("No report generated. Reason: " + e;
+            echo("No report generated. Reason: \n" + e);
         }
     }
 }
