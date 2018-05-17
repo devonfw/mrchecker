@@ -48,11 +48,11 @@ Jenkins does not create the WORKSPACE env var
 void setWorkspace(){ 
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
     echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
-    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-app-under-test/";
+    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-framework-modules/";
     echo("Variable Project home: " + env.PROJECT_HOME);
-	env.SUBMODULES_DIR = "${WORKSPACE_LOCAL}/pipelines/CI/submodules";
+	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/pipelines/CI/submodules";
     echo("Variable submodules: " + env.SUBMODULES_DIR);
-	env.COMMONS_DIR = "${WORKSPACE_LOCAL}/pipelines/commons";
+	env.COMMONS_DIR = "${env.PROJECT_HOME}/pipelines/commons";
     echo("Variable commons: " + env.COMMONS_DIR);
     
     env.MAIN_BRANCH = 'develop'
@@ -65,7 +65,7 @@ void setWorkspace(){
         env.APP_WORKSPACE = APP_WORKSPACE;
         echo("env.APP_WORKSPACE=${env.APP_WORKSPACE}");
     } catch (Exception e){
-        error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-framework-modules/allure-core-module/")
+        error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-core-module/")
     }
     
     
