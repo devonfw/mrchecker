@@ -4,18 +4,14 @@ node(){
     stageGitPull();
     
     def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
-    timestamps {
-        
+    timestamps {     
         try{
-            error("Test mail sender")        
-
             docker.image('lucst/devonfwe2e:v2-0.3').inside(){
                     stageBuildCompile();
                     stageUnitTests();
                     stageDeploy();
-                    
-                    //Disabled tryMerge(). Finally enable it 
-                    
+           
+                    //Disabled tryMerge(). Finally enable it          
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
@@ -39,7 +35,7 @@ def private void setJenkinsJobVariables(){
 	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
 	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
 	env.GIT_CREDENTIALS = "gitchudzik"
-    env.JENKINS_CREDENTIALS = "0c089c76-f103-4f97-8d2d-c31830d2c21d" //jenkins_slave;
+    env.JENKINS_CREDENTIALS = "0c089c76-f103-4f97-8d2d-c31830d2c21d" //jenkins_slave user;
     
 
 } 
