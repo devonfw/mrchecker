@@ -5,7 +5,7 @@ def call(){
         sh"""
             cd ${env.APP_WORKSPACE}
             mvn -q surefire:test -Dtest=${env.TEST_NAME} -Dthread.count=${env.THREAD_COUNT} -DseleniumGrid=${env.SELENIUM_HUBURL} -Denv=${env.ENVIRONMENT} -Dbrowser=${env.SELENIUM_BROWSER} ${env.MVN_PARAMETERS}
-            mvn -q site ${env.MVN_PARAMETERS}
+            mvn -q site:site ${env.MVN_PARAMETERS}
         """
         junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"
         if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
