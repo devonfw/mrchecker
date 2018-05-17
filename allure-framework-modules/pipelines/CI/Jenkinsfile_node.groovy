@@ -5,9 +5,11 @@ node(){
     
     //def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     timestamps {
-        error("Test mail sender")
+        
         try{
-                docker.image('lucst/devonfwe2e:v2-0.3').inside(){
+            error("Test mail sender")        
+
+            docker.image('lucst/devonfwe2e:v2-0.3').inside(){
                     stageBuildCompile();
                     stageUnitTests();
                     stageDeploy();
