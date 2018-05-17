@@ -3,7 +3,7 @@ node(){
     stagePrepareEnv();
     stageGitPull();
     
-    //def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
+    def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     timestamps {
         
         try{
@@ -162,12 +162,12 @@ void stageDeploy(){
 	module();
 }
 
-//void sendMail(Exception e){
-//	echo("sendMail")
-//	//Load Mail file and run call() method
-//	def module = load "${env.COMMONS_DIR}/MailSender.groovy";
-//	module(e);
-//}
+void sendMail(Exception e){
+	echo("sendMail")
+	//Load Mail file and run call() method
+	def module = load "${env.COMMONS_DIR}/MailSender.groovy";
+	module(e);
+}
 
 /**
 Pull sources from repository
