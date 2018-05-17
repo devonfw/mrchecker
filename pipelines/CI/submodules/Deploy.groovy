@@ -7,7 +7,7 @@ def call(){
             cd ${env.APP_WORKSPACE}
             mvn -q deploy -DskipTests=true
         """
-        archive "${env.APP_WORKSPACE}target/*.jar"
+        archiveArtifacts"${env.APP_WORKSPACE}target/*.jar"
     }
 }
 return this
