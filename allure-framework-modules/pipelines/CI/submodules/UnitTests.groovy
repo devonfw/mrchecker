@@ -22,6 +22,7 @@ def call(){
             }
         } catch (Exception e){
             echo("No report generated. Reason: " + e;
+        }
     }
 }
 return this
