@@ -13,11 +13,7 @@ def private void deployToLocalRepo(){
             cd ${env.APP_WORKSPACE}
             mvn install -DskipTests=true ${env.MVN_PARAMETERS}
         """
-        try{
-            archiveArtifacts"${env.APP_WORKSPACE}target/*.jar";
-        } catch (Exception e){
-            echo("Not archived. Reason: \n" + e);
-        }
+        archiveArtifacts allowEmptyArchive: true, artifacts: "${env.APP_WORKSPACE}target/*.jar";
     }
 }
 
