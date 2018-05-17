@@ -47,25 +47,15 @@
         <!-- <module>build-tools</module> -->
     </modules>
 
-
-    <repositories>
-        <repository>
-            <id>Local repository</id>
-            <url>/usr/share/maven2</url>
-            <!-- <url>file://${env.BASE_PATH}/m2/repository</url> -->
-        </repository>
-    </repositories>
-
-
     <distributionManagement>
         <!-- Repository used as default deploy phase. If you like to deploy
             to Maven Central, then use profile release - "mvn -P release" -->
         <repository>
-            <id>Local repository</id>
-            <url>/usr/share/maven2</url>
-            <!-- <url>file://${env.BASE_PATH}/m2/repository</url> -->
+            <id>Local_repository</id>
+            <url>file://${env.BASE_PATH}/usr/share/maven2</url>
         </repository>
     </distributionManagement>
+
 
     <properties>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
