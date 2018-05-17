@@ -9,6 +9,7 @@ def call(){
             mvn -q compile
             mvn -q test-compile
         """
+    }
 }
 
 return this

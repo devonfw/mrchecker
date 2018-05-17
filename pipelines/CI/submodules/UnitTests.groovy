@@ -15,5 +15,6 @@ def call(){
         } else {
             echo("Any HTML report found!");
         }
+    }
 }
 return this
