@@ -39,6 +39,8 @@ def private void setJenkinsJobVariables(){
 	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
 	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
 	env.GIT_CREDENTIALS = "gitchudzik"
+    env.JENKINS_CREDENTIALS = "0c089c76-f103-4f97-8d2d-c31830d2c21d" //jenkins_slave;
+    
 
 } 
 

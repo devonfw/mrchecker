@@ -7,7 +7,7 @@ def call(Exception e){
 
 
 private String generateMailBody(Exception e){
-	withCredentials([[$class: 'UsernamePasswordBinding', credentialsId: "${env.USER_CREDENTIALS}", variable: 'USER_NOTIFICATION']]) {
+	withCredentials([[$class: 'UsernamePasswordBinding', credentialsId: "${env.JENKINS_CREDENTIALS}", variable: 'USER_NOTIFICATION']]) {
 			sh "echo BUILD_URL: ${env.BUILD_URL}";
 			sh "curl -u ${env.USER_NOTIFICATION} ${env.BUILD_URL}consoleText > console.log";
 			sh "grep -e WARNING console.log > warning.log || exit 0";
