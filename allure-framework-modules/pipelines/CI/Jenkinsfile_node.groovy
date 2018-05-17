@@ -5,6 +5,7 @@ node(){
     
     //def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     timestamps {
+        error("Test mail sender")
         try{
                 docker.image('lucst/devonfwe2e:v2-0.3').inside(){
                     stageBuildCompile();
@@ -16,7 +17,7 @@ node(){
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
-            //sendMail(e);
+            sendMail(e);
             error 'Error: ' + e
             currentBuild.result = 'FAILURE';
         }
