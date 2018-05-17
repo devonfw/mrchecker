@@ -4,7 +4,8 @@ def call(){
 	stage('Unit test'){
         sh"""
             cd ${env.APP_WORKSPACE}
-            mvn -q surefire:test -Dtest=${env.TEST_NAME} -DseleniumGrid=${env.SELENIUM_HUBURL} -Denv=${env.ENVIRONMENT} -Dbrowser=${env.SELENIUM_BROWSER}
+            mvn -q surefire:test -Dtest=${env.TEST_NAME} -Dthread.count=${env.THREAD_COUNT} -DseleniumGrid=${env.SELENIUM_HUBURL} -Denv=${env.ENVIRONMENT} -Dbrowser=${env.SELENIUM_BROWSER} ${env.MVN_PARAMETERS}
+            
             mvn -q site
         """
         junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"

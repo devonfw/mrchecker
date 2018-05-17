@@ -11,7 +11,7 @@ def private void deployToLocalRepo(){
         sh"""
             export BASE_PATH=.
             cd ${env.APP_WORKSPACE}
-            mvn -q install -DskipTests=true
+            mvn install -DskipTests=true ${env.MVN_PARAMETERS}
         """
         archiveArtifacts"${env.APP_WORKSPACE}target/*.jar"
     }

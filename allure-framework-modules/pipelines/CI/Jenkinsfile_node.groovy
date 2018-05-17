@@ -78,6 +78,21 @@ void setWorkspace(){
     }
     
     try{
+        env.THREAD_COUNT = THREAD_COUNT;
+        echo("env.THREAD_COUNT=${env.THREAD_COUNT}");
+    } catch (Exception e){
+        echo("env.THREAD_COUNT was not overwritten");
+        env.THREAD_COUNT = "8";
+    }
+    
+    try{
+        env.MVN_PARAMETERS = MVN_PARAMETERS;
+        echo("env.MVN_PARAMETERS=${env.MVN_PARAMETERS}");
+    } catch (Exception e){
+        env.MVN_PARAMETERS = "";
+    }
+    
+    try{
 		env.ENVIRONMENT = ENVIRONMENT;
         echo("env.ENVIRONMENT=${env.ENVIRONMENT}");
     } catch (Exception e){
