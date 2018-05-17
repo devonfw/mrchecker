@@ -86,11 +86,19 @@ void setWorkspace(){
     }
 
 	try{
-		env.HUBURL = HUBURL;
-		echo("env.HUBURL=${env.HUBURL}");
+		env.SELENIUM_HUBURL = SELENIUM_HUBURL;
+		echo("env.SELENIUM_HUBURL=${env.SELENIUM_HUBURL}");
 	} catch (Exception e){
-		echo("HUBURL was not overwritten");
-		env.HUBURL = "http://10.40.234.103:4444/wd/hub";
+		echo("SELENIUM_HUBURL was not overwritten");
+		env.SELENIUM_HUBURL = "http://10.40.234.103:4444/wd/hub";
+	}
+
+	try{
+		env.SELENIUM_BROWSER = SELENIUM_BROWSER;
+		echo("env.SELENIUM_BROWSER=${env.SELENIUM_BROWSER}");
+	} catch (Exception e){
+		echo("SELENIUM_BROWSER was not overwritten");
+		env.SELENIUM_BROWSER = "chrome";
 	}
 
     try{
