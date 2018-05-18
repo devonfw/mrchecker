@@ -1,14 +1,14 @@
 
 def properties = {
-        TEST_NAME : "*",
-        THREAD_COUNT : "8",
-        MVN_PARAMETERS : "",
-        ENVIRONMENT : "DEV",
-        SELENIUM_HUBURL : "http://10.40.234.103:4444/wd/hub",
-        SELENIUM_BROWSER : "chrome",
-        GIT_REPO : "https://github.com/devonfw/devonfw-testing.git",
-        MAIN_BRANCH : "develop",
-        WORKING_BRANCH = "develop"
+        TEST_NAME : '*',
+        THREAD_COUNT : '8',
+        MVN_PARAMETERS : '',
+        ENVIRONMENT : 'DEV',
+        SELENIUM_HUBURL : 'http://10.40.234.103:4444/wd/hub',
+        SELENIUM_BROWSER : 'chrome',
+        GIT_REPO : 'https://github.com/devonfw/devonfw-testing.git',
+        MAIN_BRANCH : 'develop',
+        WORKING_BRANCH = 'develop'
 }
 
 node(properties){
