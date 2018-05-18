@@ -1,6 +1,6 @@
 
 def properties = {
-        TEST_NAME : '*',
+        TEST_NAME : '\*',
         THREAD_COUNT : '8',
         MVN_PARAMETERS : '',
         ENVIRONMENT : 'DEV',
