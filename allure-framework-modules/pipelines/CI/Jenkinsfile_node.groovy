@@ -11,7 +11,7 @@ def properties = {
         WORKING_BRANCH = "develop"
 }
 
-node(){
+node(properties){
 	
     stagePrepareEnv(properties);
     stageGitPull();
