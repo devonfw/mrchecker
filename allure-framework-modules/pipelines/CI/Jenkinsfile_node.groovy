@@ -1,6 +1,6 @@
 
-def properties = {
-        TEST_NAME : '\*',
+def properties = [
+        TEST_NAME : '*',
         THREAD_COUNT : '8',
         MVN_PARAMETERS : '',
         ENVIRONMENT : 'DEV',
@@ -8,8 +8,8 @@ def properties = {
         SELENIUM_BROWSER : 'chrome',
         GIT_REPO : 'https://github.com/devonfw/devonfw-testing.git',
         MAIN_BRANCH : 'develop',
-        WORKING_BRANCH = 'develop'
-}
+        WORKING_BRANCH : 'develop'
+]
 
 node(){
 	
