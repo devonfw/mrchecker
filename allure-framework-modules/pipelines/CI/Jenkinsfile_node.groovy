@@ -1,6 +1,11 @@
+
+def properties = {
+        TEST_NAME : "*",
+}
+
 node(){
 	
-    stagePrepareEnv();
+    stagePrepareEnv(properties);
     stageGitPull();
     
     def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
@@ -22,12 +27,28 @@ node(){
     }
 }
 
+//==================================== END OF PIPELINE ===================================
 
-def private void stagePrepareEnv(){
-    stage('Prepare environment'){
-        setJenkinsJobVariables();
-        setWorkspace();
+def private void overrideProperties(properties){
+	for (param in properties){
+		if (env.(param.key) == null ){
+			echo "Adding parameter '${param.key}' with default value: '${param.value}' "
+			env.(param.key) = param.value;
+		} else {
+			echo "Parameter '${param.key}' has overriden value: '${env.(param.key)}' "
+		}
 	}
+	echo sh(script: "env | sort", returnStdout: true)
+}
+
+
+def private void stagePrepareEnv(properties){
+    stage('Prepare environment'){
+        overrideProperties(properties)
+	setJenkinsJobVariables();
+        setWorkspace();
+	echo sh(script: "env | sort", returnStdout: true)
+    }
 }
 
 def private void setJenkinsJobVariables(){
