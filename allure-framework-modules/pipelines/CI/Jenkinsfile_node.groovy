@@ -1,6 +1,14 @@
 
 def properties = {
         TEST_NAME : "*",
+        THREAD_COUNT : "8",
+        MVN_PARAMETERS : "",
+        ENVIRONMENT : "DEV",
+        SELENIUM_HUBURL : "http://10.40.234.103:4444/wd/hub",
+        SELENIUM_BROWSER : "chrome",
+        GIT_REPO : "https://github.com/devonfw/devonfw-testing.git",
+        MAIN_BRANCH : "develop",
+        WORKING_BRANCH = "develop"
 }
 
 node(){
@@ -77,82 +85,19 @@ void setWorkspace(){
 	env.COMMONS_DIR = "${env.PROJECT_HOME}/pipelines/commons";
     echo("Variable commons: " + env.COMMONS_DIR);
     
-    env.MAIN_BRANCH = 'develop'
+   
     
     env.NON_DEVELOP_BRANCH = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals("$env.MAIN_BRANCH");
     echo("Variable NON_DEVELOP_BRANCH: " + env.NON_DEVELOP_BRANCH);
 
+    try{
+            env.APP_WORKSPACE = APP_WORKSPACE;
+            echo("env.APP_WORKSPACE=${env.APP_WORKSPACE}");
+        } catch (Exception e){
+            error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-core-module/")
+        }
     
-    try{
-        env.APP_WORKSPACE = APP_WORKSPACE;
-        echo("env.APP_WORKSPACE=${env.APP_WORKSPACE}");
-    } catch (Exception e){
-        error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-core-module/")
-    }
     
-    
-    try{
-        env.TEST_NAME = TEST_NAME;
-        echo("env.TEST_NAME=${env.TEST_NAME}");
-    } catch (Exception e){
-        echo("env.TEST_NAME was not overwritten");
-        env.TEST_NAME = "*";
-    }
-    
-    try{
-        env.THREAD_COUNT = THREAD_COUNT;
-        echo("env.THREAD_COUNT=${env.THREAD_COUNT}");
-    } catch (Exception e){
-        echo("env.THREAD_COUNT was not overwritten");
-        env.THREAD_COUNT = "8";
-    }
-    
-    try{
-        env.MVN_PARAMETERS = MVN_PARAMETERS;
-        echo("env.MVN_PARAMETERS=${env.MVN_PARAMETERS}");
-    } catch (Exception e){
-        env.MVN_PARAMETERS = "";
-    }
-    
-    try{
-		env.ENVIRONMENT = ENVIRONMENT;
-        echo("env.ENVIRONMENT=${env.ENVIRONMENT}");
-    } catch (Exception e){
-		echo("ENVIRONMENT was not overwritten");
-		env.ENVIRONMENT = "DEV";
-    }
-
-	try{
-		env.SELENIUM_HUBURL = SELENIUM_HUBURL;
-		echo("env.SELENIUM_HUBURL=${env.SELENIUM_HUBURL}");
-	} catch (Exception e){
-		echo("SELENIUM_HUBURL was not overwritten");
-		env.SELENIUM_HUBURL = "http://10.40.234.103:4444/wd/hub";
-	}
-
-	try{
-		env.SELENIUM_BROWSER = SELENIUM_BROWSER;
-		echo("env.SELENIUM_BROWSER=${env.SELENIUM_BROWSER}");
-	} catch (Exception e){
-		echo("SELENIUM_BROWSER was not overwritten");
-		env.SELENIUM_BROWSER = "chrome";
-	}
-
-    try{
-		env.WORKING_BRANCH = WORKING_BRANCH.trim().isEmpty() ? env.BRANCH_NAME : WORKING_BRANCH;
-        echo("env.WORKING_BRANCH=${env.WORKING_BRANCH}");
-    } catch (Exception e){
-		echo("WORKING_BRANCH was not overwritten");
-		env.WORKING_BRANCH = "${env.MAIN_BRANCH}";
-    }
-
-    try{
-		env.GIT_REPO = GIT_REPO;
-    } catch (Exception e){
-		echo("GIT_REPO was not overwritten");
-		env.GIT_REPO="https://github.com/devonfw/devonfw-testing.git"
-    }
-
     echo("After env variables setter");
 
 }
