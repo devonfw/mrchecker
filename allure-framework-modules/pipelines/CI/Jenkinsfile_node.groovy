@@ -28,29 +28,34 @@ pipeline {
         booleanParam(name: 'IS_TO_DEPLOY_REMOTE_NEXUS', defaultValue: false , description: 'Should given job be deploy to Remote Nexus repository')
         string(name: 'MVN_PARAMETERS', defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*')
     }    
-    
-	
-    stagePrepareEnv(properties);
-    stageGitPull();
+    stages{
+        stage('Example') {
+            steps {
+                echo 'Hello World'
+                stagePrepareEnv(properties);
+                stageGitPull();
 
-    setJenkinsJobDescription();
-    boolean isWorkingBranchMaster = isWorkingBranchMaster();
-    
-    timestamps {     
-        try{
-            docker.image('lucst/devonfwe2e:v2-0.4').inside(){
-                    stageBuildCompile();
-                    stageUnitTests();
-                    stageDeploy(env.VERSION);
-           
-                    //Disabled tryMerge(). Finally enable it          
+                setJenkinsJobDescription();
+                boolean isWorkingBranchMaster = isWorkingBranchMaster();
+                
+                timestamps {     
+                    try{
+                        docker.image('lucst/devonfwe2e:v2-0.4').inside(){
+                                stageBuildCompile();
+                                stageUnitTests();
+                                stageDeploy(env.VERSION);
+                       
+                                //Disabled tryMerge(). Finally enable it          
+                            }
+                        currentBuild.result = 'SUCCESS';
+                    } catch (Exception e) {
+                        sendMail(e);
+                        error 'Error: ' + e
+                        currentBuild.result = 'FAILURE';
+                    }
                 }
-            currentBuild.result = 'SUCCESS';
-        } catch (Exception e) {
-            sendMail(e);
-            error 'Error: ' + e
-            currentBuild.result = 'FAILURE';
-        }
+            }
+        }        
     }
 }
 
