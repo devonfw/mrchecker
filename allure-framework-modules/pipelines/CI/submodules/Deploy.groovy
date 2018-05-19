@@ -8,6 +8,7 @@ def call(){
 
 def private void deployToLocalRepo(String version){
     stage('Install to local repo'){
+        echo("version: -${version}-");
         if (version != null || version.isEmpty()){
             sh"""
                 export BASE_PATH=.
@@ -31,6 +32,7 @@ def private void deployToRemoteRepo(String version) {
             usernamePassword(credentialsId: 'ossrh', passwordVariable: 'MAVEN_PASSWORD', usernameVariable: 'MAVEN_USER'), 
             string(credentialsId: 'GPG_PASSWORD', variable: 'GPG_PASSWORD'), zip(credentialsId: 'gpg_sign_mrchecker', variable: 'GPG_HOMEDIR')
             ]) 
+            echo("version: -${version}-");
             if (version != null || version.isEmpty()){
                 sh"""
                     cd ${env.APP_WORKSPACE}
