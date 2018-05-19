@@ -106,7 +106,7 @@ def private void setJenkinsJobDescription(){
 def private String isWorkingBranchMaster(){
     def utils = load "${env.COMMONS_DIR}/Utils.groovy";
     isWorkingBranchMaster = utils.isBranchType("${env.MAIN_BRANCH}")
-    echo("isWorkingBranchMaster: " + env.IS_WORKING_BRANCH_MASTER);
+    echo("isWorkingBranchMaster: " + isWorkingBranchMaster);
     return isWorkingBranchMaster;
 }
 
@@ -132,14 +132,24 @@ void stageDeploy(String version){
 	echo("stageDeploy");
 	//Load Deploy process and run call() method
 	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
-	module.deployToLocalRepo(version);
-    
-    echo("env.IS_TO_DEPLOY_REMOTE_NEXUS : -${env.IS_TO_DEPLOY_REMOTE_NEXUS}-") 
-    
-    if (env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean()){
-        module.deployToRemoteRepo(version);
-    }
-    
+	
+    stages {
+        stage('Deploy - local repo') {
+            steps {
+                echo 'Deploying local'
+                module.deployToLocalRepo(version);
+            }
+        }
+        stage('Deploy - nexus repo') {
+            when {
+                expression { return env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() }
+            }
+            steps {
+                echo 'Deploying to nexus'
+                module.deployToRemoteRepo(version);
+            }
+        }
+    }        
 }
 
 void sendMail(Exception e){
