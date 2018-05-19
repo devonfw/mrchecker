@@ -133,23 +133,21 @@ void stageDeploy(String version){
 	//Load Deploy process and run call() method
 	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
 	
-    stages {
-        stage('Deploy - local repo') {
-            steps {
-                echo 'Deploying local'
-                module.deployToLocalRepo(version);
-            }
+    stage('Deploy - local repo') {
+        steps {
+            echo 'Deploying local'
+            module.deployToLocalRepo(version);
         }
-        stage('Deploy - nexus repo') {
-            when {
-                expression { return env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() }
-            }
-            steps {
-                echo 'Deploying to nexus'
-                module.deployToRemoteRepo(version);
-            }
+    }
+    stage('Deploy - nexus repo') {
+        when {
+            expression { return env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() }
         }
-    }        
+        steps {
+            echo 'Deploying to nexus'
+            module.deployToRemoteRepo(version);
+        }
+    }
 }
 
 void sendMail(Exception e){
