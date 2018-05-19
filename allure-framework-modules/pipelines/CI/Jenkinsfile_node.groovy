@@ -8,18 +8,22 @@ def properties = [
         SELENIUM_BROWSER : 'chrome',
         GIT_REPO : 'https://github.com/devonfw/devonfw-testing.git',
         MAIN_BRANCH : 'develop',
-        WORKING_BRANCH : 'develop'
+        WORKING_BRANCH : 'develop',
+        IS_TO_DEPLOY_REMOTE_NEXUS : false,
+        VERSION : ''
 ]
 
 node(){
 	
     stagePrepareEnv(properties);
     stageGitPull();
+
+    setJenkinsJobDescription();
+    boolean isWorkingBranchMaster = isWorkingBranchMaster();
     
-    def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     timestamps {     
         try{
-            docker.image('lucst/devonfwe2e:v2-0.3').inside(){
+            docker.image('lucst/devonfwe2e:v2-0.4').inside(){
                     stageBuildCompile();
                     stageUnitTests();
                     stageDeploy();
@@ -53,9 +57,9 @@ def private void overrideProperties(properties){
 def private void stagePrepareEnv(properties){
     stage('Prepare environment'){
         overrideProperties(properties)
-	setJenkinsJobVariables();
+        setJenkinsJobVariables();
         setWorkspace();
-	echo sh(script: "env | sort", returnStdout: true)
+        echo sh(script: "env | sort", returnStdout: true)
     }
 }
 
@@ -84,23 +88,28 @@ void setWorkspace(){
     echo("Variable submodules: " + env.SUBMODULES_DIR);
 	env.COMMONS_DIR = "${env.PROJECT_HOME}/pipelines/commons";
     echo("Variable commons: " + env.COMMONS_DIR);
-    
-   
-    
-    env.NON_DEVELOP_BRANCH = currentBuild.description != null && !currentBuild.description.isEmpty() && !currentBuild.description.equals("$env.MAIN_BRANCH");
-    echo("Variable NON_DEVELOP_BRANCH: " + env.NON_DEVELOP_BRANCH);
 
     try{
-            env.APP_WORKSPACE = APP_WORKSPACE;
-            echo("env.APP_WORKSPACE=${env.APP_WORKSPACE}");
-        } catch (Exception e){
-            error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-core-module/")
-        }
-    
-    
+        env.APP_WORKSPACE = APP_WORKSPACE;
+        echo("env.APP_WORKSPACE=${env.APP_WORKSPACE}");
+    } catch (Exception e){
+        error("Setup application folder used for CI execution.\nExample APP_WORKSPACE=allure-core-module/")
+    }    
     echo("After env variables setter");
-
 }
+
+def private void setJenkinsJobDescription(){
+    def utils = load "${env.COMMONS_DIR}/Utils.groovy";
+    utils.setJenkinsDescription("${env.WORKING_BRANCH}");
+}
+
+def private String isWorkingBranchMaster(){
+    def utils = load "${env.COMMONS_DIR}/Utils.groovy";
+    isWorkingBranchMaster = utils.isBranchType("${env.MAIN_BRANCH}")
+    echo("isWorkingBranchMaster: " + env.IS_WORKING_BRANCH_MASTER);
+    return isWorkingBranchMaster;
+}
+
 
 /**
 Verify that the code builds without errors
@@ -119,11 +128,16 @@ void stageUnitTests(){
 	module();
 }
 
-void stageDeploy(){
+void stageDeploy(String version){
 	echo("stageDeploy");
 	//Load Deploy process and run call() method
 	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
-	module();
+	module.deployToLocalRepo(version);
+    
+    if (env.IS_TO_DEPLOY_REMOTE_NEXUS){
+        module.deployToRemoteRepo(version);
+    }
+    
 }
 
 void sendMail(Exception e){

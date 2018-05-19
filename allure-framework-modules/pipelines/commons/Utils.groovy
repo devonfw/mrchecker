@@ -17,12 +17,17 @@ def String loadFile(String filename){
 	return file;
 }
 
-def isBranchType(String branchType){
+def public boolean isBranchType(String branchType){
   sh "git branch -a --contains HEAD | grep -v detached | grep -v \"no branch\" | sort | head -1 > branchname.txt";
   branchname = readFile('branchname.txt').trim();
   echo "Branchname = "  + branchname;
-  status = branchname.contains(branchType) ? true : false;
+  status = branchname.toLowerCase().matches("(.*)${branchType}(.*)");
   return status;
+}
+
+def public void setJenkinsDescription(Sting text){
+    //Description visible under Job Executor Number 
+    currentBuild.setDescription(text)  
 }
 
 def public generateUserIDVariable(){
