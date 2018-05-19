@@ -134,17 +134,10 @@ void stageDeploy(String version){
 	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
 	
     stage('Deploy - local repo') {
-        steps {
-            echo 'Deploying local'
-            module.deployToLocalRepo(version);
-        }
+        module.deployToLocalRepo(version);
     }
     stage('Deploy - nexus repo') {
-        when {
-            expression { return env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() }
-        }
-        steps {
-            echo 'Deploying to nexus'
+        if ( env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() ){
             module.deployToRemoteRepo(version);
         }
     }
