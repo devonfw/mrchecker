@@ -130,7 +130,9 @@ void stageUnitTests(){
 
 void stageDeploy(String version){
 	echo("stageDeploy");
-	//Load Deploy process and run call() method
+	echo("version: -${version}-");
+    
+    //Load Deploy process and run call() method
 	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
 	
     stage('Deploy - local repo') {

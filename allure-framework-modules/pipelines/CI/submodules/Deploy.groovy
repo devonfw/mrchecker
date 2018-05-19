@@ -27,20 +27,19 @@ def private void deployToRemoteRepo(String version) {
         withCredentials([
             usernamePassword(credentialsId: 'ossrh', passwordVariable: 'MAVEN_PASSWORD', usernameVariable: 'MAVEN_USER'), 
             string(credentialsId: 'GPG_PASSWORD', variable: 'GPG_PASSWORD'), zip(credentialsId: 'gpg_sign_mrchecker', variable: 'GPG_HOMEDIR')
-            ]) 
-            echo("version: -${version}-");
-            if (version == null || version.isEmpty()){
-                sh"""
-                    cd ${env.APP_WORKSPACE}
-                    mvn -DskipTests=true -P release deploy ${env.MVN_PARAMETERS}
-                """
-            } else{
-                sh"""
-                    cd ${env.APP_WORKSPACE}
-                    mvn -Dversion=${version} -DskipTests=true -P release deploy ${env.MVN_PARAMETERS}
-                """
+            ]){ 
+                if (version == null || version.isEmpty()){
+                    sh"""
+                        cd ${env.APP_WORKSPACE}
+                        mvn -DskipTests=true -P release deploy ${env.MVN_PARAMETERS}
+                    """
+                } else{
+                    sh"""
+                        cd ${env.APP_WORKSPACE}
+                        mvn -Dversion=${version} -DskipTests=true -P release deploy ${env.MVN_PARAMETERS}
+                    """
+                }
             }
-    
 	
 }
 
