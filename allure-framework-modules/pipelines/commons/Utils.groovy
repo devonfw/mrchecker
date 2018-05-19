@@ -25,7 +25,7 @@ def public boolean isBranchType(String branchType){
   return status;
 }
 
-def public void setJenkinsDescription(Sting text){
+def public void setJenkinsDescription(String text){
     //Description visible under Job Executor Number 
     currentBuild.setDescription(text)  
 }
