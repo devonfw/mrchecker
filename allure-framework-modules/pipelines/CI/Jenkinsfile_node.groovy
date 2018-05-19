@@ -1,5 +1,5 @@
 
-def properties = [
+/* def properties = [
         TEST_NAME : '*',
         THREAD_COUNT : '8',
         MVN_PARAMETERS : '',
@@ -12,8 +12,23 @@ def properties = [
         IS_TO_DEPLOY_REMOTE_NEXUS : false,
         VERSION : ''
 ]
-
-node(){
+ */
+pipeline {
+    agent any
+    parameters {
+        string(name: 'WORKING_BRANCH', defaultValue: 'develop', description: 'Execute job on given branch')
+        string(name: 'TEST_NAME', defaultValue: '*', description: 'What tests to run')
+        string(name: 'THREAD_COUNT', defaultValue: '8', description: 'Number of concurrent test execution')
+        string(name: 'ENVIRONMENT', defaultValue: 'DEV', description: 'Value taken from   environment.csv  file')
+        string(name: 'VERSION', defaultValue: '', description: 'Application version number. If empty, pom.xml version will be taken')
+        string(name: 'SELENIUM_HUBURL', defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid')
+        string(name: 'SELENIUM_BROWSER', defaultValue: 'chrome', description: 'Optional variable. Used only in Selenium execution, for Browser type')
+        string(name: 'GIT_REPO', defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run')
+        string(name: 'MAIN_BRANCH', defaultValue: 'develop', description: 'Optional variable. What is your "master" branch')
+        booleanParam(name: 'IS_TO_DEPLOY_REMOTE_NEXUS', defaultValue: false , description: 'Should given job be deploy to Remote Nexus repository')
+        string(name: 'MVN_PARAMETERS', defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*')
+    }    
+    
 	
     stagePrepareEnv(properties);
     stageGitPull();
@@ -42,13 +57,15 @@ node(){
 //==================================== END OF PIPELINE ===================================
 
 def private void overrideProperties(properties){
-	for (param in properties){
-		if (env.(param.key) == null ){
+	for (param in params){
+		env.(param.key) = param.value;
+        
+        /* if (env.(param.key) == null ){
 			echo "Adding parameter '${param.key}' with default value: '${param.value}' "
-			env.(param.key) = param.value;
+            env.(param.key) = param.value;
 		} else {
 			echo "Parameter '${param.key}' has overriden value: '${env.(param.key)}' "
-		}
+		} */
 	}
 	echo sh(script: "env | sort", returnStdout: true)
 }
