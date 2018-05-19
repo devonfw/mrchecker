@@ -26,7 +26,7 @@ node(){
             docker.image('lucst/devonfwe2e:v2-0.4').inside(){
                     stageBuildCompile();
                     stageUnitTests();
-                    stageDeploy();
+                    stageDeploy(env.VERSION);
            
                     //Disabled tryMerge(). Finally enable it          
                 }
