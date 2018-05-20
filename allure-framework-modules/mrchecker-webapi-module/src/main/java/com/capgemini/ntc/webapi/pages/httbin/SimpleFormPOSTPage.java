@@ -63,10 +63,10 @@ public class SimpleFormPOSTPage extends BasePageWebAPI {
 	
 	public void pickPizzaToppings(PizzaToppings... pizzaToppings) {
 		List<PizzaToppings> toppings = new ArrayList<>(Arrays.asList(pizzaToppings));
-		List<String> nb = toppings.stream()
+		List<String> toppingsStrings = toppings.stream()
 						.map(element -> element.getPizzaToppingValue())
 						.collect(Collectors.toList());
-		requestFields.replace("topping", nb);
+		requestFields.replace("topping", toppingsStrings);
 		
 	}
 	

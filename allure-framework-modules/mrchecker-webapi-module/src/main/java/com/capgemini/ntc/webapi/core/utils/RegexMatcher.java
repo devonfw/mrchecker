@@ -3,7 +3,7 @@ package com.capgemini.ntc.webapi.core.utils;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 /*
- * This is extension for Matcher from hamcrest to use matches in assertThat construction:
+ * This is extension for hamcrest Matcher to use 'matches' in assertThat method, example:
  * assertThat(selenium.getTitle(), matches("Template T\d{3}"));
  */
 
