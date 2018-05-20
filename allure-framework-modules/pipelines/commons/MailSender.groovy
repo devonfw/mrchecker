@@ -16,7 +16,7 @@ private String generateMailBody(String message){
 	
 	def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
 	
-	def String message = \
+	def String text = \
 	"See <${env.BUILD_URL}>\n" + \
 	"" + message + "\n" + \
 	"------------------------------------------------\n" + \
@@ -27,7 +27,7 @@ private String generateMailBody(String message){
 	"CHANGE_LOG: \n" + currentBuild.changeSets + "\n" + \
 	"\n\n ---------------------------------------------- \n"
 	
-	return message;
+	return text;
 	}
 
 
