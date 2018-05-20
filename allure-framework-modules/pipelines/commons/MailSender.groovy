@@ -29,6 +29,7 @@ private String generateMailBody(String message){
 	"CHANGE_LOG: \n" + currentBuild.changeSets + "\n" + \
 	"\n\n ---------------------------------------------- \n"
 	
+	echo("Text to send: \n " + text)
 	return text;
 	}
 
