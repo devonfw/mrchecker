@@ -23,7 +23,7 @@ import com.capgemini.ntc.webapi.pages.httbin.SimpleFormPOSTPage.PizzaToppings;
 import io.restassured.response.Response;
 
 /*
- * This example is only for a positive case because 'httpbin.org/post' doesn't include server-side validations.
+ * This example covering only positive cases because 'httpbin.org/post' doesn't include server-side validations.
  * On the other hand 'httpbin.org/forms/post' including client-side validations. Below tests will cover them.
  */
 
