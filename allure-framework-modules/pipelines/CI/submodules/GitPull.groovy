@@ -27,22 +27,20 @@ def void setGitAuthor() {
 	utils.loadProperties('build.properties');
 }
 	
-def void tryMerge(){ 	
+def void tryMergeWithBranch(String targetBranch){ 	
 
-
-	def TARGET_MERGE_BRANCH = env.MAIN_BRANCH;
 	def WORKING_BRANCH  = env.WORKING_BRANCH;
 	def utils = load "${env.SUBMODULES_DIR}/Utils.groovy";
     try{
 		echo ("Try merge command");
-        sh"git merge --no-commit --no-ff ${TARGET_MERGE_BRANCH} > git_merge_result.txt"
+        sh"git merge --no-commit --no-ff ${targetBranch} > git_merge_result.txt"
     }catch (Exception e){
 		echo ("Merge exception");
         def String message = ""+e+"\n";
         //SendMail with e
         def mailSender = load "${env.COMMONS_DIR}/MailSender.groovy";
         mailSender(e);
-        sh"git request-pull ${TARGET_MERGE_BRANCH} origin ${WORKING_BRANCH}"    
+        sh"git request-pull ${targetBranch} origin ${WORKING_BRANCH}"    
         sh"git merge --abort" 
         message = utils.loadFile("git_merge_result.txt") + "\n" +e
         error(message);

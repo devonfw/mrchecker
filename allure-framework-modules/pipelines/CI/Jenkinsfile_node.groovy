@@ -27,8 +27,6 @@ node(){
                     stageBuildCompile();
                     stageUnitTests();
                     stageDeploy(env.VERSION);
-           
-                    //Disabled tryMerge(). Finally enable it          
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
@@ -159,7 +157,7 @@ void stageGitPull(){
         //Load GitPull file
         def module = load "${env.SUBMODULES_DIR}/GitPull.groovy";
         module.setGitAuthor();
-        /* module.tryMerge(); */
+        module.tryMergeWithBranch(env.MAIN_BRANCH);
     }       
 }
 
