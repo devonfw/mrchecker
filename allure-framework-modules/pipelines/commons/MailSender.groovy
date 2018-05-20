@@ -1,6 +1,8 @@
+def call(){
+	
+}
 
-
-def call(String message){
+public void sendMail(String message) {
 	echo 'Sending e-mail: ' + env.GIT_AUTHOR_EMAIL;
 	mail bcc: '', body: generateMailBody(message), cc: '', charset: 'UTF-8', from: '', mimeType: 'text/plain', replyTo: '', subject: 'Build failed!', to: env.GIT_AUTHOR_EMAIL
 }

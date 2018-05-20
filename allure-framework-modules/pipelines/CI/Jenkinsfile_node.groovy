@@ -15,14 +15,15 @@ def properties = [
 
 node(){
 	
-    stagePrepareEnv(properties);
-    stageGitPull();
-
-    setJenkinsJobDescription();
-    boolean isWorkingBranchMaster = isWorkingBranchMaster();
+	
+	timestamps {
+		try{
+		    stagePrepareEnv(properties);
+		    stageGitPull();
+		
+		    setJenkinsJobDescription();
+		    boolean isWorkingBranchMaster = isWorkingBranchMaster();
     
-    timestamps {     
-        try{
             docker.image('lucst/devonfwe2e:v2-0.4').inside(){
                     stageBuildCompile();
                     stageUnitTests();
@@ -30,7 +31,7 @@ node(){
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
-            sendMail(e.toString());
+            sendMail.sendMail(e.toString());
             error 'Error: ' + e
             currentBuild.result = 'FAILURE';
         }

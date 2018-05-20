@@ -39,7 +39,7 @@ def void tryMergeWithBranch(String targetBranch){
         String message = utils.loadFile("git_merge_result.txt") + "\n" +e
         //SendMail with e
 //        mailSender = load "${env.COMMONS_DIR}/MailSender.groovy";
-//        mailSender(message);
+//        mailSender.sendMail(message);
         sh"git request-pull ${targetBranch} origin ${WORKING_BRANCH}"    
         sh"git merge --abort" 
         error(message);
