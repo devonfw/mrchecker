@@ -30,7 +30,7 @@ node(){
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
-            sendMail(e);
+            sendMail(e.toString());
             error 'Error: ' + e
             currentBuild.result = 'FAILURE';
         }
