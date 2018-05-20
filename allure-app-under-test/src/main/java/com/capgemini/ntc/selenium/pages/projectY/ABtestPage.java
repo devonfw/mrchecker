@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.ntc.selenium.core.BasePage;
+import com.capgemini.ntc.selenium.pages.environment.GetEnvironmentParam;
+import com.capgemini.ntc.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.ntc.test.core.logger.BFLogger;
 
 public class ABtestPage extends BasePage {
@@ -14,20 +16,28 @@ public class ABtestPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.contains("abtest");
+						.contains(PageSubURLsProjectYEnum.ABTEST.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load()");
+		BFLogger.logDebug("Load 'A/B Test Control' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.ABTEST.getValue());
+		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "The Internet";
+		return getActualPageTitle();
 	}
 	
+	/**
+	 * Clicks 'Elemental Selenium' link at the bottom of the page.
+	 * 
+	 * @return ElementalSeleniumPage object.
+	 */
 	public ElementalSeleniumPage clickElementalSeleniumLink() {
 		WebElement elementSeleniumClickLink = getDriver().findElementDynamic(selectorSeleniumLink);
 		elementSeleniumClickLink.click();
@@ -35,9 +45,12 @@ public class ABtestPage extends BasePage {
 		return new ElementalSeleniumPage();
 	}
 	
+	/**
+	 * Switches window to next different than current one.
+	 */
 	public void switchToNextTab() {
 		ArrayList<String> tabsList = new ArrayList<String>(getDriver().getWindowHandles());
 		getDriver().switchTo()
-				.window(tabsList.get(1));
+						.window(tabsList.get(1));
 	}
 }

@@ -21,10 +21,4 @@ public class SimpleGETPage extends BasePageWebAPI {
 	public String getEndpoint() {
 		return ENDPOINT;
 	}
-	
-
-	public String getMessage() {
-		// Useful only for SOAP queries
-		return null;
-	}
 }

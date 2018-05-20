@@ -31,10 +31,6 @@ public class BasePageWebApiTest extends BaseTest {
 		}
 		
 		@Override
-		public String getMessage() {
-			return null;
-		}
-
 		public String getEndpoint() {
 			return null;
 		}

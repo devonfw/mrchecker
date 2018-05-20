@@ -14,27 +14,26 @@ public class CheckboxesPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("The checkboxes page is loaded.");
+		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHECKBOX.getValue());
+						.contains(PageSubURLsProjectYEnum.CHECKBOX.getValue());
 	}
 	
 	@Override
 	public void load() {
-		BFLogger.logDebug("load");
+		BFLogger.logDebug("Load 'Checkboxes' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.CHECKBOX.getValue());
 		getDriver().waitForPageLoaded();
-		
 	}
 	
 	@Override
 	public String pageTitle() {
-		return getDriver().getTitle();
+		return getActualPageTitle();
 	}
 	
 	public boolean isElementCheckboxesVisible() {
 		getDriver().elementCheckbox(selectorCheckboxesForm)
-				.isDisplayed();
+						.isDisplayed();
 		return true;
 	}
 	
@@ -45,7 +44,7 @@ public class CheckboxesPage extends BasePage {
 	
 	public void thickCheckbox(int index) {
 		getDriver().elementCheckbox(selectorCheckboxesForm)
-				.setCheckBoxByIndex(index);
+						.setCheckBoxByIndex(index);
 	}
 	
 	public boolean isCheckboxSelectedAfter(int index) {
@@ -55,7 +54,7 @@ public class CheckboxesPage extends BasePage {
 	
 	public void unthickCheckbox(int index) {
 		getDriver().elementCheckbox(selectorCheckboxesForm)
-				.unsetCheckBoxByIndex(index);
+						.unsetCheckBoxByIndex(index);
 	}
 	
 }
