@@ -31,7 +31,7 @@ node(){
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
-            sendMail.sendMail(e.toString());
+            sendMail(e);
             error 'Error: ' + e
             currentBuild.result = 'FAILURE';
         }
@@ -144,7 +144,7 @@ void sendMail(Exception e){
 	echo("sendMail")
 	//Load Mail file and run call() method
 	def module = load "${env.COMMONS_DIR}/MailSender.groovy";
-	module(e);
+	module.sendMail(e.toString());
 }
 
 /**
