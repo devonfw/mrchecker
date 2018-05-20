@@ -14,7 +14,7 @@ import com.capgemini.ntc.webapi.pages.environment.GetEnvironmentParam;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class SimplePOSTPage extends BasePageWebAPI {
+public class SimpleFormPOSTPage extends BasePageWebAPI {
 	
 	private final static String	HOSTNAME	= GetEnvironmentParam.HTTPBIN.getValue();
 	private final static String	PATH		= "/post";
@@ -32,9 +32,7 @@ public class SimplePOSTPage extends BasePageWebAPI {
 		requestFields.put("topping", "");
 	}
 	
-	public Response sendPOSTQuery() {
-		// BFLogger.logInfo(Arrays.toString(requestFields.entrySet()
-		// .toArray()));
+	public Response submitForm() {
 		return DriverManager.getDriverWebAPI()
 						.contentType(ContentType.URLENC)
 						.formParams(requestFields)
