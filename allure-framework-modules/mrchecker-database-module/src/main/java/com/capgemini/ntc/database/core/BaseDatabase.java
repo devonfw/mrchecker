@@ -27,7 +27,7 @@ abstract public class BaseDatabase implements ITestObserver {
 	protected String        dbPrefix      = "default";
 	protected EntityManager entityManager = null;
 
-	public final static String analitycsCategoryName = "Database-Module";
+	public final static String analyticsCategoryName = "Database-Module";
 
 	static {
 		// Get analytics instance created in BaseTest
@@ -120,7 +120,7 @@ abstract public class BaseDatabase implements ITestObserver {
 
 	private void assignEntityManager() {
 		if (entityManager != null) {
-			this.entityManager = DBDriverManager.createEntityManager(this.dbPrefix);
+			this.entityManager = DriverManager.createEntityManager(this.dbPrefix);
 		}
 	}
 
