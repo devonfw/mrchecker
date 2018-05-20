@@ -8,7 +8,7 @@ def properties = [
         SELENIUM_BROWSER : 'chrome',
         GIT_REPO : 'https://github.com/devonfw/devonfw-testing.git',
         MAIN_BRANCH : 'origin/develop',
-        WORKING_BRANCH : 'develop',
+        WORKING_BRANCH : 'origin/develop',
         IS_TO_DEPLOY_REMOTE_NEXUS : false,
         VERSION : ''
 ]

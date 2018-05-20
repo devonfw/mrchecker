@@ -36,13 +36,12 @@ def void tryMergeWithBranch(String targetBranch){
         sh"git merge --no-commit --no-ff ${targetBranch} > git_merge_result.txt"
     }catch (Exception e){
 		echo ("Merge exception");
-        def String message = ""+e+"\n";
+        def String message = utils.loadFile("git_merge_result.txt") + "\n" +e
         //SendMail with e
         def mailSender = load "${env.COMMONS_DIR}/MailSender.groovy";
-        mailSender(e);
+        mailSender(message);
         sh"git request-pull ${targetBranch} origin ${WORKING_BRANCH}"    
         sh"git merge --abort" 
-        message = utils.loadFile("git_merge_result.txt") + "\n" +e
         error(message);
     }
 
