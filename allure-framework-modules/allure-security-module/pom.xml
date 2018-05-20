@@ -9,7 +9,7 @@
         <version>2.1.0</version>
     </parent>
     <artifactId>allure-security-module</artifactId>
-    <version>1.0.1</version>
+    <version>${version}</version>
     <packaging>jar</packaging>
     <name>AllureTestFramework - Security - Module</name>
     <description>Allure Test Framework Security supports:
@@ -52,8 +52,9 @@
     </scm>
 
     <properties>
+        <version>1.0.1</version>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-
+        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
         <allure-core-module.version>4.12.0.6</allure-core-module.version>
 
     </properties>

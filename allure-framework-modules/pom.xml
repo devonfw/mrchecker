@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.capgemini.ntc</groupId>
     <artifactId>allure-test-framework</artifactId>
-    <version>2.1.0</version>
+    <version>${version}</version>
     <name>AllureTestFramework</name>
     <description>Allure Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
@@ -47,25 +47,19 @@
         <!-- <module>build-tools</module> -->
     </modules>
 
-
-    <repositories>
-        <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
-        </repository>
-    </repositories>
-
-
     <distributionManagement>
         <!-- Repository used as default deploy phase. If you like to deploy
             to Maven Central, then use profile release - "mvn -P release" -->
         <repository>
-            <id>Local repository</id>
-            <url>file://${env.BASE_PATH}/m2/repository</url>
+            <id>Local_repository</id>
+            <url>file://${env.BASE_PATH}/usr/share/maven2</url>
         </repository>
     </distributionManagement>
 
+
     <properties>
+        <version>2.1.0</version>
+        
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Java settings -->
@@ -107,6 +101,7 @@
         <rest-assured.version>3.0.6</rest-assured.version>
         
         <!-- Allure Annotation lib -->
+        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
         <allure.version>1.5.4</allure.version>
         
     </properties>

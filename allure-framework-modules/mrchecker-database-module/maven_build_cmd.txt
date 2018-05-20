@@ -1,0 +1,12 @@
+mvn clean compile -DskipTests
+
+
+#6. Deploy to Central Maven
+mvn -P release clean verify install deploy -DskipTests=true
+
+#6. Deploy to local repo 
+mvn -s /d/eclipse/Allure_Test_Framework/m2/settings.xml  clean install deploy -DskipTests=true
+
+#7  Formatter
+mvn formatter:validate
+mvn formatter:format

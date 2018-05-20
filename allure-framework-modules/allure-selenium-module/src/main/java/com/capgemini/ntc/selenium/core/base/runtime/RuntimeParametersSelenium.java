@@ -12,7 +12,7 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
 	BROWSER("browser", "chrome"),
 	BROWSER_VERSION("browserVersion", ""),
-	SELENIUM_GRID("seleniumGrid", "false"),
+	SELENIUM_GRID("seleniumGrid", "http://10.40.234.103:4444/wd/hub"),
 	OS("os", "");
 	
 	private String	paramName;

@@ -27,15 +27,15 @@ import com.jamesmurty.utils.XMLBuilder;
  * </soap12:Envelope>
  **/
 public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
-	
+
 	/*
 	 * SOAP response built from Java code
 	 */
-	
+
 	public FarenheitToCelsiusMethod_Request_FromCode() {
 		setRoot("FahrenheitToCelsius");
 	}
-	
+
 	/**
 	 * @return Generate SOAP request in String format
 	 */
@@ -50,18 +50,18 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 		}
 		return message;
 	}
-	
+
 	/**
 	 * @return Root XML structure
 	 */
 	public XMLBuilder getRoot() {
 		return xmlBody;
 	}
-	
+
 	// Set any type of "nodes" under xml Root
 	/**
 	 * Set "Fahrenheit" node under xml Root
-	 * 
+	 *
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsius>
 	 *         <Fahrenheit>100</Fahrenheit>
@@ -72,11 +72,11 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 						.text(Integer.toString(fahrenheit));
 		return this;
 	}
-	
+
 	// Set any nodes under xml Root
 	/**
 	 * Set "Smth" node under xml Root
-	 * 
+	 *
 	 * @param fahrenheit
 	 * @return <FahrenheitToCelsius>
 	 *         <Smth>Hello</Smth>
@@ -87,14 +87,14 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 						.text(Smth);
 		return this;
 	}
-	
+
 	/*
 	 * ----------------------------------
 	 * Any handy actions after this point
 	 * ----------------------------------
 	 */
 	private XMLBuilder xmlBody;
-	
+
 	private void setRoot(String nodeName) {
 		try {
 			this.xmlBody = XMLBuilder.create(nodeName);
@@ -102,7 +102,7 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 			new Exception(e);
 		}
 	}
-	
+
 	public String getEndpoint() {
 		// Useful only for REST Tests
 		return null;

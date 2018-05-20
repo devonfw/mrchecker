@@ -22,21 +22,21 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
  * </soap12:Envelope>
  **/
 public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
-	
+
 	/*
 	 * SOAP response built from Java code
 	 */
 	// optional parameters
 	private String path = "/src/test/resources/soapInput/farenheittocelsius/samplerequest.xml";
-	
+
 	public FarenheitToCelsiusMethod_Request_FromFile() {
 	}
-	
+
 	public FarenheitToCelsiusMethod_Request_FromFile setFilePath(String path) {
 		this.path = path;
 		return this;
 	}
-	
+
 	public String getMessage() {
 		String message = "";
 		try {
@@ -46,33 +46,33 @@ public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 		}
 		return message;
 	}
-	
+
 	/*
 	 * ------------
 	 * Util methods
 	 * ------------
 	 */
-	
+
 	private String getStringOutOfFile(final String filePath) throws IOException {
 		String path = System.getProperty("user.dir") + Paths.get(filePath);
 		if (!exists(path)) {
 			throw new IOException("Could not find file. Path='" + path + "' does not exist");
 		}
-		
+
 		String responseEnvelope = readFile(path, StandardCharsets.UTF_8);
 		return responseEnvelope;
 	}
-	
+
 	private boolean exists(String path) {
 		File f = new File(path);
 		return f.exists();
 	}
-	
+
 	private String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
-	
+
 	public String getEndpoint() {
 		// Useful only for REST Tests
 		return null;
