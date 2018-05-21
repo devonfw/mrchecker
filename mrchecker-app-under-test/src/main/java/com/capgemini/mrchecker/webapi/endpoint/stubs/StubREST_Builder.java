@@ -13,9 +13,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 import java.util.UUID;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.endpoint.stubs.StubBuilder;
-import com.capgemini.mrchecker.webapi.endpoint.stubs.StubREST_Builder;
-import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
+import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 
 import io.restassured.http.ContentType;
 

@@ -10,9 +10,8 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
-import com.capgemini.ntc.webapi.core.BasePageWebAPI;
-import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Response_FromCode;
-import com.capgemini.ntc.webapi.soap.SoapMessageGenerator;
+import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
+import com.capgemini.mrchecker.webapi.soap.SoapMessageGenerator;
 import com.jamesmurty.utils.XMLBuilder;
 
 public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
@@ -32,7 +31,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 		String message = "";
 		try {
 			SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
-							.asString());
+					.asString());
 			message = SoapMessageGenerator.printSoapMessage(soapMessage);
 		} catch (SOAPException | SAXException | IOException | ParserConfigurationException | TransformerException e) {
 			new Exception(e);
@@ -59,8 +58,8 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	 */
 	public FarenheitToCelsiusMethod_Response_FromCode setFahrenheitToCelsiusResult(double value) {
 		getRoot()
-						.element("FahrenheitToCelsiusResult")
-						.text(Double.toString(value));
+				.element("FahrenheitToCelsiusResult")
+				.text(Double.toString(value));
 		return this;
 	}
 	
@@ -74,7 +73,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 	 */
 	public FarenheitToCelsiusMethod_Response_FromCode setSmth(String Smth) {
 		getRoot().element("Smth")
-						.text(Smth);
+				.text(Smth);
 		return this;
 	}
 	

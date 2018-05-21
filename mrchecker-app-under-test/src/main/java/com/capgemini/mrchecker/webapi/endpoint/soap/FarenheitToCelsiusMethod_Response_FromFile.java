@@ -7,8 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.capgemini.ntc.webapi.core.BasePageWebAPI;
-import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Response_FromFile;
+import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
 
 public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 	

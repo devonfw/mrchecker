@@ -7,8 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.capgemini.ntc.webapi.core.BasePageWebAPI;
-import com.capgemini.ntc.webapi.endpoint.soap.FarenheitToCelsiusMethod_Request_FromFile;
+import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
 
 /**
  * SOAP endpoint for a SOAP web service that matches a response body with the following SOAP envelope:

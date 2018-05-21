@@ -11,9 +11,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.put;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlMatching;
 
-import com.capgemini.mrchecker.webapi.endpoint.stubs.StubBuilder;
-import com.capgemini.mrchecker.webapi.endpoint.stubs.StubSOAP_Builder;
-import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
+import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 
 public class StubSOAP_Builder {
 	
