@@ -15,7 +15,7 @@ MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/exa
 			string(defaultValue: 'DEV', description: 'Value taken from   environment.csv  file', name: 'ENVIRONMENT'), 
 			string(defaultValue: '8', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
 			string(defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
-			choice(choices: 'chrome\nfirefox\nie'], description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'), 
+			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'), 
 			booleanParam(defaultValue: false, description: '''Should given job be deployed to Remote Nexus repository ? 
 #1. Go to Nexus staging repo 
 https://oss.sonatype.org/#stagingRepositories  and release    WAIT ~15min to update Maven Central Repo
