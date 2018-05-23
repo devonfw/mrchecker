@@ -11,7 +11,6 @@ import com.capgemini.ntc.webapi.core.BasePageWebAPI;
 import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
 import com.capgemini.ntc.webapi.pages.environment.GetEnvironmentParam;
 
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class SimpleFormPOSTPage extends BasePageWebAPI {
@@ -20,9 +19,9 @@ public class SimpleFormPOSTPage extends BasePageWebAPI {
 	private final static String	PATH		= "/post";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	private static Map<String, Object> requestFields = new HashMap<>();
+	private Map<String, Object> requestFields = new HashMap<>();
 	
-	static {
+	{
 		requestFields.put("custname", "");
 		requestFields.put("custtel", "");
 		requestFields.put("custemail", "");
@@ -34,7 +33,6 @@ public class SimpleFormPOSTPage extends BasePageWebAPI {
 	
 	public Response submitForm() {
 		return DriverManager.getDriverWebAPI()
-						.contentType(ContentType.URLENC)
 						.formParams(requestFields)
 						.when()
 						.post(ENDPOINT);
