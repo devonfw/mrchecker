@@ -3,7 +3,7 @@ node(){
 	//Set Jenkins run parameters
 	properties([
 		parameters([
-			string(defaultValue: 'allure-framework-modules/allure-example-module/', description: 'Execute job for given Module. Example allure-framework-modules/allure-example-module/ ', name: 'APP_WORKSPACE'),
+			string(defaultValue: 'allure-framework-modules/mrchecker-database-module/', description: 'Execute job for given Module. Example allure-framework-modules/mrchecker-database-module/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
 			string(defaultValue: '*', description: '''What tests to run
 HelloWorld - run test class -HelloWorld-
