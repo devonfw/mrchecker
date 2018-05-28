@@ -1,24 +1,42 @@
-
-def properties = [
-        TEST_NAME : '*',
-        THREAD_COUNT : '8',
-        MVN_PARAMETERS : '',
-        ENVIRONMENT : 'DEV',
-        SELENIUM_HUBURL : 'http://10.40.234.103:4444/wd/hub',
-        SELENIUM_BROWSER : 'chrome',
-        GIT_REPO : 'https://github.com/devonfw/devonfw-testing.git',
-        MAIN_BRANCH : 'origin/develop',
-        WORKING_BRANCH : 'origin/develop',
-        IS_TO_DEPLOY_REMOTE_NEXUS : false,
-        VERSION : ''
-]
-
 node(){
 	
+	//Set Jenkins run parameters
+	properties([
+		parameters([
+			string(defaultValue: 'allure-framework-modules/allure-core-module/', description: 'Execute job for given Module. Example allure-framework-modules/allure-core-module/ ', name: 'APP_WORKSPACE'),
+			string(defaultValue: 'origin/develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
+			string(defaultValue: '*', description: '''What tests to run
+HelloWorld - run test class -HelloWorld-
+Hel*orld - run all test classes start with -Hel- and end with -orld-  
+TestSquare,TestCi*le -  run test class TestSquare  and  all test classes start with -Hel- and end with -orld-
+TestCircle#mytest  - run test class TestCircle and only test method -mytest-
+TestCircle#testOne+testTwo - run test class TestCircle and test method -testOne-  and -testTwo-
+TestCircle#test* - run test class TestCircle and all test methods start with -test-
+MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html''', name: 'TEST_NAME'), 
+			string(defaultValue: 'DEV', description: 'Value taken from   environment.csv  file', name: 'ENVIRONMENT'), 
+			string(defaultValue: '8', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
+			booleanParam(defaultValue: false, description: '''Should given job be deployed to Remote Nexus repository ? 
+#1. Go to Nexus staging repo 
+https://oss.sonatype.org/#stagingRepositories  and release    WAIT ~15min to update Maven Central Repo
+#2. Verify release OR snapshot repo
+Release
+https://oss.sonatype.org/content/repositories/releases/com/capgemini/ntc/
+https://oss.sonatype.org/content/groups/public/com/capgemini/ntc/
+https://repo.maven.apache.org/maven2/com/capgemini/ntc/
+Snapshot
+https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', name: 'IS_TO_DEPLOY_REMOTE_NEXUS'), 
+			string(defaultValue: '', description: 'Application version number. If empty, pom.xml version will be taken', name: 'VERSION'), 
+			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 
+			string(defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
+			string(defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*', name: 'MVN_PARAMETERS')
+			]), 
+			pipelineTriggers([])
+		]);
 	
+
 	timestamps {
 		try{
-		    stagePrepareEnv(properties);
+		    stagePrepareEnv(params);
 		    stageGitPull();
 		
 		    setJenkinsJobDescription();
@@ -40,8 +58,8 @@ node(){
 
 //==================================== END OF PIPELINE ===================================
 
-def private void overrideProperties(properties){
-	for (param in properties){
+def private void overrideProperties(params){
+	for (param in params){
 		if (env.(param.key) == null ){
 			echo "Adding parameter '${param.key}' with default value: '${param.value}' "
 			env.(param.key) = param.value;
@@ -81,7 +99,7 @@ Jenkins does not create the WORKSPACE env var
 void setWorkspace(){ 
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
     echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
-    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-framework-modules/";
+    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/${env.APP_WORKSPACE}/";
     echo("Variable Project home: " + env.PROJECT_HOME);
 	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/pipelines/CI/submodules";
     echo("Variable submodules: " + env.SUBMODULES_DIR);
