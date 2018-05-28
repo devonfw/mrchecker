@@ -4,7 +4,7 @@ node(){
 	properties([
 		parameters([
 			string(defaultValue: 'allure-framework-modules/mrchecker-database-module/', description: 'Execute job for given Module. Example allure-framework-modules/mrchecker-database-module/ ', name: 'APP_WORKSPACE'),
-			string(defaultValue: 'origin/develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
+			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
 			string(defaultValue: '*', description: '''What tests to run
 HelloWorld - run test class -HelloWorld-
 Hel*orld - run all test classes start with -Hel- and end with -orld-  
