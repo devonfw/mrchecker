@@ -1,9 +1,9 @@
 node(){
 	
 	//Set Jenkins run parameters
-	properties([
+properties([
 		parameters([
-			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
+			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'),  
 			string(defaultValue: '*', description: '''What tests to run
 HelloWorld - run test class -HelloWorld-
 Hel*orld - run all test classes start with -Hel- and end with -orld-  
