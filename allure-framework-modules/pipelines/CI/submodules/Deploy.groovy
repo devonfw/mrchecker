@@ -20,7 +20,6 @@ def private void deployToLocalRepo(String version){
                 mvn -q install -Dversion=${version} -DskipTests=true ${env.MVN_PARAMETERS}
             """
         }
-        archiveArtifacts allowEmptyArchive: true, artifacts: "${env.APP_WORKSPACE}target/*.jar";
     }
     
 }
