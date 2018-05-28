@@ -46,7 +46,7 @@ https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', n
     
             docker.image('lucst/devonfwe2e:v2-0.4').inside(){
                     stageBuildCompile();
-                    stageUnitTests();
+                    stageIntegrationTests();
                     stageDeploy(env.VERSION);
                 }
             currentBuild.result = 'SUCCESS';
@@ -140,10 +140,10 @@ void stageBuildCompile(){
 	module();	
 }
 
-void stageUnitTests(){
-	echo("stageUnitTests");
-	//Load UnitTests file and run call() method
-	def module = load "${env.SUBMODULES_DIR}/UnitTests.groovy";
+void stageIntegrationTests(){
+	echo("stageIntegrationTests");
+	//Load IntegrationTests file and run call() method
+	def module = load "${env.SUBMODULES_DIR}/IntegrationTests.groovy";
 	module();
 }
 
