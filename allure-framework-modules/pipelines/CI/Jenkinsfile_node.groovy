@@ -33,8 +33,6 @@ https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', n
 		    boolean isWorkingBranchMaster = isWorkingBranchMaster();
     
             docker.image('lucst/devonfwe2e:v2-0.4').inside(){
-                    stageBuildCompile();
-                    stageUnitTests();
                     stageDeploy(env.VERSION);
                 }
             currentBuild.result = 'SUCCESS';
@@ -121,20 +119,6 @@ def private String isWorkingBranchMaster(){
 /**
 Verify that the code builds without errors
 **/  
-void stageBuildCompile(){
-	echo("stageBuildCompile")
-	//Load BuildCompile file and run call() method
-	def module = load "${env.SUBMODULES_DIR}/BuildCompile.groovy";
-	module();	
-}
-
-void stageUnitTests(){
-	echo("stageUnitTests");
-	//Load UnitTests file and run call() method
-	def module = load "${env.SUBMODULES_DIR}/UnitTests.groovy";
-	module();
-}
-
 void stageDeploy(String version){
 	echo("stageDeploy");
 	echo("version: -${version}-");
