@@ -3,7 +3,6 @@ node(){
 	//Set Jenkins run parameters
 	properties([
 		parameters([
-			string(defaultValue: 'allure-app-under-test/', description: 'Execute job for given Module. Example allure-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
 			string(defaultValue: '*', description: '''What tests to run
 HelloWorld - run test class -HelloWorld-
@@ -17,17 +16,8 @@ MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/exa
 			string(defaultValue: '8', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
 			string(defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
 			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'), 
-			booleanParam(defaultValue: false, description: '''Should given job be deployed to Remote Nexus repository ? 
-#1. Go to Nexus staging repo 
-https://oss.sonatype.org/#stagingRepositories  and release    WAIT ~15min to update Maven Central Repo
-#2. Verify release OR snapshot repo
-Release
-https://oss.sonatype.org/content/repositories/releases/com/capgemini/ntc/
-https://oss.sonatype.org/content/groups/public/com/capgemini/ntc/
-https://repo.maven.apache.org/maven2/com/capgemini/ntc/
-Snapshot
 https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', name: 'IS_TO_DEPLOY_REMOTE_NEXUS'), 
-			string(defaultValue: '', description: 'Application version number. If empty, pom.xml version will be taken', name: 'VERSION'), 
+			string(defaultValue: 'allure-app-under-test/', description: 'Execute job for given Module. Example allure-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 
 			string(defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
 			string(defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*', name: 'MVN_PARAMETERS')
@@ -47,7 +37,6 @@ https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', n
             docker.image('lucst/devonfwe2e:v2-0.4').inside(){
                     stageBuildCompile();
                     stageIntegrationTests();
-                    stageDeploy(env.VERSION);
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
@@ -145,19 +134,6 @@ void stageIntegrationTests(){
 	//Load IntegrationTests file and run call() method
 	def module = load "${env.SUBMODULES_DIR}/IntegrationTests.groovy";
 	module();
-}
-
-void stageDeploy(String version){
-	echo("stageDeploy");
-	echo("version: -${version}-");
-    
-    //Load Deploy process and run call() method
-	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
-	
-    module.deployToLocalRepo(version);
-    if ( env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() ){
-        module.deployToRemoteRepo(version);
-    }
 }
 
 void sendMail(Exception e){
