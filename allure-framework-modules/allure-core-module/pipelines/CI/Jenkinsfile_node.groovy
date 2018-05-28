@@ -3,7 +3,7 @@ node(){
 	//Set Jenkins run parameters
 	properties([
 		parameters([
-			string(defaultValue: 'allure-framework-modules/allure-example-module/', description: 'Execute job for given Module. Example allure-framework-modules/allure-example-module/ ', name: 'APP_WORKSPACE'),
+			string(defaultValue: 'allure-framework-modules/allure-core-module/', description: 'Execute job for given Module. Example allure-framework-modules/allure-core-module/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
 			string(defaultValue: '*', description: '''What tests to run
 HelloWorld - run test class -HelloWorld-
@@ -99,7 +99,7 @@ Jenkins does not create the WORKSPACE env var
 void setWorkspace(){ 
     env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim();
     echo("Variable WORKSPACE LOCAL: " + env.WORKSPACE_LOCAL);
-    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/allure-framework-modules/";
+    env.PROJECT_HOME = "${env.WORKSPACE_LOCAL}/${env.APP_WORKSPACE}/";
     echo("Variable Project home: " + env.PROJECT_HOME);
 	env.SUBMODULES_DIR = "${env.PROJECT_HOME}/pipelines/CI/submodules";
     echo("Variable submodules: " + env.SUBMODULES_DIR);
