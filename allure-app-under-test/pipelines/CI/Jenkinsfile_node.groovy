@@ -1,7 +1,7 @@
 node(){
 	
 	//Set Jenkins run parameters
-properties([
+	properties([
 		parameters([
 			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'),  
 			string(defaultValue: '*', description: '''What tests to run
@@ -15,8 +15,7 @@ MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/exa
 			string(defaultValue: 'DEV', description: 'Value taken from   environment.csv  file', name: 'ENVIRONMENT'), 
 			string(defaultValue: '8', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
 			string(defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
-			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'), 
-https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', name: 'IS_TO_DEPLOY_REMOTE_NEXUS'), 
+			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'),  
 			string(defaultValue: 'allure-app-under-test/', description: 'Execute job for given Module. Example allure-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 
 			string(defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
