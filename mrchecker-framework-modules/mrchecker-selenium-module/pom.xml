@@ -6,7 +6,7 @@
 
     <parent>
         <artifactId>mrchecker-test-framework</artifactId>
-        <groupId>com.capgemini.ntc</groupId>
+        <groupId>com.capgemini.mrchecker</groupId>
         <version>2.1.0</version>
     </parent>
     <artifactId>mrchecker-selenium-module</artifactId>
