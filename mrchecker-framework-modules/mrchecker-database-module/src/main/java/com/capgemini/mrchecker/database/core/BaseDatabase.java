@@ -120,7 +120,7 @@ abstract public class BaseDatabase implements ITestObserver {
 
 	private void assignEntityManager() {
 		if (entityManager != null) {
-			this.entityManager = DriverManager.createEntityManager(this.dbPrefix);
+			this.entityManager = DBDriverManager.createEntityManager(this.dbPrefix);
 		}
 	}
 

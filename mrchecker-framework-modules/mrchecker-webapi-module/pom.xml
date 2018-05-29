@@ -69,7 +69,7 @@
         
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <mrchecker-core-module.version>4.12.0.7-SNAPSHOT</mrchecker-core-module.version>
+        <mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
 
 
         <!-- Lib/package version settings -->
