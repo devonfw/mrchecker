@@ -2,8 +2,6 @@ package com.capgemini.mrchecker.database;
 
 import org.junit.Test;
 
-import com.capgemini.mrchecker.database.core.BaseDatabase;
-
 public class BaseDatabaseTest {
 
 	@Test
@@ -13,7 +11,7 @@ public class BaseDatabaseTest {
 		myDatabase.myMethod();
 	}
 
-	private static class MyDatabase extends BaseDatabase {
+	private static class MyDatabase extends BaseDatabaseTest {
 
 		public String myMethod() {
 			return "Welcome";

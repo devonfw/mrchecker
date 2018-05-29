@@ -1,4 +1,4 @@
-package com.capgemini.ntc.database.core.base;
+package com.capgemini.mrchecker.database.core.base;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.capgemini.ntc.database.core.base;
+package com.capgemini.mrchecker.database.core.base;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

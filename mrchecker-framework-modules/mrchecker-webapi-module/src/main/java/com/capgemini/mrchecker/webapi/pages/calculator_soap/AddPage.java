@@ -1,7 +1,7 @@
-package com.capgemini.ntc.webapi.pages.calculator_soap;
+package com.capgemini.mrchecker.webapi.pages.calculator_soap;
 
-import com.capgemini.ntc.webapi.core.BasePageWebAPI;
-import com.capgemini.ntc.webapi.core.base.driver.DriverManager;
+import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
+import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 
 import io.restassured.response.Response;
 

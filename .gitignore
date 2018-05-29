@@ -17,6 +17,8 @@
 ~*.docx
 **/chromedriver/
 **/geckodriver/
+**/allure-framework-modules
+**/allure-app-under-test
 
 # Compiled source #
 ###################

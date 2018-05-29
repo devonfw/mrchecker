@@ -1,13 +1,13 @@
-package com.capgemini.ntc.webapi.calculator_soap;
+package com.capgemini.mrchecker.webapi.calculator_soap;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import com.capgemini.ntc.test.core.logger.BFLogger;
-import com.capgemini.ntc.webapi.BasePageWebApiTest;
-import com.capgemini.ntc.webapi.pages.calculator_soap.AddPage;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
+import com.capgemini.mrchecker.webapi.pages.calculator_soap.AddPage;
 
 import io.restassured.response.Response;
 
