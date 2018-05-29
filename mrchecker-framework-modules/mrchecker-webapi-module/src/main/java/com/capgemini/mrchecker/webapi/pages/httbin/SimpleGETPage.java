@@ -18,7 +18,6 @@ public class SimpleGETPage extends BasePageWebAPI {
 						.get(ENDPOINT);
 	}
 	
-	@Override
 	public String getEndpoint() {
 		return ENDPOINT;
 	}

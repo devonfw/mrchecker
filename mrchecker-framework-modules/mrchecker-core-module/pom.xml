@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>mrchecker-core-module</artifactId>
-    <version>4.12.0.7-SNAPSHOT</version>
+    <version>${version}</version>
     <packaging>jar</packaging>
     <name>MrCheckerTestFramework - Test core - Module</name>
     <description>MrChecker Test Framework Core is responsible for:
@@ -55,6 +55,8 @@ Based on Junit4.12</description>
     </scm>
 
     <properties>
+        <version>4.12.0.6</version>
+        
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Test tools -->
@@ -78,9 +80,9 @@ Based on Junit4.12</description>
         <slf4j.version>1.7.21</slf4j.version>
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
         <allure.version>1.5.4</allure.version>
+        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
         <allure-report.version>1.4.19</allure-report.version>
         <aspectj.version>1.8.9</aspectj.version>
-        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
         <allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
         <report-directory>${pom.basedir}/test-output/</report-directory>
         <jetty.version>9.2.10.v20150310</jetty.version>

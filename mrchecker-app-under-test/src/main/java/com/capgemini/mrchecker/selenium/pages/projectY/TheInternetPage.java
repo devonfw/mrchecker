@@ -51,7 +51,7 @@ public class TheInternetPage<V> extends BasePage {
 	private static final By	selectorSlowResourcesLink			= By.cssSelector("li > a[href*='slow']");
 	private static final By	selectorTyposLink					= By.cssSelector("li > a[href*='typos']");
 	private static final By	selectorWYSIWYGEditorLink			= By.cssSelector("li > a[href*='tinymce']");
-	
+
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
@@ -198,7 +198,7 @@ public class TheInternetPage<V> extends BasePage {
 		elementLink.click();
 		return new DisappearingElementsPage();
 	}
-	
+
 	public DragAndDropPage clickDragAndDropLink() {
 		WebElement elementLink = getDriver().findElementDynamic(selectorDragAndDropLink);
 		elementLink.click();
@@ -306,5 +306,5 @@ public class TheInternetPage<V> extends BasePage {
 		elementLink.click();
 		return new WYSIWYGEditorPage();
 	}
-	
+
 }

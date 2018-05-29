@@ -9,7 +9,7 @@
         <version>2.1.0</version>
     </parent>
     <artifactId>mrchecker-security-module</artifactId>
-    <version>1.0.1</version>
+    <version>${version}</version>
     <packaging>jar</packaging>
     <name>MrCheckerTestFramework - Security - Module</name>
     <description>MrChecker Test Framework Security supports:
@@ -51,9 +51,10 @@
     </scm>
 
     <properties>
+        <version>1.0.1</version>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-
-        <mrchecker-core-module.version>4.12.0.7-SNAPSHOT</mrchecker-core-module.version>
+        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
+        <mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
 
     </properties>
 

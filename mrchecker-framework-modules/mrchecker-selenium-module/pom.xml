@@ -10,7 +10,7 @@
         <version>2.1.0</version>
     </parent>
     <artifactId>mrchecker-selenium-module</artifactId>
-    <version>3.8.1.7-SNAPSHOT</version>
+    <version>${version}</version>
     <packaging>jar</packaging>
     <name>MrCheckerTestFramework - Selenium - Module</name>
     <description>MrChecker Test Framework Selenium supports:
@@ -62,10 +62,12 @@ Based on Selenium 3.8.1</description>
     </scm>
 
     <properties>
+        <version>3.8.1.6</version>
+        
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <mrchecker-core-module.version>4.12.0.7-SNAPSHOT</mrchecker-core-module.version>
+        <mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.8.1</selenium.version>

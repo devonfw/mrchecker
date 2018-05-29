@@ -9,11 +9,11 @@
         <version>2.1.0</version>
     </parent>
     <artifactId>mrchecker-database-module</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${version}</version>
     <packaging>jar</packaging>
     <name>MrChecker - Database - Module</name>
     <description>MrChecker Database Module:
-        - based od JPA interfaces,
+        - based on JPA interfaces,
         - structure build on ORM methodology,
         - supports all database engines with JDBC drivers.
 
@@ -59,10 +59,12 @@
     </scm>
 
     <properties>
+        <version>0.0.1-SNAPSHOT</version>
+        
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+	<mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
+        <jpa.version>2.2</jpa.version>
 
-        <mrchecker-core-module.version>4.12.0.7-SNAPSHOT</mrchecker-core-module.version>
-        <jpa.version>1.0</jpa.version>
 
         <!-- Lib/package version settings -->
         <!-- <package.version>0.0.0</selenium.version> -->
@@ -81,7 +83,7 @@
         <!-- JPA dependencies -->
         <dependency>
             <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
+            <artifactId>javax.persistence-api</artifactId>
             <version>${jpa.version}</version>
         </dependency>
 

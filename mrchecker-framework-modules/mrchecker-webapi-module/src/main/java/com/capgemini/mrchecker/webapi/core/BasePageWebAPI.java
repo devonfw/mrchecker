@@ -10,7 +10,19 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 import com.capgemini.mrchecker.webapi.core.base.properties.PropertiesFileSettings;
 import com.capgemini.mrchecker.webapi.core.base.runtime.RuntimeParameters;
+import java.io.IOException;
+
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPMessage;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
+
+import com.capgemini.mrchecker.webapi.soap.SoapMessageGenerator;
 import com.google.inject.Guice;
+import com.jamesmurty.utils.XMLBuilder;
 
 abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	
@@ -114,6 +126,60 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 		 * environmetInstance = Guice.createInjector(new EnvironmentModule()) .getInstance(IEnvironmentService.class);
 		 */
 		
+	}
+	
+	public class SOAPTemplate {
+		
+		private XMLBuilder xmlBody;
+		
+		/*
+		 * SOAP response built from Java code
+		 */
+		public SOAPTemplate(String root) {
+			setRoot(root);
+		}
+		
+		/**
+		 * @return Generate SOAP request in String format
+		 */
+		public String getMessage() {
+			String message = "";
+			try {
+				SOAPMessage soapMessage = SoapMessageGenerator.createSOAPmessage(this.getRoot()
+								.asString());
+				message = SoapMessageGenerator.printSoapMessage(soapMessage);
+			} catch (SOAPException | SAXException | IOException | ParserConfigurationException | TransformerException e) {
+				new Exception(e);
+			}
+			return message;
+		}
+		
+		/**
+		 * @return Root XML structure
+		 */
+		public XMLBuilder getRoot() {
+			return xmlBody;
+		}
+		
+		/*
+		 * ----------------------------------
+		 * Any handy actions after this point
+		 * ----------------------------------
+		 */
+		private void setRoot(String nodeName) {
+			try {
+				this.xmlBody = XMLBuilder.create(nodeName);
+			} catch (ParserConfigurationException | FactoryConfigurationError e) {
+				new Exception(e);
+			}
+		}
+		
+		/*
+		 * Set up an attribute for root
+		 */
+		public void addAttributeToRoot(String name, String value) {
+			this.xmlBody.attribute(name, value);
+		}
 	}
 	
 }

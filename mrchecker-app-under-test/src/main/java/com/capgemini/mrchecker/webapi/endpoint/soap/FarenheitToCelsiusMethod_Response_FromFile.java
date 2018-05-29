@@ -59,7 +59,7 @@ public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
-	
+
 	public String getEndpoint() {
 		// Useful only for REST Tests
 		return null;

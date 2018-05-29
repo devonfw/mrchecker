@@ -102,7 +102,7 @@ public class FarenheitToCelsiusMethod_Request_FromCode extends BasePageWebAPI {
 			new Exception(e);
 		}
 	}
-	
+
 	public String getEndpoint() {
 		// Useful only for REST Tests
 		return null;

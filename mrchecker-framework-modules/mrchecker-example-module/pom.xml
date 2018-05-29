@@ -9,7 +9,7 @@
         <version>2.1.0</version>
     </parent>
     <artifactId>mrchecker-example-module</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${version}</version>
     <packaging>jar</packaging>
     <name>MrCheckerTestFramework - Example - Module</name>
     <description>MrChecker Test Framework name supports:
@@ -44,6 +44,8 @@
     </scm>
 
     <properties>
+        <version>0.0.1-SNAPSHOT</version>
+        
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
