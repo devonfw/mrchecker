@@ -1,7 +1,7 @@
-package com.capgemini.ntc.example.core.base.runtime;
+package com.capgemini.mrchecker.example.core.base.runtime;
 
-import com.capgemini.ntc.test.core.base.runtime.RuntimeParametersI;
-import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.base.runtime.RuntimeParametersI;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 /**
  * This class stores various system properties These parameters are accessible while test case executes Example :

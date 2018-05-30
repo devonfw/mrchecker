@@ -1,8 +1,8 @@
-package com.capgemini.ntc.example.core.base.driver;
+package com.capgemini.mrchecker.example.core.base.driver;
 
-import com.capgemini.ntc.example.core.base.properties.PropertiesFileSettings;
-import com.capgemini.ntc.example.core.base.runtime.RuntimeParameters;
-import com.capgemini.ntc.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.example.core.base.properties.PropertiesFileSettings;
+import com.capgemini.mrchecker.example.core.base.runtime.RuntimeParameters;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 

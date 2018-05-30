@@ -1,8 +1,8 @@
-package com.capgemini.ntc.example;
+package com.capgemini.mrchecker.example;
 
 import org.junit.Test;
 
-import com.capgemini.ntc.example.core.BasePage;
+import com.capgemini.mrchecker.example.core.BasePage;
 
 public class BasePageTest {
 	
