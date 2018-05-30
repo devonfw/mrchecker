@@ -67,7 +67,7 @@ Based on Selenium 3.8.1</description>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <mrchecker-core-module.version>4.12.0.6</mrchecker-core-module.version>
+        <mrchecker-core-module.version>4.12.0.7</mrchecker-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.8.1</selenium.version>
