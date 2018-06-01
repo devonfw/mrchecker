@@ -17,6 +17,8 @@
 ~*.docx
 **/chromedriver/
 **/geckodriver/
+**/allure-framework-modules
+**/allure-app-under-test
 
 # Compiled source #
 ###################
@@ -44,6 +46,7 @@
 
 # Logs and databases #
 ######################
+**/*.orig
 **/*.log
 **/*.sql
 **/*.sqlite
