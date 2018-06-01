@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.httpbin;
+package com.capgemini.mrchecker.webapi.webapi.httpbin;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

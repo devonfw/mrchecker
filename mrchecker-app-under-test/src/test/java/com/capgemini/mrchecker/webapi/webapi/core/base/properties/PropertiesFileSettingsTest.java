@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.core.base.properties;
+package com.capgemini.mrchecker.webapi.webapi.core.base.properties;
 
 import static org.junit.Assert.assertEquals;
 
