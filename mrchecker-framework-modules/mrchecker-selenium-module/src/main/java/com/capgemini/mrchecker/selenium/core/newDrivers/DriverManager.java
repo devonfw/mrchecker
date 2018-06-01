@@ -109,10 +109,10 @@ public class DriverManager {
 		BFLogger.logDebug("Creating new " + RuntimeParametersSelenium.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
 		String seleniumGridParameter = RuntimeParametersSelenium.SELENIUM_GRID.getValue();
-		if (!seleniumGridParameter.equals("false")) {
-			driver = setupGrid();
-		} else {
+		if (isEmpty(seleniumGridParameter)) {
 			driver = setupBrowser();
+		} else {
+			driver = setupGrid();
 		}
 		driver.manage()
 						.timeouts()
@@ -121,6 +121,11 @@ public class DriverManager {
 		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
 		return driver;
+	}
+	
+	private static boolean isEmpty(String seleniumGridParameter) {
+		return seleniumGridParameter.trim()
+						.isEmpty() || seleniumGridParameter == null;
 	}
 	
 	/**
