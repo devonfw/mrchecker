@@ -1,25 +1,24 @@
-package com.capgemini.mrchecker.selenium.core.base.runtime;
+package com.capgemini.mrchecker.webapi.core.base.runtime;
 
 import com.capgemini.mrchecker.test.core.base.runtime.RuntimeParametersI;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 /**
- * This class stores various system properties
+ * This class stores various system properties These parameters are accessible while test case executes Example :
+ * PARAM_3("param_3", "1410") IS: mvn test -Dparam_3=1525 -Dtest=MyTestClass
  * 
  * @author LUSTEFAN
  */
-public enum RuntimeParametersSelenium implements RuntimeParametersI {
+public enum RuntimeParameters implements RuntimeParametersI {
 	
-	BROWSER("browser", "chrome"),
-	BROWSER_VERSION("browserVersion", ""),
-	SELENIUM_GRID("seleniumGrid", ""),
-	OS("os", "");
+	// NAME(<maven-variable-name>, <default-value>)
+	MOCK_HTTP_PORT("mock_http_port", ""), // -Dmock_http_port="" Default random
+	MOCK_HTTPS_PORT("mock_https_port", ""); // -Dmock_https_port="" Default random
 	
 	private String	paramName;
 	private String	paramValue;
 	private String	defaultValue;
 	
-	private RuntimeParametersSelenium(String paramName, String defaultValue) {
+	private RuntimeParameters(String paramName, String defaultValue) {
 		this.paramName = paramName;
 		this.defaultValue = defaultValue;
 		setValue();
@@ -42,28 +41,8 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	}
 	
 	private void setValue() {
-		
 		String paramValue = System.getProperty(this.paramName);
 		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue.toLowerCase();
-		;
-		
-		switch (this.name()) {
-			case "BROWSER":
-				if (paramValue.equals("ie")) {
-					paramValue = "internet explorer";
-				}
-				break;
-			case "BROWSER_VERSION":
-				break;
-			case "SELENIUM_GRID":
-				break;
-			case "OS":
-				break;
-			default:
-				BFLogger.logError("Unknown RuntimeParameter = " + this.name());
-				break;
-		}
-		
 		this.paramValue = paramValue;
 		
 	}

@@ -62,7 +62,7 @@ Based on Selenium 3.8.1</description>
     </scm>
 
     <properties>
-        <version>3.8.1.7</version>
+        <version>3.8.1.8</version>
         
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
