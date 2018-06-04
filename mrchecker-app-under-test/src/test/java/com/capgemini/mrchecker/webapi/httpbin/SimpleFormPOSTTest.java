@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.webapi.httpbin;
+package com.capgemini.mrchecker.webapi.httpbin;
 
 import static com.capgemini.mrchecker.webapi.core.utils.RegexMatcher.matches;
 import static org.hamcrest.Matchers.equalTo;
@@ -15,7 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaSize;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaToppings;
@@ -27,7 +26,7 @@ import io.restassured.response.Response;
  * On the other hand 'httpbin.org/forms/post' including client-side validations. Below tests will cover them.
  */
 
-public class SimpleFormPOSTTest extends BasePageWebApiTest {
+public class SimpleFormPOSTTest extends com.capgemini.mrchecker.webapi.BasePageWebApiTest {
 	
 	private static SimpleFormPOSTPage	simplePOSTPage	= new SimpleFormPOSTPage();
 	private static Response				response;
@@ -58,7 +57,7 @@ public class SimpleFormPOSTTest extends BasePageWebApiTest {
 		simplePOSTPage.pickPizzaSize(PIZZA_SIZE);
 		
 		BFLogger.logInfo("Step 5 - Setting up PizzaToppings field: " +
-						PIZZA_TOPPING_1.getPizzaToppingValue() + ", " + PIZZA_TOPPING_2.getPizzaToppingValue());
+				PIZZA_TOPPING_1.getPizzaToppingValue() + ", " + PIZZA_TOPPING_2.getPizzaToppingValue());
 		simplePOSTPage.pickPizzaToppings(PIZZA_TOPPING_1, PIZZA_TOPPING_2);
 		
 		BFLogger.logInfo("Step 6 - Setting up DeliveryTime field: " + DELIVERY_TIME_HOUR + ":" + DELIVERY_TIME_MINUTE);
@@ -75,13 +74,13 @@ public class SimpleFormPOSTTest extends BasePageWebApiTest {
 		
 		BFLogger.logInfo("RESPONSE Body: ");
 		response.getBody()
-						.prettyPrint();
+				.prettyPrint();
 	}
 	
 	@Test
 	public void responseFormShouldIncludeSevenFields() {
 		Map<String, Object> formFields = response.jsonPath()
-						.getMap("form");
+				.getMap("form");
 		
 		BFLogger.logInfo("Validate response 'form' - should contains 7 fields");
 		assertThat(formFields.size(), equalTo(7));
@@ -131,7 +130,7 @@ public class SimpleFormPOSTTest extends BasePageWebApiTest {
 	@Test
 	public void validateCorrectnessOfPizzaToppingsResponse() {
 		List<String> pizzaToppings = response.jsonPath()
-						.getList("form.topping");
+				.getList("form.topping");
 		
 		BFLogger.logInfo("Validate response 'form.topping' - should contains less than 4 fields");
 		assertThat(pizzaToppings.size(), lessThan(4));
@@ -139,7 +138,7 @@ public class SimpleFormPOSTTest extends BasePageWebApiTest {
 		BFLogger.logInfo("Validate response 'form.topping' - should matches with provided Pizza Toppings");
 		for (String topping : pizzaToppings) {
 			assertThat(topping, matches("(" + PIZZA_TOPPING_1.getPizzaToppingValue() +
-							"|" + PIZZA_TOPPING_2.getPizzaToppingValue() + ")"));
+					"|" + PIZZA_TOPPING_2.getPizzaToppingValue() + ")"));
 		}
 	}
 	

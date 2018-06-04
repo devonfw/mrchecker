@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.endpoint.soap;
+package com.capgemini.mrchecker.webapi.virtualization.soap;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
@@ -12,7 +12,11 @@ import org.junit.Test;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
-import com.capgemini.mrchecker.webapi.endpoint.stubs.StubSOAP_Builder;
+import com.capgemini.mrchecker.webapi.virtualization.soap.FarenheitToCelsiusMethod_Request_FromCode;
+import com.capgemini.mrchecker.webapi.virtualization.soap.FarenheitToCelsiusMethod_Request_FromFile;
+import com.capgemini.mrchecker.webapi.virtualization.soap.FarenheitToCelsiusMethod_Response_FromCode;
+import com.capgemini.mrchecker.webapi.virtualization.soap.FarenheitToCelsiusMethod_Response_FromFile;
+import com.capgemini.mrchecker.webapi.virtualization.stubs.StubSOAP_Builder;
 
 import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;

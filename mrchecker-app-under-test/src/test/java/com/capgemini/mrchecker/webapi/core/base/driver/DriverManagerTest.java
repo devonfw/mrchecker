@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.webapi.core.base.driver;
+package com.capgemini.mrchecker.webapi.core.base.driver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

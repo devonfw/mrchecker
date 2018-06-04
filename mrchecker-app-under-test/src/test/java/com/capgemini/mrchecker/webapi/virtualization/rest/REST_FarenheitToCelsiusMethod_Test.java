@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.endpoint.rest;
+package com.capgemini.mrchecker.webapi.virtualization.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
-import com.capgemini.mrchecker.webapi.endpoint.stubs.StubREST_Builder;
+import com.capgemini.mrchecker.webapi.virtualization.stubs.StubREST_Builder;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 import io.restassured.RestAssured;

@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.endpoint.stubs;
+package com.capgemini.mrchecker.webapi.virtualization.stubs;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.any;

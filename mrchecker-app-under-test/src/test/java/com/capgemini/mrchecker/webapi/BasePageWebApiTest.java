@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.webapi;
+package com.capgemini.mrchecker.webapi;
 
 import org.junit.Test;
 

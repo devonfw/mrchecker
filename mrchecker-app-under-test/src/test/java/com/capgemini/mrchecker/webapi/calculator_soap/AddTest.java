@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.webapi.calculator_soap;
+package com.capgemini.mrchecker.webapi.calculator_soap;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -6,12 +6,11 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.calculator_soap.AddPage;
 
 import io.restassured.response.Response;
 
-public class AddTest extends BasePageWebApiTest {
+public class AddTest extends com.capgemini.mrchecker.webapi.BasePageWebApiTest {
 	
 	private AddPage addPage = new AddPage();
 	
@@ -54,6 +53,6 @@ public class AddTest extends BasePageWebApiTest {
 		
 		BFLogger.logInfo("Step 5 - Validating the response result of adding");
 		assertThat(response.xmlPath()
-						.getInt("Envelope.Body.AddResponse"), is(firstNumberToAdd + secondNumberToAdd));
+				.getInt("Envelope.Body.AddResponse"), is(firstNumberToAdd + secondNumberToAdd));
 	}
 }
