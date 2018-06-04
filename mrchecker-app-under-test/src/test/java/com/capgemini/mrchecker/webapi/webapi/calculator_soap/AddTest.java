@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.calculator_soap;
+package com.capgemini.mrchecker.webapi.webapi.calculator_soap;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

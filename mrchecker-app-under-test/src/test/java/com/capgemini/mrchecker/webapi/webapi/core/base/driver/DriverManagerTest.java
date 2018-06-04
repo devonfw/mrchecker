@@ -1,8 +1,7 @@
-package com.capgemini.mrchecker.webapi.core.base.driver;
+package com.capgemini.mrchecker.webapi.webapi.core.base.driver;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Test;
@@ -92,7 +91,7 @@ public class DriverManagerTest {
 			assertTrue("Mock server for https does not run on random port", (Integer) driver2.httpsPort() instanceof Integer);
 		} catch (FatalStartupException e) {
 			assertTrue("No information about bind error", e.getMessage()
-					.contains("Address already in use: bind"));
+							.contains("Address already in use: bind"));
 		} finally {
 			// Close all drivers
 			try {
