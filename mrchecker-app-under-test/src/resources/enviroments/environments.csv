@@ -8,3 +8,4 @@ SECURITY_SERVER_ORIGIN,http://de-mucdevondepl01:9090,http://de-mucdevondepl01:90
 SECURITY_USER1_NAME,waiter,waiter,,,
 SECURITY_USER1_PASSWD,ENC(4Bf6vuKreMLOxKxEnqCfBg==),ENC(4Bf6vuKreMLOxKxEnqCfBg==),,,
 ELEMENTAL_SELENIUM_PAGE,http://elementalselenium.com/,,,,
+HTTPBIN,http://httpbin.org,,,,
