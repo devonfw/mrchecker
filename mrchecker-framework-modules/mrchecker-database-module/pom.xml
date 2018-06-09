@@ -96,6 +96,13 @@
             <scope>provided</scope>
         </dependency>
 
+
+    <!-- Test listener. Binds Junit exec to Allure annotation -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+        </dependency>
+
         <!--This dependency is necessary for ???????? plugin. -->
         <!--<dependency>
             <groupId>reuse.package.from.parent.pom</groupId>

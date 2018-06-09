@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -45,7 +46,7 @@
 
     <properties>
         <version>0.0.1-SNAPSHOT</version>
-        
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <mrchecker-core-module.version>4.12.0.8</mrchecker-core-module.version>
@@ -64,21 +65,33 @@
             <version>${mrchecker-core-module.version}</version>
         </dependency>
 
-		
-		<!--This dependency is necessary for ???????? plugin. -->
+        <!-- Hashes sensitive data -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+        </dependency>
+
+        <!-- Test listener. Binds Junit exec to Allure annotation -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+        </dependency>
+
+
+        <!--This dependency is necessary for ???????? plugin. -->
         <!--<dependency>
             <groupId>reuse.package.from.parent.pom</groupId>
             <artifactId>lib-name</artifactId>
-        </dependency> -->
-		
+            </dependency> -->
+
         <!--This dependency is necessary for ???????? plugin. -->
         <!--<dependency>
             <groupId>new.added.package</groupId>
             <artifactId>lib-name</artifactId>
             <version>${package.version}</version>
-        </dependency> -->
+            </dependency> -->
 
-    </dependencies>    
+    </dependencies>
 
 
     <!-- Build goals/actions -->

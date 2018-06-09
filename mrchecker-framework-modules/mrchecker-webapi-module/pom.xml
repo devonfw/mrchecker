@@ -122,6 +122,14 @@
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
         </dependency>
+        
+        
+        <!-- Test listener. Binds Junit exec to Allure annotation -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+        </dependency>
+        
 
     </dependencies>
 

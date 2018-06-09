@@ -103,10 +103,10 @@ Based on Selenium 3.8.1</description>
         </dependency>
 
 
-        <!--This dependency is necessary for Report Allure annotation. -->
         <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-java-annotations</artifactId>
+            <!-- Test listener. Binds Junit exec to Allure annotation -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
         </dependency>
 
 

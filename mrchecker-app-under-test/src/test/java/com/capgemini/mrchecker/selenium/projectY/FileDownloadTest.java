@@ -6,13 +6,17 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.FileDownloadPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
+@Category({ TestsLocal.class, TestsNONParallel.class })
 public class FileDownloadTest extends BaseTest {
 	
 	private static TheInternetPage	theInternetPage;
