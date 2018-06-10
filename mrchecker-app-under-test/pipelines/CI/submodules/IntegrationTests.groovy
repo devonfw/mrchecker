@@ -14,7 +14,7 @@ def call(){
             """
             junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"
 			
-			allure includeProperties: false, jdk: '', report: '${env.APP_WORKSPACE}target/site/allure-report', results: [[path: '${env.APP_WORKSPACE}allure-results']]
+			allure includeProperties: false, jdk: '', report: "${env.APP_WORKSPACE}target/site/allure-report", results: [[path: "${env.APP_WORKSPACE}allure-results"]]
 			
             if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
                 echo("Before publish allure");
