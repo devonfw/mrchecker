@@ -12,6 +12,9 @@ def call(){
                 cd ${env.APP_WORKSPACE}
                 mvn -q site:site ${env.MVN_PARAMETERS}
             """
+			sh "ls ${env.APP_WORKSPACE}"
+			sh "ls ${env.APP_WORKSPACE}target"
+			
             junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"
 			
 			allure includeProperties: false, jdk: '', report: "${env.APP_WORKSPACE}target/site/allure-report", results: [[path: "${env.APP_WORKSPACE}allure-results"]]
