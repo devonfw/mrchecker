@@ -17,13 +17,13 @@ def call(){
 			
 			allure includeProperties: true, jdk: '', report: "${env.APP_WORKSPACE}target/site/allure-report", results: [[path: "${env.APP_WORKSPACE}target/allure-results"]]
 			
-            if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
-                echo("Before publish allure");
-                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "${env.APP_WORKSPACE}target/site/allure-report", reportFiles: 'index.html', reportName: "allure"]);
-                echo("After publish allure");
-            } else {
-                echo("Any HTML report found!");
-            }
+//            if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
+//                echo("Before publish allure");
+//                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "${env.APP_WORKSPACE}target/site/allure-report", reportFiles: 'index.html', reportName: "allure"]);
+//                echo("After publish allure");
+//            } else {
+//                echo("Any HTML report found!");
+//            }
         } catch (Exception e){
             echo("No report generated. Reason: \n" + e);
         }
