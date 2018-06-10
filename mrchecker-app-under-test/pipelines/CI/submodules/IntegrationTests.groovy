@@ -11,8 +11,12 @@ def call(){
             sh"""
                 cd ${env.APP_WORKSPACE}
                 mvn -q site:site ${env.MVN_PARAMETERS}
+				mvn allure:report
             """
             junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"
+			
+			allure jdk: '', report: '${env.APP_WORKSPACE}target/site/allure-report', results: [[path: '${env.APP_WORKSPACE}allure-results']]
+			
             if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
                 echo("Before publish allure");
                 publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "${env.APP_WORKSPACE}target/site/allure-report", reportFiles: 'index.html', reportName: "allure"]);

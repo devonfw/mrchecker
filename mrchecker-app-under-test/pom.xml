@@ -320,8 +320,14 @@
                                     <name>listener</name>
                                     <value>io.qameta.allure.junit4.AllureJunit4</value>
                                 </property>
+                                
                             </properties>
-
+                            <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${allure.report.directory}/allure-results</value>
+                        </property>
+                    </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -338,7 +344,7 @@
                         <configuration>
                             <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
                             <reportVersion>${allure-cli-runner.version}</reportVersion>
-                            <resultsDirectory>${pom.basedir}/allure-results</resultsDirectory>
+                            <resultsDirectory>${allure.report.directory}/allure-results</resultsDirectory>
                             <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
                         </configuration>
                     </plugin>
