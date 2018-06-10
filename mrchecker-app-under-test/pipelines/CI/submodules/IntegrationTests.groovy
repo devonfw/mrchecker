@@ -12,13 +12,10 @@ def call(){
                 cd ${env.APP_WORKSPACE}
                 mvn -q site:site ${env.MVN_PARAMETERS}
             """
-			sh "ls ${env.APP_WORKSPACE}"
-			sh "ls ${env.APP_WORKSPACE}target"
-			sh "ls ${env.APP_WORKSPACE}target/allure-results"
 			
             junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"
 			
-			allure includeProperties: false, jdk: '', report: "${env.APP_WORKSPACE}target/site/allure-report", results: [[path: "${env.APP_WORKSPACE}target/allure-results"]]
+			allure includeProperties: true, jdk: '', report: "${env.APP_WORKSPACE}target/site/allure-report", results: [[path: "${env.APP_WORKSPACE}target/allure-results"]]
 			
             if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
                 echo("Before publish allure");
