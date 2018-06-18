@@ -14,9 +14,9 @@ import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistryPage
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-import ru.yandex.qatools.allure.annotations.Features;
+import io.qameta.allure.Feature;
 
-@Features("TAG3")
+@Feature("TAG3")
 @Category({ TestsTag2.class, TestsSmoke.class })
 public class ThirdTest_tag2_Test extends BaseTest {
 	

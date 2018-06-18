@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium;
+package com.capgemini.mrchecker.core;
 
 import org.junit.runner.RunWith;
 

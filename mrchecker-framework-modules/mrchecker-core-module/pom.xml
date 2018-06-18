@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -7,7 +8,7 @@
     <parent>
         <artifactId>mrchecker-test-framework</artifactId>
         <groupId>com.capgemini.mrchecker</groupId>
-        <version>2.2.0</version>
+        <version>2.3.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>mrchecker-core-module</artifactId>
@@ -55,8 +56,8 @@ Based on Junit4.12</description>
     </scm>
 
     <properties>
-        <version>4.12.0.8</version>
-        
+        <version>4.12.0.9-SNAPSHOT</version>
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Test tools -->
@@ -77,21 +78,17 @@ Based on Junit4.12</description>
 
 
         <!-- Allure reporting -->
-        <slf4j.version>1.7.21</slf4j.version>
+        <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+        <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+        <allure-cli-runner.version>2.6.0</allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
+
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
-        <allure.version>1.5.4</allure.version>
-        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
-        <allure-report.version>1.4.19</allure-report.version>
-        <aspectj.version>1.8.9</aspectj.version>
-        <allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
         <report-directory>${pom.basedir}/test-output/</report-directory>
-        <jetty.version>9.2.10.v20150310</jetty.version>
+        <aspectj.version>1.8.10</aspectj.version>
 
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
 
-        <!-- spring version -->
-        <spring.version>4.3.7.RELEASE</spring.version>
 
     </properties>
 
@@ -159,41 +156,25 @@ Based on Junit4.12</description>
             <version>${slf4j.version}</version>
         </dependency>
 
-        <!--This dependency is necessary for Allure report plugin. -->
+        <!--This dependency is necessary for Allure generator plugin. -->
         <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-junit-adaptor</artifactId>
-            <version>${allure.version}</version>
+            <!-- Test listener. Binds Junit exec to Allure annotation -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+        </dependency>
+        <dependency>
+            <!-- Allure report generator -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/info.cukes/gherkin -->
         <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-java-annotations</artifactId>
+            <groupId>info.cukes</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>2.9.3</version>
         </dependency>
 
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-report-data</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-maven-plugin</artifactId>
-            <version>${allure-maven-plugin.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
-            <version>${allure-cucumber-jvm-adaptor.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
 
 
         <!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
