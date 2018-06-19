@@ -9,16 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-<<<<<<< HEAD
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
-=======
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
-import com.capgemini.mrchecker.selenium.core.BasePage;
->>>>>>> develop
 import com.capgemini.mrchecker.selenium.pages.projectY.FileDownloadPage;
 
 @Category({ TestsLocal.class, TestsNONParallel.class })
