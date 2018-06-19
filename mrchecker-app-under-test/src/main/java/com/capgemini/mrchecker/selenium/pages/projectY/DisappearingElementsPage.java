@@ -3,15 +3,16 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.base.environment.GetEnvironmentParam;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DisappearingElementsPage extends BasePage {
+public class DisappearingElementsPage extends TheInternetSubpage {
 	
 	private static final By	selectorGalleryMenuButton	= By.cssSelector("li > a[href*=gallery]");
 	private static final By	selectorMenuButtons			= By.cssSelector("li");
+	public final By			pageLinkSelector			= By.cssSelector("li > a[href*='disappearing_elements']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -30,6 +31,11 @@ public class DisappearingElementsPage extends BasePage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
+	}
+	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
 	}
 	
 	/**

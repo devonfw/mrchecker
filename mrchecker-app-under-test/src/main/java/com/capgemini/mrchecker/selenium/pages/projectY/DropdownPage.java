@@ -2,15 +2,15 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.base.environment.GetEnvironmentParam;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.DropdownListElement;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DropdownPage extends BasePage {
+public class DropdownPage extends TheInternetSubpage {
 	
-	private static final By selectorDropdownList = By.cssSelector("#dropdown");
+	private static final By	dropdownListselector	= By.cssSelector("#dropdown");
+	public final By			pageLinkSelector		= By.cssSelector("li > a[href*='dropdown']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,13 +31,29 @@ public class DropdownPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public void setValueOnDropdownList(int valueOfDropdown) {
-		DropdownListElement dropdown = getDriver().elementDropdownList(selectorDropdownList);
-		dropdown.selectDropdownByIndex(valueOfDropdown);
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
 	}
 	
-	public String getTextFromDropdownList() {
-		DropdownListElement dropdown = getDriver().elementDropdownList(selectorDropdownList);
-		return dropdown.getFirstSelectedOptionText();
+	/**
+	 * Selects doropdown's value by given index.
+	 * 
+	 * @param index
+	 *            Index of option to be selected
+	 */
+	public void selectDropdownValueByIndex(int index) {
+		getDriver().elementDropdownList(dropdownListselector)
+						.selectDropdownByIndex(index);
+	}
+	
+	/**
+	 * Returns text value of first selected dropdown's option.
+	 * 
+	 * @return String object representing value of dropdown's option
+	 */
+	public String getSelectedDropdownValue() {
+		return getDriver().elementDropdownList(dropdownListselector)
+						.getFirstSelectedOptionText();
 	}
 }

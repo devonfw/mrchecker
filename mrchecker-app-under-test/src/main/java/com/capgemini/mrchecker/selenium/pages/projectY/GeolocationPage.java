@@ -1,11 +1,15 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import org.openqa.selenium.By;
+
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class GeolocationPage extends BasePage {
+public class GeolocationPage extends TheInternetSubpage {
+	
+	public final By pageLinkSelector = By.cssSelector("li > a[href*='geolocation']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -24,6 +28,11 @@ public class GeolocationPage extends BasePage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
+	}
+	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
 	}
 	
 }

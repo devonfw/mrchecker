@@ -1,16 +1,16 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class MultipleWindowsPage extends BasePage {
+public class MultipleWindowsPage extends TheInternetSubpage {
 	
-	private final static By selectorLink = By.cssSelector("#content > div > a");
+	private final static By	selectorLink		= By.cssSelector("#content > div > a");
+	public final By			pageLinkSelector	= By.cssSelector("li > a[href*='windows']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,9 +31,19 @@ public class MultipleWindowsPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
+	}
+	
+	/**
+	 * Clicks 'click here' link.
+	 * 
+	 * @return NewWindowPage object
+	 */
 	public NewWindowPage clickHereLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorLink);
-		elementLink.click();
+		getDriver().findElementDynamic(selectorLink)
+						.click();
 		getDriver().waitForPageLoaded();
 		return new NewWindowPage();
 	}

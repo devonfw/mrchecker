@@ -5,53 +5,41 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.FileDownloadPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class FileDownloadTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class FileDownloadTest extends TheInternetBaseTest<FileDownloadPage> {
 	
-	private static TheInternetPage	theInternetPage;
-	private static FileDownloadPage	fileDownloadPage;
+	private static FileDownloadPage fileDownloadPage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logDebug("Step 1 - Open the Url http://the-internet.herokuapp.com/ page");
-		theInternetPage = new TheInternetPage();
-		
-		BFLogger.logDebug("Step 2 - Verify if Url http://the-internet.herokuapp.com/ is open");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
-		
-		BFLogger.logDebug("Step 3 - Open the File Download link");
-		fileDownloadPage = theInternetPage.clickFileDownloadLink();
-		
-		BFLogger.logDebug("Step 4 - Verify if http://the-internet.herokuapp.com/download is open");
-		assertTrue("The File Download page was not open", fileDownloadPage.isLoaded());
-	}
-	
-	@Override
-	public void tearDown() {
-		BFLogger.logDebug("Step 9 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		fileDownloadPage = new FileDownloadPage();
+		shouldTheInternetSubpageBeOpened(fileDownloadPage);
 	}
 	
 	@Test
-	public void fileShouldBeDownloaded() {
-		BFLogger.logDebug("Step 5 - Download the some-file.txt");
-		File downloadedFile = fileDownloadPage.downloadTheSomeFileTxt();
+	public void shouldfileBeDownloaded() {
 		
-		BFLogger.logDebug("Step 6 - Check if downloaded file exist");
+		logStep("Download the some-file.txt");
+		File downloadedFile = fileDownloadPage.downloadTextFile();
+		
+		logStep("Verify if downloaded file exists");
 		assertTrue("Downloaded file does not exist", downloadedFile.exists());
 		
-		BFLogger.logDebug("Step 7 - Remove the downloaded file");
+		logStep("Remove downloaded file");
 		downloadedFile.delete();
 		
-		BFLogger.logDebug("Step 8 - Check if downloaded file has been removed");
-		assertFalse("Downloaded file still exist", downloadedFile.exists());
+		logStep("Verify if downloaded file has been removed");
+		assertFalse("Downloaded file still exists", downloadedFile.exists());
 	}
 	
 }

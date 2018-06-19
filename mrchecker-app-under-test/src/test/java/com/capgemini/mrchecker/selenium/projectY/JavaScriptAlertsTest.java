@@ -3,114 +3,127 @@ package com.capgemini.mrchecker.selenium.projectY;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.JavaScriptAlertsPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class JavaScriptAlertsTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class JavaScriptAlertsTest extends TheInternetBaseTest<JavaScriptAlertsPage> {
 	
-	private TheInternetPage				theInternetPage;
-	private static JavaScriptAlertsPage	javaScriptAlertsPage;
-	private final String				randomString	= "random";
+	private static TheInternetPage<JavaScriptAlertsPage>	theInternetPage;
+	private static JavaScriptAlertsPage						javaScriptAlertsPage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
+	private final String	jsAlertCofirmMessage	= "You successfuly clicked an alert";
+	private final String	jsConfirmConfirmMessage	= "You clicked: Ok";
+	private final String	jsConfirmCancelMessage	= "You clicked: Cancel";
+	private final String	jsPromptConfirmMessage	= "You entered: ";
+	private final String	jsPromptCancelMessage	= "You entered: null";
+	private final String	randomString			= "random";
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		logStep("Open the Url http://the-internet.herokuapp.com/");
+		javaScriptAlertsPage = new JavaScriptAlertsPage();
+		theInternetPage = new TheInternetPage<>(javaScriptAlertsPage);
+		theInternetPage.load();
+		
+		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
+		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
+		
+		logStep("Click subpage link");
+		theInternetPage.clickPageLink();
+		
+		logStep("Verify if subpage is opened");
+		assertTrue("The Internet subpage: JavaScriptAlertsPage was not open", javaScriptAlertsPage.isLoaded());
+	}
+	
+	@Test
+	public void shouldJSAlertCloseWithProperMessageAfterPressOkButton() {
+		logStep("Click Alert button");
+		javaScriptAlertsPage.clickAlertButton();
+		
+		logStep("Click 'OK' button on alert");
+		javaScriptAlertsPage.clickAlertAccept();
+		
+		logStep("Verify returned message");
+		assertEquals("Incorrect message returned after click",
+						jsAlertCofirmMessage, javaScriptAlertsPage.readResultLabel());
+	}
+	
+	@Test
+	public void shouldJSConfirmCloseWithProperMessageAfterPressOkButton() {
+		logStep("Click Confirm button");
+		javaScriptAlertsPage.clickConfirmButton();
+		
+		logStep("Click 'OK' button on alert");
+		javaScriptAlertsPage.clickAlertAccept();
+		
+		logStep("Verify returned message");
+		assertEquals("Incorrect message returned after click",
+						jsConfirmConfirmMessage, javaScriptAlertsPage.readResultLabel());
+	}
+	
+	@Test
+	public void shouldJSConfirmCloseWithProperMessageAfterPressCancelButton() {
+		logStep("Click Confirm button");
+		javaScriptAlertsPage.clickConfirmButton();
+		
+		logStep("Click 'Cancel' button on alert");
+		javaScriptAlertsPage.clickAlertDismiss();
+		
+		logStep("Verify returned message");
+		assertEquals("Incorrect message returned after click",
+						jsConfirmCancelMessage, javaScriptAlertsPage.readResultLabel());
+	}
+	
+	@Test
+	public void shouldJSPromptCloseWithProperMessageAfterPressOKButton() {
+		logStep("Click Prompt button");
+		javaScriptAlertsPage.clickPromptButton();
+		
+		logStep("Insert text to alert: " + randomString);
+		javaScriptAlertsPage.writeTextInAlert(randomString);
+		
+		logStep("Click 'OK' button on alert");
+		javaScriptAlertsPage.clickAlertAccept();
+		
+		logStep("Verify returned message");
+		assertEquals("Incorrect message returned after click",
+						jsPromptConfirmMessage + randomString, javaScriptAlertsPage.readResultLabel());
+	}
+	
+	@Test
+	public void shouldJSPromptCloseWithProperMessageAfterPressCancelButton() {
+		logStep("Click Prompt button");
+		javaScriptAlertsPage.clickPromptButton();
+		
+		logStep("Click 'Cancel' button on alert");
+		javaScriptAlertsPage.clickAlertDismiss();
+		
+		logStep("Verify returned message");
+		assertEquals("Incorrect message returned after click",
+						jsPromptCancelMessage, javaScriptAlertsPage.readResultLabel());
 	}
 	
 	@Override
 	public void tearDown() {
-		BFLogger.logInfo("Step7 - navigate back to The-Internet page");
+		logStep("Refresh JavaScriptAlersPage");
+		javaScriptAlertsPage.refreshPage();
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() {
+		logStep("Navigate back to The-Internet page");
 		BasePage.navigateBack();
-	}
-	
-	@Before
-	public void clickJavaScriptAlertPage() {
-		BFLogger.logInfo("Step 3: Click JavaScritpt Alert link");
-		javaScriptAlertsPage = theInternetPage.clickJavaScriptAlertLink();
-		assertTrue("JavaScript Alert page is not loaded", javaScriptAlertsPage.isLoaded());
-	}
-	
-	@Test // TC1
-	public void checkOkButtonOnBasicAlert() {
-		BFLogger.logInfo("Step 4: Click Alert Button");
-		javaScriptAlertsPage.clickAlertButton();
-		
-		BFLogger.logInfo("Step 5: Click OK Button on alert");
-		javaScriptAlertsPage.clickAlertAccept();
-		
-		BFLogger.logInfo("Step 6: Check the message");
-		assertEquals("Ok button inside Alert Box doesn't click",
-						"You successfuly clicked an alert",
-						javaScriptAlertsPage.readResultLabel());
-	}
-	
-	@Test // TC2
-	public void checkOkButtonOnConfirmAlert() {
-		BFLogger.logInfo("Step 4: Click Confirm Button");
-		javaScriptAlertsPage.clickConfirmButton();
-		
-		BFLogger.logInfo("Step 5: Click OK Button on alert");
-		javaScriptAlertsPage.clickAlertAccept();
-		
-		BFLogger.logInfo("Step 6: Check the message");
-		assertEquals("Ok button inside Confirm Box doesn't click",
-						"You clicked: Ok",
-						javaScriptAlertsPage.readResultLabel());
-	}
-	
-	@Test // TC3
-	public void checkCancelButtonOnConfirmAlert() {
-		BFLogger.logInfo("Step 4: Click Confirm Button");
-		javaScriptAlertsPage.clickConfirmButton();
-		
-		BFLogger.logInfo("Step 5: Click Cancel Button on alert");
-		javaScriptAlertsPage.clickAlertDismiss();
-		
-		BFLogger.logInfo("Step 6: Check the message");
-		assertEquals("Cancel Button inside Confirm Box doesn't work",
-						"You clicked: Cancel",
-						javaScriptAlertsPage.readResultLabel());
-	}
-	
-	@Test // TC4
-	public void checkInputTextOnPromptAlert() {
-		
-		BFLogger.logInfo("Step 4: Click Prompt Button");
-		javaScriptAlertsPage.clickPromptButton();
-		
-		BFLogger.logInfo("Step 5: Input text on alert: " + randomString);
-		javaScriptAlertsPage.writeTextInAlert(randomString);
-		
-		BFLogger.logInfo("Step 6: Click OK Button on alert");
-		javaScriptAlertsPage.clickAlertAccept();
-		
-		BFLogger.logInfo("Step 7: Check the message");
-		assertEquals("The entered text doesn't match",
-						"You entered: " + randomString,
-						javaScriptAlertsPage.readResultLabel());
-	}
-	
-	@Test // TC5
-	public void checkCancelButtonOnPromptAlert() {
-		BFLogger.logInfo("Step 4: Click Prompt Button");
-		javaScriptAlertsPage.clickPromptButton();
-		
-		BFLogger.logInfo("Step 5: Click Cancel Button on alert");
-		javaScriptAlertsPage.clickAlertDismiss();
-		
-		BFLogger.logInfo("Step 6: Check the message");
-		assertEquals("Cancel Button inside Prompt Box doesn't work",
-						"You entered: null",
-						javaScriptAlertsPage.readResultLabel());
 	}
 	
 }

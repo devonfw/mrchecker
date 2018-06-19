@@ -1,54 +1,38 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.ChallengingDomPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ChallengingDomTest extends BaseTest {
+public class ChallengingDomTest extends TheInternetBaseTest<ChallengingDomPage> {
 	
-	private TheInternetPage		theInternetPage;
-	private ChallengingDomPage	challengingDom;
+	private static ChallengingDomPage challengingDomPage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logDebug("Step 1 - Open the Url http://the-internet.herokuapp.com/ page");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-		
-		BFLogger.logDebug("Step 2 - Click on the Challenging DOM link");
-		challengingDom = theInternetPage.clickChallengingDomLink();
-		
-		BFLogger.logDebug("Step 3 - Verify if Challenging DOM Page opens");
-		assertTrue("The Challenging DOM Page was not open", challengingDom.isLoaded());
-	}
-	
-	@Override
-	public void tearDown() {
-		BFLogger.logDebug("Step 8 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		challengingDomPage = new ChallengingDomPage();
+		shouldTheInternetSubpageBeOpened(challengingDomPage);
 	}
 	
 	@Test
-	public void valuesInTableCellsShouldNotChangeAfterClick() {
-		BFLogger.logDebug("Step 4 - Getting the table values (before click first button)");
-		List<String> tableValuesBeforeClick = challengingDom.getTableValues();
+	public void shouldValuesInTableCellsStayUnchangedAfterClick() {
 		
-		BFLogger.logDebug("Step 5 - Click first button");
-		challengingDom.clickFirstButton();
+		logStep("Get table values (before click any button)");
+		List<String> tableValuesBeforeClick = challengingDomPage.getTableValues();
 		
-		BFLogger.logDebug("Step 6 - Getting the table values (after click first button)");
-		List<String> tableValuesAfterClick = challengingDom.getTableValues();
+		logStep("Click first button");
+		challengingDomPage.clickFirstButton();
 		
-		BFLogger.logDebug("Step 7 - Comparing the table values before and after click");
-		assertEquals("Values from table cells was changed after click", tableValuesBeforeClick, tableValuesAfterClick);
+		logStep("Get table values (after click first button)");
+		List<String> tableValuesAfterClick = challengingDomPage.getTableValues();
+		
+		logStep("Verify equality of table values before and after click");
+		assertEquals("Values from table cells were changed after click", tableValuesBeforeClick, tableValuesAfterClick);
 	}
+	
 }

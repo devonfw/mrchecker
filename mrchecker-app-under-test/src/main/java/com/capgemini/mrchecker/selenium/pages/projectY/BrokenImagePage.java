@@ -3,16 +3,17 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class BrokenImagePage extends BasePage {
+public class BrokenImagePage extends TheInternetSubpage {
 	
-	private static final By[] selectorsImages = { By.cssSelector("div > img:nth-child(2)"),
+	private static final By[]	selectorsImages		= { By.cssSelector("div > img:nth-child(2)"),
 					By.cssSelector("div > img:nth-child(3)"),
 					By.cssSelector("div > img:nth-child(4)") };
+	public final By				pageLinkSelector	= By.cssSelector("li > a[href*='broken_images']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,6 +32,11 @@ public class BrokenImagePage extends BasePage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
+	}
+	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
 	}
 	
 	/**

@@ -4,17 +4,18 @@ import java.math.BigDecimal;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class HorizontalSliderPage extends BasePage {
+public class HorizontalSliderPage extends TheInternetSubpage {
 	
 	private static final By	selectorHorizontalSlider	= By.cssSelector("div.sliderContainer");
 	private static final By	sliderSelector				= By.cssSelector("input");
 	private static final By	valueSelector				= By.cssSelector("#range");
+	public final By			pageLinkSelector			= By.cssSelector("li > a[href*='horizontal_slider']");
 	
 	private HorizontalSliderElement horizontalSlider;
 	
@@ -39,6 +40,11 @@ public class HorizontalSliderPage extends BasePage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
+	}
+	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
 	}
 	
 	/**

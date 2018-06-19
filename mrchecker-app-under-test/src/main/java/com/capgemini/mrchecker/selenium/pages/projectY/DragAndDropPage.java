@@ -12,18 +12,19 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.base.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.core.newDrivers.INewWebDriver;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DragAndDropPage extends BasePage {
+public class DragAndDropPage extends TheInternetSubpage {
 	
 	private static final By	selectorDragAndDropText		= By.cssSelector("div#content h3");
 	private static final By	selectorAElementContainer	= By.cssSelector("div#column-a");
 	private static final By	selectorBElementContainer	= By.cssSelector("div#column-b");
 	private static final By	selectorDescriptionElement	= By.cssSelector("header");
+	public final By			pageLinkSelector			= By.cssSelector("li > a[href*='drag_and_drop']");
 	
 	private static final String dndHelperPath = "src/test/resources/js/drag_and_drop_helper.js";
 	
@@ -44,6 +45,11 @@ public class DragAndDropPage extends BasePage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
+	}
+	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
 	}
 	
 	/**

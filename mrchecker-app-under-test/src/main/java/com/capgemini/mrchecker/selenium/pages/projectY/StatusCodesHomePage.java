@@ -2,12 +2,14 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class StatusCodesHomePage extends BasePage {
+public class StatusCodesHomePage extends TheInternetSubpage {
+	
+	public final By pageLinkSelector = By.cssSelector("li > a[href*='status_codes']");
 	
 	private static final By	selectorLink200Code	= By.linkText("200");
 	private static final By	selectorLink301Code	= By.linkText("301");
@@ -33,26 +35,69 @@ public class StatusCodesHomePage extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
+	}
+	
+	/**
+	 * Verifies if given link is displayed.
+	 * 
+	 * @param selector
+	 *            Selector of given link
+	 * @return true if link is displayed
+	 */
 	public boolean isLinkCodeDisplayed(By selector) {
 		return getDriver().findElementDynamic(selector)
 						.isDisplayed();
 		
 	}
 	
+	/**
+	 * Clicks '200' link.
+	 * 
+	 * @return StatusCodesCodePage object
+	 */
 	public StatusCodesCodePage clickCode200Link() {
 		return clickCodeLink(selectorLink200Code);
 	}
 	
+	/**
+	 * Clicks '301' link.
+	 * 
+	 * @return StatusCodesCodePage object
+	 */
 	public StatusCodesCodePage clickCode301Link() {
 		return clickCodeLink(selectorLink301Code);
 	}
 	
+	/**
+	 * Clicks '404' link.
+	 * 
+	 * @return StatusCodesCodePage object
+	 */
 	public StatusCodesCodePage clickCode404Link() {
 		return clickCodeLink(selectorLink404Code);
 	}
 	
+	/**
+	 * Clicks '500' link.
+	 * 
+	 * @return StatusCodesCodePage object
+	 */
 	public StatusCodesCodePage clickCode500Link() {
 		return clickCodeLink(selectorLink500Code);
+	}
+	
+	/**
+	 * Clicks code link according to given code number.
+	 * 
+	 * @param code
+	 *            Given code
+	 * @return StatusCodesCodePage object
+	 */
+	public StatusCodesCodePage clickCodeLink(String code) {
+		return clickCodeLink(By.linkText(code));
 	}
 	
 	private StatusCodesCodePage clickCodeLink(By selector) {

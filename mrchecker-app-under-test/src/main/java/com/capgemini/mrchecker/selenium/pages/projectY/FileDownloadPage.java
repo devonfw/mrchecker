@@ -7,14 +7,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class FileDownloadPage extends BasePage {
+public class FileDownloadPage extends TheInternetSubpage {
 	
 	private static final By	selectorSomeFileTxt	= By.cssSelector("a[href*=some-file]");
+	public final By			pageLinkSelector	= By.cssSelector("li > a[href$='download']");
 	private final String	DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
 	
 	@Override
@@ -36,7 +37,17 @@ public class FileDownloadPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public File downloadTheSomeFileTxt() {
+	@Override
+	public void clickPageLink() {
+		new Button(pageLinkSelector).click();
+	}
+	
+	/**
+	 * Verifies if chosen file is already downloaded and downloads it if not. Throws RuntimeException otherwise.
+	 * 
+	 * @return Downloaded file
+	 */
+	public File downloadTextFile() {
 		String nameOfDownloadFile = getNameOfDownloadFile();
 		File fileToDownload = new File(DOWNLOAD_DIR + nameOfDownloadFile);
 		
