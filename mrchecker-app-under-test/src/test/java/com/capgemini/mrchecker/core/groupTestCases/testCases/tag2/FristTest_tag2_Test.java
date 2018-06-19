@@ -15,9 +15,9 @@ import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistryPage
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-import ru.yandex.qatools.allure.annotations.Features;
+import io.qameta.allure.Feature;
 
-@Features("TAG2")
+@Feature("TAG2")
 @Category({ TestsTag2.class, TestsSlow.class, TestsIE.class })
 public class FristTest_tag2_Test extends BaseTest {
 	

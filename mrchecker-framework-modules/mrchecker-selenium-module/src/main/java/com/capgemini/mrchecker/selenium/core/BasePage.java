@@ -27,7 +27,7 @@ import com.capgemini.mrchecker.test.core.base.properties.PropertiesSettingsModul
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
-import ru.yandex.qatools.allure.annotations.Attachment;
+import io.qameta.allure.Attachment;
 
 abstract public class BasePage implements IBasePage, ITestObserver {
 	
@@ -100,7 +100,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@Override
 	public void onTestFailure() {
 		BFLogger.logDebug("BasePage.onTestFailure    " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 		makeScreenshotOnFailure();
 		makeSourcePageOnFailure();
 	}
@@ -108,20 +108,20 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@Override
 	public void onTestSuccess() {
 		BFLogger.logDebug("BasePage.onTestSuccess    " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 	}
 	
 	@Override
 	public void onTestFinish() {
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 		BaseTestWatcher.removeObserver(this);
 	}
 	
 	@Override
 	public void onTestClassFinish() {
 		BFLogger.logDebug("BasePage.onTestClassFinish   " + this.getClass()
-						.getSimpleName());
+				.getSimpleName());
 		BFLogger.logDebug("driver:" + getDriver().toString());
 		DriverManager.closeDriver();
 	}
@@ -145,7 +145,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@Attachment("Source Page on failure")
 	public String makeSourcePageOnFailure() {
 		return DriverManager.getDriver()
-						.getPageSource();
+				.getPageSource();
 	}
 	
 	public String getActualPageTitle() {
@@ -154,7 +154,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	public void refreshPage() {
 		getDriver().navigate()
-						.refresh();
+				.refresh();
 	}
 	
 	public static INewWebDriver getDriver() {
@@ -179,7 +179,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	 */
 	public static void navigateBack(boolean andWait) {
 		getDriver().navigate()
-						.back();
+				.back();
 		getDriver().waitForPageLoaded();
 	}
 	
@@ -208,12 +208,12 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 		getDriver().waitForPageLoaded();
 		String pageTitle = this.pageTitle();
 		String currentUrl = BasePage.getDriver()
-						.getCurrentUrl();
+				.getCurrentUrl();
 		String currentPageTitle = BasePage.getDriver()
-						.getTitle();
+				.getTitle();
 		if (!currentUrl.contains(url) || !pageTitle.equals(currentPageTitle)) {
 			BFLogger.logDebug(getClass().getName() + ": Current loaded page (" + url + ") with pageTitle ("
-							+ currentPageTitle + "). Page to load: (" + url + ") ,for page title: (" + pageTitle + ")");
+					+ currentPageTitle + "). Page to load: (" + url + ") ,for page title: (" + pageTitle + ")");
 			return false;
 		}
 		return true;
@@ -234,7 +234,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 			throw new BFElementNotFoundException(cssSelector);
 		}
 		return elements.get(0)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -253,7 +253,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 			throw new BFElementNotFoundException(cssSelector);
 		}
 		return elements.get(0)
-						.isDisplayed();
+				.isDisplayed();
 	}
 	
 	/**
@@ -273,11 +273,11 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 			throw new BFElementNotFoundException(cssSelector);
 		}
 		boolean retValue = elements.get(0)
-						.isDisplayed();
+				.isDisplayed();
 		if (retValue && text != null) {
 			retValue = elements.get(0)
-							.getText()
-							.equals(text);
+					.getText()
+					.equals(text);
 		}
 		return retValue;
 	}
@@ -314,7 +314,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	@SuppressWarnings("deprecation")
 	public static boolean isElementPresent(By cssSelector) {
 		return !getDriver().findElements(cssSelector)
-						.isEmpty();
+				.isEmpty();
 	}
 	
 	public static boolean isLinkClickable(By selector) {
@@ -325,7 +325,7 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	
 	public static boolean isLinkClickable(WebElement element) {
 		return !element.getAttribute("href")
-						.equals("");
+				.equals("");
 	}
 	
 	public static WebDriverWait getWebDriverWait() {
@@ -341,10 +341,10 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 		boolean resValue = !pageTitle.isEmpty();
 		if (resValue) {
 			resValue = pageTitle.get(0)
-							.isDisplayed()
-							&& pageTitle.get(0)
-											.getText()
-											.equals(title);
+					.isDisplayed()
+					&& pageTitle.get(0)
+							.getText()
+							.equals(title);
 		}
 		return resValue;
 	}
@@ -363,14 +363,14 @@ abstract public class BasePage implements IBasePage, ITestObserver {
 	private static PropertiesSelenium setPropertiesSettings() {
 		// Get and then set properties information from selenium.settings file
 		PropertiesSelenium propertiesSelenium = Guice.createInjector(PropertiesSettingsModule.init())
-						.getInstance(PropertiesSelenium.class);
+				.getInstance(PropertiesSelenium.class);
 		return propertiesSelenium;
 	}
 	
 	private static void setRuntimeParametersSelenium() {
 		// Read System or maven parameters
 		BFLogger.logDebug(java.util.Arrays.asList(RuntimeParametersSelenium.values())
-						.toString());
+				.toString());
 		
 	}
 	

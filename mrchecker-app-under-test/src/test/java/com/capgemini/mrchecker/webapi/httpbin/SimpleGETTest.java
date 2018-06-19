@@ -6,12 +6,11 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleGETPage;
 
 import io.restassured.response.Response;
 
-public class SimpleGETTest extends BasePageWebApiTest {
+public class SimpleGETTest extends com.capgemini.mrchecker.webapi.BasePageWebApiTest {
 	
 	private SimpleGETPage simpleGETPage;
 	

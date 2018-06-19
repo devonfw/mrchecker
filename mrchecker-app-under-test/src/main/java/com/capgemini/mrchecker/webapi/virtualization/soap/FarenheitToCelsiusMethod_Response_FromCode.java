@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.endpoint.soap;
+package com.capgemini.mrchecker.webapi.virtualization.soap;
 
 import java.io.IOException;
 
@@ -15,15 +15,15 @@ import com.capgemini.mrchecker.webapi.soap.SoapMessageGenerator;
 import com.jamesmurty.utils.XMLBuilder;
 
 public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
-
+	
 	/*
 	 * SOAP response built from Java code
 	 */
-
+	
 	public FarenheitToCelsiusMethod_Response_FromCode() {
 		setRoot("FahrenheitToCelsiusResponse");
 	}
-
+	
 	/**
 	 * @return Generate SOAP request in String format
 	 */
@@ -38,16 +38,16 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 		}
 		return message;
 	}
-
+	
 	/**
 	 * @return Root XML structure
 	 */
 	public XMLBuilder getRoot() {
 		return xmlBody;
 	}
-
+	
 	// Set any nodes type under xml Root
-
+	
 	/**
 	 * Set "FahrenheitToCelsiusResult" node under xml Root
 	 *
@@ -62,7 +62,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 				.text(Double.toString(value));
 		return this;
 	}
-
+	
 	/**
 	 * Set "Smth" node under xml Root
 	 *
@@ -76,14 +76,14 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 				.text(Smth);
 		return this;
 	}
-
+	
 	/*
 	 * ----------------------------------
 	 * Any handy actions after this point
 	 * ----------------------------------
 	 */
 	private XMLBuilder xmlBody;
-
+	
 	private void setRoot(String nodeName) {
 		try {
 			this.xmlBody = XMLBuilder.create(nodeName);
@@ -91,7 +91,7 @@ public class FarenheitToCelsiusMethod_Response_FromCode extends BasePageWebAPI {
 			new Exception(e);
 		}
 	}
-
+	
 	public String getEndpoint() {
 		// Useful only for REST Tests
 		return null;

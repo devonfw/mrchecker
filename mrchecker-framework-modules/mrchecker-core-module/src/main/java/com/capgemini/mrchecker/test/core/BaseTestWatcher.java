@@ -13,11 +13,11 @@ import org.junit.runners.model.Statement;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-import ru.yandex.qatools.allure.annotations.Attachment;
+import io.qameta.allure.Attachment;
 
 public class BaseTestWatcher extends TestWatcher {
-	private BaseTest baseTest;
-	private long iStart;
+	private BaseTest	baseTest;
+	private long		iStart;
 	
 	static final ThreadLocal<List<ITestObserver>> observers = new ThreadLocal<List<ITestObserver>>() {
 		@Override

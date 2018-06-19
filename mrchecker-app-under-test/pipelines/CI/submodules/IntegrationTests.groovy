@@ -11,15 +11,9 @@ def call(){
             sh"""
                 cd ${env.APP_WORKSPACE}
                 mvn -q site:site ${env.MVN_PARAMETERS}
-            """
-            junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"
-            if (fileExists("${env.APP_WORKSPACE}target/site/allure-report/index.html")) {
-                echo("Before publish allure");
-                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "${env.APP_WORKSPACE}target/site/allure-report", reportFiles: 'index.html', reportName: "allure"]);
-                echo("After publish allure");
-            } else {
-                echo("Any HTML report found!");
-            }
+            """			
+            junit "**/${env.APP_WORKSPACE}target/surefire-reports/TEST-*.xml"		
+            allure includeProperties: true, jdk: '', report: "${env.APP_WORKSPACE}target/site/allure-report", results: [[path: "${env.APP_WORKSPACE}target/allure-results"]]
         } catch (Exception e){
             echo("No report generated. Reason: \n" + e);
         }

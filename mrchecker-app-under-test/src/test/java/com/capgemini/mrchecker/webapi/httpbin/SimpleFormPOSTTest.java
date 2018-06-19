@@ -15,7 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaSize;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaToppings;
@@ -27,7 +26,7 @@ import io.restassured.response.Response;
  * On the other hand 'httpbin.org/forms/post' including client-side validations. Below tests will cover them.
  */
 
-public class SimpleFormPOSTTest extends BasePageWebApiTest {
+public class SimpleFormPOSTTest extends com.capgemini.mrchecker.webapi.BasePageWebApiTest {
 	
 	private static SimpleFormPOSTPage	simplePOSTPage	= new SimpleFormPOSTPage();
 	private static Response				response;

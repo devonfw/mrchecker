@@ -2,6 +2,9 @@
 ####################
 **/test-output/
 **/target/
+**/.allure/
+**/allure-results/
+**/lib/
 **/logs/
 **/.metadata/
 **/*.orig
@@ -31,7 +34,7 @@
 
 # Exclude #
 ##############
-!allure-app-under-test/lib/**/*
+!mrchecker-app-under-test/lib/**/*
 
 # Packages #
 ############

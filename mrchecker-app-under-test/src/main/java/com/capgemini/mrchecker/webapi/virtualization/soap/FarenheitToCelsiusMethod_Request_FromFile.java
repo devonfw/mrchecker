@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.webapi.endpoint.soap;
+package com.capgemini.mrchecker.webapi.virtualization.soap;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,17 +9,30 @@ import java.nio.file.Paths;
 
 import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
 
-public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
+/**
+ * SOAP endpoint for a SOAP web service that matches a response body with the following SOAP envelope:
+ * <?xml version="1.0" encoding="utf-8"?>
+ * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd=
+ * "http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+ * <soap12:Body>
+ * <FahrenheitToCelsius>
+ * <Fahrenheit>100</Fahrenheit>
+ * </FahrenheitToCelsius>
+ * </soap12:Body>
+ * </soap12:Envelope>
+ **/
+public class FarenheitToCelsiusMethod_Request_FromFile extends BasePageWebAPI {
 	
 	/*
 	 * SOAP response built from Java code
 	 */
-	private String path = "/src/test/resources/soapInput/farenheittocelsius/sampleresponse.xml";
+	// optional parameters
+	private String path = "/src/test/resources/soapInput/farenheittocelsius/samplerequest.xml";
 	
-	public FarenheitToCelsiusMethod_Response_FromFile() {
+	public FarenheitToCelsiusMethod_Request_FromFile() {
 	}
 	
-	public FarenheitToCelsiusMethod_Response_FromFile setFilePath(String path) {
+	public FarenheitToCelsiusMethod_Request_FromFile setFilePath(String path) {
 		this.path = path;
 		return this;
 	}
@@ -59,7 +72,7 @@ public class FarenheitToCelsiusMethod_Response_FromFile extends BasePageWebAPI {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
-
+	
 	public String getEndpoint() {
 		// Useful only for REST Tests
 		return null;
