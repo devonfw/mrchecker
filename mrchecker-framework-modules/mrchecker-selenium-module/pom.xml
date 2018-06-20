@@ -63,7 +63,7 @@ Based on Selenium 3.8.1</description>
 
     <properties>
         <version>3.8.1.9-SNAPSHOT</version>
-        
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
@@ -87,7 +87,8 @@ Based on Selenium 3.8.1</description>
     <dependencies>
 
         <!-- Guava is a set of core libraries -->
-        <!-- NOTE: given Guava lib is not backward compatible, therefore must be used as first dependency import to overwrite any other imports -->
+        <!-- NOTE: given Guava lib is not backward compatible, therefore 
+            must be used as first dependency import to overwrite any other imports -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -124,6 +125,10 @@ Based on Selenium 3.8.1</description>
                 <exclusion>
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava-jdk5</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
