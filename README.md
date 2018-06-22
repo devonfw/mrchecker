@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdevonfw%2Fdevonfw-testing.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdevonfw%2Fdevonfw-testing?ref=badge_shield)
+
 # Install #
 
 1. Download package [TestEnvironment](https://github.com/devonfw/devonfw-testing/releases/download/2.5.0/MrChecker_Test_Framework.7z)
