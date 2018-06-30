@@ -2,16 +2,15 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class CheckboxesPage extends TheInternetSubpage {
+public class CheckboxesPage extends BasePage {
 	
-	private final static By	checkboxesFormSelector	= By.cssSelector("#checkboxes");
-	public final By			pageLinkSelector		= By.cssSelector("li > a[href*='checkboxes']");
+	private final static By checkboxesFormSelector = By.cssSelector("#checkboxes");
 	
 	@Override
 	public boolean isLoaded() {
@@ -30,11 +29,6 @@ public class CheckboxesPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

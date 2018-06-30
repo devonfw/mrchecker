@@ -4,19 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.LabelElement;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class JavaScriptAlertsPage extends TheInternetSubpage {
+public class JavaScriptAlertsPage extends BasePage {
 	
 	private static final By	selectorAlertButton		= By.cssSelector("button[onclick*=jsAlert]");
 	private static final By	selectorConfirmButton	= By.cssSelector("button[onclick*=jsConfirm]");
 	private static final By	selectorPromptButton	= By.cssSelector("button[onclick*=jsPrompt]");
 	private static final By	resultLabelSelector		= By.cssSelector("p#result");
-	public final By			pageLinkSelector		= By.cssSelector("li > a[href*='javascript_alerts']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -35,11 +35,6 @@ public class JavaScriptAlertsPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

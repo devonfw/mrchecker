@@ -5,17 +5,16 @@ import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DynamicContentPage extends TheInternetSubpage {
+public class DynamicContentPage extends BasePage {
 	
 	private static final By	imagesLinksSelector			= By.cssSelector("div#content > div.row img");
 	private static final By	imagesDescriptionsSelector	= By.cssSelector("div#content > div.row div.large-10");
-	public final By			pageLinkSelector			= By.cssSelector("li > a[href*='dynamic_content']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -34,11 +33,6 @@ public class DynamicContentPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

@@ -12,15 +12,17 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParal
 import com.capgemini.mrchecker.selenium.pages.projectY.ContextMenuPage;
 
 @Category({ TestsLocal.class, TestsNONParallel.class, TestsFirefox.class })
-public class ContextMenuTest extends TheInternetBaseTest<ContextMenuPage> {
+public class ContextMenuTest extends TheInternetBaseTest {
 	
 	private static ContextMenuPage	contextMenuPage;
 	private final String			expectedAlertText	= "You selected a context menu";
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		contextMenuPage = new ContextMenuPage();
-		shouldTheInternetSubpageBeOpened(contextMenuPage);
+		contextMenuPage = shouldTheInternetPageBeOpened().clickContextMenuLink();
+		
+		logStep("Verify if Context Menu page is opened");
+		assertTrue("Unable to open Context Menu page", contextMenuPage.isLoaded());
 	}
 	
 	@Test

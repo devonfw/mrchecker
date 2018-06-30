@@ -5,18 +5,17 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
 import com.capgemini.mrchecker.selenium.jsoupHelper.JsoupHelper;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class SortableDataTablesPage extends TheInternetSubpage {
+public class SortableDataTablesPage extends BasePage {
 	
-	private static final By	selectorTable		= By.cssSelector("table.tablesorter");
-	private static final By	selectorHeader		= By.cssSelector("th");
-	public final By			pageLinkSelector	= By.cssSelector("li > a[href*='tables']");
+	private static final By	selectorTable	= By.cssSelector("table.tablesorter");
+	private static final By	selectorHeader	= By.cssSelector("th");
 	
 	@Override
 	public boolean isLoaded() {
@@ -35,11 +34,6 @@ public class SortableDataTablesPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

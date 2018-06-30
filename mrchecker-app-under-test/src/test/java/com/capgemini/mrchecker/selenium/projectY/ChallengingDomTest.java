@@ -1,22 +1,31 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.ChallengingDomPage;
 
-public class ChallengingDomTest extends TheInternetBaseTest<ChallengingDomPage> {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class ChallengingDomTest extends TheInternetBaseTest {
 	
 	private static ChallengingDomPage challengingDomPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		challengingDomPage = new ChallengingDomPage();
-		shouldTheInternetSubpageBeOpened(challengingDomPage);
+		challengingDomPage = shouldTheInternetPageBeOpened().clickChallengingDomLink();
+		
+		logStep("Verify if Challenging Dom page is opened");
+		assertTrue("Unable to open Challenging Dom page", challengingDomPage.isLoaded());
 	}
 	
 	@Test

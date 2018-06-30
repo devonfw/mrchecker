@@ -1,6 +1,7 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.KeyPressesPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class KeyPressesTest extends TheInternetBaseTest<KeyPressesPage> {
+public class KeyPressesTest extends TheInternetBaseTest {
 	
 	private static KeyPressesPage keyPressesPage;
 	
@@ -22,8 +23,10 @@ public class KeyPressesTest extends TheInternetBaseTest<KeyPressesPage> {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		keyPressesPage = new KeyPressesPage();
-		shouldTheInternetSubpageBeOpened(keyPressesPage);
+		keyPressesPage = shouldTheInternetPageBeOpened().clickKeyPressesLink();
+		
+		logStep("Verify if Key Presses page is opened");
+		assertTrue("Unable to open Key Presses page", keyPressesPage.isLoaded());
 	}
 	
 	@Test

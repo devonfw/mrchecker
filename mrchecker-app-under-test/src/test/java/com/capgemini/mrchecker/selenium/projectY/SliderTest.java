@@ -19,10 +19,9 @@ import com.capgemini.mrchecker.selenium.pages.projectY.HorizontalSliderPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class SliderTest extends TheInternetBaseTest<HorizontalSliderPage> {
+public class SliderTest extends TheInternetBaseTest {
 	
-	private static TheInternetPage<HorizontalSliderPage>	theInternetPage;
-	private static HorizontalSliderPage						horizontalSliderPage;
+	private static HorizontalSliderPage horizontalSliderPage;
 	
 	BigDecimal	startPosition;
 	BigDecimal	middlePosition;
@@ -31,21 +30,20 @@ public class SliderTest extends TheInternetBaseTest<HorizontalSliderPage> {
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		logStep("Open the Url http://the-internet.herokuapp.com/");
-		horizontalSliderPage = new HorizontalSliderPage();
-		theInternetPage = new TheInternetPage<>(horizontalSliderPage);
+		theInternetPage = new TheInternetPage();
 		theInternetPage.load();
 		
 		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
+		assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
 	}
 	
 	@Override
 	public void setUp() {
-		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
+		logStep("Click Horizontal Slider link");
+		horizontalSliderPage = theInternetPage.clickHorizontalSliderLink();
 		
-		logStep("Verify if subpage is opened");
-		assertTrue("The Internet subpage: HorizontalSliderPage was not open", horizontalSliderPage.isLoaded());
+		logStep("Verify if Horizontal Slider page is opened");
+		assertTrue("Unable to load Horizontal Slider page", horizontalSliderPage.isLoaded());
 		
 		logStep("Verify if horizontal slider element is visible");
 		assertTrue("Horizontal slider is not visible", horizontalSliderPage.isElementHorizontalSliderVisible());

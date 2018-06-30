@@ -14,13 +14,11 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.JavaScriptAlertsPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class JavaScriptAlertsTest extends TheInternetBaseTest<JavaScriptAlertsPage> {
+public class JavaScriptAlertsTest extends TheInternetBaseTest {
 	
-	private static TheInternetPage<JavaScriptAlertsPage>	theInternetPage;
-	private static JavaScriptAlertsPage						javaScriptAlertsPage;
+	private static JavaScriptAlertsPage javaScriptAlertsPage;
 	
 	private final String	jsAlertCofirmMessage	= "You successfuly clicked an alert";
 	private final String	jsConfirmConfirmMessage	= "You clicked: Ok";
@@ -31,19 +29,10 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest<JavaScriptAlertsPa
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		logStep("Open the Url http://the-internet.herokuapp.com/");
-		javaScriptAlertsPage = new JavaScriptAlertsPage();
-		theInternetPage = new TheInternetPage<>(javaScriptAlertsPage);
-		theInternetPage.load();
+		javaScriptAlertsPage = shouldTheInternetPageBeOpened().clickJavaScriptAlertLink();
 		
-		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
-		
-		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
-		
-		logStep("Verify if subpage is opened");
-		assertTrue("The Internet subpage: JavaScriptAlertsPage was not open", javaScriptAlertsPage.isLoaded());
+		logStep("Verify if JavaScript Alerts page is opened");
+		assertTrue("Unable to open JavaScript Alerts page", javaScriptAlertsPage.isLoaded());
 	}
 	
 	@Test

@@ -15,7 +15,7 @@ import com.capgemini.mrchecker.selenium.pages.projectY.StatusCodesCodePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.StatusCodesHomePage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class StatusCodeTest extends TheInternetBaseTest<StatusCodesHomePage> {
+public class StatusCodeTest extends TheInternetBaseTest {
 	
 	private static StatusCodesHomePage	statusCodesHomePage;
 	private StatusCodesCodePage			statusCodesCodePage;
@@ -24,8 +24,10 @@ public class StatusCodeTest extends TheInternetBaseTest<StatusCodesHomePage> {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		statusCodesHomePage = new StatusCodesHomePage();
-		shouldTheInternetSubpageBeOpened(statusCodesHomePage);
+		statusCodesHomePage = shouldTheInternetPageBeOpened().clickStatusCodesLink();
+		
+		logStep("Verify if Status Codes Home page is opened");
+		assertTrue("Unable to open Status Codes Home page", statusCodesHomePage.isLoaded());
 	}
 	
 	@Test

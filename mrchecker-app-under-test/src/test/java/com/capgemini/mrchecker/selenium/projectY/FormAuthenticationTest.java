@@ -15,10 +15,9 @@ import com.capgemini.mrchecker.selenium.pages.projectY.FormAuthenticationPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 
 @Category({ TestsLocal.class, TestsNONParallel.class })
-public class FormAuthenticationTest extends TheInternetBaseTest<FormAuthenticationPage> {
+public class FormAuthenticationTest extends TheInternetBaseTest {
 	
-	private static TheInternetPage<FormAuthenticationPage>	theInternetPage;
-	private static FormAuthenticationPage					formAuthenticationPage;
+	private static FormAuthenticationPage formAuthenticationPage;
 	
 	private String	errorUsernameMessage	= "Your username is invalid!\n" + "×";
 	private String	errorPasswordMessage	= "Your password is invalid!\n" + "×";
@@ -36,18 +35,17 @@ public class FormAuthenticationTest extends TheInternetBaseTest<FormAuthenticati
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		logStep("Open the Url http://the-internet.herokuapp.com/");
-		formAuthenticationPage = new FormAuthenticationPage();
-		theInternetPage = new TheInternetPage<>(formAuthenticationPage);
+		theInternetPage = new TheInternetPage();
 		theInternetPage.load();
 		
 		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
+		assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
 	}
 	
 	@Override
 	public void setUp() {
 		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
+		formAuthenticationPage = theInternetPage.clickFormAuthenticationLink();
 		
 		logStep("Verify if subpage is opened");
 		assertTrue("The Internet subpage: FormAuthenticationPage was not open", formAuthenticationPage.isLoaded());

@@ -2,15 +2,15 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
 
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class RedirectLinkPage extends TheInternetSubpage {
+public class RedirectLinkPage extends BasePage {
 	
-	private static final By	selectorRedirectHere	= By.cssSelector("a#redirect");
-	public final By			pageLinkSelector		= By.cssSelector("li > a[href*='redirector']");
+	private static final By selectorRedirectHere = By.cssSelector("a#redirect");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,11 +31,6 @@ public class RedirectLinkPage extends TheInternetSubpage {
 		return getActualPageTitle();
 	}
 	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
-	}
-	
 	/**
 	 * Clicks 'Redirect here' link.
 	 * 
@@ -45,4 +40,5 @@ public class RedirectLinkPage extends TheInternetSubpage {
 		new Button(selectorRedirectHere).click();
 		return new StatusCodesHomePage();
 	}
+	
 }

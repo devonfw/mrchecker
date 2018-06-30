@@ -11,15 +11,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.base.environment.GetEnvironmentParam;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ContextMenuPage extends TheInternetSubpage {
+public class ContextMenuPage extends BasePage {
 	
-	private static final By	hotSpotAreaseletor	= id("hot-spot");
-	public final By			pageLinkSelector	= By.cssSelector("li > a[href*='context_menu']");
+	private static final By hotSpotAreaseletor = id("hot-spot");
 	
 	@Override
 	public boolean isLoaded() {
@@ -38,11 +37,6 @@ public class ContextMenuPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

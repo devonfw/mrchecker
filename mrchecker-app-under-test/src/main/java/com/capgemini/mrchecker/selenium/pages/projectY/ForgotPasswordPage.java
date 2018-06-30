@@ -2,16 +2,15 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ForgotPasswordPage extends TheInternetSubpage {
+public class ForgotPasswordPage extends BasePage {
 	
 	private static final By	selectorEmailInput				= By.cssSelector("input#email");
 	private static final By	selectorRetrievePasswordButton	= By.cssSelector("button#form_submit > i");
-	public final By			pageLinkSelector				= By.cssSelector("li > a[href*='forgot_password']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -30,11 +29,6 @@ public class ForgotPasswordPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

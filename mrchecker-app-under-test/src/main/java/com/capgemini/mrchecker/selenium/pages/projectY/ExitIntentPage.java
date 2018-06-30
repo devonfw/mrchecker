@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.pagefactory.ByChained;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ExitIntentPage extends TheInternetSubpage {
+public class ExitIntentPage extends BasePage {
 	
 	private static final String	MODAL_WINDOW_HIDDEN				= "display: none;";
 	private static final String	MODAL_WINDOW_DISPLAYED			= "display: block;";
@@ -24,7 +24,6 @@ public class ExitIntentPage extends TheInternetSubpage {
 	private static final By	selectorExitIntentText			= By.cssSelector("div#content h3");
 	private static final By	selectorModalWindowTitle		= By.cssSelector("h3");
 	private static final By	selectorModalWindowCloseButton	= By.cssSelector("div.modal-footer > p");
-	public final By			pageLinkSelector				= By.cssSelector("li > a[href*='exit_intent']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -43,11 +42,6 @@ public class ExitIntentPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

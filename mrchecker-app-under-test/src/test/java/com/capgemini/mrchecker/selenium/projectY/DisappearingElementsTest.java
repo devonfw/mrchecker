@@ -16,7 +16,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.DisappearingElementsPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DisappearingElementsTest extends TheInternetBaseTest<DisappearingElementsPage> {
+public class DisappearingElementsTest extends TheInternetBaseTest {
 	
 	private static DisappearingElementsPage disappearingElementsPage;
 	
@@ -25,8 +25,10 @@ public class DisappearingElementsTest extends TheInternetBaseTest<DisappearingEl
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		disappearingElementsPage = new DisappearingElementsPage();
-		shouldTheInternetSubpageBeOpened(disappearingElementsPage);
+		disappearingElementsPage = shouldTheInternetPageBeOpened().clickDisappearingElementsLink();
+		
+		logStep("Verify if Disappearing Elements page is opened");
+		assertTrue("Unable to open Disappearing Elements page", disappearingElementsPage.isLoaded());
 		
 		logStep("Verify if menu button elements are visible");
 		numberOfMenuButtons = disappearingElementsPage.getNumberOfMenuButtons();

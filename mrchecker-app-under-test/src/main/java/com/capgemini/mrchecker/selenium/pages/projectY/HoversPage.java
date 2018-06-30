@@ -4,16 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class HoversPage extends TheInternetSubpage {
+public class HoversPage extends BasePage {
 	
-	private final static By	selectorImages		= By.cssSelector("div.figure > img");
-	private final static By	selectorNames		= By.cssSelector("div.figcaption h5");
-	public final By			pageLinkSelector	= By.cssSelector("li > a[href*='hovers']");
+	private final static By	selectorImages	= By.cssSelector("div.figure > img");
+	private final static By	selectorNames	= By.cssSelector("div.figcaption h5");
 	
 	@Override
 	public boolean isLoaded() {
@@ -32,11 +31,6 @@ public class HoversPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

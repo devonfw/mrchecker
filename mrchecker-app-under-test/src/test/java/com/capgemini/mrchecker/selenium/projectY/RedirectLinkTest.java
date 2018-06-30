@@ -14,15 +14,17 @@ import com.capgemini.mrchecker.selenium.pages.projectY.RedirectLinkPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.StatusCodesHomePage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class RedirectLinkTest extends TheInternetBaseTest<RedirectLinkPage> {
+public class RedirectLinkTest extends TheInternetBaseTest {
 	
 	private static RedirectLinkPage		redirectLinkPage;
 	private static StatusCodesHomePage	statusCodesHomePage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		redirectLinkPage = new RedirectLinkPage();
-		shouldTheInternetSubpageBeOpened(redirectLinkPage);
+		redirectLinkPage = shouldTheInternetPageBeOpened().clickRedirectLink();
+		
+		logStep("Verify if Redirect Link page is opened");
+		assertTrue("Unable to open Redirect Link page", redirectLinkPage.isLoaded());
 	}
 	
 	@Test

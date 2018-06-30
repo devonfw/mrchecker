@@ -14,7 +14,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.DragAndDropPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DragAndDropTest extends TheInternetBaseTest<DragAndDropPage> {
+public class DragAndDropTest extends TheInternetBaseTest {
 	
 	private static final String	ELEMENT_A	= "A";
 	private static final String	CONTAINER_A	= "A";
@@ -25,8 +25,10 @@ public class DragAndDropTest extends TheInternetBaseTest<DragAndDropPage> {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		dragAndDropPage = new DragAndDropPage();
-		shouldTheInternetSubpageBeOpened(dragAndDropPage);
+		dragAndDropPage = shouldTheInternetPageBeOpened().clickDragAndDropLink();
+		
+		logStep("Verify if Drag And Drop page is opened");
+		assertTrue("Unable to open Drag And Drop page", dragAndDropPage.isLoaded());
 		
 		logStep("Verify if Drag And Drop message is visible");
 		assertTrue("Drag And Drop message is not visible", dragAndDropPage.isDragAndDropMessageVisible());

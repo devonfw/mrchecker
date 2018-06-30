@@ -8,12 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DynamicLoadingPage extends TheInternetSubpage {
+public class DynamicLoadingPage extends BasePage {
 	
 	private static final By	selectorExampleOneLink		= By.cssSelector("a[href*='dynamic_loading/1']");
 	private static final By	selectorExampleTwoLink		= By.cssSelector("a[href*='dynamic_loading/2']");
@@ -21,7 +21,6 @@ public class DynamicLoadingPage extends TheInternetSubpage {
 	private static final By	selectorStartButton			= By.cssSelector("div#start button");
 	private static final By	selectorLoadingBar			= By.cssSelector("div#loading");
 	private static final By	selectorExampleText			= By.cssSelector("div#finish h4");
-	public final By			pageLinkSelector			= By.cssSelector("li > a[href*='dynamic_loading']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -40,11 +39,6 @@ public class DynamicLoadingPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**
@@ -123,4 +117,5 @@ public class DynamicLoadingPage extends TheInternetSubpage {
 		return getDriver().findElementDynamic(selectorExampleText)
 						.getText();
 	}
+	
 }

@@ -4,15 +4,14 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ABtestPage extends TheInternetSubpage {
+public class ABtestPage extends BasePage {
 	
-	private static final By	elementalSeleniumLinkSelector	= By.cssSelector("div > div > a");
-	public final By			pageLinkSelector				= By.cssSelector("li > a[href*='abtest']");
+	private static final By elementalSeleniumLinkSelector = By.cssSelector("div > div > a");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,11 +30,6 @@ public class ABtestPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

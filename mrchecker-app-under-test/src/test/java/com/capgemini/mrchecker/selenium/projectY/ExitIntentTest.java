@@ -11,7 +11,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParal
 import com.capgemini.mrchecker.selenium.pages.projectY.ExitIntentPage;
 
 @Category({ TestsLocal.class, TestsNONParallel.class })
-public class ExitIntentTest extends TheInternetBaseTest<ExitIntentPage> {
+public class ExitIntentTest extends TheInternetBaseTest {
 	
 	private static final String MODAL_WINDOW_TITLE = "This is a modal window";
 	
@@ -19,8 +19,10 @@ public class ExitIntentTest extends TheInternetBaseTest<ExitIntentPage> {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		exitIntentPage = new ExitIntentPage();
-		shouldTheInternetSubpageBeOpened(exitIntentPage);
+		exitIntentPage = shouldTheInternetPageBeOpened().clickExitIntentLink();
+		
+		logStep("Verify if Exit Intent page is opened");
+		assertTrue("Unable to open Exit Intent page", exitIntentPage.isLoaded());
 		
 		logStep("Verify if exit intent message is visible");
 		assertTrue("Exit intent message is not visible", exitIntentPage.isIntentMessageVisible());

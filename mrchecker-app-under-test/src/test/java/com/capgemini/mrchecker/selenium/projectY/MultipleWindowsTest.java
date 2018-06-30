@@ -14,15 +14,17 @@ import com.capgemini.mrchecker.selenium.pages.projectY.MultipleWindowsPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.NewWindowPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class MultipleWindowsTest extends TheInternetBaseTest<MultipleWindowsPage> {
+public class MultipleWindowsTest extends TheInternetBaseTest {
 	
 	private static MultipleWindowsPage	multipleWindowsPage;
 	private static NewWindowPage		newWindowPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		multipleWindowsPage = new MultipleWindowsPage();
-		shouldTheInternetSubpageBeOpened(multipleWindowsPage);
+		multipleWindowsPage = shouldTheInternetPageBeOpened().clickmultipleWindowsLink();
+		
+		logStep("Verify if Multiple Windows page is opened");
+		assertTrue("Unable to open Multiple Windows page", multipleWindowsPage.isLoaded());
 	}
 	
 	@Test

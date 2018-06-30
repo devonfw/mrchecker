@@ -1,6 +1,7 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.DropdownPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DropdownTest extends TheInternetBaseTest<DropdownPage> {
+public class DropdownTest extends TheInternetBaseTest {
 	
 	private static DropdownPage dropdownPage;
 	
@@ -22,8 +23,10 @@ public class DropdownTest extends TheInternetBaseTest<DropdownPage> {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		dropdownPage = new DropdownPage();
-		shouldTheInternetSubpageBeOpened(dropdownPage);
+		dropdownPage = shouldTheInternetPageBeOpened().clickDropdownLink();
+		
+		logStep("Verify if Dropdown page is opened");
+		assertTrue("Unable to open Dropdown page", dropdownPage.isLoaded());
 	}
 	
 	@Test

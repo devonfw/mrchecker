@@ -4,15 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetSubpage;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class TheInternetBaseTest<V extends TheInternetSubpage> extends BaseTest {
+public class TheInternetBaseTest extends BaseTest {
 	
-	protected static int step = 0;
-	// protected TheInternetPage<V> theInternetPage;
-	protected static TheInternetPage<TheInternetSubpage> theInternetPage;
+	protected static int				step	= 0;
+	protected static TheInternetPage	theInternetPage;
 	
 	@Override
 	public void setUp() {
@@ -20,26 +18,21 @@ public class TheInternetBaseTest<V extends TheInternetSubpage> extends BaseTest 
 	}
 	
 	/**
-	 * The set of operations required for most of test classes with one test method only.
+	 * Performs operations required for verifying if The Internet Page is properly opened.
 	 * 
-	 * @param subpage
-	 *            Any sub page accessed by link available at The Internet Page.
+	 * @return TheInternetPage
 	 */
-	public static void shouldTheInternetSubpageBeOpened(TheInternetSubpage subpage) {
+	public static TheInternetPage shouldTheInternetPageBeOpened() {
 		
 		logStep("Open the Url http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage<>(subpage);
+		theInternetPage = new TheInternetPage();
 		theInternetPage.load();
 		
 		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
+		assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
 		
-		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
+		return theInternetPage;
 		
-		logStep("Verify if subpage is opened");
-		assertTrue("The Internet subpage: " + subpage.getClass()
-						.getSimpleName() + " was not open", subpage.isLoaded());
 	}
 	
 	/**

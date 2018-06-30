@@ -3,7 +3,6 @@ package com.capgemini.mrchecker.selenium.projectY;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -12,32 +11,18 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.CheckboxesPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class CheckboxesTest extends TheInternetBaseTest<CheckboxesPage> {
+public class CheckboxesTest extends TheInternetBaseTest {
 	
-	private static TheInternetPage<CheckboxesPage>	theInternetPage;
-	private static CheckboxesPage					checkboxesPage;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		logStep("Open the Url http://the-internet.herokuapp.com/");
-		checkboxesPage = new CheckboxesPage();
-		theInternetPage = new TheInternetPage<>(checkboxesPage);
-		theInternetPage.load();
-		
-		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
-	}
+	private static CheckboxesPage checkboxesPage;
 	
 	@Override
 	public void setUp() {
-		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
+		checkboxesPage = shouldTheInternetPageBeOpened().clickCheckboxesLink();
 		
-		logStep("Verify if subpage is opened");
-		assertTrue("The Internet subpage: CheckboxesPage was not open", checkboxesPage.isLoaded());
+		logStep("Verify if Checkboxes page is opened");
+		assertTrue("Unable to open Checkboxes page", checkboxesPage.isLoaded());
 	}
 	
 	@Test

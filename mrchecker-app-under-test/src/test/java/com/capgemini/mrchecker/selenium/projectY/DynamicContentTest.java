@@ -16,14 +16,16 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.DynamicContentPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DynamicContentTest extends TheInternetBaseTest<DynamicContentPage> {
+public class DynamicContentTest extends TheInternetBaseTest {
 	
 	private static DynamicContentPage dynamicContentPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		dynamicContentPage = new DynamicContentPage();
-		shouldTheInternetSubpageBeOpened(dynamicContentPage);
+		dynamicContentPage = shouldTheInternetPageBeOpened().clickDynamicContentLink();
+		
+		logStep("Verify if Dynamic Content page is opened");
+		assertTrue("Unable to open Dynamic Content page", dynamicContentPage.isLoaded());
 	}
 	
 	@Test

@@ -14,14 +14,16 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParal
 import com.capgemini.mrchecker.selenium.pages.projectY.FileDownloadPage;
 
 @Category({ TestsLocal.class, TestsNONParallel.class })
-public class FileDownloadTest extends TheInternetBaseTest<FileDownloadPage> {
+public class FileDownloadTest extends TheInternetBaseTest {
 	
 	private static FileDownloadPage fileDownloadPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		fileDownloadPage = new FileDownloadPage();
-		shouldTheInternetSubpageBeOpened(fileDownloadPage);
+		fileDownloadPage = shouldTheInternetPageBeOpened().clickFileDownloadLink();
+		
+		logStep("Verify if File Download page is opened");
+		assertTrue("Unable to open File Download page", fileDownloadPage.isLoaded());
 	}
 	
 	@Test

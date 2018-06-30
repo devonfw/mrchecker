@@ -13,39 +13,28 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.projectY.DynamicLoadingPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DynamicLoadingTest extends TheInternetBaseTest<DynamicLoadingPage> {
+public class DynamicLoadingTest extends TheInternetBaseTest {
 	
 	private static final int	EXAMPLE_WAITING_TIME	= 30;
 	private static final String	EXAMPLE_TEXT			= "Hello World!";
 	
-	private static TheInternetPage<DynamicLoadingPage>	theInternetPage;
-	private static DynamicLoadingPage					dynamicLoadingPage;
+	private static DynamicLoadingPage dynamicLoadingPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		logStep("Open the Url http://the-internet.herokuapp.com/");
-		dynamicLoadingPage = new DynamicLoadingPage();
-		theInternetPage = new TheInternetPage<>(dynamicLoadingPage);
-		theInternetPage.load();
-		
-		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
-		
-		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
+		dynamicLoadingPage = shouldTheInternetPageBeOpened().clickDynamicLoadingLink();
 	}
 	
 	@Override
 	public void setUp() {
 		
-		logStep("Verify if subpage is opened");
-		assertTrue("The Internet subpage: DynamicLoadingPage was not open", dynamicLoadingPage.isLoaded());
+		logStep("Verify if Dynamic Loading page is opened");
+		assertTrue("Unable to open Dynamic Loading page", dynamicLoadingPage.isLoaded());
 		
 		logStep("Verify if dynamic loading message is visible");
-		assertTrue("Dynamic loading message is not visible", dynamicLoadingPage.isDynamicLoadingMessageVisible());
+		assertTrue("Dynamic loading message is invisible", dynamicLoadingPage.isDynamicLoadingMessageVisible());
 	}
 	
 	@Test

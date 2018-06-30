@@ -2,14 +2,12 @@ package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class StatusCodesHomePage extends TheInternetSubpage {
-	
-	public final By pageLinkSelector = By.cssSelector("li > a[href*='status_codes']");
+public class StatusCodesHomePage extends BasePage {
 	
 	private static final By	selectorLink200Code	= By.linkText("200");
 	private static final By	selectorLink301Code	= By.linkText("301");
@@ -33,11 +31,6 @@ public class StatusCodesHomePage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

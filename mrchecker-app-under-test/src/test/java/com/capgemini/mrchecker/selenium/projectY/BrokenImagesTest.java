@@ -1,6 +1,7 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.BrokenImagePage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class BrokenImagesTest extends TheInternetBaseTest<BrokenImagePage> {
+public class BrokenImagesTest extends TheInternetBaseTest {
 	
 	private static BrokenImagePage brokenImagePage;
 	
@@ -22,8 +23,10 @@ public class BrokenImagesTest extends TheInternetBaseTest<BrokenImagePage> {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		brokenImagePage = new BrokenImagePage();
-		shouldTheInternetSubpageBeOpened(brokenImagePage);
+		brokenImagePage = shouldTheInternetPageBeOpened().clickBrokenImageLink();
+		
+		logStep("Verify if Broken Image page is opened");
+		assertTrue("Unable to open Broken Image page", brokenImagePage.isLoaded());
 	}
 	
 	@Test

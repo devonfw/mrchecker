@@ -1,6 +1,7 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
@@ -15,15 +16,17 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium
 import com.capgemini.mrchecker.selenium.pages.projectY.HoversPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class HoversTest extends TheInternetBaseTest<HoversPage> {
+public class HoversTest extends TheInternetBaseTest {
 	
 	private static HoversPage	hoversPage;
 	private final String		names[]	= { "name: user1", "name: user2", "name: user3" };
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		hoversPage = new HoversPage();
-		shouldTheInternetSubpageBeOpened(hoversPage);
+		hoversPage = shouldTheInternetPageBeOpened().clickHoversLink();
+		
+		logStep("Verify if Hovers page is opened");
+		assertTrue("Unable to open Hovers page", hoversPage.isLoaded());
 	}
 	
 	@Test

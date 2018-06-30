@@ -14,14 +14,16 @@ import com.capgemini.mrchecker.selenium.pages.projectY.ABtestPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.ElementalSeleniumPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class ABtestingTest extends TheInternetBaseTest<ABtestPage> {
+public class ABtestingTest extends TheInternetBaseTest {
 	
 	private static ABtestPage abTestPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		abTestPage = new ABtestPage();
-		shouldTheInternetSubpageBeOpened(abTestPage);
+		abTestPage = shouldTheInternetPageBeOpened().clickABtestingLink();
+		
+		logStep("Verify if ABTest page is opened");
+		assertTrue("Unable to open ABTest page", abTestPage.isLoaded());
 	}
 	
 	@Test
@@ -34,7 +36,7 @@ public class ABtestingTest extends TheInternetBaseTest<ABtestPage> {
 		abTestPage.switchToNextTab();
 		
 		logStep("Verify if Elemental Selenium Page is opened");
-		assertTrue("Elemental Selenium page was not open", elementalSeleniumPage.isLoaded());
+		assertTrue("Unable to open Elemental Selenium page", elementalSeleniumPage.isLoaded());
 	}
 	
 }

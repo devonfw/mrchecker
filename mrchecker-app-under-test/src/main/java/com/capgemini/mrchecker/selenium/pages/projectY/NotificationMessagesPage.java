@@ -1,15 +1,11 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
-import org.openqa.selenium.By;
-
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class NotificationMessagesPage extends TheInternetSubpage {
-	
-	public final By pageLinkSelector = By.cssSelector("li > a[href*='notification_message']");
+public class NotificationMessagesPage extends BasePage {
 	
 	@Override
 	public boolean isLoaded() {
@@ -28,11 +24,6 @@ public class NotificationMessagesPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 }

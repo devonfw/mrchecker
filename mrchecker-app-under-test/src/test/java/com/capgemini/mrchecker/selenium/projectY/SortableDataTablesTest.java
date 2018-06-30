@@ -20,7 +20,7 @@ import com.capgemini.mrchecker.selenium.pages.projectY.SortableDataTablesPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class SortableDataTablesTest extends TheInternetBaseTest<SortableDataTablesPage> {
+public class SortableDataTablesTest extends TheInternetBaseTest {
 	
 	private static SortableDataTablesPage sortableDataTablesPage;
 	
@@ -30,21 +30,20 @@ public class SortableDataTablesTest extends TheInternetBaseTest<SortableDataTabl
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		logStep("Open the Url http://the-internet.herokuapp.com/");
-		sortableDataTablesPage = new SortableDataTablesPage();
-		theInternetPage = new TheInternetPage<>(sortableDataTablesPage);
+		theInternetPage = new TheInternetPage();
 		theInternetPage.load();
 		
 		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
+		assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
 	}
 	
 	@Override
 	public void setUp() {
 		logStep("Click subpage link");
-		theInternetPage.clickPageLink();
+		sortableDataTablesPage = theInternetPage.clickSortableDataTablesLink();
 		
 		logStep("Verify if subpage is opened");
-		assertTrue("The Internet subpage: HorizontalSliderPage was not open", sortableDataTablesPage.isLoaded());
+		assertTrue("Unable to open Sortable Data Tables page", sortableDataTablesPage.isLoaded());
 	}
 	
 	@Test

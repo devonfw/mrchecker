@@ -4,17 +4,16 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.jsoupHelper.JsoupHelper;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ChallengingDomPage extends TheInternetSubpage {
+public class ChallengingDomPage extends BasePage {
 	
 	private final By	selectorTableRows	= By.cssSelector(".large-10 > table > tbody > tr");
 	private final By	selectorFirstButton	= By.cssSelector(".large-2.columns > .button:nth-child(1)");
-	public final By		pageLinkSelector	= By.cssSelector("li > a[href*='challenging_dom']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -33,11 +32,6 @@ public class ChallengingDomPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		new Button(pageLinkSelector).click();
 	}
 	
 	/**

@@ -7,16 +7,14 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 
+import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class BasicAuthPage extends TheInternetSubpage {
+public class BasicAuthPage extends BasePage {
 	
-	private static final By	selectorTextMessage	= By.cssSelector("#content > div > p");
-	public final By			pageLinkSelector	= By.cssSelector("li > a[href*='basic_auth']");
+	private static final By selectorTextMessage = By.cssSelector("#content > div > p");
 	
 	public BasicAuthPage() {
 		
@@ -39,13 +37,6 @@ public class BasicAuthPage extends TheInternetSubpage {
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
-	}
-	
-	@Override
-	public void clickPageLink() {
-		WebElement link = getDriver().findElementDynamic(pageLinkSelector);
-		JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-		executor.executeScript("var elem=arguments[0]; setTimeout(function() {elem.click();}, 100)", link);
 	}
 	
 	/**

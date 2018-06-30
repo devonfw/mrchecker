@@ -16,14 +16,13 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
 import com.capgemini.mrchecker.selenium.pages.projectY.ForgotPasswordEmailSentPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.ForgotPasswordPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailAboutPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailInboxPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailSignInPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailWelcomePage;
 
 @Category({ TestsLocal.class, TestsNONParallel.class })
-public class ForgotPasswordTest extends TheInternetBaseTest<ForgotPasswordPage> {
+public class ForgotPasswordTest extends TheInternetBaseTest {
 	
 	private static final int	WAIT_TIME	= 30;
 	private static final String	SENDER		= "no-reply@the-internet";
@@ -32,13 +31,12 @@ public class ForgotPasswordTest extends TheInternetBaseTest<ForgotPasswordPage> 
 	private static String	emailAddress	= "";
 	private static String	emailPassword	= "";
 	
-	private static TheInternetPage<ForgotPasswordPage>	theInternetPage;
-	private static ForgotPasswordPage					forgotPasswordPage;
-	private static ForgotPasswordEmailSentPage			forgotPasswordEmailSentPage;
-	private static GmailAboutPage						gmailAboutPage;
-	private static GmailSignInPage						gmailSignInPage;
-	private static GmailWelcomePage						gmailWelcomePage;
-	private static GmailInboxPage						gmailInboxPage;
+	private static ForgotPasswordPage			forgotPasswordPage;
+	private static ForgotPasswordEmailSentPage	forgotPasswordEmailSentPage;
+	private static GmailAboutPage				gmailAboutPage;
+	private static GmailSignInPage				gmailSignInPage;
+	private static GmailWelcomePage				gmailWelcomePage;
+	private static GmailInboxPage				gmailInboxPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -74,19 +72,10 @@ public class ForgotPasswordTest extends TheInternetBaseTest<ForgotPasswordPage> 
 		logStep("Verify if all messages were removed");
 		assertEquals("Unable to delete messages from inbox", gmailInboxPage.getNumberOfEmails(), 0);
 		
-		logStep("Open the Url http://the-internet.herokuapp.com/");
-		forgotPasswordPage = new ForgotPasswordPage();
-		theInternetPage = new TheInternetPage<>(forgotPasswordPage);
-		theInternetPage.load();
+		forgotPasswordPage = shouldTheInternetPageBeOpened().clickForgotPasswordLink();
 		
-		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-		assertTrue("Unable to open 'The Internet' page", theInternetPage.isLoaded());
-		
-		logStep("Click 'Forgot Password' link");
-		theInternetPage.clickPageLink();
-		
-		logStep("Verify if 'Forgot Password' page is opened");
-		assertTrue("Unable to open 'Forgot Password' page", forgotPasswordPage.isLoaded());
+		logStep("Verify if Forgot Password page is opened");
+		assertTrue("Unable to open Forgot Password page", forgotPasswordPage.isLoaded());
 	}
 	
 	@Ignore
