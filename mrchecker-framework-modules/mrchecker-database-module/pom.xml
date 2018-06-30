@@ -88,6 +88,18 @@
             <version>${jpa.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.17.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+        </dependency>
+
         <!-- Additional tools -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -103,18 +115,6 @@
             <artifactId>allure-junit4</artifactId>
         </dependency>
 
-        <!--This dependency is necessary for ???????? plugin. -->
-        <!--<dependency>
-            <groupId>reuse.package.from.parent.pom</groupId>
-            <artifactId>lib-name</artifactId>
-        </dependency> -->
-
-        <!--This dependency is necessary for ???????? plugin. -->
-        <!--<dependency>
-            <groupId>new.added.package</groupId>
-            <artifactId>lib-name</artifactId>
-            <version>${package.version}</version>
-        </dependency> -->
 
     </dependencies>
 
