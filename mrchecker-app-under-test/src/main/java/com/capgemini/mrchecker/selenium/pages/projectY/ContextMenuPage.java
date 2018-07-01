@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,9 +18,7 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class ContextMenuPage extends BasePage {
 	
-	private static final By		seletorHotSpotArea	= id("hot-spot");
-	private static final String	expectedAlertText	= "You selected a context menu";
-	private int					timeoutInSec		= 5;
+	private static final By hotSpotAreaseletor = id("hot-spot");
 	
 	@Override
 	public boolean isLoaded() {
@@ -42,17 +39,27 @@ public class ContextMenuPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public void rightClickOnHotSpotArea() {
-		getDriver().mouseRightClick(seletorHotSpotArea);
+	/**
+	 * Performs right mouse click over the hot spot area.
+	 */
+	public void rightClickHotSpotArea() {
+		getDriver().mouseRightClick(hotSpotAreaseletor);
 	}
 	
-	public void clickOnAgreeAtAlert() {
-		getDriver()
-						.switchTo()
+	/**
+	 * Confirms alert to close it.
+	 */
+	public void clickAlertsOkButton() {
+		getDriver().switchTo()
 						.alert()
 						.accept();
 	}
 	
+	/**
+	 * Chooses 'the-internet' option from context menu using <b>Robot</b> class.
+	 * 
+	 * @see java.awt.Robot
+	 */
 	public void chooseTheInternetOptionFromContextMenu() {
 		Robot robot;
 		try {
@@ -75,12 +82,18 @@ public class ContextMenuPage extends BasePage {
 		}
 	}
 	
-	public boolean isAlertTextValid() {
-		WebDriverWait wait = new WebDriverWait(BasePage.getDriver(), timeoutInSec);
-		wait.until((java.util.function.Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
+	/**
+	 * Verifies if text displayed by alert is equal to expected one.
+	 * 
+	 * @return true if displayed and expected texts are equal
+	 */
+	public boolean isAlertTextValid(String expectedAlertText) {
+		int timeout = 5;
 		
-		Alert alert = BasePage.getDriver()
-						.switchTo()
+		WebDriverWait wait = new WebDriverWait(getDriver(), timeout);
+		wait.until(ExpectedConditions.alertIsPresent());
+		
+		Alert alert = getDriver().switchTo()
 						.alert();
 		
 		return alert.getText()

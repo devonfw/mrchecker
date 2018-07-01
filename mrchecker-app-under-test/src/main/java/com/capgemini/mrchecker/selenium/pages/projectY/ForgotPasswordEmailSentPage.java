@@ -31,6 +31,11 @@ public class ForgotPasswordEmailSentPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	/**
+	 * Returns information if email message was successfully sent.
+	 * 
+	 * @return True if email was sent, false otherwise.
+	 */
 	public boolean isEmailSentSuccessfully() {
 		return getDriver().findElementDynamic(selectorInfoLabel)
 						.getText()

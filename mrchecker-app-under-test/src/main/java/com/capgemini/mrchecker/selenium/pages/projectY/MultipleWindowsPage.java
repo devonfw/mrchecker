@@ -1,7 +1,6 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
@@ -31,10 +30,16 @@ public class MultipleWindowsPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	/**
+	 * Clicks 'click here' link.
+	 * 
+	 * @return NewWindowPage object
+	 */
 	public NewWindowPage clickHereLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorLink);
-		elementLink.click();
+		getDriver().findElementDynamic(selectorLink)
+						.click();
 		getDriver().waitForPageLoaded();
 		return new NewWindowPage();
 	}
+	
 }

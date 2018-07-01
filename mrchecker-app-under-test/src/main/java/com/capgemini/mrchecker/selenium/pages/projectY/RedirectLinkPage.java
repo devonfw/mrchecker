@@ -31,8 +31,14 @@ public class RedirectLinkPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	/**
+	 * Clicks 'Redirect here' link.
+	 * 
+	 * @return StatusCodesHomePage object
+	 */
 	public StatusCodesHomePage clickRedirectHereLink() {
 		new Button(selectorRedirectHere).click();
 		return new StatusCodesHomePage();
 	}
+	
 }

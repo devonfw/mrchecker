@@ -1,6 +1,5 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -10,48 +9,48 @@ import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class TheInternetPage<V> extends BasePage {
+public class TheInternetPage extends BasePage {
 	
-	private static final By	selectorCheckboxesLink				= By.cssSelector("li > a[href*='checkboxes']");
-	private static final By	selectorElementClick				= By.cssSelector("li > a[href*='abtest']");
-	private static final By	selectorBrokenImageClickLink		= By.cssSelector("li > a[href*='broken_images']");
-	private static final By	selectorDropdownClickLink			= By.cssSelector("li > a[href*='dropdown']");
-	private static final By	selectorMultipleWindowsLink			= By.cssSelector("li > a[href*='windows']");
-	private static final By	selectorBasicAuthLink				= By.cssSelector("li > a[href*='basic_auth']");
-	private static final By	selectorKeyPressesLink				= By.cssSelector("li > a[href*='key_presses']");
-	private static final By	selectorRedirectLink				= By.cssSelector("li > a[href*='redirector']");
-	private static final By	selectorJavaScriptAlertLink			= By.cssSelector("li > a[href*='javascript_alerts']");
-	private static final By	selectorHoversLink					= By.cssSelector("li > a[href*='hovers']");
-	private static final By	selectorSortableDataTablesLink		= By.cssSelector("li > a[href*='tables']");
-	private static final By	selectorChallengingDomClick			= By.cssSelector("li > a[href*='challenging_dom']");
-	private static final By	selectorStatusCodesLink				= By.cssSelector("li > a[href*='status_codes']");
-	private static final By	selectorDynamicContent				= By.cssSelector("li > a[href*='dynamic_content']");
-	private static final By	selectorHorizontalSliderLink		= By.cssSelector("li > a[href*='horizontal_slider']");
-	private static final By	selectorFormAuthenticationLink		= By.cssSelector("li > a[href*='login']");
-	private static final By	selectorFileDownloadLink			= By.cssSelector("li > a[href$='download']");
-	private static final By	selectorForgotPasswordLink			= By.cssSelector("li > a[href*='forgot_password']");
-	private static final By	selectorExitIntentLink				= By.cssSelector("li > a[href*='exit_intent']");
-	private static final By	selectorDynamicLoadingLink			= By.cssSelector("li > a[href*='dynamic_loading']");
-	private static final By	selectorDisappearingElementsLink	= By.cssSelector("li > a[href*='disappearing_elements']");
-	private static final By	selectorDragAndDropLink				= By.cssSelector("li > a[href*='drag_and_drop']");
-	private static final By	selectorContextMenuLink				= By.cssSelector("li > a[href*='context_menu']");
-	private static final By	selectorDynamicControlsLink			= By.cssSelector("li > a[href*='dynamic_controls']");
-	private static final By	selectorFileUploadLink				= By.cssSelector("li > a[href*='upload']");
-	private static final By	selectorFloatingMenuLink			= By.cssSelector("li > a[href*='floating_menu']");
-	private static final By	selectorFramesLink					= By.cssSelector("li > a[href*='frames']");
-	private static final By	selectorGeolocationLink				= By.cssSelector("li > a[href*='geolocation']");
-	private static final By	selectorInfiniteScrollLink			= By.cssSelector("li > a[href*='infinite_scroll']");
-	private static final By	selectorJQueryUIMenuLink			= By.cssSelector("li > a[href*='jqueryui/menu']");
-	private static final By	selectorJavaScriptErrorLink			= By.cssSelector("li > a[href*='javascript_error']");
-	private static final By	selectorLargeAndDeepDOMLink			= By.cssSelector("li > a[href*='large']");
-	private static final By	selectorNestedFramesLink			= By.cssSelector("li > a[href*='nested_frames']");
-	private static final By	selectorNotificationMessagesLink	= By.cssSelector("li > a[href*='notification_message']");
-	private static final By	selectorSecureFileDownloadLink		= By.cssSelector("li > a[href*='download_secure']");
-	private static final By	selectorShiftingContentLink			= By.cssSelector("li > a[href*='shifting_content']");
-	private static final By	selectorSlowResourcesLink			= By.cssSelector("li > a[href*='slow']");
-	private static final By	selectorTyposLink					= By.cssSelector("li > a[href*='typos']");
-	private static final By	selectorWYSIWYGEditorLink			= By.cssSelector("li > a[href*='tinymce']");
-
+	private static final By	abTestLinkSelector					= By.cssSelector("li > a[href*='abtest']");
+	private static final By	basicAuthLinkSelector				= By.cssSelector("li > a[href*='basic_auth']");
+	private static final By	brokenImageLinkSelector				= By.cssSelector("li > a[href*='broken_images']");
+	private static final By	challengingDomLinkSelector			= By.cssSelector("li > a[href*='challenging_dom']");
+	private static final By	checkboxesLinkSelector				= By.cssSelector("li > a[href*='checkboxes']");
+	private static final By	contextMenuLinkSelector				= By.cssSelector("li > a[href*='context_menu']");
+	private static final By	disappearingElementsLinkSelector	= By.cssSelector("li > a[href*='disappearing_elements']");
+	private static final By	dragAndDropLinkSelector				= By.cssSelector("li > a[href*='drag_and_drop']");
+	private static final By	dropdownLinkSelector				= By.cssSelector("li > a[href*='dropdown']");
+	private static final By	dynamicContentLinkSelector			= By.cssSelector("li > a[href*='dynamic_content']");
+	private static final By	dynamicControlsLinkSelector			= By.cssSelector("li > a[href*='dynamic_controls']");
+	private static final By	dynamicLoadingLinkSelector			= By.cssSelector("li > a[href*='dynamic_loading']");
+	private static final By	exitIntentLinkSelector				= By.cssSelector("li > a[href*='exit_intent']");
+	private static final By	fileDownloadLinkSelector			= By.cssSelector("li > a[href$='download']");
+	private static final By	fileUploadLinkSelector				= By.cssSelector("li > a[href*='upload']");
+	private static final By	floatingMenuLinkSelector			= By.cssSelector("li > a[href*='floating_menu']");
+	private static final By	forgotPasswordLinkSelector			= By.cssSelector("li > a[href*='forgot_password']");
+	private static final By	formAuthenticationLinkSelector		= By.cssSelector("li > a[href*='login']");
+	private static final By	framesLinkSelector					= By.cssSelector("li > a[href*='frames']");
+	private static final By	geolocationLinkSelector				= By.cssSelector("li > a[href*='geolocation']");
+	private static final By	horizontalSliderLinkSelector		= By.cssSelector("li > a[href*='horizontal_slider']");
+	private static final By	hoversLinkSelector					= By.cssSelector("li > a[href*='hovers']");
+	private static final By	infiniteScrollLinkSelector			= By.cssSelector("li > a[href*='infinite_scroll']");
+	private static final By	javaScriptAlertLinkSelector			= By.cssSelector("li > a[href*='javascript_alerts']");
+	private static final By	javaScriptErrorLinkSelector			= By.cssSelector("li > a[href*='javascript_error']");
+	private static final By	jQueryUIMenuLinkSelector			= By.cssSelector("li > a[href*='jqueryui/menu']");
+	private static final By	keyPressesLinkSelector				= By.cssSelector("li > a[href*='key_presses']");
+	private static final By	largeAndDeepDOMLinkSelector			= By.cssSelector("li > a[href*='large']");
+	private static final By	multipleWindowsLinkSelector			= By.cssSelector("li > a[href*='windows']");
+	private static final By	nestedFramesLinkSelector			= By.cssSelector("li > a[href*='nested_frames']");
+	private static final By	notificationMessagesLinkSelector	= By.cssSelector("li > a[href*='notification_message']");
+	private static final By	redirectLinkSelector				= By.cssSelector("li > a[href*='redirector']");
+	private static final By	secureFileDownloadLinkSelector		= By.cssSelector("li > a[href*='download_secure']");
+	private static final By	shiftingContentLinkSelector			= By.cssSelector("li > a[href*='shifting_content']");
+	private static final By	slowResourcesLinkSelector			= By.cssSelector("li > a[href*='slow']");
+	private static final By	sortableDataTablesLinkSelector		= By.cssSelector("li > a[href*='tables']");
+	private static final By	statusCodesLinkSelector				= By.cssSelector("li > a[href*='status_codes']");
+	private static final By	typosLinkSelector					= By.cssSelector("li > a[href*='typos']");
+	private static final By	wYSIWYGEditorLinkSelector			= By.cssSelector("li > a[href*='tinymce']");
+	
 	@Override
 	public boolean isLoaded() {
 		BFLogger.logDebug("The internet page is loaded: " + getDriver().getCurrentUrl());
@@ -71,240 +70,202 @@ public class TheInternetPage<V> extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public CheckboxesPage clickCheckboxesLink() {
-		Button elementLink = new Button(selectorCheckboxesLink);
-		elementLink.click();
-		return new CheckboxesPage();
-	}
-	
 	public ABtestPage clickABtestingLink() {
-		Button elementLink = new Button(selectorElementClick);
-		elementLink.click();
+		new Button(abTestLinkSelector).click();
 		return new ABtestPage();
 	}
 	
-	public ChallengingDomPage clickChallengingDomLink() {
-		Button elementLink = new Button(selectorChallengingDomClick);
-		elementLink.click();
-		return new ChallengingDomPage();
+	public BasicAuthPage clickBasicAuthLink() {
+		getDriver().waitForPageLoaded();
+		WebElement link = getDriver().findElementDynamic(basicAuthLinkSelector);
+		JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+		executor.executeScript("var elem=arguments[0]; setTimeout(function() {elem.click();}, 100)", link);
+		return new BasicAuthPage();
 	}
 	
 	public BrokenImagePage clickBrokenImageLink() {
-		Button elementLink = new Button(selectorBrokenImageClickLink);
-		elementLink.click();
+		new Button(brokenImageLinkSelector).click();
 		return new BrokenImagePage();
 	}
 	
-	public DropdownPage clickDropdownLink() {
-		Button elementLink = new Button(selectorDropdownClickLink);
-		elementLink.click();
-		return new DropdownPage();
+	public ChallengingDomPage clickChallengingDomLink() {
+		new Button(challengingDomLinkSelector).click();
+		return new ChallengingDomPage();
 	}
 	
-	public KeyPressesPage clickKeyPressesLink() {
-		Button elementLink = new Button(selectorKeyPressesLink);
-		elementLink.click();
-		return new KeyPressesPage();
-	}
-	
-	public SortableDataTablesPage clickSortableDataTablesLink() {
-		Button elementLink = new Button(selectorSortableDataTablesLink);
-		elementLink.click();
-		return new SortableDataTablesPage();
-	}
-	
-	public JavaScriptAlertsPage<V, Alert> clickJavaScriptAlertLink() {
-		Button elementLink = new Button(selectorJavaScriptAlertLink);
-		elementLink.click();
-		return new JavaScriptAlertsPage<V, Alert>();
-	}
-	
-	public DynamicContentPage clickDynamicContentPage() {
-		Button elementLink = new Button(selectorDynamicContent);
-		elementLink.click();
-		return new DynamicContentPage();
-	}
-	
-	public MultipleWindowsPage clickmultipleWindowsPageLink() {
-		Button elementLink = new Button(selectorMultipleWindowsLink);
-		elementLink.click();
-		return new MultipleWindowsPage();
-	}
-	
-	public RedirectLinkPage clickRedirectLinkPage() {
-		Button elementLink = new Button(selectorRedirectLink);
-		elementLink.click();
-		return new RedirectLinkPage();
-	}
-	
-	public TheBasicAuthPage clickBasicAuthLink() {
-		getDriver().waitForPageLoaded();
-		WebElement link = getDriver().findElementDynamic(selectorBasicAuthLink);
-		JavascriptExecutor executor = (JavascriptExecutor) getDriver();
-		executor.executeScript("var elem=arguments[0]; setTimeout(function() {elem.click();}, 100)", link);
-		return new TheBasicAuthPage();
-	}
-	
-	public HoversPage clickHoversLink() {
-		Button elementLink = new Button(selectorHoversLink);
-		elementLink.click();
-		return new HoversPage();
-	}
-	
-	public StatusCodesHomePage clickStatusCodesLink() {
-		getDriver().findElementDynamic(selectorStatusCodesLink)
-						.click();
-		return new StatusCodesHomePage();
-	}
-	
-	public HorizontalSliderPage clickHorizontalSliderLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorHorizontalSliderLink);
-		elementLink.click();
-		return new HorizontalSliderPage();
-	}
-	
-	public FormAuthenticationPage clickFormAuthenticationLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorFormAuthenticationLink);
-		elementLink.click();
-		return new FormAuthenticationPage();
-	}
-	
-	public FileDownloadPage clickFileDownloadLink() {
-		Button elementLink = new Button(selectorFileDownloadLink);
-		elementLink.click();
-		return new FileDownloadPage();
-	}
-	
-	public ForgotPasswordPage clickForgotPasswordLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorForgotPasswordLink);
-		elementLink.click();
-		return new ForgotPasswordPage();
-	}
-	
-	public ExitIntentPage clickExitIntentLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorExitIntentLink);
-		elementLink.click();
-		return new ExitIntentPage();
-	}
-	
-	public DynamicLoadingPage clickDynamicLoadingLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorDynamicLoadingLink);
-		elementLink.click();
-		return new DynamicLoadingPage();
-	}
-	
-	public DisappearingElementsPage clickDisappearingElementsLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorDisappearingElementsLink);
-		elementLink.click();
-		return new DisappearingElementsPage();
-	}
-
-	public DragAndDropPage clickDragAndDropLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorDragAndDropLink);
-		elementLink.click();
-		return new DragAndDropPage();
+	public CheckboxesPage clickCheckboxesLink() {
+		new Button(checkboxesLinkSelector).click();
+		return new CheckboxesPage();
 	}
 	
 	public ContextMenuPage clickContextMenuLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorContextMenuLink);
-		elementLink.click();
+		new Button(contextMenuLinkSelector).click();
 		return new ContextMenuPage();
 	}
 	
+	public DisappearingElementsPage clickDisappearingElementsLink() {
+		new Button(disappearingElementsLinkSelector).click();
+		return new DisappearingElementsPage();
+	}
+	
+	public DragAndDropPage clickDragAndDropLink() {
+		new Button(dragAndDropLinkSelector).click();
+		return new DragAndDropPage();
+	}
+	
+	public DropdownPage clickDropdownLink() {
+		new Button(dropdownLinkSelector).click();
+		return new DropdownPage();
+	}
+	
+	public DynamicContentPage clickDynamicContentLink() {
+		new Button(dynamicContentLinkSelector).click();
+		return new DynamicContentPage();
+	}
+	
 	public DynamicControlsPage clickDynamicControlsLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorDynamicControlsLink);
-		elementLink.click();
+		new Button(dynamicControlsLinkSelector).click();
 		return new DynamicControlsPage();
 	}
 	
+	public DynamicLoadingPage clickDynamicLoadingLink() {
+		new Button(dynamicLoadingLinkSelector).click();
+		return new DynamicLoadingPage();
+	}
+	
+	public ExitIntentPage clickExitIntentLink() {
+		new Button(exitIntentLinkSelector).click();
+		return new ExitIntentPage();
+	}
+	
+	public FileDownloadPage clickFileDownloadLink() {
+		new Button(fileDownloadLinkSelector).click();
+		return new FileDownloadPage();
+	}
+	
 	public FileUploadPage clickFileUploadLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorFileUploadLink);
-		elementLink.click();
+		new Button(fileUploadLinkSelector).click();
 		return new FileUploadPage();
 	}
 	
 	public FloatingMenuPage clickFloatingMenuLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorFloatingMenuLink);
-		elementLink.click();
+		new Button(floatingMenuLinkSelector).click();
 		return new FloatingMenuPage();
 	}
 	
+	public ForgotPasswordPage clickForgotPasswordLink() {
+		new Button(forgotPasswordLinkSelector).click();
+		return new ForgotPasswordPage();
+	}
+	
+	public FormAuthenticationPage clickFormAuthenticationLink() {
+		new Button(formAuthenticationLinkSelector).click();
+		return new FormAuthenticationPage();
+	}
+	
 	public FramesPage clickFramesLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorFramesLink);
-		elementLink.click();
+		new Button(framesLinkSelector).click();
 		return new FramesPage();
 	}
 	
 	public GeolocationPage clickGeolocationLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorGeolocationLink);
-		elementLink.click();
+		new Button(geolocationLinkSelector).click();
 		return new GeolocationPage();
 	}
 	
+	public HorizontalSliderPage clickHorizontalSliderLink() {
+		new Button(horizontalSliderLinkSelector).click();
+		return new HorizontalSliderPage();
+	}
+	
+	public HoversPage clickHoversLink() {
+		new Button(hoversLinkSelector).click();
+		return new HoversPage();
+	}
+	
 	public InfiniteScrollPage clickInfiniteScrollLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorInfiniteScrollLink);
-		elementLink.click();
+		new Button(infiniteScrollLinkSelector).click();
 		return new InfiniteScrollPage();
 	}
 	
-	public JQueryUIMenuPage clickJQueryUIMenuLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorJQueryUIMenuLink);
-		elementLink.click();
-		return new JQueryUIMenuPage();
+	public JavaScriptAlertsPage clickJavaScriptAlertLink() {
+		new Button(javaScriptAlertLinkSelector).click();
+		return new JavaScriptAlertsPage();
 	}
 	
 	public JavaScriptErrorPage clickJavaScriptErrorLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorJavaScriptErrorLink);
-		elementLink.click();
+		new Button(javaScriptErrorLinkSelector).click();
 		return new JavaScriptErrorPage();
 	}
 	
+	public JQueryUIMenuPage clickJQueryUIMenuLink() {
+		new Button(jQueryUIMenuLinkSelector).click();
+		return new JQueryUIMenuPage();
+	}
+	
+	public KeyPressesPage clickKeyPressesLink() {
+		new Button(keyPressesLinkSelector).click();
+		return new KeyPressesPage();
+	}
+	
 	public LargeAndDeepDOMPage clickLargeAndDeepDOMLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorLargeAndDeepDOMLink);
-		elementLink.click();
+		new Button(largeAndDeepDOMLinkSelector).click();
 		return new LargeAndDeepDOMPage();
 	}
 	
+	public MultipleWindowsPage clickmultipleWindowsLink() {
+		new Button(multipleWindowsLinkSelector).click();
+		return new MultipleWindowsPage();
+	}
+	
 	public NestedFramesPage clickNestedFramesLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorNestedFramesLink);
-		elementLink.click();
+		new Button(nestedFramesLinkSelector).click();
 		return new NestedFramesPage();
 	}
 	
 	public NotificationMessagesPage clickNotificationMessagesLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorNotificationMessagesLink);
-		elementLink.click();
+		new Button(notificationMessagesLinkSelector).click();
 		return new NotificationMessagesPage();
 	}
 	
+	public RedirectLinkPage clickRedirectLink() {
+		new Button(redirectLinkSelector).click();
+		return new RedirectLinkPage();
+	}
+	
 	public SecureFileDownloadPage clickSecureFileDownloadLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorSecureFileDownloadLink);
-		elementLink.click();
+		new Button(secureFileDownloadLinkSelector).click();
 		return new SecureFileDownloadPage();
 	}
 	
 	public ShiftingContentPage clickShiftingContentLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorShiftingContentLink);
-		elementLink.click();
+		new Button(shiftingContentLinkSelector).click();
 		return new ShiftingContentPage();
 	}
 	
 	public SlowResourcesPage clickSlowResourcesLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorSlowResourcesLink);
-		elementLink.click();
+		new Button(slowResourcesLinkSelector).click();
 		return new SlowResourcesPage();
 	}
 	
+	public SortableDataTablesPage clickSortableDataTablesLink() {
+		new Button(sortableDataTablesLinkSelector).click();
+		return new SortableDataTablesPage();
+	}
+	
+	public StatusCodesHomePage clickStatusCodesLink() {
+		new Button(statusCodesLinkSelector).click();
+		return new StatusCodesHomePage();
+	}
+	
 	public TyposPage clickTyposLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorTyposLink);
-		elementLink.click();
+		new Button(typosLinkSelector).click();
 		return new TyposPage();
 	}
 	
 	public WYSIWYGEditorPage clickWYSIWYGEditorLink() {
-		WebElement elementLink = getDriver().findElementDynamic(selectorWYSIWYGEditorLink);
-		elementLink.click();
+		new Button(wYSIWYGEditorLinkSelector).click();
 		return new WYSIWYGEditorPage();
 	}
-
+	
 }

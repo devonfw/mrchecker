@@ -10,7 +10,7 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class CheckboxesPage extends BasePage {
 	
-	private final static By selectorCheckboxesForm = By.cssSelector("#checkboxes");
+	private final static By checkboxesFormSelector = By.cssSelector("#checkboxes");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,30 +31,41 @@ public class CheckboxesPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public boolean isElementCheckboxesVisible() {
-		getDriver().elementCheckbox(selectorCheckboxesForm)
+	/**
+	 * Verifies if checkbox form is visible on the page.
+	 * 
+	 * @return true if checkboxes are present and displayed on the page
+	 */
+	public boolean isElementCheckboxesFormVisible() {
+		return getDriver().elementCheckbox(checkboxesFormSelector)
 						.isDisplayed();
-		return true;
 	}
 	
-	public boolean isCheckboxSelectedBefore(int index) {
-		CheckBox elementCheckbox = getDriver().elementCheckbox(selectorCheckboxesForm);
-		return elementCheckbox.isCheckBoxSetByIndex(index);
+	/**
+	 * Verifies if given checkbox is selected or not.
+	 * 
+	 * @param index
+	 *            The index of given checkbox
+	 * @return true if given checkbox is selected
+	 */
+	public boolean isCheckboxSelected(int index) {
+		return getDriver().elementCheckbox(checkboxesFormSelector)
+						.isCheckBoxSetByIndex(index);
 	}
 	
-	public void thickCheckbox(int index) {
-		getDriver().elementCheckbox(selectorCheckboxesForm)
-						.setCheckBoxByIndex(index);
-	}
-	
-	public boolean isCheckboxSelectedAfter(int index) {
-		CheckBox elementCheckbox = getDriver().elementCheckbox(selectorCheckboxesForm);
-		return elementCheckbox.isCheckBoxSetByIndex(index);
-	}
-	
-	public void unthickCheckbox(int index) {
-		getDriver().elementCheckbox(selectorCheckboxesForm)
-						.unsetCheckBoxByIndex(index);
+	/**
+	 * Selects given checkbox. Unselects, if it is already selected.
+	 * 
+	 * @param index
+	 *            The index of given checkbox
+	 */
+	public void selectCheckbox(int index) {
+		CheckBox checkbox = getDriver().elementCheckbox(checkboxesFormSelector);
+		if (isCheckboxSelected(index)) {
+			checkbox.unsetCheckBoxByIndex(index);
+		} else {
+			checkbox.setCheckBoxByIndex(index);
+		}
 	}
 	
 }
