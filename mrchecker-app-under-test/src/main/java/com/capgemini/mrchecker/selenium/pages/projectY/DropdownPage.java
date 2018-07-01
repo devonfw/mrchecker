@@ -9,7 +9,7 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class DropdownPage extends BasePage {
 	
-	private static final By dropdownListselector = By.cssSelector("#dropdown");
+	private static final By dropdownListSelector = By.cssSelector("#dropdown");
 	
 	@Override
 	public boolean isLoaded() {
@@ -37,7 +37,7 @@ public class DropdownPage extends BasePage {
 	 *            Index of option to be selected
 	 */
 	public void selectDropdownValueByIndex(int index) {
-		getDriver().elementDropdownList(dropdownListselector)
+		getDriver().elementDropdownList(dropdownListSelector)
 						.selectDropdownByIndex(index);
 	}
 	
@@ -47,7 +47,7 @@ public class DropdownPage extends BasePage {
 	 * @return String object representing value of dropdown's option
 	 */
 	public String getSelectedDropdownValue() {
-		return getDriver().elementDropdownList(dropdownListselector)
+		return getDriver().elementDropdownList(dropdownListSelector)
 						.getFirstSelectedOptionText();
 	}
 }

@@ -55,8 +55,12 @@ public class StatusCodesCodePage extends BasePage {
 	
 	/**
 	 * Returns displayed code number.
+	 * <p>
+	 * Code number is retrieved from following text displayed on the page:<b>
+	 * 'This page returned a *** status code.', where *** are representing code number to be returned.
+	 * </p>
 	 * 
-	 * @return String object representing displayed code number
+	 * @return String object representing displayed code number retrieved from specific sentence.
 	 */
 	public String getDisplayedCodeNumber() {
 		return getDriver().findElementDynamic(selectorDisplayedText)
