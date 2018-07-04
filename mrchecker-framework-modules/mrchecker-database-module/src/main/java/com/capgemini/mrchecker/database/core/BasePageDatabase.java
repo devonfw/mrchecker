@@ -15,7 +15,7 @@ import lombok.Getter;
 
 import javax.persistence.EntityManager;
 
-abstract public class BaseDatabase implements ITestObserver, IDatabasePrefixHolder {
+abstract public class BasePageDatabase implements ITestObserver, IDatabasePrefixHolder {
 
 	private final static PropertiesFileSettings propertiesFileSettings;
 	private static       IEnvironmentService    environmentService;
@@ -40,12 +40,12 @@ abstract public class BaseDatabase implements ITestObserver, IDatabasePrefixHold
 		setEnvironmentInstance();
 	}
 
-	public BaseDatabase() {
+	public BasePageDatabase() {
 		assignEntityManager();
 	}
 
 	public static IAnalytics getAnalytics() {
-		return BaseDatabase.analytics;
+		return BasePageDatabase.analytics;
 	}
 
 	@Override
