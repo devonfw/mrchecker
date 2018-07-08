@@ -1,5 +1,53 @@
 package com.capgemini.mrchecker.webapi.httpbin;
 
-public class CookiesTest {
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
+
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
+import com.capgemini.mrchecker.webapi.pages.httbin.cookies.DeleteCookiesPage;
+import com.capgemini.mrchecker.webapi.pages.httbin.cookies.GetCookiesPage;
+import com.capgemini.mrchecker.webapi.pages.httbin.cookies.SetCookiesPage;
+
+import io.restassured.response.Response;
+
+public class CookiesTest extends BasePageWebApiTest {
+	
+	private GetCookiesPage		getCookiesPage		= new GetCookiesPage();
+	private SetCookiesPage		setCookiesPage		= new SetCookiesPage();
+	private DeleteCookiesPage	deleteCookiesPage	= new DeleteCookiesPage();
+	
+	@Test
+	public void getCookiesTest() {
+		Response response = getCookiesPage.getCookies();
+		BFLogger.logInfo(response.asString());
+		assertThat(response.statusCode(), is(200));
+	}
+	
+	@Test
+	public void setOneCookie() {
+		BFLogger.logInfo("before = " + setCookiesPage.getEndpoint());
+		Response response = setCookiesPage.setCookie("first", "1");
+		BFLogger.logInfo("after = " + setCookiesPage.getEndpoint());
+		
+		BFLogger.logInfo(response.asString());
+		assertThat(response.statusCode(), is(200));
+	}
+	
+	@Test
+	public void deleteCookie() {
+		Response response = deleteCookiesPage.deleteCookie("second", "1");
+		BFLogger.logInfo(response.asString());
+		assertThat(response.statusCode(), is(200));
+	}
+	
+	@Test
+	public void getCookiesTest2() {
+		Response response = getCookiesPage.getCookies();
+		BFLogger.logInfo(response.asString());
+		assertThat(response.statusCode(), is(200));
+	}
 	
 }

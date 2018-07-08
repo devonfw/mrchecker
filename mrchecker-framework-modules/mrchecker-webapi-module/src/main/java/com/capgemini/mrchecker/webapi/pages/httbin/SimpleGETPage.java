@@ -14,8 +14,8 @@ public class SimpleGETPage extends BasePageWebAPI {
 	
 	public Response sendGETQuery() {
 		return DriverManager.getDriverWebAPI()
-						.when()
-						.get(ENDPOINT);
+				.when()
+				.get(ENDPOINT);
 	}
 	
 	public String getEndpoint() {

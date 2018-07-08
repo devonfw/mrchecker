@@ -8,16 +8,24 @@ import io.restassured.response.Response;
 
 public class DeleteCookiesPage extends BasePageWebAPI {
 	private final static String	HOSTNAME	= GetEnvironmentParam.HTTPBIN.getValue();
-	private final static String	PATH		= "/delete";
+	private final static String	PATH		= "/cookies/delete";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	public Response sendGETQuery() {
+	private String deleteCookiesEndpointWithValues;
+	
+	public Response deleteCookie(String name, String value) {
+		deleteCookiesEndpointWithValues = ENDPOINT
+				.concat("?")
+				.concat(name)
+				.concat("=")
+				.concat(value);
+		
 		return DriverManager.getDriverWebAPI()
 				.when()
-				.get(ENDPOINT);
+				.get(deleteCookiesEndpointWithValues);
 	}
 	
 	public String getEndpoint() {
-		return ENDPOINT;
+		return deleteCookiesEndpointWithValues == null ? ENDPOINT : deleteCookiesEndpointWithValues;
 	}
 }

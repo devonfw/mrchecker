@@ -11,7 +11,7 @@ public class GetCookiesPage extends BasePageWebAPI {
 	private final static String	PATH		= "/cookies";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	public Response sendGETQuery() {
+	public Response getCookies() {
 		return DriverManager.getDriverWebAPI()
 				.when()
 				.get(ENDPOINT);
