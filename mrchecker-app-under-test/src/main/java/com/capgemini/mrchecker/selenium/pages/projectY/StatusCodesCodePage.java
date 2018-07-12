@@ -41,17 +41,38 @@ public class StatusCodesCodePage extends BasePage {
 		return codeNumber;
 	}
 	
+	/**
+	 * Verifies if page is loaded with given code number.
+	 * 
+	 * @param codeNumber
+	 *            Expected code number
+	 * @return true if expected code number is loaded with web page
+	 */
 	public boolean isLoadedWithStatusCode(String codeNumber) {
 		return getDriver().getCurrentUrl()
 						.equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.STATUS_CODES.getValue() + "/" + codeNumber);
 	}
 	
+	/**
+	 * Returns displayed code number.
+	 * <p>
+	 * Code number is retrieved from following text displayed on the page:<b>
+	 * 'This page returned a *** status code.', where *** are representing code number to be returned.
+	 * </p>
+	 * 
+	 * @return String object representing displayed code number retrieved from specific sentence.
+	 */
 	public String getDisplayedCodeNumber() {
-		String wholeText = getDriver().findElementDynamic(selectorDisplayedText)
-						.getText();
-		return wholeText.substring(21, 24); // Get from text "This page returned a 200 status code." status code value
+		return getDriver().findElementDynamic(selectorDisplayedText)
+						.getText()
+						.substring(21, 24);
 	}
 	
+	/**
+	 * Clicks link to return to 'Code Page'.
+	 * 
+	 * @return StatusCodesHomePage object
+	 */
 	public StatusCodesHomePage clickLinkToCodePage() {
 		getDriver().findElementDynamic(selectorLinkToCodesPage)
 						.click();

@@ -1,43 +1,41 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.BrokenImagePage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class BrokenImagesTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class BrokenImagesTest extends TheInternetBaseTest {
 	
-	private TheInternetPage theInternetPage;
-	private final int CorrectHeight = 90;
-	private final int CorrectWidth = 120;
+	private static BrokenImagePage brokenImagePage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-	}
+	private final int	expectedHeight	= 90;
+	private final int	expectedWidth	= 120;
 	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step5 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		brokenImagePage = shouldTheInternetPageBeOpened().clickBrokenImageLink();
+		
+		logStep("Verify if Broken Image page is opened");
+		assertTrue("Unable to open Broken Image page", brokenImagePage.isLoaded());
 	}
 	
 	@Test
-	public void verifyIfImagesSizesAreCorrect() {
-		BFLogger.logInfo("Step3 - click Broken Image link and open Broken Image page");
-		BrokenImagePage brokenImagePage = theInternetPage.clickBrokenImageLink();
+	public void shouldImageSizesBeEqualToExpected() {
+		
 		for (int i = 0; i < 3; i++) {
-			BFLogger.logInfo("Step4 - check sizes of image with index: " + i);
-			assertTrue("Height of image with index " + i + " is incorrect", brokenImagePage.getImageHeight(i) == CorrectHeight);
-			assertTrue("Width of image with index " + i + " is incorrect", brokenImagePage.getImageWidth(i) == CorrectWidth);
+			logStep("Verify size of image with index: " + i);
+			assertEquals("Height of image with index: " + i + " is incorrect", expectedHeight, brokenImagePage.getImageHeight(i));
+			assertEquals("Width of image with index: " + i + " is incorrect", expectedWidth, brokenImagePage.getImageWidth(i));
 		}
 	}
 	

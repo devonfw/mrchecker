@@ -12,23 +12,20 @@ import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class TheBasicAuthPage extends BasePage {
+public class BasicAuthPage extends BasePage {
 	
 	private static final By selectorTextMessage = By.cssSelector("#content > div > p");
 	
-	public TheBasicAuthPage() {
-		this(false, "", "");
+	public BasicAuthPage() {
+		
 	}
 	
-	public TheBasicAuthPage(boolean openByUrl, String login, String password) {
-		if (openByUrl) {
-			this.enterLoginAndPasswordByUrl(login, password);
-		}
+	public BasicAuthPage(String login, String password) {
+		this.enterLoginAndPasswordByUrl(login, password);
 	}
 	
 	@Override
 	public boolean isLoaded() {
-		BFLogger.logDebug("is loaded: " + getDriver().getCurrentUrl());
 		return true;
 	}
 	
@@ -42,10 +39,28 @@ public class TheBasicAuthPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	/**
+	 * Authenticates user passing credentials into URL.
+	 * 
+	 * @param login
+	 *            User's login
+	 * @param password
+	 *            User's password
+	 */
 	private void enterLoginAndPasswordByUrl(String login, String password) {
 		getDriver().get("http://" + login + ":" + password + "@" + "the-internet.herokuapp.com/" + PageSubURLsProjectYEnum.BASIC_AUTH.getValue());
 	}
 	
+	/**
+	 * Authenticates user using standard simple authentication popup.
+	 * 
+	 * @param login
+	 *            User's login
+	 * @param password
+	 *            User's password
+	 * @throws AWTException
+	 * @throws InterruptedException
+	 */
 	public void enterLoginAndPassword(String login, String password) throws AWTException, InterruptedException {
 		Robot rb = new Robot();
 		
@@ -78,6 +93,11 @@ public class TheBasicAuthPage extends BasePage {
 		Thread.sleep(2000);
 	}
 	
+	/**
+	 * Returns message displayed by system after user's log in.
+	 * 
+	 * @return String object representing message displayed by system after user's log in
+	 */
 	public String getMessageValue() {
 		return getDriver().findElementDynamic(selectorTextMessage)
 						.getText();

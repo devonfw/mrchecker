@@ -2,48 +2,38 @@ package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.RedirectLinkPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.StatusCodesHomePage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class RedirectLinkTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class RedirectLinkTest extends TheInternetBaseTest {
 	
-	private TheInternetPage				theInternetPage;
 	private static RedirectLinkPage		redirectLinkPage;
 	private static StatusCodesHomePage	statusCodesHomePage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		redirectLinkPage = shouldTheInternetPageBeOpened().clickRedirectLink();
+		
+		logStep("Verify if Redirect Link page is opened");
+		assertTrue("Unable to open Redirect Link page", redirectLinkPage.isLoaded());
 	}
 	
 	@Test
-	public void redirectToStatusCodePage() {
-		BFLogger.logDebug("Step 3 - Click on the Redirect link");
-		redirectLinkPage = theInternetPage.clickRedirectLinkPage();
-		
-		BFLogger.logDebug("Step 4 - Verify if the RedirectLink page opens");
-		assertTrue("The Redirect Page was not open", redirectLinkPage.isLoaded());
-		
-		BFLogger.logDebug("Step 5 - Click 'Redirect here' link");
+	public void shouldUserBeRedirectedToStatusCodePage() {
+		logStep("Click 'Redirect here' link");
 		statusCodesHomePage = redirectLinkPage.clickRedirectHereLink();
 		
-		BFLogger.logDebug("Step 6 - Check redirection to Status Code page");
-		assertTrue("Text under first avatar doesn't appear", statusCodesHomePage.isLoaded());
-	}
-	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step 7 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+		logStep("Verify redirection to Status Code page");
+		assertTrue("User hasn't been redirected to expected website", statusCodesHomePage.isLoaded());
 	}
 	
 }

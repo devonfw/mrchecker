@@ -17,10 +17,10 @@ import com.capgemini.mrchecker.selenium.core.utils.ResolutionUtils;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistryPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
+import io.qameta.allure.Feature;
 import junitparams.JUnitParamsRunner;
-import ru.yandex.qatools.allure.annotations.Features;
 
-@Features("Resolution")
+@Feature("Resolution")
 @Category({ TestsResolution.class, TestsSelenium.class })
 @RunWith(JUnitParamsRunner.class)
 public class ResolutionTest extends BaseTest {
@@ -28,9 +28,9 @@ public class ResolutionTest extends BaseTest {
 	
 	private static Object[] getResolutions() {
 		return new Object[] {
-				ResolutionEnum.w768,
-				ResolutionEnum.w960,
-				ResolutionEnum.w1920 };
+						ResolutionEnum.w768,
+						ResolutionEnum.w960,
+						ResolutionEnum.w1920 };
 	}
 	
 	@Override
