@@ -38,8 +38,16 @@
     <scm>
         <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
         <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
-        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+        <url>http://github.com/devonfw/devonfw-testing/tree/develop</url>
     </scm>
+
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+
 
     <distributionManagement>
         <!-- Repository used as default deploy phase. -->
@@ -285,7 +293,7 @@
                         </execution>
                     </executions>
                 </plugin>
-                
+
                 <!-- Maven report generator -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
