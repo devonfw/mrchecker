@@ -47,6 +47,13 @@
         <!-- <module>build-tools</module> -->
     </modules>
 
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <!-- Repository used as default deploy phase. If you like to deploy
             to Maven Central, then use profile release - "mvn -P release" -->
@@ -54,6 +61,7 @@
             <id>Local_repository</id>
             <url>file://${env.BASE_PATH}/usr/share/maven2</url>
         </repository>
+
     </distributionManagement>
 
 
@@ -65,6 +73,7 @@
         <!-- Report maven generator -->
         <maven-site-plugin.version>3.3</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+        <dependency.locations.enabled>false</dependency.locations.enabled>
 
         <!-- Java settings -->
         <java.compiler.version>1.8</java.compiler.version>
@@ -506,9 +515,9 @@
                         </dependencies>
                     </plugin>
                     <plugin>
-                        <!-- mvn allure:serve //Generate report and start 
+                        <!-- mvn allure:serve //Generate report and start
                             server
-                            mvn allure:report //Report will be generated 
+                            mvn allure:report //Report will be generated
                             tо directory -->
                         <groupId>io.qameta.allure</groupId>
                         <artifactId>allure-maven</artifactId>
