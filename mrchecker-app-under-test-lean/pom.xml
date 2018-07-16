@@ -72,7 +72,11 @@
         <surefire.provider.version>1.0.0-M2</surefire.provider.version>
         <thread.count>8</thread.count>
         <junit-toolbox.version>2.4</junit-toolbox.version>
-        
+
+        <!-- Maven report generator -->
+        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+
         <!-- Allure reporting -->
         <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
@@ -281,6 +285,13 @@
                         </execution>
                     </executions>
                 </plugin>
+                
+                <!-- Maven report generator -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
 
             </plugins>
         </pluginManagement>
@@ -319,14 +330,14 @@
                                     <name>listener</name>
                                     <value>io.qameta.allure.junit4.AllureJunit4</value>
                                 </property>
-                                
+
                             </properties>
                             <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${allure.report.directory}/allure-results</value>
-                        </property>
-                    </systemProperties>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${allure.report.directory}/allure-results</value>
+                                </property>
+                            </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -488,16 +499,15 @@
 
 
     <reporting>
-        <excludeDefaults>true</excludeDefaults>
         <plugins>
+            <!-- Report project information -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
+                <version>${maven-project-info-reports-plugin.version}</version>
                 <reportSets>
                     <reportSet>
                         <reports>
-                            <report>license</report>
                             <report>scm</report>
                         </reports>
                     </reportSet>
@@ -505,6 +515,7 @@
             </plugin>
         </plugins>
     </reporting>
+
 
 
 </project>

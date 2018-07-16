@@ -3,14 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mrchecker-app-under-test</artifactId>
+    <artifactId>mrchecker-app-under-test-lean</artifactId>
     <groupId>com.capgemini.mrchecker</groupId>
     <version>${version}</version>
     <packaging>jar</packaging>
 
     <name>MrCheckerTestFramework - List of Integration Test for Application Under Test</name>
-    <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.
-* Adding examples,   projectX, projectY, datadriven</description>
+    <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
 
@@ -73,7 +72,11 @@
         <surefire.provider.version>1.0.0-M2</surefire.provider.version>
         <thread.count>8</thread.count>
         <junit-toolbox.version>2.4</junit-toolbox.version>
-        
+
+        <!-- Maven report generator -->
+        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+
         <!-- Allure reporting -->
         <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
@@ -282,6 +285,13 @@
                         </execution>
                     </executions>
                 </plugin>
+                
+                <!-- Maven report generator -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
 
             </plugins>
         </pluginManagement>
@@ -320,14 +330,14 @@
                                     <name>listener</name>
                                     <value>io.qameta.allure.junit4.AllureJunit4</value>
                                 </property>
-                                
+
                             </properties>
                             <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${allure.report.directory}/allure-results</value>
-                        </property>
-                    </systemProperties>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${allure.report.directory}/allure-results</value>
+                                </property>
+                            </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -489,16 +499,15 @@
 
 
     <reporting>
-        <excludeDefaults>true</excludeDefaults>
         <plugins>
+            <!-- Report project information -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
+                <version>${maven-project-info-reports-plugin.version}</version>
                 <reportSets>
                     <reportSet>
                         <reports>
-                            <report>license</report>
                             <report>scm</report>
                         </reports>
                     </reportSet>
@@ -506,6 +515,7 @@
             </plugin>
         </plugins>
     </reporting>
+
 
 
 </project>
