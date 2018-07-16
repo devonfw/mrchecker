@@ -39,11 +39,11 @@
     </scm>
 
     <modules>
-<!--         <module>mrchecker-core-module</module>
+        <module>mrchecker-core-module</module>
         <module>mrchecker-selenium-module</module>
         <module>mrchecker-security-module</module>
         <module>mrchecker-webapi-module</module>
-        <module>mrchecker-database-module</module> -->
+        <module>mrchecker-database-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
 
