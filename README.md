@@ -2,7 +2,7 @@
 
 # Install #
 
-1. Download package [TestEnvironment](https://github.com/devonfw/devonfw-testing/releases/download/2.5.0/MrChecker_Test_Framework.7z)
+1. Download package [TestEnvironment](https://github.com/devonfw/devonfw-testing/releases/download/2.5.1/MrChecker_Test_Framework.7z)
 2. To folder **C:\\** unzip with [7z](http://www.7-zip.org/download.html)
 3. In unzipped folder run  _C:\MrChecker_Test_Framework\start-eclipse.bat_
 
