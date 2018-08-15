@@ -12,13 +12,14 @@ public class SetCookiesPage extends BasePageWebAPI {
 	private final static String	PATH		= "/cookies/set";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	private String setCookiesEndpointWithValues;
+	private String	setCookiesEndpointWithValues;
+	private Cookie	cookie;
+	
+	public SetCookiesPage(Cookie cookie) {
+		this.cookie = cookie;
+	}
 	
 	public Response setCookie(String name, String value) {
-		Cookie myCookie = new Cookie.Builder("session_id", "112").setSecured(true)
-				.setComment("session id cookie")
-				.build();
-		
 		setCookiesEndpointWithValues = ENDPOINT
 				.concat("/")
 				.concat(name)
@@ -26,7 +27,7 @@ public class SetCookiesPage extends BasePageWebAPI {
 				.concat(value);
 		
 		return DriverManager.getDriverWebAPI()
-				.cookie(myCookie)
+				.cookie(cookie)
 				.when()
 				.get(setCookiesEndpointWithValues);
 	}
