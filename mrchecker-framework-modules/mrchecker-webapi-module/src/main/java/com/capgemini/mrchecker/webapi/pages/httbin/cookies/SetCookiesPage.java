@@ -4,7 +4,8 @@ import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 import com.capgemini.mrchecker.webapi.pages.environment.GetEnvironmentParam;
 
-import io.restassured.http.Cookie;
+import io.restassured.config.RedirectConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 
 public class SetCookiesPage extends BasePageWebAPI {
@@ -12,22 +13,20 @@ public class SetCookiesPage extends BasePageWebAPI {
 	private final static String	PATH		= "/cookies/set";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	private String	setCookiesEndpointWithValues;
-	private Cookie	cookie;
-	
-	public SetCookiesPage(Cookie cookie) {
-		this.cookie = cookie;
-	}
+	private String setCookiesEndpointWithValues;
 	
 	public Response setCookie(String name, String value) {
 		setCookiesEndpointWithValues = ENDPOINT
-				.concat("/")
+				.concat("?")
 				.concat(name)
-				.concat("/")
+				.concat("=")
 				.concat(value);
 		
 		return DriverManager.getDriverWebAPI()
-				.cookie(cookie)
+				.config(RestAssuredConfig.newConfig()
+						.redirect(RedirectConfig.redirectConfig()
+								.followRedirects(false)))
+				.filter(CookieSession.getSession())
 				.when()
 				.get(setCookiesEndpointWithValues);
 	}

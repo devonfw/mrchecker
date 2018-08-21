@@ -1,24 +1,22 @@
 package com.capgemini.mrchecker.webapi.pages.httbin.cookies;
 
-import io.restassured.http.Cookie;
+import io.restassured.filter.cookie.CookieFilter;
 
 public class CookieSession {
 	
-	private static Cookie cookieSession = null;
+	private static CookieFilter cookieSession = null;
 	
 	private CookieSession() {
 	}
 	
-	public static Cookie getSession() {
+	public static CookieFilter getSession() {
 		if (cookieSession == null) {
 			cookieSession = createSession();
 		}
 		return cookieSession;
 	}
 	
-	private static Cookie createSession() {
-		return new Cookie.Builder("session_id", "112").setSecured(true)
-				.setComment("session id cookie")
-				.build();
+	private static CookieFilter createSession() {
+		return new CookieFilter();
 	}
 }

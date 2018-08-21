@@ -4,7 +4,8 @@ import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 import com.capgemini.mrchecker.webapi.pages.environment.GetEnvironmentParam;
 
-import io.restassured.http.Cookie;
+import io.restassured.config.RedirectConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 
 public class DeleteCookiesPage extends BasePageWebAPI {
@@ -12,12 +13,7 @@ public class DeleteCookiesPage extends BasePageWebAPI {
 	private final static String	PATH		= "/cookies/delete";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	private String	deleteCookiesEndpointWithValues;
-	private Cookie	cookie;
-	
-	public DeleteCookiesPage(Cookie cookie) {
-		this.cookie = cookie;
-	}
+	private String deleteCookiesEndpointWithValues;
 	
 	public Response deleteCookie(String name, String value) {
 		deleteCookiesEndpointWithValues = ENDPOINT
@@ -27,7 +23,10 @@ public class DeleteCookiesPage extends BasePageWebAPI {
 				.concat(value);
 		
 		return DriverManager.getDriverWebAPI()
-				.cookie(cookie)
+				.config(RestAssuredConfig.newConfig()
+						.redirect(RedirectConfig.redirectConfig()
+								.followRedirects(false)))
+				.filter(CookieSession.getSession())
 				.when()
 				.get(deleteCookiesEndpointWithValues);
 	}
