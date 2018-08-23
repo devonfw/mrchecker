@@ -16,7 +16,12 @@ public class CookieSession {
 		return cookieSession;
 	}
 	
+	public static void createNewSession() {
+		cookieSession = createSession();
+	}
+	
 	private static CookieFilter createSession() {
 		return new CookieFilter();
 	}
+	
 }
