@@ -5,114 +5,121 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.UUID;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
 import com.capgemini.mrchecker.selenium.pages.projectY.FormAuthenticationPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-@Category({ TestsSelenium.class, TestsLocal.class })
-public class FormAuthenticationTest extends BaseTest {
+@Category({ TestsLocal.class, TestsNONParallel.class })
+public class FormAuthenticationTest extends TheInternetBaseTest {
 	
-	private static TheInternetPage			theInternetPage;
-	private static FormAuthenticationPage	formAuthenticationPage;
-	private String							errorUsernameMessage	= "Your username is invalid!\n" + "×";
-	private String							errorPasswordMessage	= "Your password is invalid!\n" + "×";
-	private String							loginMessage			= "You logged into a secure area!\n" + "×";
-	private String							logoutMessage			= "You logged out of the secure area!\n" + "×";
-	private String							emptyUsername			= "";
-	private String							emptyUserPassword		= "";
-	private String							validUsername			= "tomsmith";
-	private String							validPassword			= "SuperSecretPassword!";
-	private String							randomUsername			= UUID.randomUUID()
+	private static FormAuthenticationPage formAuthenticationPage;
+	
+	private String	errorUsernameMessage	= "Your username is invalid!\n" + "×";
+	private String	errorPasswordMessage	= "Your password is invalid!\n" + "×";
+	private String	loginMessage			= "You logged into a secure area!\n" + "×";
+	private String	logoutMessage			= "You logged out of the secure area!\n" + "×";
+	private String	emptyUsername			= "";
+	private String	emptyUserPassword		= "";
+	private String	validUsername			= "tomsmith";
+	private String	validPassword			= "SuperSecretPassword!";
+	private String	randomUsername			= UUID.randomUUID()
 					.toString();
-	private String							randomUserPassword		= UUID.randomUUID()
-					.toString();;
+	private String	randomUserPassword		= UUID.randomUUID()
+					.toString();
 	
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		BFLogger.logDebug("Step 1: Open the Url http://the-internet.herokuapp.com/");
+	public static void setUpBeforeClass() {
+		logStep("Open the Url http://the-internet.herokuapp.com/");
 		theInternetPage = new TheInternetPage();
+		theInternetPage.load();
 		
-		BFLogger.logDebug("Step 2: Verify if Url http://the-internet.herokuapp.com/ opens");
-		assertTrue("The Internet Page was not open", theInternetPage.isLoaded());
-		
-		BFLogger.logDebug("Step 3: Click on the Form Authentication link");
+		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
+		assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
+	}
+	
+	@Override
+	public void setUp() {
+		logStep("Click subpage link");
 		formAuthenticationPage = theInternetPage.clickFormAuthenticationLink();
 		
-		BFLogger.logDebug("Step 4: Verify if the Url http://the-internet.herokuapp.com/login");
-		assertTrue("The Form Authentication Page was not open", formAuthenticationPage.isLoaded());
-	}
-	
-	@Before
-	public void setUp() {
-		
-	}
-	
-	@After
-	public void tearDown() {
+		logStep("Verify if subpage is opened");
+		assertTrue("The Internet subpage: FormAuthenticationPage was not open", formAuthenticationPage.isLoaded());
 	}
 	
 	@Test
-	public void loginWithEmptyUsernameAndPasswordTest() {
-		BFLogger.logDebug("Step 5: Verify if the Url http://the-internet.herokuapp.com/login");
-		formAuthenticationPage.setUsername(emptyUsername);
-		formAuthenticationPage.setUserPassword(emptyUserPassword);
-		formAuthenticationPage.clickLoginButton();
-		assertEquals("The user can login with empty data", errorUsernameMessage,
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithEmptyData() {
+		logStep("Log user with empty username and password");
+		formAuthenticationPage.setUsername(emptyUsername)
+						.setUserPassword(emptyUserPassword)
+						.clickLoginButton();
+		assertEquals("Unexpectedly user logged in with empty data", errorUsernameMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
-	public void loginWithEmptyUsernameAndValidPasswordTest() {
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithEmptyUsernameAndValidPassword() {
+		logStep("Log user with empty username and valid password");
 		formAuthenticationPage.setUsername(emptyUsername)
 						.setUserPassword(validPassword)
 						.clickLoginButton();
-		assertEquals("The user can login with empty username", errorUsernameMessage,
+		assertEquals("Unexpectedly user logged in with empty username", errorUsernameMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
-	public void loginWithValidUsernameAndEmptyPasswordTest() {
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithValidUsernameAndEmptyPassword() {
+		logStep("Log user with valid username and empty password");
 		formAuthenticationPage.setUsername(validUsername)
 						.setUserPassword(emptyUserPassword)
 						.clickLoginButton();
-		assertEquals("The user can login with empty password", errorPasswordMessage,
+		assertEquals("Unexpectedly user logged in with empty password", errorPasswordMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
-	public void loginWithRandomUsernameAndRandomPasswordTest() {
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithInvalidUsernameAndInvalidPassword() {
+		logStep("Log user with invalid username and invalid password");
 		formAuthenticationPage.setUsername(randomUsername)
 						.setUserPassword(randomUserPassword)
 						.clickLoginButton();
-		assertEquals("The user can login with random credentials", errorUsernameMessage,
+		assertEquals("Unexpectedly user logged in with random credentials", errorUsernameMessage,
 						formAuthenticationPage.getLoginMessageText());
 	}
 	
 	@Test
-	public void loginWithValidCredentials() {
+	public void shouldUserLogInWithValidCredentials() {
+		logStep("Log user with valid username and valid password");
 		formAuthenticationPage.setUsername(validUsername)
 						.setUserPassword(validPassword)
 						.clickLoginButton();
-		assertEquals("The user can't login with valid credentials", loginMessage,
+		assertEquals("Unable to login user with valid credentials", loginMessage,
 						formAuthenticationPage.getLoginMessageText());
+		logStep("Log out user");
 		formAuthenticationPage.clickLogoutButton();
 	}
 	
 	@Test
-	public void logoutTest() {
+	public void shouldUserLogOutAfterProperLogInAndClickLogoutButon() {
+		logStep("Log user with valid username and valid password");
 		formAuthenticationPage.setUsername(validUsername)
 						.setUserPassword(validPassword)
 						.clickLoginButton();
+		assertEquals("Unable to login user with valid credentials", loginMessage,
+						formAuthenticationPage.getLoginMessageText());
+		logStep("Log out user");
 		formAuthenticationPage.clickLogoutButton();
-		assertEquals("The user can't logout", logoutMessage, formAuthenticationPage.getLoginMessageText());
+		assertEquals("User cannot log out after prper log in", logoutMessage,
+						formAuthenticationPage.getLoginMessageText());
+	}
+	
+	@Override
+	public void tearDown() {
+		logStep("Navigate back to The-Internet page");
+		theInternetPage.load();
 	}
 }

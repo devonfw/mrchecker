@@ -7,7 +7,7 @@
     <parent>
         <artifactId>mrchecker-test-framework</artifactId>
         <groupId>com.capgemini.mrchecker</groupId>
-        <version>2.3.0-SNAPSHOT</version>
+        <version>2.3.1</version>
     </parent>
     <artifactId>mrchecker-selenium-module</artifactId>
     <version>${version}</version>
@@ -62,12 +62,12 @@ Based on Selenium 3.8.1</description>
     </scm>
 
     <properties>
-        <version>3.8.1.9-SNAPSHOT</version>
+        <version>3.8.1.11</version>
 
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
-        <mrchecker-core-module.version>4.12.0.9-SNAPSHOT</mrchecker-core-module.version>
+        <mrchecker-core-module.version>4.12.0.10</mrchecker-core-module.version>
 
         <!-- Selenium settings -->
         <selenium.version>3.8.1</selenium.version>

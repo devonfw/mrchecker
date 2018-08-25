@@ -117,4 +117,5 @@ public class DynamicLoadingPage extends BasePage {
 		return getDriver().findElementDynamic(selectorExampleText)
 						.getText();
 	}
+	
 }

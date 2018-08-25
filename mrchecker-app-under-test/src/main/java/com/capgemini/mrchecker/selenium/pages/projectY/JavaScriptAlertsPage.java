@@ -1,9 +1,6 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
-import java.util.function.Function;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,7 +11,7 @@ import com.capgemini.mrchecker.selenium.pages.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class JavaScriptAlertsPage<V, Alert> extends BasePage {
+public class JavaScriptAlertsPage extends BasePage {
 	
 	private static final By	selectorAlertButton		= By.cssSelector("button[onclick*=jsAlert]");
 	private static final By	selectorConfirmButton	= By.cssSelector("button[onclick*=jsConfirm]");
@@ -40,40 +37,66 @@ public class JavaScriptAlertsPage<V, Alert> extends BasePage {
 		return getActualPageTitle();
 	}
 	
+	/**
+	 * Clicks 'JS alert' button.
+	 */
 	public void clickAlertButton() {
 		new Button(selectorAlertButton).click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until((Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
+		wait.until(ExpectedConditions.alertIsPresent());
 	}
 	
+	/**
+	 * Clicks 'JS confirm' button.
+	 */
 	public void clickConfirmButton() {
 		new Button(selectorConfirmButton).click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until((Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
+		wait.until(ExpectedConditions.alertIsPresent());
 	}
 	
+	/**
+	 * Clicks 'JS prompt' button.
+	 */
 	public void clickPromptButton() {
 		new Button(selectorPromptButton).click();
 		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-		wait.until((Function<? super WebDriver, Alert>) ExpectedConditions.alertIsPresent());
+		wait.until(ExpectedConditions.alertIsPresent());
 	}
 	
+	/**
+	 * Returns message displayed by popup.
+	 * 
+	 * @return String object representing message displayed by popup
+	 */
 	public String readResultLabel() {
 		return new LabelElement(resultLabelSelector).getText();
 	}
 	
+	/**
+	 * Clicks alert's 'OK' button.
+	 */
 	public void clickAlertAccept() {
 		getDriver().switchTo()
 						.alert()
 						.accept();
 	}
 	
+	/**
+	 * Clicks alert's 'Cancel' button.
+	 */
 	public void clickAlertDismiss() {
 		getDriver().switchTo()
 						.alert()
 						.dismiss();
 	}
 	
+	/**
+	 * Types text into alert's text field.
+	 * 
+	 * @param text
+	 *            String object sent into alert's text field
+	 */
 	public void writeTextInAlert(String text) {
 		getDriver().switchTo()
 						.alert()

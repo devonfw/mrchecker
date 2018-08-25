@@ -1,48 +1,41 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.HoversPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class HoversTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class HoversTest extends TheInternetBaseTest {
 	
-	private TheInternetPage		theInternetPage;
 	private static HoversPage	hoversPage;
 	private final String		names[]	= { "name: user1", "name: user2", "name: user3" };
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-	}
-	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step5 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		hoversPage = shouldTheInternetPageBeOpened().clickHoversLink();
+		
+		logStep("Verify if Hovers page is opened");
+		assertTrue("Unable to open Hovers page", hoversPage.isLoaded());
 	}
 	
 	@Test
-	public void HoverOverRandomElementTest() {
-		BFLogger.logDebug("Step 3 - Click on the Hovers link");
-		hoversPage = theInternetPage.clickHoversLink();
-		BFLogger.logDebug("Step 4 - Verify if the Hovers page opens");
-		assertTrue("The Hovers Page was not open", hoversPage.isLoaded());
-		
+	public void shouldProperInformationBeDisplayedWhenMousePointerHoveredOverRandomElement() {
+		logStep("Hover mouse pointer over random element");
 		int randomIndex = new Random().nextInt(names.length);
-		hoversPage.hoverUnderAvatar(randomIndex);
-		assertTrue("Text under first avatar doesn't appear", hoversPage.getTextUnderAvatar(randomIndex)
-						.equals(names[randomIndex]));
+		hoversPage.hoverOverAvatar(randomIndex);
+		assertEquals("Picture's information is different than expected", names[randomIndex],
+						hoversPage.getAvatarsInformation(randomIndex));
 	}
 	
 }

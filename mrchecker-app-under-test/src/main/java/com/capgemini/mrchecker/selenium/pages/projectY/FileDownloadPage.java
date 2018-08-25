@@ -14,8 +14,9 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class FileDownloadPage extends BasePage {
 	
-	private static final By	selectorSomeFileTxt	= By.cssSelector("a[href*=some-file]");
-	private final String	DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
+	private static final By selectorSomeFileTxt = By.cssSelector("a[href*=some-file]");
+	
+	private final String DOWNLOAD_DIR = System.getProperty("java.io.tmpdir");
 	
 	@Override
 	public boolean isLoaded() {
@@ -36,7 +37,12 @@ public class FileDownloadPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public File downloadTheSomeFileTxt() {
+	/**
+	 * Verifies if chosen file is already downloaded and downloads it if not. Throws RuntimeException otherwise.
+	 * 
+	 * @return Downloaded file
+	 */
+	public File downloadTextFile() {
 		String nameOfDownloadFile = getNameOfDownloadFile();
 		File fileToDownload = new File(DOWNLOAD_DIR + nameOfDownloadFile);
 		

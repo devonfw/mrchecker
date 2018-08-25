@@ -33,7 +33,13 @@ public class HoversPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public void hoverUnderAvatar(int index) {
+	/**
+	 * Moves mouse pointer over an image with given index.
+	 * 
+	 * @param index
+	 *            An index of the picture, where mouse pointer should be moved
+	 */
+	public void hoverOverAvatar(int index) {
 		Actions action = new Actions(getDriver());
 		WebElement avatarImage = getDriver().findElementDynamics(selectorImages)
 						.get(index);
@@ -41,10 +47,17 @@ public class HoversPage extends BasePage {
 						.perform();
 	}
 	
-	public String getTextUnderAvatar(int index) {
-		WebElement elementText = getDriver().findElementDynamics(selectorNames)
-						.get(index);
-		return elementText.getText();
+	/**
+	 * Returns an information displayed under a picture given index.
+	 * 
+	 * @param index
+	 *            An index of the picture, where information should be read
+	 * @return String object representing picture's information
+	 */
+	public String getAvatarsInformation(int index) {
+		return getDriver().findElementDynamics(selectorNames)
+						.get(index)
+						.getText();
 	}
 	
 }

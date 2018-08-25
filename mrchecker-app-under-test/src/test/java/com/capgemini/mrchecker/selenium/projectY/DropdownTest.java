@@ -1,51 +1,48 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.DropdownPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DropdownTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class DropdownTest extends TheInternetBaseTest {
 	
-	private TheInternetPage theInternetPage;
-	private DropdownPage dropdownPage;
-	private static final String correctValueOneOnDropdownList = "Option 1";
-	private static final String correctValueTwoOnDropdownList = "Option 2";
+	private static DropdownPage dropdownPage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-	}
+	private static final String	expectedFirstOptionValue	= "Option 1";
+	private static final String	expectedSecondOptionValue	= "Option 2";
 	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step5 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		dropdownPage = shouldTheInternetPageBeOpened().clickDropdownLink();
+		
+		logStep("Verify if Dropdown page is opened");
+		assertTrue("Unable to open Dropdown page", dropdownPage.isLoaded());
 	}
 	
 	@Test
-	public void shouldDisplayCorrectTextOnDropdownWhenChooseValueOne() {
-		BFLogger.logInfo("Step3 - open 'dropdown' link");
-		dropdownPage = theInternetPage.clickDropdownLink();
-		dropdownPage.setValueOnDropdownList(1);
-		String textOnChoosedValueOfDropdown = dropdownPage.getTextFromDropdownList();
-		assertTrue("Choosed value displays incorrect text", textOnChoosedValueOfDropdown.equals(correctValueOneOnDropdownList));
+	public void shouldGetExpectedDropdownTextOptionAfterSelection() {
+		
+		logStep("Select first drodown option");
+		dropdownPage.selectDropdownValueByIndex(1);
+		
+		logStep("Verify if selected option text is equal to expected one");
+		assertEquals("Selected value is different than expected", expectedFirstOptionValue, dropdownPage.getSelectedDropdownValue());
+		
+		logStep("Select first drodown option");
+		dropdownPage.selectDropdownValueByIndex(2);
+		
+		logStep("Verify if selected option text is equal to expected one");
+		assertEquals("Selected value is different than expected", expectedSecondOptionValue, dropdownPage.getSelectedDropdownValue());
 	}
 	
-	@Test
-	public void shouldDisplayCorrectTextOnDropdownWhenChooseValueTwo() {
-		BFLogger.logInfo("Step3 - open 'dropdown' link");
-		dropdownPage = theInternetPage.clickDropdownLink();
-		dropdownPage.setValueOnDropdownList(2);
-		String textOnChoosedValueOfDropdown = dropdownPage.getTextFromDropdownList();
-		assertTrue("Choosed value displays incorrect text", textOnChoosedValueOfDropdown.equals(correctValueTwoOnDropdownList));
-	}
 }

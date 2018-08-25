@@ -35,17 +35,24 @@
     <scm>
         <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
         <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
-        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+        <url>http://github.com/devonfw/devonfw-testing/tree/develop</url>
     </scm>
 
     <modules>
-        <module>mrchecker-core-module</module>
+<!--         <module>mrchecker-core-module</module>
         <module>mrchecker-selenium-module</module>
         <module>mrchecker-security-module</module>
         <module>mrchecker-webapi-module</module>
-        <module>mrchecker-database-module</module>
+        <module>mrchecker-database-module</module> -->
         <!-- <module>build-tools</module> -->
     </modules>
+
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
 
     <distributionManagement>
         <!-- Repository used as default deploy phase. If you like to deploy
@@ -54,13 +61,19 @@
             <id>Local_repository</id>
             <url>file://${env.BASE_PATH}/usr/share/maven2</url>
         </repository>
+
     </distributionManagement>
 
 
     <properties>
-        <version>2.3.0-SNAPSHOT</version>
-        
+        <version>2.3.1</version>
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+
+        <!-- Report maven generator -->
+        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+        <dependency.locations.enabled>false</dependency.locations.enabled>
 
         <!-- Java settings -->
         <java.compiler.version>1.8</java.compiler.version>
@@ -93,7 +106,7 @@
 
         <!--This dependency is necessary for Rest assured plugin. -->
         <rest-assured.version>3.0.6</rest-assured.version>
-        
+
         <!-- Allure reporting -->
         <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
@@ -102,7 +115,7 @@
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
         <report-directory>${pom.basedir}/test-output/</report-directory>
         <aspectj.version>1.8.10</aspectj.version>
-        
+
     </properties>
 
 
@@ -187,19 +200,19 @@
             </dependency>
 
 
-        <!--This dependency is necessary for Allure generator plugin. -->
-        <dependency>
-            <!-- Test listener. Binds Junit exec to Allure annotation -->
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
-            <version>${allure-junit4-listener.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Allure report generator -->
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>${allure-maven-report-generator.version}</version>
-        </dependency>
+            <!--This dependency is necessary for Allure generator plugin. -->
+            <dependency>
+                <!-- Test listener. Binds Junit exec to Allure annotation -->
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit4</artifactId>
+                <version>${allure-junit4-listener.version}</version>
+            </dependency>
+            <dependency>
+                <!-- Allure report generator -->
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven-report-generator.version}</version>
+            </dependency>
 
 
 
@@ -294,6 +307,15 @@
                         <stopPort>1234</stopPort>
                     </configuration>
                 </plugin>
+
+                <!-- Generate report for maven site goal -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+
+
             </plugins>
         </pluginManagement>
     </build>
@@ -493,8 +515,10 @@
                         </dependencies>
                     </plugin>
                     <plugin>
-                        <!-- mvn allure:serve  //Generate report and start server
-                        mvn allure:report //Report will be generated tо directory -->
+                        <!-- mvn allure:serve //Generate report and start
+                            server
+                            mvn allure:report //Report will be generated
+                            tо directory -->
                         <groupId>io.qameta.allure</groupId>
                         <artifactId>allure-maven</artifactId>
                         <version>2.9</version>
@@ -507,6 +531,17 @@
                     </plugin>
                 </plugins>
             </build>
+            <reporting>
+                <plugins>
+                    <!-- Report project information -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <version>${maven-project-info-reports-plugin.version}</version>
+                    </plugin>
+                </plugins>
+            </reporting>
+
         </profile>
 
 

@@ -1,10 +1,9 @@
 package com.capgemini.mrchecker.selenium.pages.projectY;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
@@ -14,8 +13,8 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class DynamicContentPage extends BasePage {
 	
-	private static final By	selectorImages			= By.cssSelector("div#content > div.row img");
-	private static final By	selectorDescriptions	= By.cssSelector("div#content > div.row div.large-10");
+	private static final By	imagesLinksSelector			= By.cssSelector("div#content > div.row img");
+	private static final By	imagesDescriptionsSelector	= By.cssSelector("div#content > div.row div.large-10");
 	
 	@Override
 	public boolean isLoaded() {
@@ -36,23 +35,25 @@ public class DynamicContentPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public void refreshPage() {
-		getDriver().navigate()
-						.refresh();
-	}
-	
+	/**
+	 * Returns list of picture descriptions being present on the web page.
+	 * 
+	 * @return List of String objects representing descriptions
+	 */
 	public List<String> getDescriptions() {
-		ListElements descriptions = new ListElements(selectorDescriptions);
-		return descriptions.getTextList();
+		return new ListElements(imagesDescriptionsSelector).getTextList();
 	}
 	
-	public List<String> getImages() {
-		ListElements images = new ListElements(selectorImages);
-		List<String> imagesLink = new ArrayList<String>();
-		
-		for (WebElement element : images.getList()) {
-			imagesLink.add(element.getAttribute("src"));
-		}
-		return imagesLink;
+	/**
+	 * Returns a list of image links being present on the web page.
+	 * 
+	 * @return List of String objects representing paths to pictures
+	 */
+	public List<String> getImageLinks() {
+		return new ListElements(imagesLinksSelector)
+						.getList()
+						.stream()
+						.map(element -> element.getAttribute("src"))
+						.collect(Collectors.toList());
 	}
 }
