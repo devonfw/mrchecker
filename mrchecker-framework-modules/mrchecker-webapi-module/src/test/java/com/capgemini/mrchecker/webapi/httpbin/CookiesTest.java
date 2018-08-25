@@ -32,7 +32,6 @@ public class CookiesTest extends BasePageWebApiTest {
 		CookieSession.createNewSession();
 		BFLogger.logInfo("Created session id: " + CookieSession.getSession()
 				.hashCode());
-		BFLogger.logInfo("w");
 	}
 	
 	@Test
