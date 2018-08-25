@@ -28,19 +28,20 @@ public class CookiesTest extends BasePageWebApiTest {
 	
 	@Before
 	public void testSetUp() {
-		System.out.println("Step 1 - Create new cookie session");
+		BFLogger.logInfo("Step 1 - Create new cookie session");
 		CookieSession.createNewSession();
-		System.out.println("Created session id: " + CookieSession.getSession()
+		BFLogger.logInfo("Created session id: " + CookieSession.getSession()
 				.hashCode());
+		BFLogger.logInfo("w");
 	}
 	
 	@Test
 	public void getCookiesTestStatusCode() {
 		int expectedStatusCode = 200;
 		
-		System.out.println("Step 2 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 2 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
 		Response response = getCookiesPage.getCookies();
-		System.out.println("Step 3 - Validate response status code. Expected was " + expectedStatusCode + ".");
+		BFLogger.logInfo("Step 3 - Validate response status code. Expected was " + expectedStatusCode + ".");
 		assertThat(response.statusCode(), is(expectedStatusCode));
 	}
 	
@@ -51,9 +52,9 @@ public class CookiesTest extends BasePageWebApiTest {
 		// That's why 302(REDIRECT) is expected.
 		int expectedStatusCode = 302;
 		
-		System.out.println("Step 2 - SET Cookies. Send GET to " + setCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 2 - SET Cookies. Send GET to " + setCookiesPage.getEndpoint());
 		Response response = setCookiesPage.setCookie("cookiesOne", "1");
-		System.out.println("Step 3 - Validate response status code. Expected was " + expectedStatusCode + ".");
+		BFLogger.logInfo("Step 3 - Validate response status code. Expected was " + expectedStatusCode + ".");
 		assertThat(response.statusCode(), is(expectedStatusCode));
 	}
 	
@@ -64,10 +65,10 @@ public class CookiesTest extends BasePageWebApiTest {
 		// That's why 302(REDIRECT) is expected.
 		int expectedStatusCode = 302;
 		
-		System.out.println("Step 2 - DELETE Cookies. Send GET to " + deleteCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 2 - DELETE Cookies. Send GET to " + deleteCookiesPage.getEndpoint());
 		Response response = deleteCookiesPage.deleteCookie("cookiesTwo", "2");
 		
-		System.out.println("Step 3 - Validate response status code. Expected was " + expectedStatusCode + ".");
+		BFLogger.logInfo("Step 3 - Validate response status code. Expected was " + expectedStatusCode + ".");
 		assertThat(response.statusCode(), is(expectedStatusCode));
 	}
 	
@@ -81,11 +82,11 @@ public class CookiesTest extends BasePageWebApiTest {
 		
 		int expectedSizeOfCookiesResponseMap = 2;
 		
-		System.out.println("Step 2 - SET Cookies. Send GET to " + setCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 2 - SET Cookies. Send GET to " + setCookiesPage.getEndpoint());
 		setCookiesPage.setCookie(firstCookieKey, firstCookieValue);
 		setCookiesPage.setCookie(secondCookieKey, secondCookieValue);
 		
-		System.out.println("Step 3 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 3 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
 		Map<String, Object> cookies = getCookiesPage.getCookies()
 				.jsonPath()
 				.getMap("cookies");
@@ -108,10 +109,10 @@ public class CookiesTest extends BasePageWebApiTest {
 		int expectedSizeOfCookiesResponseMap = 1;
 		String expectedValueAfterDelete = "";
 		
-		System.out.println("Step 2 - SET Cookies. Send GET to " + setCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 2 - SET Cookies. Send GET to " + setCookiesPage.getEndpoint());
 		setCookiesPage.setCookie(firstCookieKey, firstCookieValue);
 		
-		System.out.println("Step 3 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 3 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
 		Map<String, Object> cookies = getCookiesPage.getCookies()
 				.jsonPath()
 				.getMap("cookies");
@@ -123,17 +124,17 @@ public class CookiesTest extends BasePageWebApiTest {
 		assertTrue(cookies.get(firstCookieKey)
 				.equals(firstCookieValue));
 		
-		System.out.println("Step 5 - DELETE Cookies. Send GET to " + deleteCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 5 - DELETE Cookies. Send GET to " + deleteCookiesPage.getEndpoint());
 		deleteCookiesPage.deleteCookie(firstCookieKey, firstCookieValue);
 		
-		System.out.println("Step 6 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
+		BFLogger.logInfo("Step 6 - GET Cookies. Send GET to " + getCookiesPage.getEndpoint());
 		Map<String, Object> cookiesAfterDelete = getCookiesPage.getCookies()
 				.jsonPath()
 				.getMap("cookies");
 		
+		BFLogger.logInfo("Step 7 - Validate 'cookies' response after deletion");
 		// httpbin.org/delete remove only value from provided cookie.
 		// So expected value after delete is empty String.
-		System.out.println(cookiesAfterDelete);
 		assertThat(cookies.size(), equalTo(expectedSizeOfCookiesResponseMap));
 		assertTrue(cookiesAfterDelete.keySet()
 				.contains(firstCookieKey));
