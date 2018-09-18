@@ -354,7 +354,7 @@
                                 <phase>verify</phase>
                                 <configuration>
                                     <excludes>
-                                        <exclude>*.*</exclude>
+                                        <!-- <exclude>*.*</exclude> -->
                                     </excludes>
                                 </configuration>
                                 <goals>
