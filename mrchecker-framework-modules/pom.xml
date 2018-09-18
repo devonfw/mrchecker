@@ -385,7 +385,7 @@
                     </plugin>
 
 
-                    <plugin>
+                    <!-- <plugin>
                         <groupId>com.coderplus.maven.plugins</groupId>
                         <artifactId>copy-rename-maven-plugin</artifactId>
                         <version>1.0</version>
@@ -406,7 +406,7 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin> -->
 
                     <!-- Sign with GPG files -->
                     <plugin>
