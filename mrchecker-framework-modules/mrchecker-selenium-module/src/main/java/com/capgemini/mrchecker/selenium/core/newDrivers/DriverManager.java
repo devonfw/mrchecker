@@ -34,7 +34,7 @@ public class DriverManager {
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
 	
 	// Setup default variables
-	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
+	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1200;
 	private static final int			IMPLICITYWAITTIMER	= 2;									// in seconds
 	private static final String			DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
 	
@@ -205,8 +205,9 @@ public class DriverManager {
 				chromePrefs.put("profile.content_settings.pattern_pairs.*.multiple-automatic-downloads", 1);
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
-				options.addArguments("--test-type");
-				options.addArguments("--headless");
+				options.addArguments("headless");
+				options.addArguments("window-size=1200x600");
+				
 				// DesiredCapabilities cap = DesiredCapabilities.chrome();
 				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
