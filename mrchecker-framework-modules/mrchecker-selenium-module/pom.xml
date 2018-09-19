@@ -20,6 +20,7 @@
         * Support for many browsers
             * Internet Explorer, Edge
             * Chrome, Firefox
+	     * ChromeHeadless
             * Safari
         * User friendly actions
             * elementCheckBox
@@ -62,7 +63,7 @@ Based on Selenium 3.8.1</description>
     </scm>
 
     <properties>
-        <version>3.8.1.11</version>
+        <version>3.8.1.12</version>
 
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 

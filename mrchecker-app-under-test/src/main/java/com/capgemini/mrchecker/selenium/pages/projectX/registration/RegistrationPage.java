@@ -66,13 +66,13 @@ public class RegistrationPage extends BasePage {
 	@Override
 	public void load() {
 		BasePage.getDriver()
-						.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
+				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + PageSubURLsProjectXEnum.REGISTRATION.getValue());
 		loaded = true;
 	}
 	
 	public void load(PageSubURLsProjectXEnum subUrl) {
 		BasePage.getDriver()
-						.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + subUrl.getValue());
+				.get(GetEnvironmentParam.WWW_FONT_URL.getValue() + subUrl.getValue());
 		loaded = true;
 	}
 	
@@ -90,14 +90,14 @@ public class RegistrationPage extends BasePage {
 	
 	public void clickSubmit() {
 		getDriver().elementButton(selectorSubmitButton)
-						.click();
+				.click();
 	}
 	
 	public boolean isRegistrationSuceedTextVisible() {
 		try {
 			return getDriver().findElementDynamic(selectorRegistrationSucceed)
-							.getText()
-							.equals(registrationSucceedText);
+					.getText()
+					.equals(registrationSucceedText);
 		} catch (BFElementNotFoundException e) {
 			return false;
 		}
@@ -107,10 +107,10 @@ public class RegistrationPage extends BasePage {
 		try {
 			getDriver().waitForElementVisible(selectorRegistrationError);
 			BFLogger.logDebug(getDriver().waitForElementVisible(selectorRegistrationError)
-							.getText());
+					.getText());
 			return getDriver().elementLabel(selectorRegistrationError)
-							.getText()
-							.equals(registrationErrorText);
+					.getText()
+					.equals(registrationErrorText);
 		} catch (BFElementNotFoundException e) {
 			return false;
 		}
@@ -119,7 +119,7 @@ public class RegistrationPage extends BasePage {
 	public String getRegistryErrorText() {
 		getDriver().waitForElementVisible(selectorRegistrationError);
 		return getDriver().elementLabel(selectorRegistrationError)
-						.getText();
+				.getText();
 	}
 	
 	@Override
@@ -144,20 +144,20 @@ public class RegistrationPage extends BasePage {
 		switch (maritalStatus) {
 			case SINGLE: {
 				getDriver().elementRadioButton(selectorMaritalStatus)
-								.selectItemByValue("single");
+						.selectItemByValue("single");
 				
 				// radioButtonElement.selectElement("Single");
 				break;
 			}
 			case MARRIED: {
 				getDriver().elementRadioButton(selectorMaritalStatus)
-								.selectItemByValue("married");
+						.selectItemByValue("married");
 				// radioButtonElement.selectElement("Married");
 				break;
 			}
 			case DIVORCED: {
 				getDriver().elementRadioButton(selectorMaritalStatus)
-								.selectItemByValue("divorced");
+						.selectItemByValue("divorced");
 				// radioButtonElement.selectElement("Divorced");
 				break;
 			}
@@ -166,7 +166,7 @@ public class RegistrationPage extends BasePage {
 	
 	public void setHobby(com.capgemini.mrchecker.selenium.pages.projectX.registration.Hobby hobby) {
 		getDriver().elementCheckbox(selectorHobby)
-						.setCheckBoxByValue(hobby.toString());
+				.setCheckBoxByValue(hobby.toString());
 	}
 	
 	public void setHobby(com.capgemini.mrchecker.selenium.pages.projectX.registration.Hobby[] hobbies) {
@@ -216,7 +216,7 @@ public class RegistrationPage extends BasePage {
 	
 	public void setProfilePicture(String value) {
 		getDriver().findElementDynamic(selectorYourProfilePhotoPath)
-						.sendKeys(value);
+				.sendKeys(value);
 	}
 	
 	public void setAboutYourself(String value) {
