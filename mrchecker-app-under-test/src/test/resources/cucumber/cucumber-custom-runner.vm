@@ -4,7 +4,7 @@ package $packageName;
 
 #end##
 import org.junit.runner.RunWith;
-import com.example.core.tests.core.BaseTest;
+import com.capgemini.mrchecker.test.core.BaseTest;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
