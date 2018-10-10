@@ -491,22 +491,53 @@
                                     <goal>generateRunners</goal>
                                 </goals>
                                 <configuration>
+                                    <!-- Mandatory -->
+                                    <!-- comma separated list of package
+                                        names to scan for glue code -->
                                     <glue>
                                         <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
+                                        <package>com.example.selenium.tests.cucumber.common.hooks</package>
                                     </glue>
-                                    <featuresDirectory>src/test/resources/features</featuresDirectory>
-                                    <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+                                    <!-- The directory, which must be in
+                                        the root of the runtime classpath,
+                                        containing your feature files. -->
+                                    <featuresDirectory>src/test/resources</featuresDirectory>
+                                    <!-- Directory where the cucumber report
+                                        files shall be written -->
+                                    <cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
                                     <!-- CucumberOptions.strict property -->
                                     <strict>false</strict>
                                     <!-- CucumberOptions.monochrome property -->
                                     <monochrome>false</monochrome>
+                                    <!--The tags to run, maps to CucumberOptions.tags
+                                        property -->
                                     <tags>
+                                        <!-- Logical OR -Dtag=“@SoapUI,@Functional" -->
+                                        <!-- Logical AND -Dtag=“@SoapUI","@Functional" -->
                                         <tag>${cucumber.tag}</tag>
                                         <tag>~@ignored</tag>
                                     </tags>
+
+                                    <!-- List of cucumber plugins. When none
+                                        are provided the json formatter is
+                                        used. For more
+                                        advanced usage see section about
+                                        configuring cucumber plugins -->
                                     <plugins>
                                         <plugin>
+                                            <!--The available options are
+                                                junit, testng, html, pretty,
+                                                json, usage and rerun -->
                                             <name>json</name>
+                                        </plugin>
+                                        <!-- <plugin>
+                                            The available options are
+                                                junit, testng, html, pretty,
+                                                json, usage and rerun
+                                            <name>html</name>
+                                        </plugin> -->
+                                        <plugin>
+                                            <name>pretty</name>
                                         </plugin>
                                         <plugin>
                                             <name>io.qameta.allure.cucumberjvm.AllureCucumberJvm</name>
@@ -516,13 +547,29 @@
                                             <outputDirectory>${report-directory}/junitreports</outputDirectory>
                                         </plugin>
                                     </plugins>
+                                    <!-- The class naming pattern to use.
+                                        Only required/used if naming scheme
+                                        is 'pattern'. -->
                                     <namingPattern>Parallel{c}IT</namingPattern>
+                                    <!-- One of [SCENARIO, FEATURE]. SCENARIO
+                                        generates one runner per scenario.
+                                        FEATURE generates a runner per feature. -->
                                     <parallelScheme>SCENARIO</parallelScheme>
+                                    <!-- Generate TestNG runners instead
+                                        of JUnit ones. -->
                                     <useTestNG>false</useTestNG>
+                                    <!-- The naming scheme to use for the
+                                        generated test classes. One of 'simple'
+                                        or 'feature-title' -->
                                     <namingScheme>feature-title</namingScheme>
+                                    <!-- Specify a custom template for the
+                                        generated sources (this is a path
+                                        relative to the project base directory) -->
                                     <customVmTemplate>src/test/resources/cucumber/cucumber-custom-runner.vm</customVmTemplate>
-                                    <outputDirectory>${basedir}/src/test/java</outputDirectory>
-                                    <packageName>com.example.selenium.tests.cucumber.autogenerated_runners</packageName>
+                                    <!-- These are optional, with the default
+                                        values -->
+                                    <!-- Where to output the generated tests -->
+                                    <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
@@ -606,27 +653,27 @@
                                     <outputDirectory>${project.build.directory}/generated-test-sources/cucumber
                                     </outputDirectory>
                                     <!-- The directory, which must be in
-                                        the root of the runtime classpath, 
+                                        the root of the runtime classpath,
                                         containing your feature files. -->
                                     <featuresDirectory>src/test/resources</featuresDirectory>
                                     <!-- Directory where the cucumber report
                                         files shall be written -->
                                     <cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
                                     <!-- List of cucumber plugins. When none
-                                        are provided the json formatter is 
+                                        are provided the json formatter is
                                         used. For more
                                         advanced usage see section about
                                         configuring cucumber plugins -->
                                     <plugins>
                                         <plugin>
                                             <!--The available options are
-                                                junit, testng, html, pretty, 
+                                                junit, testng, html, pretty,
                                                 json, usage and rerun -->
                                             <name>json</name>
                                         </plugin>
                                         <plugin>
                                             <!--The available options are
-                                                junit, testng, html, pretty, 
+                                                junit, testng, html, pretty,
                                                 json, usage and rerun -->
                                             <name>html</name>
                                         </plugin>
@@ -650,24 +697,24 @@
                                         of JUnit ones. -->
                                     <useTestNG>false</useTestNG>
                                     <!-- The naming scheme to use for the
-                                        generated test classes. One of 'simple' 
+                                        generated test classes. One of 'simple'
                                         or 'feature-title' -->
                                     <namingScheme>simple</namingScheme>
                                     <!-- The class naming pattern to use.
-                                        Only required/used if naming scheme 
+                                        Only required/used if naming scheme
                                         is 'pattern'. -->
                                     <namingPattern>Parallel{c}IT</namingPattern>
                                     <!-- One of [SCENARIO, FEATURE]. SCENARIO
-                                        generates one runner per scenario. 
+                                        generates one runner per scenario.
                                         FEATURE generates a runner per feature. -->
                                     <parallelScheme>SCENARIO</parallelScheme>
                                     <!-- Specify a custom template for the
-                                        generated sources (this is a path 
+                                        generated sources (this is a path
                                         relative to the project base directory) -->
                                     <customVmTemplate>src/test/resources/cucumber/cucumber-custom-runner.vm
                                     </customVmTemplate>
                                     <!-- Specify a custom package name for
-                                        generated sources. Default is no 
+                                        generated sources. Default is no
                                         package. -->
                                     <!--<packageName></packageName> -->
                                 </configuration>
