@@ -1,3 +1,4 @@
+@all
 @Registration
 Feature: Registration
 Scenario: Register with known user credentials

@@ -512,9 +512,10 @@
                                     <!--The tags to run, maps to CucumberOptions.tags
                                         property -->
                                     <tags>
-                                        <!-- Logical OR -Dtag=“@SoapUI,@Functional" -->
+                                        <!-- ${cucumber.tag}
+                                        Logical OR -Dtag=“@SoapUI,@Functional" -->
                                         <!-- Logical AND -Dtag=“@SoapUI","@Functional" -->
-                                        <tag>${cucumber.tag}</tag>
+                                        <tag>@all</tag>
                                         <tag>~@ignored</tag>
                                     </tags>
 
@@ -690,7 +691,8 @@
                                     <tags>
                                         <!-- Logical OR -Dtag=“@SoapUI,@Functional" -->
                                         <!-- Logical AND -Dtag=“@SoapUI","@Functional" -->
-                                        <tag>${cucumber.tag}</tag>
+                                        <!-- <tag>${cucumber.tag}</tag> -->
+                                        <tag>@all</tag>
                                         <tag>~@ignored</tag>
                                     </tags>
                                     <!-- Generate TestNG runners instead

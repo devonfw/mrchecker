@@ -1,3 +1,4 @@
+@all
 @Test
 Feature: Refund item
 
