@@ -96,8 +96,9 @@
         <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
 
         <!-- Cucumber version -->
-        <cucumber.version>4.0.0</cucumber.version>
-        <cucumber.jvm.parallel.version>5.0.0</cucumber.jvm.parallel.version>
+        <cucumber.version>4.0.1</cucumber.version>
+        <gherkin.cucumber>5.1.0</gherkin.cucumber>
+        <cucumber.jvm.parallel.version>4.2.0</cucumber.jvm.parallel.version>
         <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
         <cucumber.tag>@all</cucumber.tag>
 
@@ -259,6 +260,12 @@
             <artifactId>cucumber-reporting</artifactId>
             <version>${cucumber-reporting.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>${gherkin.cucumber}</version>
+        </dependency>
+
 
 
 
@@ -408,208 +415,7 @@
             </build>
         </profile>
 
-        <!-- RUN CLASSIC CUCUMBER TESTS WITH MANUAL RUNNERS -->
-        <profile>
-            <id>cucumber</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <testFailureIgnore>true</testFailureIgnore>
-                            <threadCount>${thread.count}</threadCount>
-                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                            </argLine>
-                            <argLine>-Dcucumber.options="--plugin
-                                ru.yandex.qatools.allure.cucumberjvm.AllureReporter
-                                --plugin json:target/cucumber.json
-                                --plugin
-                                junit:test-output/junitreports/TEST-cucumber.xmlcucumber.xml"</argLine>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.aspectj</groupId>
-                                <artifactId>aspectjweaver</artifactId>
-                                <version>${aspectj.version}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.apache.maven.surefire</groupId>
-                                <artifactId>surefire-junit47</artifactId>
-                                <version>${maven-surefire-plugin.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.masterthought</groupId>
-                        <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>${cucumber-reporting.version}</version>
-                        <executions>
-                            <execution>
-                                <id>execution</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-                                    <projectName>CucumberReport</projectName>
-                                    <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                                    <parallelTesting>true</parallelTesting>
-                                    <buildNumber>1</buildNumber>
-                                    <checkBuildResult>false</checkBuildResult>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
-        <!-- RUN CUCUMBER TESTS WITH AUTOGENERATE RUNNERS -->
-        <profile>
-            <id>cucumber-parallel</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.temyers</groupId>
-                        <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                        <version>${cucumber.jvm.parallel.version}</version>
-                        <executions>
-                            <execution>
-                                <id>generateRunners</id>
-                                <phase>generate-test-sources</phase>
-                                <goals>
-                                    <goal>generateRunners</goal>
-                                </goals>
-                                <configuration>
-                                    <!-- Mandatory -->
-                                    <!-- comma separated list of package
-                                        names to scan for glue code -->
-                                    <glue>
-                                        <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
-                                        <package>com.example.selenium.tests.cucumber.common.hooks</package>
-                                    </glue>
-                                    <!-- The directory, which must be in
-                                        the root of the runtime classpath,
-                                        containing your feature files. -->
-                                    <featuresDirectory>src/test/resources</featuresDirectory>
-                                    <!-- Directory where the cucumber report
-                                        files shall be written -->
-                                    <cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
-                                    <!-- CucumberOptions.strict property -->
-                                    <strict>false</strict>
-                                    <!-- CucumberOptions.monochrome property -->
-                                    <monochrome>false</monochrome>
-                                    <!--The tags to run, maps to CucumberOptions.tags
-                                        property -->
-                                    <tags>
-                                        <!-- Logical OR -Dtag=“@SoapUI,@Functional" -->
-                                        <!-- Logical AND -Dtag=“@SoapUI","@Functional" -->
-                                        <tag>${cucumber.tag}</tag>
-                                        <tag>~@ignored</tag>
-                                    </tags>
-
-                                    <!-- List of cucumber plugins. When none
-                                        are provided the json formatter is
-                                        used. For more
-                                        advanced usage see section about
-                                        configuring cucumber plugins -->
-                                    <plugins>
-                                        <plugin>
-                                            <!--The available options are
-                                                junit, testng, html, pretty,
-                                                json, usage and rerun -->
-                                            <name>json</name>
-                                        </plugin>
-                                        <!-- <plugin>
-                                            The available options are
-                                            junit, testng, html, pretty,
-                                            json, usage and rerun
-                                            <name>html</name>
-                                            </plugin> -->
-                                        <plugin>
-                                            <name>pretty</name>
-                                        </plugin>
-                                        <plugin>
-                                            <name>io.qameta.allure.cucumberjvm.AllureCucumberJvm</name>
-                                        </plugin>
-                                        <plugin>
-                                            <name>junit</name>
-                                            <outputDirectory>${report-directory}/junitreports</outputDirectory>
-                                        </plugin>
-                                    </plugins>
-                                    <!-- The class naming pattern to use.
-                                        Only required/used if naming scheme
-                                        is 'pattern'. -->
-                                    <namingPattern>Parallel{c}IT</namingPattern>
-                                    <!-- One of [SCENARIO, FEATURE]. SCENARIO
-                                        generates one runner per scenario.
-                                        FEATURE generates a runner per feature. -->
-                                    <parallelScheme>SCENARIO</parallelScheme>
-                                    <!-- Generate TestNG runners instead
-                                        of JUnit ones. -->
-                                    <useTestNG>false</useTestNG>
-                                    <!-- The naming scheme to use for the
-                                        generated test classes. One of 'simple'
-                                        or 'feature-title' -->
-                                    <namingScheme>feature-title</namingScheme>
-                                    <!-- Specify a custom template for the
-                                        generated sources (this is a path
-                                        relative to the project base directory) -->
-                                    <customVmTemplate>src/test/resources/cucumber/cucumber-custom-runner.vm</customVmTemplate>
-                                    <!-- These are optional, with the default
-                                        values -->
-                                    <!-- Where to output the generated tests -->
-                                    <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${maven-surefire-plugin.version}</version>
-                        <configuration>
-                            <skipTests>false</skipTests>
-                            <threadCount>${thread.count}</threadCount>
-                            <testFailureIgnore>true</testFailureIgnore>
-                            <failIfNoTests>false</failIfNoTests>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.apache.maven.surefire</groupId>
-                                <artifactId>surefire-junit4</artifactId>
-                                <version>${maven-surefire-plugin.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.masterthought</groupId>
-                        <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>${cucumber-reporting.version}</version>
-                        <executions>
-                            <execution>
-                                <id>execution</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-                                    <projectName>CucumberReport</projectName>
-                                    <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                                    <parallelTesting>true</parallelTesting>
-                                    <buildNumber>1</buildNumber>
-                                    <checkBuildResult>false</checkBuildResult>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 
         <!--'parallelPlugin' profile is executing tests in parallel - with
             cucumber-jvm-parallel-plugin -->
@@ -712,8 +518,7 @@
                                     <!-- Specify a custom template for the
                                         generated sources (this is a path
                                         relative to the project base directory) -->
-                                    <customVmTemplate>src/test/resources/cucumber/cucumber-custom-runner.vm
-                                    </customVmTemplate>
+                                    <customVmTemplate>src/test/resources/cucumber/cucumber-custom-runner.vm</customVmTemplate>
                                     <!-- Specify a custom package name for
                                         generated sources. Default is no
                                         package. -->
@@ -740,7 +545,7 @@
 
                         <configuration>
                             <testIncludes>
-                              <!--   <testInclude>${project.build.directory}/generated-test-sources/cucumber/*.java</testInclude> -->
+                                <!-- <testInclude>${project.build.directory}/generated-test-sources/cucumber/*.java</testInclude> -->
                                 <testInclude>**/Parallel*IT.java</testInclude>
                             </testIncludes>
                             <compilerArgument>-Xlint:deprecation</compilerArgument>
@@ -759,7 +564,14 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>${maven-surefire-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                            </execution>
+                        </executions>
                         <configuration>
+                            <includes>**/Parallel*IT.*</includes>
+                            <testClassesDirectory>${project.build.testOutputDirectory}</testClassesDirectory>
                             <skipTests>false</skipTests>
                             <threadCount>${thread.count}</threadCount>
                             <testFailureIgnore>true</testFailureIgnore>
@@ -773,6 +585,8 @@
                             </dependency>
                         </dependencies>
                     </plugin>
+
+                    <!-- GENERATE CLASSIC CUCUMBER REPORT -->
                     <plugin>
                         <groupId>net.masterthought</groupId>
                         <artifactId>maven-cucumber-reporting</artifactId>
