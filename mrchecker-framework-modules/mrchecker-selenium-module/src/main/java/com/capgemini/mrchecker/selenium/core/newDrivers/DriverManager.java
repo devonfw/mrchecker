@@ -124,8 +124,7 @@ public class DriverManager {
 	}
 	
 	private static boolean isEmpty(String seleniumGridParameter) {
-		return seleniumGridParameter.trim()
-				.isEmpty() || seleniumGridParameter == null;
+		return seleniumGridParameter == null || seleniumGridParameter.trim().isEmpty();
 	}
 	
 	/**

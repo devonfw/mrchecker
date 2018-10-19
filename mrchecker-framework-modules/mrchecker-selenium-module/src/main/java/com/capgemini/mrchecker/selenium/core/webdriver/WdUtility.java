@@ -110,7 +110,7 @@ public class WdUtility {
 	 * @return true if first element is on top of other; false otherwise
 	 */
 	public static boolean isOverElement(WebElement firstElement, WebElement secondElement) {
-		return WdUtility.compareElementsInZAxis(firstElement, secondElement) > 0 ? true : false;
+		return WdUtility.compareElementsInZAxis(firstElement, secondElement) > 0;
 	}
 	
 	/**
@@ -126,8 +126,7 @@ public class WdUtility {
 	public static boolean isTextDisplayedInsideElement(By selector, String text) {
 		@SuppressWarnings("deprecation")
 		WebElement element = getDriver().findElement(selector);
-		return element.getText()
-						.contains(text);
+		return element.getText().contains(text);
 	}
 	
 	/**
@@ -143,8 +142,7 @@ public class WdUtility {
 	public static boolean isTooltipDisplayed(WebElement element, WebElement tooltip) {
 		getAction().moveToElement(element)
 						.perform();
-		return !tooltip.getCssValue("display")
-						.equals("none");
+		return !tooltip.getCssValue("display").equals("none");
 	}
 	
 	/**
