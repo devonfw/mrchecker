@@ -96,9 +96,9 @@
         <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
 
         <!-- Cucumber version -->
-        <cucumber.version>4.0.1</cucumber.version>
-        <gherkin.cucumber>5.1.0</gherkin.cucumber>
-        <cucumber.jvm.parallel.version>4.2.0</cucumber.jvm.parallel.version>
+        <cucumber.version>4.2.0</cucumber.version>
+        <gherkin.cucumber>6.0.14</gherkin.cucumber>
+        <cucumber.jvm.parallel.version>5.0.0</cucumber.jvm.parallel.version>
         <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
         <cucumber.tag>@all</cucumber.tag>
 
@@ -132,6 +132,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>mrchecker-core-module</artifactId>
             <version>${mrchecker-core-module.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>info.cukes</groupId>
+                    <artifactId>gherkin</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Selenium module -->
@@ -480,10 +486,6 @@
                                             <name>pretty</name>
                                         </plugin>
                                         <plugin>
-                                            <name>io.qameta.allure.cucumberjvm.AllureCucumberJvm</name>
-                                            <outputDirectory>${project.build.directory}/allureCucumberJvm</outputDirectory>
-                                        </plugin>
-                                        <plugin>
                                             <name>junit</name>
                                             <outputDirectory>${project.build.directory}/junitreports</outputDirectory>
                                         </plugin>
@@ -576,6 +578,24 @@
                             <threadCount>${thread.count}</threadCount>
                             <testFailureIgnore>true</testFailureIgnore>
                             <failIfNoTests>false</failIfNoTests>
+                            <argLine>
+                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                            </argLine>
+                            <properties>
+                                <property>
+                                    <name>listener</name>
+                                    <value>io.qameta.allure.junit4.AllureJunit4</value>
+                                </property>
+
+                            </properties>
+                            <systemProperties>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${allure.report.directory}/allure-results</value>
+                                </property>
+                            </systemProperties>
+                            
+                            
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -584,6 +604,19 @@
                                 <version>${maven-surefire-plugin.version}</version>
                             </dependency>
                         </dependencies>
+                    </plugin>
+                    
+                    <!-- GENERATE ALLURE CUCUMBER REPORT -->
+                    <plugin>
+                        <groupId>io.qameta.allure</groupId>
+                        <artifactId>allure-maven</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
+                            <reportVersion>${allure-cli-runner.version}</reportVersion>
+                            <resultsDirectory>${allure.report.directory}/allure-results</resultsDirectory>
+                            <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
+                        </configuration>
                     </plugin>
 
                     <!-- GENERATE CLASSIC CUCUMBER REPORT -->
