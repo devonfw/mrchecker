@@ -179,6 +179,7 @@ public class DriverManager {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("--test-type");
+				options.addArguments(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues());
 				// DesiredCapabilities cap = DesiredCapabilities.chrome();
 				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
@@ -207,6 +208,7 @@ public class DriverManager {
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("headless");
 				options.addArguments("window-size=1200x600");
+				options.addArguments(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues());
 				
 				// DesiredCapabilities cap = DesiredCapabilities.chrome();
 				// cap.setCapability(ChromeOptions.CAPABILITY, options);
@@ -224,10 +226,8 @@ public class DriverManager {
 				
 				if (isDriverAutoUpdateActivated) {
 					downloadNewestVersionOfWebDriver(FirefoxDriver.class);
-					OperationsOnFiles.moveWithPruneEmptydirectories(
-							WebDriverManager.getInstance(FirefoxDriver.class)
-									.getBinaryPath(),
-							browserPath);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(FirefoxDriver.class)
+							.getBinaryPath(), browserPath);
 				}
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
@@ -263,7 +263,6 @@ public class DriverManager {
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-				
 				// Due to some issues with IE11 this line must be commented
 				// ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 				// true);

@@ -13,11 +13,16 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	BROWSER("browser", "chrome"),
 	BROWSER_VERSION("browserVersion", ""),
 	SELENIUM_GRID("seleniumGrid", ""),
-	OS("os", "");
+	OS("os", ""),
+	BROWSER_OPTIONS("browserOptions", "") {
+		public String[] getValues() {
+			return this.paramValue.split(";");
+		}
+	};
 	
-	private String	paramName;
-	private String	paramValue;
-	private String	defaultValue;
+	private String		paramName;
+	protected String	paramValue;
+	private String		defaultValue;
 	
 	private RuntimeParametersSelenium(String paramName, String defaultValue) {
 		this.paramName = paramName;
@@ -44,11 +49,12 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	private void setValue() {
 		
 		String paramValue = System.getProperty(this.paramName);
-		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue.toLowerCase();
+		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue;
 		;
 		
 		switch (this.name()) {
 			case "BROWSER":
+				paramValue = paramValue.toLowerCase();
 				if (paramValue.equals("ie")) {
 					paramValue = "internet explorer";
 				}
@@ -70,6 +76,10 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
 	private boolean isSystemParameterEmpty(String systemParameterValue) {
 		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue));
+	}
+	
+	public String[] getValues() {
+		return null;
 	}
 	
 }
