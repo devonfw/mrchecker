@@ -179,7 +179,15 @@ public class DriverManager {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("--test-type");
-				options.addArguments(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues());
+				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							String item = (value.isEmpty()) ? key : key + "=" + value;
+							options.addArguments(item);
+						});
+						
 				// DesiredCapabilities cap = DesiredCapabilities.chrome();
 				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
@@ -208,8 +216,15 @@ public class DriverManager {
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("headless");
 				options.addArguments("window-size=1200x600");
-				options.addArguments(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues());
 				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							String item = (value.isEmpty()) ? key : key + "=" + value;
+							options.addArguments(item);
+						});
+						
 				// DesiredCapabilities cap = DesiredCapabilities.chrome();
 				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
@@ -244,6 +259,13 @@ public class DriverManager {
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							profile.setPreference(key, value);
+						});
+						
 				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 				
 				return new NewFirefoxDriver(options);
@@ -263,6 +285,14 @@ public class DriverManager {
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							ieCapabilities.setCapability(key, value);
+						});
+						
 				// Due to some issues with IE11 this line must be commented
 				// ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 				// true);
@@ -296,6 +326,14 @@ public class DriverManager {
 				
 				capabilities.setVersion(RuntimeParametersSelenium.BROWSER_VERSION.getValue());
 				capabilities.setBrowserName(RuntimeParametersSelenium.BROWSER.getValue());
+				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							capabilities.setCapability(key, value);
+						});
+						
 				NewRemoteWebDriver newRemoteWebDriver = null;
 				try {
 					newRemoteWebDriver = new NewRemoteWebDriver(new URL(SELENIUM_GRID_URL), capabilities);

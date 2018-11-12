@@ -1,5 +1,9 @@
 package com.capgemini.mrchecker.selenium.core.base.runtime;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.capgemini.mrchecker.test.core.base.runtime.RuntimeParametersI;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
@@ -15,8 +19,14 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	SELENIUM_GRID("seleniumGrid", ""),
 	OS("os", ""),
 	BROWSER_OPTIONS("browserOptions", "") {
-		public String[] getValues() {
-			return this.paramValue.split(";");
+		public Map<String, String> getValues() {
+			return Arrays.asList(this.paramValue.split(";"))
+					.stream()
+					.filter(i -> i != "") // remove empty inputs
+					.map(i -> i.split("=", 2)) // split to key, value. Not more than one time
+					.map(i -> new String[] { i[0], (i.length == 1) ? "" : i[1] }) // if value is empty, set empty text
+					.collect(Collectors.toMap(i -> i[0], i -> i[1])); // create Map<String, String>
+			
 		}
 	};
 	
@@ -34,6 +44,10 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	@Override
 	public String getValue() {
 		return this.paramValue;
+	}
+	
+	public Map<String, String> getValues() {
+		return null;
 	}
 	
 	@Override
@@ -65,6 +79,8 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 				break;
 			case "OS":
 				break;
+			case "BROWSER_OPTIONS":
+				break;
 			default:
 				BFLogger.logError("Unknown RuntimeParameter = " + this.name());
 				break;
@@ -76,10 +92,6 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
 	private boolean isSystemParameterEmpty(String systemParameterValue) {
 		return (null == systemParameterValue || "".equals(systemParameterValue) || "null".equals(systemParameterValue));
-	}
-	
-	public String[] getValues() {
-		return null;
 	}
 	
 }
