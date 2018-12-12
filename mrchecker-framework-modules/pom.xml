@@ -59,7 +59,7 @@
 
     <properties>
         <version>2.2.0</version>
-        
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Java settings -->
@@ -99,11 +99,13 @@
 
         <!--This dependency is necessary for Rest assured plugin. -->
         <rest-assured.version>3.0.6</rest-assured.version>
-        
-        <!-- Allure Annotation lib -->
-        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
-        <allure.version>1.5.4</allure.version>
-        
+
+        <!-- Allure reporting -->
+        <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+        <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+        <aspectj.version>1.8.10</aspectj.version>
+        <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
+
     </properties>
 
 
@@ -188,15 +190,12 @@
             </dependency>
 
 
-            <!--This dependency is necessary for Report Allure annotation. -->
+            <!-- Test listener. Binds Junit exec to Allure annotation -->
             <dependency>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-java-annotations</artifactId>
-                <version>${allure.version}</version>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit4</artifactId>
+                <version>${allure-junit4-listener.version}</version>
             </dependency>
-
-
-
 
 
 
@@ -468,15 +467,21 @@
                                 <exclude>**/OutboxDocumentTest.*</exclude>
                             </excludes>
                             <argLine>
-                                -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                             </argLine>
                             <properties>
                                 <property>
                                     <name>listener</name>
-                                    <value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
+                                    <value>io.qameta.allure.junit4.AllureJunit4</value>
                                 </property>
-                            </properties>
 
+                            </properties>
+                            <systemProperties>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${allure.report.directory}/allure-results</value>
+                                </property>
+                            </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -500,16 +505,17 @@
         <plugins>
 
             <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>${allure-maven-plugin.version}</version>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven-report-generator.version}</version>
                 <configuration>
-                    <resultsPattern>target/allure-results</resultsPattern>
-                    <reportPath>target/report</reportPath>
+                    <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
+                    <reportVersion>${allure-cli-runner.version}</reportVersion>
+                    <resultsDirectory>${allure.report.directory}/allure-results</resultsDirectory>
                     <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
-                    <reportVersion>${allure-report.version}</reportVersion>
                 </configuration>
             </plugin>
+
 
 
         </plugins>
