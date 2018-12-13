@@ -12,7 +12,7 @@
     <artifactId>mrchecker-security-module</artifactId>
     <version>${version}</version>
     <packaging>jar</packaging>
-    <name>MrCheckerTestFramework - Security - Module</name>
+    <name>MrChecker - Security - Module</name>
     <description>MrChecker Test Framework Security supports:
         - Library reference to make REST/HTTP calls to the tested system
         - Other common features needed for security testing</description>
@@ -54,7 +54,7 @@
     <properties>
         <version>1.2.0-SNAPSHOT</version>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-        <mrchecker-core-module.version>4.12.0.10</mrchecker-core-module.version>
+        <mrchecker-core-module.version>4.12.1.1-SNAPSHOT</mrchecker-core-module.version>
 
     </properties>
 

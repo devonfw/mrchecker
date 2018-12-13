@@ -6,7 +6,7 @@
     <groupId>com.capgemini.mrchecker</groupId>
     <artifactId>mrchecker-test-framework</artifactId>
     <version>${version}</version>
-    <name>MrCheckerTestFramework</name>
+    <name>MrChecker</name>
     <description>MrChecker Test Framework is an automated testing framework for functional testing of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
     <packaging>pom</packaging>
@@ -43,7 +43,7 @@
         <module>mrchecker-selenium-module</module>
         <module>mrchecker-security-module</module>
         <module>mrchecker-webapi-module</module>
-        <!-- <module>mrchecker-database-module</module> -->
+        <module>mrchecker-database-module</module>
         <!-- <module>build-tools</module> -->
     </modules>
 
@@ -106,6 +106,10 @@
 
         <!--This dependency is necessary for Rest assured plugin. -->
         <rest-assured.version>3.0.6</rest-assured.version>
+
+        <!-- Allure Annotations -->
+        <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+
 
     </properties>
 
@@ -189,6 +193,17 @@
                 <artifactId>json-schema-validator</artifactId>
                 <version>${rest-assured.version}</version>
             </dependency>
+
+
+            <!--This dependency is necessary for Allure generator plugin. -->
+            <dependency>
+                <!-- Test listener. Binds Junit exec to Allure annotation -->
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-junit4</artifactId>
+                <version>${allure-junit4-listener.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -208,9 +223,6 @@
                             <fileset>
                                 <directory>logs</directory>
                                 <followSymlinks>false</followSymlinks>
-                            </fileset>
-                            <fileset>
-                                <directory>${report-directory}</directory>
                             </fileset>
                         </filesets>
                     </configuration>

@@ -14,7 +14,7 @@
     <artifactId>mrchecker-core-module</artifactId>
     <version>${version}</version>
     <packaging>jar</packaging>
-    <name>MrCheckerTestFramework - Test core - Module</name>
+    <name>MrChecker - Test core - Module</name>
     <description>MrChecker Test Framework Core is responsible for:
         * Test report with logs and/or screenshots
         * Test groups/tags
@@ -86,7 +86,8 @@ Based on Junit4.12</description>
 
         <!-- Cucumber version -->
         <cucumber.version>4.2.0</cucumber.version>
-        <gherkin.cucumber>6.0.14</gherkin.cucumber>
+        <gherkin.cucumber.version>5.1.0</gherkin.cucumber.version>
+        <gherkin.info.cukes.version>2.12.2</gherkin.info.cukes.version>
         <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
 
         <!-- JSON support java 1.8 -->
@@ -174,6 +175,12 @@ Based on Junit4.12</description>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber-jvm</artifactId>
             <version>${allure-cucumber-jvm.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>info.cukes</groupId>
+                    <artifactId>gherkin</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -235,8 +242,13 @@ Based on Junit4.12</description>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>gherkin</artifactId>
-            <version>${gherkin.cucumber}</version>
+            <version>${gherkin.cucumber.version}</version>
         </dependency>
+            <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>gherkin</artifactId>
+        <version>${gherkin.info.cukes.version}</version>
+    </dependency>
 
 
 
