@@ -56,8 +56,13 @@ Based on Junit4.12</description>
     </scm>
 
     <properties>
+<<<<<<< HEAD
         <version>4.12.1.0-SNAPSHOT</version>
 
+=======
+        <version>4.12.1.1-SNAPSHOT</version>
+        
+>>>>>>> develop
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Test tools -->
@@ -80,16 +85,30 @@ Based on Junit4.12</description>
         <!-- Allure reporting -->
         <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+<<<<<<< HEAD
         <allure-cli-runner.version>2.6.0</allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
 
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
         <report-directory>${pom.basedir}/test-output/</report-directory>
         <aspectj.version>1.8.10</aspectj.version>
+=======
+        <aspectj.version>1.8.10</aspectj.version>
+        <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
+
+
+        <!-- Cucumber version -->
+        <cucumber.version>4.2.0</cucumber.version>
+        <gherkin.cucumber>6.0.14</gherkin.cucumber>
+        <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
+>>>>>>> develop
 
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
     </properties>
 
     <dependencies>
@@ -157,6 +176,7 @@ Based on Junit4.12</description>
         </dependency>
 
         <!--This dependency is necessary for Allure generator plugin. -->
+<<<<<<< HEAD
         <dependency>
             <!-- Test listener. Binds Junit exec to Allure annotation -->
             <groupId>io.qameta.allure</groupId>
@@ -175,6 +195,30 @@ Based on Junit4.12</description>
             <version>2.9.3</version>
         </dependency>
 
+=======
+        <dependency>
+            <!-- Test listener. Binds Junit exec to Allure annotation -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+        </dependency>
+        <dependency>
+            <!-- Allure report generator -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure-maven-report-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber-jvm</artifactId>
+            <version>${allure-cucumber-jvm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+>>>>>>> develop
 
 
         <!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
@@ -198,6 +242,41 @@ Based on Junit4.12</description>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
         </dependency>
+
+        <!-- Dependencies for Cucumber -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>${cucumber-reporting.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>${gherkin.cucumber}</version>
+        </dependency>
+
+
 
     </dependencies>
 

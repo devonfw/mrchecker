@@ -256,9 +256,6 @@
                 <version>${cucumber-reporting.version}</version>
             </dependency>
 
-
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -543,8 +540,14 @@
                                     <name>listener</name>
                                     <value>io.qameta.allure.junit4.AllureJunit4</value>
                                 </property>
-                            </properties>
 
+                            </properties>
+                            <systemProperties>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${allure.report.directory}/allure-results</value>
+                                </property>
+                            </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -661,7 +664,6 @@
         </profile>
 
 
-    </profiles>
-
-
+        </plugins>
+    </reporting>
 </project>

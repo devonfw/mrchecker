@@ -14,7 +14,7 @@ import com.capgemini.mrchecker.test.core.base.properties.PropertiesSettingsModul
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.google.inject.Guice;
 
-import ru.yandex.qatools.allure.annotations.Attachment;
+import io.qameta.allure.Attachment;
 
 abstract public class BasePage implements ITestObserver {
 	
