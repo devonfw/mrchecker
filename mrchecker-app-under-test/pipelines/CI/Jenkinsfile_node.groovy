@@ -13,28 +13,27 @@ TestCircle#testOne+testTwo - run test class TestCircle and test method -testOne-
 TestCircle#test* - run test class TestCircle and all test methods start with -test-
 MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html''', name: 'TEST_NAME'), 
 			string(defaultValue: 'DEV', description: 'Value taken from   environment.csv  file', name: 'ENVIRONMENT'), 
-			string(defaultValue: '8', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
-			string(defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
-			string(defaultValue: '', description: 'Browser options. Possible values = "headless;param2=value2;testEquals=FirstEquals=SecondEquals;--testMe" ', name: 'BROWSER_OPTIONS'),
+			string(defaultValue: '5', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
+			string(defaultValue: 'http://selenium-hub-core:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
 			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'),  
-			string(defaultValue: 'mrchecker-app-under-test-lean/', description: 'Execute job for given Module. Example mrchecker-app-under-test/ ', name: 'APP_WORKSPACE'),
+			string(defaultValue: 'mrchecker-app-under-test/', description: 'Execute job for given Module. Example mrchecker-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 
-			string(defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
+			string(defaultValue: 'http://gitlab-core:80/gitlab/devon/mrchecker.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
 			string(defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*', name: 'MVN_PARAMETERS')
 			]), 
 			pipelineTriggers([])
 		]);
 	
 
-	timestamps {
-		try{
+	timestamps {		
+            try{
 		    stagePrepareEnv(params);
 		    stageGitPull();
-		
 		    setJenkinsJobDescription();
 		    boolean isWorkingBranchMaster = isWorkingBranchMaster();
     
-            docker.image('lucst/devonfwe2e:v2-0.4').inside(){
+            def mvn_version = 'Maven3'
+            withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                     stageBuildCompile();
                     stageIntegrationTests();
                 }
@@ -43,6 +42,7 @@ MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/exa
             sendMail(e);
             error 'Error: ' + e
             currentBuild.result = 'FAILURE';
+            
         }
     }
 }
@@ -75,8 +75,8 @@ def private void setJenkinsJobVariables(){
     env.JOB_NAME_UPSTREAM="Mr Checker"
 	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
 	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
-	env.GIT_CREDENTIALS = "gitchudzik"
-    env.JENKINS_CREDENTIALS = "0c089c76-f103-4f97-8d2d-c31830d2c21d" //jenkins_slave user;
+	env.GIT_CREDENTIALS = ""
+	env.JENKINS_CREDENTIALS = "" //jenkins_slave user;
     
 
 } 
