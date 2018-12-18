@@ -1,43 +1,41 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.KeyPressesPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class KeyPressesTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class KeyPressesTest extends TheInternetBaseTest {
 	
-	private TheInternetPage theInternetPage;
 	private static KeyPressesPage keyPressesPage;
-	private final String key = "You entered: Q";
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-	}
+	private final String	keyToBePressed	= "Q";
+	private final String	expectedMessage	= "You entered: Q";
 	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step5 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		keyPressesPage = shouldTheInternetPageBeOpened().clickKeyPressesLink();
+		
+		logStep("Verify if Key Presses page is opened");
+		assertTrue("Unable to open Key Presses page", keyPressesPage.isLoaded());
 	}
 	
 	@Test
-	public void pressKeyTest() {
-		BFLogger.logDebug("Step 3 - Click on the Key Presses link");
-		keyPressesPage = theInternetPage.clickKeyPressesLink();
-		BFLogger.logDebug("Step 4 - Verify if the Url http://the-internet.herokuapp.com/key_presses opens");
-		assertTrue("The Key Presses Page was not open", keyPressesPage.isLoaded());
-		assertTrue("The expected key doesn't pressed", keyPressesPage.getSendKeyPress("Q")
-				.equals(key));
+	public void shouldWebsiteReturnInformationAboutPressedKey() {
+		logStep("Press keyboard key");
+		keyPressesPage.pressKey(keyToBePressed);
+		
+		logStep("Verify if website give valid information about pressed keyboard key");
+		assertEquals("Information about pressed key is invalid", expectedMessage, keyPressesPage.getPressedKeyInformation());
 	}
 	
 }

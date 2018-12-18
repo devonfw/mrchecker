@@ -1,5 +1,6 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -7,80 +8,81 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.SortableDataTablesPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class SortableDataTablesTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class SortableDataTablesTest extends TheInternetBaseTest {
 	
-	private TheInternetPage					theInternetPage;
-	private static SortableDataTablesPage	sortableDataTablesPage;
+	private static SortableDataTablesPage sortableDataTablesPage;
+	
+	private List<String>	actualValues;
+	private List<String>	expectedValues;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		logStep("Open the Url http://the-internet.herokuapp.com/");
+		theInternetPage = new TheInternetPage();
+		theInternetPage.load();
+		
+		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
+		assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
+	}
 	
 	@Override
 	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-	}
-	
-	@Before
-	public void clickSortableDataTablesPage() {
-		BFLogger.logInfo("Step 3: Click Sortable data tables link");
+		logStep("Click subpage link");
 		sortableDataTablesPage = theInternetPage.clickSortableDataTablesLink();
-		assertTrue("Sortable data tables page is not loaded", sortableDataTablesPage.isLoaded());
+		
+		logStep("Verify if subpage is opened");
+		assertTrue("Unable to open Sortable Data Tables page", sortableDataTablesPage.isLoaded());
 	}
 	
-	@Test // TC1
-	public void checkLastNameColumnOrderedAscendig() {
+	@Test
+	public void shouldLastNameColumnBeOrderedAscendingAfterSort() {
 		int columnNumber = 0;
 		int tableNumber = new Random().nextInt(2);
 		
-		BFLogger.logInfo("Step 4: Sorting column: Last Name");
+		logStep("Sort 'Last Name' column");
 		sortableDataTablesPage.sortColumnAscending(columnNumber, tableNumber);
-		assertTrue("Header Last Name was not clicked",
-				sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
-						.contains("headerSortDown"));
+		assertTrue("Unable to set ascending order for 'Last Name' column",
+						sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
+										.contains("headerSortDown"));
 		
-		BFLogger.logInfo("Step 5: Checking order of column: Last Name");
-		List<String> columnValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
-		List<String> expectedList = new ArrayList<String>(columnValues);
-		Collections.sort(expectedList);
-		BFLogger.logInfo("Expected list: " + expectedList + " Actual list: " + columnValues);
-		assertTrue("Column Last Name column is not ordered ascending",
-				columnValues.equals(expectedList));
+		logStep("Verify data order for 'Last Name' column");
+		actualValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
+		expectedValues = new ArrayList<String>(actualValues);
+		Collections.sort(expectedValues);
+		assertEquals("'Last Name' column is not sorted by ascending order",
+						expectedValues, actualValues);
 	}
 	
-	@Test // TC2
-	public void checkFirstNameColumnOrderedDescending() {
+	@Test
+	public void shouldFirstNameColumnBeOrderedDescendingAfterSort() {
 		int columnNumber = 1;
 		int tableNumber = new Random().nextInt(2);
 		
-		BFLogger.logInfo("Step 4: Sorting column: First Name");
+		logStep("Sort 'First Name' column");
 		sortableDataTablesPage.sortColumnDescending(columnNumber, tableNumber);
-		assertTrue("Header First Name was not clicked",
-				sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
-						.contains("headerSortUp"));
+		assertTrue("Unable to set descending order for 'First Name' column",
+						sortableDataTablesPage.readColumnClass(columnNumber, tableNumber)
+										.contains("headerSortUp"));
 		
-		BFLogger.logInfo("Step 5: Checking order of column: First Name");
-		List<String> columnValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
-		List<String> expectedList = new ArrayList<String>(columnValues);
-		Collections.sort(expectedList);
-		Collections.reverse(expectedList);
-		BFLogger.logInfo("Expected list: " + expectedList + " Actual list: " + columnValues);
-		assertTrue("Column First Name column is not ordered descending",
-				columnValues.equals(expectedList));
-	}
-	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step6 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+		logStep("Verify data order for 'First Name' column");
+		actualValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
+		expectedValues = new ArrayList<String>(actualValues);
+		Collections.sort(expectedValues);
+		Collections.reverse(expectedValues);
+		assertEquals("'First Name' column is not sorted by descending order",
+						expectedValues, actualValues);
 	}
 	
 }

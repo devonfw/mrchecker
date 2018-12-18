@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -7,7 +8,7 @@
     <parent>
         <artifactId>mrchecker-test-framework</artifactId>
         <groupId>com.capgemini.mrchecker</groupId>
-        <version>2.2.0</version>
+        <version>2.3.1</version>
     </parent>
 
     <artifactId>mrchecker-core-module</artifactId>
@@ -55,8 +56,8 @@ Based on Junit4.12</description>
     </scm>
 
     <properties>
-        <version>4.12.1.1-SNAPSHOT</version>
-        
+        <version>4.12.0.10</version>
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Test tools -->
@@ -79,17 +80,15 @@ Based on Junit4.12</description>
         <!-- Allure reporting -->
         <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+        <allure-cli-runner.version>2.6.0</allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
+
+        <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
+        <report-directory>${pom.basedir}/test-output/</report-directory>
         <aspectj.version>1.8.10</aspectj.version>
-        <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
-
-
-        <!-- Cucumber version -->
-        <cucumber.version>4.2.0</cucumber.version>
-        <gherkin.cucumber>6.0.14</gherkin.cucumber>
-        <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
 
         <!-- JSON support java 1.8 -->
         <org.json.version>20160810</org.json.version>
+
 
     </properties>
 
@@ -167,19 +166,15 @@ Based on Junit4.12</description>
             <!-- Allure report generator -->
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-maven</artifactId>
-            <version>${allure-maven-report-generator.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber-jvm</artifactId>
-            <version>${allure-cucumber-jvm.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/info.cukes/gherkin -->
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
+            <groupId>info.cukes</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>2.9.3</version>
         </dependency>
+
 
 
         <!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
@@ -248,6 +243,5 @@ Based on Junit4.12</description>
             <!-- Plugins are taken from parent pom.xml -->
         </plugins>
     </build>
-
 
 </project>

@@ -1,5 +1,9 @@
 package com.capgemini.mrchecker.selenium.core.base.runtime;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.capgemini.mrchecker.test.core.base.runtime.RuntimeParametersI;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
@@ -12,12 +16,23 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	
 	BROWSER("browser", "chrome"),
 	BROWSER_VERSION("browserVersion", ""),
-	SELENIUM_GRID("seleniumGrid", "http://10.40.234.103:4444/wd/hub"),
-	OS("os", "");
+	SELENIUM_GRID("seleniumGrid", ""),
+	OS("os", ""),
+	BROWSER_OPTIONS("browserOptions", "") {
+		public Map<String, String> getValues() {
+			return Arrays.asList(this.paramValue.split(";"))
+					.stream()
+					.filter(i -> i != "") // remove empty inputs
+					.map(i -> i.split("=", 2)) // split to key, value. Not more than one time
+					.map(i -> new String[] { i[0], (i.length == 1) ? "" : i[1] }) // if value is empty, set empty text
+					.collect(Collectors.toMap(i -> i[0], i -> i[1])); // create Map<String, String>
+			
+		}
+	};
 	
-	private String	paramName;
-	private String	paramValue;
-	private String	defaultValue;
+	private String		paramName;
+	protected String	paramValue;
+	private String		defaultValue;
 	
 	private RuntimeParametersSelenium(String paramName, String defaultValue) {
 		this.paramName = paramName;
@@ -29,6 +44,10 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	@Override
 	public String getValue() {
 		return this.paramValue;
+	}
+	
+	public Map<String, String> getValues() {
+		return null;
 	}
 	
 	@Override
@@ -44,11 +63,12 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	private void setValue() {
 		
 		String paramValue = System.getProperty(this.paramName);
-		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue.toLowerCase();
+		paramValue = isSystemParameterEmpty(paramValue) ? this.defaultValue : paramValue;
 		;
 		
 		switch (this.name()) {
 			case "BROWSER":
+				paramValue = paramValue.toLowerCase();
 				if (paramValue.equals("ie")) {
 					paramValue = "internet explorer";
 				}
@@ -58,6 +78,8 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 			case "SELENIUM_GRID":
 				break;
 			case "OS":
+				break;
+			case "BROWSER_OPTIONS":
 				break;
 			default:
 				BFLogger.logError("Unknown RuntimeParameter = " + this.name());

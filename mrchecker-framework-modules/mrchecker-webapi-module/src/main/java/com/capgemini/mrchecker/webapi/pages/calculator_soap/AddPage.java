@@ -21,27 +21,27 @@ public class AddPage extends BasePageWebAPI {
 	
 	public Response sendPOST() {
 		return DriverManager.getDriverWebAPI()
-						.with()
-						.contentType("text/xml; charset=utf-8")
-						.header("SOAPAction", "http://tempuri.org/Add")
-						.body(soapTemplate.getMessage())
-						.log()
-						.all()
-						.when()
-						.post(ENDPOINT)
-						.thenReturn();
+				.with()
+				.contentType("text/xml; charset=utf-8")
+				.header("SOAPAction", "http://tempuri.org/Add")
+				.body(soapTemplate.getMessage())
+				.log()
+				.all()
+				.when()
+				.post(ENDPOINT)
+				.thenReturn();
 	}
 	
 	public void setIntA(int numberA) {
 		soapTemplate.getRoot()
-						.element("intA")
-						.text(String.valueOf(numberA));
+				.element("intA")
+				.text(String.valueOf(numberA));
 	}
 	
 	public void setIntB(int numberB) {
 		soapTemplate.getRoot()
-						.element("intB")
-						.text(String.valueOf(numberB));
+				.element("intB")
+				.text(String.valueOf(numberB));
 	}
 	
 	@Override
@@ -73,5 +73,4 @@ public class AddPage extends BasePageWebAPI {
 	 * </soap12:Body>
 	 * </soap12:Envelope>
 	 */
-	
 }

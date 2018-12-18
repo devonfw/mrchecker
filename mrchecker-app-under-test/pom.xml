@@ -9,8 +9,7 @@
     <packaging>jar</packaging>
 
     <name>MrCheckerTestFramework - List of Integration Test for Application Under Test</name>
-    <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.
-* Adding examples,   projectX, projectY, datadriven</description>
+    <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of web applications, native mobile apps, webservices and database.</description>
     <url>https://github.com/devonfw/devonfw-testing</url>
 
 
@@ -39,8 +38,16 @@
     <scm>
         <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
         <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
-        <url>http://github.com/devonfw/devonfw-testing/tree/master</url>
+        <url>http://github.com/devonfw/devonfw-testing/tree/develop</url>
     </scm>
+
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>http://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+
 
     <distributionManagement>
         <!-- Repository used as default deploy phase. -->
@@ -53,16 +60,16 @@
 
 
     <properties>
-        <version>2.4.0</version>
-        
+        <version>2.5.1</version>
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
 
         <!-- Allure test framework modules -->
-        <mrchecker-core-module.version>4.12.0.8</mrchecker-core-module.version>
-        <mrchecker-selenium-module.version>3.8.1.7</mrchecker-selenium-module.version>
-        <mrchecker-security-module.version>1.1.1</mrchecker-security-module.version>
-        <mrchecker-webapi-module.version>1.1.2</mrchecker-webapi-module.version>
+        <mrchecker-core-module.version>4.12.0.10</mrchecker-core-module.version>
+        <mrchecker-selenium-module.version>3.8.1.13</mrchecker-selenium-module.version>
+        <mrchecker-security-module.version>1.1.3</mrchecker-security-module.version>
+        <mrchecker-webapi-module.version>1.1.5</mrchecker-webapi-module.version>
 
 
         <!-- Java settings -->
@@ -74,19 +81,18 @@
         <thread.count>8</thread.count>
         <junit-toolbox.version>2.4</junit-toolbox.version>
 
-        <!-- Logger -->
-        <log4j.version>2.2</log4j.version>
-        <SLF4J.version>1.7.12</SLF4J.version>
+        <!-- Maven report generator -->
+        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 
         <!-- Allure reporting -->
-        <slf4j.version>1.7.21</slf4j.version>
+        <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+        <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+        <allure-cli-runner.version>2.6.0</allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
+
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
-        <allure.version>1.5.4</allure.version>
-        <allure-maven-plugin.version>2.6</allure-maven-plugin.version>
-        <allure-cucumber-jvm-adaptor.version>1.6.3</allure-cucumber-jvm-adaptor.version>
         <report-directory>${pom.basedir}/test-output/</report-directory>
-        <jetty.version>9.2.10.v20150310</jetty.version>
-        <aspectj.version>1.8.4</aspectj.version>
+        <aspectj.version>1.8.10</aspectj.version>
 
         <!-- Cucumber version -->
         <cucumber.version>1.2.5</cucumber.version>
@@ -103,7 +109,6 @@
         <JUnitParams.version>1.0.4</JUnitParams.version>
 
         <!-- Dependency Injection -->
-        <picocontainer.version>2.15</picocontainer.version>
         <guice.version>4.1.0</guice.version>
 
         <!-- Static analyze settings -->
@@ -204,32 +209,19 @@
         </dependency>
 
 
-        <!--This dependency is necessary for Allure report plugin. -->
+        <!--This dependency is necessary for Allure generator plugin. -->
         <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-junit-adaptor</artifactId>
-            <version>${allure.version}</version>
+            <!-- Test listener. Binds Junit exec to Allure annotation -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>${allure-junit4-listener.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-report-data</artifactId>
-            <version>${allure.version}</version>
+            <!-- Allure report generator -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure-maven-report-generator.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-maven-plugin</artifactId>
-            <version>${allure-maven-plugin.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
-            <version>${allure-cucumber-jvm-adaptor.version}</version>
-        </dependency>
-
-
 
     </dependencies>
 
@@ -270,9 +262,8 @@
                     <version>3.6.1</version>
 
                     <configuration>
-
                         <compilerArgument>-Xlint:deprecation</compilerArgument>
-                        <showWarnings>true</showWarnings>
+                        <showWarnings>false</showWarnings>
                         <showDeprecation>true</showDeprecation>
                         <source>${java.compiler.version}</source>
                         <target>${java.compiler.version}</target>
@@ -303,19 +294,11 @@
                     </executions>
                 </plugin>
 
-                <!-- START REPORT SERVER -->
-                <!--Needed only to show reports locally. Run 'mvn jetty:run'
-                    and open
-                    'localhost:8080' to show the report -->
+                <!-- Maven report generator -->
                 <plugin>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>${jetty.version}</version>
-                    <configuration>
-                        <webAppSourceDirectory>${project.build.directory}/site/allure-maven-plugin</webAppSourceDirectory>
-                        <stopKey>stop</stopKey>
-                        <stopPort>1234</stopPort>
-                    </configuration>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
                 </plugin>
 
             </plugins>
@@ -348,15 +331,21 @@
                                 <exclude>**/OutboxDocumentTest.*</exclude>
                             </excludes>
                             <argLine>
-                                -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar" -Xmx1024m -Xms1024m -XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
                                 <property>
                                     <name>listener</name>
-                                    <value>ru.yandex.qatools.allure.junit.AllureRunListener</value>
+                                    <value>io.qameta.allure.junit4.AllureJunit4</value>
                                 </property>
-                            </properties>
 
+                            </properties>
+                            <systemProperties>
+                                <property>
+                                    <name>allure.results.directory</name>
+                                    <value>${allure.report.directory}/allure-results</value>
+                                </property>
+                            </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -365,6 +354,17 @@
                                 <version>${aspectj.version}</version>
                             </dependency>
                         </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>io.qameta.allure</groupId>
+                        <artifactId>allure-maven</artifactId>
+                        <version>2.9</version>
+                        <configuration>
+                            <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
+                            <reportVersion>${allure-cli-runner.version}</reportVersion>
+                            <resultsDirectory>${allure.report.directory}/allure-results</resultsDirectory>
+                            <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -382,7 +382,7 @@
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <threadCount>${thread.count}</threadCount>
-                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx1024m -Xms1024m -XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <argLine>-Dcucumber.options="--plugin
                                 ru.yandex.qatools.allure.cucumberjvm.AllureReporter
@@ -507,21 +507,23 @@
 
 
     <reporting>
-        <excludeDefaults>true</excludeDefaults>
         <plugins>
+            <!-- Report project information -->
             <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>${allure-maven-plugin.version}</version>
-                <configuration>
-                    <resultsPattern>target/allure-results</resultsPattern>
-                    <reportPath>target/report</reportPath>
-                    <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>
-                    <reportVersion>${allure-report.version}</reportVersion>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>scm</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
+
 
 
 </project>

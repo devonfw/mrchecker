@@ -1,72 +1,74 @@
 package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.DynamicContentPage;
-import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class DynamicContentTest extends BaseTest {
+@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+public class DynamicContentTest extends TheInternetBaseTest {
 	
-	private TheInternetPage				theInternetPage;
-	private static DynamicContentPage	dynamicContentPage;
+	private static DynamicContentPage dynamicContentPage;
 	
-	@Override
-	public void setUp() {
-		BFLogger.logInfo("Step1 - open Chrome browser");
-		BFLogger.logInfo("Step2 - open web page http://the-internet.herokuapp.com/");
-		theInternetPage = new TheInternetPage();
-		assertTrue("The-internet page is not loaded", theInternetPage.isLoaded());
-	}
-	
-	@Override
-	public void tearDown() {
-		BFLogger.logInfo("Step9 - navigate back to The-Internet page");
-		BasePage.navigateBack();
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		dynamicContentPage = shouldTheInternetPageBeOpened().clickDynamicContentLink();
+		
+		logStep("Verify if Dynamic Content page is opened");
+		assertTrue("Unable to open Dynamic Content page", dynamicContentPage.isLoaded());
 	}
 	
 	@Test
-	public void shouldHasDifferentImagesAndDesxriptions() {
-		BFLogger.logInfo("Step3 - open 'Dynamic Content' link");
-		dynamicContentPage = theInternetPage.clickDynamicContentPage();
-		assertTrue("The Dynamic Content page is not loaded", dynamicContentPage.isLoaded());
+	public void shouldImagesAndDescriptionsDifferAfterRefresh() {
 		
-		BFLogger.logInfo("Step4 - Read images and descriptions before refresh");
-		List<String> descriptionListPrevious = dynamicContentPage.getDescriptions();
-		List<String> imagesListPrevious = dynamicContentPage.getImages();
+		logStep("Read images and descriptions before refresh");
+		List<String> descriptionsBeforeRefresh = dynamicContentPage.getDescriptions();
+		List<String> imagesBeforeRefresh = dynamicContentPage.getImageLinks();
 		
-		BFLogger.logInfo("Step5 - Refres page");
+		logStep("Refres page");
 		dynamicContentPage.refreshPage();
-		assertTrue("The Dynamic Content page is not loaded", dynamicContentPage.isLoaded());
+		assertTrue("The Dynamic Content page hasn't been refreshed", dynamicContentPage.isLoaded());
 		
-		BFLogger.logInfo("Step6 - Read images and descriptions after refresh");
-		List<String> descriptionListActual = dynamicContentPage.getDescriptions();
-		List<String> imagesListActual = dynamicContentPage.getImages();
+		logStep("Read images and descriptions after refresh");
+		List<String> descriptionsAfterRefresh = dynamicContentPage.getDescriptions();
+		List<String> imagesAfterRefresh = dynamicContentPage.getImageLinks();
 		
-		BFLogger.logInfo("Step7 - Compare descriptions");
-		assertEquals("Number of descriptions is not equal", descriptionListActual.size(), descriptionListPrevious.size());
+		logStep("Verify if descriptions are different after refresh");
+		assertEquals("Different number of descriptions before and after refresh",
+						descriptionsAfterRefresh.size(), descriptionsBeforeRefresh.size());
 		
-		for (int i = 0; i < descriptionListActual.size(); i++) {
-			assertNotEquals("Descriptions should be different",
-							descriptionListActual.get(i),
-							descriptionListPrevious.get(i));
+		boolean diversity = false;
+		for (int i = 0; i < descriptionsAfterRefresh.size(); i++) {
+			if (!descriptionsAfterRefresh.get(i)
+							.equals(descriptionsBeforeRefresh.get(i))) {
+				diversity = true;
+				break;
+			}
 		}
+		assertTrue("There are no differences between descriptions before and after refresh", diversity);
 		
-		BFLogger.logInfo("Step8 - Compare images");
-		assertEquals("Number of images is not equal", imagesListActual.size(), imagesListPrevious.size());
+		logStep("Verify if images are different after refresh");
+		assertEquals("Different number of descriptions before and after refresh",
+						imagesAfterRefresh.size(), imagesBeforeRefresh.size());
 		
-		for (int i = 0; i < imagesListActual.size(); i++) {
-			assertNotEquals("Images should be different",
-							imagesListPrevious.get(i),
-							imagesListActual.get(i));
+		diversity = false;
+		for (int i = 0; i < imagesAfterRefresh.size(); i++) {
+			if (!imagesAfterRefresh.get(i)
+							.equals(imagesBeforeRefresh.get(i))) {
+				diversity = true;
+				break;
+			}
 		}
+		assertTrue("There are no differences between images before and after refresh", diversity);
 	}
 }

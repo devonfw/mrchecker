@@ -34,7 +34,7 @@ public class DriverManager {
 	private static ThreadLocal<INewWebDriver> drivers = new ThreadLocal<INewWebDriver>();
 	
 	// Setup default variables
-	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1600;
+	private static final ResolutionEnum	DEFAULT_RESOLUTION	= ResolutionEnum.w1200;
 	private static final int			IMPLICITYWAITTIMER	= 2;									// in seconds
 	private static final String			DOWNLOAD_DIR		= System.getProperty("java.io.tmpdir");
 	
@@ -109,18 +109,23 @@ public class DriverManager {
 		BFLogger.logDebug("Creating new " + RuntimeParametersSelenium.BROWSER.toString() + " WebDriver.");
 		INewWebDriver driver;
 		String seleniumGridParameter = RuntimeParametersSelenium.SELENIUM_GRID.getValue();
-		if (!seleniumGridParameter.equals("false")) {
-			driver = setupGrid();
-		} else {
+		if (isEmpty(seleniumGridParameter)) {
 			driver = setupBrowser();
+		} else {
+			driver = setupGrid();
 		}
 		driver.manage()
-						.timeouts()
-						.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
+				.timeouts()
+				.implicitlyWait(DriverManager.IMPLICITYWAITTIMER, TimeUnit.SECONDS);
 		
 		ResolutionUtils.setResolution(driver, DriverManager.DEFAULT_RESOLUTION);
 		NewRemoteWebElement.setClickTimer();
 		return driver;
+	}
+	
+	private static boolean isEmpty(String seleniumGridParameter) {
+		return seleniumGridParameter.trim()
+				.isEmpty() || seleniumGridParameter == null;
 	}
 	
 	/**
@@ -146,6 +151,8 @@ public class DriverManager {
 				return Driver.FIREFOX.getDriver();
 			case "internet explorer":
 				return Driver.IE.getDriver();
+			case "chromeheadless":
+				return Driver.CHROME_HEADLESS.getDriver();
 			default:
 				throw new RuntimeException("Unable to setup [" + browser + "] browser. Browser not recognized.");
 		}
@@ -162,7 +169,7 @@ public class DriverManager {
 				if (isDriverAutoUpdateActivated) {
 					downloadNewestVersionOfWebDriver(ChromeDriver.class);
 					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(ChromeDriver.class)
-									.getBinaryPath(), browserPath);
+							.getBinaryPath(), browserPath);
 				}
 				
 				System.setProperty("webdriver.chrome.driver", browserPath);
@@ -172,6 +179,52 @@ public class DriverManager {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", chromePrefs);
 				options.addArguments("--test-type");
+				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							String item = (value.isEmpty()) ? key : key + "=" + value;
+							options.addArguments(item);
+						});
+						
+				// DesiredCapabilities cap = DesiredCapabilities.chrome();
+				// cap.setCapability(ChromeOptions.CAPABILITY, options);
+				
+				INewWebDriver driver = new NewChromeDriver(options);
+				return driver;
+			}
+			
+		},
+		CHROME_HEADLESS {
+			@Override
+			public INewWebDriver getDriver() {
+				String browserPath = DriverManager.propertiesSelenium.getSeleniumChrome();
+				boolean isDriverAutoUpdateActivated = DriverManager.propertiesSelenium.getDriverAutoUpdateFlag();
+				
+				if (isDriverAutoUpdateActivated) {
+					downloadNewestVersionOfWebDriver(ChromeDriver.class);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(ChromeDriver.class)
+							.getBinaryPath(), browserPath);
+				}
+				
+				System.setProperty("webdriver.chrome.driver", browserPath);
+				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+				chromePrefs.put("download.default_directory", DOWNLOAD_DIR);
+				chromePrefs.put("profile.content_settings.pattern_pairs.*.multiple-automatic-downloads", 1);
+				ChromeOptions options = new ChromeOptions();
+				options.setExperimentalOption("prefs", chromePrefs);
+				options.addArguments("headless");
+				options.addArguments("window-size=1200x600");
+				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							String item = (value.isEmpty()) ? key : key + "=" + value;
+							options.addArguments(item);
+						});
+						
 				// DesiredCapabilities cap = DesiredCapabilities.chrome();
 				// cap.setCapability(ChromeOptions.CAPABILITY, options);
 				
@@ -188,10 +241,8 @@ public class DriverManager {
 				
 				if (isDriverAutoUpdateActivated) {
 					downloadNewestVersionOfWebDriver(FirefoxDriver.class);
-					OperationsOnFiles.moveWithPruneEmptydirectories(
-									WebDriverManager.getInstance(FirefoxDriver.class)
-													.getBinaryPath(),
-									browserPath);
+					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(FirefoxDriver.class)
+							.getBinaryPath(), browserPath);
 				}
 				
 				System.setProperty("webdriver.gecko.driver", browserPath);
@@ -204,10 +255,17 @@ public class DriverManager {
 				profile.setPreference("browser.download.useDownloadDir", true);
 				
 				profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
-								"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
+						"text/comma-separated-values, application/vnd.ms-excel, application/msword, application/csv, application/ris, text/csv, image/png, application/pdf, text/html, text/plain, application/zip, application/x-zip, application/x-zip-compressed, application/download, application/octet-stream");
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							profile.setPreference(key, value);
+						});
+						
 				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 				
 				return new NewFirefoxDriver(options);
@@ -222,12 +280,19 @@ public class DriverManager {
 				if (isDriverAutoUpdateActivated) {
 					downloadNewestVersionOfWebDriver(InternetExplorerDriver.class);
 					OperationsOnFiles.moveWithPruneEmptydirectories(WebDriverManager.getInstance(InternetExplorerDriver.class)
-									.getBinaryPath(), browserPath);
+							.getBinaryPath(), browserPath);
 				}
 				
 				System.setProperty("webdriver.ie.driver", browserPath);
 				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							ieCapabilities.setCapability(key, value);
+						});
+						
 				// Due to some issues with IE11 this line must be commented
 				// ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 				// true);
@@ -261,6 +326,14 @@ public class DriverManager {
 				
 				capabilities.setVersion(RuntimeParametersSelenium.BROWSER_VERSION.getValue());
 				capabilities.setBrowserName(RuntimeParametersSelenium.BROWSER.getValue());
+				
+				// Set users browser options
+				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+						.forEach((key, value) -> {
+							BFLogger.logInfo("Browser option: " + key + " " + value);
+							capabilities.setCapability(key, value);
+						});
+						
 				NewRemoteWebDriver newRemoteWebDriver = null;
 				try {
 					newRemoteWebDriver = new NewRemoteWebDriver(new URL(SELENIUM_GRID_URL), capabilities);
@@ -279,13 +352,13 @@ public class DriverManager {
 				System.setProperty("wdm.targetPath", webDriversPath);
 				
 				WebDriverManager.getInstance(webDriverType)
-								.proxy(proxy)
-								.setup();
+						.proxy(proxy)
+						.setup();
 			} catch (WebDriverManagerException e) {
 				BFLogger.logInfo("Unable to download driver automatically. "
-								+ "Please try to set up the proxy in properties file. "
-								+ "If you want to download them manually, go to the "
-								+ "http://www.seleniumhq.org/projects/webdriver/ site.");
+						+ "Please try to set up the proxy in properties file. "
+						+ "If you want to download them manually, go to the "
+						+ "http://www.seleniumhq.org/projects/webdriver/ site.");
 			}
 		}
 		

@@ -4,13 +4,12 @@ import org.openqa.selenium.By;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.base.environment.GetEnvironmentParam;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.DropdownListElement;
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class DropdownPage extends BasePage {
 	
-	private static final By selectorDropdownList = By.cssSelector("#dropdown");
+	private static final By dropdownListSelector = By.cssSelector("#dropdown");
 	
 	@Override
 	public boolean isLoaded() {
@@ -31,13 +30,24 @@ public class DropdownPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public void setValueOnDropdownList(int valueOfDropdown) {
-		DropdownListElement dropdown = getDriver().elementDropdownList(selectorDropdownList);
-		dropdown.selectDropdownByIndex(valueOfDropdown);
+	/**
+	 * Selects doropdown's value by given index.
+	 * 
+	 * @param index
+	 *            Index of option to be selected
+	 */
+	public void selectDropdownValueByIndex(int index) {
+		getDriver().elementDropdownList(dropdownListSelector)
+						.selectDropdownByIndex(index);
 	}
 	
-	public String getTextFromDropdownList() {
-		DropdownListElement dropdown = getDriver().elementDropdownList(selectorDropdownList);
-		return dropdown.getFirstSelectedOptionText();
+	/**
+	 * Returns text value of first selected dropdown's option.
+	 * 
+	 * @return String object representing value of dropdown's option
+	 */
+	public String getSelectedDropdownValue() {
+		return getDriver().elementDropdownList(dropdownListSelector)
+						.getFirstSelectedOptionText();
 	}
 }

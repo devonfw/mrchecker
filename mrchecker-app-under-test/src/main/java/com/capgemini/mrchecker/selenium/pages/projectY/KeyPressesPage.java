@@ -30,9 +30,23 @@ public class KeyPressesPage extends BasePage {
 		return getActualPageTitle();
 	}
 	
-	public String getSendKeyPress(String keyToPress) {
+	/**
+	 * Presses given keyboard key.
+	 * 
+	 * @param keyToPress
+	 *            Key to be pressed on keyboard
+	 */
+	public void pressKey(String keyToPress) {
 		getAction().sendKeys(keyToPress)
 						.perform();
+	}
+	
+	/**
+	 * Returns information from web page about pressed keyboard key.
+	 * 
+	 * @return Information from web page about pressed key
+	 */
+	public String getPressedKeyInformation() {
 		return getDriver().findElementDynamic(selectorResult)
 						.getText();
 	}

@@ -14,7 +14,8 @@ enum ElementType {
 	NAVIGATION_BAR("Navigation Bar"),
 	MENU("Menu"),
 	IFRAME("iFrame"),
-	HORIZONTAL_SLIDER("Horizontal Slider");
+	HORIZONTAL_SLIDER("Horizontal Slider"),
+	IMAGE("Image");
 	
 	private String value;
 	
