@@ -331,7 +331,7 @@
                                 <exclude>**/OutboxDocumentTest.*</exclude>
                             </excludes>
                             <argLine>
-                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar" -Xmx1024m -Xms1024m -XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
                                 <property>
@@ -382,7 +382,7 @@
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <threadCount>${thread.count}</threadCount>
-                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                            <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx1024m -Xms1024m -XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <argLine>-Dcucumber.options="--plugin
                                 ru.yandex.qatools.allure.cucumberjvm.AllureReporter
