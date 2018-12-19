@@ -371,8 +371,8 @@
                                     <!-- comma separated list of package
                                         names to scan for glue code -->
                                     <glue>
-                                        <package>classpath:com/example/selenium/tests/cucumber/common/stepdefs</package>
-                                        <package>classpath:com/example/selenium/tests/cucumber/common/hooks</package>
+                                        <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
+                                        <package>com.example.selenium.tests.cucumber.common.hooks</package>
                                     </glue>
 
                                     <!-- These are optional, with the default
@@ -382,7 +382,7 @@
                                     <!-- The directory, which must be in
                                         the root of the runtime classpath,
                                         containing your feature files. -->
-                                    <featuresDirectory>src/test/java/com/example/selenium/tests/cucumber/common/features/</featuresDirectory>
+                                    <featuresDirectory>src/test/resources</featuresDirectory>
                                     <!-- Directory where the cucumber report
                                         files shall be written -->
                                     <cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
@@ -469,10 +469,6 @@
                         </executions>
 
                         <configuration>
-                            <testIncludes>
-                                <!-- <testInclude>${project.build.directory}/generated-test-sources/cucumber/*.java</testInclude> -->
-                                <testInclude>**/Parallel*IT.java</testInclude>
-                            </testIncludes>
                             <compilerArgument>-Xlint:deprecation</compilerArgument>
                             <showWarnings>false</showWarnings>
                             <showDeprecation>true</showDeprecation>

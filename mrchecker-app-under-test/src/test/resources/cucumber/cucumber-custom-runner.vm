@@ -14,10 +14,10 @@ import cucumber.api.junit.Cucumber;
         strict = $strict,
         features = {"$featureFile"},
         plugin = #stringArray($plugins),
-        monochrome = $monochrome,
 #if(!$featureFile.contains(".feature:") && $tags)
         tags = #stringArray($tags),
 #end
+        monochrome = $monochrome,
         glue = #stringArray($glue))
 public class $className extends BaseTest {
     @Override
