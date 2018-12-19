@@ -371,8 +371,8 @@
                                     <!-- comma separated list of package
                                         names to scan for glue code -->
                                     <glue>
-                                        <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
-                                        <package>com.example.selenium.tests.cucumber.common.hooks</package>
+                                        <package>classpath:com/example/selenium/tests/cucumber/common/stepdefs</package>
+                                        <package>classpath:com/example/selenium/tests/cucumber/common/hooks</package>
                                     </glue>
 
                                     <!-- These are optional, with the default
@@ -382,7 +382,7 @@
                                     <!-- The directory, which must be in
                                         the root of the runtime classpath,
                                         containing your feature files. -->
-                                    <featuresDirectory>src/test/resources</featuresDirectory>
+                                    <featuresDirectory>src/test/java/com/example/selenium/tests/cucumber/common/features/</featuresDirectory>
                                     <!-- Directory where the cucumber report
                                         files shall be written -->
                                     <cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
@@ -416,7 +416,7 @@
                                     <!-- CucumberOptions.strict property -->
                                     <strict>true</strict>
                                     <!-- CucumberOptions.monochrome property -->
-                                    <monochrome>true</monochrome>
+                                    <monochrome>false</monochrome>
                                     <!--The tags to run, maps to CucumberOptions.tags
                                         property -->
                                     <tags>

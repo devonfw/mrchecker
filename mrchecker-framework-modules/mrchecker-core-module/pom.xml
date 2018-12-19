@@ -162,6 +162,7 @@ Based on Junit4.12</description>
             <!-- Test listener. Binds Junit exec to Allure annotation -->
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
+            
         </dependency>
         <dependency>
             <!-- Allure report generator -->
@@ -176,7 +177,7 @@ Based on Junit4.12</description>
         </dependency>
 
 
-        <!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
+        <!--This dependency is necessary for test suites runner with WildcardPatternSuite -->
         <dependency>
             <groupId>com.googlecode.junit-toolbox</groupId>
             <artifactId>junit-toolbox</artifactId>
