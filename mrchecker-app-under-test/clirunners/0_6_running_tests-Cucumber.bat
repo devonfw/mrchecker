@@ -1,3 +1,3 @@
 echo "running tests"
 cd ..
-mvn test surefire:test -Dtest=RegisterOKTestDDExternalDataTest -Dbrowser=chrome
+mvn -P cucumber test site
