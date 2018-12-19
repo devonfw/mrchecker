@@ -17,7 +17,7 @@ MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/exa
 			string(defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
 			string(defaultValue: '', description: 'Browser options. Possible values = "headless;param2=value2;testEquals=FirstEquals=SecondEquals;--testMe" ', name: 'BROWSER_OPTIONS'),
 			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'),  
-			string(defaultValue: 'mrchecker-app-under-test-lean/', description: 'Execute job for given Module. Example mrchecker-app-under-test/ ', name: 'APP_WORKSPACE'),
+			string(defaultValue: 'mrchecker-app-under-test/', description: 'Execute job for given Module. Example mrchecker-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 
 			string(defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
 			string(defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*', name: 'MVN_PARAMETERS')

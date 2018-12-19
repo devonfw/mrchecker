@@ -3,8 +3,7 @@ node(){
 	//Set Jenkins run parameters
 	properties([
 		parameters([
-			string(defaultValue: 'mrchecker-framework-modules/mrchecker-selenium-module/', description: 'Execute job for given Module. Example mrchecker-framework-modules/mrchecker-selenium-module/ ', name: 'APP_WORKSPACE'),
-			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'), 
+			string(defaultValue: 'develop', description: 'Execute job on given branch', name: 'WORKING_BRANCH'),  
 			string(defaultValue: '*', description: '''What tests to run
 HelloWorld - run test class -HelloWorld-
 Hel*orld - run all test classes start with -Hel- and end with -orld-  
@@ -14,47 +13,36 @@ TestCircle#testOne+testTwo - run test class TestCircle and test method -testOne-
 TestCircle#test* - run test class TestCircle and all test methods start with -test-
 MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html''', name: 'TEST_NAME'), 
 			string(defaultValue: 'DEV', description: 'Value taken from   environment.csv  file', name: 'ENVIRONMENT'), 
-			string(defaultValue: '8', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
-			string(defaultValue: 'http://10.40.234.103:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
-			string(defaultValue: '', description: 'Browser options. Possible values = "headless;param2=value2;testEquals=FirstEquals=SecondEquals;--testMe" ', name: 'BROWSER_OPTIONS'),
-			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'), 
-			booleanParam(defaultValue: false, description: '''Should given job be deployed to Remote Nexus repository ? 
-#1. Go to Nexus staging repo 
-https://oss.sonatype.org/#stagingRepositories  and release    WAIT ~15min to update Maven Central Repo
-#2. Verify release OR snapshot repo
-Release
-https://oss.sonatype.org/content/repositories/releases/com/capgemini/ntc/
-https://oss.sonatype.org/content/groups/public/com/capgemini/ntc/
-https://repo.maven.apache.org/maven2/com/capgemini/ntc/
-Snapshot
-https://oss.sonatype.org/content/repositories/snapshots/com/capgemini/ntc/''', name: 'IS_TO_DEPLOY_REMOTE_NEXUS'), 
-			string(defaultValue: '', description: 'Application version number. If empty, pom.xml version will be taken', name: 'VERSION'), 
+			string(defaultValue: '5', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
+			string(defaultValue: 'http://selenium-hub-core:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
+			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'),  
+			string(defaultValue: 'mrchecker-app-under-test/', description: 'Execute job for given Module. Example mrchecker-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 
-			string(defaultValue: 'https://github.com/devonfw/devonfw-testing.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
+			string(defaultValue: 'http://gitlab-core:80/gitlab/devon/mrchecker.git', description: 'Optional variable. Which repo to run', name: 'GIT_REPO'), 
 			string(defaultValue: '', description: 'Optional list of mvn parameters, example -DskipTests=true -Dtest=*', name: 'MVN_PARAMETERS')
 			]), 
 			pipelineTriggers([])
 		]);
 	
 
-	timestamps {
-		try{
+	timestamps {		
+            try{
 		    stagePrepareEnv(params);
 		    stageGitPull();
-		
 		    setJenkinsJobDescription();
 		    boolean isWorkingBranchMaster = isWorkingBranchMaster();
     
-            docker.image('lucst/devonfwe2e:v2-0.4').inside(){
+            def mvn_version = 'Maven3'
+            withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
                     stageBuildCompile();
-                    stageUnitTests();
-                    stageDeploy(env.VERSION);
+                    stageIntegrationTests();
                 }
             currentBuild.result = 'SUCCESS';
         } catch (Exception e) {
             sendMail(e);
             error 'Error: ' + e
             currentBuild.result = 'FAILURE';
+            
         }
     }
 }
@@ -87,8 +75,8 @@ def private void setJenkinsJobVariables(){
     env.JOB_NAME_UPSTREAM="Mr Checker"
 	env.BUILD_DISPLAY_NAME_UPSTREAM = env.BUILD_TAG
 	env.BUILD_URL_UPSTREAM = env.BUILD_URL  + 'console'
-	env.GIT_CREDENTIALS = "gitchudzik"
-    env.JENKINS_CREDENTIALS = "0c089c76-f103-4f97-8d2d-c31830d2c21d" //jenkins_slave user;
+	env.GIT_CREDENTIALS = ""
+	env.JENKINS_CREDENTIALS = "" //jenkins_slave user;
     
 
 } 
@@ -141,24 +129,11 @@ void stageBuildCompile(){
 	module();	
 }
 
-void stageUnitTests(){
-	echo("stageUnitTests");
-	//Load UnitTests file and run call() method
-	def module = load "${env.SUBMODULES_DIR}/UnitTests.groovy";
+void stageIntegrationTests(){
+	echo("stageIntegrationTests");
+	//Load IntegrationTests file and run call() method
+	def module = load "${env.SUBMODULES_DIR}/IntegrationTests.groovy";
 	module();
-}
-
-void stageDeploy(String version){
-	echo("stageDeploy");
-	echo("version: -${version}-");
-    
-    //Load Deploy process and run call() method
-	def module = load "${env.SUBMODULES_DIR}/Deploy.groovy";
-	
-    module.deployToLocalRepo(version);
-    if ( env.IS_TO_DEPLOY_REMOTE_NEXUS.toBoolean() ){
-        module.deployToRemoteRepo(version);
-    }
 }
 
 void sendMail(Exception e){
