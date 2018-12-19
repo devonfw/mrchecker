@@ -3,4 +3,4 @@
 Feature: Refund item
 
 Scenario: Some cukes
-  Given I have 48 cukes in my belly
+  Given I have 5 cukes in my belly
