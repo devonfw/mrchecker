@@ -1,3 +1,3 @@
 echo launching default web browser to show test report
 cd ..
-explorer "http://localhost:8080"
+mvn site allure:serve
