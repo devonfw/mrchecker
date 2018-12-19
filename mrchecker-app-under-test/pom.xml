@@ -86,18 +86,12 @@
         <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 
         <!-- Allure reporting -->
-        <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
-        <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
         <allure-cli-runner.version>2.6.0</allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
-
         <allure.report.directory>${pom.basedir}/target/</allure.report.directory>
         <report-directory>${pom.basedir}/test-output/</report-directory>
         <aspectj.version>1.8.10</aspectj.version>
-        <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
 
         <!-- Cucumber version -->
-        <cucumber.version>4.2.0</cucumber.version>
-        <gherkin.cucumber>5.1.0</gherkin.cucumber>
         <cucumber.jvm.parallel.version>5.0.0</cucumber.jvm.parallel.version>
         <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
         <cucumber.tag>@all</cucumber.tag>
@@ -210,34 +204,6 @@
             <artifactId>junit-toolbox</artifactId>
             <version>${junit-toolbox.version}</version>
         </dependency>
-
-
-        <!--This dependency is necessary for Allure generator plugin. -->
-        <dependency>
-            <!-- Test listener. Binds Junit exec to Allure annotation -->
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
-            <version>${allure-junit4-listener.version}</version>
-        </dependency>
-        <dependency>
-            <!-- Allure report generator -->
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>${allure-maven-report-generator.version}</version>
-        </dependency>
-
-<!--         <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber-jvm</artifactId>
-            <version>${allure-cucumber-jvm.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>info.cukes</groupId>
-                    <artifactId>gherkin</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency> -->
-
     </dependencies>
 
 
@@ -567,7 +533,6 @@
                     <plugin>
                         <groupId>io.qameta.allure</groupId>
                         <artifactId>allure-maven</artifactId>
-                        <version>2.9</version>
                         <configuration>
                             <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
                             <reportVersion>${allure-cli-runner.version}</reportVersion>

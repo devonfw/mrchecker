@@ -57,7 +57,7 @@ Based on Junit4.12</description>
 
     <properties>
         <version>4.12.1.1-SNAPSHOT</version>
-        
+
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Test tools -->
@@ -81,13 +81,11 @@ Based on Junit4.12</description>
         <allure-junit4-listener.version>2.6.0</allure-junit4-listener.version> <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <allure-maven-report-generator.version>2.9</allure-maven-report-generator.version>  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
         <aspectj.version>1.8.10</aspectj.version>
-        <allure-cucumber-jvm.version>2.7.0</allure-cucumber-jvm.version>
 
 
         <!-- Cucumber version -->
         <cucumber.version>4.2.0</cucumber.version>
         <gherkin.cucumber.version>5.1.0</gherkin.cucumber.version>
-        <gherkin.info.cukes.version>2.12.2</gherkin.info.cukes.version>
         <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
 
         <!-- JSON support java 1.8 -->
@@ -172,18 +170,6 @@ Based on Junit4.12</description>
             <version>${allure-maven-report-generator.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber-jvm</artifactId>
-            <version>${allure-cucumber-jvm.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>info.cukes</groupId>
-                    <artifactId>gherkin</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
@@ -232,7 +218,6 @@ Based on Junit4.12</description>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.masterthought</groupId>
@@ -244,11 +229,6 @@ Based on Junit4.12</description>
             <artifactId>gherkin</artifactId>
             <version>${gherkin.cucumber.version}</version>
         </dependency>
-            <dependency>
-        <groupId>info.cukes</groupId>
-        <artifactId>gherkin</artifactId>
-        <version>${gherkin.info.cukes.version}</version>
-    </dependency>
 
 
 
