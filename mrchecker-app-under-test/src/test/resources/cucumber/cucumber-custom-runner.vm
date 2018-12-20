@@ -4,7 +4,6 @@ package $packageName;
 
 #end##
 import org.junit.runner.RunWith;
-import com.capgemini.mrchecker.test.core.BaseTest;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -19,10 +18,5 @@ import cucumber.api.junit.Cucumber;
 #end
         monochrome = $monochrome,
         glue = #stringArray($glue))
-public class $className extends BaseTest {
-    @Override
-    public void setUp() {}
-
-    @Override
-    public void tearDown() {}
+public class $className {
 }

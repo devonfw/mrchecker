@@ -93,9 +93,9 @@ public abstract class BaseTest implements IBaseTest {
 	abstract public void tearDown();
 	
 	// Repacks baseTestWatch to allow Cucumber runner
-	BaseTestWatcher		baseTestWatcher	= new BaseTestWatcher(this);
+	private BaseTestWatcher	baseTestWatcher	= new BaseTestWatcher(this);
 	@Rule
-	public TestWatcher	testWatcher		= baseTestWatcher;
+	public TestWatcher		testWatcher		= getBaseTestWatcher();
 	
 	@ClassRule
 	public static TestClassRule classRule = new TestClassRule();
@@ -135,6 +135,10 @@ public abstract class BaseTest implements IBaseTest {
 		BFLogger.logAnalytics("Is analytics enabled:" + isAnalyticsEnabled);
 		return isAnalyticsEnabled ? AnalyticsProvider.DISABLED : AnalyticsProvider.DISABLED;
 		
+	}
+	
+	public BaseTestWatcher getBaseTestWatcher() {
+		return baseTestWatcher;
 	}
 	
 }

@@ -78,9 +78,9 @@ public class BaseTestWatcher extends TestWatcher {
 		this.startingTestWatcher(testName);
 	}
 	
-	void startingTestWatcher(String testName) {
+	public void startingTestWatcher(String testName) {
 		BFLogger.RestrictedMethods.startSeparateLog(); // start logging for single test
-		BFLogger.logInfo(testName + " STARTED.");
+		BFLogger.logInfo("\"" + testName + "\"" + ". STARTED.");
 		this.iStart = System.currentTimeMillis(); // start timing
 		BaseTest.getAnalytics()
 				.sendClassName();
@@ -93,7 +93,7 @@ public class BaseTestWatcher extends TestWatcher {
 		this.finishedTestWatcher(testName);
 	}
 	
-	void finishedTestWatcher(String testName) {
+	public void finishedTestWatcher(String testName) {
 		this.iStart = System.currentTimeMillis() - this.iStart; // end timing
 		printTimeExecutionLog(testName);
 		baseTest.tearDown(); // Executed as a After for each test
@@ -108,8 +108,8 @@ public class BaseTestWatcher extends TestWatcher {
 		succeededTestWatcher(testName);
 	}
 	
-	void succeededTestWatcher(String testName) {
-		BFLogger.logInfo(testName + " PASSED.");
+	public void succeededTestWatcher(String testName) {
+		BFLogger.logInfo("\"" + testName + "\"" + ". PASSED.");
 		// Run test observers
 		TestClassRule.classObservers.get()
 				.forEach(ITestObserver::onTestSuccess);
@@ -123,8 +123,8 @@ public class BaseTestWatcher extends TestWatcher {
 		failedTestWatcher(testName);
 	}
 	
-	void failedTestWatcher(String testName) {
-		BFLogger.logInfo(testName + " FAILED.");
+	public void failedTestWatcher(String testName) {
+		BFLogger.logInfo("\"" + testName + "\"" + ".FAILED.");
 		// Run test observers
 		TestClassRule.classObservers.get()
 				.forEach(ITestObserver::onTestFailure);
@@ -223,11 +223,11 @@ public class BaseTestWatcher extends TestWatcher {
 	}
 	
 	private void printTimeExecutionLog(String testName) {
-		BFLogger.logInfo(testName + getFormatedTestDuration());
+		BFLogger.logInfo("Test: \"" + testName + "\". " + getFormatedTestDuration());
 	}
 	
 	private String getFormatedTestDuration() {
-		return String.format(" duration: %1.2f min", (float) this.iStart / (60 * 1000));
+		return String.format(" Duration: %1.2f min", (float) this.iStart / (60 * 1000));
 	}
 	
 }
