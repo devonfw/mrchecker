@@ -229,23 +229,7 @@
                     </configuration>
                 </plugin>
 
-                <!-- COMPILE -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.1</version>
 
-                    <configuration>
-                        <compilerArgument>-Xlint:deprecation</compilerArgument>
-                        <showWarnings>false</showWarnings>
-                        <showDeprecation>true</showDeprecation>
-                        <source>${java.compiler.version}</source>
-                        <target>${java.compiler.version}</target>
-                        <encoding>UTF-8</encoding>
-                        <testSource>${java.compiler.version}</testSource>
-                        <testTarget>${java.compiler.version}</testTarget>
-                    </configuration>
-                </plugin>
 
                 <!-- Static Analysis Plugins -->
                 <plugin><!-- mvn java-formatter:format -->
@@ -288,6 +272,27 @@
             </activation>
             <build>
                 <plugins>
+
+                    <!-- COMPILE -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.6.1</version>
+
+                        <configuration>
+                            <compilerArgument>-Xlint:deprecation</compilerArgument>
+                            <showWarnings>false</showWarnings>
+                            <showDeprecation>true</showDeprecation>
+                            <source>${java.compiler.version}</source>
+                            <target>${java.compiler.version}</target>
+                            <encoding>UTF-8</encoding>
+                            <testSource>${java.compiler.version}</testSource>
+                            <testTarget>${java.compiler.version}</testTarget>
+                        </configuration>
+                    </plugin>
+
+
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
@@ -305,7 +310,9 @@
                                 <exclude>**/OutboxDocumentTest.*</exclude>
                             </excludes>
                             <argLine>
-                                -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx1024m -Xms1024m -XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+                                -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                                -Xmx1024m -Xms1024m -XX:MaxPermSize=512m
+                                -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
                                 <property>
@@ -458,6 +465,24 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.6.1</version>
+
+                        <configuration>
+                            <compilerArgument>-Xlint:deprecation</compilerArgument>
+                            <showWarnings>false</showWarnings>
+                            <showDeprecation>true</showDeprecation>
+                            <source>${java.compiler.version}</source>
+                            <target>${java.compiler.version}</target>
+                            <encoding>UTF-8</encoding>
+                            <testSource>${java.compiler.version}</testSource>
+                            <testTarget>${java.compiler.version}</testTarget>
+                        </configuration>
+                    </plugin>
+
+
+                    <!-- <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.6.1</version>
                         <executions>
                             <execution>
                                 <id>cucumber-test-compile</id>
@@ -478,7 +503,7 @@
                             <testSource>${java.compiler.version}</testSource>
                             <testTarget>${java.compiler.version}</testTarget>
                         </configuration>
-                    </plugin>
+                    </plugin> -->
 
                     <!-- EXECUTE TESTS -->
                     <plugin>
@@ -498,7 +523,9 @@
                             <testFailureIgnore>true</testFailureIgnore>
                             <failIfNoTests>false</failIfNoTests>
                             <argLine>
-                                -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar -Xmx1024m -Xms1024m -XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+                                -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                                -Xmx1024m -Xms1024m -XX:MaxPermSize=512m
+                                -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
                                 <property>
