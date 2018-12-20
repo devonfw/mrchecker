@@ -74,30 +74,42 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	@Override
 	protected void starting(Description description) {
+		String testName = description.getDisplayName();
+		this.startingTestWatcher(testName);
+	}
+	
+	void startingTestWatcher(String testName) {
 		BFLogger.RestrictedMethods.startSeparateLog(); // start logging for single test
-		BFLogger.logInfo(description.getDisplayName() + " STARTED.");
+		BFLogger.logInfo(testName + " STARTED.");
 		this.iStart = System.currentTimeMillis(); // start timing
 		BaseTest.getAnalytics()
 				.sendClassName();
-		
 		baseTest.setUp(); // Executed as a Before for each test
 	}
 	
 	@Override
 	protected void finished(Description description) {
+		String testName = description.getDisplayName();
+		this.finishedTestWatcher(testName);
+	}
+	
+	void finishedTestWatcher(String testName) {
 		this.iStart = System.currentTimeMillis() - this.iStart; // end timing
-		printTimeExecutionLog(description);
+		printTimeExecutionLog(testName);
 		baseTest.tearDown(); // Executed as a After for each test
 		makeLogForTest(); // Finish logging and add created log as an Allure attachment
-		
 		observers.get()
 				.forEach(ITestObserver::onTestFinish);
 	}
 	
 	@Override
 	protected void succeeded(Description description) {
-		BFLogger.logInfo(description.getDisplayName() + " PASSED.");
-		
+		String testName = description.getDisplayName();
+		succeededTestWatcher(testName);
+	}
+	
+	void succeededTestWatcher(String testName) {
+		BFLogger.logInfo(testName + " PASSED.");
 		// Run test observers
 		TestClassRule.classObservers.get()
 				.forEach(ITestObserver::onTestSuccess);
@@ -107,8 +119,12 @@ public class BaseTestWatcher extends TestWatcher {
 	
 	@Override
 	protected void failed(Throwable e, Description description) {
-		BFLogger.logInfo(description.getDisplayName() + " FAILED.");
-		
+		String testName = description.getDisplayName();
+		failedTestWatcher(testName);
+	}
+	
+	void failedTestWatcher(String testName) {
+		BFLogger.logInfo(testName + " FAILED.");
 		// Run test observers
 		TestClassRule.classObservers.get()
 				.forEach(ITestObserver::onTestFailure);
@@ -206,8 +222,8 @@ public class BaseTestWatcher extends TestWatcher {
 		return false;
 	}
 	
-	private void printTimeExecutionLog(Description description) {
-		BFLogger.logInfo(description.getDisplayName() + getFormatedTestDuration());
+	private void printTimeExecutionLog(String testName) {
+		BFLogger.logInfo(testName + getFormatedTestDuration());
 	}
 	
 	private String getFormatedTestDuration() {
