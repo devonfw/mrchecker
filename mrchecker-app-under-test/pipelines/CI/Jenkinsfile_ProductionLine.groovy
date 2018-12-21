@@ -15,6 +15,7 @@ MORE information here http://maven.apache.org/surefire/maven-surefire-plugin/exa
 			string(defaultValue: 'DEV', description: 'Value taken from   environment.csv  file', name: 'ENVIRONMENT'), 
 			string(defaultValue: '5', description: 'Number of concurrent test execution', name: 'THREAD_COUNT'), 
 			string(defaultValue: 'http://selenium-hub-core:4444/wd/hub', description: 'Optional variable. Used only in Selenium execution, for Selenium Grid', name: 'SELENIUM_HUBURL'), 
+			string(defaultValue: '', description: 'Browser options. Possible values = "headless;param2=value2;testEquals=FirstEquals=SecondEquals;--testMe" ', name: 'SELENIUM_BROWSER_OPTIONS'),
 			choice(choices: 'chrome\nfirefox\nie', description: 'Optional variable. Used only in Selenium execution, for Browser type', name: 'SELENIUM_BROWSER'),  
 			string(defaultValue: 'mrchecker-app-under-test/', description: 'Execute job for given Module. Example mrchecker-app-under-test/ ', name: 'APP_WORKSPACE'),
 			string(defaultValue: 'origin/develop', description: 'Optional variable. What is your "master" branch', name: 'MAIN_BRANCH'), 

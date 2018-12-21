@@ -7,12 +7,12 @@
     <parent>
         <artifactId>mrchecker-test-framework</artifactId>
         <groupId>com.capgemini.mrchecker</groupId>
-        <version>2.3.1</version>
+        <version>2.4.0</version>
     </parent>
     <artifactId>mrchecker-security-module</artifactId>
     <version>${version}</version>
     <packaging>jar</packaging>
-    <name>MrCheckerTestFramework - Security - Module</name>
+    <name>MrChecker - Security - Module</name>
     <description>MrChecker Test Framework Security supports:
         - Library reference to make REST/HTTP calls to the tested system
         - Other common features needed for security testing</description>
@@ -52,9 +52,9 @@
     </scm>
 
     <properties>
-        <version>1.1.3</version>
+        <version>1.2.0</version>
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
-        <mrchecker-core-module.version>4.12.0.10</mrchecker-core-module.version>
+        <mrchecker-core-module.version>4.12.1.1</mrchecker-core-module.version>
 
     </properties>
 

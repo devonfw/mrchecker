@@ -28,8 +28,7 @@ import com.google.inject.Guice;
 public abstract class BaseTest implements IBaseTest {
 	
 	private static IEnvironmentService	environmentService;
-  private final static IAnalytics		analytics;
-
+	private final static IAnalytics		analytics;
 	
 	private final static PropertiesCoreTest setPropertiesSettings;
 	static {
@@ -63,21 +62,21 @@ public abstract class BaseTest implements IBaseTest {
 	public static final void tearDownClass() {
 		BFLogger.logDebug("BaseTest.tearDownClass()");
 		BFLogger.logDebug("BaseTestWatcher.observers: " + BaseTestWatcher.observers.get()
-		        .toString());
+				.toString());
 		BFLogger.logDebug("TestClassRule.classObservers: " + TestClassRule.classObservers.get()
-		        .toString());
+				.toString());
 		
 		// Run observers
 		TestClassRule.classObservers.get()
-		        .forEach(ITestObserver::onTestClassFinish);
+				.forEach(ITestObserver::onTestClassFinish);
 		BaseTestWatcher.observers.get()
-		        .forEach(ITestObserver::onTestClassFinish);
+				.forEach(ITestObserver::onTestClassFinish);
 		
 		// Clear observers for all tests
 		BaseTestWatcher.observers.get()
-		        .clear();
+				.clear();
 		TestClassRule.classObservers.get()
-		        .clear();
+				.clear();
 		BFLogger.logDebug("All observers cleared.");
 		
 	}
@@ -93,8 +92,10 @@ public abstract class BaseTest implements IBaseTest {
 	@Override
 	abstract public void tearDown();
 	
+	// Repacks baseTestWatch to allow Cucumber runner
+	private BaseTestWatcher	baseTestWatcher	= new BaseTestWatcher(this);
 	@Rule
-	public TestWatcher testWatcher = new BaseTestWatcher(this);
+	public TestWatcher		testWatcher		= getBaseTestWatcher();
 	
 	@ClassRule
 	public static TestClassRule classRule = new TestClassRule();
@@ -102,11 +103,11 @@ public abstract class BaseTest implements IBaseTest {
 	private static void setEnvironmetInstance(boolean isEncryptionEnabled) {
 		// Environment variables either from environmnets.csv or any other input data.
 		IEnvironmentService environmentInstance = Guice.createInjector(new EnvironmentModule())
-		        .getInstance(IEnvironmentService.class);
+				.getInstance(IEnvironmentService.class);
 		environmentInstance.setEnvironment(RuntimeParametersCore.ENV.getValue());
 		if (isEncryptionEnabled) {
 			IDataEncryptionService encryptionService = Guice.createInjector(new DataEncryptionModule())
-			        .getInstance(IDataEncryptionService.class);
+					.getInstance(IDataEncryptionService.class);
 			environmentInstance.setDataEncryptionService(encryptionService);
 		}
 		BaseTest.setEnvironmentService(environmentInstance);
@@ -126,7 +127,7 @@ public abstract class BaseTest implements IBaseTest {
 		
 		// Get and then set properties information from settings.properties file
 		PropertiesCoreTest propertiesCoreTest = Guice.createInjector(PropertiesSettingsModule.init())
-		        .getInstance(PropertiesCoreTest.class);
+				.getInstance(PropertiesCoreTest.class);
 		return propertiesCoreTest;
 	}
 	
@@ -134,6 +135,10 @@ public abstract class BaseTest implements IBaseTest {
 		BFLogger.logAnalytics("Is analytics enabled:" + isAnalyticsEnabled);
 		return isAnalyticsEnabled ? AnalyticsProvider.DISABLED : AnalyticsProvider.DISABLED;
 		
+	}
+	
+	public BaseTestWatcher getBaseTestWatcher() {
+		return baseTestWatcher;
 	}
 	
 }
