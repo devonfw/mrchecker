@@ -1,4 +1,4 @@
-package com.example.selenium.tests.cucumber.common.hooks;
+package com.capgemini.mrchecker.cucumber.hooks;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;

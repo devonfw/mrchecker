@@ -280,6 +280,9 @@
                         <version>3.6.1</version>
 
                         <configuration>
+                            <excludes>
+                                <exclude>**/cucumber/*.java</exclude>
+                            </excludes>
                             <compilerArgument>-Xlint:deprecation</compilerArgument>
                             <showWarnings>false</showWarnings>
                             <showDeprecation>true</showDeprecation>
@@ -378,8 +381,8 @@
                                     <!-- comma separated list of package
                                         names to scan for glue code -->
                                     <glue>
-                                        <package>com.example.selenium.tests.cucumber.common.stepdefs</package>
-                                        <package>com.example.selenium.tests.cucumber.common.hooks</package>
+                                        <package>com.capgemini.mrchecker.cucumber.stepdefs</package>
+                                        <package>com.capgemini.mrchecker.cucumber.hooks</package>
                                     </glue>
 
                                     <!-- These are optional, with the default
@@ -389,7 +392,7 @@
                                     <!-- The directory, which must be in
                                         the root of the runtime classpath,
                                         containing your feature files. -->
-                                    <featuresDirectory>src/test/resources</featuresDirectory>
+                                    <featuresDirectory>src/test/java/com/capgemini/mrchecker/cucumber/features</featuresDirectory>
                                     <!-- Directory where the cucumber report
                                         files shall be written -->
                                     <cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
@@ -484,26 +487,26 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.6.1</version>
                         <executions>
-                            <execution>
-                                <id>cucumber-test-compile</id>
-                                <phase>test-compile</phase>
-                                <goals>
-                                    <goal>testCompile</goal>
-                                </goals>
-                            </execution>
+                        <execution>
+                        <id>cucumber-test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                        <goal>testCompile</goal>
+                        </goals>
+                        </execution>
                         </executions>
 
                         <configuration>
-                            <compilerArgument>-Xlint:deprecation</compilerArgument>
-                            <showWarnings>false</showWarnings>
-                            <showDeprecation>true</showDeprecation>
-                            <source>${java.compiler.version}</source>
-                            <target>${java.compiler.version}</target>
-                            <encoding>UTF-8</encoding>
-                            <testSource>${java.compiler.version}</testSource>
-                            <testTarget>${java.compiler.version}</testTarget>
+                        <compilerArgument>-Xlint:deprecation</compilerArgument>
+                        <showWarnings>false</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                        <source>${java.compiler.version}</source>
+                        <target>${java.compiler.version}</target>
+                        <encoding>UTF-8</encoding>
+                        <testSource>${java.compiler.version}</testSource>
+                        <testTarget>${java.compiler.version}</testTarget>
                         </configuration>
-                    </plugin> -->
+                        </plugin> -->
 
                     <!-- EXECUTE TESTS -->
                     <plugin>

@@ -1,3 +1,4 @@
+package com.capgemini.mrchecker.cucumber.shared;
 // package com.example.selenium.tests.common.shared;
 //
 // import com.example.core.exceptions.BFInputDataException;
