@@ -122,10 +122,10 @@ public class DriverManager {
 			public WireMockServer getDriver() throws FatalStartupException {
 				
 				int portHttp = RuntimeParameters.MOCK_HTTP_PORT.getValue()
-								.isEmpty() ? 0 : getInteger(RuntimeParameters.MOCK_HTTP_PORT.getValue());
+						.isEmpty() ? 0 : getInteger(RuntimeParameters.MOCK_HTTP_PORT.getValue());
 				
 				int portHttps = RuntimeParameters.MOCK_HTTPS_PORT.getValue()
-								.isEmpty() ? 0 : getInteger(RuntimeParameters.MOCK_HTTPS_PORT.getValue());
+						.isEmpty() ? 0 : getInteger(RuntimeParameters.MOCK_HTTPS_PORT.getValue());
 				
 				setHttpPort(portHttp);
 				setHttpsPort(portHttps);
