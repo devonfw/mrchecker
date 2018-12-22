@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SessionNotCreatedException;
@@ -18,19 +19,6 @@ import org.openqa.selenium.remote.Response;
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.mrchecker.selenium.core.exceptions.BFInitializationException;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.CheckBox;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.DropdownListElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.HorizontalSliderElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.IFrame;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.LabelElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.MenuElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.NavigationBarElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.RadioButtonElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.TabElement;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.TooltipElement;
 
 public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWebDriver {
 	
@@ -185,7 +173,7 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be clickable. If element will not be
 	 * clickable then throw an exception (BFElementNotFoundException)
 	 * 
-	 * @param by
+	 * @param selector
 	 *            selector
 	 * @return WebElement object ready to click
 	 * @author
@@ -248,7 +236,10 @@ public final class NewRemoteWebDriver extends RemoteWebDriver implements INewWeb
 	public LabelElement elementLabel(By selector) {
 		return driverExtention.elementLabel(selector);
 	}
-	
+
+	@Override
+	public ImageElement elementImage(By selector) { return driverExtention.elementImage(selector); }
+
 	@Override
 	public TabElement elementTab(By selector) {
 		return driverExtention.elementTab(selector);

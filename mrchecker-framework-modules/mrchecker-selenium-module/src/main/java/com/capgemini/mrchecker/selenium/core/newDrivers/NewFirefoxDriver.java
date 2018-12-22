@@ -18,6 +18,7 @@ import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.HorizontalSl
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.LabelElement;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ImageElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.MenuElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.NavigationBarElement;
@@ -97,7 +98,7 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	 * 
 	 * @param by
 	 *            selector
-	 * @param timeout
+	 * @param timeOut
 	 *            - maximum time to wait for search WebElement
 	 * @return found WebElement object
 	 * @author
@@ -127,7 +128,7 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	 * 
 	 * @param by
 	 *            selector
-	 * @param timeout
+	 * @param timeOut
 	 *            - maximum time to wait for search WebElement
 	 * @return found WebElement object
 	 * @author
@@ -161,7 +162,7 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	 * Waits {@link BasePage.EXPLICITYWAITTIMER} seconds until an element will be clickable. If element will not be
 	 * clickable then throw an exception (BFElementNotFoundException)
 	 * 
-	 * @param by
+	 * @param selector
 	 *            selector
 	 * @return WebElement object ready to click
 	 * @author
@@ -174,7 +175,6 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	@Override
 	public void waitForPageLoaded() {
 		driverExtention.waitForPageLoaded();
-		
 	}
 	
 	@Override
@@ -222,6 +222,11 @@ public final class NewFirefoxDriver extends FirefoxDriver implements INewWebDriv
 	@Override
 	public LabelElement elementLabel(By selector) {
 		return driverExtention.elementLabel(selector);
+	}
+
+	@Override
+	public ImageElement elementImage(By selector) {
+		return driverExtention.elementImage(selector);
 	}
 	
 	@Override

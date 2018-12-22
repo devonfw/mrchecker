@@ -27,6 +27,7 @@ import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.HorizontalSl
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.LabelElement;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ImageElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.MenuElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.NavigationBarElement;
@@ -374,6 +375,12 @@ public class DriverExtention {
 		BasePage.getAnalytics()
 						.sendMethodEvent(BasePage.analitycsCategoryName);
 		return new IFrame(selector);
+	}
+
+	public ImageElement elementImage(By selector) {
+		BasePage.getAnalytics()
+				.sendMethodEvent(BasePage.analitycsCategoryName);
+		return new ImageElement(selector);
 	}
 	
 	public void mouseRightClick(By selector) {

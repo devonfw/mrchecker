@@ -17,6 +17,7 @@ import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.HorizontalSl
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.IFrame;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.LabelElement;
+import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ImageElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.ListElements;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.MenuElement;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.NavigationBarElement;
@@ -214,6 +215,11 @@ public interface INewWebDriver extends WebDriver {
 	 * Operations on Label
 	 */
 	LabelElement elementLabel(final By selector);
+
+	/**
+	 * Operations on image
+	 */
+	ImageElement elementImage(final By selector);
 	
 	/**
 	 * Operations on Tabs
