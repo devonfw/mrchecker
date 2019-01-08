@@ -124,7 +124,8 @@ public class DriverManager {
 	}
 	
 	private static boolean isEmpty(String seleniumGridParameter) {
-		return seleniumGridParameter == null || seleniumGridParameter.trim().isEmpty();
+		return seleniumGridParameter == null || seleniumGridParameter.trim()
+				.isEmpty();
 	}
 	
 	/**
@@ -183,7 +184,8 @@ public class DriverManager {
 				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
 						.forEach((key, value) -> {
 							BFLogger.logInfo("Browser option: " + key + " " + value);
-							String item = (value.isEmpty()) ? key : key + "=" + value;
+							String item = (value.toString()
+									.isEmpty()) ? key : key + "=" + value;
 							options.addArguments(item);
 						});
 						
@@ -220,7 +222,8 @@ public class DriverManager {
 				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
 						.forEach((key, value) -> {
 							BFLogger.logInfo("Browser option: " + key + " " + value);
-							String item = (value.isEmpty()) ? key : key + "=" + value;
+							String item = (value.toString()
+									.isEmpty()) ? key : key + "=" + value;
 							options.addArguments(item);
 						});
 						
@@ -258,15 +261,14 @@ public class DriverManager {
 				profile.setPreference("browser.download.manager.showWhenStarting", false);
 				profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 				
+				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
 				// Set users browser options
 				RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
 						.forEach((key, value) -> {
 							BFLogger.logInfo("Browser option: " + key + " " + value);
-							profile.setPreference(key, value);
+							options.setCapability(key, value);
 						});
 						
-				FirefoxOptions options = new FirefoxOptions().setProfile(profile);
-				
 				return new NewFirefoxDriver(options);
 			}
 		},

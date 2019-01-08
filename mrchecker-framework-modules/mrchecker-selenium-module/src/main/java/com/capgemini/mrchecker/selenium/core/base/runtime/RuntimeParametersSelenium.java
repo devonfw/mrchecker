@@ -19,13 +19,13 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 	SELENIUM_GRID("seleniumGrid", ""),
 	OS("os", ""),
 	BROWSER_OPTIONS("browserOptions", "") {
-		public Map<String, String> getValues() {
+		public Map<String, Object> getValues() {
 			return Arrays.asList(this.paramValue.split(";"))
 					.stream()
 					.filter(i -> i != "") // remove empty inputs
 					.map(i -> i.split("=", 2)) // split to key, value. Not more than one time
 					.map(i -> new String[] { i[0], (i.length == 1) ? "" : i[1] }) // if value is empty, set empty text
-					.collect(Collectors.toMap(i -> i[0], i -> i[1])); // create Map<String, String>
+					.collect(Collectors.toMap(i -> i[0], i -> (Object) i[1])); // create Map<String, Object>
 			
 		}
 	};
@@ -46,7 +46,7 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 		return this.paramValue;
 	}
 	
-	public Map<String, String> getValues() {
+	public Map<String, Object> getValues() {
 		return null;
 	}
 	

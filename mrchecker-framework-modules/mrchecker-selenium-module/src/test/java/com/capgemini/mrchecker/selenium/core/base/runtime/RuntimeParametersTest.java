@@ -22,7 +22,7 @@ public class RuntimeParametersTest {
 		values.put("browserVersion", "11.0");
 		values.put("seleniumGrid", "smth");
 		values.put("os", "linux");
-		values.put("browserOptions", "headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe");
+		values.put("browserOptions", "headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe;acceptInsecureCerts=true;maxInstances=3");
 		
 		values.forEach(System::setProperty);
 		
@@ -44,27 +44,31 @@ public class RuntimeParametersTest {
 		assertThat("System parameters for empty property 'browserVersion' should be '11.0'", RuntimeParametersSelenium.BROWSER_VERSION.getValue(), Matchers.equalTo("11.0"));
 		assertThat("System parameters for empty property 'seleniumGrid' should be 'smth'", RuntimeParametersSelenium.SELENIUM_GRID.getValue(), Matchers.equalTo("smth"));
 		assertThat("System parameters for empty property 'os' should be 'linux'", RuntimeParametersSelenium.OS.getValue(), Matchers.equalTo("linux"));
-		assertThat("System parameters for empty property 'browserOptions' should be 'headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe'",
+		assertThat(
+				"System parameters for empty property 'browserOptions' should be 'headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe;acceptInsecureCerts=true;maxInstances=3'",
 				RuntimeParametersSelenium.BROWSER_OPTIONS.getValue(),
-				Matchers.equalTo("headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe"));
+				Matchers.equalTo("headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe;acceptInsecureCerts=true;maxInstances=3"));
 		
 	}
 	
 	@Test
 	public void testBrowserOptionsVariable() throws Exception {
 		
-		Map<String, String> expected = new HashMap();
+		Map<String, Object> expected = new HashMap();
 		expected.put("testEquals", "FirstEquals=SecondEquals");
 		expected.put("headless", "");
-		expected.put("window-size", "1200x600");
 		expected.put("--testMe", "");
+		expected.put("window-size", "1200x600");
+		expected.put("acceptInsecureCerts", true);
+		expected.put("maxInstances", 3);
 		
 		assertThat(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
 				.size(),
-				Matchers.is(4));
+				Matchers.is(6));
 		
-		assertThat(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues(),
-				Matchers.is(expected));
+		assertThat(RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
+				.toString(),
+				Matchers.is(expected.toString()));
 		
 	}
 	
@@ -73,7 +77,8 @@ public class RuntimeParametersTest {
 		
 		RuntimeParametersSelenium.BROWSER_OPTIONS.getValues()
 				.forEach((key, value) -> {
-					String item = (value.isEmpty()) ? key : key + "=" + value;
+					String item = (value.toString()
+							.isEmpty()) ? key : key + "=" + value;
 					System.out.println(item);
 				});
 		
