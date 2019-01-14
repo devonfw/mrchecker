@@ -6,7 +6,9 @@ import static org.junit.Assert.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.hamcrest.Matchers;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,6 +50,23 @@ public class RuntimeParametersTest {
 				"System parameters for empty property 'browserOptions' should be 'headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe;acceptInsecureCerts=true;maxInstances=3'",
 				RuntimeParametersSelenium.BROWSER_OPTIONS.getValue(),
 				Matchers.equalTo("headless;window-size=1200x600;testEquals=FirstEquals=SecondEquals;--testMe;acceptInsecureCerts=true;maxInstances=3"));
+		
+	}
+	
+	@Test
+	public void testConvertToCorrectType() throws Exception {
+		
+		String value = "true";
+		Object convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat(BooleanUtils.toBooleanObject((boolean) convertToCorrectType), IsInstanceOf.instanceOf(Boolean.class));
+		
+		value = "false";
+		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat(BooleanUtils.toBooleanObject((boolean) convertToCorrectType), IsInstanceOf.instanceOf(Boolean.class));
+		
+		value = "blue";
+		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat(BooleanUtils.toBooleanObject((boolean) convertToCorrectType), Matchers.not(IsInstanceOf.instanceOf(Boolean.class)));
 		
 	}
 	
