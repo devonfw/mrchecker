@@ -53,8 +53,15 @@ public enum RuntimeParametersSelenium implements RuntimeParametersI {
 		}
 		
 		if (NumberUtils.isNumber(value)) {
-			convertedValue = Integer.valueOf(value);
-			return convertedValue;
+			if (NumberUtils.isDigits(value)) {
+				// so it is integer value
+				convertedValue = Integer.valueOf(value);
+				return convertedValue;
+			} else {
+				// so it is probably float value
+				convertedValue = Float.valueOf(value);
+				return convertedValue;
+			}
 		}
 		
 		return convertedValue;

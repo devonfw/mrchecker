@@ -11,11 +11,16 @@ import org.hamcrest.Matchers;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class RuntimeParametersTest {
 	
 	private Map<String, String> values = new HashMap<String, String>();
+	
+	@Rule
+	public ExpectedException exceptionGrabber = ExpectedException.none();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -54,8 +59,9 @@ public class RuntimeParametersTest {
 	}
 	
 	@Test
-	public void testConvertToCorrectType() throws Exception {
+	public void testConvertToCorrectTypeBoolean() throws Exception {
 		
+		// validate type as Boolean
 		String value = "true";
 		Object convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
 		assertThat(BooleanUtils.toBooleanObject((boolean) convertToCorrectType), IsInstanceOf.instanceOf(Boolean.class));
@@ -66,7 +72,44 @@ public class RuntimeParametersTest {
 		
 		value = "blue";
 		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		exceptionGrabber.expect(ClassCastException.class);
+		exceptionGrabber.expectMessage("java.lang.String cannot be cast to java.lang.Boolean");
 		assertThat(BooleanUtils.toBooleanObject((boolean) convertToCorrectType), Matchers.not(IsInstanceOf.instanceOf(Boolean.class)));
+		
+	}
+	
+	@Test
+	public void testConvertToCorrectTypeInteger() throws Exception {
+		
+		String value = "1";
+		Object convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat((Integer) convertToCorrectType, IsInstanceOf.instanceOf(Integer.class));
+		
+		value = "0.23";
+		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat((Float) convertToCorrectType, IsInstanceOf.instanceOf(Float.class));
+		
+		value = "blue";
+		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		exceptionGrabber.expect(ClassCastException.class);
+		exceptionGrabber.expectMessage("java.lang.String cannot be cast to java.lang.Integer");
+		assertThat((Integer) convertToCorrectType, IsInstanceOf.instanceOf(Integer.class));
+	}
+	
+	@Test
+	public void testConvertToCorrectTypeString() throws Exception {
+		
+		String value = "hello";
+		Object convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat((String) convertToCorrectType, IsInstanceOf.instanceOf(String.class));
+		
+		value = "";
+		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat((String) convertToCorrectType, IsInstanceOf.instanceOf(String.class));
+		
+		value = null;
+		convertToCorrectType = RuntimeParametersSelenium.convertToCorrectType(value);
+		assertThat((String) convertToCorrectType, Matchers.isEmptyOrNullString());
 		
 	}
 	
