@@ -67,7 +67,7 @@
 
         <!-- Allure test framework modules -->
         <mrchecker-core-module.version>4.12.1.1</mrchecker-core-module.version>
-        <mrchecker-selenium-module.version>3.8.2.0</mrchecker-selenium-module.version>
+        <mrchecker-selenium-module.version>3.8.2.1</mrchecker-selenium-module.version>
         <mrchecker-security-module.version>1.2.0</mrchecker-security-module.version>
         <mrchecker-webapi-module.version>1.2.0</mrchecker-webapi-module.version>
 
