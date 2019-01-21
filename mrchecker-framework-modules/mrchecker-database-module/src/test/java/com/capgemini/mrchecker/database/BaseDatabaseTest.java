@@ -11,7 +11,7 @@ public class BaseDatabaseTest {
 		myDatabase.myMethod();
 	}
 
-	private static class MyDatabase extends BaseDatabaseTest {
+	public static class MyDatabase extends BaseDatabaseTest {
 
 		public String myMethod() {
 			return "Welcome";
