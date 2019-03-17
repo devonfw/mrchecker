@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="example" />
+        <module name="template" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mrchecker-app-under-test (2)" target="1.8" />
+      <module name="mrchecker-core-module" target="1.8" />
+      <module name="mrchecker-database-module" target="1.8" />
+      <module name="mrchecker-example-module" target="1.8" />
+      <module name="mrchecker-security-module" target="1.8" />
+      <module name="mrchecker-selenium-module (1)" target="1.8" />
+      <module name="mrchecker-selenium-module (2)" target="1.8" />
+      <module name="mrchecker-selenium-module (3)" target="1.8" />
+      <module name="mrchecker-test-framework" target="1.5" />
+      <module name="mrchecker-webapi-module" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="example" options="-Xlint:deprecation" />
+      <module name="mrchecker-app-under-test (2)" options="-Xlint:deprecation" />
+      <module name="template" options="-Xlint:deprecation" />
+    </option>
+  </component>
+</project>
