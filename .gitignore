@@ -11,6 +11,7 @@
 **/reports/
 **/.classpath
 **/.idea/
+**/.idea/workspace.xml
 **/*.iml
 **/.project
 **/secretData

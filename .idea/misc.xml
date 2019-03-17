@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/mrchecker-app-under-test/pom.xml" />
         <option value="$PROJECT_DIR$/mrchecker-app-under-test-boilerplate/pom.xml" />
+        <option value="$PROJECT_DIR$/template/pom.xml" />
       </list>
     </option>
   </component>

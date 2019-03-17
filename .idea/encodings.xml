@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-core-module" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-database-module" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-example-module" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-security-module" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-selenium-module" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-selenium-module/target" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-selenium-module/target/nexus-staging/staging/2dffa58a408761/com/capgemini/mrchecker/mrchecker-selenium-module/3.8.2.1" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mrchecker-framework-modules/mrchecker-webapi-module" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/sample-app-under-test" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/template-app-under-test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/template" charset="UTF-8" />
   </component>
 </project>
