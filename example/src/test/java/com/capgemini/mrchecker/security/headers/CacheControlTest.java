@@ -1,20 +1,18 @@
 package com.capgemini.mrchecker.security.headers;
 
-import static io.restassured.RestAssured.given;
-
-import org.apache.http.HttpStatus;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
-
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.apache.http.HttpStatus;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies, that the cache-control header is configured properly.
@@ -33,20 +31,20 @@ import junitparams.Parameters;
  */
 @RunWith(JUnitParamsRunner.class)
 public class CacheControlTest extends SecurityTest {
-	
+
 	private Object[] addParameters() {
 		String body = "{\"sort\":[],\"categories\":[]}";
 		String contentType = "application/json";
 		return new Object[][] {
-						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN,
-										SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK
-						},
-						{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN,
-										SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK
-						},
+				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN,
+						SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK
+				},
+				{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN,
+						SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK
+				},
 		};
 	}
-	
+
 	@Test
 	@Parameters(method = "addParameters")
 	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, Method method, String contentType, String body, int statusCode) {

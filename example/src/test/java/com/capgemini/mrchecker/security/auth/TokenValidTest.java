@@ -1,18 +1,16 @@
 package com.capgemini.mrchecker.security.auth;
 
-import static io.restassured.RestAssured.given;
-
-import org.apache.http.HttpStatus;
-import org.junit.Test;
-
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
-
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Headers;
 import io.restassured.specification.RequestSpecification;
+import org.apache.http.HttpStatus;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies, that the application can not be accessed via a fabricated
@@ -27,32 +25,32 @@ import io.restassured.specification.RequestSpecification;
  * @author Marek Puchalski, Capgemini
  */
 public class TokenValidTest extends SecurityTest {
-	
+
 	private static final String AUTH_HEADER = "Authorization";
-	
+
 	@Test
 	public void testNoneAlgorithmToken() {
-		
+
 		Headers authHeaders = getSessionManager().getAuthHeaders(SessionEnum.WAITER);
-		
+
 		String validToken = authHeaders.getValue(AUTH_HEADER);
 		String invalidToken = generateNoneAlgToken(validToken);
-		
+
 		RequestSpecification rs = new RequestSpecBuilder()
-		        .addHeader(AUTH_HEADER, invalidToken)
-		        .setBaseUri(EnvironmentParam.SECURITY_SERVER_ORIGIN.getValue())
-		        .setBasePath(SubUrlEnum.ORDER_SEARCH.getValue())
-		        .addHeader("Content-Type", "application/json")
-		        .setBody("{\"pagination\":{\"size\":8,\"page\":1,\"total\":1},\"sort\":[]}")
-		        .build();
-		
+				.addHeader(AUTH_HEADER, invalidToken)
+				.setBaseUri(EnvironmentParam.SECURITY_SERVER_ORIGIN.getValue())
+				.setBasePath(SubUrlEnum.ORDER_SEARCH.getValue())
+				.addHeader("Content-Type", "application/json")
+				.setBody("{\"pagination\":{\"size\":8,\"page\":1,\"total\":1},\"sort\":[]}")
+				.build();
+
 		given(rs)
-		        .when()
-		        .post()
-		        .then()
-		        .statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+				.when()
+				.post()
+				.then()
+				.statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR);
 	}
-	
+
 	private String generateNoneAlgToken(String validToken) {
 		String[] parts = validToken.split("\\.");
 		String prefix = "Bearer ";

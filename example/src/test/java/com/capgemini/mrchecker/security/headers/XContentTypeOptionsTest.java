@@ -1,19 +1,17 @@
 package com.capgemini.mrchecker.security.headers;
 
-import static io.restassured.RestAssured.given;
-
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
-
 import io.restassured.specification.RequestSpecification;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies the presence and proper configuration of the
@@ -29,20 +27,20 @@ import junitparams.Parameters;
  * by polyglot files (e.g. files being both post script documents and javascript).
  * Read also: [1]
  * https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/gg622941(v=vs.85)
- * 
+ *
  * @author Marek Puchalski, Capgemini
  */
 @Ignore // currently fails on the reference environment
 @RunWith(JUnitParamsRunner.class)
 public class XContentTypeOptionsTest extends SecurityTest {
-	
+
 	private Object[] addParameters() {
 		return new Object[][] {
-						{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
-						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
+				{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
+				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
 		};
 	}
-	
+
 	@Test
 	@Parameters(method = "addParameters")
 	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path) {

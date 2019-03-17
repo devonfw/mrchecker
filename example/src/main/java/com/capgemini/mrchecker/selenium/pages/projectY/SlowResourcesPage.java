@@ -6,24 +6,24 @@ import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnu
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class SlowResourcesPage extends BasePage {
-	
+
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-						.contains(PageSubURLsProjectYEnum.SLOW_RESOURCES.getValue());
+				.contains(PageSubURLsProjectYEnum.SLOW_RESOURCES.getValue());
 	}
-	
+
 	@Override
 	public void load() {
 		BFLogger.logDebug("Load 'Slow Resources' page.");
 		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.SLOW_RESOURCES.getValue());
 		getDriver().waitForPageLoaded();
 	}
-	
+
 	@Override
 	public String pageTitle() {
 		return getActualPageTitle();
 	}
-	
+
 }

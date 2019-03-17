@@ -12,24 +12,24 @@ import com.google.inject.Injector;
  * @author Marek Puchalski, Capgemini
  */
 public abstract class SecurityTest extends BaseTest {
-	
-	private static final Injector	injector	= Guice.createInjector(new SessionManagerModule());
-	private ISessionManager				sessionManager;
-	
+
+	private static final Injector        injector = Guice.createInjector(new SessionManagerModule());
+	private              ISessionManager sessionManager;
+
 	public SecurityTest() {
 		super();
 		sessionManager = injector.getInstance(ISessionManager.class);
 	}
-	
+
 	public ISessionManager getSessionManager() {
 		return sessionManager;
 	}
-	
+
 	@Override
 	public void setUp() {
 		// nothing
 	}
-	
+
 	@Override
 	public void tearDown() {
 		// nothing

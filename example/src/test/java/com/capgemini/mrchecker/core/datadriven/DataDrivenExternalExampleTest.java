@@ -1,22 +1,20 @@
 package com.capgemini.mrchecker.core.datadriven;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import com.capgemini.mrchecker.core.datadriven.person_example.PersonMapper;
-import com.capgemini.mrchecker.core.datadriven.person_example.SimpleCalc;
 import com.capgemini.mrchecker.core.datadriven.person_example.PersonMapper.Person;
+import com.capgemini.mrchecker.core.datadriven.person_example.SimpleCalc;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import junitparams.mappers.CsvWithHeaderMapper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
 public class DataDrivenExternalExampleTest extends BaseTest {
 	private SimpleCalc testSubject = new SimpleCalc();
-	
+
 	/**
 	 * ---------------------------------------------------------------------------------------------------------------
 	 * --- EXAMPLE 1 -------------------------------------------------------------------------------------------------
@@ -27,9 +25,9 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 	public void loadParamsFromCsv(String age, String name) {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromCsv()");
 		BFLogger.logDebug("\t" + "Name=" + name + " " + "Age=" + age);
-		
+
 	}
-	
+
 	/**
 	 * ---------------------------------------------------------------------------------------------------------------
 	 * --- EXAMPLE 2 -------------------------------------------------------------------------------------------------
@@ -42,7 +40,7 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromCsvWithHeader()");
 		BFLogger.logDebug("\t" + "Name=" + name + " " + "Age=" + age);
 	}
-	
+
 	/**
 	 * ---------------------------------------------------------------------------------------------------------------
 	 * --- EXAMPLE 3 -------------------------------------------------------------------------------------------------
@@ -55,12 +53,12 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromAnyFile()");
 		BFLogger.logDebug("\t" + "Name=" + person.getName() + " " + "Age=" + person.getAge());
 	}
-	
+
 	@Override
 	public void setUp() {
-		
+
 	}
-	
+
 	@Override
 	public void tearDown() {
 		try {
@@ -68,7 +66,7 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 }

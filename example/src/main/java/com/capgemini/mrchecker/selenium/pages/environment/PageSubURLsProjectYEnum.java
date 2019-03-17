@@ -1,7 +1,7 @@
 package com.capgemini.mrchecker.selenium.pages.environment;
 
 public enum PageSubURLsProjectYEnum {
-	
+
 	BASIC_AUTH("basic_auth"),
 	NEW_WINDOW("windows/new"),
 	WINDOW("windows"),
@@ -43,27 +43,29 @@ public enum PageSubURLsProjectYEnum {
 	SLOW_RESOURCES("slow"),
 	TYPOS("typos"),
 	WYSIWYGEDITOR("tinymce");
-	
+
 	/*
 	 * Sub URLs are used as real locations in test environment
 	 */
 	private String subURL;
-	
+
 	private PageSubURLsProjectYEnum(String subURL) {
 		this.subURL = subURL;
-	};
-	
-	private PageSubURLsProjectYEnum() {
-		
 	}
-	
+
+	;
+
+	private PageSubURLsProjectYEnum() {
+
+	}
+
 	@Override
 	public String toString() {
 		return getValue();
 	}
-	
+
 	public String getValue() {
 		return subURL;
 	}
-	
+
 }

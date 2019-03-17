@@ -1,20 +1,18 @@
 package com.capgemini.mrchecker.security.auth;
 
-import static io.restassured.RestAssured.given;
-
-import org.apache.http.HttpStatus;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
-
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.apache.http.HttpStatus;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies, that protected resources can not be accessed by unauthenticated
@@ -34,22 +32,22 @@ import junitparams.Parameters;
  */
 @RunWith(JUnitParamsRunner.class)
 public class AuthRequiredTest extends SecurityTest {
-	
+
 	private Object[] addParameters() {
 		String body = "{\"pagination\":{\"size\":8,\"page\":1,\"total\":1},\"sort\":[]}";
 		return new Object[][] {
-						// Negative case
-						{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
-										body, HttpStatus.SC_FORBIDDEN
-						},
-						// Positive case
-						{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
-										body, HttpStatus.SC_OK
-						}
+				// Negative case
+				{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
+						body, HttpStatus.SC_FORBIDDEN
+				},
+				// Positive case
+				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
+						body, HttpStatus.SC_OK
+				}
 		};
-		
+
 	}
-	
+
 	@Test
 	@Parameters(method = "addParameters")
 	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, String body, int statusCode) {

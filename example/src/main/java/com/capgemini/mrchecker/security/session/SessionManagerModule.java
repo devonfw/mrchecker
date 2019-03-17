@@ -8,10 +8,10 @@ import com.google.inject.AbstractModule;
  * @author Marek Puchalski, Capgemini
  */
 public class SessionManagerModule extends AbstractModule {
-	
+
 	@Override
 	protected void configure() {
 		bind(ISessionManager.class).to(SessionManager.class);
 	}
-	
+
 }

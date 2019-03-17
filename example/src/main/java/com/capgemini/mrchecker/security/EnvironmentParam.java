@@ -13,21 +13,21 @@ public enum EnvironmentParam {
 	SECURITY_SERVER_ORIGIN,
 	SECURITY_USER1_NAME,
 	SECURITY_USER1_PASSWD;
-	
+
 	public String getValue() {
-		
+
 		if (null == BaseTest.getEnvironmentService()) {
 			throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
 		}
-		
+
 		return BaseTest.getEnvironmentService()
-		        .getValue(this.name());
-		
+				.getValue(this.name());
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return getValue();
 	}
-	
+
 }

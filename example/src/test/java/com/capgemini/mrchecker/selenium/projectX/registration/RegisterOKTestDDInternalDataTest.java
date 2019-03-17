@@ -1,11 +1,5 @@
 package com.capgemini.mrchecker.selenium.projectX.registration;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.Hobby;
@@ -13,16 +7,20 @@ import com.capgemini.mrchecker.selenium.pages.projectX.registration.MaritalStatu
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistrationPage;
 import com.capgemini.mrchecker.selenium.projectX.registration.utils.DataProviderInternal;
 import com.capgemini.mrchecker.test.core.BaseTest;
-
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertTrue;
 
 @Category({ TestsSelenium.class })
 @RunWith(JUnitParamsRunner.class)
 public class RegisterOKTestDDInternalDataTest extends BaseTest {
-	
+
 	private static RegistrationPage registrationPage;
-	
+
 	private Object[] data() {
 		return new Object[] {
 				new DataProviderInternal()
@@ -57,24 +55,24 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 						.setPassword("xsw2#$_rewgwASD")
 						.setConfirmPassword("xsw2#$_rewgwASD") };
 	}
-	
+
 	@Override
 	public void setUp() {
 		registrationPage = new RegistrationPage();
 	}
-	
+
 	@Override
 	public void tearDown() {
 		registrationPage.load();
 	}
-	
+
 	@Test
 	@Parameters(method = "data")
 	public void registrationTest(DataProviderInternal dataProviderInternal) {
 		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
 				registrationPage.getActualPageTitle()
 						.equals(PageTitlesEnum.REGISTRATION.toString()));
-		
+
 		registrationPage.setFirstName(dataProviderInternal.getFirstName());
 		registrationPage.setLastName(dataProviderInternal.getLastName());
 		registrationPage.setMaritalStatus(dataProviderInternal.getMaritalStatus());
@@ -88,10 +86,10 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 		registrationPage.setAboutYourself(dataProviderInternal.getAboutYourself());
 		registrationPage.setPassword(dataProviderInternal.getPassword());
 		registrationPage.setConfirmPassword(dataProviderInternal.getConfirmPassword());
-		
+
 		registrationPage.clickSubmit();
 		assertTrue("Registration succeed text visible: ", registrationPage.isRegistryErrorTextVisible());
 		return;
 	}
-	
+
 }
