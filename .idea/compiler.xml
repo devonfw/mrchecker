@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="example-app-under-test" />
         <module name="template" />
         <module name="template-app-under-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="example-app-under-test" target="1.5" />
       <module name="mrchecker-app-under-test" target="1.8" />
       <module name="mrchecker-app-under-test (2)" target="1.8" />
       <module name="mrchecker-core-module" target="1.8" />
