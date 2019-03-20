@@ -4,8 +4,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/mrchecker-app-under-test/pom.xml" />
-        <option value="$PROJECT_DIR$/mrchecker-app-under-test-boilerplate/pom.xml" />
         <option value="$PROJECT_DIR$/example/pom.xml" />
         <option value="$PROJECT_DIR$/template/pom.xml" />
       </list>
