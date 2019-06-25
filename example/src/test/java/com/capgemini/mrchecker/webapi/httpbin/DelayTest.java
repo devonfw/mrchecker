@@ -174,15 +174,16 @@ public class DelayTest extends BasePageWebApiTest {
 		int actualDelay = (int)((System.currentTimeMillis() - startTime) / 1000);
 		int minimumExpectedSeconds = Math.min(seconds, MAX_DELAY_SECONDS);
 		int maximumExpectedSeconds = minimumExpectedSeconds + 1;
+		BFLogger.logInfo("Step 2 - Assert delay duration within expected lower bound");
 		assertThat(actualDelay, greaterThanOrEqualTo(minimumExpectedSeconds));
 		//No asserts on upper bound due to service instability, just logging the result.
 		if(actualDelay <= maximumExpectedSeconds) {
-			BFLogger.logInfo("Step 1 - Delay duration within expected upper bound");
+			BFLogger.logInfo("Step 3 - Delay duration within expected upper bound");
 		}else {
-			BFLogger.logInfo("Step 1 - Delay duration exceeds expected upper bound");
+			BFLogger.logInfo("Step 3 - Delay duration exceeds expected upper bound");
 		}
 
-		BFLogger.logInfo("Step 2 - Validate response status code (should be 200): ");
+		BFLogger.logInfo("Step 4 - Validate response status code (should be 200): ");
 		assertThat(response.statusCode(), is(200));
 	}
 }
