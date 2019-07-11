@@ -9,75 +9,71 @@ import org.openqa.selenium.WebElement;
 
 public class DisappearingElementsPage extends BasePage {
 
-	private static final By selectorGalleryMenuButton = By.cssSelector("li > a[href*=gallery]");
-	private static final By selectorMenuButtons       = By.cssSelector("li");
+    private static final By selectorGalleryMenuButton = By.cssSelector("li > a[href*=gallery]");
+    private static final By selectorMenuButtons = By.cssSelector("li");
 
-	@Override
-	public boolean isLoaded() {
-		getDriver().waitForPageLoaded();
-		return getDriver().getCurrentUrl()
-				.contains(PageSubURLsProjectYEnum.DISAPPEARING_ELEMENTS.getValue());
-	}
+    @Override
+    public boolean isLoaded() {
+        getDriver().waitForPageLoaded();
+        return getDriver().getCurrentUrl()
+                .contains(PageSubURLsProjectYEnum.DISAPPEARING_ELEMENTS.getValue());
+    }
 
-	@Override
-	public void load() {
-		BFLogger.logDebug("Load 'Disappearing Elements' page.");
-		getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DISAPPEARING_ELEMENTS.getValue());
-		getDriver().waitForPageLoaded();
-	}
+    @Override
+    public void load() {
+        BFLogger.logDebug("Load 'Disappearing Elements' page.");
+        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DISAPPEARING_ELEMENTS.getValue());
+        getDriver().waitForPageLoaded();
+    }
 
-	@Override
-	public String pageTitle() {
-		return getActualPageTitle();
-	}
+    @Override
+    public String pageTitle() {
+        return getActualPageTitle();
+    }
 
-	/**
-	 * Returns a number of WebElements representing menu buttons.
-	 *
-	 * @return A number of WebElements.
-	 */
-	public int getNumberOfMenuButtons() {
-		return getDriver().findElementDynamics(selectorMenuButtons)
-				.size();
-	}
+    /**
+     * Returns a number of WebElements representing menu buttons.
+     */
+    public int getNumberOfMenuButtons() {
+        return getDriver().findElementDynamics(selectorMenuButtons)
+                .size();
+    }
 
-	/**
-	 * Returns WebElement representing disappearing element of menu.
-	 *
-	 * @return Disappearing WebElement if visible, null otherwise.
-	 */
-	public WebElement getGalleryMenuElement() {
-		return getDriver().findElementQuietly(selectorGalleryMenuButton);
-	}
+    /**
+     * Returns WebElement representing disappearing element of menu.
+     *
+     * @return Disappearing WebElement if visible, null otherwise.
+     */
+    public WebElement getGalleryMenuElement() {
+        return getDriver().findElementQuietly(selectorGalleryMenuButton);
+    }
 
-	/**
-	 * Refreshes web page as many times as it is required to appear/disappear menu button WebElement.
-	 *
-	 * @param shouldAppear Determines if element should appear (true) or disappear (false).
-	 */
-	public void refreshPageUntilWebElementAppears(boolean shouldAppear) {
-		int numberOfAttempts = 5;
-		int counter = 0;
-		while (!isVisibilityAsExpected(shouldAppear) || isMaxNumberOfAttemptsReached(counter++, numberOfAttempts)) {
-			refreshPage();
-		}
-	}
+    /**
+     * Refreshes web page until WebElement has expected visibility
+     *
+     * @param webElement        tested element
+     * @param shouldBeDisplayed Determines if element should be displayed.
+     * @param maxRefreshes      Maximal number of refreshes
+     * @return true if element has expected visibility after last refresh
+     */
+    public boolean refreshPageUntilWebElementHasExpectedVisibility(WebElement webElement, boolean shouldBeDisplayed, int maxRefreshes) {
+        for (int refreshesDone = 0; refreshesDone < maxRefreshes; refreshesDone++) {
+            refreshPage();
+            if (webElement.isDisplayed() == shouldBeDisplayed) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	private boolean isVisibilityAsExpected(boolean expected) {
-		boolean isVisibilityDifferentThanExpected = isGalleryMenuElementVisible() ^ expected;
-		return !isVisibilityDifferentThanExpected;
-	}
-
-	private boolean isGalleryMenuElementVisible() {
-		boolean result = false;
-		WebElement gallery = getGalleryMenuElement();
-		if (gallery != null)
-			result = gallery.isDisplayed();
-		return result;
-	}
-
-	private boolean isMaxNumberOfAttemptsReached(int attemptNo, int maxNumberOfAttempts) {
-		return attemptNo == maxNumberOfAttempts;
-	}
+    /**
+     * Refreshes page until Gallery menu element is displayed
+     *
+     * @param maxRefreshes Maximal number of refreshes
+     * @return true if element has expected visibility after last refresh
+     */
+    public boolean refreshPageUntilGalleryIsVisible(int maxRefreshes) {
+        return refreshPageUntilWebElementHasExpectedVisibility(getGalleryMenuElement(), true, maxRefreshes);
+    }
 
 }
