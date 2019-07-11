@@ -11,40 +11,42 @@ import org.junit.experimental.categories.Category;
 
 import static org.junit.Assert.*;
 
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
+@Category({TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class})
 public class DisappearingElementsTest extends TheInternetBaseTest {
 
-	private static final int totalNumberOfMenuButtons = 5;
-	private static DisappearingElementsPage disappearingElementsPage;
-	private static       int numberOfMenuButtons      = 0;
+    private static final int totalNumberOfMenuButtons = 5;
+    private static DisappearingElementsPage disappearingElementsPage;
+    private static int numberOfMenuButtons = 0;
+    private final int maxRefreshes = 10;
 
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		disappearingElementsPage = shouldTheInternetPageBeOpened().clickDisappearingElementsLink();
+    @BeforeClass
+    public static void setUpBeforeClass() {
+        disappearingElementsPage = shouldTheInternetPageBeOpened().clickDisappearingElementsLink();
 
-		logStep("Verify if Disappearing Elements page is opened");
-		assertTrue("Unable to open Disappearing Elements page", disappearingElementsPage.isLoaded());
+        logStep("Verify if Disappearing Elements page is opened");
+        assertTrue("Unable to open Disappearing Elements page", disappearingElementsPage.isLoaded());
 
-		logStep("Verify if menu button elements are visible");
-		numberOfMenuButtons = disappearingElementsPage.getNumberOfMenuButtons();
-		assertTrue("Unable to display menu", numberOfMenuButtons > 0);
-	}
+        logStep("Verify if menu button elements are visible");
+        numberOfMenuButtons = disappearingElementsPage.getNumberOfMenuButtons();
+        assertTrue("Unable to display menu", numberOfMenuButtons > 0);
+    }
 
-	@Test
-	public void shouldMenuButtonElementAppearAndDisappearAfterRefreshTest() {
-		logStep("Click refresh button until menu button appears");
-		disappearingElementsPage.refreshPageUntilWebElementAppears(true);
+    @Test
+    public void shouldMenuButtonElementAppearAndDisappearAfterRefreshTest() {
+        logStep("Click refresh button until menu button appears");
+        disappearingElementsPage.refreshPageUntilGalleryIsVisible(maxRefreshes);
 
-		logStep("Verify if menu button element appeared");
-		assertNotNull("Unable to disappear menu button element", disappearingElementsPage.getGalleryMenuElement());
-		assertEquals("The number of button elements after refresh is incorrect", totalNumberOfMenuButtons, disappearingElementsPage.getNumberOfMenuButtons());
+        logStep("Verify if menu button element appeared");
+        assertNotNull("Unable to disappear menu button element", disappearingElementsPage.getGalleryMenuElement());
+        assertEquals("The number of button elements after refresh is incorrect", totalNumberOfMenuButtons, disappearingElementsPage.getNumberOfMenuButtons());
 
-		logStep("Click refresh button until menu button disappears");
-		disappearingElementsPage.refreshPageUntilWebElementAppears(false);
+        logStep("Click refresh button until menu button disappears");
+        disappearingElementsPage.refreshPageUntilGalleryIsNotVisible(maxRefreshes);
 
-		logStep("Verify if menu button element disappeared");
-		assertNull("Unable to appear menu button element", disappearingElementsPage.getGalleryMenuElement());
-		assertTrue("The number of button elements after refresh is incorrect", totalNumberOfMenuButtons > disappearingElementsPage.getNumberOfMenuButtons());
-	}
+        logStep("Verify if menu button element disappeared");
+        assertNull("Unable to appear menu button element", disappearingElementsPage.getGalleryMenuElement());
+        assertTrue("The number of button elements after refresh is incorrect", totalNumberOfMenuButtons > disappearingElementsPage.getNumberOfMenuButtons());
+    }
+
 
 }
