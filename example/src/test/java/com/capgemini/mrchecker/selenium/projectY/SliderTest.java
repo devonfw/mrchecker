@@ -4,8 +4,8 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
-import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.HorizontalSliderElement;
 import com.capgemini.mrchecker.selenium.pages.projectY.HorizontalSliderPage;
+import com.capgemini.mrchecker.selenium.pages.projectY.InteractionType;
 import com.capgemini.mrchecker.selenium.pages.projectY.TheInternetPage;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,9 +22,9 @@ public class SliderTest extends TheInternetBaseTest {
 
 	private static HorizontalSliderPage horizontalSliderPage;
 
-	BigDecimal startPosition;
-	BigDecimal middlePosition;
-	BigDecimal endPosition;
+	BigDecimal sliderMinValue;
+	BigDecimal sliderMiddleValue;
+	BigDecimal sliderMaxValue;
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -47,89 +47,89 @@ public class SliderTest extends TheInternetBaseTest {
 		logStep("Verify if horizontal slider element is visible");
 		assertTrue("Horizontal slider is not visible", horizontalSliderPage.isElementHorizontalSliderVisible());
 
-		startPosition = horizontalSliderPage.getStartPosition();
-		middlePosition = horizontalSliderPage.getMiddlePosition();
-		endPosition = horizontalSliderPage.getEndPosition();
+		sliderMinValue = horizontalSliderPage.getSliderMinValue();
+		sliderMiddleValue = horizontalSliderPage.getSliderMiddleValue();
+		sliderMaxValue = horizontalSliderPage.getSliderMaxValue();
 	}
 
 	@Test
 	public void shouldHorizontalSliderMoveWhenKeyboardArrowButtonsArePressed() {
-		BigDecimal position;
-		logStep("Move slider to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
+		BigDecimal sliderValue;
+		logStep("Move slider to minimal position: " + sliderMinValue);
+		horizontalSliderPage.setSliderValue(sliderMinValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", sliderMinValue, horizontalSliderPage.getSliderValue());
 
-		logStep("Move slider to middle position: " + middlePosition);
-		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition), horizontalSliderPage.getCurrentPosition());
+		logStep("Move slider to middle position: " + sliderMiddleValue);
+		horizontalSliderPage.setSliderValue(sliderMiddleValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.correctSliderValue(sliderMiddleValue), horizontalSliderPage.getSliderValue());
 
-		logStep("Move slider to end position: " + endPosition);
-		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
+		logStep("Move slider to maximal position: " + sliderMaxValue);
+		horizontalSliderPage.setSliderValue(sliderMaxValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", sliderMaxValue, horizontalSliderPage.getSliderValue());
 
-		position = startPosition.subtract(BigDecimal.ONE);
-		logStep("Move slider to position before start position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
+		sliderValue = sliderMinValue.subtract(BigDecimal.ONE);
+		logStep("Move slider to value lower than minimal: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", sliderMinValue, horizontalSliderPage.getSliderValue());
 
-		position = endPosition.add(BigDecimal.ONE);
-		logStep("Move slider to position after end position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
+		sliderValue = sliderMaxValue.add(BigDecimal.ONE);
+		logStep("Move slider to value greater than maximal: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", sliderMaxValue, horizontalSliderPage.getSliderValue());
 
-		position = middlePosition.divide(new BigDecimal(2));
-		logStep("Move slider to improperly defined position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
+		sliderValue = sliderMiddleValue.divide(new BigDecimal(2));
+		logStep("Move slider to improperly defined position: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.correctSliderValue(sliderValue), horizontalSliderPage.getSliderValue());
 
-		position = new BigDecimal(new BigInteger("233234"), 5);
-		logStep("Move slider to improperly defined random position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
+		sliderValue = new BigDecimal(new BigInteger("233234"), 5);
+		logStep("Move slider to incorrect value: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.correctSliderValue(sliderValue), horizontalSliderPage.getSliderValue());
 
-		logStep("Move slider back to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
-		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
+		logStep("Move slider back to minimal value: " + sliderMinValue);
+		horizontalSliderPage.setSliderValue(sliderMinValue, InteractionType.KEYBOARD);
+		assertEquals("Fail to set horizontal sliders position", sliderMinValue, horizontalSliderPage.getSliderValue());
 	}
 
 	@Test
 	public void shouldHorizontalSliderMoveWhenMouseButtonIsPressedAndMouseIsMoving() {
-		BigDecimal position;
-		logStep("Move slider to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
+		BigDecimal sliderValue;
+		logStep("Move slider to minimal position: " + sliderMinValue);
+		horizontalSliderPage.setSliderValue(sliderMinValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", sliderMinValue, horizontalSliderPage.getSliderValue());
 
-		logStep("Move slider to middle position: " + middlePosition);
-		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition), horizontalSliderPage.getCurrentPosition());
+		logStep("Move slider to middle position: " + sliderMiddleValue);
+		horizontalSliderPage.setSliderValue(sliderMiddleValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.correctSliderValue(sliderMiddleValue), horizontalSliderPage.getSliderValue());
 
-		logStep("Move slider to end position: " + endPosition);
-		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
+		logStep("Move slider to maximal position: " + sliderMaxValue);
+		horizontalSliderPage.setSliderValue(sliderMaxValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", sliderMaxValue, horizontalSliderPage.getSliderValue());
 
-		position = startPosition.subtract(BigDecimal.ONE);
-		logStep("Move slider to position before start position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
+		sliderValue = sliderMinValue.subtract(BigDecimal.ONE);
+		logStep("Move slider to value lower than minimal: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", sliderMinValue, horizontalSliderPage.getSliderValue());
 
-		position = endPosition.add(BigDecimal.ONE);
-		logStep("Move slider to position after end position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", endPosition, horizontalSliderPage.getCurrentPosition());
+		sliderValue = sliderMaxValue.add(BigDecimal.ONE);
+		logStep("Move slider to value greater than maximal: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", sliderMaxValue, horizontalSliderPage.getSliderValue());
 
-		position = middlePosition.divide(new BigDecimal(2));
-		logStep("Move slider to improperly defined position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
+		sliderValue = sliderMiddleValue.divide(new BigDecimal(2));
+		logStep("Move slider to improperly defined position: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.correctSliderValue(sliderValue), horizontalSliderPage.getSliderValue());
 
-		position = new BigDecimal(new BigInteger("212348"), 5);
-		logStep("Move slider to improperly defined random position: " + position);
-		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.verifyAndCorrectPositionValue(position), horizontalSliderPage.getCurrentPosition());
+		sliderValue = new BigDecimal(new BigInteger("212348"), 5);
+		logStep("Move slider to incorrect value: " + sliderValue);
+		horizontalSliderPage.setSliderValue(sliderValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", horizontalSliderPage.correctSliderValue(sliderValue), horizontalSliderPage.getSliderValue());
 
-		logStep("Move slider back to start position: " + startPosition);
-		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
-		assertEquals("Fail to set horizontal sliders position", startPosition, horizontalSliderPage.getCurrentPosition());
+		logStep("Move slider back to minimal value: " + sliderMinValue);
+		horizontalSliderPage.setSliderValue(sliderMinValue, InteractionType.MOUSE);
+		assertEquals("Fail to set horizontal sliders position", sliderMinValue, horizontalSliderPage.getSliderValue());
 	}
 
 }
