@@ -109,6 +109,16 @@ public class DisappearingElementsPage extends BasePage {
     }
 
     /**
+     * Refreshes page until Gallery menu element is not displayed
+     *
+     * @param maxRefreshes Maximal number of refreshes
+     * @return true if element has expected visibility after last refresh
+     */
+    public boolean refreshPageUntilGalleryIsNotVisible(int maxRefreshes) {
+        return refreshPageUntilWebElementHasExpectedVisibility(getGalleryMenuElement(), false, maxRefreshes);
+    }
+
+    /**
      * Refreshes page until Gallery menu element is displayed
      *
      * @param maxRefreshes Maximal number of refreshes
