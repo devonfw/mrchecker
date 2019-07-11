@@ -5,6 +5,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.DisappearingElementsPage;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -19,8 +20,8 @@ public class DisappearingElementsTest extends TheInternetBaseTest {
     private static int numberOfMenuButtons = 0;
     private final int maxRefreshes = 10;
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
+    @Before
+    public void setUp() {
         disappearingElementsPage = shouldTheInternetPageBeOpened().clickDisappearingElementsLink();
 
         logStep("Verify if Disappearing Elements page is opened");
@@ -32,7 +33,7 @@ public class DisappearingElementsTest extends TheInternetBaseTest {
     }
 
     @Test
-    public void shouldMenuButtonElementAppearAndDisappearAfterRefreshTest() {
+    public void shouldMenuButtonElementAppearAndDisappearAfterRefresh() {
         logStep("Click refresh button until menu button appears");
         disappearingElementsPage.refreshPageUntilGalleryIsVisible(maxRefreshes);
 
@@ -48,5 +49,11 @@ public class DisappearingElementsTest extends TheInternetBaseTest {
         assertTrue("The number of button elements after refresh is incorrect", totalNumberOfMenuButtons > disappearingElementsPage.getNumberOfMenuButtons());
     }
 
+    @Test
+    public void shouldAboutButtonVisibleAfterEveryRefresh() {
+        logStep("Refresh page until about button is not visible");
+        boolean isAboutButtonVisibleAfterEveryRefresh = disappearingElementsPage.isAboutButtonVisibleAfterEveryRefresh(maxRefreshes);
+        assertTrue("About button has disappeard after refresh", isAboutButtonVisibleAfterEveryRefresh);
+    }
 
 }
