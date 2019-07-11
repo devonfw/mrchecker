@@ -5,7 +5,7 @@ import com.capgemini.mrchecker.selenium.core.base.environment.GetEnvironmentPara
 import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsProjectYEnum;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidArgumentException;
+import org.openqa.selenium.InvalidSelectorException;
 import org.openqa.selenium.WebElement;
 
 public class DisappearingElementsPage extends BasePage {
@@ -47,33 +47,45 @@ public class DisappearingElementsPage extends BasePage {
      * @return Disappearing WebElement if visible, null otherwise.
      */
     public WebElement getGalleryMenuElement() {
-        return getDriver().findElementQuietly(selectorGalleryMenuButton);
+        return findWebElementBySelector(selectorGalleryMenuButton);
     }
 
     /**
      * Returns WebElement representing NOT-disappearing element of menu.     *
      */
     public WebElement getAboutMenuElement() {
-        WebElement webElement = getDriver().findElementQuietly(selectorAboutMenuButton);
+        WebElement webElement = findWebElementBySelector(selectorAboutMenuButton);
         if (webElement != null) {
             return webElement;
         } else {
-            throw new InvalidArgumentException("About Menu WebElement not found");
+            throw new InvalidSelectorException("About Menu WebElement not found");
         }
+    }
+
+    /**
+     * Finds webelement by its selector
+     *
+     * @param selector
+     * @return WebElement or null if not found
+     */
+    public WebElement findWebElementBySelector(By selector) {
+        return getDriver().findElementQuietly(selector);
     }
 
     /**
      * Refreshes web page until WebElement has expected visibility
      *
-     * @param webElement        Tested element
+     * @param selector          Tested element
      * @param shouldBeDisplayed Determines if element should be displayed.
      * @param maxRefreshes      Maximal number of refreshes
      * @return true if element has expected visibility after last refresh
      */
-    public boolean refreshPageUntilWebElementHasExpectedVisibility(WebElement webElement, boolean shouldBeDisplayed, int maxRefreshes) {
+    public boolean refreshPageUntilWebElementHasExpectedVisibility(By selector, boolean shouldBeDisplayed, int maxRefreshes) {
+        WebElement webElement;
         for (int refreshesDone = 0; refreshesDone < maxRefreshes; refreshesDone++) {
             refreshPage();
-            if (webElement.isDisplayed() == shouldBeDisplayed) {
+            webElement = findWebElementBySelector(selector);
+            if (webElement != null && webElement.isDisplayed() == shouldBeDisplayed) {
                 return true;
             }
         }
@@ -83,15 +95,17 @@ public class DisappearingElementsPage extends BasePage {
     /**
      * Refreshes web page until WebElement has wrong visibility
      *
-     * @param webElement        Tested element
+     * @param selector          Tested element
      * @param shouldBeDisplayed Determines if element should be displayed.
      * @param maxRefreshes      Maximal number of refreshes
      * @return true if element had correct visibility after every refresh
      */
-    public boolean hasSameVisibilityAfterEveryRefresh(WebElement webElement, boolean shouldBeDisplayed, int maxRefreshes) {
+    public boolean hasSameVisibilityAfterEveryRefresh(By selector, boolean shouldBeDisplayed, int maxRefreshes) {
+        WebElement webElement;
         for (int refreshesDone = 0; refreshesDone < maxRefreshes; refreshesDone++) {
             refreshPage();
-            if (webElement.isDisplayed() != shouldBeDisplayed) {
+            webElement = findWebElementBySelector(selector);
+            if (webElement == null || webElement.isDisplayed() != shouldBeDisplayed) {
                 return false;
             }
         }
@@ -105,7 +119,7 @@ public class DisappearingElementsPage extends BasePage {
      * @return true if element has expected visibility after last refresh
      */
     public boolean refreshPageUntilGalleryIsVisible(int maxRefreshes) {
-        return refreshPageUntilWebElementHasExpectedVisibility(getGalleryMenuElement(), true, maxRefreshes);
+        return refreshPageUntilWebElementHasExpectedVisibility(selectorGalleryMenuButton, true, maxRefreshes);
     }
 
     /**
@@ -115,7 +129,7 @@ public class DisappearingElementsPage extends BasePage {
      * @return true if element has expected visibility after last refresh
      */
     public boolean refreshPageUntilGalleryIsNotVisible(int maxRefreshes) {
-        return refreshPageUntilWebElementHasExpectedVisibility(getGalleryMenuElement(), false, maxRefreshes);
+        return refreshPageUntilWebElementHasExpectedVisibility(selectorAboutMenuButton, false, maxRefreshes);
     }
 
     /**
@@ -125,7 +139,7 @@ public class DisappearingElementsPage extends BasePage {
      * @return true if element has expected visibility after last refresh
      */
     public boolean isAboutButtonVisibleAfterEveryRefresh(int maxRefreshes) {
-        return hasSameVisibilityAfterEveryRefresh(getAboutMenuElement(), true, maxRefreshes);
+        return hasSameVisibilityAfterEveryRefresh(selectorAboutMenuButton, true, maxRefreshes);
     }
 
 }
