@@ -55,16 +55,17 @@ public class DynamicControlsTest extends TheInternetBaseTest {
         dynamicControlsPage.waitUntilLoadingIsDone();
         isInputFormEnabled = dynamicControlsPage.isInputFormEnabled();
 
-        assertFalse("InputForm is enabled", isInputFormEnabled);
+        assertTrue("InputForm is not enabled", isInputFormEnabled);
 
         logStep("Click disable button");
         dynamicControlsPage.clickDisableButton();
 
         logStep("Wait few seconds to finish loading");
         dynamicControlsPage.waitUntilLoadingIsDone();
-        isInputFormEnabled = dynamicControlsPage.isCheckboxOnPage();
+        dynamicControlsPage.waitUntilLoadingIsDone();
+        isInputFormEnabled = dynamicControlsPage.isInputFormEnabled();
 
-        assertTrue("InputForm is disabled", isInputFormEnabled);
+        assertFalse("InputForm is not disabled", isInputFormEnabled);
     }
 
 

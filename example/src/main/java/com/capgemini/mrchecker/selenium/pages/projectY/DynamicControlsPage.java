@@ -17,7 +17,10 @@ public class DynamicControlsPage extends BasePage {
     private static final String addButtonText = "Add";
     private static final String enableButtonText = "Enable";
     private static final String disableButtonText = "Disable";
+
     private static final By checkboxSelector = By.id("checkbox");
+    private static final By inputFormSelector = By.cssSelector("input");
+
     private static final int secondsToWaitForChanges = 4;
 
     @Override
@@ -68,5 +71,10 @@ public class DynamicControlsPage extends BasePage {
 
     public void waitUntilLoadingIsDone() throws InterruptedException {
         TimeUnit.SECONDS.sleep(secondsToWaitForChanges);
+    }
+
+    public boolean isInputFormEnabled() {
+        WebElement inputForm = getDriver().findElementQuietly(inputFormSelector);
+        return inputForm.isEnabled();
     }
 }
