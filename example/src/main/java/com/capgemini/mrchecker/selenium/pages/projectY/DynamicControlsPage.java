@@ -15,6 +15,8 @@ public class DynamicControlsPage extends BasePage {
 
     private static final String removeButtonText = "Remove";
     private static final String addButtonText = "Add";
+    private static final String enableButtonText = "Enable";
+    private static final String disableButtonText = "Disable";
     private static final By checkboxSelector = By.id("checkbox");
     private static final int secondsToWaitForChanges = 4;
 
@@ -44,6 +46,15 @@ public class DynamicControlsPage extends BasePage {
     public void clickAddButton() {
         findButtonByText(addButtonText).get().click();
     }
+
+    public void clickEnableButton() {
+        findButtonByText(enableButtonText).get().click();
+    }
+
+    public void clickDisableButton() {
+        findButtonByText(disableButtonText).get().click();
+    }
+
 
     public Optional<WebElement> findButtonByText(String textOnButton) {
         By buttonSelector = By.cssSelector("button");

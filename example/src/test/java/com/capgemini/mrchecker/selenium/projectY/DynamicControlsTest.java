@@ -9,7 +9,8 @@ import static org.junit.Assert.assertTrue;
 public class DynamicControlsTest extends TheInternetBaseTest {
 
     private DynamicControlsPage dynamicControlsPage;
-    boolean isCheckboxOnPage;
+    private boolean isCheckboxOnPage;
+    private boolean isInputFormEnabled;
 
     @Override
     public void setUp() {
@@ -43,6 +44,27 @@ public class DynamicControlsTest extends TheInternetBaseTest {
         isCheckboxOnPage = dynamicControlsPage.isCheckboxOnPage();
 
         assertTrue("Checkbox has not disappeared", isCheckboxOnPage);
+    }
+
+    @Test
+    public void shouldEnableAndDisableInputFormDynamically() throws InterruptedException {
+        logStep("Click enable button");
+        dynamicControlsPage.clickEnableButton();
+
+        logStep("Wait few seconds to finish loading");
+        dynamicControlsPage.waitUntilLoadingIsDone();
+        isInputFormEnabled = dynamicControlsPage.isInputFormEnabled();
+
+        assertFalse("InputForm is enabled", isInputFormEnabled);
+
+        logStep("Click disable button");
+        dynamicControlsPage.clickDisableButton();
+
+        logStep("Wait few seconds to finish loading");
+        dynamicControlsPage.waitUntilLoadingIsDone();
+        isInputFormEnabled = dynamicControlsPage.isCheckboxOnPage();
+
+        assertTrue("InputForm is disabled", isInputFormEnabled);
     }
 
 
