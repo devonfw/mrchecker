@@ -50,11 +50,7 @@ public class DynamicControlsPage extends BasePage {
         return checkbox != null;
     }
 
-    public void waitUntilLoadingIsDone() {
-        try {
-            TimeUnit.SECONDS.sleep(secondsToWaitForChanges);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void waitUntilLoadingIsDone() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(secondsToWaitForChanges);
     }
 }
