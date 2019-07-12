@@ -9,23 +9,21 @@ import static org.junit.Assert.assertTrue;
 
 public class DynamicControlsTest extends TheInternetBaseTest{
 
-    private static DynamicControlsPage dynamicControlsPage;
+    private DynamicControlsPage dynamicControlsPage;
     boolean isCheckboxOnPage;
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
+    @Override
+    public void setUp() {
         dynamicControlsPage = shouldTheInternetPageBeOpened().clickDynamicControlsLink();
 
         logStep("Verify if Dynamic Controls page is opened");
         assertTrue("Unable to open Dynamic Controls page", dynamicControlsPage.isLoaded());
-    }
 
-    @Test
-    public void shouldHaveCheckboxOnLoad(){
+        logStep("Verify if checkobx is visible before dynamic hide");
         isCheckboxOnPage = dynamicControlsPage.isCheckboxOnPage();
-
         assertTrue("Checkbox is not present ", isCheckboxOnPage);
     }
+
 
     @Test
     public void shouldRemoveCheckboxAfterButtonClickAndWaitProcess(){
