@@ -26,4 +26,15 @@ public class DynamicControlsPage extends BasePage {
 		return getActualPageTitle();
 	}
 
+	public void clickRemoveButton(){
+
+	}
+
+	public boolean isCheckboxOnPage() {
+
+	}
+
+	public void waitUntilLoadingIsDone() {
+
+	}
 }
