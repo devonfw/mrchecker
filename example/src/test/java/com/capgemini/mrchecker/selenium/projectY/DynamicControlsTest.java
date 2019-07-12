@@ -25,7 +25,7 @@ public class DynamicControlsTest extends TheInternetBaseTest {
 
 
     @Test
-    public void shouldRemoveCheckboxAfterButtonClickAndWaitProcess() throws InterruptedException {
+    public void shouldRemoveAndAddCheckboxDynamically() throws InterruptedException {
         logStep("Click remove button");
         dynamicControlsPage.clickRemoveButton();
 
@@ -34,6 +34,15 @@ public class DynamicControlsTest extends TheInternetBaseTest {
         isCheckboxOnPage = dynamicControlsPage.isCheckboxOnPage();
 
         assertFalse("Checkbox has not disappeared", isCheckboxOnPage);
+
+        logStep("Click add button");
+        dynamicControlsPage.clickAddButton();
+
+        logStep("Wait few seconds to finish loading");
+        dynamicControlsPage.waitUntilLoadingIsDone();
+        isCheckboxOnPage = dynamicControlsPage.isCheckboxOnPage();
+
+        assertTrue("Checkbox has not disappeared", isCheckboxOnPage);
     }
 
 
