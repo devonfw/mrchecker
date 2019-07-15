@@ -19,7 +19,7 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 
 	private static JavaScriptAlertsPage javaScriptAlertsPage;
 
-	private final String jsAlertCofirmMessage    = "You successfuly clicked an alert";
+	private final String jsAlertConfirmMessage = "You successfuly clicked an alert";
 	private final String jsConfirmConfirmMessage = "You clicked: Ok";
 	private final String jsConfirmCancelMessage  = "You clicked: Cancel";
 	private final String jsPromptConfirmMessage  = "You entered: ";
@@ -50,7 +50,7 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 
 		logStep("Verify returned message");
 		assertEquals("Incorrect message returned after click",
-				jsAlertCofirmMessage, javaScriptAlertsPage.readResultLabel());
+				jsAlertConfirmMessage, javaScriptAlertsPage.readResultLabel());
 	}
 
 	@Test
