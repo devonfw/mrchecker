@@ -10,7 +10,6 @@ public class DynamicControlsTest extends TheInternetBaseTest {
 
     private DynamicControlsPage dynamicControlsPage;
     private boolean isCheckboxOnPage;
-    private boolean isInputFormEnabled;
 
     @Override
     public void setUp() {
@@ -19,7 +18,7 @@ public class DynamicControlsTest extends TheInternetBaseTest {
         logStep("Verify if Dynamic Controls page is opened");
         assertTrue("Unable to open Dynamic Controls page", dynamicControlsPage.isLoaded());
 
-        logStep("Verify if checkbox is visible before dynamic hide");
+        logStep("Verify if checkbox is visible on page load");
         isCheckboxOnPage = dynamicControlsPage.isCheckboxOnPage();
         assertTrue("Checkbox is not present ", isCheckboxOnPage);
     }
@@ -53,7 +52,7 @@ public class DynamicControlsTest extends TheInternetBaseTest {
 
         logStep("Wait few seconds to finish loading");
         dynamicControlsPage.waitUntilLoadingIsDone();
-        isInputFormEnabled = dynamicControlsPage.isInputFormEnabled();
+        boolean isInputFormEnabled = dynamicControlsPage.isInputFormEnabled();
 
         assertTrue("InputForm is not enabled", isInputFormEnabled);
 
@@ -62,10 +61,9 @@ public class DynamicControlsTest extends TheInternetBaseTest {
 
         logStep("Wait few seconds to finish loading");
         dynamicControlsPage.waitUntilLoadingIsDone();
-        dynamicControlsPage.waitUntilLoadingIsDone();
-        isInputFormEnabled = dynamicControlsPage.isInputFormEnabled();
+        boolean isInputFormDisabled = !dynamicControlsPage.isInputFormEnabled();
 
-        assertFalse("InputForm is not disabled", isInputFormEnabled);
+        assertTrue("InputForm is not disabled", isInputFormDisabled);
     }
 
 

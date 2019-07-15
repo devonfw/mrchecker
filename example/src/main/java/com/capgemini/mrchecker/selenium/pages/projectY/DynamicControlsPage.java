@@ -19,7 +19,7 @@ public class DynamicControlsPage extends BasePage {
     private static final String disableButtonText = "Disable";
 
     private static final By checkboxSelector = By.id("checkbox");
-    private static final By inputFormSelector = By.cssSelector("input");
+    private static final By inputFormSelector = By.id("input-example");
 
     private static final int secondsToWaitForChanges = 4;
 
@@ -74,7 +74,7 @@ public class DynamicControlsPage extends BasePage {
     }
 
     public boolean isInputFormEnabled() {
-        WebElement inputForm = getDriver().findElementQuietly(inputFormSelector);
+        WebElement inputForm = getDriver().findElementQuietly(inputFormSelector).findElement(By.cssSelector("input"));
         return inputForm.isEnabled();
     }
 }
