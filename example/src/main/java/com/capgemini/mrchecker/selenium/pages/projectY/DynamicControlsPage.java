@@ -20,6 +20,7 @@ public class DynamicControlsPage extends BasePage {
 
     private static final By checkboxSelector = By.id("checkbox");
     private static final By inputFormSelector = By.id("input-example");
+    private static final By inputSelector = By.cssSelector("input");
 
     private static final int secondsToWaitForChanges = 4;
 
@@ -69,12 +70,19 @@ public class DynamicControlsPage extends BasePage {
         return checkbox != null;
     }
 
+    /**
+     * Waits few seconds until dynamic element loading is done.
+     * Implementation is simplified to
+     * {@code Thread.sleep(few seconds)}
+     *
+     * @throws InterruptedException
+     */
     public void waitUntilLoadingIsDone() throws InterruptedException {
         TimeUnit.SECONDS.sleep(secondsToWaitForChanges);
     }
 
     public boolean isInputFormEnabled() {
-        WebElement inputForm = getDriver().findElementQuietly(inputFormSelector).findElement(By.cssSelector("input"));
+        WebElement inputForm = getDriver().findElementQuietly(inputFormSelector).findElement(inputSelector);
         return inputForm.isEnabled();
     }
 }
