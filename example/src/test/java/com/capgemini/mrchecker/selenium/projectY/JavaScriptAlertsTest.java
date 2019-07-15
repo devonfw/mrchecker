@@ -24,7 +24,7 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 	private final String jsConfirmCancelMessage  = "You clicked: Cancel";
 	private final String jsPromptConfirmMessage  = "You entered: ";
 	private final String jsPromptCancelMessage   = "You entered: null";
-	private final String randomString            = "random";
+	private final String randomString            = "rAndOM 1 2 % @ * 8 END";
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -110,7 +110,7 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 
 	@Override
 	public void tearDown() {
-		logStep("Refresh JavaScriptAlersPage");
+		logStep("Refresh JavaScriptAlertsPage");
 		javaScriptAlertsPage.refreshPage();
 	}
 
