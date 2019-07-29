@@ -43,7 +43,7 @@ public class FileUploadTest extends TheInternetBaseTest {
 
 	private static void logInitializationErrorAneThrowException(String message) {
 		BFLogger.logError(message);
-		throw new IllegalStateException(message);
+		throw new RuntimeException(message);
 	}
 
 	@AfterClass
