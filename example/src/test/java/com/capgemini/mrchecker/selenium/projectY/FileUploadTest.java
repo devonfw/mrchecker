@@ -5,6 +5,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParal
 import com.capgemini.mrchecker.selenium.pages.projectY.FileDownloadPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.FileUploadPage;
 
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,19 +25,25 @@ public class FileUploadTest extends TheInternetBaseTest {
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		FileDownloadPage fileDownloadPage = shouldTheInternetPageBeOpened().clickFileDownloadLink();
-
 		logStep("Verify if File Download page is opened");
-		assertTrue("Unable to open File Download page", fileDownloadPage.isLoaded());
+		if(!fileDownloadPage.isLoaded()) {
+			logInitializationErrorAneThrowException("Unable to open File Download page");
+		}
 
 		downloadedFile = fileDownloadPage.downloadTextFile();
-
 		logStep("Verify if downloaded file exists");
-		assertTrue("Downloaded file does not exist", downloadedFile.exists());
+		if(!downloadedFile.exists()) {
+			logInitializationErrorAneThrowException("Downloaded file does not exist");
+		}
 
 		fileUploadPage = shouldTheInternetPageBeOpened().clickFileUploadLink();
-
 		logStep("Verify if File Upload page is opened");
 		assertTrue("Unable to open File Upload page", fileUploadPage.isLoaded());
+	}
+
+	private static void logInitializationErrorAneThrowException(String message) {
+		BFLogger.logError(message);
+		throw new IllegalStateException(message);
 	}
 
 	@AfterClass
@@ -47,7 +54,9 @@ public class FileUploadTest extends TheInternetBaseTest {
 		}
 
 		logStep("Verify if the downloaded file has been removed");
-		assertFalse("The downloaded file still exists", downloadedFile.exists());
+		if (downloadedFile.exists()) {
+			BFLogger.logError("Could not delete the temporary file");
+		}
 	}
 
 	@Test
