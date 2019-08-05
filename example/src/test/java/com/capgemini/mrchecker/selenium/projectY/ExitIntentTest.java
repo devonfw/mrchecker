@@ -31,7 +31,7 @@ public class ExitIntentTest extends TheInternetBaseTest {
 	public void shouldModalWindowAppearWhenMouseMovedOutOfViewportTest() {
 
 		logStep("Verify if modal window is hidden");
-		assertTrue("Fail to hide modal window", exitIntentPage.isModalWindowHidden());
+		assertTrue("Fail to hide modal window", !exitIntentPage.isModalWindowVisible());
 
 		logStep("Move mouse pointer out of viewport");
 		exitIntentPage.moveMouseOutOfViewport();
@@ -46,7 +46,7 @@ public class ExitIntentTest extends TheInternetBaseTest {
 		exitIntentPage.closeModalWindow();
 
 		logStep("Verify if modal window is hidden again");
-		assertTrue("Fail to hide modal window", exitIntentPage.isModalWindowHidden());
+		assertTrue("Fail to hide modal window", !exitIntentPage.isModalWindowVisible());
 	}
 
 }

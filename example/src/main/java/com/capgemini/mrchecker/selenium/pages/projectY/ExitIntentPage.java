@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 import java.util.concurrent.TimeUnit;
 
 public class ExitIntentPage extends BasePage {
-
-	private static final String MODAL_WINDOW_HIDDEN           = "display: none;";
 	private static final String MODAL_WINDOW_DISPLAYED        = "display: block;";
 	private static final String MODAL_WINDOW_STYLE_ATTRIBUTTE = "style";
 
@@ -50,17 +48,6 @@ public class ExitIntentPage extends BasePage {
 	public boolean isIntentMessageVisible() {
 		return getDriver().findElementDynamic(selectorExitIntentText)
 				.isDisplayed();
-	}
-
-	/**
-	 * Returns information if modal window is hidden.
-	 *
-	 * @return true if modal window is hidden.
-	 */
-	public boolean isModalWindowHidden() {
-		return getDriver().findElementDynamic(selectorModalWindow)
-				.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
-				.equals(MODAL_WINDOW_HIDDEN);
 	}
 
 	/**
