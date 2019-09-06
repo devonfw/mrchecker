@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.environment.PageTitlesEnumMyThaiStar;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class ConfirmInvitationPage extends BasePage {
@@ -28,7 +29,7 @@ public class ConfirmInvitationPage extends BasePage {
 	
 	@Override
 	public String pageTitle() {
-		return "My Thai Star";
+		return PageTitlesEnumMyThaiStar.MAIN_PAGE.toString();
 	}
 	
 	public void clickConfirmBookingButton() {

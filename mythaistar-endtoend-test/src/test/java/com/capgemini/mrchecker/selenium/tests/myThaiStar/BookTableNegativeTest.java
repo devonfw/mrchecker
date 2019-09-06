@@ -11,7 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
-import com.capgemini.mrchecker.selenium.pages.myThaiStar.ConfirmBookPage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
@@ -50,10 +49,9 @@ public class BookTableNegativeTest extends BaseTest {
 		guestsNumber = Utils.getRandom1toMax(8);
 		String guests = "" + guestsNumber;
 		
-		ConfirmBookPage confirmBookPage = bookTablePage.enterBookingDataAndBookTable(date, name, email, guests);
-		confirmBookPage.clickConfirmBookingButton();
+		bookTablePage.enterBookingData(date, name, email, guests);
 		
-		assertTrue("Test failed: Table not booked", bookTablePage.isConfirmationDialogDisplayed());
+		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
 	@Test
@@ -67,10 +65,9 @@ public class BookTableNegativeTest extends BaseTest {
 		guestsNumber = Utils.getRandom1toMax(8);
 		String guests = "" + guestsNumber;
 		
-		ConfirmBookPage confirmBookPage = bookTablePage.enterBookingDataAndBookTable(date, name, email, guests);
-		confirmBookPage.clickConfirmBookingButton();
+		bookTablePage.enterBookingData(date, name, email, guests);
 		
-		assertTrue("Test failed: Table not booked", bookTablePage.isConfirmationDialogDisplayed());
+		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
 	@Test
@@ -84,10 +81,9 @@ public class BookTableNegativeTest extends BaseTest {
 		guestsNumber = Utils.getRandom1toMax(8);
 		String guests = "" + guestsNumber;
 		
-		ConfirmBookPage confirmBookPage = bookTablePage.enterBookingDataAndBookTable(date, name, email, guests);
-		confirmBookPage.clickConfirmBookingButton();
+		bookTablePage.enterBookingData(date, name, email, guests);
 		
-		assertTrue("Test failed: Table not booked", bookTablePage.isConfirmationDialogDisplayed());
+		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
 	@Test
@@ -101,10 +97,9 @@ public class BookTableNegativeTest extends BaseTest {
 		guestsNumber = -Utils.getRandom1toMax(8);
 		String guests = "" + guestsNumber;
 		
-		ConfirmBookPage confirmBookPage = bookTablePage.enterBookingDataAndBookTable(date, name, email, guests);
-		confirmBookPage.clickConfirmBookingButton();
+		bookTablePage.enterBookingData(date, name, email, guests);
 		
-		assertTrue("Test failed: Table not booked", bookTablePage.isConfirmationDialogDisplayed());
+		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
 	@Test
@@ -118,10 +113,9 @@ public class BookTableNegativeTest extends BaseTest {
 		guestsNumber = 3.14;
 		String guests = "" + guestsNumber;
 		
-		ConfirmBookPage confirmBookPage = bookTablePage.enterBookingDataAndBookTable(date, name, email, guests);
-		confirmBookPage.clickConfirmBookingButton();
+		bookTablePage.enterBookingData(date, name, email, guests);
 		
-		assertTrue("Test failed: Table not booked", bookTablePage.isConfirmationDialogDisplayed());
+		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
 	private String getYesterdayDate(String format) {

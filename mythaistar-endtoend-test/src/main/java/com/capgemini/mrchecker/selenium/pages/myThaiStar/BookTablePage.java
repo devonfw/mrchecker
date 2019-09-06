@@ -9,6 +9,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.core.exceptions.BFElementNotFoundException;
+import com.capgemini.mrchecker.selenium.environment.GetEnvironmentParam;
+import com.capgemini.mrchecker.selenium.environment.PageSubURLsMyThaiStar;
+import com.capgemini.mrchecker.selenium.environment.PageTitlesEnumMyThaiStar;
 
 public class BookTablePage extends BasePage {
 	private static final By selectorDateInputBooking = By.cssSelector("input[id='mat-input-1']");
@@ -43,18 +47,18 @@ public class BookTablePage extends BasePage {
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals("http://de-mucdevondepl01:8090/bookTable");
+				.equals(GetEnvironmentParam.MY_THAI_STAR_URL.getValue() + PageSubURLsMyThaiStar.BOOK_TABLE.getValue());
 	}
 	
 	@Override
 	public void load() {
-		getDriver().get("http://de-mucdevondepl01:8090/bookTable");
+		getDriver().get(GetEnvironmentParam.MY_THAI_STAR_URL.getValue() + PageSubURLsMyThaiStar.BOOK_TABLE.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "My Thai Star";
+		return PageTitlesEnumMyThaiStar.MAIN_PAGE.toString();
 	}
 	
 	public void enterTimeAndDateInputBooking(String date) {
@@ -97,15 +101,21 @@ public class BookTablePage extends BasePage {
 	
 	public ConfirmBookPage enterBookingDataAndBookTable(String date, String name, String email, String guests) {
 		
+		enterBookingData(date, name, email, guests);
+		
+		clickBookTableButton();
+		
+		return new ConfirmBookPage();
+	}
+	
+	public void enterBookingData(String date, String name, String email, String guests) {
+		
 		enterTimeAndDateInputBooking(date);
 		enterNameInputBooking(name);
 		enterEmailInputBooking(email);
 		enterGuestsNumberInput(guests);
 		
 		clickAcceptTermsCheckboxBooking();
-		clickBookTableButton();
-		
-		return new ConfirmBookPage();
 	}
 	
 	public void clickInviteFriendsTab() {
@@ -154,5 +164,16 @@ public class BookTablePage extends BasePage {
 	public void enterEmailInputInvitation(String email) {
 		getDriver().findElementDynamic(selectorEmailInputInvitation)
 				.sendKeys(email);
+	}
+	
+	public boolean isBookTableButtonPresent() {
+		try {
+			getDriver().waitUntilElementIsClickable(selectorBookTableButton);
+			
+			getDriver().findElementDynamic(selectorBookTableButton);
+		} catch (BFElementNotFoundException e) {
+			return false;
+		}
+		return true;
 	}
 }

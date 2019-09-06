@@ -135,6 +135,7 @@ public class ReservationsPage extends BasePage {
 		return reservationsByDate;
 	}
 	
+	@Deprecated
 	private By findDataCell(int indexRow, int indexCol) {
 		return By.xpath("//tbody[@class='td-data-table-body']/tr[" + indexRow + "]/td[" + indexCol + "]//span");
 	}
@@ -159,8 +160,7 @@ public class ReservationsPage extends BasePage {
 		
 		getDriver().waitForElementVisible(selectorReservationsTable);
 		WebElement reservationsTable = getDriver().findElementDynamic(selectorReservationsTable);
-		List<String> reservations = JsoupHelper.findTexts(reservationsTable,
-				selectorReservationsTableContent);
+		List<String> reservations = JsoupHelper.findTexts(reservationsTable, selectorReservationsTableContent);
 		
 		for (int i = 0; i < reservations.size(); i += 3) {
 			date = reservations.get(i);

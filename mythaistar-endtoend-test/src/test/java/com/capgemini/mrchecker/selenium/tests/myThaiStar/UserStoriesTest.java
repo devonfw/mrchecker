@@ -70,7 +70,8 @@ public class UserStoriesTest extends BaseTest {
 		guestsNumber = Utils.getRandom1toMax(8);
 		String guests = "" + guestsNumber;
 		
-		BookTablePage bookTablePage = homePage.clickBookTableTab();
+		BookTablePage bookTablePage = new BookTablePage();
+		bookTablePage.load();
 		ConfirmBookPage confirmBookPage = bookTablePage.enterBookingDataAndBookTable(date, name, email, guests);
 		
 		assertTrue("Confirmation window not loaded", confirmBookPage.isLoaded());

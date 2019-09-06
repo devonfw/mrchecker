@@ -10,6 +10,9 @@ import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.exceptions.BFElementNotFoundException;
+import com.capgemini.mrchecker.selenium.environment.GetEnvironmentParam;
+import com.capgemini.mrchecker.selenium.environment.PageSubURLsMyThaiStar;
+import com.capgemini.mrchecker.selenium.environment.PageTitlesEnumMyThaiStar;
 
 public class MenuPage extends BasePage {
 	
@@ -43,22 +46,24 @@ public class MenuPage extends BasePage {
 	
 	private static final By selectorExpansionPanel = By.cssSelector("td-expansion-panel");
 	
+	private static final By selectorAddButton = By.cssSelector("div[class='push-bottom-xs'] button:nth-of-type(2)");
+	
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
 		return getDriver().getCurrentUrl()
-				.equals("http://de-mucdevondepl01:8090/menu");
+				.equals(GetEnvironmentParam.MY_THAI_STAR_URL.getValue() + PageSubURLsMyThaiStar.MENU.getValue());
 	}
 	
 	@Override
 	public void load() {
-		getDriver().get("http://de-mucdevondepl01:8090/menu");
+		getDriver().get(GetEnvironmentParam.MY_THAI_STAR_URL.getValue() + PageSubURLsMyThaiStar.MENU.getValue());
 		getDriver().waitForPageLoaded();
 	}
 	
 	@Override
 	public String pageTitle() {
-		return "My Thai Star";
+		return PageTitlesEnumMyThaiStar.MAIN_PAGE.toString();
 	}
 	
 	public void clickAddToOrderRiceButton() {
@@ -100,6 +105,7 @@ public class MenuPage extends BasePage {
 	
 	public void makeBiggerOrder(String id) {
 		clickAddToOrderCurryButton();
+		clickAddButton();
 		clickCancelButton();
 		makeAnOrder(id);
 		
@@ -181,6 +187,17 @@ public class MenuPage extends BasePage {
 	public void clickCancelButton() {
 		getDriver().waitUntilElementIsClickable(selectorCancelButton);
 		getDriver().findElementDynamic(selectorCancelButton)
+				.click();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void clickAddButton() {
+		getDriver().waitUntilElementIsClickable(selectorAddButton);
+		getDriver().findElementDynamic(selectorAddButton)
 				.click();
 	}
 }
