@@ -40,17 +40,22 @@ public class InviteFriendsTest extends BaseTest {
 	@Test
 	public void Test_InviteFriendsAndCheckConfirmation() {
 		String date, name, guestName, email;
+		int guestsNumber;
 		
 		name = "client";
 		guestName = "guest";
 		email = Utils.getRandomEmail(name);
 		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
+		guestsNumber = 3;
 		
 		bookTablePage.clickInviteFriendsTab();
 		bookTablePage.enterTimeAndDateInputInvitation(date);
 		bookTablePage.enterNameInputInvitation(name);
 		bookTablePage.enterEmailInputInvitation(email);
-		bookTablePage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
+		
+		for (int i = 0; i < guestsNumber; i++) {
+			bookTablePage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
+		}
 		
 		bookTablePage.clickAcceptTermsCheckboxInvitation();
 		bookTablePage.clickInviteFriendsButton();

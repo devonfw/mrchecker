@@ -62,6 +62,7 @@ public class BookTablePage extends BasePage {
 	}
 	
 	public void enterTimeAndDateInputBooking(String date) {
+		getDriver().waitForElement(selectorDateInputBooking);
 		getDriver().findElementDynamic(selectorDateInputBooking)
 				.sendKeys(date);
 	}
@@ -171,6 +172,17 @@ public class BookTablePage extends BasePage {
 			getDriver().waitUntilElementIsClickable(selectorBookTableButton);
 			
 			getDriver().findElementDynamic(selectorBookTableButton);
+		} catch (BFElementNotFoundException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean isInviteFriendsButtonPresent() {
+		try {
+			getDriver().waitUntilElementIsClickable(selectorInviteFriendsButton);
+			
+			getDriver().findElementDynamic(selectorInviteFriendsButton);
 		} catch (BFElementNotFoundException e) {
 			return false;
 		}
