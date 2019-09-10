@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mythaistar-app-under-test</artifactId>
     <groupId>com.capgemini.mrchecker</groupId>
-    <version>${version}</version>
+    <version>2.6.0</version>
     <packaging>jar</packaging>
 
     <name>MrCheckerTestFramework - List of Integration Test for Application Under Test</name>
@@ -302,11 +302,11 @@
                         <version>${maven-surefire-plugin.version}</version>
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
-                            <parallel>classes</parallel>
+                            <parallel>suites</parallel>
                             <perCoreThreadCount>false</perCoreThreadCount>
                             <threadCount>${thread.count}</threadCount>
                             <includes>
-                                <include>**/*.class</include>
+                                <include>**/_TestSuite1.class</include>
                             </includes>
                             <excludes>
                                 <exclude>**/RawTest.*</exclude>

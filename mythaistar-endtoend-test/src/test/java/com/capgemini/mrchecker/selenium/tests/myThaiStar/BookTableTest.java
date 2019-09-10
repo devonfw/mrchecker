@@ -9,12 +9,14 @@ import java.util.Locale;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.ConfirmBookPage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
+@Category(Tests0.class)
 public class BookTableTest extends BaseTest {
 	private static BookTablePage bookTablePage = new BookTablePage();
 	

@@ -5,12 +5,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.ConfirmInvitationPage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
+@Category(Tests1.class)
 public class InviteFriendsTest extends BaseTest {
 	
 	private static BookTablePage bookTablePage = new BookTablePage();

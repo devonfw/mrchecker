@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import com.capgemini.mrchecker.selenium.data.User;
@@ -22,6 +23,7 @@ import com.capgemini.mrchecker.test.core.BaseTest;
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 
+@Category(Tests0.class)
 @RunWith(JUnitParamsRunner.class)
 public class UserStoriesTest extends BaseTest {
 	private static HomePage homePage = new HomePage();

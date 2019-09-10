@@ -7,10 +7,12 @@ import java.awt.AWTException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.MenuPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
+@Category(Tests1.class)
 public class MenuFiltersTest extends BaseTest {
 	
 	private static MenuPage menuPage = new MenuPage();
@@ -61,7 +63,7 @@ public class MenuFiltersTest extends BaseTest {
 	
 	@Test
 	public void Test_Sliders() throws AWTException {
-		menuPage.slide(4);
+		menuPage.slide(5);
 		menuPage.clickApplyFiltersButton();
 		
 		assertTrue("Test failed: Results incorrect", menuPage.findElementInContainer("5XggQv/9k=\");"));

@@ -9,11 +9,13 @@ import java.util.Locale;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
+@Category(Tests1.class)
 public class BookTableNegativeTest extends BaseTest {
 	private static BookTablePage bookTablePage = new BookTablePage();
 	
@@ -54,7 +56,7 @@ public class BookTableNegativeTest extends BaseTest {
 		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
-	@Test
+	@Deprecated
 	public void Test_BookTableWithWrongName() {
 		String date, name, email;
 		int guestsNumber;
@@ -102,7 +104,7 @@ public class BookTableNegativeTest extends BaseTest {
 		assertTrue("Test failed: Table booked", !bookTablePage.isBookTableButtonPresent());
 	}
 	
-	@Test
+	@Deprecated
 	public void Test_BookTableWithNonintegerGuestNumber() {
 		String date, name, email;
 		double guestsNumber;

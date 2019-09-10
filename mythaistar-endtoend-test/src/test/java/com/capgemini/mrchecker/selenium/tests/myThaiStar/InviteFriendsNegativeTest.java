@@ -9,11 +9,13 @@ import java.util.Locale;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
+@Category(Tests1.class)
 public class InviteFriendsNegativeTest extends BaseTest {
 	
 	private static BookTablePage bookTablePage = new BookTablePage();
@@ -68,7 +70,7 @@ public class InviteFriendsNegativeTest extends BaseTest {
 		assertTrue("Test failed: Friends invited", !bookTablePage.isInviteFriendsButtonPresent());
 	}
 	
-	@Test
+	@Deprecated
 	public void Test_InviteFriendsWithWrongName() {
 		String date, name, guestName, email;
 		int guestsNumber;
