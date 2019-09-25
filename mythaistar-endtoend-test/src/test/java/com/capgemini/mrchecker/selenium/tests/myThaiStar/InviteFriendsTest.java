@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.ConfirmInvitationPage;
+import com.capgemini.mrchecker.selenium.pages.myThaiStar.InviteFriendsPage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
@@ -45,24 +46,24 @@ public class InviteFriendsTest extends BaseTest {
 		name = "client";
 		guestName = "guest";
 		email = Utils.getRandomEmail(name);
-		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
-		guestsNumber = 3;
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
+		guestsNumber = Utils.getRandom1toMax(8);
 		
-		bookTablePage.clickInviteFriendsTab();
-		bookTablePage.enterTimeAndDateInputInvitation(date);
-		bookTablePage.enterNameInputInvitation(name);
-		bookTablePage.enterEmailInputInvitation(email);
+		InviteFriendsPage inviteFriendsPage = bookTablePage.clickInviteFriendsTab();
+		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
+		inviteFriendsPage.enterNameInputInvitation(name);
+		inviteFriendsPage.enterEmailInputInvitation(email);
 		
 		for (int i = 0; i < guestsNumber; i++) {
-			bookTablePage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
+			inviteFriendsPage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
 		}
 		
-		bookTablePage.clickAcceptTermsCheckboxInvitation();
-		bookTablePage.clickInviteFriendsButton();
+		inviteFriendsPage.clickAcceptTermsCheckboxInvitation();
+		inviteFriendsPage.clickInviteFriendsButton();
 		
 		ConfirmInvitationPage confirmInvitationPage = new ConfirmInvitationPage();
 		confirmInvitationPage.clickConfirmBookingButton();
 		
-		assertTrue("Test failed: Friends not invited", bookTablePage.isConfirmationDialogDisplayed());
+		assertTrue("Test failed: Friends not invited", inviteFriendsPage.isConfirmationDialogDisplayed());
 	}
 }

@@ -1,26 +1,25 @@
 package com.capgemini.mrchecker.selenium.tests.myThaiStar;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.capgemini.mrchecker.selenium.pages.myThaiStar.BookTablePage;
+import com.capgemini.mrchecker.selenium.pages.myThaiStar.InviteFriendsPage;
 import com.capgemini.mrchecker.selenium.utils.Utils;
 import com.capgemini.mrchecker.test.core.BaseTest;
 
 public class InviteFriendsNegativeTest extends BaseTest {
 	
-	private static BookTablePage bookTablePage = new BookTablePage();
+	private static BookTablePage	bookTablePage	= new BookTablePage();
+	InviteFriendsPage				inviteFriendsPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		
+		bookTablePage.load();
 	}
 	
 	@AfterClass
@@ -30,18 +29,18 @@ public class InviteFriendsNegativeTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		bookTablePage.load();
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if (!bookTablePage.isLoaded()) {
+			bookTablePage.load();
 		}
-		bookTablePage.clickInviteFriendsTab();
+		
+		bookTablePage.waitForCheckboxToBeVisible();
+		inviteFriendsPage = bookTablePage.clickInviteFriendsTab();
+		assertTrue(inviteFriendsPage.isLoaded());
 	}
 	
 	@Override
 	public void tearDown() {
-		
+		bookTablePage.load();
 	}
 	
 	@Test
@@ -52,20 +51,20 @@ public class InviteFriendsNegativeTest extends BaseTest {
 		name = "client";
 		guestName = "guest";
 		email = Utils.getRandomEmail(name);
-		date = getYesterdayDate("MM/dd/yyyy hh:mm a");
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", -1);
 		guestsNumber = 2;
 		
-		bookTablePage.enterTimeAndDateInputInvitation(date);
-		bookTablePage.enterNameInputInvitation(name);
-		bookTablePage.enterEmailInputInvitation(email);
+		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
+		inviteFriendsPage.enterNameInputInvitation(name);
+		inviteFriendsPage.enterEmailInputInvitation(email);
 		
 		for (int i = 0; i < guestsNumber; i++) {
-			bookTablePage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
+			inviteFriendsPage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
 		}
 		
-		bookTablePage.clickAcceptTermsCheckboxInvitation();
+		inviteFriendsPage.clickAcceptTermsCheckboxInvitation();
 		
-		assertTrue("Test failed: Friends invited", !bookTablePage.isInviteFriendsButtonPresent());
+		assertFalse("Test failed: Friends invited", inviteFriendsPage.isInviteFriendsButtonClickable());
 	}
 	
 	@Test
@@ -73,23 +72,23 @@ public class InviteFriendsNegativeTest extends BaseTest {
 		String date, name, guestName, email;
 		int guestsNumber;
 		
-		name = "Words_Destroyer_98";
+		name = "";
 		guestName = "guest";
 		email = Utils.getRandomEmail(name);
-		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
 		guestsNumber = 2;
 		
-		bookTablePage.enterTimeAndDateInputInvitation(date);
-		bookTablePage.enterNameInputInvitation(name);
-		bookTablePage.enterEmailInputInvitation(email);
+		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
+		inviteFriendsPage.enterNameInputInvitation(name);
+		inviteFriendsPage.enterEmailInputInvitation(email);
 		
 		for (int i = 0; i < guestsNumber; i++) {
-			bookTablePage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
+			inviteFriendsPage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
 		}
 		
-		bookTablePage.clickAcceptTermsCheckboxInvitation();
+		inviteFriendsPage.clickAcceptTermsCheckboxInvitation();
 		
-		assertTrue("Test failed: Friends invited", !bookTablePage.isInviteFriendsButtonPresent());
+		assertFalse("Test failed: Friends invited", inviteFriendsPage.isInviteFriendsButtonClickable());
 	}
 	
 	@Test
@@ -100,20 +99,20 @@ public class InviteFriendsNegativeTest extends BaseTest {
 		name = "client";
 		guestName = "guest";
 		email = "client@email";
-		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
 		guestsNumber = 2;
 		
-		bookTablePage.enterTimeAndDateInputInvitation(date);
-		bookTablePage.enterNameInputInvitation(name);
-		bookTablePage.enterEmailInputInvitation(email);
+		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
+		inviteFriendsPage.enterNameInputInvitation(name);
+		inviteFriendsPage.enterEmailInputInvitation(email);
 		
 		for (int i = 0; i < guestsNumber; i++) {
-			bookTablePage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
+			inviteFriendsPage.enterInvitationEmailInput(Utils.getRandomEmail(guestName));
 		}
 		
-		bookTablePage.clickAcceptTermsCheckboxInvitation();
+		inviteFriendsPage.clickAcceptTermsCheckboxInvitation();
 		
-		assertTrue("Test failed: Friends invited", !bookTablePage.isInviteFriendsButtonPresent());
+		assertFalse("Test failed: Friends invited", inviteFriendsPage.isInviteFriendsButtonClickable());
 	}
 	
 	@Test
@@ -122,15 +121,15 @@ public class InviteFriendsNegativeTest extends BaseTest {
 		
 		name = "client";
 		email = Utils.getRandomEmail(name);
-		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
 		
-		bookTablePage.enterTimeAndDateInputInvitation(date);
-		bookTablePage.enterNameInputInvitation(name);
-		bookTablePage.enterEmailInputInvitation(email);
+		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
+		inviteFriendsPage.enterNameInputInvitation(name);
+		inviteFriendsPage.enterEmailInputInvitation(email);
 		
-		bookTablePage.clickAcceptTermsCheckboxInvitation();
+		inviteFriendsPage.clickAcceptTermsCheckboxInvitation();
 		
-		assertTrue("Test failed: Friends invited", !bookTablePage.isInviteFriendsButtonPresent());
+		assertFalse("Test failed: Friends invited", inviteFriendsPage.isInviteFriendsButtonClickable());
 	}
 	
 	@Test
@@ -140,22 +139,15 @@ public class InviteFriendsNegativeTest extends BaseTest {
 		name = "client";
 		guestEmail = "guest@email";
 		email = Utils.getRandomEmail(name);
-		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
 		
-		bookTablePage.enterTimeAndDateInputInvitation(date);
-		bookTablePage.enterNameInputInvitation(name);
-		bookTablePage.enterEmailInputInvitation(email);
-		bookTablePage.enterInvitationEmailInput(guestEmail);
+		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
+		inviteFriendsPage.enterNameInputInvitation(name);
+		inviteFriendsPage.enterEmailInputInvitation(email);
+		inviteFriendsPage.enterInvitationEmailInput(guestEmail);
 		
-		bookTablePage.clickAcceptTermsCheckboxInvitation();
+		inviteFriendsPage.clickAcceptTermsCheckboxInvitation();
 		
-		assertTrue("Test failed: Friends invited", !bookTablePage.isInviteFriendsButtonPresent());
-	}
-	
-	private String getYesterdayDate(String format) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DAY_OF_YEAR, -1);
-		
-		return new SimpleDateFormat(format, Locale.ENGLISH).format(calendar.getTime());
+		assertFalse("Test failed: Friends invited", inviteFriendsPage.isInviteFriendsButtonClickable());
 	}
 }

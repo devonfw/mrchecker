@@ -77,7 +77,7 @@ public class MakeOrderTest extends BaseTest {
 		
 		name = "client";
 		email = Utils.getRandomEmail(name);
-		date = Utils.getTomorrowDate("MM/dd/yyyy hh:mm a");
+		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
 		guestsNumber = Utils.getRandom1toMax(8);
 		String guests = "" + guestsNumber;
 		

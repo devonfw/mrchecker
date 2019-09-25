@@ -17,9 +17,9 @@ public class Utils {
 		return name + "_" + rint + "_@test.com";
 	}
 	
-	public static String getTomorrowDate(String format) {
+	public static String getDate(String format, int offset) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DAY_OF_YEAR, 1);
+		calendar.add(Calendar.DAY_OF_YEAR, offset);
 		
 		return new SimpleDateFormat(format, Locale.ENGLISH).format(calendar.getTime());
 	}
