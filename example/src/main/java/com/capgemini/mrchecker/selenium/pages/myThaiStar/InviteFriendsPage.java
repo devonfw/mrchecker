@@ -17,25 +17,25 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class InviteFriendsPage extends BasePage {
 	
-	private static final By selectorDateInputInvitation = By.cssSelector("input[id='mat-input-5']");
+	private static final By selectorDateInput = By.cssSelector("input[formcontrolname='bookingDate']");
 	
-	private static final By selectorNameInputInvitation = By.cssSelector("input[id='mat-input-6']");
+	private static final By selectorNameInput = By.cssSelector("input[formcontrolname='name']");
 	
-	private static final By selectorEmailInputInvitation = By.cssSelector("input[id='mat-input-7']");
+	private static final By selectorEmailInput = By.cssSelector("input[formcontrolname='email']");
 	
-	private static final By selectorInvitationEmailInput = By.cssSelector("input[id='mat-input-8']");
+	private static final By selectorInvitationEmailInput = By.cssSelector("td-chips[formcontrolname='invitedGuests'] input");
 	
 	private static final By selectorConfirmationDialog = By.className("bgc-green-600");
 	
-	private static final By selectorInviteFriendsTab = By.cssSelector("div[id='mat-tab-label-0-1']");
+	private static final By selectorInviteFriendsTab = By.cssSelector("div[role='tab'][aria-posinset='2']");
 	
-	private static final By selectorAcceptTermsCheckboxInvitation = By.cssSelector("mat-checkbox[data-name='inviteFriendsTerms']");
+	private static final By selectorAcceptTermsCheckbox = By.cssSelector("mat-checkbox[data-name='inviteFriendsTerms']");
 	
-	private static By selectorInviteFriendsButton = By.name("inviteFriendsSubmit");
+	private static final By selectorInviteFriendsButton = By.name("inviteFriendsSubmit");
 	
 	@Override
 	public boolean isLoaded() {
-		getDriver().waitForElementVisible(selectorAcceptTermsCheckboxInvitation);
+		getDriver().waitForElementVisible(selectorAcceptTermsCheckbox);
 		return getDriver().getCurrentUrl()
 				.equals(GetEnvironmentParam.MY_THAI_STAR_URL.getValue() + PageSubURLsMyThaiStar.BOOK_TABLE.getValue())
 				&& getDriver().findElementDynamic(selectorInviteFriendsTab)
@@ -61,7 +61,7 @@ public class InviteFriendsPage extends BasePage {
 	}
 	
 	public void clickAcceptTermsCheckboxInvitation() {
-		WebElement checkbox = getDriver().findElementDynamic(selectorAcceptTermsCheckboxInvitation);
+		WebElement checkbox = getDriver().findElementDynamic(selectorAcceptTermsCheckbox);
 		WebElement square = checkbox.findElement(By.className("mat-checkbox-inner-container"));
 		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("arguments[0].click()", square);
@@ -74,17 +74,17 @@ public class InviteFriendsPage extends BasePage {
 	}
 	
 	public void enterTimeAndDateInputInvitation(String date) {
-		getDriver().findElementDynamic(selectorDateInputInvitation)
+		getDriver().findElementDynamic(selectorDateInput)
 				.sendKeys(date);
 	}
 	
 	public void enterNameInputInvitation(String name) {
-		getDriver().findElementDynamic(selectorNameInputInvitation)
+		getDriver().findElementDynamic(selectorNameInput)
 				.sendKeys(name);
 	}
 	
 	public void enterEmailInputInvitation(String email) {
-		getDriver().findElementDynamic(selectorEmailInputInvitation)
+		getDriver().findElementDynamic(selectorEmailInput)
 				.sendKeys(email);
 	}
 	

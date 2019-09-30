@@ -14,21 +14,21 @@ import com.capgemini.mrchecker.selenium.pages.environment.PageSubURLsMyThaiStar;
 import com.capgemini.mrchecker.selenium.pages.environment.PageTitlesEnumMyThaiStar;
 
 public class BookTablePage extends BasePage {
-	private static final By selectorDateInputBooking = By.cssSelector("input[id='mat-input-1']");
+	private static final By selectorDateInput = By.cssSelector("input[formcontrolname='bookingDate']");
 	
-	private static final By selectorNameInputBooking = By.cssSelector("input[id='mat-input-2']");
+	private static final By selectorNameInput = By.cssSelector("input[formcontrolname='name']");
 	
-	private static final By selectorEmailInputBooking = By.cssSelector("input[id='mat-input-3']");
+	private static final By selectorEmailInput = By.cssSelector("input[formcontrolname='email']");
 	
-	private static final By selectorGuestsNumberInput = By.cssSelector("input[id='mat-input-4']");
+	private static final By selectorGuestsNumberInput = By.cssSelector("input[formcontrolname='assistants']");
 	
-	private static final By selectorAcceptTermsCheckboxBooking = By.cssSelector("mat-checkbox[data-name='bookTableTerms']");
+	private static final By selectorAcceptTermsCheckbox = By.cssSelector("mat-checkbox[data-name='bookTableTerms']");
 	
-	private static By selectorBookTableButton = By.name("bookTableSubmit");
+	private static final By selectorBookTableButton = By.name("bookTableSubmit");
 	
 	private static final By selectorConfirmationDialog = By.className("bgc-green-600");
 	
-	private static final By selectorInviteFriendsTab = By.cssSelector("div[id='mat-tab-label-0-1']");
+	private static final By selectorInviteFriendsTab = By.cssSelector("div[role='tab'][aria-posinset='2']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -49,22 +49,22 @@ public class BookTablePage extends BasePage {
 	}
 	
 	public void waitForCheckboxToBeVisible() {
-		getDriver().waitForElementVisible(selectorAcceptTermsCheckboxBooking);
+		getDriver().waitForElementVisible(selectorAcceptTermsCheckbox);
 	}
 	
 	public void enterTimeAndDateInputBooking(String date) {
-		getDriver().waitForElement(selectorDateInputBooking);
-		getDriver().findElementDynamic(selectorDateInputBooking)
+		getDriver().waitForElement(selectorDateInput);
+		getDriver().findElementDynamic(selectorDateInput)
 				.sendKeys(date);
 	}
 	
 	public void enterNameInputBooking(String name) {
-		getDriver().findElementDynamic(selectorNameInputBooking)
+		getDriver().findElementDynamic(selectorNameInput)
 				.sendKeys(name);
 	}
 	
 	public void enterEmailInputBooking(String email) {
-		getDriver().findElementDynamic(selectorEmailInputBooking)
+		getDriver().findElementDynamic(selectorEmailInput)
 				.sendKeys(email);
 	}
 	
@@ -74,7 +74,7 @@ public class BookTablePage extends BasePage {
 	}
 	
 	public void clickAcceptTermsCheckboxBooking() {
-		WebElement checkbox = getDriver().findElementDynamic(selectorAcceptTermsCheckboxBooking);
+		WebElement checkbox = getDriver().findElementDynamic(selectorAcceptTermsCheckbox);
 		WebElement square = checkbox.findElement(By.className("mat-checkbox-inner-container"));
 		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("arguments[0].click()", square);

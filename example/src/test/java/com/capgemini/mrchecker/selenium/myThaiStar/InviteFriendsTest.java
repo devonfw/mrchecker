@@ -14,7 +14,8 @@ import com.capgemini.mrchecker.test.core.BaseTest;
 
 public class InviteFriendsTest extends BaseTest {
 	
-	private static BookTablePage bookTablePage = new BookTablePage();
+	private static BookTablePage	bookTablePage	= new BookTablePage();
+	InviteFriendsPage				inviteFriendsPage;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -31,11 +32,15 @@ public class InviteFriendsTest extends BaseTest {
 		if (!bookTablePage.isLoaded()) {
 			bookTablePage.load();
 		}
+		
+		bookTablePage.waitForCheckboxToBeVisible();
+		inviteFriendsPage = bookTablePage.clickInviteFriendsTab();
+		assertTrue(inviteFriendsPage.isLoaded());
 	}
 	
 	@Override
 	public void tearDown() {
-		
+		bookTablePage.load();
 	}
 	
 	@Test
@@ -49,7 +54,6 @@ public class InviteFriendsTest extends BaseTest {
 		date = Utils.getDate("MM/dd/yyyy hh:mm a", 1);
 		guestsNumber = Utils.getRandom1toMax(8);
 		
-		InviteFriendsPage inviteFriendsPage = bookTablePage.clickInviteFriendsTab();
 		inviteFriendsPage.enterTimeAndDateInputInvitation(date);
 		inviteFriendsPage.enterNameInputInvitation(name);
 		inviteFriendsPage.enterEmailInputInvitation(email);
