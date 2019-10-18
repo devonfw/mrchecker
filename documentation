@@ -1,1 +1,4 @@
-
+:toc: macro
+toc::[]
+:idprefix:
+:idseparator: -
