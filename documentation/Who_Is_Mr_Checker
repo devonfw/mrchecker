@@ -1,0 +1,8 @@
+:toc: macro
+toc::[]
+:idprefix:
+:idseparator: -
+
+MrChecker Test Framework in the end to end test automation framework written in Java.
+
+image:documentation/E2E_Test_Framework_for_DevOps_Smart_Automation_ver2/Slide6.PNG["E2E Test Framework  modules", width="450", link="documentation/E2E_Test_Framework_for_DevOps_Smart_Automation_ver2/Slide6.PNG"]
