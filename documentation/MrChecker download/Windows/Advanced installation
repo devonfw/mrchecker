@@ -1,0 +1,12 @@
+1. Java installation
+There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
+
+Install Java 1.8 JDK 64bit
+
+Download and install Java download link 
+
+2. Windows Local Environment how to set:
+
+Variable name: JAVA_HOME | Variable value: c:\Where_You’ve_Installed_Java
+
+Variable name: PATH | Variable value: %JAVA_HOME%/bin;%JAVA_HOME%\lib
