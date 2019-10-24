@@ -1,38 +1,49 @@
+= MrChecker macOS installation
 On this page, you can find all the details regarding MrChecker installation on your Mac.
 
-Java installation
+== Java installation
 There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
-Install Java 1.8 JDK 64bit
+1. Install Java 1.8 JDK 64bit
++
+Download and install [.line-through]#http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java download link]#
++
+_(To download JDK 8 from Oracle you have to have an account. It is recomended to get a JDK build based on OpenJDK from https://adoptopenjdk.net/[AdoptOpenJDK])_
 
-Download and install Java download link 
-
-Next, verify it in the command line:
-
-> java -version 
+2. Next, verify it in the command line:
++
+    > java --version
  
 
-Other components installation
+== Other components installation
 Install each component separately, or update the existing ones on your Mac.
 
-Install Maven 3.5 
-Download Maven 
-Unzip and save Maven in following location /maven
-Add Maven to PATH 
-$ export PATH=$PATH:/maven/apache-maven-3.5.0/bin/
-Verify in terminal 
+1. Maven 3.5
+    * https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.0/apache-maven-3.5.0-bin.zip[Download Maven]
+    * Unzip Maven in following location /maven
+    * Add Maven to PATH
+        
+        > $ export PATH=$PATH:/maven/apache-maven-3.5.0/bin/
 
-$ mvn -version
-2. Install Eclipse IDE 
+    * Verify in terminal:
 
-Download and install Eclipse 
-Download Mr Checker Test Framework source code
-
-Import projects in Eclipse 
-
-
-Select Projects from folders:
-
-Open already created projects:
-
-Update project structure - ALT + F5 
+        > $ mvn -version
+    
+2. Eclipse IDE
+    * Download an unzip https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-06/R/eclipse-inst-mac64.dmg[Eclipse]
+    * Download MrCheckerTestFramework https://github.com/devonfw/devonfw-testing/archive/develop.zip[source code]
+    * Import:
++
+image::image9.png[]
++
+    * Select Projects from folders:
++
+image:image10.png[]
++
+    * Open already created projects:
++
+image:image11.png[]
++
+    * Update project structure - _ALT_ + _F5_
++
+image:image12.png[]
