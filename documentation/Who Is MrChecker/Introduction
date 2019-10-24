@@ -1,3 +1,8 @@
+:toc: macro
+toc::[]
+:idprefix:
+:idseparator: -
+
 ===== Who is MrChecker?
 
 MrChecker Test Framework in the end to end test automation framework written in Java. 
