@@ -1,4 +1,4 @@
-= How to: Change timeouts?
+===== How to: Change timeouts?
 
 If you would like to change timeouts - you don't have to change it globally.
 It is possible to add waiting time parameter to searching methods, such as:
@@ -44,6 +44,3 @@ the amount of time the driver should wait when searching for an element if it is
 Changing timeouts can improve test stability but can also make run time slower. 
 
 Read more in tutorials: +
-https://capgemini.sharepoint.com/sites/Mr-Checker/SitePages/Example-10--Dynamicly-Loading-Elements.aspx[Example 10: Dynamically loaded Elements] +
-https://capgemini.sharepoint.com/sites/Mr-Checker/SitePages/Example-11--Exit-intent.aspx[Example 11: Exit intent] +
-https://capgemini.sharepoint.com/sites/Mr-Checker/SitePages/Example-12-.aspx[Example 12: File download test] 
