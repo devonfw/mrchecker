@@ -1,6 +1,6 @@
-= Advanced installation
+===== Advanced installation
 
-== Java installation
+==== Java installation
 There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
 1. Install Java 1.8 JDK 64bit
@@ -23,7 +23,7 @@ image::image3.png[]
 > java --version
 ----
 
-== Other components installation
+==== Other components installation
 Install each component separately, or update the existing ones on your PC.
 
 1. Maven 3.5
