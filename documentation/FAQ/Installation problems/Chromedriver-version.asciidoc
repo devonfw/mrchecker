@@ -1,4 +1,4 @@
-===== Chromedriver version is not compatible with Chrome browser
+= Chromedriver version is not compatible with Chrome browser
 
 *Problem:*
 
