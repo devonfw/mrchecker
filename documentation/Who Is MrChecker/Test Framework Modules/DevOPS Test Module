@@ -1,0 +1,67 @@
+= DevOPS Test Module
+
+== What is DevOps for us?
+
+DevOps consists of a mixture of three key components in a technical project:
+
+* People skills and mindset
+* Processes
+* Tools
+
+By using E2E MrChecker Test Framework it is possible to cover the majority of these areas.
+
+== QA Team Goal
+
+For QA engineers, it is essential to take care of the product code quality.
+
+Therefore, we have to understand, that a *test case is also a code which has to be validated* against quality gates. As a result, we must *test our developed test case* alike it is done during standard Software Delivery Life Cycle.
+
+== Well rounded test case production process
+
+* How do we define top-notch test cases development process in *E2E MrChecker Test Framework*
+
+image::image5.png[]
+
+== Continuous Integration (CI) and Continuous Delivery (CD)
+
+* Continuous Integration (CI) - a procedure where quality gates validate test case creation process
+* Continuous Delivery (CD) - a procedure where we include as smoke/regression/security created test cases, validated against CI
+
+image::image6.png[]
+
+== What should you receive from this DevOps module
+
+image::image7.png[]
+
+== What will you gain with our DevOps module
+
+The CI procedure has been divided into transparent modules. This solution makes configuration and maintenance very easy because everyone is able to manage versions and customize the configuration independently for each module. A separate security module ensures the protection of your credentials and assigned access roles regardless of changes in other modules.
+
+image::image8.png[]
+
+Your CI process will be matched to the current project. You can easily go back to the previous configuration, test a new one or move a selected one to other projects.
+
+image::image9.png[]
+
+DevOps module supports a delivery model in which executors are made available to the user as needed. It has advantages such as:
+
+* Saving computing resources
+* Eliminating guessing on your infrastructure capacity needs
+* Not spending time on running and maintaining additional executors
+
+image::image10.png[]
+
+image::image11.png[]
+
+image::image12.png[]
+
+== How to build this DevOps module
+
+If you want to install the module, please click the link below. Installation should not take more than a few minutes
+
+* DevOps module installation
+
+Once you have implemented the module, you can learn more about:
+
+* Building jobs & Running builds
+* Docker commands

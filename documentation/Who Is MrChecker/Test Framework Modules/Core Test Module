@@ -1,1 +1,20 @@
+= Core Test Module
 
+== What is Core Test Module
+
+image::image1.png[]
+
+== Core Test Module Functions
+
+* Test reports with logs and/or screenshots
+* Test groups/tags
+* Data driven approach
+* Test case parallel execution
+* BDD - Gherkin - Cucumber approach
+* Run on independent Operating Systems
+* Externalize test environment (DEV, QA, SIT, PROD)
+* Encrypting sensitive data
+
+== How to start?
+
+Read: Framework Test Class

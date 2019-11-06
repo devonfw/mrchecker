@@ -1,0 +1,38 @@
+= Selenium Test Module
+
+== What is MrChecker E2E Selenium Test Module
+
+image::image2.png[]
+
+== Selenium Structure
+
+* What is Selenium
+* What is WebDriver
+* What is Page Object Model/Pattern
+
+== Framework Features
+
+* Construction of Framework Page Class
+    - Every Page class must extend BasePage
+    - What is `isLoaded()`, `load()` and `pageTitle()` for
+    - How to create selector variable - `private static final By ButtonOkSelector = By.Css(…​)`
+    - How to prepare everlasting selector - documentation
+    - Method/action naming convention - documentation
+    - Why we should use `findElementDynamic()` and `findElementQuietly()` instead of classic Selenium `findElement`
+    - List of well-rounded groups of user friendly actions (`ElementButton`, `ElementCheckbox`, `ElementInput`, etc.)
+    - Verification points of well-defined Page classes and Test classes - documentation
+* Run on different browsers: Chrome, Firefox, IE, Safari, Edge
+* Run with different browser option
+* Run with full range of resolution (mobile, desktop): Testing response Design Webpage
+
+== How to start?
+
+Read: My first Selenium Test
+
+== Selenium Best Practices
+
+* Table of best practices
+
+== Selenium UFT Comparison
+
+* Selenium UFT Comparison
