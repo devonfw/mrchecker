@@ -1,4 +1,4 @@
-===== I can't find the boilerplate module. Has it been removed?
+= I can't find the boilerplate module. Has it been removed?
 
 The _boilerplate_ module has been removed from a GitHub project on purpose.
 
