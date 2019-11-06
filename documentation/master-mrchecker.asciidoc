@@ -1,0 +1,70 @@
+= devonfw-testing
+
+== Who Is MrChecker
+
+include::Whois.asciidoc[leveloffset=2]
+
+include::benefits.asciidoc[leveloffset=2]
+
+include::Test-Stages.asciidoc[leveloffset=2]
+
+== Test Framework Module
+
+In this section, it is possible to find all information regarding the main modules of MrChecker:
+
+
+include::Core-Test-Module.asciidoc[leveloffset=2]
+
+include::Database-Test-Module.asciidoc[leveloffset=2]
+
+include::DevOPS-Test-Module.asciidoc[leveloffset=2]
+
+include::Security-Test-Module.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module.asciidoc[leveloffset=2]
+
+include::Mobile-Test-Module.asciidoc[leveloffset=2]
+
+include::Web-API-Test-Module.asciidoc[leveloffset=2]
+
+== MrChecker download
+
+=== Windows
+
+include::Easy-out-of-the-box.asciidoc[leveloffset=2]
+
+include::Out-of-the-box-installation.asciidoc[leveloffset=2]
+
+include::Advanced-installation.asciidoc[leveloffset=2]
+
+=== Mac
+
+include::Mac.asciidoc[leveloffset=2]
+
+== Tutorials
+
+In order to learn more about MrChecker structure start from Project Organisation section and then check out our fantastic tutorials:
+
+This tutorial will guide you through the series of test which performs basic actions on webpages using MrChecker.
+
+Make sure you have already MrChecker Test Framework installed on your PC. How to install?
+
+Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
+
+include::Project-Organisation.asciidoc[leveloffset=2]
+
+=== Basic Tutorials
+
+==== Basic Tests
+
+include::Example-01-AB-Test-Control.asciidoc[leveloffset=2]
+
+==== First Steps
+
+=== E2E Tutorials
+
+include::Tutorial1[leveloffset=2]
+
+== FAQ
+
+Here you can find the most frequently asked questions regarding working with MrChecker and installation problems.
