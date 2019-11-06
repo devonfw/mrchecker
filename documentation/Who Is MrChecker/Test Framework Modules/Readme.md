@@ -1,6 +1,4 @@
-= MrChecker Test Framework modules
-
-image::image0.png[]
+MrChecker Test Framework modules
 
 In this section, it is possible to find all information regarding the main modules of MrChecker:
 
