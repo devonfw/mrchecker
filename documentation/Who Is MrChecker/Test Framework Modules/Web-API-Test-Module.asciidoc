@@ -1,0 +1,23 @@
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing= Web API Test Module
+
+== Service Virtualization
+
+* What is service virtualization
+* How plug in service virtualization into Application Under Test
+* How to make virtual asset
+* Smoke Tests virtualization
