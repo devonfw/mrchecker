@@ -68,3 +68,22 @@ include::Tutorial1[leveloffset=2]
 == FAQ
 
 Here you can find the most frequently asked questions regarding working with MrChecker and installation problems.
+=== Common problems
+
+include::I-cannot-find.asciidoc[leveloffset=2]
+
+include::It-is-possible.asciidoc[leveloffset=2]
+
+include::Tests-are-not-stable.asciidoc[leveloffset=2]
+
+=== How to
+
+include::Change-timeouts.asciidoc[leveloffset=2]
+
+include::Start-a-browser.asciidoc[leveloffset=2]
+
+=== Installation problems
+
+include::Chromedriver-version.asciidoc[leveloffset=2]
+
+include::My-browser-opens-up[leveloffset=2]
