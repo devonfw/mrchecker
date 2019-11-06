@@ -1,7 +1,24 @@
-===== MrChecker macOS installation
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= MrChecker macOS installation
 On this page, you can find all the details regarding MrChecker installation on your Mac.
 
-==== Java installation
+== Java installation
 There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
 1. Install Java 1.8 JDK 64bit
@@ -15,7 +32,7 @@ _(To download JDK 8 from Oracle you have to have an account. It is recomended to
     > java --version
  
 
-==== Other components installation
+== Other components installation
 Install each component separately, or update the existing ones on your Mac.
 
 1. Maven 3.5
