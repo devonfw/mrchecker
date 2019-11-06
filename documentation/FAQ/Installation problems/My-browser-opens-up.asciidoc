@@ -1,4 +1,4 @@
-===== My browser opens up by default in German
+= My browser opens up by default in German
 
 *Problem:*
 
