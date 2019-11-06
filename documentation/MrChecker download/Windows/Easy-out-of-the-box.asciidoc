@@ -1,4 +1,21 @@
-===== Easy out of the Box
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= Easy out of the Box
 
 1. Click on the link https://capgemini.sharepoint.com/sites/E2ETesting-SummitDevonfwProductionLine/Shared%20Documents/General/MrChecker_Test_Framework_2_6_0.7z[Ready to use MrChecker_Test_Environment] and download the package
 2. Unzip downloaded MrChecker Test Framework to the folder C:\ on your PC - recommended tool: http://www.7-zip.org/download.html[7z] All necessary components, such as Eclipse, Java and Maven will be pre-installed for you. There is no need for additional installations.
