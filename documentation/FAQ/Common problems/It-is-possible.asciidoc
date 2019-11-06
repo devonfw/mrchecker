@@ -1,4 +1,4 @@
-===== Is it possible to use Docker with MrChecker?
+= Is it possible to use Docker with MrChecker?
 
 MrChecker works seamlessly with Docker.
 
