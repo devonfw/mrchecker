@@ -1,4 +1,4 @@
-===== How to: Change timeouts?
+= How to: Change timeouts?
 
 If you would like to change timeouts - you don't have to change it globally.
 It is possible to add waiting time parameter to searching methods, such as:
