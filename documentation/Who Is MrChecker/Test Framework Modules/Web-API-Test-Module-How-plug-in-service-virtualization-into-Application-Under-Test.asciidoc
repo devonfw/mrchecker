@@ -1,0 +1,43 @@
+= Plug in service virtualization
+
+== Classic application structure
+
+image::image74.png[]
+
+This is quite common application structure, where we have either in Application Under Test (AUT):
+
+* UI / GUI
+* WebAPI
+* 3rd party service
+
+== Classic application structure with virtualization
+
+image::image75.png[]
+
+This classic application is quite fragile for development and/or test process. Special while, component (WebAPI) connected to the application under test is:
+
+* Not yet completed
+* Still evolving
+* Controlled by a third-party or partner
+* Available for testing only in limited capacity or at inconvenient times
+* Difficult to provision or configure in a test environment
+* Needed for simultaneous access by different teams with varied test data setup and other requirements
+* Restricted or costly to use for load and performance testing
+
+Full list of such "classic application structure" limitation you can find here https://github.com/devonfw/devonfw-testing/wiki/What-is-service-virtualization[What-is-service-virtualization].
+
+*To address such list of impediments, service virtualization is the key solution.*
+
+For simplicity, AUT connects to other component by TCP/IP protocol. Therefore AUT has IP address and port number where given components operates. _To plug in virtualization server, author of AUT ought to switch IP and port instead from real endpoint component (WebAPI) to "proxy server"_ Finally "proxy server" maps requests comes from AUT with either virtual assets or real endpoint component (WebAPI) How maps work in such "proxy server" have a look here https://github.com/devonfw/devonfw-testing/wiki/How-to-make-virtual-asset[How-to-make-virtual-asset]
+
+Therefore AUT is build either with:
+
+* switchable property file taken while startup
+
+or
+
+* "on fly" operation to change IP and ports of connected components.
+
+== CLassic APP structure with full scope - Binding in service virtualization
+
+image::image76.png[]
