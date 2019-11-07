@@ -1,0 +1,25 @@
+= Continuous Delivery
+
+Include quality with Continuous Delivery during product release.
+
+image::image87.png[]
+
+== Overview
+
+CD from Jenkins point of view does not change a lot from Continuous Integration one.
+
+== Jenkins Overview
+
+For Jenkins CD setup please use the same Jenkins settings as for CI https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#jenkins-configuration[link]. The only difference is:
+
+* What type of test you we will execute. Before we have been picking test case(s), however now we will choose test suite(s)
+* Who will will trigger given Smoke/Integration/Performance job
+* What is the name of official branch. This branch ought to use be used always in every CD execution. It will be either *master* or *develop*.
+
+=== Jenkins for Smoke Tests
+
+In point where we input test name - $TESTNAME ( https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#initial-configuration[link] ), please input test suite which merge by tags -( https://github.com/devonfw/devonfw-testing/wiki/tags-and-test-suites[link] ) how to all test cases need to run only smoke tests.
+
+=== Jenkins for Performance Tests
+
+Under construction - added when WebAPI module is included.
