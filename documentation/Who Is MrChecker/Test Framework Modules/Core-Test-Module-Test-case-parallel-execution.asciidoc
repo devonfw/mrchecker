@@ -1,0 +1,17 @@
+= What is "Parallel test execution" ?
+
+Parallel test execution means how many _"Test Classes"_ can run simultaneously.
+
+_"Test Class"_, as this is Junit Test class, it can have one and more test cases - _"Test case methods"_
+
+image::image39.png[]
+
+= How many parallel test classes can run?
+
+By default, number of parallel test classes is set to 8.
+
+It can be updated as you please, on demand, by command line:
+
+    mvn test site -Dtest=TS_Tag1 -Dthread.count=16
+
+_-Dthread.count=16_ - increase number of parallel Test Class execution to 16.
