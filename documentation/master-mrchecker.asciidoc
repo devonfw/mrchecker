@@ -2,7 +2,7 @@
 
 == Who Is MrChecker
 
-include::Whois.asciidoc[leveloffset=2]
+include::Whois.asciidoc[Who Is MrChecker?]
 
 include::benefits.asciidoc[leveloffset=2]
 
