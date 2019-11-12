@@ -2,11 +2,11 @@
 
 == Who Is MrChecker
 
-include::Whois.asciidoc[leveloffset=2]
+include::Whois.asciidoc[leveloffset=3]
 
-include::benefits.asciidoc[leveloffset=2]
+include::benefits.asciidoc[leveloffset=3]
 
-include::Test-Stages.asciidoc[leveloffset=2]
+include::Test-Stages.asciidoc[leveloffset=3]
 
 == Test Framework Modules
 
@@ -14,105 +14,105 @@ In this section, it is possible to find all information regarding the main modul
 
 === Core Test Module
 
-include::Core-Test-Module.asciidoc[leveloffset=2]
+include::Core-Test-Module.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=2]
+include::Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-test-groups-tags.asciidoc[leveloffset=2]
+include::Core-Test-Module-test-groups-tags.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=2]
+include::Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-Test-case-parallel-execution.asciidoc[leveloffset=2]
+include::Core-Test-Module-Test-case-parallel-execution.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[leveloffset=2]
+include::Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[leveloffset=2]
+include::Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[leveloffset=3]
 
-include::Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=2]
+include::Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=3]
 
 === Selenium Module
 
-include::Selenium-Test-Module.asciidoc[leveloffset=2]
+include::Selenium-Test-Module.asciidoc[leveloffset=3]
 
 === Selenium Structure
 
-include::Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-What-is-WebDriver.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-What-is-WebDriver.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=3]
 
 === Framework Features
 
-include::Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-CSS-selectors.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-CSS-selectors.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-Selenium-UTF-Comparison.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-Selenium-UTF-Comparison.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-Run-with-different-browser-options.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-Run-with-different-browser-options.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=2]
+include::Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=3]
 
-include::Selenium-Test-Selenium-Best-Practices.asciidoc[leveloffset=2]
+include::Selenium-Test-Selenium-Best-Practices.asciidoc[leveloffset=3]
 
 === Web API Module
 
-include::Web-API-Test-Module.asciidoc[leveloffset=2]
+include::Web-API-Test-Module.asciidoc[leveloffset=3]
 
-include::Web-API-Test-Module-What-is-service-virtualization.asciidoc[leveloffset=2]
+include::Web-API-Test-Module-What-is-service-virtualization.asciidoc[leveloffset=3]
 
-include::Web-API-Test-Module-How-plug-service-virtualization-in-into-Application-Under-Test.asciidoc[leveloffset=2]
+include::Web-API-Test-Module-How-plug-service-virtualization-in-into-Application-Under-Test.asciidoc[leveloffset=3]
 
-include::Web-API-Test-Module-How-to-make-virtual-asset.asciidoc[leveloffset=2]
+include::Web-API-Test-Module-How-to-make-virtual-asset.asciidoc[leveloffset=3]
 
-include::Web-API-Test-Module-Smoke-Test-virtualization.asciidoc[leveloffset=2]
+include::Web-API-Test-Module-Smoke-Test-virtualization.asciidoc[leveloffset=3]
 
 === Security Module
 
-include::Security-Test-Module.asciidoc[leveloffset=2]
+include::Security-Test-Module.asciidoc[leveloffset=3]
 
 === Database Module
 
-include::Database-Test-Module.asciidoc[leveloffset=2]
+include::Database-Test-Module.asciidoc[leveloffset=3]
 
 === Mobile Test Module
 
-include::Mobile-Test-Module.asciidoc[leveloffset=2]
+include::Mobile-Test-Module.asciidoc[leveloffset=3]
 
 === DevOps Test Module
 
-include::DevOPS-Test-Module.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module.asciidoc[leveloffset=3]
 
-include::DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[leveloffset=3]
 
-include::DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[leveloffset=3]
 
-include::DevOPS-Test-Module-Pipeline-structure.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module-Pipeline-structure.asciidoc[leveloffset=3]
 
-include::DevOPS-Test-Module-Selenium-Grid.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module-Selenium-Grid.asciidoc[leveloffset=3]
 
-include::DevOPS-Test-Module-Jenkins-Plugins.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module-Jenkins-Plugins.asciidoc[leveloffset=3]
 
-include::DevOPS-Test-Module-Docker-commands.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module-Docker-commands.asciidoc[leveloffset=3]
 
 == MrChecker download
 
 === Windows
 
-include::Easy-out-of-the-box.asciidoc[leveloffset=2]
+include::Easy-out-of-the-box.asciidoc[leveloffset=3]
 
-include::Out-of-the-box-installation.asciidoc[leveloffset=2]
+include::Out-of-the-box-installation.asciidoc[leveloffset=3]
 
-include::Advanced-installation.asciidoc[leveloffset=2]
+include::Advanced-installation.asciidoc[leveloffset=3]
 
 === Mac
 
-include::Mac.asciidoc[leveloffset=2]
+include::Mac.asciidoc[leveloffset=3]
 
 == Tutorials
 
@@ -124,91 +124,91 @@ Make sure you have already MrChecker Test Framework installed on your PC. How to
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
-include::Project-Organisation.asciidoc[leveloffset=2]
+include::Project-Organisation.asciidoc[leveloffset=3]
 
 === Basic Tutorials
 
 ==== Basic Tests
 
-include::Example-01-AB-Test-Control.asciidoc[leveloffset=2]
+include::Example-01-AB-Test-Control.asciidoc[leveloffset=4]
 
-include::Example-02-Basic-Auth-Test.asciidoc[leveloffset=2]
+include::Example-02-Basic-Auth-Test.asciidoc[leveloffset=4]
 
-include::Example-03-Broken-Images-Test.asciidoc[leveloffset=2]
+include::Example-03-Broken-Images-Test.asciidoc[leveloffset=4]
 
-include::Example-04-Challenging-DOM-Test.asciidoc[leveloffset=2]
+include::Example-04-Challenging-DOM-Test.asciidoc[leveloffset=4]
 
-include::Example-05-Checkboxes.asciidoc[leveloffset=2]
+include::Example-05-Checkboxes.asciidoc[leveloffset=4]
 
-include::Example-06-Disappearing-Elements.asciidoc[leveloffset=2]
+include::Example-06-Disappearing-Elements.asciidoc[leveloffset=4]
 
-include::Example-07-Drag-and-Drop.asciidoc[leveloffset=2]
+include::Example-07-Drag-and-Drop.asciidoc[leveloffset=4]
 
-include::Example-08-Dropdown-List.asciidoc[leveloffset=2]
+include::Example-08-Dropdown-List.asciidoc[leveloffset=4]
 
-include::Example-09-Dynamic-Content.asciidoc[leveloffset=2]
+include::Example-09-Dynamic-Content.asciidoc[leveloffset=4]
 
-include::Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=2]
+include::Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=4]
 
-include::Example-11-Exit-Intent.asciidoc[leveloffset=2]
+include::Example-11-Exit-Intent.asciidoc[leveloffset=4]
 
-include::Example-12-File-download-test.asciidoc[leveloffset=2]
+include::Example-12-File-download-test.asciidoc[leveloffset=4]
 
-include::Example-13-Form-Authentication-Test.asciidoc[leveloffset=2]
+include::Example-13-Form-Authentication-Test.asciidoc[leveloffset=4]
 
-include::Example-14-Hovers-Test.asciidoc[leveloffset=2]
+include::Example-14-Hovers-Test.asciidoc[leveloffset=4]
 
-include::Example-15-JavaScript-Alerts.asciidoc[leveloffset=2]
+include::Example-15-JavaScript-Alerts.asciidoc[leveloffset=4]
 
-include::Example-16-Key-Presses-test.asciidoc[leveloffset=2]
+include::Example-16-Key-Presses-test.asciidoc[leveloffset=4]
 
-include::Example-17-Multiple-Windows.asciidoc[leveloffset=2]
+include::Example-17-Multiple-Windows.asciidoc[leveloffset=4]
 
-include::Example-18-Redirection.asciidoc[leveloffset=2]
+include::Example-18-Redirection.asciidoc[leveloffset=4]
 
-include::Example-19-Slider-Test.asciidoc[leveloffset=2]
+include::Example-19-Slider-Test.asciidoc[leveloffset=4]
 
-include::Example-20-Sortable-Data-Tables.asciidoc[leveloffset=2]
+include::Example-20-Sortable-Data-Tables.asciidoc[leveloffset=4]
 
-include::Example-21-Status-Codes.asciidoc[leveloffset=2]
+include::Example-21-Status-Codes.asciidoc[leveloffset=4]
 
 ==== First Steps
 
-include::Page-objects.asciidoc[leveloffset=2]
+include::Page-objects.asciidoc[leveloffset=4]
 
-include::Environment-variables.asciidoc[leveloffset=2]
+include::Environment-variables.asciidoc[leveloffset=4]
 
-include::Selectors.asciidoc[leveloffset=2]
+include::Selectors.asciidoc[leveloffset=4]
 
-include::Elements-Types.asciidoc[leveloffset=2]
+include::Elements-Types.asciidoc[leveloffset=4]
 
-include::The-Internet-Base-Test.asciidoc[leveloffset=2]
+include::The-Internet-Base-Test.asciidoc[leveloffset=4]
 
-include::BFLogger.asciidoc[leveloffset=2]
+include::BFLogger.asciidoc[leveloffset=4]
 
 === E2E Tutorials
 
-include::Tutorial1[leveloffset=2]
+include::Tutorial1[leveloffset=4]
 
 == FAQ
 
 Here you can find the most frequently asked questions regarding working with MrChecker and installation problems.
 === Common problems
 
-include::I-cannot-find.asciidoc[leveloffset=2]
+include::I-cannot-find.asciidoc[leveloffset=3]
 
-include::It-is-possible.asciidoc[leveloffset=2]
+include::It-is-possible.asciidoc[leveloffset=3]
 
-include::Tests-are-not-stable.asciidoc[leveloffset=2]
+include::Tests-are-not-stable.asciidoc[leveloffset=3]
 
 === How to
 
-include::Change-timeouts.asciidoc[leveloffset=2]
+include::Change-timeouts.asciidoc[leveloffset=3]
 
-include::Start-a-browser.asciidoc[leveloffset=2]
+include::Start-a-browser.asciidoc[leveloffset=3]
 
 === Installation problems
 
-include::Chromedriver-version.asciidoc[leveloffset=2]
+include::Chromedriver-version.asciidoc[leveloffset=3]
 
-include::My-browser-opens-up[leveloffset=2]
+include::My-browser-opens-up[leveloffset=3]
