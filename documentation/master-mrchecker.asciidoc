@@ -58,6 +58,14 @@ include::Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[levelof
 
 include::Web-API-Test-Module.asciidoc[leveloffset=2]
 
+include::Web-API-Test-Module-What-is-service-virtualization.asciidoc[leveloffset=2]
+
+include::Web-API-Test-Module-How-plug-service-virtualization-in-into-Application-Under-Test.asciidoc[leveloffset=2]
+
+include::Web-API-Test-Module-How-to-make-virtual-asset.asciidoc[leveloffset=2]
+
+include::Web-API-Test-Module-Smoke-Test-virtualization.asciidoc[leveloffset=2]
+
 === Security Module
 
 include::Security-Test-Module.asciidoc[leveloffset=2]
