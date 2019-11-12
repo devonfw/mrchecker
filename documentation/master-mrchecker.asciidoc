@@ -31,7 +31,7 @@ include::Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[
 
 include::Selenium-Test-Module.asciidoc[leveloffset=2]
 
-===Selenium Structure
+=== Selenium Structure
 
 include::Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=2]
 
