@@ -12,20 +12,34 @@ include::Test-Stages.asciidoc[leveloffset=2]
 
 In this section, it is possible to find all information regarding the main modules of MrChecker:
 
-
 include::Core-Test-Module.asciidoc[leveloffset=2]
 
-include::Database-Test-Module.asciidoc[leveloffset=2]
+include::Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=2]
 
-include::DevOPS-Test-Module.asciidoc[leveloffset=2]
+include::Core-Test-Module-test-groups-tags.asciidoc[leveloffset=2]
 
-include::Security-Test-Module.asciidoc[leveloffset=2]
+include::Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=2]
+
+include::Core-Test-Module-Test-case-parallel-execution.asciidoc[leveloffset=2]
+
+include::Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[leveloffset=2]
+
+include::Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[leveloffset=2]
+
+include::Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=2]
+
 
 include::Selenium-Test-Module.asciidoc[leveloffset=2]
 
+include::Web-API-Test-Module.asciidoc[leveloffset=2]
+
+include::Security-Test-Module.asciidoc[leveloffset=2]
+
+include::Database-Test-Module.asciidoc[leveloffset=2]
+
 include::Mobile-Test-Module.asciidoc[leveloffset=2]
 
-include::Web-API-Test-Module.asciidoc[leveloffset=2]
+include::DevOPS-Test-Module.asciidoc[leveloffset=2]
 
 == MrChecker download
 
@@ -78,9 +92,40 @@ include::Example-09-Dynamic-Content.asciidoc[leveloffset=2]
 include::Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=2]
 
 include::Example-11-Exit-Intent.asciidoc[leveloffset=2]
-include::Example-01-AB-Test-Control.asciidoc[leveloffset=2]
+
+include::Example-12-File-download-test.asciidoc[leveloffset=2]
+
+include::Example-13-Form-Authentication-Test.asciidoc[leveloffset=2]
+
+include::Example-14-Hovers-Test.asciidoc[leveloffset=2]
+
+include::Example-15-JavaScript-Alerts.asciidoc[leveloffset=2]
+
+include::Example-16-Key-Presses-test.asciidoc[leveloffset=2]
+
+include::Example-17-Multiple-Windows.asciidoc[leveloffset=2]
+
+include::Example-18-Redirection.asciidoc[leveloffset=2]
+
+include::Example-19-Slider-Test.asciidoc[leveloffset=2]
+
+include::Example-20-Sortable-Data-Tables.asciidoc[leveloffset=2]
+
+include::Example-21-Status-Codes.asciidoc[leveloffset=2]
 
 ==== First Steps
+
+include::Page-objects.asciidoc[leveloffset=2]
+
+include::Environment-variables.asciidoc[leveloffset=2]
+
+include::Selectors.asciidoc[leveloffset=2]
+
+include::Elements-Types.asciidoc[leveloffset=2]
+
+include::The-Internet-Base-Test.asciidoc[leveloffset=2]
+
+include::BFLogger.asciidoc[leveloffset=2]
 
 === E2E Tutorials
 
