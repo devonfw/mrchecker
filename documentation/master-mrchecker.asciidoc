@@ -31,6 +31,27 @@ include::Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[
 
 include::Selenium-Test-Module.asciidoc[leveloffset=2]
 
+===Selenium Structure
+
+include::Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-What-is-WebDriver.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=2]
+
+=== Framework Features
+
+include::Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-Run-with-different-browser-options.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=2]
+
+
 include::Web-API-Test-Module.asciidoc[leveloffset=2]
 
 include::Security-Test-Module.asciidoc[leveloffset=2]
