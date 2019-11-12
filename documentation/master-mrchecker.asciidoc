@@ -2,7 +2,7 @@
 
 == Who Is MrChecker
 
-include::Whois.asciidoc[Who Is MrChecker?]
+include::Whois.asciidoc[leveloffset=2]
 
 include::benefits.asciidoc[leveloffset=2]
 
@@ -57,6 +57,27 @@ include::Project-Organisation.asciidoc[leveloffset=2]
 
 ==== Basic Tests
 
+include::Example-01-AB-Test-Control.asciidoc[leveloffset=2]
+
+include::Example-02-Basic-Auth-Test.asciidoc[leveloffset=2]
+
+include::Example-03-Broken-Images-Test.asciidoc[leveloffset=2]
+
+include::Example-04-Challenging-DOM-Test.asciidoc[leveloffset=2]
+
+include::Example-05-Checkboxes.asciidoc[leveloffset=2]
+
+include::Example-06-Disappearing-Elements.asciidoc[leveloffset=2]
+
+include::Example-07-Drag-and-Drop.asciidoc[leveloffset=2]
+
+include::Example-08-Dropdown-List.asciidoc[leveloffset=2]
+
+include::Example-09-Dynamic-Content.asciidoc[leveloffset=2]
+
+include::Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=2]
+
+include::Example-11-Exit-Intent.asciidoc[leveloffset=2]
 include::Example-01-AB-Test-Control.asciidoc[leveloffset=2]
 
 ==== First Steps
