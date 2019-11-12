@@ -48,11 +48,17 @@ include::Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=2]
 
 include::Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=2]
 
+include::Selenium-Test-Module-CSS-selectors.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Module-Selenium-UTF-Comparison.asciidoc[leveloffset=2]
+
 include::Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=2]
 
 include::Selenium-Test-Module-Run-with-different-browser-options.asciidoc[leveloffset=2]
 
 include::Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=2]
+
+include::Selenium-Test-Selenium-Best-Practices.asciidoc[leveloffset=2]
 
 === Web API Module
 
