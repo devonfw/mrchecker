@@ -8,9 +8,11 @@ include::benefits.asciidoc[leveloffset=2]
 
 include::Test-Stages.asciidoc[leveloffset=2]
 
-== Test Framework Module
+== Test Framework Modules
 
 In this section, it is possible to find all information regarding the main modules of MrChecker:
+
+=== Core Test Module
 
 include::Core-Test-Module.asciidoc[leveloffset=2]
 
@@ -28,6 +30,7 @@ include::Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[levelof
 
 include::Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=2]
 
+=== Selenium Module
 
 include::Selenium-Test-Module.asciidoc[leveloffset=2]
 
@@ -51,14 +54,23 @@ include::Selenium-Test-Module-Run-with-different-browser-options.asciidoc[levelo
 
 include::Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=2]
 
+=== Web API Module
 
 include::Web-API-Test-Module.asciidoc[leveloffset=2]
 
+=== Security Module
+
 include::Security-Test-Module.asciidoc[leveloffset=2]
+
+=== Database Module
 
 include::Database-Test-Module.asciidoc[leveloffset=2]
 
+=== Mobile Test Module
+
 include::Mobile-Test-Module.asciidoc[leveloffset=2]
+
+=== DevOps Test Module
 
 include::DevOPS-Test-Module.asciidoc[leveloffset=2]
 
