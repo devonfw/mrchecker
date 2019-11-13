@@ -23,10 +23,10 @@ toc::[]
 *Note*: Please double check the place in which you have unzipped MrChecker_Test_Framework
 3. Go to folder C:\MrChecker_Test_Framework\ , in which Mr.Checker has been unzipped
 +
-image::image1.png[]
+image::images/image1.png[]
 4. In order to run the program, double click on _start-eclipse-with-java.bat_
 +
 _(note that start-eclipse.bat won't detect Java)_
 5. Update project structure (_ALT_ + _F5_)
 +
-image::image2.png[]
+image::images/image2.png[]
