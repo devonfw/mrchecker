@@ -32,7 +32,7 @@ _(To download JDK 8 from Oracle you have to have an account. It is recomended to
 +
 * *Variable name*: PATH | *Variable value*: %JAVA_HOME%/bin;%JAVA_HOME%\lib
 +
-image::image3.png[]
+image::images/image3.png[]
 
 3. Next, verify it in the command line:
 +
