@@ -50,7 +50,7 @@ Install each component separately, or update the existing ones on your PC.
         - *Variable name*: M2_HOME | *Variable value*: C:\maven\apache-maven-3.5.0
         - *Variable name*: PATH | *Variable value*: %M2_HOME%\bin
 +
-image::image4.png[]
+image::images/image4.png[]
 +
     * Verify in a command line:
 +
@@ -63,16 +63,16 @@ image::image4.png[]
     * Download MrCheckerTestFramework https://github.com/devonfw/devonfw-testing/archive/develop.zip[source code]
     * Import:
 +
-image::image5.png[]
+image::images/image5.png[]
 +
     * Projects from folders
 +
-image::image6.png[]
+image::images/image6.png[]
 +
     * Open already created projects:
 +
-image::image7.png[]
+image::images/image7.png[]
 +
     * Update project structure - _ALT_ + _F5_
 +
-image::image8.png[]
+image::images/image8.png[]
