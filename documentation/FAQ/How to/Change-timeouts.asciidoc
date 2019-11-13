@@ -43,4 +43,3 @@ the amount of time the driver should wait when searching for an element if it is
 
 Changing timeouts can improve test stability but can also make run time slower. 
 
-Read more in tutorials: +
