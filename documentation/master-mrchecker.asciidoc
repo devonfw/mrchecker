@@ -2,11 +2,11 @@
 
 == Who Is MrChecker
 
-include::Whois.asciidoc[leveloffset=3]
+include::Whois.asciidoc[leveloffset=2]
 
-include::benefits.asciidoc[leveloffset=3]
+include::benefits.asciidoc[leveloffset=2]
 
-include::Test-Stages.asciidoc[leveloffset=3]
+include::Test-Stages.asciidoc[leveloffset=2]
 
 == Test Framework Modules
 
@@ -124,7 +124,7 @@ Make sure you have already MrChecker Test Framework installed on your PC. How to
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
-include::Project-Organisation.asciidoc[leveloffset=3]
+include::Project-Organisation.asciidoc[leveloffset=2]
 
 === Basic Tutorials
 
@@ -188,11 +188,12 @@ include::BFLogger.asciidoc[leveloffset=4]
 
 === E2E Tutorials
 
-include::Tutorial1[leveloffset=4]
+include::Tutorial1[leveloffset=3]
 
 == FAQ
 
 Here you can find the most frequently asked questions regarding working with MrChecker and installation problems.
+
 === Common problems
 
 include::I-cannot-find.asciidoc[leveloffset=3]
