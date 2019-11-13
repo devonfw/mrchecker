@@ -51,16 +51,16 @@ Install each component separately, or update the existing ones on your Mac.
     * Download MrCheckerTestFramework https://github.com/devonfw/devonfw-testing/archive/develop.zip[source code]
     * Import:
 +
-image::image9.png[]
+image::images/image9.png[]
 +
     * Select Projects from folders:
 +
-image:image10.png[]
+image:images/image10.png[]
 +
     * Open already created projects:
 +
-image:image11.png[]
+image:images/image11.png[]
 +
     * Update project structure - _ALT_ + _F5_
 +
-image:image12.png[]
+image:images/image12.png[]
