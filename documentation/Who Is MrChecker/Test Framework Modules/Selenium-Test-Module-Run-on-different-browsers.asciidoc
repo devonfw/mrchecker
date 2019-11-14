@@ -1,12 +1,12 @@
 = Run on different browsers
 
-image::image59.png[]
+image::images/image59.png[]
 
 To execute each test with chosen installed browser, it is required to use specific arguments in Run configuration.
 
-image::image60.png[]
+image::images/image60.png[]
 
-image::image61.png[]
+image::images/image61.png[]
 
 As an argument (in 'Arguments' tab) it is necessary to enter _-Dbrowser=_ with browser parameter name:
 

@@ -10,13 +10,13 @@ Selenium Grid allows running web/mobile browsers test cases to fulfil bedrock fa
 * Continuous Integration and Continuous Delivery process
 * Support multi-type programming languages (java, javascript, python, …​).
 
-image::image88.png[]
+image::images/image88.png[]
 
 On a daily basis, a test automation engineer uses his local environments for test case execution/development. However, created browser test case has to be able to run on any other infrastructure. Selenium Grid enables this portability for us.
 
 == Selenium Grid Structure
 
-image::image89.png[]
+image::images/image89.png[]
 
 Full documentation for Selenium Grid can be found https://github.com/SeleniumHQ/selenium[here] and http://docs.seleniumhq.org/docs/07_selenium_grid.jsp[here].
 
@@ -34,7 +34,7 @@ There are two options of Selenium Grid setup:
 
 Advantages and disadvantages of both solutions:
 
-image::image90.png[]
+image::images/image90.png[]
 
 == How to use Selenium Grid with E2E Mr Checker Test Frameworks
 
@@ -51,4 +51,4 @@ As a result of this command:
 * `-Dos=LINUX` - what operating system must be taken during test case execution
 * `-Dbrowser=chrome` - what type of browser will be used during test case execution
 
-image::image91.png[]
+image::images/image91.png[]

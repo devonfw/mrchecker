@@ -19,7 +19,7 @@ toc::[]
 
 == What is Core Test Module
 
-image::image1.png[]
+image::images/image1.png[]
 
 == Core Test Module Functions
 

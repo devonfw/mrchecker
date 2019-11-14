@@ -2,9 +2,9 @@
 
 This page will provide an overview of basic web elements.
 
-image::image57.png[]
+image::images/image57.png[]
 
-image::image58.png[]
+image::images/image58.png[]
 
 [cols=2*,options=header]
 |===

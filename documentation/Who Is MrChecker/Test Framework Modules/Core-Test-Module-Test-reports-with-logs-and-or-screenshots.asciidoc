@@ -29,15 +29,15 @@ Place where they are saved:
 * `BFLogger.logDebug("Your text")` - used for non official information, either during test build process or in Page Object files
 * `BFLogger.logError("Your text")` - used to emphasize critical information
 
-image::image13.png[]
+image::images/image13.png[]
 
 Console output:
 
-image::image14.png[]
+image::images/image14.png[]
 
 = Allure Reports
 
-image::image15.png[]
+image::images/image15.png[]
 
 Allure is a tool designed for test reports.
 
@@ -63,15 +63,15 @@ Report is created here _allure-app-under-test\target\site\allure-report\index.ht
 
 *NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitation to present dynamic content. If you want to open report with Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
-image::image17.png[]
+image::images/image17.png[]
 
-image::image18.png[]
+image::images/image18.png[]
 
 === Generate report - Jenkins
 
 In our case, we'll use the Allure Jenkins plugin. When integrating Allure in the Jenkins job configuration, we'll have direct access to the build's test report.
 
-image::image19.png[]
+image::images/image19.png[]
 
 There are several ways to access the Allure Test Reports:
 
@@ -82,7 +82,7 @@ Afterwards you'll be greeted with either the general Allure Dashboard (showing t
 
 == Allure dashboard
 
-image::image20.png[]
+image::images/image20.png[]
 
 The Dashboard provides a graphical overview on how many test cases were successful, failed or are broken.
 
@@ -98,4 +98,4 @@ The defects tab lists out all the defects that occurred, including a description
 
 The graph page includes a pie chart of all tests, showing their result status (failed, passed, etc.). Another graph allows insight into the time elapsed during the tests. This is a very useful information to find and eliminate possible bottlenecks in test implementations.
 
-image::image21.png[]
+image::images/image21.png[]

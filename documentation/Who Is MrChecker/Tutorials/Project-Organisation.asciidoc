@@ -4,33 +4,33 @@ Every MrChecker project should be imported as a Maven Project.
 
 Example from Eclipse IDE: 
 
-image::1.PNG[]
+image::images/images/1.PNG[]
 
-image::2.PNG[]
+image::images/images/2.PNG[]
 
 Enter the project path and select projects to import. 
 
-image::3.png[]
+image::images/images/3.png[]
 
 When the import is finished, update the project structure - ALT + F5
 
-image::4.png[]
+image::images/images/4.png[]
 
 ===== Exporting projects
 
 In order to create a new standalone MrChecker project, you can use template-app-under-test and export it to the new folder: 
 
-image::5.png[]
+image::images/images/5.png[]
 
-image::6.png[]
+image::images/images/6.png[]
 
 Create a new folder for the project and enter its path. Select project and files to export: 
 
-image::7.png[]
+image::images/images/7.png[]
 
 Change project name and other properties, if necessary, in pom.xml file:  
 
-image::8.png[]
+image::images/images/8.png[]
 
 Then you can import the project to the workspace and create new packages and classes. 
 
@@ -56,7 +56,7 @@ Then you can import the project to the workspace and create new packages and cla
 
 Example: 
 
-image::9.png[]
+image::images/images/9.png[]
 
 ===== Creating new Page Classes
 

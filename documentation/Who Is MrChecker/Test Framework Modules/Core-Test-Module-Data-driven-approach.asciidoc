@@ -24,7 +24,7 @@ The different means to pass in parameters are shown below.
 @Parameters({"1, 2, 3", "3, 4, 7", "5, 6, 11", "7, 8, 15"})
 ----
 
-image::image30.png[]
+image::images/image30.png[]
 
 The parameters must be primitive objects such as integers, strings, or booleans. Each set of parameters is contained within a single string and will be parsed to their correct values as defined by the test method’s signature.
 
@@ -34,7 +34,7 @@ The parameters must be primitive objects such as integers, strings, or booleans.
 @Parameters(method = "addParameters")
 ----
 
-image::image31.png[]
+image::images/image31.png[]
 
 A separate method can be defined and referred to for parameters. This method must return an `Object[]` and can contain normal objects.
 
@@ -44,7 +44,7 @@ A separate method can be defined and referred to for parameters. This method mus
 @Parameters(source = MyContainsTestProvider.class)
 ----
 
-image::image32.png[]
+image::images/image32.png[]
 
 A separate class can be used to define parameters for the test. This test must contain at least one static method that returns an Object[], and its name must be prefixed with provide. The class could also contain multiple methods that provide parameters to the test, as long as they also meet the required criteria.
 
@@ -62,24 +62,24 @@ A CSV can also be used to contain the parameters for the tests. It is pretty sim
 
 === Classic CSV
 
-image::image33.png[]
+image::images/image33.png[]
 
 and CSV file structure
 
-image::image34.png[]
+image::images/image34.png[]
 
 === CSV with headers
 
-image::image35.png[]
+image::images/image35.png[]
 
 and CSV file structure
 
-image::image36.png[]
+image::images/image36.png[]
 
 === CSV with specific column mapper
 
-image::image37.png[]
+image::images/image37.png[]
 
 and Mapper implementation
 
-image::image38.png[]
+image::images/image38.png[]

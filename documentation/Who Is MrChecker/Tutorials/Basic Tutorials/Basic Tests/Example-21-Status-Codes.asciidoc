@@ -1,4 +1,4 @@
-image::image56.png[]
+image::images/image56.png[]
 
 This example shows how to process HTTP status codes returned by page
 
@@ -9,7 +9,7 @@ When you click status code link, you will be redirected to the subpage which ret
 3. Click request name 
 4. Find code number in Headers section 
 
-image::image57.png[]
+image::images/image57.png[]
 
 ===== Page Class
 

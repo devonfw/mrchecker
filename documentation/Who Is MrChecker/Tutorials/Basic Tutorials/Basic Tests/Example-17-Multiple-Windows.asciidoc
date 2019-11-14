@@ -1,10 +1,10 @@
-image::image48.png[]
+image::images/image48.png[]
 
 This simple example shows how operate on many browser tabs 
 
 When you click the link, a new website will be opened in the second tab. 
 
-image::image49.png[]
+image::images/image49.png[]
 
 ===== Page Class
 

@@ -1,4 +1,4 @@
-image::image3.png[]
+image::images/image3.png[]
 
 In this test case, the goal is to pass username and password authorization and login to the next page. 
 
@@ -14,7 +14,7 @@ Steps:
 
 Create a page class which represents Basic Auth subpage after proper login. 
 
-image::image4.png[]
+image::images/image4.png[]
 
 Override all required methods: 
 

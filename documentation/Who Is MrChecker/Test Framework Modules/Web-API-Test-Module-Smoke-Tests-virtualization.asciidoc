@@ -2,7 +2,7 @@
 
 The following picture presents process of executing Smoke Tests in virtualized environment:
 
-image::image78.png[]
+image::images/image78.png[]
 
 == Install docker service
 

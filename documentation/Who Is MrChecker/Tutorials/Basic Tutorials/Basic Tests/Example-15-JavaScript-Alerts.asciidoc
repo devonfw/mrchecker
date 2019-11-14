@@ -1,16 +1,16 @@
-image::image43.png[]
+image::images/image43.png[]
 
 This case shows how to test pop-up JS alerts. 
 
 After clicking one of the buttons adequate alert should appear.
 
-image::image44.png[]
+image::images/image44.png[]
 
 Performed action will be displayed under "Result" label. 
 
 In developer mode, you can view JavaScript which creates alerts.
 
-image::image45.png[]
+image::images/image45.png[]
 
 ===== Page Class
 

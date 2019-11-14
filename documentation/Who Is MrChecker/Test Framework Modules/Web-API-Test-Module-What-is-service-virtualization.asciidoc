@@ -2,11 +2,11 @@
 
 DevOps + Microservices + Shift left + Time to Market == *? Service virtualization ?*
 
-image::image72.png[]
+image::images/image72.png[]
 
 Test pyramid
 
-image::image73.png[]
+image::images/image73.png[]
 
 == What is service virtualization
 

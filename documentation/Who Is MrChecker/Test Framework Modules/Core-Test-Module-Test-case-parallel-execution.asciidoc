@@ -4,7 +4,7 @@ Parallel test execution means how many _"Test Classes"_ can run simultaneously.
 
 _"Test Class"_, as this is Junit Test class, it can have one and more test cases - _"Test case methods"_
 
-image::image39.png[]
+image::images/image39.png[]
 
 = How many parallel test classes can run?
 

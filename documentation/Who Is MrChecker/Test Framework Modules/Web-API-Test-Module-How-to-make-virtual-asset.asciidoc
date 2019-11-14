@@ -13,7 +13,7 @@ Full article here http://wiremock.org/docs/record-playback/[Wiremock record-play
 
 First, start an instance of http://wiremock.org/docs/running-standalone[WireMock running standalone]. Once that’s running visit the recorder UI page at http://localhost:8080/__admin/recorder (assuming you started WireMock on the default port of 8080).
 
-image::image77.png[]
+image::images/image77.png[]
 
 Enter the URL you wish to record from in the target URL field and click the Record button. You can use http://example.mocklab.io to try it out.
 

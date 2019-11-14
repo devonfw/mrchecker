@@ -1,4 +1,4 @@
-image::image36.png[]
+image::images/image36.png[]
 
 This example shows how to check if file downloads properly.
 

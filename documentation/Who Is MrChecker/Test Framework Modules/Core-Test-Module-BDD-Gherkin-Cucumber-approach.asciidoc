@@ -6,7 +6,7 @@ Business and IT don’t always understand each other. Too often misunderstanding
 
 Cucumber uses executable specifications to encourage close collaboration. This helps teams to keep the business goal in mind at all times. With Cucumber you can merge specification and test documentation into one cohesive whole, allowing your team to maintain one single source of truth. Because these executable specifications are automatically tested by Cucumber, your single source of truth is always up-to-date.
 
-image::image40.png[]
+image::images/image40.png[]
 
 Cucumber supports testers when designing test cases. To automate these test cases several languages can be used. Cucumber also works well with Browser Automation tools such as Selenium Webdriver.
 
@@ -58,7 +58,7 @@ Cucumber and Selenium are both open source tools with a large community, online 
 
 === Eclipse IDE
 
-image::image41.png[]
+image::images/image41.png[]
 
 == Tooling
 
@@ -130,7 +130,7 @@ Cucumber can report results in several different formats, using formatter plugin
 
 Cucumber executes your feature files. As shown in the example below, feature files in Gherkin are easy to read so they can be shared between IT and business. Data tables can be used to execute a scenario with different inputs.
 
-image::image42.png[]
+image::images/image42.png[]
 
 ==== Organizing tests
 
@@ -144,7 +144,7 @@ Cucumber can report results in several formats, using formatter plug-ins.
 
 Not supported option by Shared Services: The output from Cucumber can be used to present test results in Jenkins or Hudson depending of the preference of the project.
 
-image::image43.png[]
+image::images/image43.png[]
 
 == HOW IS Cucumber / Selenium USED AT Capgemini?
 

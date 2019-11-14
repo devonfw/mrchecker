@@ -8,7 +8,7 @@ Instead of _hardcoded_ main URL variable, you build your Page class with a dynam
 
 Dynamic variable values are stored under path _\src\resources\enviroments\environments.csv_.
 
-image::image1.png[]
+image::images/image1.png[]
 
 By default, the environment takes value from DEV column. 
 

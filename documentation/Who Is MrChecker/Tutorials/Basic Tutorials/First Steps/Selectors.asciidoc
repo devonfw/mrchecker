@@ -4,7 +4,7 @@
 
 Create a selector for every interactable element on a webpage using By type. Find elements and it's attributes using browser developer mode (F12).
 
-image::image2.png[]
+image::images/image2.png[]
 
 ----
 private static final By abTestLinkSelector               = By.cssSelector("li >

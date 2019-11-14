@@ -23,7 +23,7 @@ mrchecker-app-under-test → src/test/java -> com.example -> selenium.tests -> t
 
 Right click on "tests", click on "New" -> New Package. We’ll the new package "com.example.selenium.tests.googleSearch".
 
-image::image65.png[]
+image::images/image65.png[]
 
 === Creating package for page classes
 
@@ -33,13 +33,13 @@ mrchecker-app-under-test -> src/main/java -> com.example -> selenium -> pages
 
 Right click on "pages", click on "New" -> New Package. The new package will be called "com.example.selenium.pages.googleSearch".
 
-image::image66.png[]
+image::images/image66.png[]
 
 == Creating the test class
 
 The test class will contain the entire testing-routine. At first, we’ll create a new class inside of our newly created "googleSearch" package (under src/test/java) and call it "GoogleSearchTest".
 
-image::image67.png[]
+image::images/image67.png[]
 
 As "GoogleSearchTest" is a test class, it has to extend the _BaseTest_ class. You may have to import some required packages and afterwards include a few required methods.
 
@@ -73,7 +73,7 @@ public void setUp() {
 
 We created a new field for the GoogleSearchPage class and instantiated an object in the setUp() method. As this class doesn’t exist yet, we’ll have to create it inside of the googleSearch page class package.
 
-image::image68.png[]
+image::images/image68.png[]
 
 We extend the GoogleSearchPage class with BasePage, import all necessary packages and include all required methods.
 
@@ -149,7 +149,7 @@ The completion of these methods finalizes our _GoogleSearchPage_ class. Now we s
 
 By right-clicking on the "pages" package, we’ll navigate to "new" -> "Class" to create a new class.
 
-image::image69.png[]
+image::images/image69.png[]
 
 The _GoogleResultPage_ class also has to extend _BasePage_ and include all required methods. Next, a new selector for the result list will be created. By using the result list, we can finally check if the result count is bigger than zero and the search request therefore was successful.
 
@@ -235,10 +235,10 @@ Code explanation: At first, we will run the `enterGoogleSearchInput()` method on
 
 We can run the test by right clicking on the test method -> Run as -> JUnit test.
 
-image::image70.png[]
+image::images/image70.png[]
 
 After starting the test, you’ll notice a browser window opening, resizing to given dimensions, opening Google, entering the query "Test" and submitting the form. After completing the test, you’ll see the test results on the right side of Eclipse. A green color indicator means that the test was successful, red means the test failed.
 
-image::image71.png[]
+image::images/image71.png[]
 
 This walkthrough should’ve provided you with the basic understanding on how the framework can be used to create test cases.

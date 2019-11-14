@@ -1,16 +1,16 @@
 This case will show how to test changing website content. 
 
-image::image9.png[]
+image::images/image9.png[]
 
 After refreshing page (F5) a few times, a new element should appear: 
 
-image::image10.png[]
+image::images/image10.png[]
 Then after another few refreshes, it should disappear. 
 
 You can check in developer mode that Gallery element also does not exist in HTML document until appearing on the page. The element is created by Javascript. 
 
-image::image11.png[]
-image::image12.png[]
+image::images/image11.png[]
+image::images/image12.png[]
 
 Steps: 
 

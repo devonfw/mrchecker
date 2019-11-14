@@ -1,37 +1,37 @@
 This example shows how to test the page with dynamically loading content. Some elements don't load during page loading, but as a result, during JavaScript executing. 
 
-image::image23.png[]
+image::images/image23.png[]
 Go to Example 1: 
 
-image::image24.png[]
+image::images/image24.png[]
 
 Click "start" and see what happens: 
 
-image::image25.png[]
+image::images/image25.png[]
 
 When loading ends, you should see the following message: 
 
-image::image26.png[]
+image::images/image26.png[]
 
 In the developer mode, you can see that element with "Hello World!" message exists in page DOM but it's not displayed. However, the loading bar does not exist there; it's created by JavaScript. The script is also visible in developer mode: 
 
-image::image27.png[]
+image::images/image27.png[]
 
 After clicking the "Start" button, Element "Loading" is created by the script, and the "Start" button becomes invisible. When loading ends, "Hello World" message is being displayed and the loading bar is being hidden. Follow the changes the in developer mode: 
 
-image::image28.png[]
+image::images/image28.png[]
 
 Go to example 2: 
 From a user perspective, there is no difference in page functioning. But in this case element with "Hello World!" message does not exist on the page before clicking "Start". Then it's created by the script. 
 
-image::image29.png[]
+image::images/image29.png[]
 After clicking "Start" element with the loading bar is been created. 
 
-image::image30.png[]
+image::images/image30.png[]
 
 After a certain time, the loading bar becomes invisible, and then the script creates "Hello World!" element and displays it. 
 
-image::image31.png[]
+image::images/image31.png[]
 
 ===== Page Class
 ----

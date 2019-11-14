@@ -1,10 +1,10 @@
-image::image52.png[]
+image::images/image52.png[]
 
 This case shows how to move horizontal slider.
 
 You can move the slider by dragging it with a mouse or using arrow keys. The page uses a simple script to get slider position and display set value.
 
-image::image53.png[]
+image::images/image53.png[]
 
 ===== Page Class
 

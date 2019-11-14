@@ -4,7 +4,7 @@
 
 The following image gives a general overview of the test class "lifecycle".
 
-image::image52.png[]
+image::images/image52.png[]
 
 More information on the methods and annotations used in this image can be found in the following chapter.
 

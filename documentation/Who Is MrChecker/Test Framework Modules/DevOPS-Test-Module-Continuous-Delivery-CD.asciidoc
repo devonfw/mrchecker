@@ -2,7 +2,7 @@
 
 Include quality with Continuous Delivery during product release.
 
-image::image87.png[]
+image::images/image87.png[]
 
 == Overview
 

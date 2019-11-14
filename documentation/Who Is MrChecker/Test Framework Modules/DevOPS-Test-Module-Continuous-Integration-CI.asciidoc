@@ -26,39 +26,39 @@ Tests created by using the testing framework can be easily implemented on a Jenk
 
 The test job is configured as a so-called _parametrized_ job. This means, after starting the job, parameters can be specified, which will then be used in the build process. In this case, _branch_ and _testname_ will be expected when starting the job. These parameters specify which branch in the code repository should be checked out (possibly feature branch) and the name of the test, that should be executed.
 
-image::image79.png[]
+image::images/image79.png[]
 
 ==== Build Process Configuration
 
 * The first step inside the build process configuration is to get the author of the commit that was made. The mail will be extracted and gets stored in a file called _build.properties_. This way, the author can be notified if the build fails.
 +
-image::image80.png[]
+image::images/image80.png[]
 +
 * Next up, Maven will be used to check if the code can be compiled, without running any tests.
 +
-image::image81.png[]
+image::images/image81.png[]
 +
 After making sure that the code can be compiled, the actual tests will be executed.
 +
-image::image82.png[]
+image::images/image82.png[]
 +
 * Finally, reports will be generated.
 +
-image::image83.png[]
+image::images/image83.png[]
 
 ==== Post Build Configuration
 
 * At first, the results will be imported to the https://github.com/devonfw/devonfw-testing/wiki/Allure-report#allure-reports[Allure System]
 +
-image::image84.png[]
+image::images/image84.png[]
 +
 * JUnit test results will be reported as well. Using this step, the test result trend graph will be displayed on the Jenkins job overview.
 +
-image::image85.png[]
+image::images/image85.png[]
 +
 * Finally, an E-Mail will be sent to the previously extracted author of the commit.
 +
-image::image86.png[]
+image::images/image86.png[]
 
 == Using the Pre-Configured Custom Docker Image
 

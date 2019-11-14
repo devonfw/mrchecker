@@ -1,6 +1,6 @@
 = Why join Test Cases in groups - Test Suites
 
-image::image22.png[]
+image::images/image22.png[]
 
 == https://en.wikipedia.org/w/index.php?title=Regression_suite&redirect=no[Regresion Suite]:
 
@@ -25,7 +25,7 @@ Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[s
 
 == Structure of Test Suite
 
-image::image23.png[]
+image::images/image23.png[]
 
 Where:
 
@@ -48,7 +48,7 @@ Example:
 
 == Structure of Test Case
 
-image::image24.png[]
+image::images/image24.png[]
 
 Where:
 
@@ -59,15 +59,15 @@ Where:
 
 Tag name: `TestsTag1.class`
 
-image::image25.png[]
+image::images/image25.png[]
 
 Tag name: `TestsSmoke.class`
 
-image::image26.png[]
+image::images/image26.png[]
 
 Tag name: `TestSelenium.class`
 
-image::image27.png[]
+image::images/image27.png[]
 
 = How to run Test Suite
 
@@ -79,4 +79,4 @@ _Command line_
 
 _Eclipse_
 
-image::image28.png[]
+image::images/image28.png[]

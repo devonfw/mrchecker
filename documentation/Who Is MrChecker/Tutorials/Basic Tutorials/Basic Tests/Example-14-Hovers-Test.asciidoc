@@ -1,14 +1,14 @@
-image::image40.png[]
+image::images/image40.png[]
 
 This example shows how to approach elements dynamically appearing after the user's action. 
 
 Move the mouse over an image to see the additional label. 
 
-image::image41.png[]
+image::images/image41.png[]
 
 Labels exist in page DOM all the time but they display attributes change. In this case, there is no JavaScript. Elements' visibility is managed by CSS. 
 
-image::image42.png[]
+image::images/image42.png[]
 
 ===== Page Class
 

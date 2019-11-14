@@ -1,9 +1,9 @@
 This case shows how to compare dynamic content. 
 
-image::image18.png[]
+image::images/image18.png[]
 Note, that after site refresh, some of the content is different. You can see in the browser's developer mode how the text and image sources are being changed. 
 
-image::image19.png[]
+image::images/image19.png[]
 
 Steps: 
 

@@ -1,10 +1,10 @@
 This example shows how to select an element from the dropdown list. 
 
-image::image16.png[]
+image::images/image16.png[]
 
 Check in the developer mode how a Dropdown List's content has been organized. 
 
-image::image17.png[]
+image::images/image17.png[]
 
 Notice, that the Dropdown Options have different attributes, such as "disabled" or "selected". 
 

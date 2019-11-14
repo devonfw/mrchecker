@@ -19,7 +19,7 @@ toc::[]
 
 == What is MrChecker E2E Selenium Test Module
 
-image::image2.png[]
+image::images/image2.png[]
 
 == Selenium Structure
 

@@ -2,7 +2,7 @@
 
 == Classic application structure
 
-image::image74.png[]
+image::images/image74.png[]
 
 This is quite common application structure, where we have either in Application Under Test (AUT):
 
@@ -12,7 +12,7 @@ This is quite common application structure, where we have either in Application 
 
 == Classic application structure with virtualization
 
-image::image75.png[]
+image::images/image75.png[]
 
 This classic application is quite fragile for development and/or test process. Special while, component (WebAPI) connected to the application under test is:
 
@@ -40,4 +40,4 @@ or
 
 == CLassic APP structure with full scope - Binding in service virtualization
 
-image::image76.png[]
+image::images/image76.png[]
