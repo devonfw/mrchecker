@@ -30,8 +30,9 @@ Appium is an open-source tool for automating native, mobile web, and hybrid appl
 
 To execute each test with chosen installed browser, it is required to use specific arguments in Run configuration.
 
-image:image1.png
-image:image2.png
+image::images/image01.png
+
+image::images/image02.png
 
 As an argument (in 'Arguments' tab) it is necessary to enter -Dbrowser= with browser parameter name:
 
