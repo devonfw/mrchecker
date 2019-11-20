@@ -25,7 +25,36 @@ It is build on the top of the Appium library.
 Appium is an open-source tool for automating native, mobile web, and hybrid applications on iOS mobile, Android mobile, and Windows desktop platforms. Native apps are those written using the iOS, Android, or Windows SDKs. Mobile web apps are web apps accessed using a mobile browser (Appium supports Safari on iOS and Chrome or the built-in 'Browser' app on Android). Hybrid apps have a wrapper around a "webview" - a native control that enables interaction with web content. 
 
 == How to run tests
+
+One test case fits all browsers.
+
 === Pre-requisites
+==== Setup appium server
+
+==== How to connect to local Device by Appium Server
+
+ 1.
+Install Android SDK    https://developer.android.com/studio/index.html#command-tools    ->
+	2.
+Download Platform and Build-Tools  (Android versions - >    https://en.wikipedia.org/wiki/Android_version_history   )
+* sdkmanager "platform-tools" "platforms;android-19"
+* sdkmanager "build-tools;19.0.0"
+* copy from /build-tools  file "aapt.exe"  to /platform-tools
+	3.
+Set Environment:
+ANDROID_SDK_ROOT = D:\sdk-tools-windows-4333796
+PATH =  %PATH%; %ANDROID_SDK_ROOT%
+	4.
+Start Appium Server
+	5.
+Start Session in Appium Server, capabilities
+{
+  "platformName": "Android",
+            "deviceName": "Android Emulator",
+            "app": "D:\\Repo\\mrchecker-source\\mrchecker-framework-modules\\mrchecker-mobile-module\\src\\test\\resources\\Simple App_v2.0.1_apkpure.com.apk",
+            "automationName": "UiAutomator1"
+            }
+
 === Run on different mobile devices
 
 To execute each test with chosen installed browser, it is required to use specific arguments in Run configuration.
