@@ -28,3 +28,18 @@ Appium is an open-source tool for automating native, mobile web, and hybrid appl
 === Pre-requisites
 === Run on different mobile devices
 
+To execute each test with chosen installed browser, it is required to use specific arguments in Run configuration.
+
+image:image1.png
+image:image2.png
+
+As an argument (in 'Arguments' tab) it is necessary to enter -Dbrowser= with browser parameter name:
+
+firefox
+ie
+phantomjs
+chrome
+chromeheadless
+For example: -Dbrowser=ie
+
+To restore default settings -ea should be entered as an argument.
