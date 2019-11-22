@@ -30,6 +30,8 @@ include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Run-on-indepen
 
 include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=3]
 
+include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=3]
+
 === Selenium Module
 
 include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[leveloffset=3]
