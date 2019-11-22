@@ -23,15 +23,15 @@ image::images/image1.png[]
 
 == Core Test Module Functions
 
-* Test reports with logs and/or screenshots
-* Test groups/tags
-* Data driven approach
-* Test case parallel execution
-* BDD - Gherkin - Cucumber approach
-* Run on independent Operating Systems
-* Externalize test environment (DEV, QA, SIT, PROD)
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[Test reports with logs and/or screenshots]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-test-groups-tags.asciidoc[Test groups/tags]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Data-driven-approach.asciidoc[Data driven approach]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-case-parallel-execution.asciidoc[Test case parallel execution]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[BDD - Gherkin - Cucumber approach]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[Run on independent Operating Systems]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[Externalize test environment (DEV, QA, SIT, PROD)]
 * Encrypting sensitive data
 
 == How to start?
 
-Read: Framework Test Class
+Read: https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Framework-Test-Class.asciidoc[Framework Test Class]
