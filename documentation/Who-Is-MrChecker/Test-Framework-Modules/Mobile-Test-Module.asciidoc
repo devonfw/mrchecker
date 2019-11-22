@@ -73,8 +73,9 @@ mvn clean test -Dtest=MyTest -DdeviceUrl="http://192.168.0.1:1234" -DplatformNam
 mvn clean test -Dtest=MyTest -Dapp=".\\Simple_App.apk -DdeviceOptions="orientation=LANDSCAPE;appActivity=MainActivity;chromeOptions=['--disable-popup-blocking']"
 ----
 
-Check also https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Building-basic-Selenium-Test.asciidoc[My First Selenium Test]
-
+Check also: 
+https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Building-basic-Selenium-Test.asciidoc[My First Selenium Test]
+https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-Mrchecker/Test-Framework-Modules/Mobile-Test-ModuleMobile-Test-Module-How-to-use.asciidoc[How to use Mobile test Module]
 +
 Full list of https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md#general-capabilities[Generic Capabilities]
 +
