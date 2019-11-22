@@ -17,7 +17,10 @@ toc::[]
 
 = Mobile Test Module
 
-== What is Mr Checker E2E Mobile Test Module
+== What is MrChecker E2E Mobile Test Module
+
+MrChecker E2E Mobile test Module is a suitable solution for testing Remote Web Design, Mobile Browsers and application.
+A user can write tests suitable for all mobile browsers with full range of resolution. The way of working is simmilar ro Selenium and uses the same rules and pattarns as the Web Driver. For more information please look in the Selenium test module. 
 
 == What is Page Object Architecture
 
@@ -25,7 +28,7 @@ Creating Selenium test cases can result in an unmaintainable project. One of the
 
 == Page Object Pattern
 
-image::images/Pom.png
+image::images/Pom.png[]
 
 == Mobile Structure
 
@@ -39,7 +42,9 @@ One test case fits all browsers.
 === Pre-requisites
 ==== Setup appium server
 
-==== How to connect to local Device by Appium Server
+It can be downloaded https://github.com/appium/appium-desktop/releases[here]
+
+==== Connect to local Device by Appium Server
 
  1.
 Install Android SDK    https://developer.android.com/studio/index.html#command-tools    ->
@@ -65,19 +70,45 @@ Start Session in Appium Server, capabilities
 
 === Run on different mobile devices
 
-To execute each test with chosen installed browser, it is required to use specific arguments in Run configuration.
+To execute each test with choosen connected mobile devices, it is required to use specific arguments in Run configuration.
 
-image::images/image01.png
+image::images/image01.png[]
 
-image::images/image02.png
+image::images/image02.png[]
 
-As an argument (in 'Arguments' tab) it is necessary to enter -Dbrowser= with browser parameter name:
+Default supported arguments in MrChecker:
 
-firefox
-ie
-phantomjs
-chrome
-chromeheadless
-For example: -Dbrowser=ie
+* `deviceUrl` - http url to Appium Server, default value "http://127.0.0.1:4723"
 
-To restore default settings -ea should be entered as an argument.
+* `automationName` - which automation engine to use , default value "Appium"
+
+* `platformName` - which mobile OS platform to use , default value "Appium"
+
+* `platformVersion` - mobile OS version , default value ""
+
+* `deviceName` - the kind of mobile device or emulator to use , default value "Android Emulator"
+
+* `app` - the absolute local path or remote http URL to a .ipa file (IOS), .app folder (IOS Simulator), .apk file (Android) or .apks file (Android App Bundle), or a .zip file, default value "."
+
+* `browserName` - name of mobile web browser to automate. Should be an empty string if automating an app instead, default value ""
+
+* `newCommandTimeout` - how long (in seconds) Appium will wait for a new command from the client before assuming the client quit and ending the session, default value "4000"
+
+* `deviceOptions` - any other capabilites not covered in essential ones, default value none
+
+Example usage:
+
+----
+mvn clean test -Dtest=MyTest -DdeviceUrl="http://192.168.0.1:1234" -DplatformName="iOS" -DdeviceName="iPhone Simulator" -Dapp=".\\Simple_App.ipa"
+----
+
+----
+mvn clean test -Dtest=MyTest -Dapp=".\\Simple_App.apk -DdeviceOptions="orientation=LANDSCAPE;appActivity=MainActivity;chromeOptions=['--disable-popup-blocking']"
+----
++
+Full list of https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md#general-capabilities[Generic Capabilities]
++
+List of additional capabilities for https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md#android-only[Android]
++
+List of additional capabilities for https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md#ios-only[iOS]
++
