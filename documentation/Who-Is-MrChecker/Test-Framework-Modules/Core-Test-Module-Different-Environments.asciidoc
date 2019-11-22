@@ -28,7 +28,7 @@ image::images/image080.png[]
 
 * *Prod* If the customer accepts the product, it is deployed to a *production* environment, making it available to all users of the system.
 
-image::images/image081.png[]
+image::images/image051.png[]
 
 = How to use system environment
 
@@ -40,7 +40,7 @@ Instead of *hard coded* main url variable, you build your Page classe with dynam
 
 Example of dynamic variable *GetEnvironmentParam.WWW_FONT_URL*
 
-image::images/image082.png[]
+image::images/image081.png[]
 
 = How to create / update system environment
 
@@ -50,7 +50,7 @@ Dynamic variable values are stored under path *mrchecker-app-under-test\src\reso
 
 **NOTE:** As environments.csv is Comma-separated file, please be aware of any edition and then save it under Excel. 
 
-image::images/image083.png[]
+image::images/image082.png[]
 
 == Encrypting sensitive data
 
@@ -106,7 +106,7 @@ JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD
 
 5. Mark the value as encrypted by adding a prefix 'ENC(' and suffix ')' like: `ENC(JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD)`
 
-image::images/image084.png[]
+image::images/image083.png[]
 
 == Bridge between external file nad Page class
 
