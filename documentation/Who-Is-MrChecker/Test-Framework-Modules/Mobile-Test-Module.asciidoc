@@ -20,7 +20,7 @@ toc::[]
 == What is MrChecker E2E Mobile Test Module
 
 MrChecker E2E Mobile test Module is a suitable solution for testing Remote Web Design, Mobile Browsers and application.
-A user can write tests suitable for all mobile browsers with full range of resolution. The way of working is simmilar ro Selenium and uses the same rules and pattarns as the Web Driver. For more information please look in the https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[Selenium test module]. 
+A user can write tests suitable for all mobile browsers with a full range of resolution. The way of working is similar to Selenium and uses the same rules and patterns as the Web Driver. For more information please look in the https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[Selenium test module]. 
 
 == What is Page Object Architecture
 
