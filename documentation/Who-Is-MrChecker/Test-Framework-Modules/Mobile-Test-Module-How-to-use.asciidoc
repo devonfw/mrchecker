@@ -59,5 +59,5 @@ mvn clean compile test  -Dapp=".\\Simple_App_v2.0.1_apkpure.com.apk" -Dautomatio
 
 * from IDE:
 
-image::images/image00100.png[]
-image::images/image00101.png[]
+image::images/image00100.jpg[]
+image::images/image00101.jpg[]
