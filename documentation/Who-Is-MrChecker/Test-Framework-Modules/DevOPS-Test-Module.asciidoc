@@ -73,11 +73,6 @@ image::images/image12.png[]
 
 == How to build this DevOps module
 
-If you want to install the module, please click the link below. Installation should not take more than a few minutes
-
-* DevOps module installation
-
 Once you have implemented the module, you can learn more about:
 
-* Building jobs & Running builds
-* Docker commands
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[Docker commands]
