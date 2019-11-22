@@ -39,4 +39,3 @@ In the current release of the Security Module, the main focus will be *Unit Test
 
 Although the most common choice of environment for security tests to run on will be *integration*(as the environment offers the right stability and should mirror the production closely), it is not uncommon for some security tests to run on production as well. This is done for e.g. TLS configuration testing to ensure proper configuration of the most relevant environment in a continuous manner.
 
-== Scope Definition
