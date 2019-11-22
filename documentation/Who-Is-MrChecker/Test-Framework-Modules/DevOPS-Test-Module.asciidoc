@@ -40,8 +40,8 @@ image::images/image5.png[]
 
 == Continuous Integration (CI) and Continuous Delivery (CD)
 
-* Continuous Integration (CI) - a procedure where quality gates validate test case creation process
-* Continuous Delivery (CD) - a procedure where we include as smoke/regression/security created test cases, validated against CI
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[Continuous Integration (CI)] - a procedure where quality gates validate test case creation process
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[Continuous Delivery (CD)] - a procedure where we include as smoke/regression/security created test cases, validated against CI
 
 image::images/image6.png[]
 
