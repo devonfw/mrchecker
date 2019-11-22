@@ -17,7 +17,7 @@ toc::[]
 
 == Service Virtualization
 
-* What is service virtualization
-* How plug in service virtualization into Application Under Test
-* How to make virtual asset
-* Smoke Tests virtualization
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-What-is-service-virtualization.asciidoc[What is service virtualization]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-How-plug-in-service-virtualization-into-Application-Under-Test.asciidoc[How plug in service virtualization into Application Under Test]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-How-to-make-virtual-asset.asciidoc[How to make virtual asset]
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-Smoke-Tests-virtualization.asciidoc[Smoke Tests virtualization]
