@@ -76,6 +76,7 @@ mvn clean test -Dtest=MyTest -Dapp=".\\Simple_App.apk -DdeviceOptions="orientati
 Check also: 
 https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Building-basic-Selenium-Test.asciidoc[My First Selenium Test]
 https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-Mrchecker/Test-Framework-Modules/Mobile-Test-ModuleMobile-Test-Module-How-to-use.asciidoc[How to use Mobile test Module]
+https://github.com/devonfw/devonfw-testing/blob/feature/Create-mobile-module-%23213/example/src/test/java/com/capgemini/mrchecker/mobile/simpleapp/SimpleAppTest.java[Example TestCase]
 +
 Full list of https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md#general-capabilities[Generic Capabilities]
 +
