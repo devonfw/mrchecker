@@ -86,6 +86,8 @@ include::Who-Is-Mrchecker/Test-Framework-Modules/Database-Test-Module.asciidoc[l
 
 include::Who-Is-Mrchecker/Test-Framework-Modules/Mobile-Test-Module.asciidoc[leveloffset=3]
 
+include::Who-Is-Mrchecker/Test-Framework-Modules/Mobile-Test-ModuleMobile-Test-Module-How-to-use.asciidoc[leveloffset=3]
+
 === DevOps Test Module
 
 include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module.asciidoc[leveloffset=3]
