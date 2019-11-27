@@ -202,9 +202,9 @@ Here you can find the most frequently asked questions regarding working with MrC
 
 include::FAQ/Common-problems/I-cannot-find.asciidoc[leveloffset=3]
 
-include::FAQ/Common-problems/IIt-is-possible.asciidoc[leveloffset=3]
+include::FAQ/Common-problems/It-is-possible.asciidoc[leveloffset=3]
 
-include::FAQ/Common-problems/ITests-are-not-stable.asciidoc[leveloffset=3]
+include::FAQ/Common-problems/Tests-are-not-stable.asciidoc[leveloffset=3]
 
 === How to
 
