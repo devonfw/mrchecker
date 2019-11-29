@@ -6,7 +6,7 @@ include::home.asciidoc[leveloffset=2]
 
 include::benefits.asciidoc[leveloffset=2]
 
-include::Who-Is-Mrchecker/Test-Stages.asciidoc[leveloffset=2]
+include::Who-Is-MrChecker/Test-Stages.asciidoc[leveloffset=2]
 
 == Test Framework Modules
 
@@ -14,95 +14,95 @@ In this section, it is possible to find all information regarding the main modul
 
 === Core Test Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-test-groups-tags.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-test-groups-tags.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Test-case-parallel-execution.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-case-parallel-execution.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=3]
 
 === Selenium Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[leveloffset=3]
 
 === Selenium Structure
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-What-is-WebDriver.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-WebDriver.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=3]
 
 === Framework Features
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-CSS-selectors.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-CSS-selectors.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-UTF-Comparison.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-UTF-Comparison.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-different-browser-options.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-different-browser-options.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Selenium-Test-Selenium-Best-Practices.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Selenium-Best-Practices.asciidoc[leveloffset=3]
 
 === Web API Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Web-API-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Web-API-Test-Module-What-is-service-virtualization.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-What-is-service-virtualization.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Web-API-Test-Module-How-plug-service-virtualization-in-into-Application-Under-Test.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-How-plug-service-virtualization-in-into-Application-Under-Test.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Web-API-Test-Module-How-to-make-virtual-asset.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-How-to-make-virtual-asset.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Web-API-Test-Module-Smoke-Test-virtualization.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Web-API-Test-Module-Smoke-Test-virtualization.asciidoc[leveloffset=3]
 
 === Security Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Security-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Security-Test-Module.asciidoc[leveloffset=3]
 
 === Database Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Database-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Database-Test-Module.asciidoc[leveloffset=3]
 
 === Mobile Test Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Mobile-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Mobile-Test-Module.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/Mobile-Test-Module/Mobile-Test-Module-How-to-use.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Mobile-Test-Module/Mobile-Test-Module-How-to-use.asciidoc[leveloffset=3]
 
 === DevOps Test Module
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module-Pipeline-structure.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Pipeline-structure.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module-Selenium-Grid.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Selenium-Grid.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module-Jenkins-Plugins.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Jenkins-Plugins.asciidoc[leveloffset=3]
 
-include::Who-Is-Mrchecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[leveloffset=3]
 
 == MrChecker download
 
@@ -128,71 +128,71 @@ Make sure you have already MrChecker Test Framework installed on your PC. How to
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
-include::Who-Is-Mrchecker/Tutorials/Project-Organisation.asciidoc[leveloffset=2]
+include::Who-Is-MrChecker/Tutorials/Project-Organisation.asciidoc[leveloffset=2]
 
 === Basic Tutorials
 
 ==== Basic Tests
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-01-AB-Test-Control.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-01-AB-Test-Control.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-02-Basic-Auth-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-02-Basic-Auth-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-03-Broken-Images-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-03-Broken-Images-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-04-Challenging-DOM-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-04-Challenging-DOM-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-05-Checkboxes.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-05-Checkboxes.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-06-Disappearing-Elements.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-06-Disappearing-Elements.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-07-Drag-and-Drop.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-07-Drag-and-Drop.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-08-Dropdown-List.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-08-Dropdown-List.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-09-Dynamic-Content.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-09-Dynamic-Content.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-11-Exit-Intent.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-11-Exit-Intent.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-12-File-download-test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-12-File-download-test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-13-Form-Authentication-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-13-Form-Authentication-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-14-Hovers-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-14-Hovers-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-15-JavaScript-Alerts.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-15-JavaScript-Alerts.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-16-Key-Presses-test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-16-Key-Presses-test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-17-Multiple-Windows.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-17-Multiple-Windows.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-18-Redirection.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-18-Redirection.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-19-Slider-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-19-Slider-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-20-Sortable-Data-Tables.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-20-Sortable-Data-Tables.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-21-Status-Codes.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-21-Status-Codes.asciidoc[leveloffset=4]
 
 ==== First Steps
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/First-Steps/Page-objects.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Page-objects.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/First-Steps/Environment-variables.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Environment-variables.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/First-Steps/Selectors.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Selectors.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/First-Steps/Elements-Types.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Elements-Types.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/First-Steps/The-Internet-Base-Test.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/The-Internet-Base-Test.asciidoc[leveloffset=4]
 
-include::Who-Is-Mrchecker/Tutorials/Basic-Tutorials/First-Steps/BFLogger.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/BFLogger.asciidoc[leveloffset=4]
 
 === E2E Tutorials
 
-include::Who-Is-Mrchecker/Tutorials/E2E-Tutorials/Tutorial1[leveloffset=3]
+include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/Tutorial1[leveloffset=3]
 
 == FAQ
 
