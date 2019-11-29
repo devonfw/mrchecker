@@ -2,7 +2,7 @@ Every customer may benefit from using MrChecker Test Framework. The main profits
 
 * Resilient and robust building and validation process
 
-* Quality gates shifted closer to the software development process
+* Quality gates shifted closer to the software development process 
 
 * Team quality awareness increase - including Unit Tests, Static Analyze, Security Tests, Performance in the testing process
 
