@@ -8,7 +8,7 @@ Steps:
 2. Click Broken Image link and go to Broken Image subpage 
 3. Get 3 images dimensions and compare them with expected values 
 
-===== Page Class 
+==== Page Class 
 
 In this case create an array of selectors to access images by index number:  
 
@@ -66,9 +66,9 @@ public class BrokenImagePage extends BasePage {
 
 }
  
- ----
+----
 
-===== Test Class 
+==== Test Class 
 Create @Test and @BeforeClass methods. Save expected images dimensions in class fields: 
 
 ----
