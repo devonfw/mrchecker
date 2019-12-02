@@ -1,4 +1,6 @@
-===== Importing projects 
+= Project organization
+
+== Importing projects 
 
 Every MrChecker project should be imported as a Maven Project. 
 
@@ -16,7 +18,7 @@ When the import is finished, update the project structure - ALT + F5
 
 image::images/4.png[]
 
-===== Exporting projects
+== Exporting projects
 
 In order to create a new standalone MrChecker project, you can use template-app-under-test and export it to the new folder: 
 
@@ -34,7 +36,7 @@ image::images/8.png[]
 
 Then you can import the project to the workspace and create new packages and classes. 
 
-===== Creating new packages
+== Creating new packages
 
 1. You will need two new packages: one for the new page classes, the other one for test classes:
 
@@ -58,7 +60,7 @@ Example:
 
 image::images/9.png[]
 
-===== Creating new Page Classes
+== Creating new Page Classes
 
  Navigate to: [your-project] → src/main/java → com.capgemini.mrchecker → selenium.pages.[your-product-name]
  Click on "New" → New Class
@@ -94,7 +96,7 @@ Example:
 
 ----
  
-===== Creating new Test Classes
+== Creating new Test Classes
  
  Navigate to  [your-project] → src/test/java → com.capgemini.mrchecker → selenium.tests.[your-product-name] 
  Click on "New" → New Class
@@ -147,7 +149,7 @@ Every test method has to be signed with "@Test" parameter.
  }
 ----
  
-===== Running Tests
+== Running Tests
 
 Run the test by right-clicking on the test method → Run as → JUnit test.
 
