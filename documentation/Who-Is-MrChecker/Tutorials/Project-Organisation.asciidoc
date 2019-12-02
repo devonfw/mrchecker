@@ -73,6 +73,7 @@ Every Page Class should extend BasePage class. Import all necessary packages and
 Example: 
 
 ----
+
  public class MainPage extends BasePage {
 
     @Override
@@ -90,9 +91,10 @@ Example:
         return "Main Page Title"; 
     }
  }
+
 ----
  
- ===== Creating new Test Classes
+===== Creating new Test Classes
  
  Navigate to  [your-project] → src/test/java → com.capgemini.mrchecker → selenium.tests.[your-product-name] 
  Click on "New" → New Class
