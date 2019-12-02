@@ -4,9 +4,9 @@ Every MrChecker project should be imported as a Maven Project.
 
 Example from Eclipse IDE: 
 
-image::images/1.PNG[]
+image::images/1.png[]
 
-image::images/2.PNG[]
+image::images/2.png[]
 
 Enter the project path and select projects to import. 
 
