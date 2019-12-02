@@ -72,6 +72,7 @@ Every Page Class should extend BasePage class. Import all necessary packages and
 
 Example: 
 
+----
  public class MainPage extends BasePage {
 
     @Override
@@ -89,6 +90,7 @@ Example:
         return "Main Page Title"; 
     }
  }
+----
  
  ===== Creating new Test Classes
  
@@ -110,6 +112,7 @@ public static void tearDownAfterClass() - runs only once after performing all te
 
 Every test method has to be signed with "@Test" parameter. 
 
+----
  public class YourCaseTest extends BaseTest {
     private static MainPage mainPage = new MainPage();  
     
@@ -140,6 +143,7 @@ Every test method has to be signed with "@Test" parameter.
 
     }
  }
+----
  
 ===== Running Tests
 
