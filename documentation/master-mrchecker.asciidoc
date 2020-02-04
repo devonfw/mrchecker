@@ -26,7 +26,7 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-case-para
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[leveloffset=3]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operationg-Systems.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[leveloffset=3]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=3]
 
