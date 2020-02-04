@@ -10,7 +10,7 @@ include::Who-Is-MrChecker/Test-Stages.asciidoc[leveloffset=2]
 
 == Test Framework Modules
 
-In this section, it is possible to find all information regarding the main modules of MrChecker:
+In this section, it is possible to find all information regarding the main modules of MrChecker: 
 
 === Core Test Module
 
