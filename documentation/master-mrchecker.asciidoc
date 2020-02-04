@@ -52,7 +52,7 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Constructi
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-CSS-selectors.asciidoc[leveloffset=3]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-UTF-Comparison.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-UFT-Comparison.asciidoc[leveloffset=3]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-on-different-browsers.asciidoc[leveloffset=3]
 
