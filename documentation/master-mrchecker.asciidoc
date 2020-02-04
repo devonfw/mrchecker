@@ -60,7 +60,7 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-d
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=3]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Selenium-Best-Practices.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-Best-Practices.asciidoc[leveloffset=3]
 
 === Web API Module
 
