@@ -5,7 +5,8 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.TooltipElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static org.junit.Assert.assertTrue;
@@ -19,7 +20,7 @@ public class TooltipTest extends BaseTest {
 	private final static By inputTextSelector = By.cssSelector("input[id='age']");
 	TooltipElement tooltipElement;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

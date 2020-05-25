@@ -5,7 +5,8 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.MenuElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class MenuTest extends BaseTest {
 	private              MenuElement menuElement;
 	private              MenuElement menu2Element;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

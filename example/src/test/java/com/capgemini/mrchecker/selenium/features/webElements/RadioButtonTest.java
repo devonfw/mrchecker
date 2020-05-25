@@ -5,7 +5,9 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.RadioButtonElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import java.util.Arrays;
@@ -17,6 +19,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by LKURZAJ on 28.02.2017.
  */
+@Disabled("page not existent on the Web; no MrChecker Test")
 public class RadioButtonTest extends BaseTest {
 
 	private final static By                 selectorMaritalStatus = By.cssSelector("div[class='radio_wrap']");
@@ -24,7 +27,7 @@ public class RadioButtonTest extends BaseTest {
 	private final static List<String>       possibleValues        = Arrays.asList("Single", "Married", "Divorced");
 	private              RadioButtonElement maritalStatusRadioButton;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

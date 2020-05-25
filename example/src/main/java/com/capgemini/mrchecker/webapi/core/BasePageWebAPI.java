@@ -1,7 +1,7 @@
 package com.capgemini.mrchecker.webapi.core;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.BaseTestWatcher;
+import com.capgemini.mrchecker.test.core.ITestExecutionObserver;
 import com.capgemini.mrchecker.test.core.ITestObserver;
 import com.capgemini.mrchecker.test.core.ModuleType;
 import com.capgemini.mrchecker.test.core.analytics.IAnalytics;
@@ -28,6 +28,8 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	private final static PropertiesFileSettings propertiesFileSettings;
 	private final static IAnalytics             analytics;
 	private static DriverManager driver = null;
+	private static final ITestExecutionObserver TEST_EXECUTION_OBSERVER = BaseTest.BASE_TEST_EXECUTION_OBSERVER;
+	private boolean isInitialized;
 
 	static {
 		// Get analytics instance created in BaseTets
@@ -48,8 +50,6 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 	}
 
 	public BasePageWebAPI(DriverManager driver) {
-		// Add given module to Test core Observable list
-		this.addObserver();
 	}
 
 	public static IAnalytics getAnalytics() {
@@ -87,9 +87,9 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 
 	}
 
-	@Override
-	public void addObserver() {
-		BaseTestWatcher.addObserver(this);
+	public void initialize() {
+		TEST_EXECUTION_OBSERVER.addObserver(this);
+		this.isInitialized = true;
 	}
 
 	@Override
@@ -110,7 +110,7 @@ abstract public class BasePageWebAPI implements ITestObserver, IWebAPI {
 		// All actions needed while test class is finishing
 		BFLogger.logDebug("BasePage.onTestFinish   " + this.getClass()
 				.getSimpleName());
-		BaseTestWatcher.removeObserver(this);
+		TEST_EXECUTION_OBSERVER.removeObserver(this);
 	}
 
 	@Override

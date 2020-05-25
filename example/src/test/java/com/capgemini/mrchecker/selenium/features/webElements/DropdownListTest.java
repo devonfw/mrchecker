@@ -5,7 +5,9 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.DropdownListElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static org.junit.Assert.assertEquals;
@@ -14,12 +16,13 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by LKURZAJ on 06.03.2017.
  */
+@Disabled("page not existent on the Web; no MrChecker Test")
 public class DropdownListTest extends BaseTest {
 
 	private static final By                  dropdownSelector = By.cssSelector("select#dropdown_7");
 	private              DropdownListElement dropdownObject;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

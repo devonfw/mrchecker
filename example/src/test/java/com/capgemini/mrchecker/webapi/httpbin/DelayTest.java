@@ -4,7 +4,7 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.webapi.BasePageWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.DelayPage;
 import io.restassured.response.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;

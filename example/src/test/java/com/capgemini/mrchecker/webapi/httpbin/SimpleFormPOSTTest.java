@@ -6,8 +6,8 @@ import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaSize;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaToppings;
 import io.restassured.response.Response;
 import org.hamcrest.core.StringContains;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class SimpleFormPOSTTest extends com.capgemini.mrchecker.webapi.BasePageW
 	private static SimpleFormPOSTPage simplePOSTPage = new SimpleFormPOSTPage();
 	private static Response           response;
 
-	@BeforeClass
+	@BeforeAll
 	public static void submitFormWithValidData() {
 		BFLogger.logInfo("Step 1 - Setting up CustomerName field: " + CUSTOMER_NAME);
 		simplePOSTPage.setCustomerName(CUSTOMER_NAME);

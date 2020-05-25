@@ -5,7 +5,9 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static junit.framework.TestCase.assertTrue;
@@ -14,11 +16,12 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by LKURZAJ on 03.03.2017.
  */
+@Disabled("page not existent on the Web; no MrChecker Test")
 public class InputTextTest extends BaseTest {
 
 	private static By firstNameInputText = By.cssSelector("input[id='name_3_firstname']");
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

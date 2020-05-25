@@ -2,7 +2,7 @@ package com.capgemini.mrchecker.webapi;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.webapi.core.BasePageWebAPI;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BasePageWebApiTest extends BaseTest {
 

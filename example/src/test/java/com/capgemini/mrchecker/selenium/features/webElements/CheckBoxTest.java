@@ -5,7 +5,9 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.CheckBox;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static org.junit.Assert.*;
@@ -13,13 +15,14 @@ import static org.junit.Assert.*;
 /**
  * Created by LKURZAJ on 06.03.2017.
  */
+@Disabled("page not existent on the Web; no MrChecker Test")
 public class CheckBoxTest extends BaseTest {
 
 	private static final By hobbyCheckBoxSelector = By
 			.cssSelector("li.fields.pageFields_1:nth-child(3) div.radio_wrap");
 	CheckBox checkBoxElement;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

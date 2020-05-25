@@ -8,7 +8,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.Headers;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 

@@ -14,16 +14,10 @@ public enum PageSubURLsProjectXEnum {
 	/*
 	 * Sub urls are used as real locations in Bank test environment
 	 */
-	private String subURL;
+	private final String subURL;
 
-	private PageSubURLsProjectXEnum(String subURL) {
+	PageSubURLsProjectXEnum(String subURL) {
 		this.subURL = subURL;
-	}
-
-	;
-
-	private PageSubURLsProjectXEnum() {
-
 	}
 
 	@Override

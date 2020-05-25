@@ -10,8 +10,8 @@ import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
@@ -21,7 +21,7 @@ public class REST_FarenheitToCelsiusMethod_Test extends BaseTest {
 
 	private static String endpointBaseUri;
 
-	@BeforeClass
+	@BeforeAll
 	public static void beforeClass() {
 
 		// Start Virtual Server

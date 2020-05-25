@@ -4,7 +4,9 @@ import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static junit.framework.TestCase.assertEquals;
@@ -13,11 +15,12 @@ import static junit.framework.TestCase.assertTrue;
 /**
  * Created by LKURZAJ on 03.03.2017.
  */
+@Disabled("page not existent on the Web; no MrChecker Test")
 public class ButtonTest extends BaseTest {
 
 	private static By buttonSubmit = By.cssSelector("button#submit");
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

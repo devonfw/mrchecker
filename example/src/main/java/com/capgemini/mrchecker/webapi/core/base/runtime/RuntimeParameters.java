@@ -1,6 +1,6 @@
 package com.capgemini.mrchecker.webapi.core.base.runtime;
 
-import com.capgemini.mrchecker.test.core.base.runtime.RuntimeParametersI;
+import com.capgemini.mrchecker.test.core.base.runtime.IRuntimeParameters;
 
 /**
  * This class stores various system properties These parameters are accessible while test case executes Example :
@@ -8,7 +8,7 @@ import com.capgemini.mrchecker.test.core.base.runtime.RuntimeParametersI;
  *
  * @author LUSTEFAN
  */
-public enum RuntimeParameters implements RuntimeParametersI {
+public enum RuntimeParameters implements IRuntimeParameters {
 
 	// NAME(<maven-variable-name>, <default-value>)
 	MOCK_HTTP_PORT("mock_http_port", ""), // -Dmock_http_port="" Default random
@@ -28,6 +28,11 @@ public enum RuntimeParameters implements RuntimeParametersI {
 	@Override
 	public String getValue() {
 		return this.paramValue;
+	}
+
+	@Override
+	public String getKey() {
+		return paramName;
 	}
 
 	@Override

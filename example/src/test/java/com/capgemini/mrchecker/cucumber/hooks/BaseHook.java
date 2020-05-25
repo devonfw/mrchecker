@@ -5,7 +5,10 @@ import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
+//TODO: refactor that
 public class BaseHook {
 
 	/*
@@ -31,28 +34,28 @@ public class BaseHook {
 		};
 	}
 
-	@Before(order = 0)
-	public void setup(Scenario scenario) throws Exception {
-		String testName = scenario.getName();
-		BFLogger.logInfo("Starting Scenario: \"" + testName + "\"");
-		baseTestHooks.getBaseTestWatcher()
-				.startingTestWatcher(testName);
-	}
+//	@BeforeEach(order = 0)
+//	public void setup(Scenario scenario) throws Exception {
+//		String testName = scenario.getName();
+//		BFLogger.logInfo("Starting Scenario: \"" + testName + "\"");
+//		baseTestHooks.getBaseTestWatcher()
+//				.startingTestWatcher(testName);
+//	}
 
-	@After(order = Integer.MAX_VALUE)
-	public void tearDown(Scenario scenario) throws Exception {
-		String testName = scenario.getName();
-		if (scenario.isFailed()) {
-			baseTestHooks.getBaseTestWatcher()
-					.failedTestWatcher(testName);
-		} else {
-			baseTestHooks.getBaseTestWatcher()
-					.succeededTestWatcher(testName);
-		}
-		baseTestHooks.getBaseTestWatcher()
-				.finishedTestWatcher(testName);
-		BFLogger.logInfo(String.format("Ending Scenario: \"%s\"", scenario.getName()) + " result: " + (scenario.isFailed() ? "FAILED" : "PASSED"));
-
-	}
+//	@AfterEach(order = Integer.MAX_VALUE)
+//	public void tearDown(Scenario scenario) throws Exception {
+//		String testName = scenario.getName();
+//		if (scenario.isFailed()) {
+//			baseTestHooks.getBaseTestWatcher()
+//					.failedTestWatcher(testName);
+//		} else {
+//			baseTestHooks.getBaseTestWatcher()
+//					.succeededTestWatcher(testName);
+//		}
+//		baseTestHooks.getBaseTestWatcher()
+//				.finishedTestWatcher(testName);
+//		BFLogger.logInfo(String.format("Ending Scenario: \"%s\"", scenario.getName()) + " result: " + (scenario.isFailed() ? "FAILED" : "PASSED"));
+//
+//	}
 
 }

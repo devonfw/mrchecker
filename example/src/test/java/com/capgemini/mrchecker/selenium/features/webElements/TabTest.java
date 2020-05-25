@@ -5,7 +5,8 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.TabElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class TabTest extends BaseTest {
 	private final static List<String> listSelectedAttributes = Arrays.asList("ui-tabs-active ui-state-active");
 	private              TabElement   tabObject;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

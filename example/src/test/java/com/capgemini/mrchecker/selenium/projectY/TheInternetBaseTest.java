@@ -21,6 +21,7 @@ public class TheInternetBaseTest extends BaseTest {
 
 		logStep("Open the Url http://the-internet.herokuapp.com/");
 		theInternetPage = new TheInternetPage();
+		theInternetPage.initialize();
 		theInternetPage.load();
 
 		logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");

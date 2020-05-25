@@ -4,7 +4,7 @@ import com.capgemini.mrchecker.selenium.pages.projectX.MainPage;
 import com.capgemini.mrchecker.selenium.pages.projectX.navigationbar.home.NavBarHome;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -15,6 +15,7 @@ public class NavigationBarTest extends BaseTest {
 
 		BFLogger.logInfo("[Step 1] Open main page");
 		MainPage mainPage = new MainPage();
+		mainPage.initialize();
 
 		BFLogger.logInfo("[Step 2] Click navigation bar - Home");
 		mainPage.getNavigationBar()

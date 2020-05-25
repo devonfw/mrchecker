@@ -5,7 +5,8 @@ import com.capgemini.mrchecker.selenium.core.enums.PageSubURLsEnum;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.NavigationBarElement;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class NavigationBarTest extends BaseTest {
 	private final static By                   childsSelector        = By.cssSelector("li");
 	private              NavigationBarElement navigationBarElement;
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAll() {
 	}
 

@@ -8,7 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import static io.restassured.RestAssured.given;

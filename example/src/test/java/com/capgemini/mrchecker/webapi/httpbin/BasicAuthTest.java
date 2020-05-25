@@ -3,7 +3,7 @@ package com.capgemini.mrchecker.webapi.httpbin;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.webapi.pages.httbin.BasicAuthPage;
 import io.restassured.response.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

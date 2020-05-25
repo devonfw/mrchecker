@@ -8,8 +8,8 @@ import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 
 	private static String endpointBaseUri;
 
-	@BeforeClass
+	@BeforeAll
 	public static void beforeClass() {
 		String baseURI = "http://localhost";
 		int port = DriverManager.getDriverVirtualService()
