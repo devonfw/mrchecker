@@ -5,12 +5,10 @@ import org.junit.jupiter.params.aggregator.AggregateWith;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import com.capgemini.mrchecker.core.datadriven.person_example.PersonAggregator;
-import com.capgemini.mrchecker.core.datadriven.person_example.SimpleCalc;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class DataDrivenExternalExampleTest extends BaseTest {
-	private final SimpleCalc testSubject = new SimpleCalc();
 	
 	/**
 	 * ---------------------------------------------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 package com.capgemini.mrchecker.core.groupTestCases.testCases.tag2;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +41,7 @@ public class ThirdTest_tag2_Test extends BaseTest {
 		BFLogger.logInfo(
 				"[Step 2] As a standard user I click Submit button,  So that I will stay on Registry page");
 		registryPage.clickSubmit();
-		assertThat(true, is(registryPage.isLoaded()));
+		assertThat(registryPage.isLoaded(), is(equalTo(true)));
 		
 		TimeUnit.SECONDS.sleep(3); // This is for demo. Do not do it at home
 		
