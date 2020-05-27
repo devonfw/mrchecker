@@ -1,18 +1,23 @@
 package com.capgemini.mrchecker.security.auth;
 
+import static io.restassured.RestAssured.given;
+
+import java.util.stream.Stream;
+
+import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSecurity;
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
+
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.apache.http.HttpStatus;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-
-import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies, that protected resources can not be accessed by unauthenticated
@@ -30,26 +35,23 @@ import static io.restassured.RestAssured.given;
  *
  * @author Marek Puchalski, Capgemini
  */
-@RunWith(JUnitParamsRunner.class)
+
+@TestsSecurity
+@Disabled("Can't connect to host")
 public class AuthRequiredTest extends SecurityTest {
-
-	private Object[] addParameters() {
+	
+	private static Stream<Arguments> getArguments() {
+		
 		String body = "{\"pagination\":{\"size\":8,\"page\":1,\"total\":1},\"sort\":[]}";
-		return new Object[][] {
+		return Stream.of(
 				// Negative case
-				{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
-						body, HttpStatus.SC_FORBIDDEN
-				},
+				Arguments.of(SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH, body, HttpStatus.SC_FORBIDDEN),
 				// Positive case
-				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH,
-						body, HttpStatus.SC_OK
-				}
-		};
-
+				Arguments.of(SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.ORDER_SEARCH, body, HttpStatus.SC_OK));
 	}
-
-	@Test
-	@Parameters(method = "addParameters")
+	
+	@ParameterizedTest
+	@MethodSource("getArguments")
 	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, String body, int statusCode) {
 		RequestSpecification rs = getSessionManager()
 				.initBuilder(session)
