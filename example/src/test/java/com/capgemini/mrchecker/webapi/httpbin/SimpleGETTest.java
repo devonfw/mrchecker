@@ -1,26 +1,29 @@
 package com.capgemini.mrchecker.webapi.httpbin;
 
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.pages.httbin.SimpleGETPage;
-import io.restassured.response.Response;
-import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class SimpleGETTest extends com.capgemini.mrchecker.webapi.BasePageWebApiTest {
+import org.junit.jupiter.api.Test;
 
-	private SimpleGETPage simpleGETPage;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.webapi.BaseWebApiTest;
+import com.capgemini.mrchecker.webapi.pages.httbin.SimpleGETPage;
 
+import io.restassured.response.Response;
+
+@TestsWebApi
+public class SimpleGETTest extends BaseWebApiTest {
+	
 	@Test
 	public void sendSimpleGETQuery() {
-		simpleGETPage = new SimpleGETPage();
-
+		SimpleGETPage simpleGETPage = new SimpleGETPage();
+		simpleGETPage.initialize();
+		
 		BFLogger.logInfo("Step 1 - Sending GET query to " + simpleGETPage.getEndpoint());
 		Response response = simpleGETPage.sendGETQuery();
-
+		
 		BFLogger.logInfo("Step 2 - Validate response status code: ");
 		assertThat(response.statusCode(), is(200));
 	}
-
 }

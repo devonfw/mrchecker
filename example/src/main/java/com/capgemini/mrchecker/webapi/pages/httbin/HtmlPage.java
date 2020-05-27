@@ -6,17 +6,13 @@ import com.capgemini.mrchecker.webapi.pages.environment.GetEnvironmentParam;
 
 import io.restassured.response.Response;
 
-public class BasicAuthPage extends BasePageWebAPI {
-	
+public class HtmlPage extends BasePageWebAPI {
 	private final static String	HOSTNAME	= GetEnvironmentParam.HTTPBIN.getValue();
-	private final static String	PATH		= "/basic-auth/user/passwd";
+	private final static String	PATH		= "/html";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	public Response sendBasicAuthGETQuery(String username, String password) {
+	public Response getHtmlDocument() {
 		return DriverManager.getDriverWebAPI()
-				.auth()
-				.basic(username, password)
-				.when()
 				.get(ENDPOINT);
 	}
 	

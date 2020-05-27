@@ -5,15 +5,15 @@ import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 
 import io.restassured.response.Response;
 
-public class AddPage extends BasePageWebAPI {
+public class DividePage extends BasePageWebAPI {
 	
 	private final static String	HOSTNAME	= "http://www.dneonline.com";
-	private final static String	PATH		= "/calculator.asmx?op=Add";
+	private final static String	PATH		= "/calculator.asmx?op=Divide";
 	private final static String	ENDPOINT	= HOSTNAME + PATH;
 	
-	private final static String ROOT = "Add";
+	private final static String ROOT = "Divide";
 	
-	private SOAPTemplate soapTemplate = new SOAPTemplate(ROOT);
+	private final SOAPTemplate soapTemplate = new SOAPTemplate(ROOT);
 	
 	{
 		soapTemplate.addAttributeToRoot("xmlns", "http://tempuri.org/");
@@ -23,7 +23,7 @@ public class AddPage extends BasePageWebAPI {
 		return DriverManager.getDriverWebAPI()
 				.with()
 				.contentType("text/xml; charset=utf-8")
-				.header("SOAPAction", "http://tempuri.org/Add")
+				.header("SOAPAction", "http://tempuri.org/Divide")
 				.body(soapTemplate.getMessage())
 				.log()
 				.all()
@@ -54,10 +54,10 @@ public class AddPage extends BasePageWebAPI {
 	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 * xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
 	 * <soap12:Body>
-	 * <Add xmlns="http://tempuri.org/">
+	 * <Divide xmlns="http://tempuri.org/">
 	 * <intA>int</intA>
 	 * <intB>int</intB>
-	 * </Add>
+	 * </Divide>
 	 * </soap12:Body>
 	 * </soap12:Envelope>
 	 */
@@ -67,11 +67,10 @@ public class AddPage extends BasePageWebAPI {
 	 * <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 * xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
 	 * <soap12:Body>
-	 * <AddResponse xmlns="http://tempuri.org/">
-	 * <AddResult>int</AddResult>
-	 * </AddResponse>
+	 * <DivideResponse xmlns="http://tempuri.org/">
+	 * <DivideResult>int</DivideResult>
+	 * </DivideResponse>
 	 * </soap12:Body>
 	 * </soap12:Envelope>
 	 */
-	
 }

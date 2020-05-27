@@ -69,7 +69,7 @@
         <mrchecker-core-module.version>5.0.1-SNAPSHOT</mrchecker-core-module.version>
         <mrchecker-selenium-module.version>4.0.1-SNAPSHOT</mrchecker-selenium-module.version>
         <mrchecker-security-module.version>2.0.1-SNAPSHOT</mrchecker-security-module.version>
-        <mrchecker-webapi-module.version>1.2.0</mrchecker-webapi-module.version>
+        <mrchecker-webapi-module.version>2.0.1-SNAPSHOT</mrchecker-webapi-module.version>
 
         <!-- Java settings -->
         <java.compiler.version>1.8</java.compiler.version>
