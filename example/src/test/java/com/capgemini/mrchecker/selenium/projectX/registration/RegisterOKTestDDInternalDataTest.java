@@ -1,5 +1,6 @@
 package com.capgemini.mrchecker.selenium.projectX.registration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.stream.Stream;
@@ -15,6 +16,7 @@ import com.capgemini.mrchecker.selenium.pages.projectX.registration.MaritalStatu
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistrationPage;
 import com.capgemini.mrchecker.selenium.projectX.registration.utils.DataProviderInternal;
 import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 @TestsSelenium
 @Disabled("Registration site not not on the Web")
@@ -59,8 +61,7 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		registrationPage = new RegistrationPage();
-		registrationPage.initialize();
+		registrationPage = PageFactory.getPageInstance(RegistrationPage.class);
 	}
 	
 	@Override
@@ -71,9 +72,7 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 	@ParameterizedTest
 	@MethodSource("data")
 	public void registrationTest(DataProviderInternal dataProviderInternal) {
-		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle()
-						.equals(PageTitlesEnum.REGISTRATION.toString()));
+		assertEquals("Site title: " + registrationPage.getActualPageTitle(), registrationPage.getActualPageTitle(), PageTitlesEnum.REGISTRATION.toString());
 		
 		registrationPage.setFirstName(dataProviderInternal.getFirstName());
 		registrationPage.setLastName(dataProviderInternal.getLastName());
@@ -91,7 +90,5 @@ public class RegisterOKTestDDInternalDataTest extends BaseTest {
 		
 		registrationPage.clickSubmit();
 		assertTrue("Registration succeed text visible: ", registrationPage.isRegistryErrorTextVisible());
-		return;
 	}
-	
 }

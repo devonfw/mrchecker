@@ -1,5 +1,6 @@
 package com.capgemini.mrchecker.selenium.projectX.registration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Disabled;
@@ -13,6 +14,7 @@ import com.capgemini.mrchecker.selenium.pages.projectX.registration.Hobby;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.MaritalStatus;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistrationPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 @TestsSelenium
 @TestsFailed
@@ -37,20 +39,12 @@ public class RegisterOKTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		registrationPage = new RegistrationPage();
-		registrationPage.initialize();
-	}
-	
-	@Override
-	public void tearDown() {
-		// TODO Auto-generated method stub
+		registrationPage = PageFactory.getPageInstance(RegistrationPage.class);
 	}
 	
 	@Test
 	public void Register_OK() {
-		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle()
-						.equals(PageTitlesEnum.REGISTRATION.toString()));
+		assertEquals("Site title: " + registrationPage.getActualPageTitle(), registrationPage.getActualPageTitle(), PageTitlesEnum.REGISTRATION.toString());
 		
 		registrationPage.setFirstName(firstName);
 		registrationPage.setLastName(lastName);
@@ -69,7 +63,5 @@ public class RegisterOKTest extends BaseTest {
 		registrationPage.clickSubmit();
 		
 		assertTrue("Username already exists", registrationPage.isRegistryErrorTextVisible());
-		return;
 	}
-	
 }

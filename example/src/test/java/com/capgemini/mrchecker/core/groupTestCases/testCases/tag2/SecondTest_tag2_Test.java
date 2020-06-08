@@ -13,6 +13,7 @@ import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsTag2;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistryPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 import io.qameta.allure.Feature;
 
@@ -25,12 +26,7 @@ public class SecondTest_tag2_Test extends BaseTest {
 	@Override
 	public void setUp() {
 		BFLogger.logInfo("[Step 1] As a standard user I will open Registry Page,  So that my I can fill data");
-		registryPage = new RegistryPage();
-		registryPage.initialize();
-	}
-	
-	@Override
-	public void tearDown() {
+		registryPage = PageFactory.getPageInstance(RegistryPage.class);
 	}
 	
 	@Test

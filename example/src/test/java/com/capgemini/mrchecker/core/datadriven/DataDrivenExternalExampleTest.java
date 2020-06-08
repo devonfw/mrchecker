@@ -48,19 +48,4 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromAnyFile()");
 		BFLogger.logDebug("\t" + "Name=" + person.getName() + " " + "Age=" + person.getAge());
 	}
-	
-	@Override
-	public void setUp() {
-		
-	}
-	
-	@Override
-	public void tearDown() {
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
 }

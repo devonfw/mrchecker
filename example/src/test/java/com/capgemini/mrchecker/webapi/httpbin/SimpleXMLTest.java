@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.core.utils.SimpleXMLParser;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleXMLPage;
@@ -35,8 +36,7 @@ public class SimpleXMLTest extends BaseWebApiTest {
 	
 	@BeforeAll
 	public static void setup() {
-		simpleXMLPage = new SimpleXMLPage();
-		simpleXMLPage.initialize();
+		simpleXMLPage = PageFactory.getPageInstance(SimpleXMLPage.class);
 		BFLogger.logDebug("Reading " + simpleXMLPage.getEndpoint());
 		
 		try {

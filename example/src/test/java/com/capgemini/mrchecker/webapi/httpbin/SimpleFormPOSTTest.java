@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaSize;
@@ -27,7 +28,7 @@ import io.restassured.response.Response;
 @TestsWebApi
 public class SimpleFormPOSTTest extends BaseWebApiTest {
 	
-	private static SimpleFormPOSTPage	simplePOSTPage	= new SimpleFormPOSTPage();
+	private static SimpleFormPOSTPage	simplePOSTPage;
 	private static Response				response;
 	
 	// Valid data to fill the form
@@ -44,7 +45,7 @@ public class SimpleFormPOSTTest extends BaseWebApiTest {
 	@BeforeAll
 	public static void submitFormWithValidData() {
 		BFLogger.logInfo("Step 1 - Setting up CustomerName field: " + CUSTOMER_NAME);
-		simplePOSTPage.initialize();
+		simplePOSTPage = PageFactory.getPageInstance(SimpleFormPOSTPage.class);
 		simplePOSTPage.setCustomerName(CUSTOMER_NAME);
 		
 		BFLogger.logInfo("Step 2 - Setting up Telephone Number field: " + TELEPHONE_NUMBER);

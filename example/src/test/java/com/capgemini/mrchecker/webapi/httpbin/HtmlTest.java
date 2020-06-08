@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.core.utils.HTMLParser;
 import com.capgemini.mrchecker.webapi.pages.httbin.HtmlPage;
@@ -20,11 +21,11 @@ import io.restassured.response.ResponseBody;
 
 @TestsWebApi
 public class HtmlTest extends BaseWebApiTest {
-	private static HtmlPage htmlPage = new HtmlPage();
+	private static HtmlPage htmlPage;
 	
 	@BeforeAll
 	public static void setUpClass() {
-		htmlPage.initialize();
+		htmlPage = PageFactory.getPageInstance(HtmlPage.class);
 	}
 	
 	@Test

@@ -17,6 +17,7 @@ import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailAboutPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailInboxPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailSignInPage;
 import com.capgemini.mrchecker.selenium.pages.projectY.gmail.GmailWelcomePage;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 @TestsLocal
 @TestsNONParallel
@@ -39,8 +40,7 @@ public class ForgotPasswordTest extends TheInternetBaseTest {
 	@BeforeAll
 	public static void setUpBeforeClass() {
 		logStep("Open the Url: https://www.google.com/gmail/about/#");
-		gmailAboutPage = new GmailAboutPage();
-		gmailAboutPage.initialize();
+		gmailAboutPage = PageFactory.getPageInstance(GmailAboutPage.class);
 		
 		logStep("Verify if Url: https://www.google.com/gmail/about/# is opened");
 		assertTrue("Unable to open the 'Google About' page", gmailAboutPage.isLoaded());

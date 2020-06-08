@@ -53,7 +53,6 @@ public class BaseHook {
 	@Before(order = 0)
 	public void setup(Scenario scenario) {
 		context.setDisplayName(scenario.getName());
-		
 		BFLogger.logInfo("Starting Scenario: \"" + context.getDisplayName() + "\"");
 		
 		BaseTestExecutionObserver.getInstance()
@@ -121,7 +120,7 @@ public class BaseHook {
 		
 		@Override
 		public Optional<Class<?>> getTestClass() {
-			return Optional.empty();
+			return Optional.of(testInstance.getClass());
 		}
 		
 		@Override

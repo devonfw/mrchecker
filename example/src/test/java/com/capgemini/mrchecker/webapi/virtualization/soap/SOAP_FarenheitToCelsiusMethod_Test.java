@@ -37,14 +37,6 @@ public class SOAP_FarenheitToCelsiusMethod_Test extends BaseTest {
 		
 	}
 	
-	@Override
-	public void setUp() {
-	}
-	
-	@Override
-	public void tearDown() {
-	}
-	
 	@Test
 	public void testSoapMessageFromFileWithVitualResponse() throws IOException {
 		

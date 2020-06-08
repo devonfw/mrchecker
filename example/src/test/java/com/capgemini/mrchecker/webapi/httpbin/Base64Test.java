@@ -13,16 +13,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.Base64Page;
 
 @TestsWebApi
 public class Base64Test extends BaseWebApiTest {
-	private static Base64Page base64Page = new Base64Page();
+	private static Base64Page base64Page;
 	
 	@BeforeAll
 	public static void setUpClass() {
-		base64Page.initialize();
+		base64Page = PageFactory.getPageInstance(Base64Page.class);
 	}
 	
 	private static Stream<Arguments> getArguments() {

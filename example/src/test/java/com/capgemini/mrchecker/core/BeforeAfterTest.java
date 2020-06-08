@@ -1,11 +1,11 @@
 package com.capgemini.mrchecker.core;
 
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import org.junit.AfterClass;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class BeforeAfterTest extends BaseTest {
 	

@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.core.utils.HTMLParser;
 import com.capgemini.mrchecker.webapi.pages.httbin.LinksPage;
@@ -24,11 +25,11 @@ import io.restassured.response.ResponseBody;
 
 @TestsWebApi
 public class HtmlLinksTest extends BaseWebApiTest {
-	private static LinksPage linksPage = new LinksPage();
+	private static LinksPage linksPage;
 	
 	@BeforeAll
 	public static void setUpClass() {
-		linksPage.initialize();
+		linksPage = PageFactory.getPageInstance(LinksPage.class);
 	}
 	
 	private static Stream<Arguments> getArguments1() {

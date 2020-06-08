@@ -74,15 +74,6 @@ public class DataDrivenInternalExampleTest extends BaseTest {
 	public void testContains_usingSeparateClass(final List<String> list, final String searchString, final boolean expectedResult) {
 		assertEquals(expectedResult, testSubject.contains(list, searchString));
 	}
-	
-	@Override
-	public void setUp() {
-	}
-	
-	@Override
-	public void tearDown() {
-		
-	}
 }
 
 @SuppressWarnings("unused")

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.calculator_soap.MultiplyPage;
 
@@ -19,8 +20,7 @@ public class MultiplyTest extends BaseWebApiTest {
 	
 	@BeforeEach
 	public void setUpClass() {
-		multiplyPage = new MultiplyPage();
-		multiplyPage.initialize();
+		multiplyPage = PageFactory.getPageInstance(MultiplyPage.class);
 	}
 	
 	@Test

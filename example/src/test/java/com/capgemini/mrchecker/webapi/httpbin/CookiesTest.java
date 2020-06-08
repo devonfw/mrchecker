@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.cookies.CookieSession;
 import com.capgemini.mrchecker.webapi.pages.httbin.cookies.DeleteCookiesPage;
@@ -23,15 +24,15 @@ import io.restassured.response.Response;
 @TestsWebApi
 public class CookiesTest extends BaseWebApiTest {
 	
-	private static GetCookiesPage		getCookiesPage		= new GetCookiesPage();
-	private static SetCookiesPage		setCookiesPage		= new SetCookiesPage();
-	private static DeleteCookiesPage	deleteCookiesPage	= new DeleteCookiesPage();
+	private static GetCookiesPage		getCookiesPage;
+	private static SetCookiesPage		setCookiesPage;
+	private static DeleteCookiesPage	deleteCookiesPage;
 	
 	@BeforeAll
 	public static void setUpClass() {
-		getCookiesPage.initialize();
-		setCookiesPage.initialize();
-		deleteCookiesPage.initialize();
+		getCookiesPage = PageFactory.getPageInstance(GetCookiesPage.class);
+		setCookiesPage = PageFactory.getPageInstance(SetCookiesPage.class);
+		deleteCookiesPage = PageFactory.getPageInstance(DeleteCookiesPage.class);
 	}
 	
 	@BeforeEach

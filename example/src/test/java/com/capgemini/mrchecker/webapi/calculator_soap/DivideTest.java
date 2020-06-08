@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.calculator_soap.DividePage;
 
@@ -20,8 +21,7 @@ public class DivideTest extends BaseWebApiTest {
 	
 	@BeforeEach
 	public void setUpClass() {
-		dividePage = new DividePage();
-		dividePage.initialize();
+		dividePage = PageFactory.getPageInstance(DividePage.class);
 	}
 	
 	@Test

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.BasicAuthPage;
 
@@ -22,11 +23,11 @@ public class BasicAuthTest extends BaseWebApiTest {
 	private final String	invalidUsername	= "invalidUser";
 	private final String	invalidPassword	= "invalidPassword";
 	
-	private static BasicAuthPage basicAuthPage = new BasicAuthPage();
+	private static BasicAuthPage basicAuthPage;
 	
 	@BeforeAll
 	public static void setUpClass() {
-		basicAuthPage.initialize();
+		basicAuthPage = PageFactory.getPageInstance(BasicAuthPage.class);
 	}
 	
 	@Test

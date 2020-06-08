@@ -1,12 +1,14 @@
 package com.capgemini.mrchecker.selenium.features.samples.readFromTable;
 
-import com.capgemini.mrchecker.selenium.pages.features.samples.readFromTable.EditableGridPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import com.capgemini.mrchecker.selenium.pages.features.samples.readFromTable.EditableGridPage;
+import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 public class JsoupTest extends BaseTest {
 	
@@ -15,8 +17,7 @@ public class JsoupTest extends BaseTest {
 	@BeforeAll
 	public static void setUpBeforeClass() {
 		BFLogger.logDebug("OPEN BROWSER AND ENTER HTTP://WWW.EDITABLEGRID.NET/EN/");
-		editableGridPage = new EditableGridPage();
-		editableGridPage.initialize();
+		editableGridPage = PageFactory.getPageInstance(EditableGridPage.class);
 		BFLogger.logDebug("VERIFY PAGE IS DISPLAYED");
 		assertTrue("Page not opened", editableGridPage.isLoaded());
 	}
@@ -26,13 +27,4 @@ public class JsoupTest extends BaseTest {
 		BFLogger.logInfo("[TEST1] - Print all cells");
 		editableGridPage.printAllCells();
 	}
-	
-	@Override
-	public void setUp() {
-	}
-	
-	@Override
-	public void tearDown() {
-	}
-	
 }

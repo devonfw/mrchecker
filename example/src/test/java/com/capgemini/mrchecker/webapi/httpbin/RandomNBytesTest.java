@@ -11,16 +11,17 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.RandomNBytesPage;
 
 @TestsWebApi
 public class RandomNBytesTest extends BaseWebApiTest {
-	private static RandomNBytesPage randomNBytesPage = new RandomNBytesPage();
+	private static RandomNBytesPage randomNBytesPage;
 	
 	@BeforeAll
 	public static void setUpClass() {
-		randomNBytesPage.initialize();
+		randomNBytesPage = PageFactory.getPageInstance(RandomNBytesPage.class);
 	}
 	
 	@ParameterizedTest

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.calculator_soap.SubtractPage;
 
@@ -19,8 +20,7 @@ public class SubtractTest extends BaseWebApiTest {
 	
 	@BeforeEach
 	public void setUpClass() {
-		subtractPage = new SubtractPage();
-		subtractPage.initialize();
+		subtractPage = PageFactory.getPageInstance(SubtractPage.class);
 	}
 	
 	@Test

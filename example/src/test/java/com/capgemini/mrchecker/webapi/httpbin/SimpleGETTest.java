@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleGETPage;
 
@@ -17,8 +18,7 @@ public class SimpleGETTest extends BaseWebApiTest {
 	
 	@Test
 	public void sendSimpleGETQuery() {
-		SimpleGETPage simpleGETPage = new SimpleGETPage();
-		simpleGETPage.initialize();
+		SimpleGETPage simpleGETPage = PageFactory.getPageInstance(SimpleGETPage.class);
 		
 		BFLogger.logInfo("Step 1 - Sending GET query to " + simpleGETPage.getEndpoint());
 		Response response = simpleGETPage.sendGETQuery();

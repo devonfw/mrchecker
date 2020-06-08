@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.DelayPage;
 
@@ -55,9 +56,9 @@ public class DelayTest extends BaseWebApiTest {
 			}
 		};
 		
-		private static final DelayPage DELAY_PAGE = new DelayPage();
+		private static final DelayPage DELAY_PAGE;
 		static {
-			DELAY_PAGE.initialize();
+			DELAY_PAGE = PageFactory.getPageInstance(DelayPage.class);
 		}
 		
 		public abstract Response callDelayApi(String seconds);

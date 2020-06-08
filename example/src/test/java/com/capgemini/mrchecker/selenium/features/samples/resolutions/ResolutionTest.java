@@ -15,6 +15,7 @@ import com.capgemini.mrchecker.selenium.core.enums.ResolutionEnum;
 import com.capgemini.mrchecker.selenium.core.utils.ResolutionUtils;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistryPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 import io.qameta.allure.Feature;
 
@@ -32,8 +33,7 @@ public class ResolutionTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		registryPage = new RegistryPage();
-		registryPage.initialize();
+		registryPage = PageFactory.getPageInstance(RegistryPage.class);
 	}
 	
 	@ParameterizedTest
@@ -44,10 +44,6 @@ public class ResolutionTest extends BaseTest {
 		assertThat(true, is(registryPage.isButtonSubmitDisplayed()));
 		TimeUnit.SECONDS.sleep(1); // This is for demo. Do not do it at home
 		
-	}
-	
-	@Override
-	public void tearDown() {
 	}
 	
 }

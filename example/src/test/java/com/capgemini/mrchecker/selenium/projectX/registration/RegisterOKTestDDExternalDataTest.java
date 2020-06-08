@@ -1,5 +1,6 @@
 package com.capgemini.mrchecker.selenium.projectX.registration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Disabled;
@@ -11,6 +12,7 @@ import com.capgemini.mrchecker.selenium.pages.environment.PageTitlesEnum;
 import com.capgemini.mrchecker.selenium.pages.projectX.registration.RegistrationPage;
 import com.capgemini.mrchecker.selenium.projectX.registration.utils.FormDataContainer;
 import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 @TestsSelenium
 @Disabled("Registration site not not on the Web")
@@ -20,8 +22,7 @@ public class RegisterOKTestDDExternalDataTest extends BaseTest {
 	
 	@Override
 	public void setUp() {
-		registrationPage = new RegistrationPage();
-		registrationPage.initialize();
+		registrationPage = PageFactory.getPageInstance(RegistrationPage.class);
 	}
 	
 	@Override
@@ -31,10 +32,8 @@ public class RegisterOKTestDDExternalDataTest extends BaseTest {
 	
 	@ParameterizedTest
 	@MethodSource("com.capgemini.mrchecker.selenium.projectX.registration.utils.DataProviderExternalJsonFile#provide")
-	public void registrationTest(FormDataContainer data) throws InterruptedException {
-		assertTrue("Site title: " + registrationPage.getActualPageTitle(),
-				registrationPage.getActualPageTitle()
-						.equals(PageTitlesEnum.REGISTRATION.toString()));
+	public void registrationTest(FormDataContainer data) {
+		assertEquals("Site title: " + registrationPage.getActualPageTitle(), registrationPage.getActualPageTitle(), PageTitlesEnum.REGISTRATION.toString());
 		
 		registrationPage.setFirstName(data.getFirstName());
 		registrationPage.setLastName(data.getLastName());
@@ -53,7 +52,5 @@ public class RegisterOKTestDDExternalDataTest extends BaseTest {
 		registrationPage.clickSubmit();
 		
 		assertTrue("Registration succeed text visible: ", registrationPage.isRegistryErrorTextVisible());
-		
-		return;
 	}
 }
