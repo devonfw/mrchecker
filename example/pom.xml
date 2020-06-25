@@ -78,8 +78,6 @@
         <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
         <surefire.provider.version>1.3.2</surefire.provider.version>
 
-        <junit-toolbox.version>2.4</junit-toolbox.version>
-
         <!-- Maven report generator -->
         <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
@@ -87,10 +85,6 @@
         <!-- Allure reporting -->
         <allure-cli-runner.version>2.6.0
         </allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
-        <!--        &lt;!&ndash;        <allure.report.directory>${pom.basedir}/target/</allure.report.directory>&ndash;&gt;-->
-        <!--        <allure-junit-platform.version>2.13.3</allure-junit-platform.version>-->
-        <!--        <report-directory>${pom.basedir}/test-output/</report-directory>-->
-        <!--        <aspectj.version>1.8.10</aspectj.version>-->
 
         <aspectj.version>1.9.5</aspectj.version>
         <allure-junit5.version>2.13.3</allure-junit5.version>
@@ -112,7 +106,6 @@
         <mockito.version>1.8.5</mockito.version>
         <joda-time.version>2.9.9</joda-time.version>
         <commons-csv.version>1.1</commons-csv.version>
-        <JUnitParams.version>1.0.4</JUnitParams.version>
         <jackson-databind.version>2.11.0</jackson-databind.version>
 
         <!-- Dependency Injection -->
@@ -197,24 +190,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!--        To be deleted-->
-        <dependency>
-            <groupId>pl.pragmatists</groupId>
-            <artifactId>JUnitParams</artifactId>
-            <version>${JUnitParams.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-surefire-provider</artifactId>
             <version>${surefire.provider.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit.platform.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -240,12 +219,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>${commons-csv.version}</version>
-        </dependency>
-        <!--This dependency is necessary for testsuits runned with WildcardPatternSuite -->
-        <dependency>
-            <groupId>com.googlecode.junit-toolbox</groupId>
-            <artifactId>junit-toolbox</artifactId>
-            <version>${junit-toolbox.version}</version>
         </dependency>
 
         <dependency>

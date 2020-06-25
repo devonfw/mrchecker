@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestInstances;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.BaseTestExecutionObserver;
+import com.capgemini.mrchecker.test.core.TestExecutionObserver;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 import cucumber.api.Scenario;
@@ -55,20 +55,20 @@ public class BaseHook {
 		context.setDisplayName(scenario.getName());
 		BFLogger.logInfo("Starting Scenario: \"" + context.getDisplayName() + "\"");
 		
-		BaseTestExecutionObserver.getInstance()
+		TestExecutionObserver.getInstance()
 				.beforeTestExecution(context);
 	}
 	
 	@After(order = Integer.MAX_VALUE)
 	public void tearDown(Scenario scenario) {
 		context.setDisplayName(scenario.getName());
-		BaseTestExecutionObserver.getInstance()
+		TestExecutionObserver.getInstance()
 				.afterTestExecution(context);
 		if (scenario.isFailed()) {
-			BaseTestExecutionObserver.getInstance()
+			TestExecutionObserver.getInstance()
 					.testFailed(context, null);
 		} else {
-			BaseTestExecutionObserver.getInstance()
+			TestExecutionObserver.getInstance()
 					.testSuccessful(context);
 		}
 		BFLogger.logInfo(String.format("Ending Scenario: \"%s\"", scenario.getName()) + " result: " +
