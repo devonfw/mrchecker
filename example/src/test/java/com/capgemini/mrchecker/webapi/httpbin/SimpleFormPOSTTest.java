@@ -12,9 +12,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaSize;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleFormPOSTPage.PizzaToppings;
@@ -26,7 +26,7 @@ import io.restassured.response.Response;
  * On the other hand 'httpbin.org/forms/post' including client-side validations. Below tests will cover them.
  */
 @TestsWebApi
-public class SimpleFormPOSTTest extends BaseWebApiTest {
+public class SimpleFormPOSTTest extends BaseTest {
 	
 	private static SimpleFormPOSTPage	simplePOSTPage;
 	private static Response				response;

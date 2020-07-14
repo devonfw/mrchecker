@@ -11,9 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.cookies.CookieSession;
 import com.capgemini.mrchecker.webapi.pages.httbin.cookies.DeleteCookiesPage;
 import com.capgemini.mrchecker.webapi.pages.httbin.cookies.GetCookiesPage;
@@ -22,7 +22,7 @@ import com.capgemini.mrchecker.webapi.pages.httbin.cookies.SetCookiesPage;
 import io.restassured.response.Response;
 
 @TestsWebApi
-public class CookiesTest extends BaseWebApiTest {
+public class CookiesTest extends BaseTest {
 	
 	private static GetCookiesPage		getCookiesPage;
 	private static SetCookiesPage		setCookiesPage;

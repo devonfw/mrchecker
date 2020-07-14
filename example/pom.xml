@@ -92,7 +92,7 @@
         <allure-junit-platform.version>2.13.3</allure-junit-platform.version>
         <allure-maven.version>2.10.0</allure-maven.version>
 
-        <!-- Cucumber vallersion -->
+        <!-- Cucumber version -->
         <cucumber.jvm.parallel.version>5.0.0</cucumber.jvm.parallel.version>
         <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
         <cucumber.tag>@all</cucumber.tag>
@@ -156,7 +156,6 @@
             <version>${aspectj.version}</version>
         </dependency>
 
-        <!--This dependency is necessary for JUnit plugin. -->
         <!--This dependency is necessary for JUnit plugin. -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -274,9 +273,6 @@
                                 <directory>logs</directory>
                                 <followSymlinks>false</followSymlinks>
                             </fileset>
-                            <fileset>
-                                <directory>${report-directory}</directory>
-                            </fileset>
                         </filesets>
                     </configuration>
                 </plugin>
@@ -370,12 +366,6 @@
                                     <value>io.qameta.allure.junit5.AllureJunit5</value>
                                 </property>
                             </properties>
-                            <systemProperties>
-                                <!--                                <property>-->
-                                <!--                                    <name>allure.results.directory</name>-->
-                                <!--                                    <value>${allure.report.directory}/allure-results</value>-->
-                                <!--                                </property>-->
-                            </systemProperties>
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -392,8 +382,6 @@
                         <configuration>
                             <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
                             <reportVersion>${allure-cli-runner.version}</reportVersion>
-                            <!--                            <resultsDirectory>${allure.report.directory}/allure-results</resultsDirectory>-->
-                            <!--                            <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>-->
                         </configuration>
                     </plugin>
                 </plugins>
@@ -530,33 +518,6 @@
                         </configuration>
                     </plugin>
 
-
-                    <!-- <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.6.1</version>
-                        <executions>
-                        <execution>
-                        <id>cucumber-test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                        <goal>testCompile</goal>
-                        </goals>
-                        </execution>
-                        </executions>
-
-                        <configuration>
-                        <compilerArgument>-Xlint:deprecation</compilerArgument>
-                        <showWarnings>false</showWarnings>
-                        <showDeprecation>true</showDeprecation>
-                        <source>${java.compiler.version}</source>
-                        <target>${java.compiler.version}</target>
-                        <encoding>UTF-8</encoding>
-                        <testSource>${java.compiler.version}</testSource>
-                        <testTarget>${java.compiler.version}</testTarget>
-                        </configuration>
-                        </plugin> -->
-
                     <!-- EXECUTE TESTS -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -585,14 +546,6 @@
                                 </property>
 
                             </properties>
-                            <systemProperties>
-                                <!--                                <property>-->
-                                <!--                                    <name>allure.results.directory</name>-->
-                                <!--                                    <value>${allure.report.directory}/allure-results</value>-->
-                                <!--                                </property>-->
-                            </systemProperties>
-
-
                         </configuration>
                         <dependencies>
                             <dependency>
@@ -610,8 +563,6 @@
                         <configuration>
                             <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
                             <reportVersion>${allure-cli-runner.version}</reportVersion>
-                            <!--                            <resultsDirectory>${allure.report.directory}/allure-results</resultsDirectory>-->
-                            <!--                            <reportDirectory>${allure.report.directory}/site/allure-report</reportDirectory>-->
                         </configuration>
                     </plugin>
 

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFailed;
@@ -19,6 +20,7 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 @TestsSelenium
 @TestsFailed
 @Disabled("Registration site not not on the Web")
+@Tag("RegisterOKTest")
 public class RegisterOKTest extends BaseTest {
 	
 	private static RegistrationPage registrationPage;

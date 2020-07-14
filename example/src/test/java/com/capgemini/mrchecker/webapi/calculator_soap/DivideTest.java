@@ -7,15 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.calculator_soap.DividePage;
 
 import io.restassured.response.Response;
 
 @TestsWebApi
-public class DivideTest extends BaseWebApiTest {
+public class DivideTest extends BaseTest {
 	
 	private DividePage dividePage;
 	

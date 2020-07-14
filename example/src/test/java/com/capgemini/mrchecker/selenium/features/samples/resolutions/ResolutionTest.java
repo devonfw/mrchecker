@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -21,6 +22,7 @@ import io.qameta.allure.Feature;
 
 @Feature("Resolution")
 @Disabled("page not existent on the Web")
+@Tag("ResolutionTest")
 public class ResolutionTest extends BaseTest {
 	private RegistryPage registryPage;
 	

@@ -13,16 +13,16 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.core.utils.SimpleXMLParser;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleXMLPage;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleXMLPage.XML_ATTRIBUTE;
 import com.capgemini.mrchecker.webapi.pages.httbin.SimpleXMLPage.XML_ELEMENT;
 
 @TestsWebApi
-public class SimpleXMLTest extends BaseWebApiTest {
+public class SimpleXMLTest extends BaseTest {
 	
 	// data to check for in tests
 	private final static XML_ELEMENT	ROOT_ELEMENT			= XML_ELEMENT.SLIDESHOW;

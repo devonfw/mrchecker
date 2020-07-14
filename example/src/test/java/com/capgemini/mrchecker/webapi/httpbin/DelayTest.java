@@ -7,15 +7,15 @@ import static org.junit.Assert.assertThat;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.pages.httbin.DelayPage;
 
 import io.restassured.response.Response;
 
 @TestsWebApi
-public class DelayTest extends BaseWebApiTest {
+public class DelayTest extends BaseTest {
 	
 	private final Integer	seconds0	= 0;
 	private final Integer	seconds1	= 1;

@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 import com.capgemini.mrchecker.webapi.virtualization.stubs.StubREST_Builder;
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -17,7 +17,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 @TestsWebApi
-public class REST_FarenheitToCelsiusMethod_DynamicResponse extends BaseWebApiTest {
+public class REST_FarenheitToCelsiusMethod_DynamicResponse extends BaseTest {
 	
 	private static String endpointBaseUri;
 	

@@ -1,10 +1,9 @@
 package com.capgemini.mrchecker.security;
 
 import com.capgemini.mrchecker.security.session.ISessionManager;
-import com.capgemini.mrchecker.security.session.SessionManager;
 import com.capgemini.mrchecker.security.session.SessionManagerModule;
 import com.capgemini.mrchecker.test.core.BaseTest;
-import com.capgemini.mrchecker.test.core.utils.PageFactory;
+import com.capgemini.mrchecker.test.core.Page;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -20,7 +19,8 @@ public abstract class SecurityTest extends BaseTest {
 	
 	public SecurityTest() {
 		super();
-		sessionManager = PageFactory.getPageInstance(SessionManager.class);
+		sessionManager = injector.getInstance(ISessionManager.class);
+		((Page) sessionManager).addToTestExecutionObserver();
 	}
 	
 	public ISessionManager getSessionManager() {

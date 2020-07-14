@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -20,6 +21,7 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 @TestsSelenium
 @Disabled("Registration site not not on the Web")
+@Tag("RegisterOKTestDDInternalDataTest")
 public class RegisterOKTestDDInternalDataTest extends BaseTest {
 	
 	private static RegistrationPage registrationPage;

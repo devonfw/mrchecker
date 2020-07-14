@@ -18,7 +18,6 @@ public class Withdraw implements En {
 			account = new Account(openBalance);
 			
 		});
-		
 		When("I request ${int}", (Integer amount) -> {
 			BFLogger.logDebug("I've requested " + amount);
 			account.withdraw(amount);

@@ -10,9 +10,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsWebApi;
+import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
-import com.capgemini.mrchecker.webapi.BaseWebApiTest;
 import com.capgemini.mrchecker.webapi.core.utils.HTMLParser;
 import com.capgemini.mrchecker.webapi.pages.httbin.HtmlPage;
 
@@ -20,7 +20,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 
 @TestsWebApi
-public class HtmlTest extends BaseWebApiTest {
+public class HtmlTest extends BaseTest {
 	private static HtmlPage htmlPage;
 	
 	@BeforeAll
