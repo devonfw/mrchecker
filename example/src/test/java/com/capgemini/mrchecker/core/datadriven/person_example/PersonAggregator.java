@@ -1,57 +1,47 @@
 package com.capgemini.mrchecker.core.datadriven.person_example;
 
-import junitparams.mappers.CsvWithHeaderMapper;
+import org.junit.jupiter.api.extension.ParameterContext;
+import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
+import org.junit.jupiter.params.aggregator.ArgumentsAggregationException;
+import org.junit.jupiter.params.aggregator.ArgumentsAggregator;
 
-import java.io.Reader;
-import java.util.LinkedList;
-import java.util.List;
-
-public class PersonMapper extends CsvWithHeaderMapper {
+public class PersonAggregator implements ArgumentsAggregator {
+	
 	@Override
-	public Object[] map(Reader reader) {
-		Object[] map = super.map(reader);
-		List<Object[]> result = new LinkedList<Object[]>();
-		for (Object lineObj : map) {
-			String line = (String) lineObj;
-
-			// Splitted with ","
-			Object[] lineSplitted = line.split(","); // Example line { 21,John }
-
-			// Order of arguments must be inline with Person class constructor argument list
-			result.add(lineSplitted);
-		}
-		return result.toArray();
+	public Object aggregateArguments(ArgumentsAccessor argumentsAccessor, ParameterContext parameterContext) throws ArgumentsAggregationException {
+		return new Person(argumentsAccessor.getString(0),
+				argumentsAccessor.getString(1));
 	}
-
+	
 	public static class Person {
-
-		private String  name;
-		private Integer age;
-
+		
+		private String	name;
+		private Integer	age;
+		
 		// Arguments order depends on data in CSV line
 		public Person(String age, String name) {
 			this.name = name;
 			setAge(age);
-
+			
 		}
-
+		
 		// When there is only one argument after CSV line split, than treat this one as it is argument AGE
 		public Person(String age) {
 			setAge(age);
 		}
-
+		
 		public String getName() {
 			return name;
 		}
-
+		
 		public boolean isAdult() {
 			return age >= 18;
 		}
-
+		
 		public int getAge() {
 			return age;
 		}
-
+		
 		// When argument AGE is missing, then set default value = 0
 		private void setAge(String age) {
 			try {
@@ -60,11 +50,10 @@ public class PersonMapper extends CsvWithHeaderMapper {
 				this.age = 0; // Default value
 			}
 		}
-
+		
 		@Override
 		public String toString() {
 			return "Person of age: " + age;
 		}
 	}
-
 }

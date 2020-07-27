@@ -47,16 +47,10 @@ public enum PageSubURLsProjectYEnum {
 	/*
 	 * Sub URLs are used as real locations in test environment
 	 */
-	private String subURL;
+	private final String subURL;
 
-	private PageSubURLsProjectYEnum(String subURL) {
+	PageSubURLsProjectYEnum(String subURL) {
 		this.subURL = subURL;
-	}
-
-	;
-
-	private PageSubURLsProjectYEnum() {
-
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package com.capgemini.mrchecker.core.logger;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LoggerExamplesTest {
 
