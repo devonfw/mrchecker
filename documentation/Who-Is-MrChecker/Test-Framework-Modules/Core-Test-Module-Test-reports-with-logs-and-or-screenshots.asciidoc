@@ -45,11 +45,11 @@ Allure is a tool designed for test reports.
 
 You can generate a report using one of the following command:
 
-Since mrchecker-core-module version 5.6.2.1:
+*Since mrchecker-core-module version 5.6.2.1:*
 
-	mvn test allure:serve -Dgroups=TS_Tag1
+	mvn test allure:serve -Dgroups=TestsTag1
 
-Prior to mrchecker-core-module version 5.6.2.1:
+*Prior to mrchecker-core-module version 5.6.2.1:*
 
     mvn test allure:serve -Dtest=TS_Tag1
 
@@ -57,11 +57,11 @@ Report will be generated into temp folder. Web server with results will start. Y
 
 System property allure.serve.timeout.
 
-Since mrchecker-core-module version 5.6.2.1:
+*Since mrchecker-core-module version 5.6.2.1:*
 
-	mvn test allure:report -Dgroups=TS_Tag1
+	mvn test allure:report -Dgroups=TestsTag1
 
-Prior to mrchecker-core-module version 5.6.2.1:
+*Prior to mrchecker-core-module version 5.6.2.1:*
 
     mvn test allure:report -Dtest=TS_Tag1
 

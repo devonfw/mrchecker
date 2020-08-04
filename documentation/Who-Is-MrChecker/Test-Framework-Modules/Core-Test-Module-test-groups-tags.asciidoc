@@ -25,7 +25,7 @@ Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[s
 
 == Structure of Test Suite
 
-=== Since mrchecker-core-module version 5.6.2.1:
+=== *Since mrchecker-core-module version 5.6.2.1:*
 
 image::images/image23_new.png[]
 
@@ -48,7 +48,7 @@ Example:
 2. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ "SlowTest" })` -> will execute all test cases with tag `"TestsTag1"` although it will exclude, from this list, test cases with tag `"SlowTest"`
 3. `@IncludeTags({ }) , @ExcludeTags({ "ExcludeTags" })` -> It will exclude test cases with tag `"SlowTest"`
 
-=== Prior to mrchecker-core-module version 5.6.2.1:
+=== *Prior to mrchecker-core-module version 5.6.2.1:*
 
 image::images/image23.png[]
 
@@ -73,7 +73,7 @@ Example:
 
 == Structure of Test Case
 
-=== Since mrchecker-core-module version 5.6.2.1:
+=== *Since mrchecker-core-module version 5.6.2.1:*
 
 image::images/image24_new.png[]
 
@@ -83,7 +83,7 @@ Where:
 * `public class FristTest_tag1_Test` - name of test case `"FristTest_tag1_Test"`
 
 
-=== Prior to mrchecker-core-module version 5.6.2.1:
+=== *Prior to mrchecker-core-module version 5.6.2.1:*
 
 image::images/image24.png[]
 
@@ -94,7 +94,7 @@ Where:
 
 == Structure of Tags / Categories
 
-=== Since mrchecker-core-module version 5.6.2.1:
+=== *Since mrchecker-core-module version 5.6.2.1:*
 
 Tag name: `TestsTag1` annotation
 
@@ -109,7 +109,7 @@ Tag name: `TestSelenium` annotation
 image::images/image27_new.png[]
 
 
-=== Prior to mrchecker-core-module version 5.6.2.1:
+=== *Prior to mrchecker-core-module version 5.6.2.1:*
 
 Tag name: `TestsTag1.class`
 
@@ -133,7 +133,7 @@ Since mrchecker-core-module version 5.6.2.1:
 
 JUnit5 disallows running suite classes from maven. Use -Dgroups=Tag1,Tag2 and -DexcludeGroups=Tag4,Tag5 to create test suites in maven.
 
-	mvn test site -Dgroups=TS_Tag1
+	mvn test site -Dgroups=TestsTag1
 
 Prior to mrchecker-core-module version 5.6.2.1:
 
