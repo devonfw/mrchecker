@@ -14,9 +14,42 @@ There are a few ways to define parameters for tests.
 
 Data as *part* of *test case*
 
-Parameters that are passed into tests using the `@Parameters` annotation must be _Object[]_'s
-
 The different means to pass in parameters are shown below.
+
+=== Since mrchecker-core-module version 5.6.2.1
+
+Static methods are used to provide the parameters.
+
+=== A method in the test class:
+
+----
+@ParameterizedTest
+@MethodSource("argumentsStream")
+---
+
+*OR*
+
+----
+@ParameterizedTest
+@MethodSource("arrayStream")
+---
+
+In the first case the arguments are directly mapped to the test method parameters. In the second case the array is passed as the argument. 
+
+image::images/image30_new.png[]
+
+=== A method in a different class:
+
+----
+@ParameterizedTest
+@MethodSource("com.capgemini.mrchecker.core.datadriven.MyContainsTestProvider#provideContainsTrueParameters")
+---
+
+image::images/image32_new.png[]
+
+=== Prior to mrchecker-core-module version 5.6.2.1
+
+Parameters that are passed into tests using the `@Parameters` annotation must be _Object[]_'s
 
 === In the annotation:
 
@@ -51,6 +84,12 @@ A separate class can be used to define parameters for the test. This test must c
 = External Data Driven
 
 Data as *external file injected* in *test case*
+
+=== Since mrchecker-core-module version 5.6.2.1
+
+
+
+=== Prior to mrchecker-core-module version 5.6.2.1
 
 Tests use the annotation @FileParameters to inject CSVs file.
 
