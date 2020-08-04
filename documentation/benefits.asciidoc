@@ -1,3 +1,5 @@
+= Benefits
+
 Every customer may benefit from using MrChecker Test Framework. The main profits for the project are:
 
 * Resilient and robust building and validation process

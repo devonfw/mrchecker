@@ -6,15 +6,15 @@ To run the browser in incognito mode:
 
 1. In Eclipse open Run Configurations window:
 +
-image:images/image1.png[]
+image:images/ht_image1.png[]
 +
 2. Select a test which you want to run and switch to arguments tab:
 +
-image:images/image2.png[]
+image:images/ht_image2.png[]
 +
 3. Add VM argument:
     * for the incognito mode in chrome:
 +
-image:images/image3.png[]
+image:images/ht_image3.png[]
 
 Read more about browsers options: https://github.com/devonfw/devonfw-testing/wiki/Run-with-different-browser-options

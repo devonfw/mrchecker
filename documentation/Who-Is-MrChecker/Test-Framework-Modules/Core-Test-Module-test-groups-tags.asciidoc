@@ -25,6 +25,31 @@ Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[s
 
 == Structure of Test Suite
 
+= Since mrchecker-core-module version 5.6.2.1:
+
+image::images/image23_new.png[]
+
+Where:
+
+* `@RunWith(JUnitPlatform.class)` - use Junit5 runner
+* `@IncludeTags({"TestsTag1"})` - search all test files with Tag `"TestsTag1"`
+* `@ExcludeTags({"TagToExclude"})` - at last exclude test files
+* `@SelectPackages("com.capgemini.mrchecker.core.groupTestCases.testCases")` - search only test files in `"com.capgemini.mrchecker.core.groupTestCases.testCases"` package
+* `public class TS_Tag1` - name of Test Suite "TS_Tag1"
+
+Most commonly used filter to build Test Suite is usage of:
+
+* `@IncludeTags({ })`
+* `@ExcludeTags({ })`
+
+Example:
+
+1. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ })` -> will execute all test cases with tag `TestsTag1.class`
+2. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ "SlowTest" })` -> will execute all test cases with tag `"TestsTag1"` although it will exclude, from this list, test cases with tag `"SlowTest"`
+3. `@IncludeTags({ }) , @ExcludeTags({ "ExcludeTags" })` -> It will exclude test cases with tag `"SlowTest"`
+
+= Prior to mrchecker-core-module version 5.6.2.1:
+
 image::images/image23.png[]
 
 Where:
@@ -48,6 +73,18 @@ Example:
 
 == Structure of Test Case
 
+= Since mrchecker-core-module version 5.6.2.1:
+
+image::images/image24_new.png[]
+
+Where:
+
+* `@TestsTag1, @TestsSmoke, @TestsSelenium` - list of tags / categories signed to this test case - `"TestsTag1, TestsSmokre, TestSelenium"` annotations
+* `public class FristTest_tag1_Test` - name of test case `"FristTest_tag1_Test"`
+
+
+= Prior to mrchecker-core-module version 5.6.2.1:
+
 image::images/image24.png[]
 
 Where:
@@ -56,6 +93,23 @@ Where:
 * `public class FristTest_tag1_Test` - name of test case `"FristTest_tag1_Test"`
 
 == Structure of Tags / Categories
+
+= Since mrchecker-core-module version 5.6.2.1:
+
+Tag name: `TestsTag1` annotation
+
+image::images/image25_new.png[]
+
+Tag name: `TestsSmoke` annotation
+
+image::images/image26_new.png[]
+
+Tag name: `TestSelenium` annotation
+
+image::images/image27_new.png[]
+
+
+= Prior to mrchecker-core-module version 5.6.2.1:
 
 Tag name: `TestsTag1.class`
 
@@ -74,6 +128,14 @@ image::images/image27.png[]
 To run Test Suite you will do the same steps as you do to run test case
 
 _Command line_
+
+Since mrchecker-core-module version 5.6.2.1
+
+JUnit5 disallows running suite classes from maven. Use -Dgroups=Tag1,Tag2 and -DexcludeGroups=Tag4,Tag5 to create test suites in maven.
+
+	mvn test site -Dgroups=TS_Tag1
+
+Prior to mrchecker-core-module version 5.6.2.1:
 
     mvn test site -Dtest=TS_Tag1
 
