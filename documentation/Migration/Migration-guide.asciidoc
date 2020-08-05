@@ -1,6 +1,6 @@
-= JUnit4 to JUnit5 migration guide
+= Junit4 to Junit5 migration guide
 
-*mrchecker-core-module version 5.6.2.1* features the upgrade of JUnit4 to JUnit5. Consequently, the Junit4 features are now obsolete and current test projects require migration
+*mrchecker-core-module version 5.6.2.1* features the upgrade of Junit4 to Junit5. Consequently, the Junit4 features are now obsolete and current test projects require migration
 in order to use the letset revision of MrChecker. This site provides guidance on the migration.
 
 References:
@@ -8,11 +8,11 @@ Junit5 User Guide - https://junit.org/junit5/docs/current/user-guide/#overview[]
 
 == POM
 
-The project POM file needs to be adjusted in the first place. An exemplary POM file for download can be found here.
+The project `pom.xml` file needs to be adjusted in the first place. An exemplary POM file for download can be found here.
 
 == Test Annotations
 
-JUnit5 redefines annotations defining a test flow. The annotations need to be adjusted as per the following table.
+Junit5 redefines annotations defining a test flow. The annotations need to be adjusted as per the following table.
 
 image::images/migration01.png[]
 
@@ -24,7 +24,7 @@ with the Junit5 extension mechanism (https://junit.org/junit5/docs/current/user-
 During the migration to Junit5 all mentioned type instances need to be rewritten according to the Junit5 User Guide.
 The extension mechanism is far more flexible than the Junit4 functionality based on rules.
 
-NOTE: As per Junit5 API spec: `ExpectedExceptionSupport, ExternalResourceSupport, VerifierSupport`
+*Note*: as per Junit5 API spec: `ExpectedExceptionSupport, ExternalResourceSupport, VerifierSupport`
 provide native support of the correspoinding Junit4 rules.
 
 Extension registration example:
@@ -99,7 +99,7 @@ image::images/migration16.png[]
 == Cucumber
 
 If Cucumber is used in a project it is neccessary to change a hook class.
-An exemplary hook source file for download cab be found here.
+An exemplary hook source file for download can be found here.
 
 
 == Data driven tests

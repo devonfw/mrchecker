@@ -10,7 +10,7 @@ image::images/image39.png[]
 
 *Since mrchecker-core-module version 5.6.2.1*
 
-JUnit5 supports parallelism natively. The feature is configured using a property file located at 'src\test\resources\junit-platform.properties'.
+JUnit5 supports parallelism natively. The feature is configured using a property file located at `src\test\resources\junit-platform.properties`.
 As per default configuration concurrent test execution is set to run test classes in prallel using the thread count equal to a number of your CPUs.
 
 image::images/image39a.png[]

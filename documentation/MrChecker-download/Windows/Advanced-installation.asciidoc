@@ -32,7 +32,7 @@ _(To download JDK 8 from Oracle you have to have an account. It is recomended to
 +
 * *Variable name*: PATH | *Variable value*: %JAVA_HOME%/bin;%JAVA_HOME%\lib
 +
-image::images/image3.png[]
+image::images/install_win03.png[]
 
 3. Next, verify it in the command line:
 +
@@ -50,7 +50,7 @@ Install each component separately, or update the existing ones on your PC.
         - *Variable name*: M2_HOME | *Variable value*: C:\maven\apache-maven-3.5.0
         - *Variable name*: PATH | *Variable value*: %M2_HOME%\bin
 +
-image::images/image4.png[]
+image::images/install_win04.png[]
 +
     * Verify in a command line:
 +
@@ -63,16 +63,16 @@ image::images/image4.png[]
     * Download MrCheckerTestFramework https://github.com/devonfw/devonfw-testing/archive/develop.zip[source code]
     * Import:
 +
-image::images/image5.png[]
+image::images/install_win05.png[]
 +
     * Projects from folders
 +
-image::images/image6.png[]
+image::images/install_win06.png[]
 +
     * Open already created projects:
 +
-image::images/image7.png[]
+image::images/install_win07.png[]
 +
     * Update project structure - _ALT_ + _F5_
 +
-image::images/image8.png[]
+image::images/install_win08.png[]
