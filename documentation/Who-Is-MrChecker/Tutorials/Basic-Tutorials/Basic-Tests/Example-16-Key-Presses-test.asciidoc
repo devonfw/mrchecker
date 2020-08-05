@@ -1,10 +1,10 @@
-image::images/image46.png[]
+image::images/example46.png[]
 
 This simple case shows how to test key pressing 
 
 This site uses JavaScript to read pressed key and display its value. 
 
-image::images/image47.png[]
+image::images/example47.png[]
 
 ===== Page Class
 

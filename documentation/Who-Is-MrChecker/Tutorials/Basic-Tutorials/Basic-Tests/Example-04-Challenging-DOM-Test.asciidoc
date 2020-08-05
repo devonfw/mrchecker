@@ -2,7 +2,7 @@ This case goal is to find out how to create stable selectors.
 
 In the browser's developer mode, you can see how the page is built. Notice, that buttons IDs change after click and values in the table haven't got unique attributes, which might be helpful in order to find them. 
 
-image::images/image1.png[]
+image::images/example6.png[]
 
 ===== DOM - Document Object Model 
 

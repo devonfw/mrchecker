@@ -1,4 +1,4 @@
-image::images/image1.png[]
+image::images/example1.png[]
 
 The goal of this test is to open A/B Test subpage and redirect to another website. 
 
@@ -9,7 +9,7 @@ Steps:
 3. Click Elemental Selenium link and open it in new tab 
 4. Switch to Elemental Selenium page and check if it's loaded 
 
-image::images/image2.png[]
+image::images/example2.png[]
 
 ===== Page Class 
 

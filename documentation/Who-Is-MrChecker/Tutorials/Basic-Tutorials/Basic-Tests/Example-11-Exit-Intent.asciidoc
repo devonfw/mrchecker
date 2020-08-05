@@ -1,20 +1,20 @@
-image::images/image32.png[]
+image::images/example32.png[]
 
 This case shows how to perform mouse actions and test modal windows. 
 
 After you move the mouse cursor out of the website, you should see a new window appearing:
 
-image::images/image33.png[]
+image::images/example33.png[]
 
 Check in the browser's developer mode if this window exists in Page DOM 
 
-image::images/image34.png[]
+image::images/example34.png[]
 
 Before you move the mouse out, the window exists, but it's not displayed. 
 
 When the mouse is moved, JavaScript changes display attribute. It also hides window after clicking "Close". 
 
-image::images/image35.png[]
+image::images/example35.png[]
 
 ===== Page Class
 

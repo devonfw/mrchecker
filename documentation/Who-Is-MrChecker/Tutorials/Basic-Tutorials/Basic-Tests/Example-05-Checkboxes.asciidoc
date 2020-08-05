@@ -1,6 +1,6 @@
 In this example, you will learn how to test checkboxes on the page.
 
-image::images/image7.png[]
+image::images/example7.png[]
 
 A checkbox is a simple web element which can be selected or unselected by clicking on it. 
 
@@ -19,7 +19,7 @@ Steps:
 
 Because both checkboxes are in one form it's possible to locate them by one selector and then access each one by index. 
 
-image::images/image8.png[]
+image::images/example8.png[]
 
 ----
 public class CheckboxesPage extends BasePage {

@@ -1,13 +1,13 @@
 This case shows how to move draggable elements on the page. 
-image::images/image13.png[]
+image::images/example13.png[]
 
 Try to move A to B position and see what happens. Also, open browser developer mode and see how the DOM is changing.  
 
-image::images/image14.png[]
+image::images/example14.png[]
 
 Page can be easily broken. You can try to do so and check how the page structure changed in browser developer mode. 
 
-image::images/image15.png[]
+image::images/example15.png[]
 
 Steps: 
 

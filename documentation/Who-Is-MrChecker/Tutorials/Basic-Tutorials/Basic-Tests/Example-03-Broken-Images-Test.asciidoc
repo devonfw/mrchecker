@@ -1,6 +1,6 @@
 This test goal is to check the dimensions of broken images on the subpage. 
 
-image::images/image1.png[]
+image::images/example5.png[]
 
 Steps: 
 
