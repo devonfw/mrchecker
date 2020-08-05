@@ -14,53 +14,55 @@ The project POM file needs to be adjusted in the first place. An exemplary POM f
 
 JUnit5 redefines annotations defining a test flow. The annotations need to be adjusted as per the following table.
 
-image::images/migration1.png[]
+image::images/migration01.png[]
 
-== @Rule, @ClassRule, TestRule and TestMethod
+
+== Rule, ClassRule, TestRule and TestMethod
 
 Junit4 `@Rule` and `@ClassRule` annoations as well as `TestRule` and `TestMethod` interfaces have been replaced 
 with the Junit5 extension mechanism (https://junit.org/junit5/docs/current/user-guide/#extensions).
 During the migration to Junit5 all mentioned type instances need to be rewritten according to the Junit5 User Guide.
 The extension mechanism is far more flexible than the Junit4 functionality based on rules.
 
-NOTE: As per Junit5 API spec: `ExpectedExceptionSupport, ExternalResourceSupport, VerifierSupport` provide native support of the correspoinding Junit4 rules.
+NOTE: As per Junit5 API spec: `ExpectedExceptionSupport, ExternalResourceSupport, VerifierSupport`
+provide native support of the correspoinding Junit4 rules.
 
 Extension registration example:
 
-image::images/migration2.png[]
+image::images/migration02.png[]
 image::images/migration_arrow_down.png[]
-image::images/migration3.png[]
+image::images/migration03.png[]
 
-TestRule (TestWatcher and ExternalResource) to Extension (TestWatcher and AfterAllCallback) example:
+TestRule (`TestWatcher` and `ExternalResource`) to Extension (`TestWatcher` and `AfterAllCallback`) example:
 
-image::images/migration4.png[]
+image::images/migration04.png[]
 image::images/migration_arrow_down.png[]
-image::images/migration5.png[]
+image::images/migration05.png[]
 
-==Page, BasePageAutoRegistration and PageFactory classes
+== Page, BasePageAutoRegistration and PageFactory classes
 
 `Page` class is a new MrChecker class. It was introduced to provide common implemenation for its subpages in specific MrChecker modules.
-In order to receive test lifecycle notifications concrete `Page`s need to be registered by calling `addToTestExecutionObserver()` method.
+In order to receive test lifecycle notifications concrete `Pages` need to be registered by calling `addToTestExecutionObserver()` method.
 To facilitate this process `PageFactory` class was designed and it’s usage is a recommended way of creating `Page` objects for tests. 
 Although in MrChecker based on Junit4 the registration process was done in a specific `BasePage` constructor, it’s been considered error prone and reimplemented. 
 Also to reduce migration cost `BasePageAutoRegistration` classes are available in MrChceker modules. They use the old way of registration. 
 Given that three ways of migration are possible.
 
-Migration with PageFactory class example *(RECOMMENDED)*:
+Migration with `PageFactory` class example *(RECOMMENDED)*:
 
-image::images/migration6.png[]
+image::images/migration06.png[]
 image::images/migration_arrow_down.png[]
-image::images/migration7.png[]
+image::images/migration07.png[]
 
 Migration with calling `addToTestExecutionObserver()` method example:
 
-image::images/migration6.png[]
+image::images/migration06.png[]
 image::images/migration_arrow_down.png[]
-image::images/migration8.png[]
+image::images/migration08.png[]
 
 Migration with `BasePageAutoRegistration` class example:
 
-image::images/migration9.png[]
+image::images/migration09.png[]
 image::images/migration_arrow_down.png[]
 image::images/migration10.png[]
 
@@ -81,7 +83,7 @@ image::images/migration14.png[]
 == Concurrency
 
 Junit5 provides native thread count and parallel execution control in contrast to Junit4 where it was controlled by Maven Surefire plugin.
-To enable concurrent test execution `junit-platform.properties` file needs to placed in the test/resources directory of a project.
+To enable concurrent test execution `junit-platform.properties` file needs to placed in the `test/resources` directory of a project.
 
 An exemplary file contents: 			
 
