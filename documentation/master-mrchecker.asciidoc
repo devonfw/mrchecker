@@ -194,6 +194,12 @@ include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/BFLogger.asciido
 
 include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/Tutorial1[leveloffset=3]
 
+== Migration from JUnit4 to JUnit5
+
+=== Migration guide
+
+include::Migration/Migration-guide.asciidoc[leveloffset=3]
+
 == FAQ
 
 Here you can find the most frequently asked questions regarding working with MrChecker and installation problems.
