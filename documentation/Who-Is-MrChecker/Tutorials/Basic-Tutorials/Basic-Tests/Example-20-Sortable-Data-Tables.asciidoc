@@ -1,10 +1,10 @@
-image::images/image54.png[]
+image::images/example54.png[]
 
 This example shows how to sort and read data from tables.
 
 After click on column header data will be sorted down and after another click sorted up by selected attribute. Watch how both tables content changes on page DOM. Sorting is performed by JavaScript functions.
 
-image::images/image55.png[]
+image::images/example55.png[]
 
 ===== Page Class
 

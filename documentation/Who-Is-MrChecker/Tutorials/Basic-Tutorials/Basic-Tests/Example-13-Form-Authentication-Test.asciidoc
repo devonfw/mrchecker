@@ -1,14 +1,14 @@
-image::images/image37.png[]
+image::images/example37.png[]
 
 This case shows how to pass through the standard authentication page.
 
 When you enter the correct credentials, you should see the next page: 
 
-image::images/image38.png[]
+image::images/example38.png[]
 
 If user data is wrong, appropriate message appears:
 
-image::images/image39.png[]
+image::images/example39.png[]
 
 ===== Page Class
 
