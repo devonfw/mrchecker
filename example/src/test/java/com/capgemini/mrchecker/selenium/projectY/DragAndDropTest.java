@@ -6,12 +6,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsChrome;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsFirefox;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsIE;
 import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSelenium;
 import com.capgemini.mrchecker.selenium.pages.projectY.DragAndDropPage;
-
 @TestsSelenium
 @TestsChrome
 @TestsFirefox
@@ -42,10 +42,10 @@ public class DragAndDropTest extends TheInternetBaseTest {
 		assertTrue("Element A doesn't exist in container A", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A));
 		assertTrue("Element B doesn't exist in container B", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B));
 		
-		logStep("Step 7: Drag and drop element A into container B");
+		logStep("Drag and drop element A into container B");
 		dragAndDropPage.dragElementToPosition(ELEMENT_A, CONTAINER_A, CONTAINER_B);
 		
-		logStep("Step 8: Verify if elements are placed in improper containers");
+		logStep("Verify if elements are placed in improper containers");
 		assertFalse("Element A doesn't exist in container B", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A));
 		assertFalse("Element B doesn't exist in container A", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B));
 		
