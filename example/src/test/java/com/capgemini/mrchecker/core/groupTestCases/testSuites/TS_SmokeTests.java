@@ -1,16 +1,13 @@
 package com.capgemini.mrchecker.core.groupTestCases.testSuites;
 
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSmoke;
-import com.googlecode.junittoolbox.ExcludeCategories;
-import com.googlecode.junittoolbox.IncludeCategories;
-import com.googlecode.junittoolbox.SuiteClasses;
-import com.googlecode.junittoolbox.WildcardPatternSuite;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.IncludeTags;
+import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
-@RunWith(WildcardPatternSuite.class)
-@IncludeCategories({ TestsSmoke.class })
-@ExcludeCategories({})
-@SuiteClasses({ "../**/*Test.class" })
+@RunWith(JUnitPlatform.class)
+@IncludeTags("TestsSmoke")
+@SelectPackages("com.capgemini.mrchecker.core.groupTestCases.testCases")
 public class TS_SmokeTests {
-
+	
 }
