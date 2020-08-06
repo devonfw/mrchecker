@@ -5,10 +5,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
+import com.capgemini.mrchecker.selenium.pages.projectY.ExitIntentPage;
 
 @TestsLocal
 @TestsNONParallel
-import com.capgemini.mrchecker.selenium.pages.projectY.ExitIntentPage;
 public class ExitIntentTest extends TheInternetBaseTest {
 	
 	private static final String MODAL_WINDOW_TITLE = "This is a modal window";
