@@ -14,14 +14,13 @@ public class EditableGridPage extends BasePage {
 
 	@Override
 	public boolean isLoaded() {
-		return pageTitle().equals("EditableGrid, build powerful editable tables - What's EditableGrid ?");
+		return pageTitle().equals("EditableGrid, build powerful editable tables What's EditableGrid ?");
 	}
 
 	@Override
 	public void load() {
 		getDriver().get("http://www.editablegrid.net/en/");
 		getDriver().waitForPageLoaded();
-
 	}
 
 	@Override

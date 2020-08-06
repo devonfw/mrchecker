@@ -1,20 +1,22 @@
 package com.capgemini.mrchecker.security.access;
 
+import static io.restassured.RestAssured.given;
+
+import java.util.stream.Stream;
+
+import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSecurity;
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
+
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.HttpStatus;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import java.util.Arrays;
-import java.util.Collection;
-
-import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies that directory browsing is disabled.
@@ -31,31 +33,19 @@ import static io.restassured.RestAssured.given;
  *
  * @author Marek Puchalski, Capgemini
  */
-@RunWith(Parameterized.class)
+@TestsSecurity
+@Disabled("Can't connect to host")
 public class DirectoryBrowsingTest extends SecurityTest {
-
-	private SessionEnum      session;
-	private SubUrlEnum       path;
-	private EnvironmentParam origin;
-	private int              statusCode;
-
-	public DirectoryBrowsingTest(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, int statusCode) {
-		this.session = session;
-		this.origin = origin;
-		this.path = path;
-		this.statusCode = statusCode;
+	
+	public static Stream<Arguments> getArguments() {
+		return Stream.of(
+				Arguments.of(SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.IMG_DIR, HttpStatus.SC_FORBIDDEN),
+				Arguments.of(SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.REST_ROOT, HttpStatus.SC_FORBIDDEN));
 	}
-
-	@Parameters(name = "{index}: Accessing {1}{2} as {0}, expecting HTTP {3}")
-	public static Collection<Object[]> data() {
-		return Arrays.asList(new Object[][] {
-				{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.IMG_DIR, HttpStatus.SC_FORBIDDEN },
-				{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.REST_ROOT, HttpStatus.SC_FORBIDDEN },
-		});
-	}
-
-	@Test
-	public void testHeader() {
+	
+	@ParameterizedTest
+	@MethodSource("getArguments")
+	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, int statusCode) {
 		RequestSpecification rs = getSessionManager()
 				.initBuilder(session)
 				.setBaseUri(origin.getValue())

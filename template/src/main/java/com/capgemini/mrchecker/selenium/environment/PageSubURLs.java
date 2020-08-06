@@ -2,22 +2,15 @@ package com.capgemini.mrchecker.selenium.environment;
 
 public enum PageSubURLs {
 
-	MAIN_PAGE(""),
-	;
+	MAIN_PAGE("");
 
 	/*
 	 * Sub urls are used as real locations in Bank test environment
 	 */
 	private String subURL;
 
-	private PageSubURLs(String subURL) {
+	PageSubURLs(String subURL) {
 		this.subURL = subURL;
-	}
-
-	;
-
-	private PageSubURLs() {
-
 	}
 
 	@Override
@@ -28,5 +21,4 @@ public enum PageSubURLs {
 	public String getValue() {
 		return subURL;
 	}
-
 }
