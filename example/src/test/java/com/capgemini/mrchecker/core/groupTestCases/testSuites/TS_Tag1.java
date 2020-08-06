@@ -1,17 +1,15 @@
 package com.capgemini.mrchecker.core.groupTestCases.testSuites;
 
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsTag1;
-import com.googlecode.junittoolbox.ExcludeCategories;
-import com.googlecode.junittoolbox.IncludeCategories;
-import com.googlecode.junittoolbox.SuiteClasses;
-import com.googlecode.junittoolbox.WildcardPatternSuite;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.ExcludeTags;
+import org.junit.platform.suite.api.IncludeTags;
+import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
-@RunWith(WildcardPatternSuite.class)
-@IncludeCategories({ TestsTag1.class })
-@ExcludeCategories({})
-@SuiteClasses("../**/*Test.class")
-
+@RunWith(JUnitPlatform.class)
+@IncludeTags("TestsTag1")
+@ExcludeTags("TagToExclude")
+@SelectPackages("com.capgemini.mrchecker.core.groupTestCases.testCases")
 public class TS_Tag1 {
-
+	
 }

@@ -3,6 +3,8 @@ package com.capgemini.mrchecker.selenium.pages.environment;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.exceptions.BFInputDataException;
 
+import java.util.Objects;
+
 /**
  * @author lucst Takes values saved in /src/resources/environments/environment.csv When -Denv is not set, then it takes
  * default DEV
@@ -10,6 +12,7 @@ import com.capgemini.mrchecker.test.core.exceptions.BFInputDataException;
 public enum GetEnvironmentParam {
 
 	// Name if enum must be in line with cell name in /src/resources/environments/environment.csv
+
 	WWW_FONT_URL,
 	TOOLS_QA,
 	WEB_SERVICE,
@@ -18,20 +21,16 @@ public enum GetEnvironmentParam {
 
 	public String getValue() {
 
-		if (null == BaseTest.getEnvironmentService()) {
+		if (Objects.isNull(BaseTest.getEnvironmentService())) {
 			throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
 		}
 
 		return BaseTest.getEnvironmentService()
-				.getValue(this.name());
-
+				.getValue(name());
 	}
 
 	@Override
 	public String toString() {
-
-		return this.getValue();
-
+		return getValue();
 	}
-
 }

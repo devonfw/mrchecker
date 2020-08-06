@@ -2,22 +2,20 @@ package com.capgemini.mrchecker.selenium.projectY;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
+
+@TestsLocal
+@TestsNONParallel
 import com.capgemini.mrchecker.selenium.pages.projectY.ExitIntentPage;
-
-@Category({ TestsLocal.class, TestsNONParallel.class })
 public class ExitIntentTest extends TheInternetBaseTest {
 	
 	private static final String MODAL_WINDOW_TITLE = "This is a modal window";
 	
 	private static ExitIntentPage exitIntentPage;
 	
-	@BeforeClass
+	@BeforeAll
 	public static void setUpBeforeClass() {
 		exitIntentPage = shouldTheInternetPageBeOpened().clickExitIntentLink();
 		
