@@ -22,12 +22,12 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 	
 	private static JavaScriptAlertsPage javaScriptAlertsPage;
 	
-	private final String	jsAlertCofirmMessage	= "You successfuly clicked an alert";
+	private final String	jsAlertConfirmMessage	= "You successfuly clicked an alert";
 	private final String	jsConfirmConfirmMessage	= "You clicked: Ok";
 	private final String	jsConfirmCancelMessage	= "You clicked: Cancel";
 	private final String	jsPromptConfirmMessage	= "You entered: ";
 	private final String	jsPromptCancelMessage	= "You entered: null";
-	private final String	randomString			= "random";
+	private final String	randomString			= "rAndOM 1 2 % @ * 8 END";
 	
 	@BeforeAll
 	public static void setUpBeforeClass() {
@@ -53,7 +53,7 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 		
 		logStep("Verify returned message");
 		assertEquals("Incorrect message returned after click",
-				jsAlertCofirmMessage, javaScriptAlertsPage.readResultLabel());
+				jsAlertConfirmMessage, javaScriptAlertsPage.readResultLabel());
 	}
 	
 	@Test
@@ -113,7 +113,7 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 	
 	@Override
 	public void tearDown() {
-		logStep("Refresh JavaScriptAlersPage");
+		logStep("Refresh JavaScriptAlertsPage");
 		javaScriptAlertsPage.refreshPage();
 	}
 	
