@@ -1,18 +1,23 @@
 package com.capgemini.mrchecker.security.headers;
 
+import static io.restassured.RestAssured.given;
+
+import java.util.stream.Stream;
+
+import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSecurity;
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
+
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.apache.http.HttpStatus;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import static io.restassured.RestAssured.given;
 
 /**
  * The test verifies, that the cache-control header is configured properly.
@@ -29,24 +34,23 @@ import static io.restassured.RestAssured.given;
  *
  * @author Piotr Stankiewicz, Capgemini
  */
-@RunWith(JUnitParamsRunner.class)
-public class CacheControlTest extends SecurityTest {
 
-	private Object[] addParameters() {
+@TestsSecurity
+@Disabled("Can't connect to host")
+public class CacheControlTest extends SecurityTest {
+	
+	public static Stream<Arguments> getArguments() {
 		String body = "{\"sort\":[],\"categories\":[]}";
 		String contentType = "application/json";
-		return new Object[][] {
-				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN,
-						SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK
-				},
-				{ SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN,
-						SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK
-				},
-		};
+		return Stream.of(
+				Arguments.of(SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN,
+						SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK),
+				Arguments.of(SessionEnum.ANON, EnvironmentParam.SECURITY_SERVER_ORIGIN,
+						SubUrlEnum.DISH_SEARCH, Method.POST, contentType, body, HttpStatus.SC_OK));
 	}
-
-	@Test
-	@Parameters(method = "addParameters")
+	
+	@ParameterizedTest
+	@MethodSource("getArguments")
 	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path, Method method, String contentType, String body, int statusCode) {
 		RequestSpecification rs = getSessionManager()
 				.initBuilder(session)

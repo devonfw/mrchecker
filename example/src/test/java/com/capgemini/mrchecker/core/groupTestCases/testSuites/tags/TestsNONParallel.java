@@ -1,6 +1,14 @@
 package com.capgemini.mrchecker.core.groupTestCases.testSuites.tags;
 
-public class TestsNONParallel {
-	// List of Test Cases can not run in parallel. Such test cases use example Windows actions, like Print, PDF, Robo.
-	// As a result they can not be run in parallel, they will overlap each other.
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import org.junit.jupiter.api.Tag;
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Tag("TestsNONParallel")
+public @interface TestsNONParallel {
 }

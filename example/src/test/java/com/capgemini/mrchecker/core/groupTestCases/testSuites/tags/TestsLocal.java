@@ -1,6 +1,14 @@
 package com.capgemini.mrchecker.core.groupTestCases.testSuites.tags;
 
-public class TestsLocal {
-	// List of Test Cases to run only on local machine. Such test cases use example Windows actions, like Print, PDF,
-	// Robo.
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import org.junit.jupiter.api.Tag;
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Tag("TestsLocal")
+public @interface TestsLocal {
 }

@@ -12,11 +12,11 @@ public class MainPage extends BasePage {
 	private BasePage parent;
 
 	public MainPage() {
-		this(getDriver(), null);
+		this(null);
 	}
 
-	public MainPage(INewWebDriver driver, BasePage parent) {
-		super(driver, parent);
+	public MainPage(BasePage parent) {
+		super(parent);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class MainPage extends BasePage {
 
 	@Override
 	public BasePage getParent() {
-		return this.parent;
+		return parent;
 	}
 
 	@Override
@@ -46,8 +46,6 @@ public class MainPage extends BasePage {
 	}
 
 	public NavigationBar getNavigationBar() {
-		NavigationBar navigationBar = new NavigationBar(getDriver(), this);
-		return navigationBar;
+		return new NavigationBar(this);
 	}
-
 }

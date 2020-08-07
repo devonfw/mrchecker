@@ -1,12 +1,11 @@
 package com.capgemini.mrchecker.selenium.environment;
 
 public enum PageTitlesEnum {
-	MAIN_PAGE("Demoqa | Just another WordPress site"),
-	;
+	MAIN_PAGE("Demoqa | Just another WordPress site");
 
-	private String value;
+	private final String value;
 
-	private PageTitlesEnum(String value) {
+	PageTitlesEnum(String value) {
 		this.value = value;
 	}
 

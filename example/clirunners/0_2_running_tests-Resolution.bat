@@ -1,3 +1,3 @@
 echo "running tests"
 cd ..
-mvn test surefire:test -Dtest=com.capgemini.mrchecker.selenium.features.samples.resolutions.ResolutionTest -Dbrowser=chrome
+mvn clean verify -Dgroups=ResolutionTest -Dbrowser=chrome
