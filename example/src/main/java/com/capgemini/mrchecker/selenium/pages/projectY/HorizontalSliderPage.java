@@ -51,11 +51,11 @@ public class HorizontalSliderPage extends BasePage {
 	}
 
 	/**
-	 * Returns the value of slider's start position.
+	 * Returns the value of slider's minimal value.
 	 *
 	 * @return BigDecimal representing the lowest possible value of slider.
 	 */
-	public BigDecimal getStartPosition() {
+	public BigDecimal getSliderMinValue() {
 		return horizontalSlider.getMinRange();
 	}
 
@@ -64,7 +64,7 @@ public class HorizontalSliderPage extends BasePage {
 	 *
 	 * @return BigDecimal representing the average value between start and end position.
 	 */
-	public BigDecimal getMiddlePosition() {
+	public BigDecimal getSliderMiddleValue() {
 		return horizontalSlider.getMaxRange()
 				.subtract(horizontalSlider.getMinRange())
 				.divide(new BigDecimal(2));
@@ -75,7 +75,7 @@ public class HorizontalSliderPage extends BasePage {
 	 *
 	 * @return BigDecimal representing the highest possible value of slider.
 	 */
-	public BigDecimal getEndPosition() {
+	public BigDecimal getSliderMaxValue() {
 		return horizontalSlider.getMaxRange();
 	}
 
@@ -84,19 +84,21 @@ public class HorizontalSliderPage extends BasePage {
 	 *
 	 * @return BigDecimal representing current value of slider.
 	 */
-	public BigDecimal getCurrentPosition() {
+	public BigDecimal getSliderValue() {
 		return horizontalSlider.getCurrentSliderValue();
 	}
 
+
+
 	/**
-	 * Sets horizontal slider to given position using one of available methods: using keyboard
+	 * Sets horizontal slider using one of available methods: using keyboard
 	 * or using mouse move.
 	 *
-	 * @param position
-	 * @param method
+	 * @param value
+	 * @param interactionType
 	 */
-	public void setSliderPositionTo(BigDecimal position, int method) {
-		horizontalSlider.setSliderPositionTo(position, method);
+	public void setSliderValue(BigDecimal value, InteractionType interactionType) {
+		horizontalSlider.setSliderPositionTo(value, interactionType.getMethodValue());
 	}
 
 	/**
@@ -105,7 +107,7 @@ public class HorizontalSliderPage extends BasePage {
 	 * @param position
 	 * @return Correct value of horizontal slider's position.
 	 */
-	public BigDecimal verifyAndCorrectPositionValue(BigDecimal position) {
+	public BigDecimal correctSliderValue(BigDecimal position) {
 		return horizontalSlider.verifyAndCorrectPositionValue(position);
 	}
 
