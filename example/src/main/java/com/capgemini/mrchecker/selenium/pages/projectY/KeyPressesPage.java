@@ -34,8 +34,8 @@ public class KeyPressesPage extends BasePage {
 	 *
 	 * @param keyToPress Key to be pressed on keyboard
 	 */
-	public void pressKey(String keyToPress) {
-		getAction().sendKeys(keyToPress)
+	public void pressKey(char keyToPress) {
+		getAction().sendKeys(String.valueOf(keyToPress))
 				.perform();
 	}
 

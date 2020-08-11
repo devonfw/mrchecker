@@ -4,15 +4,14 @@ public enum PageTitlesEnum {
 	LOGIN_PAGE("Log In to Bank.com"),
 	REGISTRATION("Registration | Demoqa"),
 	FRAMEANDWINDOWS("Frames and windows | Demoqa"),
-	MAIN_PAGE("Demoqa | Just another WordPress site"),
+	MAIN_PAGE("ToolsQA – Demo Website to Practice Automation – Demo Website to Practice Automation"),
 	CREATE_USERNAME_PAGE(""),
 	MAIN_PAGE_CLASSIC(""),
-	FULL_VIEW_TAB(""),
-	;
+	FULL_VIEW_TAB("");
 
-	private String value;
+	private final String value;
 
-	private PageTitlesEnum(String value) {
+	PageTitlesEnum(String value) {
 		this.value = value;
 	}
 

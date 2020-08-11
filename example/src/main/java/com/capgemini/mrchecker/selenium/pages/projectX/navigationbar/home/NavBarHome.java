@@ -8,7 +8,7 @@ import com.capgemini.mrchecker.selenium.pages.environment.PageTitlesEnum;
 public class NavBarHome extends BasePage {
 
 	public NavBarHome(BasePage parent) {
-		super(getDriver(), parent);
+		super(parent);
 	}
 
 	@Override

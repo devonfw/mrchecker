@@ -17,6 +17,8 @@ public class JavaScriptAlertsPage extends BasePage {
 	private static final By selectorPromptButton  = By.cssSelector("button[onclick*=jsPrompt]");
 	private static final By resultLabelSelector   = By.cssSelector("p#result");
 
+	private static final int alertTimeoutSeconds = 2;
+
 	@Override
 	public boolean isLoaded() {
 		getDriver().waitForPageLoaded();
@@ -41,7 +43,7 @@ public class JavaScriptAlertsPage extends BasePage {
 	 */
 	public void clickAlertButton() {
 		new Button(selectorAlertButton).click();
-		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), alertTimeoutSeconds);
 		wait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -50,7 +52,7 @@ public class JavaScriptAlertsPage extends BasePage {
 	 */
 	public void clickConfirmButton() {
 		new Button(selectorConfirmButton).click();
-		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), alertTimeoutSeconds);
 		wait.until(ExpectedConditions.alertIsPresent());
 	}
 
@@ -59,7 +61,7 @@ public class JavaScriptAlertsPage extends BasePage {
 	 */
 	public void clickPromptButton() {
 		new Button(selectorPromptButton).click();
-		WebDriverWait wait = new WebDriverWait(getDriver(), 2);
+		WebDriverWait wait = new WebDriverWait(getDriver(), alertTimeoutSeconds);
 		wait.until(ExpectedConditions.alertIsPresent());
 	}
 

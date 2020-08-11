@@ -1,16 +1,13 @@
 package com.capgemini.mrchecker.core;
 
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsLocal;
-import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsNONParallel;
-import com.googlecode.junittoolbox.ExcludeCategories;
-import com.googlecode.junittoolbox.SuiteClasses;
-import com.googlecode.junittoolbox.WildcardPatternSuite;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.ExcludeTags;
+import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
-@RunWith(WildcardPatternSuite.class)
-@ExcludeCategories({ TestsLocal.class, TestsNONParallel.class })
-@SuiteClasses({ "**/*Test.class" })
-
+@RunWith(JUnitPlatform.class)
+@ExcludeTags({ "TestsLocal", "TestsNONParallel" })
+@SelectPackages("com.capgemini.mrchecker.selenium")
 public class _TestSuiteRemote {
-
+	
 }
