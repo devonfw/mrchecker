@@ -12,6 +12,7 @@
 **/.classpath
 **/.idea/*
 .idea/
+.idea/*
 **/.idea/workspace.xml
 **/*.iml
 **/.project

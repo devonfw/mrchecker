@@ -1,17 +1,21 @@
 package com.capgemini.mrchecker.security.headers;
 
+import static io.restassured.RestAssured.given;
+
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import com.capgemini.mrchecker.core.groupTestCases.testSuites.tags.TestsSecurity;
 import com.capgemini.mrchecker.security.EnvironmentParam;
 import com.capgemini.mrchecker.security.SecurityTest;
 import com.capgemini.mrchecker.security.SubUrlEnum;
 import com.capgemini.mrchecker.security.session.SessionEnum;
-import io.restassured.specification.RequestSpecification;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import static io.restassured.RestAssured.given;
+import io.restassured.specification.RequestSpecification;
 
 /**
  * The test verifies the presence and proper configuration of the
@@ -30,19 +34,20 @@ import static io.restassured.RestAssured.given;
  *
  * @author Marek Puchalski, Capgemini
  */
-@Ignore // currently fails on the reference environment
-@RunWith(JUnitParamsRunner.class)
+
+@TestsSecurity
+@Disabled("Can't connect to host")
 public class XContentTypeOptionsTest extends SecurityTest {
-
-	private Object[] addParameters() {
-		return new Object[][] {
-				{ SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT },
-				{ SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER },
-		};
+	
+	public static Stream<Arguments> getArguments() {
+		return Stream.of(
+				Arguments.of(SessionEnum.ANON, EnvironmentParam.SECURITY_CLIENT_ORIGIN, SubUrlEnum.ROOT),
+				Arguments.of(SessionEnum.WAITER, EnvironmentParam.SECURITY_SERVER_ORIGIN, SubUrlEnum.CURRENT_USER));
+		
 	}
-
-	@Test
-	@Parameters(method = "addParameters")
+	
+	@ParameterizedTest
+	@MethodSource("getArguments")
 	public void testHeader(SessionEnum session, EnvironmentParam origin, SubUrlEnum path) {
 		RequestSpecification rs = getSessionManager()
 				.initBuilder(session)
