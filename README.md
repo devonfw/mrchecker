@@ -49,3 +49,5 @@ The example folder also has a the following tests:
 * *Test Data Driven (TDD)* Inside test/java/com.capgemini.mrchecker/core/datadriven.
 
 * *Behaviour Driven Development (BDD):* Situated on test/java/com.capgemini.mrchecker/cucumber.
+
+#### We are in a process of tranition to JUNIT5 examples for JUNIT4 are available [here](https://github.com/devonfw/mrchecker/tree/junit4)
