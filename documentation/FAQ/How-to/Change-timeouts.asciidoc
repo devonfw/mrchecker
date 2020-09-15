@@ -1,12 +1,12 @@
 = How to: Change timeouts?
 
-If you would like to change timeouts - you don't have to change it globally.
-It is possible to add waiting time parameter to searching methods, such as:
+If you want to change timeouts - you don't have to change them globally.
+It is possible to add a waiting time parameter to searching methods, like:
 
 `getDriver().findElementDynamic(By selector, int timeOut)` +
 timeout - in seconds
 
-It is recommended to use methods, that significantly level up the repetitive of the code:
+It is recommended to use methods that significantly level up the repetitiveness of the code:
 
 ----
 getDriver().waitForElement(By selector);
@@ -18,7 +18,7 @@ getDriver().waitForPageLoaded();
 getDriver().waitUntilElementIsClickable(By selector);
 ----
 
-Or Fluent Wait methods with changed timeout and interval: 
+or Fluent Wait methods with changed timeout and interval: 
 ----
 FluentWait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
         .withTimeout(long duration, TimeUnit unit)
@@ -30,16 +30,16 @@ getWebDriverWait().withTimeout(millis, TimeUnit.MILLISECONDS)
         .until((WebDriver wd) -> expectedCondition.isTrue());
 ----
 
-These methods allow to change WebDriver timeouts values such as: 
+These methods allow changing WebDriver timeouts values, such as: 
 
 `getDriver().manage().timeouts().pageLoadTimeout(long time, TimeUnit unit)` +
 the amount of time to wait for a page to load before throwing an exception. This is the default timeout for `method getDriver().waitForPageLoaded()`
 
 `getDriver().manage().timeouts().setScriptTimeout(long time, TimeUnit unit)` +
-the amount of time to wait for finish execution of script before throwing an exception
+the amount of time to wait for finishing execution of script before throwing an exception
 
 `getDriver().manage().timeouts().implicitlyWait(long time, TimeUnit unit)`
-the amount of time the driver should wait when searching for an element if it is not immediately present. After that time throws an exception. This the default timeout for methods such as `getDriver().findElementDynamic(By selector)` or `getDriver().waitForElement(By selector)`
+the amount of time the driver should wait when searching for an element if it is not immediately present. After that time, the driver throws an exception. This the default timeout for methods such as `getDriver().findElementDynamic(By selector)` or `getDriver().waitForElement(By selector)`
 
-Changing timeouts can improve test stability but can also make run time slower. 
+Changing timeouts can improve test stability but can also make run time longer. 
 
