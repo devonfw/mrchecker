@@ -1,7 +1,7 @@
 = Junit4 to Junit5 migration guide
 
 *mrchecker-core-module version 5.6.2.1* features the upgrade of Junit4 to Junit5. Consequently, the Junit4 features are now obsolete and current test projects require migration
-in order to use the letset revision of MrChecker. This site provides guidance on the migration.
+in order to use the latest revision of MrChecker. This site provides guidance on the migration.
 
 References:
 Junit5 User Guide - https://junit.org/junit5/docs/current/user-guide/#overview[]
@@ -42,11 +42,11 @@ image::images/migration05.png[]
 == Page, BasePageAutoRegistration and PageFactory classes
 
 `Page` class is a new MrChecker class. It was introduced to provide common implemenation for its subpages in specific MrChecker modules.
-In order to receive test lifecycle notifications concrete `Pages` need to be registered by calling `addToTestExecutionObserver()` method.
-To facilitate this process `PageFactory` class was designed and it’s usage is a recommended way of creating `Page` objects for tests. 
+In order to receive test lifecycle notifications, particular `Pages` need to be registered by calling `addToTestExecutionObserver()` method.
+`PageFactory` class was designed to facilitate this process and it’s usage is a recommended way of creating `Page` objects for tests. 
 Although in MrChecker based on Junit4 the registration process was done in a specific `BasePage` constructor, it’s been considered error prone and reimplemented. 
-Also to reduce migration cost `BasePageAutoRegistration` classes are available in MrChceker modules. They use the old way of registration. 
-Given that three ways of migration are possible.
+To reduce migration cost `BasePageAutoRegistration` classes are also available in MrChecker modules. They use the old way of registration. 
+Therefore, three ways of migration are possible.
 
 Migration with `PageFactory` class example *(RECOMMENDED)*:
 
@@ -83,7 +83,7 @@ image::images/migration14.png[]
 == Concurrency
 
 Junit5 provides native thread count and parallel execution control in contrast to Junit4 where it was controlled by Maven Surefire plugin.
-To enable concurrent test execution `junit-platform.properties` file needs to placed in the `test/resources` directory of a project.
+To enable concurrent test execution, a `junit-platform.properties` file needs to placed in the `test/resources` directory of a project.
 
 An exemplary file contents: 			
 
@@ -98,7 +98,7 @@ image::images/migration16.png[]
 
 == Cucumber
 
-If Cucumber is used in a project it is neccessary to change a hook class.
+If Cucumber is used in a project, it is neccessary to change a hook class.
 An exemplary hook source file for download can be found here.
 
 
@@ -124,7 +124,7 @@ image::images/migration20.png[]
 image::images/migration_arrow_down.png[]
 image::images/migration21.png[]
 
-Providing parameters directly in annotations has no analogy in Junit5 and needs to be replaced with e.g. method source:
+Providing parameters directly in annotations has no analogy in Junit5 and needs to be replaced with method source, for example:
 
 image::images/migration22.png[]
 image::images/migration_arrow_down.png[]
@@ -136,13 +136,13 @@ image::images/migration24.png[]
 image::images/migration_arrow_down.png[]
 image::images/migration25.png[]
 
-An example of csv parameters source with the header line migration:
+An example of csv parameters source with header line migration:
 
 image::images/migration26.png[]
 image::images/migration_arrow_down.png[]
 image::images/migration27.png[]
 
-An example of csv parameters source with object mapping migration step1:
+An example of csv parameters source with object mapping migration step 1:
 
 image::images/migration28.png[]
 image::images/migration_arrow_down.png[]
