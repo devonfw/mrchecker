@@ -18,7 +18,7 @@ toc::[]
 = Advanced installation
 
 == Java installation
-There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
+There is one important pre-requisite for Mr Checker installation -  Java has to be installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
 1. Install Java 1.8 JDK 64bit
 +
