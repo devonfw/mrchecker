@@ -2,7 +2,7 @@
 
 *Problem:*
 
-During the tests your web browser window opens and immediately closes, all your tests are broken.
+During the tests, your web browser window opens and immediately closes, all your tests are broken.
 
 Following error message is visible in the test description: 
 
@@ -22,5 +22,5 @@ Driver info: driver.version: NewChromeDriver
 +
 Change the value of `selenium.driverAutoUpdate` field form `true` to `false`
 
-2. Replace in the following  
-`MrChecker_Test_Framework\workspace\devonfw-testing\example\lib\webdrivers\chrome\chromedriver.exe` file with a version compatible with your browser.
+2. Replace in the following file:   
+`MrChecker_Test_Framework\workspace\devonfw-testing\example\lib\webdrivers\chrome\chromedriver.exe` with a version compatible with your browser.
