@@ -2,7 +2,7 @@
 
 == Overview
 
-The following image gives a general overview of the test class "lifecycle".
+The following image gives a general overview of a test class "lifecycle".
 
 image::images/image52.png[]
 
@@ -10,7 +10,7 @@ More information on the methods and annotations used in this image can be found 
 
 == Methods and annotations
 
-The actual tests that will be executed are loacted in so called Test Classes. Starting a new project, a new package should be created.
+The actual tests that will be executed are located in the so-called Test Classes. Starting a new project, a new package should be created.
 
 *Source folder*: _mrchecker-app-under-test/src/test/java_
 
@@ -54,7 +54,7 @@ The `@Test` annotation indicates that the following method is a test method.
 
 Additionally, there are two annotations that can help preparing and disassembling the test class: `@BeforeClass` and `@AfterClass`.
 
-`@BeforeClass` will execute the following method once at the beginning, before running any test method. Compared to the setUp() method provided by the BaseTest class, this annotation will only run once, instead of before every single test method. The advantage here: Things like login can be set up in `@BeforeClass`, as they can oftentimes be very time consuming. Loggin in on a webapplication once and afterwards running all the test methods is more efficient than loggin in before every test method, even though they are being executed on the same page.
+`@BeforeClass` will execute the following method once at the beginning, before running any test method. Compared to the setUp() method provided by the BaseTest class, this annotation will only run once, instead of before every single test method. The advantage here: things like login can be set up in `@BeforeClass`, as they can often be very time consuming. Logging in on a webapplication once and afterwards running all the test methods is more efficient than logging in before every test method, especially if they are being executed on the same page.
 
 `@AfterClass` will execute after the last test method. Just like `@BeforeClass` this method will only run once, in contrary to the `tearDown()` method.
 
