@@ -16,21 +16,21 @@ toc::[]
 :listing-caption: Listing
 = DevOPS Test Module
 
-== What is DevOps for us?
+== What does DevOps mean for us?
 
 DevOps consists of a mixture of three key components in a technical project:
 
-* People skills and mindset
+* People's skills and mindset
 * Processes
 * Tools
 
-By using E2E MrChecker Test Framework it is possible to cover the majority of these areas.
+Using E2E MrChecker Test Framework it is possible to cover the majority of these areas.
 
 == QA Team Goal
 
 For QA engineers, it is essential to take care of the product code quality.
 
-Therefore, we have to understand, that a *test case is also a code which has to be validated* against quality gates. As a result, we must *test our developed test case* alike it is done during standard Software Delivery Life Cycle.
+Therefore, we have to understand, that a *test case is also code which has to be validated* against quality gates. As a result, we must *test our developed test case* like it is done during standard Software Delivery Life Cycle.
 
 == Well rounded test case production process
 
@@ -41,7 +41,7 @@ image::images/image5.png[]
 == Continuous Integration (CI) and Continuous Delivery (CD)
 
 * https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[Continuous Integration (CI)] - a procedure where quality gates validate test case creation process
-* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[Continuous Delivery (CD)] - a procedure where we include as smoke/regression/security created test cases, validated against CI
+* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[Continuous Delivery (CD)] - a procedure where we include created test cases, validated against CI, as smoke/regression/security 
 
 image::images/image6.png[]
 
@@ -59,7 +59,7 @@ Your CI process will be matched to the current project. You can easily go back t
 
 image::images/image9.png[]
 
-DevOps module supports a delivery model in which executors are made available to the user as needed. It has advantages such as:
+DevOps module supports a delivery model in which executors are made available to the user as needed. It has such advantages as:
 
 * Saving computing resources
 * Eliminating guessing on your infrastructure capacity needs
@@ -73,6 +73,6 @@ image::images/image12.png[]
 
 == How to build this DevOps module
 
-Once you have implemented the module, you can learn more about:
+Once you have implemented the module, you can learn more about it here:
 
 * https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[Docker commands]
