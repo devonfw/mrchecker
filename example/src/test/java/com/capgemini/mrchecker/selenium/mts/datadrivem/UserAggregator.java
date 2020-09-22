@@ -5,7 +5,7 @@ import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.aggregator.ArgumentsAggregationException;
 import org.junit.jupiter.params.aggregator.ArgumentsAggregator;
 
-import com.capgemini.mrchecker.selenium.mts.common.data.User;
+import com.capgemini.mrchecker.common.mts.data.User;
 
 public class UserAggregator implements ArgumentsAggregator {
 	

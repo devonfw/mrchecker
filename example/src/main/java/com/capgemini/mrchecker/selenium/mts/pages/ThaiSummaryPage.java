@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.capgemini.mrchecker.common.mts.utils.Utils;
 import com.capgemini.mrchecker.selenium.core.BasePage;
-import com.capgemini.mrchecker.selenium.mts.common.utils.Utils;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class ThaiSummaryPage extends BasePage {

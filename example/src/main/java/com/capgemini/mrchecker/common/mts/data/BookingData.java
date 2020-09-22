@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.mts.common.data;
+package com.capgemini.mrchecker.common.mts.data;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

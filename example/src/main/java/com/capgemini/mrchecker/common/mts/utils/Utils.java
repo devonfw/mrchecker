@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.mts.common.utils;
+package com.capgemini.mrchecker.common.mts.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

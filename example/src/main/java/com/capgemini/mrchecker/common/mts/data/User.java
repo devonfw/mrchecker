@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.mts.common.data;
+package com.capgemini.mrchecker.common.mts.data;
 
 public class User {
 	private static final String	DEFAULT_USERNAME	= "waiter";

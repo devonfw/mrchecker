@@ -9,8 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import com.capgemini.mrchecker.common.mts.data.Reservation;
 import com.capgemini.mrchecker.selenium.core.BasePage;
-import com.capgemini.mrchecker.selenium.mts.common.data.Reservation;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 

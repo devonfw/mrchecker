@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.mts.common.data;
+package com.capgemini.mrchecker.common.mts.data;
 
 public class Booking {
 	public static Booking defaultValidBooking() {

@@ -1,6 +1,6 @@
 package com.capgemini.mrchecker.selenium.mts.cucumber.stepdefs;
 
-import com.capgemini.mrchecker.selenium.mts.common.data.User;
+import com.capgemini.mrchecker.common.mts.data.User;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiHomePage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiLoginPage;
 

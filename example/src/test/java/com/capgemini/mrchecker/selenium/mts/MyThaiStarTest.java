@@ -13,9 +13,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import com.capgemini.mrchecker.selenium.mts.common.data.Reservation;
-import com.capgemini.mrchecker.selenium.mts.common.data.User;
-import com.capgemini.mrchecker.selenium.mts.common.utils.Utils;
+import com.capgemini.mrchecker.common.mts.data.Reservation;
+import com.capgemini.mrchecker.common.mts.data.User;
+import com.capgemini.mrchecker.common.mts.utils.Utils;
 import com.capgemini.mrchecker.selenium.mts.datadrivem.UserAggregator;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiBookPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiConfirmBookPage;

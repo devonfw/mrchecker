@@ -14,10 +14,10 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.capgemini.mrchecker.common.mts.data.Reservation;
+import com.capgemini.mrchecker.common.mts.utils.Utils;
 import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
-import com.capgemini.mrchecker.selenium.mts.common.data.Reservation;
-import com.capgemini.mrchecker.selenium.mts.common.utils.Utils;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 public class ThaiReservationsPage extends BasePage {
