@@ -1,22 +1,22 @@
-#macro( stringArray $array ){#foreach( $element in $array )"$element"#if( $foreach.hasNext ), #end#end}#end
+#macro( stringArray $array )#foreach( $element in $array )"$element"#if( $foreach.hasNext ), #end#end#end
 #if ($packageName)
 package $packageName;
 
 #end##
 import org.junit.runner.RunWith;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
         strict = $strict,
         features = {"$featureFile"},
-        plugin = #stringArray($plugins),
+        plugin = {#stringArray($plugins), "com.capgemini.mrchecker.cucumber.hooks.TestEventHandlerPlugin"},
 #if(!$featureFile.contains(".feature:") && $tags)
         tags = #stringArray($tags),
 #end
         monochrome = $monochrome,
-        glue = #stringArray($glue))
+        glue = {#stringArray($glue)})
 public class $className {
 }

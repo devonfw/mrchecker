@@ -3,14 +3,16 @@ package com.capgemini.mrchecker.cucumber.stepdefs.core;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-import cucumber.api.java8.En;
+import io.cucumber.java8.En;
 
 public class Withdraw implements En {
 	
-	private Account account;
+	private Exception	e;
+	private Account		account;
 	
 	public Withdraw() {
 		
@@ -20,11 +22,19 @@ public class Withdraw implements En {
 		});
 		When("I request ${int}", (Integer amount) -> {
 			BFLogger.logDebug("I've requested " + amount);
-			account.withdraw(amount);
+			try {
+				account.withdraw(amount);
+			} catch (AccountOperationException e) {
+				this.e = e;
+			}
 		});
 		
 		Then("${int} should be in my account", (Integer amount) -> {
 			assertThat(amount, is(equalTo(account.getBalance())));
+		});
+		
+		Then("^The withdrawal should be unsuccessful$", () -> {
+			assertThat(e, is(instanceOf(AccountOperationException.class)));
 		});
 	}
 	
@@ -46,14 +56,20 @@ public class Withdraw implements En {
 			this.balance = balance;
 		}
 		
-		public void withdraw(Integer amount) throws Exception {
+		public void withdraw(Integer amount) throws AccountOperationException {
 			if (amount > getBalance()) {
-				throw new Exception("Insufficient funds. Reduce withdraw amount");
+				throw new AccountOperationException("Insufficient funds. Reduce withdraw amount");
 			}
 			setBalance(getBalance() - amount);
 		}
 	}
 	
+	public static class AccountOperationException extends Exception {
+		
+		public AccountOperationException(String message) {
+			super(message);
+		}
+	}
 	// @Given("^I have deposited \\$(\\d+) in my account$")
 	// public void iHaveDeposited$InMyAccount(int amount) throws Throwable {
 	// new Account(amount);

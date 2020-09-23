@@ -14,9 +14,9 @@ import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.TestExecutionObserver;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class BaseHook {
 	

@@ -94,7 +94,7 @@
 
         <!-- Cucumber version -->
         <cucumber.jvm.parallel.version>5.0.0</cucumber.jvm.parallel.version>
-        <cucumber-reporting.version>3.7.0</cucumber-reporting.version>
+        <cucumber-reporting.version>5.3.0</cucumber-reporting.version>
         <cucumber.tag>@all</cucumber.tag>
 
         <!-- Test tools -->
@@ -579,17 +579,16 @@
                                     <goal>generate</goal>
                                 </goals>
                                 <configuration>
-                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
                                     <projectName>CucumberReport</projectName>
+                                    <inputDirectory>${project.build.directory}/cucumber</inputDirectory>
                                     <outputDirectory>${project.build.directory}/cucumber-html-report</outputDirectory>
-                                    <parallelTesting>true</parallelTesting>
+                                    <jsonFiles>*.json</jsonFiles>
                                     <buildNumber>1</buildNumber>
                                     <checkBuildResult>false</checkBuildResult>
                                 </configuration>
                             </execution>
                         </executions>
                     </plugin>
-
                 </plugins>
             </build>
         </profile>
