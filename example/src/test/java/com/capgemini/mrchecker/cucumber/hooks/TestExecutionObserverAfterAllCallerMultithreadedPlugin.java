@@ -5,15 +5,15 @@ import com.capgemini.mrchecker.test.core.TestExecutionObserver;
 import io.cucumber.plugin.ConcurrentEventListener;
 import io.cucumber.plugin.event.EventHandler;
 import io.cucumber.plugin.event.EventPublisher;
-import io.cucumber.plugin.event.TestRunFinished;
+import io.cucumber.plugin.event.TestCaseFinished;
 
-public class TestEventHandlerPlugin implements ConcurrentEventListener {
+public class TestExecutionObserverAfterAllCallerMultithreadedPlugin implements ConcurrentEventListener {
 	@Override
 	public void setEventPublisher(EventPublisher eventPublisher) {
-		eventPublisher.registerHandlerFor(TestRunFinished.class, teardown);
+		eventPublisher.registerHandlerFor(TestCaseFinished.class, teardown);
 	}
 	
-	private final EventHandler<TestRunFinished> teardown = event -> {
+	private final EventHandler<TestCaseFinished> teardown = event -> {
 		TestExecutionObserver.getInstance()
 				.afterAll(null);
 	};
