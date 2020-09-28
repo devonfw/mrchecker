@@ -16,11 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.capgemini.mrchecker.common.mts.data.Reservation;
 import com.capgemini.mrchecker.common.mts.utils.Utils;
-import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ThaiReservationsPage extends BasePage {
+public class ThaiReservationsPage extends MyThaiStarBasePage {
 	
 	private static final By	reservationsTableSearch	= By.xpath("//tbody/tr");
 	private static final By	searchBarFilter			= By.cssSelector("#mat-expansion-panel-header-1");
@@ -44,8 +42,8 @@ public class ThaiReservationsPage extends BasePage {
 	}
 	
 	@Override
-	public void load() {
-		BFLogger.logError("MyThaiStar reservation page was not loaded.");
+	protected By getDisplayableElementSelector() {
+		return null;
 	}
 	
 	@Override

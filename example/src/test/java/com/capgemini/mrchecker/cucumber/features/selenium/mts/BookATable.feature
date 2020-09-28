@@ -4,7 +4,7 @@ Feature: Book a table
 
   Background:
     Given The My Thai start page has been opened
-    And the booking section has been opened
+    And The "Book table" has been opened
 
   Scenario: Booking without accepting terms not possible
     When I enter valid booking data
@@ -31,13 +31,13 @@ Feature: Book a table
 
     Examples:
       | attribute | value     |
-      | email     |           |
+#      | email     |           |
       | email     | test      |
       | email     | test@test |
-      | name      |           |
+#      | name      |           |
       | persons   |           |
       | persons   | 0         |
       | persons   | 9         |
       | persons   | -1        |
-      | persons   | 2.3       |
+#      | persons   | 2.3       |
       | persons   | X         |

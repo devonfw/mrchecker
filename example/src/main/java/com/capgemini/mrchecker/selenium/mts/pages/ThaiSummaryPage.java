@@ -5,25 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.mrchecker.common.mts.utils.Utils;
-import com.capgemini.mrchecker.selenium.core.BasePage;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-public class ThaiSummaryPage extends BasePage {
+public class ThaiSummaryPage extends MyThaiStarBasePage {
 	
 	private static final By	textBoxSearch		= By.name("orderBookingID");
 	private static final By	checkBoxSearch		= By.xpath("//mat-checkbox[@data-name='orderTerms']");
 	private static final By	acceptButtonSearch	= By.name("orderSubmit");
 	
 	@Override
-	public boolean isLoaded() {
-		getDriver().waitForElementVisible(textBoxSearch);
-		
-		return true;
-	}
-	
-	@Override
-	public void load() {
-		BFLogger.logError("MyThaiStar menu page was not loaded.");
+	protected By getDisplayableElementSelector() {
+		return textBoxSearch;
 	}
 	
 	@Override

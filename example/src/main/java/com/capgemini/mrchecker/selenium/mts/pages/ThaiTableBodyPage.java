@@ -10,25 +10,17 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.common.mts.data.Reservation;
-import com.capgemini.mrchecker.selenium.core.BasePage;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-public class ThaiTableBodyPage extends BasePage {
+public class ThaiTableBodyPage extends MyThaiStarBasePage {
 	
 	private static final By	reservationsTableSearch	= By.xpath("//tbody[@class='td-data-table-body']/tr");
 	private static final By	reservationRowSearch	= By.xpath("./td//span");
 	private static final By	nextPageSearch			= By.xpath("//button[@class=\"td-paging-bar-next-page mat-icon-button\"]");
 	
 	@Override
-	public boolean isLoaded() {
-		getDriver().waitForPageLoaded();
-		return true;
-	}
-	
-	@Override
-	public void load() {
-		BFLogger.logError("MyThaiStar body table page was not loaded.");
+	protected By getDisplayableElementSelector() {
+		return nextPageSearch;
 	}
 	
 	@Override

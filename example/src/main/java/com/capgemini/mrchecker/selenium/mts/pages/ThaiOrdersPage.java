@@ -1,9 +1,8 @@
 package com.capgemini.mrchecker.selenium.mts.pages;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import org.openqa.selenium.By;
 
-public class ThaiOrdersPage extends BasePage {
+public class ThaiOrdersPage extends MyThaiStarBasePage {
 	
 	@Override
 	public boolean isLoaded() {
@@ -14,8 +13,8 @@ public class ThaiOrdersPage extends BasePage {
 	}
 	
 	@Override
-	public void load() {
-		BFLogger.logError("MyThaiStar order page was not loaded.");
+	protected By getDisplayableElementSelector() {
+		return null;
 	}
 	
 	@Override

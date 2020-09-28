@@ -5,12 +5,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.capgemini.mrchecker.common.mts.data.Reservation;
-import com.capgemini.mrchecker.selenium.core.BasePage;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-public class ThaiBookPage extends BasePage {
+public class ThaiBookPage extends MyThaiStarBasePage {
 	
 	private static final By		dateSearch					= By.cssSelector("input[formcontrolname='bookingDate']");
 	private static final By		nameSearch					= By.cssSelector("input[formcontrolname='name']");
@@ -21,15 +20,8 @@ public class ThaiBookPage extends BasePage {
 	private static final String	TABLE_SUCCESSFULLY_BOOKED	= "Stolik zarezerwowany";
 	
 	@Override
-	public boolean isLoaded() {
-		WebElement dateInput = getDriver().findElementDynamic(dateSearch);
-		
-		return dateInput.isDisplayed();
-	}
-	
-	@Override
-	public void load() {
-		BFLogger.logError("MyThaiStar book page was not loaded.");
+	protected By getDisplayableElementSelector() {
+		return dateSearch;
 	}
 	
 	@Override
@@ -127,4 +119,5 @@ public class ThaiBookPage extends BasePage {
 				.getText();
 		return null == message ? "" : message;
 	}
+	
 }

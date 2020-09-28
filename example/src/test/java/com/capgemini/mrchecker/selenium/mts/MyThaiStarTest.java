@@ -30,7 +30,9 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 public class MyThaiStarTest extends BaseTest {
 	
-	private final ThaiHomePage myThaiStarHome = PageFactory.getPageInstance(ThaiHomePage.class);
+	private final ThaiHomePage	myThaiStarHome	= PageFactory.getPageInstance(ThaiHomePage.class);
+	private final ThaiLoginPage	loginPage		= PageFactory.getPageInstance(ThaiLoginPage.class);
+	private final ThaiMenuPage	menuPage		= PageFactory.getPageInstance(ThaiMenuPage.class);
 	
 	@Override
 	public void setUp() {
@@ -48,7 +50,7 @@ public class MyThaiStarTest extends BaseTest {
 	@Test
 	public void Test_loginFake() {
 		User fakeUser = new User("fakeUser", "fakePassword");
-		ThaiLoginPage loginPage = myThaiStarHome.clickLogInButton();
+		myThaiStarHome.clickLogInButton();
 		loginPage.enterCredentials(fakeUser.getUsername(), fakeUser.getPassword());
 		assertThat("User " + fakeUser.getUsername() + " logged",
 				myThaiStarHome.isUserLogged(fakeUser.getUsername()), is(equalTo(false)));
@@ -73,13 +75,13 @@ public class MyThaiStarTest extends BaseTest {
 	@Test
 	public void Test_orderMenu() {
 		String bookingId = "CB_20170510_123502655Z";
-		ThaiMenuPage menuPage = myThaiStarHome.clickMenuButton();
+		myThaiStarHome.clickMenuButton();
 		ThaiSummaryPage summaryPage = menuPage.clickFirstMenu();
 		summaryPage.orderMenu(bookingId);
 	}
 	
 	private void login(User user) {
-		ThaiLoginPage loginPage = this.myThaiStarHome.clickLogInButton();
+		myThaiStarHome.clickLogInButton();
 		loginPage.enterCredentials(user.getUsername(), user.getPassword());
 		assertThat("User " + user.getUsername() + " not logged",
 				myThaiStarHome.isUserLogged(user.getUsername()), is(equalTo(true)));

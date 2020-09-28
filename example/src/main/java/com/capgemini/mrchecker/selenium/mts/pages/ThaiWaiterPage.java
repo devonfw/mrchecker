@@ -2,11 +2,9 @@ package com.capgemini.mrchecker.selenium.mts.pages;
 
 import org.openqa.selenium.By;
 
-import com.capgemini.mrchecker.selenium.core.BasePage;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-public class ThaiWaiterPage extends BasePage {
+public class ThaiWaiterPage extends MyThaiStarBasePage {
 	
 	private static final By	ordersTabSearch			= By.xpath("//a[@routerlink='/orders']");
 	private static final By	reservationsTabSearch	= By.xpath("//a[@routerlink='/reservations']");
@@ -20,8 +18,8 @@ public class ThaiWaiterPage extends BasePage {
 	}
 	
 	@Override
-	public void load() {
-		BFLogger.logError("MyThaiStar waiter page was not loaded.");
+	protected By getDisplayableElementSelector() {
+		return null;
 	}
 	
 	@Override

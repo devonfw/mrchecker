@@ -4,12 +4,13 @@ import static org.junit.Assert.assertFalse;
 
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiReservationsPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiWaiterPage;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 public class ReservationSteps {
-	final private ThaiWaiterPage waiterPage = new ThaiWaiterPage();
+	final private ThaiWaiterPage waiterPage = PageFactory.getPageInstance(ThaiWaiterPage.class);
 	
 	@Then("^I can see a reservation for \"([^\"]*)\"$")
 	public void reservationExistsFor(String emailAddress) {

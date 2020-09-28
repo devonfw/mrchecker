@@ -9,20 +9,13 @@ import org.junit.Assert;
 
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiBookPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiConfirmBookPage;
-import com.capgemini.mrchecker.selenium.mts.pages.ThaiHomePage;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class BookingSteps {
-	private final ThaiHomePage	homePage	= new ThaiHomePage();
-	private ThaiBookPage		bookingPage;
-	
-	@Given("^the booking section has been opened$")
-	public void bookingHasBeenOpened() {
-		bookingPage = this.homePage.clickBookTable();
-	}
+	private final ThaiBookPage bookingPage = PageFactory.getPageInstance(ThaiBookPage.class);
 	
 	@When("^I enter valid booking data$")
 	public void enterValidBookingData() {
