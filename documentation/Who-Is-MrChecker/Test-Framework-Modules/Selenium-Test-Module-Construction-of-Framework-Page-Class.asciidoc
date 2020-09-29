@@ -1,6 +1,6 @@
 = Page Class
 
-Page Object Models allow the representation of a webpage as a Java Class. It contains all required web elements like buttons, textfields, labels, etc. When initializing a new project, create a new package to store the Page Object Models in.
+Page Object Models allow for the representation of a webpage as a Java Class. The class contains all required web elements like buttons, textfields, labels, etc. When initializing a new project, create a new package to store the Page Object Models in.
 
 == Initialization
 
@@ -8,7 +8,7 @@ Page Object Models allow the representation of a webpage as a Java Class. It con
 
 *Name*: `com.example.selenium.pages.YOUR_PROJECT`
 
-Classes being created inside of this newly created package have to extend the *BasePage* class. As a result, a few abstract methods from *BasePage* have to be implemented.
+Classes being created inside of this new package have to extend the *BasePage* class. As a result, a few abstract methods from *BasePage* have to be implemented.
 
 ----
 public class DemoPage extends BasePage {
@@ -34,7 +34,7 @@ The example above demonstrates a minimum valid Page Object class with all requir
 
 === BasePage method: isLoaded
 
-The inherited method `isLoaded()` can be used to check if the current Page Object Model has been loaded correctly. There are multiple ways to verify a correctly loaded page. One example would be to check the actual page title with the expected page title.
+The inherited method `isLoaded()` can be used to check if the current Page Object Model has been loaded correctly. There are multiple ways to verify a correctly loaded page. One example would be to compare the actual page title with the expected page title.
 
 ----
 public boolean isLoaded() {
@@ -63,19 +63,19 @@ The `pageTitle()` method returns a String containing the page title.
 
 To initialize web elements, a large variety of selectors can be used.
 
-We recommend to create a private and constant field for every web element you’d like to represent in Java. Use the guide above to find the preferred selector and place it in the code below at "WEB_ELEMENT_SELECTOR".
+We recommend creating  a private and constant field for every web element you’d like to represent in Java. Use the guide above to find the preferred selector and place it in the code below at "WEB_ELEMENT_SELECTOR".
 
 ----
 private static final By someWebElementSelector = By.CSS("WEB_ELEMENT_SELECTOR");
 ----
 
-As soon as you created the selector above, you can make use of it to initialize a WebElement object.
+As soon as you create the selector above, you can make use of it to initialize a WebElement object.
 
 ----
 WebElement someWebElement = getDriver().findDynamicElement(someWebElementSelector);
 ----
 
-*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend using `findDynamicElement()` or `findQuietlyElement().findDynamicElement()` allows waiting for dynamic elements, for example buttons that pop up.
+*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend  `findDynamicElement()` or `findQuietlyElement().findDynamicElement()` allows waiting for dynamic elements, for example buttons that pop up.
 
 == Creating a page method
 
@@ -87,11 +87,11 @@ public void enterGoogleSearchInput(String query) {
 }
 ----
 
-Creating a method like above allows the test case to run something like `googleSearchPage.enterGoogleSearchInput("Hello")` to interact with the page object.
+Creating a method like the one above allows the test case to run something like `googleSearchPage.enterGoogleSearchInput("Hello")` to interact with the page object.
 
 == Naming Conventions
 
-For code uniformity and readability we provide a few method naming conventions.
+For code uniformity and readability, we provide a few method naming conventions.
 
 [cols=3*,options=header]
 |===
