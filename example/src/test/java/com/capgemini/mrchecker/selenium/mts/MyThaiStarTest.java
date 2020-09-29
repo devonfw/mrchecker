@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
@@ -28,6 +29,7 @@ import com.capgemini.mrchecker.selenium.mts.pages.ThaiWaiterPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
+@Tag("MTS_GUI")
 public class MyThaiStarTest extends BaseTest {
 	
 	private final ThaiHomePage	myThaiStarHome	= PageFactory.getPageInstance(ThaiHomePage.class);

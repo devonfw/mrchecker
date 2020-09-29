@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import com.capgemini.mrchecker.common.mts.utils.Utils;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
+import io.qameta.allure.Step;
+
 public class ThaiMenuPage extends MyThaiStarBasePage {
 	
 	private static final By	searchBoxSelector		= By.id("mat-input-1");
@@ -29,6 +31,7 @@ public class ThaiMenuPage extends MyThaiStarBasePage {
 		return "";
 	}
 	
+	@Step("Click first menu")
 	public ThaiSummaryPage clickFirstMenu() {
 		WebElement firstOrderOption = getDriver().findElementDynamic(orderOptionsSearch);
 		WebElement addToOrderButton = firstOrderOption.findElement(addToOrderButtonSearch);

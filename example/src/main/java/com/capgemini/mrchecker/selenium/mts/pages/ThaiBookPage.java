@@ -9,6 +9,8 @@ import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.InputTextEle
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
+import io.qameta.allure.Step;
+
 public class ThaiBookPage extends MyThaiStarBasePage {
 	
 	private static final By		dateSearch					= By.cssSelector("input[formcontrolname='bookingDate']");
@@ -79,6 +81,7 @@ public class ThaiBookPage extends MyThaiStarBasePage {
 		return PageFactory.getPageInstance(ThaiConfirmBookPage.class);
 	}
 	
+	@Step("Enter booking date")
 	public ThaiConfirmBookPage enterBookingData(Reservation reservation) {
 		enterTimeAndDate(reservation.getDate());
 		enterName(reservation.getName());
@@ -90,6 +93,7 @@ public class ThaiBookPage extends MyThaiStarBasePage {
 		return PageFactory.getPageInstance(ThaiConfirmBookPage.class);
 	}
 	
+	@Step("Check if the confirmation dialog appears")
 	public boolean checkConfirmationDialog() {
 		return getDriver().findElementDynamic(dialogSearch)
 				.isDisplayed();

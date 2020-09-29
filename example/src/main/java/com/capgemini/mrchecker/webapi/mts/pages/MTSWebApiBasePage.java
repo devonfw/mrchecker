@@ -7,10 +7,10 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 
 public abstract class MTSWebApiBasePage extends BasePageWebAPI {
-	protected String	accessToken;
-	protected String	serviceBaseUrs	= GetEnvironmentParam.MAY_THAI_STAR_API_URL.getValue();
+	protected static String	accessToken		= "";
+	protected String		serviceBaseUrs	= GetEnvironmentParam.MAY_THAI_STAR_API_URL.getValue();
 	
-	public RequestSpecification request() {
+	protected RequestSpecification request() {
 		return RestAssured
 				.with()
 				.contentType("application/json")

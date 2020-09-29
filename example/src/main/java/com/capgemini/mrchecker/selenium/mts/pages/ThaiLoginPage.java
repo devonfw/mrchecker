@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.mrchecker.common.mts.utils.Utils;
 
+import io.qameta.allure.Step;
+
 public class ThaiLoginPage extends MyThaiStarBasePage {
 	
 	private static final By	usernameSearch		= By.name("username");
@@ -22,6 +24,7 @@ public class ThaiLoginPage extends MyThaiStarBasePage {
 		return "";
 	}
 	
+	@Step("Enter credentials")
 	public void enterCredentials(String username, String password) {
 		WebDriverWait driverWait = new WebDriverWait(getDriver(), 10);
 		WebElement usernameTextBox = getDriver().findElementDynamic(usernameSearch);

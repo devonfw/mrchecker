@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
+import io.qameta.allure.Step;
+
 public class ThaiWaiterPage extends MyThaiStarBasePage {
 	
 	private static final By	ordersTabSearch			= By.xpath("//a[@routerlink='/orders']");
@@ -39,6 +41,7 @@ public class ThaiWaiterPage extends MyThaiStarBasePage {
 	 *
 	 * @return ThaiReservationsPage an object representing the reservations page
 	 */
+	@Step("Switch to reservations")
 	public ThaiReservationsPage switchToReservations() {
 		
 		getDriver().findElementDynamic(reservationsTabSearch)

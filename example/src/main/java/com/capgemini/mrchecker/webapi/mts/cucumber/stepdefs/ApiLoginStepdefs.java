@@ -13,7 +13,7 @@ public class ApiLoginStepdefs {
 	private final LoginPage	loginPage	= PageFactory.getPageInstance(LoginPage.class);
 	private final Context	context		= Context.getInstance();
 	
-	@Given("The user is logged out")
+	@Given("The user is logged-out")
 	public void isLoggedOut() {
 		loginPage.logout();
 	}
@@ -22,5 +22,12 @@ public class ApiLoginStepdefs {
 	public void iLoginWithAnd(String username, String password) {
 		Response response = loginPage.login(new User(username, password));
 		context.setResponse(response);
+	}
+	
+	@Given("The user is logged-in")
+	public void theUserIsLoggedIn() {
+		if (!loginPage.isUserLogged()) {
+			throw new IllegalArgumentException("No user is logged-in");
+		}
 	}
 }

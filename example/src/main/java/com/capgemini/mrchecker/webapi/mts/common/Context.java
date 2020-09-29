@@ -24,4 +24,15 @@ public final class Context {
 	public String getResponseHeaderValue(String header) {
 		return response.getHeader(header);
 	}
+	
+	public String getBodyKeyValue(String key) throws Exception {
+		String body = response.asString();
+		body = body.replaceAll("\\{|}|\"", "");
+		for (String kvPair : body.split(",")) {
+			if (kvPair.startsWith(key))
+				return kvPair.split(":")[1];
+		}
+		
+		throw new Exception();
+	}
 }

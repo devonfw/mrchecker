@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.capgemini.mrchecker.common.mts.utils.Utils;
 
+import io.qameta.allure.Step;
+
 public class ThaiSummaryPage extends MyThaiStarBasePage {
 	
 	private static final By	textBoxSearch		= By.name("orderBookingID");
@@ -22,6 +24,7 @@ public class ThaiSummaryPage extends MyThaiStarBasePage {
 		return "";
 	}
 	
+	@Step("Order menu")
 	public void orderMenu(String bookingId) {
 		WebDriverWait driverWait = new WebDriverWait(getDriver(), 10);
 		WebElement textBox = getDriver().findElementDynamic(textBoxSearch);

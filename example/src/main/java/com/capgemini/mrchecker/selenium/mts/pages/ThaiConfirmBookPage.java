@@ -2,6 +2,8 @@ package com.capgemini.mrchecker.selenium.mts.pages;
 
 import org.openqa.selenium.By;
 
+import io.qameta.allure.Step;
+
 public class ThaiConfirmBookPage extends MyThaiStarBasePage {
 	
 	private static final By	confirmationDialogSearch	= By.className("mat-dialog-container");
@@ -17,6 +19,7 @@ public class ThaiConfirmBookPage extends MyThaiStarBasePage {
 		return "";
 	}
 	
+	@Step("Confirm booking date")
 	public void confirmBookingData() {
 		getDriver().findElementDynamic(sendButtonSearch)
 				.click();

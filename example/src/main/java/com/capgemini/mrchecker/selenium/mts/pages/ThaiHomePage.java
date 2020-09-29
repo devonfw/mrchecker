@@ -1,6 +1,7 @@
 package com.capgemini.mrchecker.selenium.mts.pages;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import com.capgemini.mrchecker.selenium.core.exceptions.BFElementNotFoundException;
 import com.capgemini.mrchecker.selenium.mts.environment.GetEnvironmentParam;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
+
+import io.qameta.allure.Step;
 
 public class ThaiHomePage extends MyThaiStarBasePage {
 	
@@ -20,6 +23,7 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 	private static final By		menuTabSearch			= By.xpath("//a[@routerlink='/menu']");
 	private static final By		bookTableButtonSearch	= By.xpath("//a[@routerlink='/bookTable']");
 	
+	@Step("Loading ThaiHomePage")
 	@Override
 	public void load() {
 		getDriver().get(mythaistarUrl);
@@ -35,11 +39,13 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 		return "My Thai Star";
 	}
 	
+	@Step("Click login button")
 	public void clickLogInButton() {
 		getDriver().findElementDynamic(loginButtonSearch)
 				.click();
 	}
 	
+	@Step("Logging out")
 	public void clickLogOutButton() {
 		getDriver().findElementDynamic(logoutButtonSearch)
 				.click();
@@ -49,6 +55,7 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 		js.executeScript(scriptClick);
 	}
 	
+	@Step("Click menu button")
 	public void clickMenuButton() {
 		getDriver().findElementDynamic(menuTabSearch)
 				.click();
@@ -59,7 +66,10 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 				.click();
 	}
 	
+	@Step("Check if user is logged-in")
 	public boolean isUserLogged(String username) {
+		if (Objects.isNull(username))
+			return false;
 		try {
 			List<WebElement> accessButton = getDriver().findElementDynamics(labelLoginSearch);
 			if (accessButton.size() > 0 && accessButton.get(0)
@@ -87,6 +97,7 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 		return false;
 	}
 	
+	@Step("Click book table")
 	public ThaiBookPage clickBookTable() {
 		getDriver().findElementDynamic(bookTableButtonSearch)
 				.click();

@@ -28,4 +28,11 @@ public class ApiCommonStepdefs {
 		
 		assertThat(matcher.matches(), is(equalTo(true)));
 	}
+	
+	@And("The body item {string} is {string}")
+	public void theBodyItemIs(String key, String expected) throws Exception {
+		String actual = context.getBodyKeyValue(key);
+		
+		assertThat(actual, is(equalTo(expected)));
+	}
 }
