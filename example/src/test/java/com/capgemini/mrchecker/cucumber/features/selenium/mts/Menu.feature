@@ -1,4 +1,4 @@
-@ui @guest
+@all @mts @ui @guest
 Feature: Browse the menu
   As a guest I want to browse the menu so that I can pick my meal.
 

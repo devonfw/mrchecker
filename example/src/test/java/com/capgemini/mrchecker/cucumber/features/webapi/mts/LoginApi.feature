@@ -1,4 +1,4 @@
-@api @waiter
+@all @mts @api @waiter
 Feature: Login as waiter
   As a waiter I want to login in order to get the access token
 

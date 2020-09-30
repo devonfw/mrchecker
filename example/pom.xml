@@ -438,6 +438,8 @@
                                     <glue>
                                         <package>com.capgemini.mrchecker.cucumber.stepdefs</package>
                                         <package>com.capgemini.mrchecker.cucumber.hooks</package>
+                                        <package>com.capgemini.mrchecker.selenium.mts.cucumber.stepdefs</package>
+                                        <package>com.capgemini.mrchecker.webapi.mts.cucumber.stepdefs</package>
                                     </glue>
 
                                     <!-- These are optional, with the default

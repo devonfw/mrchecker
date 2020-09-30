@@ -1,4 +1,4 @@
-@ui @guest
+@all @mts @ui @guest
 Feature: Book a table
   As a guest I want to reserve a table so that I don't come to the restaurant in vain.
 

@@ -1,4 +1,4 @@
-@api @waiter
+@all @mts @api @waiter
 Feature: Account security
   As a user I want to check authentication state to keep the transaction secure and consistent
 
