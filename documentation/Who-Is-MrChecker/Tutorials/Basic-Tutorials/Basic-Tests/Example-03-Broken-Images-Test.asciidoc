@@ -6,11 +6,11 @@ Steps:
 
 1. Open The Internet Main Page 
 2. Click Broken Image link and go to Broken Image subpage 
-3. Get 3 images dimensions and compare them with expected values 
+3. Get the 3 images' dimensions and compare them with expected values 
 
 ==== Page Class 
 
-In this case create an array of selectors to access images by index number:  
+In this case, create an array of selectors to access images by index number:  
 
 ----
 public class BrokenImagePage extends BasePage {
@@ -69,7 +69,7 @@ public class BrokenImagePage extends BasePage {
 ----
 
 ==== Test Class 
-Create @Test and @BeforeClass methods. Save expected images dimensions in class fields: 
+Create @Test and @BeforeClass methods. Save expected images' dimensions in class fields: 
 
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
