@@ -43,7 +43,7 @@ public class MyThaiStarTest extends BaseTest {
 	}
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/datadriven/test_users.csv", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/datadriven/mts/test_users.csv", numLinesToSkip = 1)
 	public void Test_loginAndLogOut(@AggregateWith(UserAggregator.class) User user) {
 		login(user);
 		logOut();
@@ -58,7 +58,7 @@ public class MyThaiStarTest extends BaseTest {
 				myThaiStarHome.isUserLogged(fakeUser.getUsername()), is(equalTo(false)));
 	}
 	
-	@CsvFileSource(resources = "/datadriven/test_users.csv", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/datadriven/mts/test_users.csv", numLinesToSkip = 1)
 	public void Test_bookTable(@AggregateWith(UserAggregator.class) User user) {
 		String fakeEmail = Utils.getRandomEmail(user.getUsername());
 		String date = Utils.getTomorrowDate();

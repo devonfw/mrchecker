@@ -12,6 +12,6 @@ public class SecurityPage extends MTSWebApiBasePage {
 	
 	@Step("Call GET check the current user")
 	public Response checkCurrentUser() {
-		return request().get(serviceBaseUrs + getEndpoint());
+		return getRequestBuilder().get(getEndpoint());
 	}
 }

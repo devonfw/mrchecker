@@ -12,6 +12,6 @@ public class TablePage extends MTSWebApiBasePage {
 	
 	@Step("Call GET table by ID")
 	public Response getTableById(String id) {
-		return request().get(serviceBaseUrs + getEndpoint() + "/" + id);
+		return getRequestBuilder().get(getEndpoint() + "/" + id);
 	}
 }
