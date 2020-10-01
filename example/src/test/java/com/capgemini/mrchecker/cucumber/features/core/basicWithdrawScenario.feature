@@ -15,5 +15,6 @@ Feature: Cash Withdrawal
   Scenario: Unsuccessful withdrawal from an account in credit
     Given I have deposited $1000 in my account
     When I request $2000
-    Then $0 should be in my account
+    Then The withdrawal should be unsuccessful
+    And $1000 should be in my account
     

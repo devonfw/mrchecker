@@ -6,11 +6,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.capgemini.mrchecker.selenium.pages.features.samples.readFromTable.EditableGridPage;
-import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-public class JsoupTest extends BaseTest {
+public class JsoupTest {
 	
 	private static EditableGridPage editableGridPage;
 	
