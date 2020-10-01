@@ -18,7 +18,7 @@ The following table displays a few best practices that should be taken into conc
 |Test on multiple browsers (eventually in parallel) if the application is expected to support multiple environments
 
 |Test reporting
-|Make use of test reporting modules like TestNG which is included in the framework
+|Make use of test reporting modules like Junit which is included in the framework
 
 |Maintainability
 |Always be aware of the maintainability of tests - You should always be able to adapt to changes
