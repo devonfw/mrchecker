@@ -1,5 +1,5 @@
-@all @mts @api @waiter
-Feature: Login as waiter
+@api @waiter
+Feature: API Login
   As a waiter I want to login in order to get the access token
 
   Scenario Outline: Login as Willy Waiter

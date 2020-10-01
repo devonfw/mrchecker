@@ -1,6 +1,9 @@
-@all @mts @api @waiter
-Feature: Account security
+@api @waiter
+Feature: Api account security
   As a user I want to check authentication state to keep the transaction secure and consistent
+
+  Background:
+    When I login with "waiter" and "waiter"
 
   Scenario: Check current user
     Given The user is logged-in

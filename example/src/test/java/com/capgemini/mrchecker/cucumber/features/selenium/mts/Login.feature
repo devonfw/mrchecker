@@ -1,4 +1,4 @@
-@all @mts @ui @waiter
+@ui @waiter
 Feature: Login as waiter
   As a waiter I want to login in order to see a list of reservations
 

@@ -14,9 +14,10 @@ import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.TestExecutionObserver;
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 
 public class BaseHook {
 	
@@ -52,9 +53,11 @@ public class BaseHook {
 	
 	@Before(order = 0)
 	public void setup(Scenario scenario) {
-		context.setDisplayName(scenario.getName());
+		String meaningfulScenarioName = String.format("%s (scenario line: %s)", scenario.getName(), scenario.getLine());
+		context.setDisplayName(meaningfulScenarioName);
 		BFLogger.logInfo("Starting Scenario: \"" + context.getDisplayName() + "\"");
-		
+		Allure.getLifecycle()
+				.updateTestCase(testResult -> testResult.setName(context.getDisplayName()));
 		TestExecutionObserver.getInstance()
 				.beforeTestExecution(context);
 	}

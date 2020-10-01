@@ -24,7 +24,7 @@ public class ThaiLoginPage extends MyThaiStarBasePage {
 		return "";
 	}
 	
-	@Step("Enter credentials")
+	@Step("Providing credentials: {username} and {password}")
 	public void enterCredentials(String username, String password) {
 		WebDriverWait driverWait = new WebDriverWait(getDriver(), 10);
 		WebElement usernameTextBox = getDriver().findElementDynamic(usernameSearch);

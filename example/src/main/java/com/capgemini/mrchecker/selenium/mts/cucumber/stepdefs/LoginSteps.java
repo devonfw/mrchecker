@@ -5,9 +5,10 @@ import com.capgemini.mrchecker.selenium.mts.pages.ThaiHomePage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiLoginPage;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.qameta.allure.Step;
 
 public class LoginSteps {
 	private final ThaiHomePage	myThaiStarHome	= PageFactory.getPageInstance(ThaiHomePage.class);
@@ -19,6 +20,7 @@ public class LoginSteps {
 		myThaiStarHome.load();
 	}
 	
+	@Step("I login as Willy Waiter")
 	@When("^I login as Willy Waiter$")
 	public void loginAsWillyWaiter() {
 		User waiter = User.waiterUser();
@@ -27,6 +29,7 @@ public class LoginSteps {
 		loginPage.enterCredentials(loggedInUser, waiter.getPassword());
 	}
 	
+	@Step("My login name is shown")
 	@Then("^My login name is shown$")
 	public void loginNameIsShown() {
 		myThaiStarHome.isUserLogged(loggedInUser);

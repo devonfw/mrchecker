@@ -30,7 +30,7 @@ public class DataDrivenExternalExampleTest extends BaseTest {
 	 * takes parameters from a CSV file with headers
 	 **/
 	@ParameterizedTest
-	@CsvFileSource(resources = "/datadriven/mts/with_header.csv")
+	@CsvFileSource(resources = "/datadriven/with_header.csv")
 	public void loadParamsFromCsvWithHeader(String age, String name) {
 		BFLogger.logDebug("DataDrivenExampleTest.loadParamsFromCsvWithHeader()");
 		BFLogger.logDebug("\t" + "Name=" + name + " " + "Age=" + age);

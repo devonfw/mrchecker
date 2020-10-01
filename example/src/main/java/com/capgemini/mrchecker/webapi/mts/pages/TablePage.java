@@ -10,7 +10,7 @@ public class TablePage extends MTSWebApiBasePage {
 		return "/services/rest/bookingmanagement/v1/table";
 	}
 	
-	@Step("Call GET table by ID")
+	@Step("Call GET table of {id} ID")
 	public Response getTableById(String id) {
 		return getRequestBuilder().get(getEndpoint() + "/" + id);
 	}

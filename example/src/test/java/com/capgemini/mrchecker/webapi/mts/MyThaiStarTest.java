@@ -38,10 +38,6 @@ public class MyThaiStarTest extends BaseTest {
 		sendGetByIdRequestAndAssertResponseStatusCode(tableId, 200);
 	}
 	
-	static Stream<String> validTableIds() {
-		return Stream.of("0", "1", "2", "3", "4", "5", "6", "7", "8");
-	}
-	
 	@ParameterizedTest
 	@MethodSource("invalidTableIds")
 	public void shouldReturnErrorWhenInvalidId(String tableId, int expectedStatus) {

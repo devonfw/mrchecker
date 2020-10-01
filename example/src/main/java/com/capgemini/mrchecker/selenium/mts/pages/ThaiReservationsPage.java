@@ -18,8 +18,6 @@ import com.capgemini.mrchecker.common.mts.data.Reservation;
 import com.capgemini.mrchecker.common.mts.utils.Utils;
 import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 
-import io.qameta.allure.Step;
-
 public class ThaiReservationsPage extends MyThaiStarBasePage {
 	
 	private static final By	reservationsTableSearch	= By.xpath("//tbody/tr");
@@ -57,7 +55,6 @@ public class ThaiReservationsPage extends MyThaiStarBasePage {
 		return tableData.getOrDefault(email, new LinkedList<String>());
 	}
 	
-	@Step("Search dates by email")
 	public HashMap<String, List<Reservation>> searchDatesByEmail(String email) {
 		WebElement searchBar = getDriver().findElementDynamic(searchBarFilter);
 		

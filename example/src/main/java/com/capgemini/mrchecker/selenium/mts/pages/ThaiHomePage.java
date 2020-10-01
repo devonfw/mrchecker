@@ -15,7 +15,7 @@ import io.qameta.allure.Step;
 
 public class ThaiHomePage extends MyThaiStarBasePage {
 	
-	private static final String	mythaistarUrl			= GetEnvironmentParam.MAY_THAI_STAR_URL.getValue();
+	private static final String	myThaiStarUrl			= GetEnvironmentParam.MAY_THAI_STAR_URL.getValue();
 	private static final By		loginButtonSearch		= By.name("login");
 	private static final By		logoutButtonSearch		= By.name("account");
 	private static final By		labelLoginSearch		= By.xpath("//span[@data-name='userNameLogged']");
@@ -23,15 +23,21 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 	private static final By		menuTabSearch			= By.xpath("//a[@routerlink='/menu']");
 	private static final By		bookTableButtonSearch	= By.xpath("//a[@routerlink='/bookTable']");
 	
-	@Step("Loading ThaiHomePage")
 	@Override
 	public void load() {
-		getDriver().get(mythaistarUrl);
+		if (!isLoaded()) {
+			doLoad();
+		}
+	}
+	
+	@Step("Loading ThaiHomePage")
+	private void doLoad() {
+		getDriver().get(myThaiStarUrl);
 	}
 	
 	@Override
 	protected By getDisplayableElementSelector() {
-		return homeTabSearch;
+		return loginButtonSearch;
 	}
 	
 	@Override
@@ -39,13 +45,13 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 		return "My Thai Star";
 	}
 	
-	@Step("Click login button")
+	@Step("Click log in button")
 	public void clickLogInButton() {
 		getDriver().findElementDynamic(loginButtonSearch)
 				.click();
 	}
 	
-	@Step("Logging out")
+	@Step("Click log out button")
 	public void clickLogOutButton() {
 		getDriver().findElementDynamic(logoutButtonSearch)
 				.click();
@@ -61,12 +67,13 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 				.click();
 	}
 	
+	@Step("Click home button")
 	public void clickHomeButton() {
 		getDriver().findElementDynamic(homeTabSearch)
 				.click();
 	}
 	
-	@Step("Check if user is logged-in")
+	@Step("Check if {username} is logged")
 	public boolean isUserLogged(String username) {
 		if (Objects.isNull(username))
 			return false;
@@ -97,15 +104,12 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 		return false;
 	}
 	
-	@Step("Click book table")
+	@Step("Click book table button")
 	public ThaiBookPage clickBookTable() {
 		getDriver().findElementDynamic(bookTableButtonSearch)
 				.click();
 		
 		return PageFactory.getPageInstance(ThaiBookPage.class);
-	}
-	
-	public void openTab(String tabName) {
 	}
 	
 }
