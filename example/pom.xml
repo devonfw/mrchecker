@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>example-app-under-test</artifactId>
     <groupId>com.capgemini.mrchecker</groupId>
-    <version>2.6.0</version>
+    <version>3.0.1</version>
     <packaging>jar</packaging>
 
     <name>MrCheckerTestFramework - List of Integration Test for Application Under Test</name>
@@ -64,7 +64,7 @@
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
         <!-- Allure test framework modules -->
-        <mrchecker-core-module.version>5.6.2.1-SNAPSHOT</mrchecker-core-module.version>
+        <mrchecker-core-module.version>5.7.0.1-SNAPSHOT</mrchecker-core-module.version>
         <mrchecker-selenium-module.version>3.141.59.3-SNAPSHOT</mrchecker-selenium-module.version>
         <mrchecker-security-module.version>1.2.2-SNAPSHOT</mrchecker-security-module.version>
         <mrchecker-webapi-module.version>1.2.4-SNAPSHOT</mrchecker-webapi-module.version>
@@ -380,9 +380,6 @@
 
         <profile>
             <id>cucumber</id>
-            <properties>
-                <featureFilesPath>com/capgemini/mrchecker/cucumber/features</featureFilesPath>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
