@@ -12,12 +12,10 @@ import org.junit.jupiter.api.extension.TestInstances;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.TestExecutionObserver;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.qameta.allure.Allure;
 
 public class BaseHook {
 	
@@ -55,16 +53,12 @@ public class BaseHook {
 	public void setup(Scenario scenario) {
 		String meaningfulScenarioName = String.format("%s (scenario line: %s)", scenario.getName(), scenario.getLine());
 		context.setDisplayName(meaningfulScenarioName);
-		BFLogger.logInfo("Starting Scenario: \"" + context.getDisplayName() + "\"");
-		Allure.getLifecycle()
-				.updateTestCase(testResult -> testResult.setName(context.getDisplayName()));
 		TestExecutionObserver.getInstance()
 				.beforeTestExecution(context);
 	}
 	
 	@After(order = Integer.MAX_VALUE)
 	public void tearDown(Scenario scenario) {
-		context.setDisplayName(scenario.getName());
 		TestExecutionObserver.getInstance()
 				.afterTestExecution(context);
 		if (scenario.isFailed()) {
@@ -74,9 +68,6 @@ public class BaseHook {
 			TestExecutionObserver.getInstance()
 					.testSuccessful(context);
 		}
-		BFLogger.logInfo(String.format("Ending Scenario: \"%s\"", scenario.getName()) + " result: " +
-				(scenario.isFailed() ? "FAILED" : "PASSED"));
-		
 	}
 	
 	private static class CucumberExtensionContext implements ExtensionContext {
