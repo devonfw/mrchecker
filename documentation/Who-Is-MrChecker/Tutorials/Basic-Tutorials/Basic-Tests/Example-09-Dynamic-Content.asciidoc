@@ -1,7 +1,7 @@
 This case shows how to compare dynamic content. 
 
 image::images/example18.png[]
-Note, that after site refresh, some of the content is different. You can see in the browser's developer mode how the text and image sources are being changed. 
+Note that after site refresh, some of the content is different. You can see in the browser's developer mode how the text and image sources are being changed. 
 
 image::images/example19.png[]
 
@@ -9,7 +9,7 @@ Steps:
 
 1. Open The Internet Main Page 
 2. Click Dynamic Content link and load subpage 
-3. Save page images sources and it's descriptions before the refresh 
+3. Save page images sources and descriptions before the refresh 
 4. Refresh page 
 5. Save page images sources and it's descriptions after refresh 
 6. Compare page content before and after refresh and verify if it's different 
@@ -67,12 +67,12 @@ public class DynamicContentPage extends BasePage {
 ----
 ===== ListElements 
 
-ListElements is MrChecker collection which can store WebElement Objects. Constructing ListElements with cssSelector allows to store every element on the page which fits to the selector. Example methods: 
+ListElements is MrChecker collection which can store WebElement Objects. Constructing ListElements with cssSelector allows you to store every element on the page which fits  the selector. Example methods: 
 ----
 getList() -  returns WebElements list,
-getTextList() - returns list of content of each Element,
-getSize() - returns amount of stored Elements 
-In getImageLinks() example it's showed how to get list of specified Elements' attributes. 
+getTextList() - returns list of contents of each Element,
+getSize() - returns number of stored Elements 
+In getImageLinks() example it's shown how to get a list of specified Elements' attributes. 
 ----
 
 ===== Test Class 
