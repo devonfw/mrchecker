@@ -2,7 +2,7 @@ image::images/example54.png[]
 
 This example shows how to sort and read data from tables.
 
-After click on column header data will be sorted down and after another click sorted up by selected attribute. Watch how both tables content changes on page DOM. Sorting is performed by JavaScript functions.
+After clicking on a column header, the data will be sorted descending and after another click sorted ascending by selected attribute. Watch how both tables' content changes on page DOM. Sorting is performed by JavaScript functions.
 
 image::images/example55.png[]
 
@@ -51,8 +51,8 @@ public class SortableDataTablesPage extends BasePage {
     /**
      * Sorts data in given column using descending order.
      *
-     * @param columnNumber The number of column where data should be sorted
-     * @param tableNumber  The number of table where data should be sorted
+     * @param columnNumber The number of the column where data should be sorted
+     * @param tableNumber  The number of the table where data should be sorted
      */
     public void sortColumnDescending(int columnNumber, int tableNumber) {
         WebElement header = this.getTableHeaders(columnNumber, tableNumber);
@@ -68,8 +68,8 @@ public class SortableDataTablesPage extends BasePage {
     /**
      * Return given column values from chosen table.
      *
-     * @param columnNumber The number of column where data should be retrieved from
-     * @param tableNumber  The number of table where data should be retrieved from
+     * @param columnNumber The number of the column the data should be retrieved from
+     * @param tableNumber  The number of the table the data should be retrieved from
      * @return list of values from given column
      */
     public List<String> getColumnValues(int columnNumber, int tableNumber) {
@@ -81,8 +81,8 @@ public class SortableDataTablesPage extends BasePage {
     /**
      * Returns column's class name.
      *
-     * @param columnNumber The number of column to get class number
-     * @param tableNumber  The number of table to get column class name
+     * @param columnNumber The number of the column to get class number from
+     * @param tableNumber  The number of the table to get column class name from
      * @return String object representing column's class name
      */
     public String readColumnClass(int columnNumber, int tableNumber) {
@@ -104,7 +104,7 @@ public class SortableDataTablesPage extends BasePage {
 
 ====== Finding values
 
-Using proper selectors save elements such as tables and it's columns' headers as Web Element Lists. Then you can get wanted element finding it by index (e. g. table or column number). To get column values to use `JsoupHelper` and to check if the column is sorted get its class attribute.
+Using proper selectors, save elements such as tables and their columns' headers as Web Element Lists. Afterwards, you can get the desired element finding it by index (e. g. table or column number). To get column values, use `JsoupHelper` and to check if the column is sorted get its class attribute.
 
 ===== Test Class
 
@@ -173,7 +173,7 @@ public class SortableDataTablesTest extends TheInternetBaseTest {
         actualValues = sortableDataTablesPage.getColumnValues(columnNumber, tableNumber);
         expectedValues = new ArrayList<String>(actualValues);
         Collections.sort(expectedValues);
-        assertEquals("'Last Name' column is not sorted by ascending order",
+        assertEquals("'Last Name' column is not sorted in ascending order",
                 expectedValues, actualValues);
     }
 
@@ -193,7 +193,7 @@ public class SortableDataTablesTest extends TheInternetBaseTest {
         expectedValues = new ArrayList<String>(actualValues);
         Collections.sort(expectedValues);
         Collections.reverse(expectedValues);
-        assertEquals("'First Name' column is not sorted by descending order",
+        assertEquals("'First Name' column is not sorted in descending order",
                 expectedValues, actualValues);
     }
 }
