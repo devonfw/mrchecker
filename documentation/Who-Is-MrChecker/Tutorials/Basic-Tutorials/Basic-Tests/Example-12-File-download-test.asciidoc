@@ -2,7 +2,7 @@ image::images/example36.png[]
 
 This example shows how to check if file downloads properly.
 
-After click on one of these links specific file should be downloaded on your computer. 
+After clicking on one of these links, a specific file should be downloaded to your computer. 
 
 Steps: 
 
@@ -43,7 +43,7 @@ public class FileDownloadPage extends BasePage {
     }
 
     /**
-     * Verifies if chosen file is already downloaded and downloads it if not. 
+     * Verifies if the chosen file is already downloaded and if not, downloads it . 
      * Throws RuntimeException otherwise.
      *
      * @return Downloaded file
@@ -53,8 +53,8 @@ public class FileDownloadPage extends BasePage {
         File fileToDownload = new File(DOWNLOAD_DIR + nameOfDownloadFile);
 
         if (fileToDownload.exists()) {
-            throw new RuntimeException("File that you want to download already exists. "
-                    + "Please remove it manually. Path to this file: " + fileToDownload.getPath());
+            throw new RuntimeException("The file that you want to download already exists. "
+                    + "Please remove it manually. Path to the file: " + fileToDownload.getPath());
         }
 
         getDriver().elementButton(selectorSomeFileTxt)
@@ -81,9 +81,9 @@ public class FileDownloadPage extends BasePage {
 }
 ----
 
-Use FluentWait class and create expected condition using a lambda expression to wait until file downloads. 
+Use FluentWait class and create an expected condition using a lambda expression to wait until the file downloads. 
 
-To perform operations on files use java File class. To get file name find it in download URL.
+To perform operations on files, use java File class. To get a file name, find it in download URL.
 
 ===== Test Class
 
