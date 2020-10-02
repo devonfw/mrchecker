@@ -2,7 +2,7 @@ image::images/example50.png[]
 
 This simple case shows how to approach redirecting links.
 
-After clicking the link you will be redirected to Status Codes Page.
+After clicking on the link, you will be redirected to Status Codes Page.
 
 image::images/example51.png[]
 
@@ -109,7 +109,7 @@ public class RedirectLinkTest extends TheInternetBaseTest {
         statusCodesHomePage = redirectLinkPage.clickRedirectHereLink();
 
         logStep("Verify redirection to Status Code page");
-        assertTrue("User hasn't been redirected to expected website",
+        assertTrue("User hasn't been redirected to the expected website",
                 statusCodesHomePage.isLoaded());
     }
 }
