@@ -6,7 +6,7 @@ Move the mouse over an image to see the additional label.
 
 image::images/example41.png[]
 
-Labels exist in page DOM all the time but they display attributes change. In this case, there is no JavaScript. Elements' visibility is managed by CSS. 
+Labels exist in page DOM all the time but their display attributes change. In this case, there is no JavaScript. Elements' visibility is managed by CSS. 
 
 image::images/example42.png[]
 
@@ -52,9 +52,9 @@ public class HoversPage extends BasePage {
     }
 
     /**
-     * Returns an information displayed under a picture given index.
+     * Returns the information displayed under a picture with given index.
      *
-     * @param index An index of the picture, where information should be read
+     * @param index An index of the picture, where the information should be read
      * @return String object representing picture's information
      */
     public String getAvatarsInformation(int index) {
@@ -104,4 +104,4 @@ public class HoversTest extends TheInternetBaseTest {
 }
 ----
 
-Because in this case tested content is being chosen randomly, each test run could check different element. 
+Because in this case the tested content is being chosen randomly, each test run could check a different element. 
