@@ -5,9 +5,9 @@ image::images/example9.png[]
 After refreshing page (F5) a few times, a new element should appear: 
 
 image::images/example10.png[]
-Then after another few refreshes, it should disappear. 
+Then, after another couple of refreshes, it should disappear. 
 
-You can check in developer mode that Gallery element also does not exist in HTML document until appearing on the page. The element is created by Javascript. 
+You can check in developer mode that Gallery element does not exist in HTML document either, until appearing on the page. The element is created by Javascript. 
 
 image::images/example11.png[]
 image::images/example12.png[]
@@ -17,12 +17,12 @@ Steps:
 1. Load The Internet Main Page 
 2. Click Disappearing Elements link and go to that subpage 
 3. Check if Menu Buttons exist on the page 
-4. Refresh the page until new element appears 
+4. Refresh the page until a new element appears 
 5. Check if Gallery Button exists 
 6. Check if the number of buttons equals the expected value 
-7. Refresh the page until element disappears 
+7. Refresh the page until an element disappears 
 8. Check if Gallery Button does not exist 
-9. Check if the number of buttons is lesser than before 
+9. Check if the number of buttons is smaller than before 
 
 ===== Page Class 
 
@@ -112,7 +112,7 @@ public class DisappearingElementsPage extends BasePage {
 
 ---- 
 
-findElementQuietly(By selector) works similar as findElementDynamics(By selector) but won't throw expectation if an element wasn't found. In that case, searched WebElement will have a NULL value. 
+findElementQuietly(By selector) works similar as findElementDynamics(By selector) but won't throw an exception if an element wasn't found. In this case, the searched WebElement will have a NULL value. 
 
 ===== Test Class
 ----
