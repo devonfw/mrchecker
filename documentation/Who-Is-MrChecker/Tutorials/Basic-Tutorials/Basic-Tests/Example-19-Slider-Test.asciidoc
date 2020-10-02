@@ -92,7 +92,7 @@ public class HorizontalSliderPage extends BasePage {
     }
 
     /**
-     * Sets horizontal slider to given position using one of available methods: using keyboard
+     * Sets horizontal slider to a given position using one of the available methods: using keyboard
      * or using mouse move.
      *
      * @param position
@@ -103,7 +103,7 @@ public class HorizontalSliderPage extends BasePage {
     }
 
     /**
-     * Verifies the correctness of given position value and round it when necessary.
+     * Verifies the correctness of the given position value and rounds it when necessary.
      *
      * @param position
      * @return Correct value of horizontal slider's position.
@@ -127,7 +127,7 @@ And use:
 * `BigDecimal getMaxRange()`
 * `BigDecimal getMinRange()`
 * `BigDecimal getCurrentSliderValue()`
-* `setSliderPositionTo(BigDecimal position, int method)` - moves slider to given position. If position is not valid changes it to nearest proper value. Second parameter determinates movement method: 0 - Keyboard, 1 - Mouse 
+* `setSliderPositionTo(BigDecimal position, int method)` - moves slider to a given position. If the position is not valid, it changes it to the nearest proper value. Second parameter determinates movement method: 0 - Keyboard, 1 - Mouse 
 * `BigDecimal verifyAndCorrectPositionValue(BigDecimal position)` - returns nearest correct position 
 
 ===== Test Class
@@ -142,16 +142,16 @@ Before each case:
 
 Case 1 - Moving with the keyboard: 
 
-1. Move slider to start position, and check if current position equals begin value 
-2. Move the slider to middle position, and check if current position equals middle value 
-3. Move slider to end position, and check if current position equals end value 
-4. Try to move slider before start position, and check if current position equals begin value 
-5. Try to move slider after end position, and check if the current position equals end value 
-6. Try to move the slider to improperly defined position between start and middle, and check if the current position equals corrected value 
-7. Try to move the slider to improperly defined random position, and check if current position equals corrected value 
-8. Move the slider back to start position, and check if current position equals begin value 
+1. Move slider to start position, and check if the current position equals the beginning value 
+2. Move the slider to middle position, and check if the current position equals the middle value 
+3. Move slider to end position, and check if the current position equals the end value 
+4. Try to move slider before start position, and check if the current position equals the beginning value 
+5. Try to move slider after end position, and check if the current position equals the end value 
+6. Try to move the slider to an improperly defined position between start and middle, and check if the current position equals the corrected value 
+7. Try to move the slider to an improperly defined random position, and check if the current position equals the corrected value 
+8. Move the slider back to start position, and check if the current position equals the beginning value 
 
-Case 2 - Moving with a mouse: Repeat each Case 1 step using a mouse instead of the keyboard
+Case 2 - Moving with a mouse: Repeat each Case 1 step using a mouse instead of keyboard
 
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
