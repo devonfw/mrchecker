@@ -17,16 +17,16 @@ toc::[]
 
 = MrChecker E2E tutorials
 
-In order to learn more about MrChecker structure start from Project Organisation section and then check out our fantastic tutorials:
+In order to learn more about MrChecker structure, start from Project Organisation section and then check out our fantastic tutorials:
 
 == How to create a basic test in MrChecker
 
 === Example: Booking a table
 As an example to test we will use http://de-mucdevondepl01:8090/bookTable[MyThaiStar] booking page. +
-In order to book a table do the following steps:
+In order to book a table, do the following steps:
 
 1. Open MyThaiStar Book Table Page
-2. ter booking data: Date and time, Name, Email and number of Table guests
+2. Enter booking data: Date and time, Name, Email and number of Table guests
 3. Click Accept terms
 4. Click Book table
 5. Display confirmation box and send booking
@@ -43,7 +43,7 @@ You can go through these steps manually and doublecheck the result.
 ==== 1. Create BookTablePage class
 
 You will need a class which will represent MyThaiStart booking page. +
-Fill required methods with the following code:
+Fill the required methods with the following code:
 
 ----
 public class BookTablePage extends BasePage {
@@ -58,7 +58,7 @@ public class BookTablePage extends BasePage {
     @Override
     public void load() {
         getDriver().get("http://de-mucdevondepl01:8090/bookTable"); //loads page under specified adress 
-        getDriver().waitForPageLoaded(); //waits untli the page is loaded
+        getDriver().waitForPageLoaded(); //waits until the page is loaded
     }
     
     @Override
@@ -68,9 +68,9 @@ public class BookTablePage extends BasePage {
 }
 ----
 
-`getDriver()` method allows accessing selenium web driver which perform actions on the webpage.
+`getDriver()` method allows accessing Selenium Web Driver which performs actions on the webpage.
 
-As this page class represents the MyThaiStar booking page, you have to set up selectors for web elements required in the test case. In the example you have to create selectors for elements which we’ll interact with:
+As this page class represents the MyThaiStar booking page, you have to set up selectors for web elements required in the test case. In the example you have to create selectors for elements we’ll interact with:
 
 * Date and time input field
 * Name input field
@@ -88,7 +88,7 @@ Example of the selector for Date and time input field:
 private static final By dateSearch = By.cssSelector("input[formcontrolname='bookingDate']");
 ----
 
-The input field's name "bookingDate" was found by using the developer console in Google Chrome. https://github.com/devonfw/devonfw-testing/wiki/documentation/cssSelector.docx[How to prepare the everlasting selector?]
+The input field's name "bookingDate" was found by using the developer console in Google Chrome. https://github.com/devonfw/devonfw-testing/wiki/documentation/cssSelector.docx[How to prepare an everlasting selector?]
 
 image::images/image3.png[]
 
@@ -96,7 +96,7 @@ This selector can be used to create a WebElement object of the said input field.
 
 ----
 public void enterTimeAndDate(String date) {
-    WebElement dateInput = getDriver().findElementDynamic(dateSearch); //creates new WebElement to access Date and time input field 
+    WebElement dateInput = getDriver().findElementDynamic(dateSearch); //creates a new WebElement to access Date and time input field 
     dateInput.sendKeys(date); //enters date value 
 }
 ----
@@ -122,31 +122,31 @@ private static By bookTableSearch = By.name("bookTableSubmit");
 
 ----
 public void enterName(String name) {
-    WebElement nameInput = getDriver().findElementDynamic(nameSearch); //creates new WebElement to access name input field
+    WebElement nameInput = getDriver().findElementDynamic(nameSearch); //creates a new WebElement to access name input field
     nameInput.sendKeys(name); //enters name value 
 }
 
 public void enterEmail(String email) {
-    WebElement emailInput = getDriver().findElementDynamic(emailSearch); //creates new WebElement to access email input field
+    WebElement emailInput = getDriver().findElementDynamic(emailSearch); //creates a new WebElement to access email input field
     emailInput.sendKeys(email); //enters email value 
 }
 
 public void enterGuests(int amountOfGuests) {
-    WebElement guestsInput = getDriver().findElementDynamic(guestsSearch); //creates new WebElement to access amount of guests input field
-    guestsInput.sendKeys(Integer.toString(amountOfGuests)); //enters amount of guests value converted from integer to string  
+    WebElement guestsInput = getDriver().findElementDynamic(guestsSearch); //creates a new WebElement to access amount of guests input field
+    guestsInput.sendKeys(Integer.toString(amountOfGuests)); //enters the number of guests value converted from integer to string  
 }
 
 public void acceptTerms() {
-    WebElement checkbox = getDriver().findElementDynamic(checkboxSearch); //creates new WebElement to access accept terms checkbox 
-    WebElement square = checkbox.findElement(By.className("mat-checkbox-inner-container")); //creates new WebElement to access inner square 
-    JavascriptExecutor js = (JavascriptExecutor) getDriver(); //creates Javascript executor object 
-    js.executeScript("arguments[0].click()", square); //executes script which clicks the square 
+    WebElement checkbox = getDriver().findElementDynamic(checkboxSearch); //creates aa new WebElement to access accept terms checkbox 
+    WebElement square = checkbox.findElement(By.className("mat-checkbox-inner-container")); //creates a new WebElement to access inner square 
+    JavascriptExecutor js = (JavascriptExecutor) getDriver(); //creates a Javascript executor object 
+    js.executeScript("arguments[0].click()", square); //executes a script which clicks the square 
     
 }
 
 public void clickBookTable() {
-    WebElement buttonbutton = getDriver().findElementDynamic(bookTableSearch); //creates new WebElement to access book table button 
-    getDriver().waitUntilElementIsClickable(bookTableSearch); //waits until button might be clicked 
+    WebElement buttonbutton = getDriver().findElementDynamic(bookTableSearch); //creates a new WebElement to access book table button 
+    getDriver().waitUntilElementIsClickable(bookTableSearch); //waits until a button might be clicked 
     buttonbutton.click(); //clicks the button 
 }
 ----
@@ -169,7 +169,7 @@ public ConfirmBookPage enterBookingData(String date, String name, String email, 
 
 ==== 2. Create ConfirmBookPage class
 
-As you can see, this method returns another page object that was not created yet. This step is required, as the booking information that you would like to check is on another webpage. This means that you will have to create another page class, and call it ConfirmBookPage:
+As you can see, this method returns another page object that has not yet been created. This step is required, as the booking information that you would like to check is on another webpage. This means that you will have to create another page class and call it ConfirmBookPage:
 
 ----
 public class ConfirmBookPage extends BasePage {
@@ -185,7 +185,7 @@ public class ConfirmBookPage extends BasePage {
 
     @Override
     public boolean isLoaded() {
-        //creates new WebElement to access confirmation dialog box
+        //creates a new WebElement to access confirmation dialog box
         WebElement confirmationDialog = getDriver().findElementDynamic(confirmationDialogSearch);  
         
         return confirmationDialog.isDisplayed(); //checks if the box is displayed 
@@ -203,31 +203,31 @@ public class ConfirmBookPage extends BasePage {
     }
 
     public void confirmBookingData() {
-        WebElement sendButton = getDriver().findElementDynamic(sendButtonSearch); //creates new WebElement to access confirmation button
-        sendButton.click(); //clicks send button
+        WebElement sendButton = getDriver().findElementDynamic(sendButtonSearch); //creates a new WebElement to access confirmation button
+        sendButton.click(); //clicks the send button
     }
     
     public void cancelBookingData() {
-        WebElement cancelButton = getDriver().findElementDynamic(cancelButtonSearch); //creates new WebElement to access resignation button
-        cancelButton.click(); //clicks cancel button
+        WebElement cancelButton = getDriver().findElementDynamic(cancelButtonSearch); //creates a new WebElement to access resignation button
+        cancelButton.click(); //clicks the cancel button
     }
 }
 ----
 
 image::images/image4.png[]
 
-After click on Send button - the green confirmation dialogue appears with the message "Table successfully booked":
+After the click on Send button - the green confirmation dialogue appears with the message "Table successfully booked":
 
 image::images/image5.png[]
 
-To be able to check if the booking was successful, you should go back to the BookTablePage class and add one more methods in order to check if the green box was displayed:
+To be able to check if the booking was successful, you should go back to the BookTablePage class and add one more method in order to check if the green box was displayed:
 
 ----
 /** Dialog search criteria */
 private static final By dialogSearch = By.className("bgc-green-600");
 
 public boolean checkConfirmationDialog() {
-    WebElement greenConfirmationDialog = getDriver().findElementDynamic(dialogSearch); //creates new WebElement to access confirmation dialog
+    WebElement greenConfirmationDialog = getDriver().findElementDynamic(dialogSearch); //creates a new WebElement to access confirmation dialog
     
     return greenConfirmationDialog.isDisplayed(); //checks if the dialog is displayed 
 }
@@ -241,7 +241,7 @@ At this point you can start creating a test class:
 import static org.junit.Assert.assertTrue;
 
 public class BookTableTest extends BaseTest {
-    private static BookTablePage bookTablePage = new BookTablePage(); //field contains book table page object 
+    private static BookTablePage bookTablePage = new BookTablePage(); //the field contains book table page object 
     
     @BeforeClass
     public static void setUpBeforeClass() {
@@ -256,7 +256,7 @@ public class BookTableTest extends BaseTest {
     @Override
     public void setUp() {
         if (!bookTablePage.isLoaded()) {
-            bookTablePage.load(); //if page is not loaded loads it
+            bookTablePage.load(); //if the page is not loaded, loads it
         }
     }
     
@@ -269,21 +269,21 @@ public class BookTableTest extends BaseTest {
 
 ==== 4. Write the first test
 
-You can prepare our first test method using methods from page classes
+You can prepare our first test method using the methods from page classes
 
 ----
 @Test
 public void Test_BookTableAndCheckConfirmation() {
-    String date = "07/23/2019 1:00 PM"; //replace with tommorow date in format "MM/dd/yyyy hh:mm a"
+    String date = "07/23/2019 1:00 PM"; //replace with tommorow's date in format "MM/dd/yyyy hh:mm a"
     String name = "Smith"; //name field
     String email = "smith@somemail.com"; //email field 
-    int guests = 3; //amount of guests 
+    int guests = 3; //number of guests 
 
-    //enters booking data and returns new confirmation page 
+    //enters booking data and returns a new confirmation page 
     ConfirmBookPage confirmBookPage = bookTablePage.enterBookingData(date, name, email, guests); 
     confirmBookPage.confirmBookingData(); //confirms booking
     
-    //checks if green dialog box appears, if it does test passed, if not test failed and display message given in first argument 
+    //checks if the green dialog box appears, if it does, test is passed, if not, the test failed and displays message given in the first argument 
     assertTrue("Test failed: Table not booked", bookTablePage.checkConfirmationDialog()); //returns true if dialog box appears and false if not 
 }
 ----
