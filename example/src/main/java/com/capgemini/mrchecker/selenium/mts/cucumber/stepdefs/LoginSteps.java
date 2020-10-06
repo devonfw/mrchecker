@@ -26,7 +26,7 @@ public class LoginSteps {
 		User waiter = User.waiterUser();
 		loggedInUser = waiter.getUsername();
 		myThaiStarHome.clickLogInButton();
-		loginPage.enterCredentials(loggedInUser, waiter.getPassword());
+		loginPage.loginUser(loggedInUser, waiter.getPassword());
 	}
 	
 	@Step("My login name is shown")

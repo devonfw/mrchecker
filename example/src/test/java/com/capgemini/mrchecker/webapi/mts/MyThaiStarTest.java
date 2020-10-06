@@ -19,9 +19,15 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import com.capgemini.mrchecker.webapi.mts.pages.LoginPage;
 import com.capgemini.mrchecker.webapi.mts.pages.TablePage;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 
 @Tag("MTS_API")
+@Epic("API Tests")
+@Story("My Thai Star")
+@Feature("Table management")
 public class MyThaiStarTest extends BaseTest {
 	
 	private final TablePage tablePage = PageFactory.getPageInstance(TablePage.class);
@@ -34,13 +40,13 @@ public class MyThaiStarTest extends BaseTest {
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/datadriven/mts/valid_table_ids.csv", numLinesToSkip = 1)
-	public void shouldReturnTableData(String tableId) {
+	public void getTableById(String tableId) {
 		sendGetByIdRequestAndAssertResponseStatusCode(tableId, 200);
 	}
 	
 	@ParameterizedTest
 	@MethodSource("invalidTableIds")
-	public void shouldReturnErrorWhenInvalidId(String tableId, int expectedStatus) {
+	public void getTableById_invalid_Ids(String tableId, int expectedStatus) {
 		sendGetByIdRequestAndAssertResponseStatusCode(tableId, expectedStatus);
 	}
 	

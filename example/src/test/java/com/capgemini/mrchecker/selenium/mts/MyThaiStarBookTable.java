@@ -3,21 +3,26 @@ package com.capgemini.mrchecker.selenium.mts;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+import com.capgemini.mrchecker.common.allure.utils.StepLogger;
 import com.capgemini.mrchecker.common.mts.data.Reservation;
 import com.capgemini.mrchecker.common.mts.data.User;
 import com.capgemini.mrchecker.common.mts.utils.Utils;
 import com.capgemini.mrchecker.selenium.mts.datadrivem.UserAggregator;
+import com.capgemini.mrchecker.selenium.mts.pages.MyThaiStarBasePage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiBookPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiConfirmBookPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiHomePage;
@@ -27,45 +32,43 @@ import com.capgemini.mrchecker.selenium.mts.pages.ThaiReservationsPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiSummaryPage;
 import com.capgemini.mrchecker.selenium.mts.pages.ThaiWaiterPage;
 import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
-@Tag("MTS_GUI")
-public class MyThaiStarTest extends BaseTest {
-	
-	private final ThaiHomePage	myThaiStarHome	= PageFactory.getPageInstance(ThaiHomePage.class);
-	private final ThaiLoginPage	loginPage		= PageFactory.getPageInstance(ThaiLoginPage.class);
-	private final ThaiMenuPage	menuPage		= PageFactory.getPageInstance(ThaiMenuPage.class);
-	
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
+
+@Tag("MTS_SELENIUM")
+@Epic("Selenium Tests")
+@Feature("My Thai Star")
+@Story("Book table")
+
+
+public class MyThaiStarBookTable extends BaseTest {
+
+	private final ThaiHomePage myThaiStarHome = PageFactory.getPageInstance(ThaiHomePage.class);
+	private final ThaiLoginPage loginPage = PageFactory.getPageInstance(ThaiLoginPage.class);
+
 	@Override
 	public void setUp() {
 		myThaiStarHome.load();
-		logOut();
+
 	}
-	
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/datadriven/mts/test_users.csv", numLinesToSkip = 1)
-	public void Test_loginAndLogOut(@AggregateWith(UserAggregator.class) User user) {
-		login(user);
-		logOut();
-	}
-	
-	@Test
-	public void Test_loginFake() {
-		User fakeUser = new User("fakeUser", "fakePassword");
-		myThaiStarHome.clickLogInButton();
-		loginPage.enterCredentials(fakeUser.getUsername(), fakeUser.getPassword());
-		assertThat("User " + fakeUser.getUsername() + " logged",
-				myThaiStarHome.isUserLogged(fakeUser.getUsername()), is(equalTo(false)));
-	}
-	
-	@CsvFileSource(resources = "/datadriven/mts/test_users.csv", numLinesToSkip = 1)
-	public void Test_bookTable(@AggregateWith(UserAggregator.class) User user) {
+	public void test_bookTable(@AggregateWith(UserAggregator.class) User user) {
+		BFLogger.logInfo("USER: " + user);
 		String fakeEmail = Utils.getRandomEmail(user.getUsername());
 		String date = Utils.getTomorrowDate();
 		int guest = Utils.getRandom1toMax(8);
 		Reservation reservation = new Reservation(date, user.getUsername(), fakeEmail, guest);
 		User waiter = new User("waiter", "waiter");
-		
+
 		login(user);
 		bookTable(reservation);
 		logOut();
@@ -73,36 +76,26 @@ public class MyThaiStarTest extends BaseTest {
 		verifyBooking(reservation);
 		logOut();
 	}
-	
-	@Test
-	public void Test_orderMenu() {
-		String bookingId = "CB_20170510_123502655Z";
-		myThaiStarHome.clickMenuButton();
-		ThaiSummaryPage summaryPage = menuPage.clickFirstMenu();
-		summaryPage.orderMenu(bookingId);
-	}
-	
+
+	@Step("Login user: {user}")
 	private void login(User user) {
 		myThaiStarHome.clickLogInButton();
-		loginPage.enterCredentials(user.getUsername(), user.getPassword());
-		assertThat("User " + user.getUsername() + " not logged",
-				myThaiStarHome.isUserLogged(user.getUsername()), is(equalTo(true)));
+		loginPage.loginUser(user.getUsername(), user.getPassword());
+		assertThat("User " + user.getUsername() + " not logged", myThaiStarHome.isUserLogged(user.getUsername()),
+				is(equalTo(true)));
+		StepLogger.stepInfo("User " + user.getUsername() + " is logged");
+
 	}
-	
-	private void logOut() {
-		if (myThaiStarHome.isUserLogged()) {
-			myThaiStarHome.clickLogOutButton();
-		}
-		assertThat("Some user logged", this.myThaiStarHome.isUserLogged(), is(equalTo(false)));
-	}
-	
+
+	@Step("Book table: {reservation}")
 	private void bookTable(Reservation reservation) {
 		ThaiBookPage bookPage = myThaiStarHome.clickBookTable();
 		ThaiConfirmBookPage confirmPage = bookPage.enterBookingData(reservation);
 		confirmPage.confirmBookingData();
 		bookPage.checkConfirmationDialog();
 	}
-	
+
+	@Step("Verify booking: {reservation}")
 	private void verifyBooking(Reservation reservation) {
 		ThaiWaiterPage myWaiterPage = new ThaiWaiterPage();
 		ThaiReservationsPage myReservationsPage = myWaiterPage.switchToReservations();
@@ -110,5 +103,13 @@ public class MyThaiStarTest extends BaseTest {
 		Assert.assertTrue("Booking not found", reservations.containsKey(reservation.getDate()));
 		List<Reservation> reservationsForDate = reservations.get(reservation.getDate());
 		Assert.assertFalse("Booking not found", reservationsForDate.isEmpty());
+	}
+
+	@Step("Logout user ")
+	private void logOut() {
+
+		myThaiStarHome.clickLogOutButton();
+		assertThat("Some user logged", this.myThaiStarHome.isUserLogged(), is(equalTo(false)));
+
 	}
 }
