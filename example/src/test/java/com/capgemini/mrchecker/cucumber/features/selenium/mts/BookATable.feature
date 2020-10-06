@@ -11,7 +11,7 @@ Feature: Book a table
     And I do not accept the terms
     Then Booking a table is not possible
 
-  Scenario Outline: Book a table for various number of persons
+  Scenario Outline: Book a table for "<number>" of persons
     When I enter valid booking information for a table for <number> persons
     And I accept the terms
     And I confirm the booking
@@ -23,7 +23,7 @@ Feature: Book a table
       | 4      |
       | 8      |
 
-  Scenario Outline: Book a table: incorrect input values in formular
+  Scenario Outline: Book a table: incorrect input values in the form ("<attribute>"="<value>")
     When I enter valid booking data
     And I accept the terms
     And I change <attribute> to <value>

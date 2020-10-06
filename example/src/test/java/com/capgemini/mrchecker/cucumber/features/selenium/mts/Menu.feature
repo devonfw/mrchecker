@@ -6,7 +6,7 @@ Feature: Browse the menu
     Given The My Thai start page has been opened
     And The "Menu" has been opened
 
-  Scenario Outline: Search the menu for a given phrase
+  Scenario Outline: Search the menu for "<searchPhrase>" phrase
     When I type "<searchPhrase>" in the search box
     And I apply filters
     Then The search result contains meals with "<searchPhrase>"

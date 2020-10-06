@@ -16,6 +16,7 @@ import com.capgemini.mrchecker.test.core.TestExecutionObserver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 
 public class BaseHook {
 	
@@ -51,10 +52,15 @@ public class BaseHook {
 	
 	@Before(order = 0)
 	public void setup(Scenario scenario) {
-		String meaningfulScenarioName = String.format("%s (scenario line: %s)", scenario.getName(), scenario.getLine());
-		context.setDisplayName(meaningfulScenarioName);
+		context.setDisplayName(scenario.getName());
+		Allure.suite(getFeatureFileNameFromId(scenario.getId()));
 		TestExecutionObserver.getInstance()
 				.beforeTestExecution(context);
+	}
+	
+	private static String getFeatureFileNameFromId(String id) {
+		id = id.substring(id.lastIndexOf("/") + 1);
+		return id.substring(0, id.indexOf("."));
 	}
 	
 	@After(order = Integer.MAX_VALUE)
