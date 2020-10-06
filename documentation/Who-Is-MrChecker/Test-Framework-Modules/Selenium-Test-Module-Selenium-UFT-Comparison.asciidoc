@@ -41,7 +41,7 @@ Java
 |Same as SE
 
 |Customizations
-|All is available standard 
+|Only the available standard. No custimization 
 |Same as UFT
 |Lots of customizations possible
 |Fewer then SE
