@@ -19,7 +19,7 @@ toc::[]
 On this page, you can find all the details regarding MrChecker installation on your Mac.
 
 == Java installation
-There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
+There is one important pre-requisite for Mr Checker installation - Java has to be installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
 1. Install Java 1.8 JDK 64bit
 +
@@ -37,7 +37,7 @@ Install each component separately, or update the existing ones on your Mac.
 
 1. Maven 3.5
     * https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.0/apache-maven-3.5.0-bin.zip[Download Maven]
-    * Unzip Maven in following location /maven
+    * Unzip Maven in the following location /maven
     * Add Maven to PATH
         
         > $ export PATH=$PATH:/maven/apache-maven-3.5.0/bin/
@@ -47,7 +47,7 @@ Install each component separately, or update the existing ones on your Mac.
         > $ mvn -version
     
 2. Eclipse IDE
-    * Download an unzip https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-06/R/eclipse-inst-mac64.dmg[Eclipse]
+    * Download and unzip https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-06/R/eclipse-inst-mac64.dmg[Eclipse]
     * Download MrCheckerTestFramework https://github.com/devonfw/devonfw-testing/archive/develop.zip[source code]
     * Import:
 +
