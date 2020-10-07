@@ -10,7 +10,7 @@ include::Who-Is-MrChecker/Test-Stages.asciidoc[leveloffset=2]
 
 == Test Framework Modules
 
-In this section, it is possible to find all information regarding the main modules of MrChecker: 
+In this section, it is possible to find all the information regarding the main modules of MrChecker: 
 
 === Core Test Module
 
@@ -120,11 +120,11 @@ include::MrChecker-download/Mac.asciidoc[leveloffset=3]
 
 == Tutorials
 
-In order to learn more about MrChecker structure start from Project Organisation section and then check out our fantastic tutorials:
+In order to learn more about MrChecker structure, start from Project Organisation section and then check out our fantastic tutorials:
 
-This tutorial will guide you through the series of test which performs basic actions on webpages using MrChecker.
+This tutorial will guide you through the series of test which perform basic actions on webpages using MrChecker.
 
-Make sure you have already MrChecker Test Framework installed on your PC. How to install?
+Make sure you already have MrChecker Test Framework installed on your PC. How to install?
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
