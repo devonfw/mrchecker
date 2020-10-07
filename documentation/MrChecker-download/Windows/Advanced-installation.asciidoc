@@ -18,13 +18,13 @@ toc::[]
 = Advanced installation
 
 == Java installation
-There is one important pre-requisite for Mr Checker installation - there has to be Java installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
+There is one important pre-requisite for Mr Checker installation - Java has to be installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
 1. Install Java 1.8 JDK 64bit
 +
 Download and install [.line-through]#http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java download link]#
 +
-_(To download JDK 8 from Oracle you have to have an account. It is recomended to get a JDK build based on OpenJDK from https://adoptopenjdk.net/[AdoptOpenJDK])_
+_(To download JDK 8 from Oracle you have to have an account. It is recommended to get a JDK build based on OpenJDK from https://adoptopenjdk.net/[AdoptOpenJDK])_
 
 2. Windows Local Environment - https://www.java.com/en/download/help/path.xml[How to set]:
 +
@@ -52,7 +52,7 @@ Install each component separately, or update the existing ones on your PC.
 +
 image::images/install_win04.png[]
 +
-    * Verify in a command line:
+    * Verify it in the command line:
 +
 ----
 > mvn --version
