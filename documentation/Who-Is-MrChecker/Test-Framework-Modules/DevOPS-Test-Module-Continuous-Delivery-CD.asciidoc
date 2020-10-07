@@ -10,15 +10,15 @@ CD from Jenkins point of view does not change a lot from Continuous Integration 
 
 == Jenkins Overview
 
-For Jenkins CD setup please use the same Jenkins settings as for CI https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#jenkins-configuration[link]. The only difference is:
+Use the same Jenkins settings for Jenkins CD setup as for CI, please. https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#jenkins-configuration[link]. The only difference is:
 
-* What type of test you we will execute. Before we have been picking test case(s), however now we will choose test suite(s)
-* Who will will trigger given Smoke/Integration/Performance job
-* What is the name of official branch. This branch ought to use be used always in every CD execution. It will be either *master* or *develop*.
+* What type of test you will execute. Before, we have been choosing test case(s), now we will choose test suite(s)
+* Who will trigger the given Smoke/Integration/Performance job
+* What is the name of official branch. This branch ought always to use be used in every CD execution. It will be either *master* or *develop*.
 
 === Jenkins for Smoke Tests
 
-In point where we input test name - $TESTNAME ( https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#initial-configuration[link] ), please input test suite which merge by tags -( https://github.com/devonfw/devonfw-testing/wiki/tags-and-test-suites[link] ) how to all test cases need to run only smoke tests.
+In the $TESTNAME variable, where we input the test name( https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#initial-configuration[link] ), please input the name of a test suite assembled together of tests tagged as smoke tests -( https://github.com/devonfw/devonfw-testing/wiki/tags-and-test-suites[link] ) thus running all the smoke tests.
 
 === Jenkins for Performance Tests
 
