@@ -25,7 +25,7 @@ There is one important pre-requisite for Mr Checker installation - Java has to b
 +
 Download and install [.line-through]#http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java download link]#
 +
-_(To download JDK 8 from Oracle you have to have an account. It is recomended to get a JDK build based on OpenJDK from https://adoptopenjdk.net/[AdoptOpenJDK])_
+_(To download JDK 8 from Oracle you have to have an account. It is recommended to get a JDK build based on OpenJDK from https://adoptopenjdk.net/[AdoptOpenJDK])_
 
 2. Next, verify it in the command line:
 +
