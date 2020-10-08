@@ -1,5 +1,8 @@
 package com.capgemini.mrchecker.selenium.mts.pages;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -11,14 +14,14 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 public class ThaiBookPage extends MyThaiStarBasePage {
 	
-	private static final By		selectorDateSearch			= By.cssSelector("input[formcontrolname='bookingDate']");
-	private static final By		selectorNameSearch			= By.cssSelector("input[formcontrolname='name']");
-	private static final By		selectorEmailSearch			= By.cssSelector("input[formcontrolname='email']");
-	private static final By		selectorGuestsSearch		= By.cssSelector("input[formcontrolname='assistants']");
-	private static final By		selectorCheckboxSearch		= By.cssSelector("mat-checkbox[data-name='bookTableTerms']");
-	private static final By		selectorDialogSearch		= By.className("bgc-green-600");
-	private static final By		selectorMessageBar			= By.cssSelector(".mat-snack-bar-container");
-	private static final String	TABLE_SUCCESSFULLY_BOOKED	= "Stolik zarezerwowany";
+	private static final By				selectorDateSearch			= By.cssSelector("input[formcontrolname='bookingDate']");
+	private static final By				selectorNameSearch			= By.cssSelector("input[formcontrolname='name']");
+	private static final By				selectorEmailSearch			= By.cssSelector("input[formcontrolname='email']");
+	private static final By				selectorGuestsSearch		= By.cssSelector("input[formcontrolname='assistants']");
+	private static final By				selectorCheckboxSearch		= By.cssSelector("mat-checkbox[data-name='bookTableTerms']");
+	private static final By				selectorDialogSearch		= By.className("bgc-green-600");
+	private static final By				selectorMessageBar			= By.cssSelector(".mat-snack-bar-container");
+	private static final List<String>	TABLE_SUCCESSFULLY_BOOKED	= Arrays.asList("Stolik zarezerwowany", "Table succesfully booked");
 	
 	@Override
 	protected By getDisplayableElementSelector() {
@@ -105,13 +108,22 @@ public class ThaiBookPage extends MyThaiStarBasePage {
 		String message = getSnackbarMessage();
 		
 		int retry = 0;
-		while (!message.startsWith(TABLE_SUCCESSFULLY_BOOKED) && retry < 10) {
+		while (!(isOneOfMessagesShown(message)) && retry < 10) {
 			BFLogger.logInfo(message);
 			message = getSnackbarMessage();
 			retry++;
 		}
 		
-		return message.startsWith(TABLE_SUCCESSFULLY_BOOKED);
+		return isOneOfMessagesShown(message);
+	}
+	
+	private boolean isOneOfMessagesShown(String message) {
+		for (String text : TABLE_SUCCESSFULLY_BOOKED) {
+			if (message.startsWith(text)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private String getSnackbarMessage() {
