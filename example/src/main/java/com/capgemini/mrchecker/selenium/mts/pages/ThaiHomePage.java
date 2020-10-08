@@ -36,8 +36,6 @@ public class ThaiHomePage extends MyThaiStarBasePage {
 		doLoad();
 		ResolutionUtils.setResolution(getDriver(), ResolutionEnum.w1280);
 		
-		;
-		
 	}
 	
 	@Step("Loading ThaiHomePage")

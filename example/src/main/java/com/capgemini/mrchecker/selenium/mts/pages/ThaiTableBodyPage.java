@@ -14,13 +14,13 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 public class ThaiTableBodyPage extends MyThaiStarBasePage {
 	
-	private static final By	reservationsTableSearch	= By.xpath("//tbody[@class='td-data-table-body']/tr");
-	private static final By	reservationRowSearch	= By.xpath("./td//span");
-	private static final By	nextPageSearch			= By.xpath("//button[@class=\"td-paging-bar-next-page mat-icon-button\"]");
+	private static final By	selectorReservationsTableSearch	= By.xpath("//tbody[@class='td-data-table-body']/tr");
+	private static final By	selectorReservationRowSearch	= By.xpath("./td//span");
+	private static final By	selectorNextPageSearch			= By.xpath("//button[@class=\"td-paging-bar-next-page mat-icon-button\"]");
 	
 	@Override
 	protected By getDisplayableElementSelector() {
-		return nextPageSearch;
+		return selectorNextPageSearch;
 	}
 	
 	@Override
@@ -35,10 +35,10 @@ public class ThaiTableBodyPage extends MyThaiStarBasePage {
 		List<Reservation> reservationsByDate;
 		String date, id, email;
 		
-		reservations = getDriver().findElementDynamics(reservationsTableSearch);
+		reservations = getDriver().findElementDynamics(selectorReservationsTableSearch);
 		
 		for (WebElement reservationWe : reservations) {
-			reservationsR = reservationWe.findElements(reservationRowSearch);
+			reservationsR = reservationWe.findElements(selectorReservationRowSearch);
 			reservationsRow = reservationsR.stream()
 					.map((we) -> we.getText())
 					.collect(Collectors.toList());
@@ -60,7 +60,7 @@ public class ThaiTableBodyPage extends MyThaiStarBasePage {
 	}
 	
 	public ThaiTableBodyPage nextPage() {
-		WebElement nextPage = getDriver().findElementDynamic(nextPageSearch);
+		WebElement nextPage = getDriver().findElementDynamic(selectorNextPageSearch);
 		getAction().moveToElement(nextPage)
 				.click()
 				.perform();
@@ -69,7 +69,7 @@ public class ThaiTableBodyPage extends MyThaiStarBasePage {
 	}
 	
 	public boolean isThereANextPage() {
-		WebElement nextButton = getDriver().findElementDynamic(nextPageSearch);
+		WebElement nextButton = getDriver().findElementDynamic(selectorNextPageSearch);
 		getAction().moveToElement(nextButton);
 		JavascriptExecutor js = ((JavascriptExecutor) getDriver());
 		

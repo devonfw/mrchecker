@@ -13,17 +13,17 @@ import io.qameta.allure.Step;
 
 public class ThaiMenuPage extends MyThaiStarBasePage {
 	
-	private static final By	searchBoxSelector		= By.id("mat-input-1");
-	private static final By	applyFiltersSelector	= By.xpath("//button[@class='mat-focus-indicator apply-filter mat-button mat-button-base mat-accent']");
-	private static final By	clearFiltersSelector	= By.xpath("//button[@class='mat-focus-indicator clearFilter mat-button mat-button-base']");
-	private static final By	menuItemsSelector		= By.xpath("//own-menu-card-details");
+	private static final By	selectorSearchBoxSelector		= By.id("mat-input-1");
+	private static final By	selectorApplyFiltersSelector	= By.xpath("//button[@class='mat-focus-indicator apply-filter mat-button mat-button-base mat-accent']");
+	private static final By	selectorClearFiltersSelector	= By.xpath("//button[@class='mat-focus-indicator clearFilter mat-button mat-button-base']");
+	private static final By	selectorMenuItemsSelector		= By.xpath("//own-menu-card-details");
 	
-	private static final By	orderOptionsSearch		= By.tagName("own-menu-card-details");
-	private static final By	addToOrderButtonSearch	= By.tagName("button");
+	private static final By	selectorOrderOptionsSearch		= By.tagName("own-menu-card-details");
+	private static final By	selectorAddToOrderButtonSearch	= By.tagName("button");
 	
 	@Override
 	protected By getDisplayableElementSelector() {
-		return orderOptionsSearch;
+		return selectorOrderOptionsSearch;
 	}
 	
 	@Override
@@ -33,8 +33,8 @@ public class ThaiMenuPage extends MyThaiStarBasePage {
 	
 	@Step("Click first menu")
 	public ThaiSummaryPage clickFirstMenu() {
-		WebElement firstOrderOption = getDriver().findElementDynamic(orderOptionsSearch);
-		WebElement addToOrderButton = firstOrderOption.findElement(addToOrderButtonSearch);
+		WebElement firstOrderOption = getDriver().findElementDynamic(selectorOrderOptionsSearch);
+		WebElement addToOrderButton = firstOrderOption.findElement(selectorAddToOrderButtonSearch);
 		
 		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("arguments[0].click()", addToOrderButton);
@@ -43,21 +43,21 @@ public class ThaiMenuPage extends MyThaiStarBasePage {
 	}
 	
 	public void typeSearchPhrase(String searchPhrase) {
-		Utils.sendKeysWithCheck(searchPhrase, searchBoxSelector, getDriver(), getWebDriverWait());
+		Utils.sendKeysWithCheck(searchPhrase, selectorSearchBoxSelector, getDriver(), getWebDriverWait());
 	}
 	
 	public void applyFilters() {
-		getDriver().findElementDynamic(applyFiltersSelector)
+		getDriver().findElementDynamic(selectorApplyFiltersSelector)
 				.click();
 	}
 	
 	public void clearFilters() {
-		getDriver().findElementDynamic(clearFiltersSelector)
+		getDriver().findElementDynamic(selectorClearFiltersSelector)
 				.click();
 	}
 	
 	public Collection<WebElement> getMenuItems() {
-		return getDriver().findElementDynamics(menuItemsSelector);
+		return getDriver().findElementDynamics(selectorMenuItemsSelector);
 	}
 	
 }

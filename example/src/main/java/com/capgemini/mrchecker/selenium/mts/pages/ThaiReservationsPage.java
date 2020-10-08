@@ -20,16 +20,17 @@ import com.capgemini.mrchecker.selenium.core.newDrivers.elementType.Button;
 
 public class ThaiReservationsPage extends MyThaiStarBasePage {
 	
-	private static final By	reservationsTableSearch	= By.xpath("//tbody/tr");
-	private static final By	searchBarFilter			= By.cssSelector("#mat-expansion-panel-header-1");
-	private static final By	emailInputSearch		= By.xpath("//input[@name=\"email\"]");
-	private static final By	submitButtonSearch		= By.xpath("//button[@type='submit']");
+	private static final By	selectorReservationsTableSearch	= By.xpath("//tbody/tr");
+	private static final By	selectorSearchBarFilter			= By.cssSelector("#mat-expansion-panel-header-1");
 	
-	private static final By		COLUMN_BOOKING_DATE_SEARCH	= By.className("cdk-column-bookingDate");
-	private static final By		COLUMN_EMAIL_SEARCH			= By.className("cdk-column-email");
-	private static final By		COLUMN_BOOKING_TOKEN_SEARCH	= By.className("cdk-column-bookingToken");
-	private static final String	DATE_FORMAT_UI				= "dd MMM yyyy hh:mm";
-	private static final String	DATE_FORMAT_INTERNAL		= "MM/dd/yyyy hh:mm a";
+	private static final By	selectorEmailInputSearch	= By.xpath("//input[@name=\"email\"]");
+	private static final By	selectorSubmitButtonSearch	= By.xpath("//button[@type='submit']");
+	
+	private static final By		selectorColumnBookingDateSearch		= By.className("cdk-column-bookingDate");
+	private static final By		selectorColumnEmailSearch			= By.className("cdk-column-email");
+	private static final By		selectorColumnBookingTokenSearch	= By.className("cdk-column-bookingToken");
+	private static final String	DATE_FORMAT_UI						= "dd MMM yyyy hh:mm";
+	private static final String	DATE_FORMAT_INTERNAL				= "MM/dd/yyyy hh:mm a";
 	
 	private Map<String, List<String>> tableData;
 	
@@ -56,7 +57,7 @@ public class ThaiReservationsPage extends MyThaiStarBasePage {
 	}
 	
 	public HashMap<String, List<Reservation>> searchDatesByEmail(String email) {
-		WebElement searchBar = getDriver().findElementDynamic(searchBarFilter);
+		WebElement searchBar = getDriver().findElementDynamic(selectorSearchBarFilter);
 		
 		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("arguments[0].click()", searchBar);
@@ -68,9 +69,14 @@ public class ThaiReservationsPage extends MyThaiStarBasePage {
 		}
 		
 		int index = 1;
-		
-		Utils.sendKeysWithCheck(email, emailInputSearch, getDriver(), getWebDriverWait(), index);
-		getDriver().findElementDynamic(submitButtonSearch)
+		WebElement input = getDriver().findElementDynamic(selectorEmailInputSearch);
+		if (!input.isEnabled()) {
+			js = (JavascriptExecutor) getDriver();
+			js.executeScript("arguments[0].click()", searchBar);
+			
+		}
+		Utils.sendKeysWithCheck(email, selectorEmailInputSearch, getDriver(), getWebDriverWait(), index);
+		getDriver().findElementDynamic(selectorSubmitButtonSearch)
 				.click();
 		
 		try {
@@ -90,7 +96,7 @@ public class ThaiReservationsPage extends MyThaiStarBasePage {
 		List<Reservation> reservationsByDate;
 		String date, id, email;
 		
-		reservations = getDriver().findElementDynamics(reservationsTableSearch);
+		reservations = getDriver().findElementDynamics(selectorReservationsTableSearch);
 		
 		for (int i = 1; i <= reservations.size(); i++) {
 			
@@ -121,11 +127,11 @@ public class ThaiReservationsPage extends MyThaiStarBasePage {
 	}
 	
 	public List<Reservation> getReservationsForEmail(String email) {
-		Button searchBar = getDriver().elementButton(searchBarFilter);
+		Button searchBar = getDriver().elementButton(selectorSearchBarFilter);
 		getWebDriverWait().until(ExpectedConditions.elementToBeClickable(searchBar.getElement()));
 		searchBar.click();
-		Utils.sendKeysWithCheck(email, emailInputSearch, getDriver(), getWebDriverWait(), 1);
-		getDriver().findElementDynamic(submitButtonSearch)
+		Utils.sendKeysWithCheck(email, selectorEmailInputSearch, getDriver(), getWebDriverWait(), 1);
+		getDriver().findElementDynamic(selectorSubmitButtonSearch)
 				.click();
 		
 		return getReservations().stream()
@@ -145,14 +151,14 @@ public class ThaiReservationsPage extends MyThaiStarBasePage {
 	private List<Reservation> getReservationsInternal() {
 		List<Reservation> reservations = new ArrayList<>();
 		
-		List<WebElement> reservationsLines = getDriver().findElementDynamics(reservationsTableSearch);
+		List<WebElement> reservationsLines = getDriver().findElementDynamics(selectorReservationsTableSearch);
 		
 		for (WebElement reservationLine : reservationsLines) {
-			String date = reformatReservationDate(reservationLine.findElement(COLUMN_BOOKING_DATE_SEARCH)
+			String date = reformatReservationDate(reservationLine.findElement(selectorColumnBookingDateSearch)
 					.getText());
-			String email = reservationLine.findElement(COLUMN_EMAIL_SEARCH)
+			String email = reservationLine.findElement(selectorColumnEmailSearch)
 					.getText();
-			String id = reservationLine.findElement(COLUMN_BOOKING_TOKEN_SEARCH)
+			String id = reservationLine.findElement(selectorColumnBookingTokenSearch)
 					.getText();
 			reservations.add(new Reservation(date, email, id));
 			

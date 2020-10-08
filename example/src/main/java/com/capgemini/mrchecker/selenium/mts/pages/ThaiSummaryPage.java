@@ -8,13 +8,13 @@ import com.capgemini.mrchecker.common.mts.utils.Utils;
 
 public class ThaiSummaryPage extends MyThaiStarBasePage {
 	
-	private static final By	textBoxSearch		= By.name("orderBookingID");
-	private static final By	checkBoxSearch		= By.xpath("//mat-checkbox[@data-name='orderTerms']");
-	private static final By	acceptButtonSearch	= By.name("orderSubmit");
+	private static final By	selectorTextBoxSearch		= By.name("orderBookingID");
+	private static final By	selectorCheckBoxSearch		= By.xpath("//mat-checkbox[@data-name='orderTerms']");
+	private static final By	selectorAcceptButtonSearch	= By.name("orderSubmit");
 	
 	@Override
 	protected By getDisplayableElementSelector() {
-		return textBoxSearch;
+		return selectorTextBoxSearch;
 	}
 	
 	@Override
@@ -24,10 +24,11 @@ public class ThaiSummaryPage extends MyThaiStarBasePage {
 	
 	public void orderMenu(String bookingId) {
 		WebDriverWait driverWait = new WebDriverWait(getDriver(), 10);
-		WebElement textBox = getDriver().findElementDynamic(textBoxSearch);
-		WebElement checkBox = getDriver().findElementDynamic(checkBoxSearch);
-		WebElement acceptButton = getDriver().findElementDynamic(acceptButtonSearch);
-		Utils.sendKeysWithCheck(bookingId, textBoxSearch, getDriver(), getWebDriverWait());
+		WebElement textBox = getDriver().findElementDynamic(selectorTextBoxSearch);
+		WebElement checkBox = getDriver().findElementDynamic(selectorCheckBoxSearch);
+		WebElement acceptButton = getDriver().findElementDynamic(selectorAcceptButtonSearch);
+		
+		Utils.sendKeysWithCheck(bookingId, selectorTextBoxSearch, getDriver(), getWebDriverWait());
 		
 		checkBox.click();
 		acceptButton.click();

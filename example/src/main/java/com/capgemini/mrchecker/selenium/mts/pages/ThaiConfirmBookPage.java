@@ -4,12 +4,12 @@ import org.openqa.selenium.By;
 
 public class ThaiConfirmBookPage extends MyThaiStarBasePage {
 	
-	private static final By	confirmationDialogSearch	= By.className("mat-dialog-container");
-	private static final By	sendButtonSearch			= By.name("bookTableConfirm");
+	private static final By	selectorConfirmationDialogSearch	= By.className("mat-dialog-container");
+	private static final By	selectorSendButtonSearch			= By.name("bookTableConfirm");
 	
 	@Override
 	protected By getDisplayableElementSelector() {
-		return confirmationDialogSearch;
+		return selectorConfirmationDialogSearch;
 	}
 	
 	@Override
@@ -18,7 +18,7 @@ public class ThaiConfirmBookPage extends MyThaiStarBasePage {
 	}
 	
 	public void confirmBookingData() {
-		getDriver().findElementDynamic(sendButtonSearch)
+		getDriver().findElementDynamic(selectorSendButtonSearch)
 				.click();
 	}
 }

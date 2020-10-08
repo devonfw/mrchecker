@@ -64,7 +64,7 @@ public class BookingSteps {
 	@Step("The table is successfully booked")
 	@Then("^The table is successfully booked$")
 	public void tableSuccessfullyBooked() {
-		assertTrue(bookingPage.isSuccessMessageShown());
+		assertTrue("Expected success message is not displayed", bookingPage.isSuccessMessageShown());
 	}
 	
 	@Step("I change {attribute} to \"{value}\"")

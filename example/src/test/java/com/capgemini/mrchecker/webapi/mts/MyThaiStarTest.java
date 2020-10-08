@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import com.capgemini.mrchecker.common.allure.utils.StepLogger;
 import com.capgemini.mrchecker.common.mts.data.User;
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
@@ -62,5 +63,7 @@ public class MyThaiStarTest extends BaseTest {
 		Response response = tablePage.getTableById(tableId);
 		
 		assertThat(response.getStatusCode(), is(equalTo(expected)));
+		StepLogger.stepInfo("Received expected status code: " + expected);
+		
 	}
 }

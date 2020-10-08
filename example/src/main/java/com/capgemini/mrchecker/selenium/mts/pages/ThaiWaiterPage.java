@@ -6,8 +6,8 @@ import com.capgemini.mrchecker.test.core.utils.PageFactory;
 
 public class ThaiWaiterPage extends MyThaiStarBasePage {
 	
-	private static final By	ordersTabSearch			= By.xpath("//a[@routerlink='/orders']");
-	private static final By	reservationsTabSearch	= By.xpath("//a[@routerlink='/reservations']");
+	private static final By	selectorOrdersTabSearch			= By.xpath("//a[@routerlink='/orders']");
+	private static final By	selectorReservationsTabSearch	= By.xpath("//a[@routerlink='/reservations']");
 	
 	@Override
 	public boolean isLoaded() {
@@ -28,7 +28,7 @@ public class ThaiWaiterPage extends MyThaiStarBasePage {
 	}
 	
 	public ThaiOrdersPage switchToOrders() {
-		getDriver().findElementDynamic(ordersTabSearch)
+		getDriver().findElementDynamic(selectorOrdersTabSearch)
 				.click();
 		
 		return PageFactory.getPageInstance(ThaiOrdersPage.class);
@@ -41,7 +41,7 @@ public class ThaiWaiterPage extends MyThaiStarBasePage {
 	 */
 	public ThaiReservationsPage switchToReservations() {
 		
-		getDriver().findElementDynamic(reservationsTabSearch)
+		getDriver().findElementDynamic(selectorReservationsTabSearch)
 				.click();
 		
 		return PageFactory.getPageInstance(ThaiReservationsPage.class);
