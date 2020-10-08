@@ -1,7 +1,7 @@
 package com.capgemini.mrchecker.webapi.httpbin;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;

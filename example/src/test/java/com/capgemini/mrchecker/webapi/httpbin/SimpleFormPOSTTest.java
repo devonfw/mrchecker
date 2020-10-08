@@ -1,8 +1,11 @@
 package com.capgemini.mrchecker.webapi.httpbin;
 
 import static com.capgemini.mrchecker.webapi.core.utils.RegexMatcher.matches;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 import java.util.List;
 import java.util.Map;

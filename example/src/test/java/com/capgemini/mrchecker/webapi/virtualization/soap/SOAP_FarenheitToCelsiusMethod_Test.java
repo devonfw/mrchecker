@@ -1,7 +1,7 @@
 package com.capgemini.mrchecker.webapi.virtualization.soap;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 
