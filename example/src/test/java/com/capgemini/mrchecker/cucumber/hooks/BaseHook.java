@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -12,11 +13,11 @@ import org.junit.jupiter.api.extension.TestInstances;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.TestExecutionObserver;
-import com.capgemini.mrchecker.test.core.logger.BFLogger;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 
 public class BaseHook {
 	
@@ -53,15 +54,18 @@ public class BaseHook {
 	@Before(order = 0)
 	public void setup(Scenario scenario) {
 		context.setDisplayName(scenario.getName());
-		BFLogger.logInfo("Starting Scenario: \"" + context.getDisplayName() + "\"");
-		
+		Allure.suite(getFeatureFileNameFromId(scenario.getId()));
 		TestExecutionObserver.getInstance()
 				.beforeTestExecution(context);
 	}
 	
+	private static String getFeatureFileNameFromId(String id) {
+		id = id.substring(id.lastIndexOf("/") + 1);
+		return id.substring(0, id.indexOf("."));
+	}
+	
 	@After(order = Integer.MAX_VALUE)
 	public void tearDown(Scenario scenario) {
-		context.setDisplayName(scenario.getName());
 		TestExecutionObserver.getInstance()
 				.afterTestExecution(context);
 		if (scenario.isFailed()) {
@@ -71,9 +75,6 @@ public class BaseHook {
 			TestExecutionObserver.getInstance()
 					.testSuccessful(context);
 		}
-		BFLogger.logInfo(String.format("Ending Scenario: \"%s\"", scenario.getName()) + " result: " +
-				(scenario.isFailed() ? "FAILED" : "PASSED"));
-		
 	}
 	
 	private static class CucumberExtensionContext implements ExtensionContext {
@@ -159,6 +160,12 @@ public class BaseHook {
 		
 		@Override
 		public Store getStore(Namespace namespace) {
+			return null;
+		}
+		
+		@Override
+		public <T> Optional<T> getConfigurationParameter(String key, Function<String, T> transformer) {
+			// TODO Auto-generated method stub
 			return null;
 		}
 	}

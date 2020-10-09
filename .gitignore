@@ -25,6 +25,7 @@
 **/geckodriver/
 **/allure-framework-modules
 **/allure-app-under-test
+**/${project.build.directory}/*
 
 # Compiled source #
 ###################
