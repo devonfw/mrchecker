@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -159,6 +160,12 @@ public class BaseHook {
 		
 		@Override
 		public Store getStore(Namespace namespace) {
+			return null;
+		}
+		
+		@Override
+		public <T> Optional<T> getConfigurationParameter(String key, Function<String, T> transformer) {
+			// TODO Auto-generated method stub
 			return null;
 		}
 	}
