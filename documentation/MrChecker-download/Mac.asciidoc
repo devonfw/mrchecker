@@ -9,6 +9,7 @@ ifdef::env-github[]
 endif::[]
 
 toc::[]
+:imagesdir: MrChecker-download
 :idprefix:
 :idseparator: -
 :reproducible:
