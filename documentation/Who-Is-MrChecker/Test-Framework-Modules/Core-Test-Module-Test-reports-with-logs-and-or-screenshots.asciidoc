@@ -1,6 +1,6 @@
 = Allure Logger -> BFLogger
 
-In Allure E2E Test Framework you have ability to use and log any additional information crucial either for:
+In Allure E2E Test Framework you have ability to use and log any additional information crucial for:
 
 * test steps
 * test exection
@@ -8,12 +8,12 @@ In Allure E2E Test Framework you have ability to use and log any additional info
 
 == Where to find saved logs
 
-Every logged information is saved in separate test file, as a result of use parallel tests execution.
+Every logged information is saved in a separate test file, as a result of parallel tests execution.
 
-Place where they are saved:
+The places they are saved:
 
 1. In test folder _C:\Allure_Test_Framework\allure-app-under-test\logs_
-2. In every Allure Test report, logs are always embedded as a attachment, according to test run.
+2. In every Allure Test report, logs are always embedded as an attachment, according to test run.
 
 == How to use logger:
 
@@ -43,7 +43,7 @@ Allure is a tool designed for test reports.
 
 === Generate report - command line
 
-You can generate a report using one of the following command:
+You can generate a report using one of the following commands:
 
 *Since mrchecker-core-module version 5.6.2.1:*
 
@@ -53,7 +53,7 @@ You can generate a report using one of the following command:
 
     mvn test allure:serve -Dtest=TS_Tag1
 
-Report will be generated into temp folder. Web server with results will start. You can additionally configure the server timeout. The default value is "3600" (one hour).
+A report will be generated into temp folder. Web server with results will start. You can additionally configure the server timeout. The default value is "3600" (one hour).
 
 System property allure.serve.timeout.
 
@@ -65,15 +65,15 @@ System property allure.serve.timeout.
 
     mvn test allure:report -Dtest=TS_Tag1
 
-Report will be generated tо directory: target/site/allure-maven/index.html
+A report will be generated tо directory: target/site/allure-maven/index.html
 
-*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitation to present dynamic content. If you want to open report with Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
+*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
 === Generate report - Eclipse
 
-Report is created here _allure-app-under-test\target\site\allure-report\index.html_
+A report is created here _allure-app-under-test\target\site\allure-report\index.html_
 
-*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitation to present dynamic content. If you want to open report with Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
+*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
 image::images/image17.png[]
 
@@ -81,7 +81,7 @@ image::images/image18.png[]
 
 === Generate report - Jenkins
 
-In our case, we'll use the Allure Jenkins plugin. When integrating Allure in the Jenkins job configuration, we'll have direct access to the build's test report.
+In our case, we'll use the Allure Jenkins plugin. When integrating Allure in a Jenkins job configuration, we'll have direct access to the build's test report.
 
 image::images/image19.png[]
 
@@ -96,15 +96,15 @@ Afterwards you'll be greeted with either the general Allure Dashboard (showing t
 
 image::images/image20.png[]
 
-The Dashboard provides a graphical overview on how many test cases were successful, failed or are broken.
+The Dashboard provides a graphical overview on how many test cases were successful, failed or broken.
 
 * *Passed* means, that the test case was executed successfully.
-* *Broken* means, that there were mistakes inside of the test method or test class. As tests are being treated as code, broken code has to be expected, resulting in occasionally broken test results.
+* *Broken* means, that there were mistakes, usually inside of the test method or test class. As tests are being treated as code, broken code has to be expected, resulting in occasionally broken test results.
 * *Failed* means that an assertion failed.
 
 == Defects
 
-The defects tab lists out all the defects that occurred, including a description. Clicking on a list item displays the test case which resulted in an error. Again, clicking on the test case allows the user to have a look at the test case steps, as well as Log files or Screenshots of the failure.
+The defects tab lists out all the defects that occurred, and also descriptions thereof. Clicking on a list item displays the test case which resulted in an error. Clicking on a test case allows the user to have a look at the test case steps, as well as Log files or Screenshots of the failure.
 
 == Graph
 

@@ -44,7 +44,7 @@
 * link:Who-Is-MrChecker/Test-Framework-Modules/Mobile-Test-Module/Mobile-Test-Module-How-to-use.asciidoc[How to use]
 
 === link:Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module.asciidoc[DevOps Test Module]
-* link:Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[Continuaus Intergation (CI)]
+* link:Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[Continuous Intergation (CI)]
 * link:Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[Continuous Delivery (CD)]
 * link:Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Pipeline-structure.asciidoc[Pipeline structure]
 * link:Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Selenium-Grid.asciidoc[Selenium grid]
@@ -90,7 +90,7 @@
 * link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Page-objects.asciidoc[Paje Object]
 * link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Environment-variables.asciidoc[Environment variables]
 * link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Selectors.asciidoc[Selectors]
-* link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Elements-Types.asciidoc[Elements Types]
+* link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Elements-Types.asciidoc[Element Types]
 * link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/The-Internet-Base-Test.asciidoc[The Internet base test]
 * link:Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/BFLogger.asciidoc[BFLogger]
 

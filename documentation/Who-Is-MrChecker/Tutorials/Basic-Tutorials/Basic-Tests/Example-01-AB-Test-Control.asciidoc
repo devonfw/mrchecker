@@ -13,7 +13,7 @@ image::images/example2.png[]
 
 ===== Page Class 
 
-Create a Page class for AB Testing page. Override all required methods:
+Create a Page class for AB Testing page. Override all the required methods:
 
 ----
  public class ABtestPage extends BasePage {
@@ -42,7 +42,7 @@ Create a Page class for AB Testing page. Override all required methods:
  
 ===== How to use Enum?
  
-Similarly, as in environmental variables case create an enum for storing values of subURLs: 
+Similarly as in environmental variables case, create an enum for storing values of subURLs: 
  
 ----
  public enum PageSubURLsProjectYEnum {
@@ -90,7 +90,7 @@ Similarly, as in environmental variables case create an enum for storing values 
     WYSIWYGEDITOR("tinymce");
 
     /*
-     * Sub URLs are used as real locations in test environment
+     * Sub URLs are used as real locations in the test environment
      */
     private String subURL;
 
@@ -155,7 +155,7 @@ You need two methods for performing page actions:
  
 ==== Elemental Selenium Page Class
  
-To return new Elemental Selenium Page object implement its class. You only need to write basic methods to check if the page is loaded. There is no need to interact with objects on the site:
+To return new Elemental Selenium Page object, implement its class. You only need to write basic methods to check if the page is loaded. There is no need to interact with objects on the site:
  
 ----
  public class ElementalSeleniumPage extends BasePage {
@@ -209,7 +209,7 @@ public class ABtestingTest extends TheInternetBaseTest {
 
 ==== Assert
 
-asserts methods are used for creating test passing or failure conditions. The optional first parameter is a message which will be displayed in the test failure description. 
+Asserts methods are used for creating test pass or fail conditions. The optional first parameter is a message which will be displayed in the test failure description. 
 
 * assertTrue(boolean condition) - test passes if condition returns true 
 * assertFalse(boolean condition) - test passes if condition returns false 
@@ -225,11 +225,11 @@ Also, add the @BeforeClass method to open the tested page:
     }
 ----
  
-@BeforeClass method executes only once before all 
-@Test cases in the class. The is also a possibility to create a 
+@BeforeClass method executes only once before all other 
+@Test cases in the class. There is also a possibility to create a 
 @AfterClass method which is performed also once after all @Test cases. 
 
-You don't need to implement @setUp and @tearDown methods because they're already in TheInternetBaseTest class which you extends. 
+You don't need to implement @setUp and @tearDown methods because they're already in TheInternetBaseTest class which you extend. 
 
 ==== Categories
 
@@ -258,7 +258,7 @@ public class _TestSuiteChrome {
 }
 ----
 
-You can run Test Suite as JUnit test. 
+You can run a Test Suite as a JUnit test. 
 
 
 

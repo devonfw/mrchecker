@@ -1,6 +1,6 @@
 = What is Docker
 
-Docker - open source software platform to create, deploy and manage virtualized application containers on a common operating system (OS), with an ecosystem of allied tools.
+Docker is an open source software platform to create, deploy and manage virtualized application containers on a common operating system (OS), with an ecosystem of allied tools.
 
 = Where do we use Docker
 
@@ -11,11 +11,11 @@ DevOps module consists of Docker images
 3. Jenkins management image
 4. Security image
 
-in addition, each new node is also based on the Docker
+in addition, each new node is also based on Docker
 
 = Exploring basic Docker options
 
-Let’s expose some of the most important commands that are needed when working with our DevOps module based on the Docker platform. Each command given below should be preceded by a sudo call by default. If you don’t want to use `sudo` command create a Unix group called docker and add user to it.
+Let’s show some of the most important commands that are needed when working with our DevOps module based on the Docker platform. Each command given below should be preceded by a sudo call by default. If you don’t want to use `sudo` command create a Unix group called docker and add a user to it.
 
 ----
 $ sudo groupadd docker
@@ -80,7 +80,7 @@ $ docker pull jenkins/jenkins:2.73.1
 
 == Push the image or a repository to a registry
 
-Pushing new image takes place in two steps. First save image by adding container ID to commit command and next use push:
+Pushing new image takes place in two steps. First save the image by adding container ID to the commit command and next use push:
 
 ----
 # docker push [OPTIONS] NAME[:TAG]

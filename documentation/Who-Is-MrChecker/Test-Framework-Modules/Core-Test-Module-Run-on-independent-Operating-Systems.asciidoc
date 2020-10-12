@@ -19,4 +19,4 @@ Test creation and maintenance in _E2E Allure test framework_ can be done with an
 * IntelliJ,
 * WebStorm,
 * Visual Studio Code,
-* many more support Java + Maven.
+* many more that support Java + Maven.

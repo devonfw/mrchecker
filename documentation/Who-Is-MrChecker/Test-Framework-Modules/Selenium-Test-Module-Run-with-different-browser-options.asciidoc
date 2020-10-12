@@ -1,6 +1,6 @@
 = Browser options
 
-To run browser with specific options during runtime, please use
+To run a browser with specific options during runtime, please use
 
 _-DbrowserOptions="< options >"_
 

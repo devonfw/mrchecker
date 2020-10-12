@@ -1,23 +1,23 @@
-= Start virtual server
+= Start a virtual server
 
-The following picture presents process of executing Smoke Tests in virtualized environment:
+The following picture presents the process of executing Smoke Tests in a virtualized environment:
 
 image::images/image78.png[]
 
 == Install docker service
 
-If docker is not actually installed on machine (this should be checked during C2C creation) then install docker, docker-compose, apache2-utils, openssl (You can use *script* to install docker & docker-compose OR refer to this *post* and add Alias for this machine <C2C_Alias_Name>):
+If docker is not already installed on machine (this should be checked during C2C creation), install docker, docker-compose, apache2-utils, openssl (You can use *script* to install docker & docker-compose OR refer to this *post* and add Alias for this machine <C2C_Alias_Name>):
 
 * run the script
 * sudo apt-get install -y apache2-utils
 
-== Build docker image
+== Build a docker image
 
 *Dockerfile:*
 
 ----
 FROM docker.xxx.com/ubuntu:16.04
-MAINTAINER Maintainer Name "maintainer@email.adress"
+MAINTAINER Maintainer Name "maintainer@email.address"
 LABEL name=ubuntu_java \
            version=v1-8.0 \
            base="ubuntu:16.04" \
@@ -26,7 +26,7 @@ LABEL name=ubuntu_java \
            wiremock="2.14.0" \
            description="Docker to use with Ubuntu, JAVA and WIREMOCK "
 
-# Update and install needed applications
+# Update and install the applications needed
 COPY 80proxy /etc/apt/apt.conf.d/80proxy
 RUN apt-get update
 RUN apt-get install -y \
@@ -66,7 +66,7 @@ WORKDIR /App
 CDM java -jar /app/wiremock-standalone-2.14.0.jar
 ----
 
-To build docker image and push it to repository execute following steps with specified version:
+Execute the following steps with a specified version to build a docker image and push it to the repository :
 
 ----
 ## Build image
@@ -79,7 +79,7 @@ sudo docker push docker.xxx.com/app/build/wiremock:v2.14.0.
 
 == Run docker image
 
-To run docker image execute following command:
+To run a docker image, execute the following command:
 
     sudo docker run -td -p 8080:8080 -v /home/wiremock/repo/app/docker/QA/mappings:/app/mappings -v /home/wiremock/repo/app/docker/QA/__files:/app/__files --restart always docker.xxx.com/app/build/wiremock:v2.14.0.
 
@@ -87,109 +87,112 @@ Where:
 
 *-p* - publish a container’s port to the host
 
-*-v* - bind mount a volume. WireMock server creates two directories under the current one: mappings and __files. It is needed to mount directories with already created mappings and responses to make it working.
+*-v* - bind mount a volume. WireMock server creates two directories under the current one: mappings and __files. It is necessary to mount directories with already created mappings and responses to make it work.
 
 *-restart always* - restart policy to apply when a container exists
 
-All of run parameters are described in: https://docs.docker.com/engine/reference/run/[official docker documentation]
+All of the parameters are described in: https://docs.docker.com/engine/reference/run/[official docker documentation]
 
 = Map requests with virtual assets
 
 *What is WireMock?*
 
-WireMock is an HTTP mock server. At its core it is web server that can be primed to serve canned responses to particular requests (stubing) and that captures incoming requests so that they can be checked later (verification). It also has an assortment of other useful features including record/playback of interactions with other APIs, injection of faults and delays, simulation of stateful behaviour.
+WireMock is an HTTP mock server. At its core it is a web server that can be primed to serve canned responses to particular requests (stubing) and that captures incoming requests so that they can be checked later (verification). It also has an assortment of other useful features including record/playback of interactions with other APIs, injection of faults and delays, simulation of stateful behaviour.
 
-Full documentation can be found under following link: http://wiremock.org/docs[WireMock]
+Full documentation can be found under the following link: http://wiremock.org/docs[WireMock]
 
 == Record / create virtual assets mappings
 
 *Record*
 
-WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to "record" stub mappings from interaction with existing APIs.
+WireMock can create stub mappings from requests it has received. Combined with its proxying feature, this allows you to "record" stub mappings from interaction with existing APIs.
 
 Record and playback (Legacy): http://wiremock.org/docs/record-playback-legacy/[documentation]
 
     java -jar wiremock-standalone-2.16.0.jar --proxy-all="http://search.twitter.com" --record-mappings --verbose
 
-Once it’s started and request is sent to it then it will be redirected to "http://search.twitter.com" and traffic (response) is saved to files in mappings and __files directories for futher use.
+Once it’s started and request is sent to it, it will be redirected to "http://search.twitter.com" and traffic (response) is saved to files in mappings and __files directories for further use.
 
 Record and playback (New): http://wiremock.org/docs/record-playback/[documentation]
 
-== Enable mappings in virtual server
+== Enable mappings in a virtual server
 
-When the WireMock server starts it creates two directories uder the current one: mappings and __files. To create a stub it is needed to drop a file with a .son extension under mappings.
+When the WireMock server starts, it creates two directories under the current one: mappings and __files. To create a stub, it is necessary to drop a file with a .json extension under mappings.
 
 *Run docker with mounted volumes*
 
-Mappings are in repository. It is needed to mount directories with already created mappings and responses to make it working:
+Mappings are in a repository. It is necessary to mount directories with already created mappings and responses to make it work:
 
     sudo docker run -td -p 8080:8080 -v /home/wiremock/repo/app/docker/QA/mappings:/app/mappings -v /home/wiremock/repo/app/docker/QA/__files:/app/__files --restart always docker.xxx.com/app/build/wiremock:v2.14.0.
 
-Description of how to build and run docker is available in: https://docs.docker.com/engine/reference/run/[Docker run command description]
+The description of how to build and run docker is available under: https://docs.docker.com/engine/reference/run/[Docker run command description]
 
 *Recorded mappings*
 
-Rrecorded mappings are in the project repository.
+Recorded mappings are kept in the project repository.
 
-== Create user and map him to docker user
+== Create a user and map them to docker user
 
-To Enable connection from Jenkins to Virtual Server (C2C) it is needed to create user and map him to docker group user. It can be done using following command:
+To enable the connection from Jenkins to Virtual Server (C2C), it is necessary to create a user and map them to docker group user. It can be done using the following command:
 
     adduser -G docker -m wiremock
 
-To set the password for wiremock user:
+To set the password for a wiremock user:
 
     passwd wiremock
 
-== Create SSH private and public keys for wiremock user
+== Create SSH private and public keys for a wiremock user
 
-SSH keys serve as a means of identifying yourself to an SSH server using https://en.wikipedia.org/wiki/Public-key_cryptography[public-key cryptography] and https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication[challenge-response authentication]. One Immediate advantage this method has over traditional password is that you can be authenticated by the server without ever having to send your password over the network.
+SSH keys serve as a means of identifying yourself to an SSH server using https://en.wikipedia.org/wiki/Public-key_cryptography[public-key cryptography] and https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication[challenge-response authentication]. One immediate advantage this method has over traditional password is that you can be authenticated by the server without ever having to send your password over the network.
 
-To create SSH key, log in as wiremock (previously created user).
+To create an SSH key, log in as wiremock (previously created user).
 
     su wiremock
 
-The .ssh directory is not by default created below user home directody. So, it is needed to create it:
+The .ssh directory is not by default created below user home directory. Therefore, it is necessary to create it:
 
     mkdir ~/.ssh
 
-Now we can proceed with creating RSA key using ssh-keygen (tool for creating new authentication key pairs for SSH):
+Now we can proceed with creating an RSA key using ssh-keygen (a tool for creating new authentication key pairs for SSH):
 
     ssh-keygen -t rsa
 
-Key should be created under /.ssh/id_rsa Appending the public keys to authorized_keys:
+A key should be created under /.ssh/id_rsa 
+Appending the public keys to authorized_keys:
 
     wiremock@vc2crptXXXXXXXn:~/ssh$ cat id_rsa.pub >> authorized_keys
 
-== Install SSH key in Jenkins
+== Install an SSH key in Jenkins
 
-To add ssh key to Jenkins go to credentials in location with your job. Choose Folder within credentials. Then 'global credentials'. And 'Add credentials'. Fill the fields. And finally entry should be created.
+To add an SSH key to Jenkins, go to credentials in your job location. Choose the folder within credentials, then 'global credentials', 'Add credentials'. Fill in the fields. Finally, the entry should be created.
 
-== Build Jenkins Groovy script
+== Build a Jenkins Groovy script
 
-Description of how to use SSH Agent plugin in Jenkins pipeline can be found under: https://www.karthikeyan.tech/2017/09/ssh-agent-blue-ocean-via-jenkins.html
+The description of how to use SSH Agent plugin in Jenkins pipeline can be found under: https://www.karthikeyan.tech/2017/09/ssh-agent-blue-ocean-via-jenkins.html
 
 Example of use:
 
 ----
 sshagent (credentials: [env.WIREMOCK_CREDENTIALS]) {
      sh """
-         ssh -T -o StrictHostKeyChecking=no -l ${env.WIREMOCK_USERNAME} ${env.WIREMOCK_IP_ADRESS} "docker container restart ${env.WIREMOCK_CONTAINER_NAME}"
+         ssh -T -o StrictHostKeyChecking=no -l ${env.WIREMOCK_USERNAME} ${env.WIREMOCK_IP_ADDRESS} "docker container restart ${env.WIREMOCK_CONTAINER_NAME}"
      """
 }
 ----
 
-Where: env.WIREMOCK_CREDENTIALS is a credential id of previously created wiremock credentials. Now as it is presented we can execute commands on remote machine, where in ssh command: env.WIREMOCK_USERNAME - user name of user connected with configured private key env.WIREMOCK_IP_ADRESS - ip address of machine where this user with this private key exists
+Where: env.WIREMOCK_CREDENTIALS is a credential id of previously created wiremock credentials. Now that it is present, we can execute commands on a remote machine, where in ssh command: 
+env.WIREMOCK_USERNAME - user name of user connected with configured private key 
+env.WIREMOCK_IP_ADDRESS - ip address of the machine where this user with this private key exists
 
 == Pull repository with virtual assets
 
-To pull the repository on remote kacine it is needed to use previously described SSH Agent plugin Example of use:
+To pull the repository on a remote machine, it is necessary to use the previously described SSH Agent plugin. An example of use:
 
 ----
 sshagent (credentials: [env.WIREMOCK_CREDENTIALS]) {
 withCredentials([usernamePassword(credentialsId: end.STASH_CREDENTIALS, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
      sh """
-         ssh -T -o StrictHostKeyChecking=no -l ${env.WIREMOCK_USERNAME} ${env.WIREMOCK_IP_ADRESS} "cd ~/${env.APPLICATION_DIRECTORY_WIREMOCK}/${env.PROJET_HOME}; git fetch https://&USER:$PASS@${env.GIT_WITHOUT_HTTPS} ${env.GIT_BRANCH}; git reset --hard FETCH_HEAD; git clean -df"
+         ssh -T -o StrictHostKeyChecking=no -l ${env.WIREMOCK_USERNAME} ${env.WIREMOCK_IP_ADDRESS} "cd ~/${env.APPLICATION_DIRECTORY_WIREMOCK}/${env.PROJET_HOME}; git fetch https://&USER:$PASS@${env.GIT_WITHOUT_HTTPS} ${env.GIT_BRANCH}; git reset --hard FETCH_HEAD; git clean -df"
       """
     }
 }
@@ -197,26 +200,26 @@ withCredentials([usernamePassword(credentialsId: end.STASH_CREDENTIALS, password
 
 Where:
 
-*withCredentials* allows various kinds of credentials (secrets) to be used in idiosyncratic ways. Each binding will define an environment variable active within the scope of the step. Then needed commands are executed:
+*withCredentials* allows various kinds of credentials (secrets) to be used in idiosyncratic ways. Each binding will define an environment variable active within the scope of the step. Then the necessary commands are executed:
 
-`cd …​` - command will change from current directory to specified directory with git repository
+`cd …​` - command will change from current directory to the specified directory with git repository
 
-`git fetch …​ ;git reset …​ ;git clean …​` - pull from GIT branch. Git pull or checkout are not used here to prevent situation with wrong coding between Mac OSX/Linux etc.
+`git fetch …​ ;git reset …​ ;git clean …​` - pull from GIT branch. Git pull or checkout are not used here to prevent the situation with wrong coding between Mac OSX/Linux etc.
 
-*PLEASE remember that when using this script for the first time code from previous block should be turned to:*
+*PLEASE remember that when using this script for the first time, the code from previous block should be changed to:*
 
 ----
 stage("ssh-agent"){
         sshagent (credentials: [env.WIREMOCK_CREDENTIALS]) {
             withCredentials([usernamePassword(credentialsId: end.STASH_CREDENTIALS, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                 sh """
-                        ssh -T -o StrictHostKeyChecking=no -l ${env.WIREMOCK_USERNAME} ${env.WIREMOCK_IP_ADRESS} "cd ~/${env.APPLICATION_DIRECTORY_WIREMOCK} ;git clone --depth=1 --branch=develop https://&USER:$PASS@${env.GIT_WITHOUT_HTTPS}"';
+                        ssh -T -o StrictHostKeyChecking=no -l ${env.WIREMOCK_USERNAME} ${env.WIREMOCK_IP_ADDRESS} "cd ~/${env.APPLICATION_DIRECTORY_WIREMOCK} ;git clone --depth=1 --branch=develop https://&USER:$PASS@${env.GIT_WITHOUT_HTTPS}"';
                 """
     }
 }
 ----
 
-= Install application with Smoke environment
+= Install an application with Smoke environment
 
 == Update properties settings file
 
@@ -235,15 +238,15 @@ New settings file is pushed to the repository. Example configuration:
 ...
 ----
 
-Adress of service (backend) should be changed to wiremock addres as it is shown on listing to change the default route.
+Address of service (backend) should be changed to wiremock address as it is shown on listing to change the default route.
 
-== Build application with updated properties file
+== Build an application with updated properties file
 
-New version of application are prepared by Jenkins job.
+New versions of application are prepared by Jenkins job.
 
-== Install application on target properties file
+== Install an application on target properties file
 
-Installation of application is actually executed in non-automated way using SeeTest environment.
+Installation of an application is actually executed in a non-automated way using SeeTest environment.
 
 = UI tests
 
@@ -252,7 +255,7 @@ Installation of application is actually executed in non-automated way using SeeT
 *Jenkinsfile:*
 
 ----
-// Jenkins parameters are overriding below properties
+// Jenkins parameters are overriding the properties below
 def properties = [
 
           JENKINS_LABELS                                 : 'PWI_LINUX_DEV',
@@ -263,7 +266,7 @@ def properties = [
           WIREMOCK_CREDENTIALS                           : 'vc2crptXXXXXXn',
           WIREMOCK_USERNAME                              : 'wiremock',
           WIREMOCK_ADDRESS                               : 'http://vc2crptXXXXXXn.xxx.com:8080',
-          WIREMOCK_IP_ADRESS                             : '10.196.67.XXX',
+          WIREMOCK_IP_ADDRESS                            : '10.196.67.XXX',
           WIREMOCK_CONTAINER_NAME                        : 'wiremock',
           APPLICATION_DIRECTORY_WIREMOCK                 : 'repo',
 
@@ -558,7 +561,7 @@ return this
 
 *Configuration*
 
-It is possible to configure Jenkins job in two ways. First one is to edit Jenkinsfile. All of the properties are in properties collection as below:
+It is possible to configure Jenkins job in two ways. First one is to edit the Jenkinsfile. All of the properties are in properties collection as below:
 
 ----
 def properties = [
@@ -581,8 +584,8 @@ def properties = [
 ]
 ----
 
-Second one is to add properties in 'Configure job'. All of there properties are overriding properties from Jenkinsfile (have biggest priority). Then it can be set durring 'Build with Paremeters' process.
+Second way is to add properties in 'Configure job'. All of the properties there are overriding properties from Jenkinsfile (the have the highest priority). They can then be set durring 'Build with Paremeters' process.
 
 *Reports*
 
-After job execution 'Allure report' and 'Cucumber-JVM' reports should be visible. If any tests fails You can check on which screen (printscreen from failures is attached, why and etc.)
+After a job execution 'Allure report' and 'Cucumber-JVM' reports should be visible. If any tests fail, You can check on which screen (printscreen from failures is attached, why and etc.)

@@ -4,7 +4,7 @@ image::images/image22.png[]
 
 == Regresion Suite:
 
-Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[software testing] which verifies that software which was previously developed and tested still performs the same way after it was changed or interfaced with other software.
+Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[software testing] which verifies that software which was previously developed and tested still performs the same way after it was changed or interfaced with another software.
 
 * https://en.wikipedia.org/wiki/Smoke_testing[Smoke]
 * Business vital functionalities
@@ -21,9 +21,9 @@ Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[s
 * Single page
 * Specific test case
 
-= How to build Test Suite based on tags
+= How to build a Test Suite based on tags
 
-== Structure of Test Suite
+== Structure of the Test Suite
 
 *Since mrchecker-core-module version 5.6.2.1:*
 
@@ -32,21 +32,21 @@ image::images/image23_new.png[]
 Where:
 
 * `@RunWith(JUnitPlatform.class)` - use Junit5 runner
-* `@IncludeTags({"TestsTag1"})` - search all test files with Tag `"TestsTag1"`
-* `@ExcludeTags({"TagToExclude"})` - at last exclude test files
+* `@IncludeTags({"TestsTag1"})` - search all test files with the tag `"TestsTag1"`
+* `@ExcludeTags({"TagToExclude"})` - exclude test files with the tag `"TagToExclude"`
 * `@SelectPackages("com.capgemini.mrchecker.core.groupTestCases.testCases")` - search only test files in `"com.capgemini.mrchecker.core.groupTestCases.testCases"` package
-* `public class TS_Tag1` - name of Test Suite "TS_Tag1"
+* `public class TS_Tag1` - the name of the Test Suite is "TS_Tag1"
 
-Most commonly used filter to build Test Suite is usage of:
+Most commonly used filters to build a Test Suite are ones using:
 
 * `@IncludeTags({ })`
 * `@ExcludeTags({ })`
 
 Example:
 
-1. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ })` -> will execute all test cases with tag `TestsTag1`
-2. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ "SlowTest" })` -> will execute all test cases with tag `"TestsTag1"` although it will exclude, from this list, test cases with tag `"SlowTest"`
-3. `@IncludeTags({ }) , @ExcludeTags({ "SlowTest" })` -> It will exclude test cases with tag `"SlowTest"`
+1. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ })` -> will execute all test cases with the tag `TestsTag1`
+2. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ "SlowTest" })` -> will execute all test cases with tag `"TestsTag1"` although it will exclude from this list the test cases with the tag `"SlowTest"`
+3. `@IncludeTags({ }) , @ExcludeTags({ "SlowTest" })` -> It will exclude test cases with the tag `"SlowTest"`
 
 *Prior to mrchecker-core-module version 5.6.2.1:*
 
@@ -55,21 +55,21 @@ image::images/image23.png[]
 Where:
 
 * `@RunWith(WildcardPatternSuiteBF.class)` - search for test files under `/src/test/java`
-* `@IncludeCategories({ TestsTag1.class })` - search all test files with Tag `"TestsTag1.class"`
-* `@ExcludeCategories({ })` - at last exclude test files. In this example, there is not exclusion
-* `@SuiteClasses({ "**/*Test.class" })` - search only test files, where file name ends with `"<anyChar/s>Test.class"`
-* `public class TS_Tag1` - name of Test Suite "TS_Tag1"
+* `@IncludeCategories({ TestsTag1.class })` - search for all test files with the tag `"TestsTag1.class"`
+* `@ExcludeCategories({ })` - exclude test files. In this example, there is no exclusion
+* `@SuiteClasses({ "**/*Test.class" })` - search only test files, where the file name ends with `"<anyChar/s>Test.class"`
+* `public class TS_Tag1` - the name of the Test Suite is "TS_Tag1"
 
-Most commonly used filter to build Test Suite is usage of:
+Most commonly used filters to build Test Suite are ones using:
 
 * `@IncludeCategories({ })`
 * `@ExcludeCategories({ })`
 
 Example:
 
-1. `@IncludeCategories({ TestsTag1.class }) , @ExcludeCategories({ })` -> will execute all test cases with tag `TestsTag1.class`
-2. `@IncludeCategories({ TestsTag1.class }) , @ExcludeCategories({ SlowTest.class })` -> will execute all test cases with tag `"TestsTag1.class"` although it will exclude, from this list, test cases with tag `"SlowTest.class"`
-3. `@IncludeCategories({ }) , @ExcludeCategories({ SlowTest.class })` -> will execute all test cases from `/src/test/java`, although it will exclude, from this list, test cases with tag `"SlowTest.class"`
+1. `@IncludeCategories({ TestsTag1.class }) , @ExcludeCategories({ })` -> will execute all test cases with the tag `TestsTag1.class`
+2. `@IncludeCategories({ TestsTag1.class }) , @ExcludeCategories({ SlowTest.class })` -> will execute all test cases with the tag `"TestsTag1.class"` although it will exclude from this list the test cases with the tag `"SlowTest.class"`
+3. `@IncludeCategories({ }) , @ExcludeCategories({ SlowTest.class })` -> will execute all test cases from `/src/test/java`, although it will exclude from this list the test cases with the tag `"SlowTest.class"`
 
 == Structure of Test Case
 
@@ -80,7 +80,7 @@ image::images/image24_new.png[]
 Where:
 
 * `@TestsTag1, @TestsSmoke, @TestsSelenium` - list of tags assigned to this test case - `"TestsTag1, TestsSmoke, TestSelenium"` annotations
-* `public class FristTest_tag1_Test` - name of test case `"FristTest_tag1_Test"`
+* `public class FristTest_tag1_Test` - the name of the test case is `"FristTest_tag1_Test"`
 
 
 *Prior to mrchecker-core-module version 5.6.2.1:*
@@ -90,7 +90,7 @@ image::images/image24.png[]
 Where:
 
 * `@Category({ TestsTag1.class, TestsSmoke.class, TestSelenium.class })` - list of tags / categories assigned to this test case - `"TestsTag1.class, TestsSmoke.class, TestSelenium.class"`
-* `public class FristTest_tag1_Test` - name of test case `"FristTest_tag1_Test"`
+* `public class FristTest_tag1_Test` - the name of the test case is `"FristTest_tag1_Test"`
 
 == Structure of Tags / Categories
 
@@ -125,7 +125,7 @@ image::images/image27.png[]
 
 = How to run Test Suite
 
-To run Test Suite you will do the same steps as you do to run test case
+To run a Test Suite you perform the same steps as you do to run a test case
 
 _Command line_
 

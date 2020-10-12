@@ -1,4 +1,4 @@
-This example shows how to test the page with dynamically loading content. Some elements don't load during page loading, but as a result, during JavaScript executing. 
+This example shows how to test a page with dynamically loading content. Some elements don't load during page loading, but  during JavaScript execution. 
 
 image::images/example23.png[]
 Go to Example 1: 
@@ -13,19 +13,19 @@ When loading ends, you should see the following message:
 
 image::images/example26.png[]
 
-In the developer mode, you can see that element with "Hello World!" message exists in page DOM but it's not displayed. However, the loading bar does not exist there; it's created by JavaScript. The script is also visible in developer mode: 
+In the developer mode, you can see that the element with the "Hello World!" message exists in page DOM but it's not displayed. However, the loading bar does not exist there - it's created by JavaScript. The script is also visible in developer mode: 
 
 image::images/example27.png[]
 
-After clicking the "Start" button, Element "Loading" is created by the script, and the "Start" button becomes invisible. When loading ends, "Hello World" message is being displayed and the loading bar is being hidden. Follow the changes the in developer mode: 
+After clicking the "Start" button, the element "Loading" is created by the script, and the "Start" button becomes invisible. When loading ends, "Hello World" message is  displayed and the loading bar is hidden. Follow the changes the in developer mode: 
 
 image::images/example28.png[]
 
 Go to example 2: 
-From a user perspective, there is no difference in page functioning. But in this case element with "Hello World!" message does not exist on the page before clicking "Start". Then it's created by the script. 
+From a user perspective, there is no difference in page functioning. However, in this case the element with the "Hello World!" message does not exist on the page before clicking "Start". It's created by the script. 
 
 image::images/example29.png[]
-After clicking "Start" element with the loading bar is been created. 
+After clicking "Start", the element with the loading bar is been created. 
 
 image::images/example30.png[]
 
@@ -111,7 +111,7 @@ public class DynamicLoadingPage extends BasePage {
     }
 
     /**
-     * Waits until WebElement representing waiting bar disappear and returns example text.
+     * Waits until WebElement representing waiting bar disappears and returns example text.
      *
      * @param waitTime The amount of time designated for waiting until waiting bar disappears.
      * @return String representing example's text.
@@ -127,8 +127,8 @@ public class DynamicLoadingPage extends BasePage {
     /**
      * Returns example text.
      * <p>
-     * Waits until WebElement representing waiting bar disappear. Then waits until example text will
-     * show up.
+     * Waits until WebElement representing waiting bar disappear. Then waits until example text 
+     * shows up.
      * And after that returns example text.
      * </p>
      *
@@ -156,14 +156,14 @@ This class performs waiting for actions using Selenium Web Driver:
 * WebDriverWait(WebDriver driver, long timeOutInSeconds) - constructor, first parameter takes WebDriver, in a second you can specify a timeout in seconds. 
 FluentWait method: 
 
-* until(Function<? super T, V> isTrue) - waits until condition function given as parameter returns expected value. If waiting time reaches timeout throws timeoutException. 
+* until(Function<? super T, V> isTrue) - waits until condition function given as parameter returns expected value. If waiting time reaches timeout, it throws timeoutException. 
 
-MrChecker implements various condition functions in class ExpectedConditions: 
+MrChecker implements various condition functions in the ExpectedConditions class : 
 
 * visibilityOfElementLocated(By selector) - returns WebElement if it's visible 
 * invisibilityOfElementLocated(By selector) - returns true if Element under given selector is invisible 
 
-WebDriver also has methods which waits for some conditions: 
+WebDriver also has methods which wait for some conditions: 
 
 * waitForElement(By selector)
 * waitForElementVisible(By selector) 
@@ -186,7 +186,7 @@ It's possible to write your own condition function e.g.:
     };
   }
 ----
-Or as lambda expression: 
+Or as a lambda expression: 
 ----
         WebDriverWait wait = new WebDriverWait(getDriver(), waitTime); 
         wait.until((WebDriver driver) -> {
@@ -210,7 +210,7 @@ Case 1 steps:
 4. Click Example 1 link and load site 
 5. Verify if the "Start" button is visible 
 6. Click "Start" 
-7. Wait for the loading bar to disappear and check if a displayed message is as expected 
+7. Wait for the loading bar to disappear and check if the displayed message is as it should be 
 8. Go back to Dynamic Loading page 
 
 Case 2 steps: 
@@ -220,7 +220,7 @@ Case 2 steps:
 3. Verify if the "Start" button is visible 
 4. Click "Start" 
 5. Wait for the loading bar to disappear
-6. Wait for the message to appear and check if it is as expected 
+6. Wait for the message to appear and check if it is as it should be 
 7. Go back to Dynamic Loading page 
 
 ----
@@ -290,4 +290,4 @@ public class DynamicLoadingTest extends TheInternetBaseTest {
 ----
 Perform both cases running Test Class as JUnit Test. 
 
-*BEWARE:* In this example, there is a visible loading bar signalizing that content is loading. But on many websites elements are created by scripts without clear communique. This may cause problems with test stability. When your tests aren't finding page elements try to add wait functions with a short timeout.  
+*WARNING:* In this example, there is a visible loading bar signalizing that content is loading.On many websites elements are created by scripts without clear communique. This may cause problems with test stability. When your tests aren't finding page elements, try to add wait functions with a short timeout.  

@@ -1,6 +1,6 @@
 = Continuous Integration
 
-Embrace quality with Continuous Integration while you produce test case/s.
+Embrace quality with Continuous Integration while you produce test case(s).
 
 == Overview
 
@@ -12,7 +12,7 @@ Using a clean Jenkins instance requires the installation of additional plugins. 
 +
 2. Use thre pre-configured custom Docker image provided by us
 +
-No more additional configurations is required (but optional) using this custom Docker image. Additionally, this Jenkins setup allows to be dynamically scaled across multiple machines and even the cloud (AWS, Azure, Google Cloud etc.).
+No more additional configuration is required (but optional) using this custom Docker image. Additionally, this Jenkins setup allows dynamical scaling across multiple machines and even cloud (AWS, Azure, Google Cloud etc.).
 
 == Jenkins Overview
 
@@ -20,11 +20,11 @@ Jenkins is an Open Source Continuous Integration Tool. It allows the user to cre
 
 === Jenking Configuration
 
-Tests created by using the testing framework can be easily implemented on a Jenkins instance. The following chapter will describe such a job configuration. If you’re running your own Jenkins instance you may have to install additional plugins listed on the page https://github.com/devonfw/devonfw-testing/wiki/jenkins-plugins[Jenkins Plugins] for a trouble-free integration of your tests.
+Tests created by using the testing framework can easily be implemented on a Jenkins instance. The following chapter will describe such a job configuration. If you’re running your own Jenkins instance, you may have to install additional plugins listed on the page https://github.com/devonfw/devonfw-testing/wiki/jenkins-plugins[Jenkins Plugins] for a trouble-free integration of your tests.
 
 ==== Initial Configuration
 
-The test job is configured as a so-called _parametrized_ job. This means, after starting the job, parameters can be specified, which will then be used in the build process. In this case, _branch_ and _testname_ will be expected when starting the job. These parameters specify which branch in the code repository should be checked out (possibly feature branch) and the name of the test, that should be executed.
+The test job is configured as a so-called _parameterized_ job. This means, after starting the job, parameters can be specified, which will then be used in the build process. In this case, _branch_ and _testname_ will be expected when starting the job. These parameters specify which branch in the code repository should be checked out (possibly feature branch) and the name of the test that should be executed.
 
 image::images/image79.png[]
 
@@ -62,8 +62,8 @@ image::images/image86.png[]
 
 == Using the Pre-Configured Custom Docker Image
 
-If you are starting a new Jenkins instance for your tests, we’d suggest to use the pre-configured Docker image. This image already contains all configurations and additional features.
+If you are starting a new Jenkins instance for your tests, we’d suggest using the pre-configured Docker image. This image already contains all the configurations and additional features.
 
-The configurations that are made are e.g. Plugins and Pre-Installed job setup samples. This way, you don’t have to set up the entire CI-Environment from ground up.
+The configurations are e.g. Plugins and Pre-Installed job setup samples. This way, you don’t have to set up the entire CI-Environment from the ground up.
 
-The additional features from this docker image allow the dynamic creation and deletion of Jenkins slaves, by creating Docker containers. Also, Cloud Solutions can be implemented to allow wide-spread load balancing.
+Additional features from this docker image allow dynamic creation and deletion of Jenkins slaves, by creating Docker containers. Also, Cloud Solutions can be implemented to allow wide-spread load balancing.

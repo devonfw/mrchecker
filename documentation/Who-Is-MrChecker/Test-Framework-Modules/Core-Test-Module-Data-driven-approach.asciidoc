@@ -6,7 +6,7 @@
 
 *Test case* - Categorize *functionality* and *severity*
 
-More information about data driven you can find here and here
+You can find more information about data driven  here and here
 
 There are a few ways to define parameters for tests.
 
@@ -49,7 +49,7 @@ image::images/image32_new.png[]
 
 *Prior to mrchecker-core-module version 5.6.2.1*
 
-Parameters that are passed into tests using the `@Parameters` annotation must be _Object[]_'s
+Parameters that are passed into tests using the `@Parameters` annotation must be _Object[]_s
 
 === In the annotation:
 
@@ -93,7 +93,7 @@ Tests use the annotation @CsvFileSource to inject CSVs file.
 @CsvFileSource(resources = "/datadriven/test.csv", numLinesToSkip = 1)
 ----
 
-A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma separated list.
+A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma-separated list.
 
 === Classic CSV
 
@@ -127,7 +127,7 @@ Tests use the annotation @FileParameters to inject CSVs file.
 @FileParameters("src/test/resources/datadriven/test.csv")
 ----
 
-A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma separated list.
+A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma-separated list.
 
 === Classic CSV
 

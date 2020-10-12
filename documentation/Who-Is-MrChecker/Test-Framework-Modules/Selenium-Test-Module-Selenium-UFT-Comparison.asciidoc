@@ -12,7 +12,7 @@
 |Language
 |VBScript
 |Same as Selenium
-|Supports several languages
+|Supports several languages.
 Java
 |Javascript
 
@@ -41,23 +41,23 @@ Java
 |Same as SE
 
 |Customizations
-|All is standard available
+|Only the available standard. No custimization 
 |Same as UFT
 |Lots of customizations possible
-|Less then SE
+|Fewer then SE
 
 |Framework
-|Needed
+|Needed.
 Exists in ATaaS
 |
-|Needed
+|Needed.
 Integration with Fitnesse, Cucumber, Gauche
 |No Framework. Limited capabilities of the tool.
 
 |Operating System support
 |Runs on Windows
 |Runs on Windows
-|Multiple OS support. With Grid: testing at multiple devices at same time
+|Multiple OS support. With Grid: testing on multiple devices at same time
 |Plugin for Firefox
 
 |*Application coverage*
@@ -69,14 +69,14 @@ Integration with Fitnesse, Cucumber, Gauche
 |Multiple browsers
 |In UFT 12.5 available
 |In 12.5 available
-|Multiple tests on multiple browser windows at once and faster support for new browser versions
-|Multiple tests on multiple browser windows at once and faster support for new browser versions
+|Multiple tests in multiple browser windows at once and faster support for new browser versions
+|Multiple tests in multiple browser windows at once and faster support for new browser versions
 
 |System Load
 |High system load (RAM & CPU usage)
-|Lower load then HP UFT?
-|Lower load then HP UFT
-|Lower load then HP UFT
+|Lower load than HP UFT?
+|Lower load than HP UFT
+|Lower load than HP UFT
 
 |ALM integration
 |With HP ALM – full integration
@@ -86,7 +86,7 @@ Not with ALM tool
 |Same as SE
 
 |Integration with other tools
-|A lot can be build, but many is already covered.
+|A lot can be built, but many are already covered.
 |More than UFT.
 |Freeware and can be integrated with different open source tools
 |Freeware and can be integrated with different open source tools
@@ -127,6 +127,6 @@ Not with ALM tool
 
 Bold for key differentiators.
 
-Projects choose also an available resources and the knowledge of that resource.
+Projects also choose an available resource and the knowledge of that resource.
 
-Both: Framework determines the quality of automation. Needs to set up by someone with experience with the tool
+Both: Framework determines the quality of automation. Needs to be set up by someone with experience with the tool

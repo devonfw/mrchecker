@@ -13,7 +13,7 @@ We would like to open the Google search engine, enter some search query and afte
 
 == Creating new packages
 
-We will need two new packages, one for the new page classes, the other one for our test classes.
+We will need two new packages, one for the new page classes, the other for our test classes.
 
 === Creating package for test classes
 
@@ -21,7 +21,7 @@ Open Eclipse, use the "Project Explorer" on the left to navigate to
 
 mrchecker-app-under-test → src/test/java -> com.example -> selenium.tests -> tests
 
-Right click on "tests", click on "New" -> New Package. We’ll the new package "com.example.selenium.tests.googleSearch".
+Right click on "tests", click on "New" -> New Package. We’ll name the new package "com.example.selenium.tests.googleSearch".
 
 image::images/image65.png[]
 
@@ -37,7 +37,7 @@ image::images/image66.png[]
 
 == Creating the test class
 
-The test class will contain the entire testing-routine. At first, we’ll create a new class inside of our newly created "googleSearch" package (under src/test/java) and call it "GoogleSearchTest".
+The test class will contain the entire testing-routine. At first, we’ll create a new class inside our newly created "googleSearch" package (under src/test/java) and call it "GoogleSearchTest".
 
 image::images/image67.png[]
 
@@ -71,11 +71,11 @@ public void setUp() {
 
 == Creating the GoogleSearchPage class
 
-We created a new field for the GoogleSearchPage class and instantiated an object in the setUp() method. As this class doesn’t exist yet, we’ll have to create it inside of the googleSearch page class package.
+We have created a new field for the GoogleSearchPage class and instantiated an object in the setUp() method. As this class doesn’t exist yet, we’ll have to create it inside the googleSearch page class package.
 
 image::images/image68.png[]
 
-We extend the GoogleSearchPage class with BasePage, import all necessary packages and include all required methods.
+We extend the BasePage class with GoogleSearchPage, import all necessary packages and include all the required methods.
 
 ----
 public class GoogleSearchPage extends BasePage {
@@ -143,7 +143,7 @@ public String pageTitle() {
 
 The method `isLoaded()` checks if the page was loaded by comparing the actual title with the expected title provided by the method `pageTitle()`. The `load()` method simply loads a given URL, in this case _http://google.com_.
 
-The completion of these methods finalizes our _GoogleSearchPage_ class. Now we still have to create the _GoogleResultPage_ class mentioned before. This page will deal with the elements on the Google search result page.
+The completion of these methods finalizes our _GoogleSearchPage_ class. We still have to create the _GoogleResultPage_ class mentioned before. This page will deal with the elements on the Google search result page.
 
 == Creating the GoogleResultPage class
 
@@ -151,7 +151,7 @@ By right-clicking on the "pages" package, we’ll navigate to "new" -> "Class" t
 
 image::images/image69.png[]
 
-The _GoogleResultPage_ class also has to extend _BasePage_ and include all required methods. Next, a new selector for the result list will be created. By using the result list, we can finally check if the result count is bigger than zero and the search request therefore was successful.
+The _GoogleResultPage_ class also has to extend _BasePage_ and include all required methods. Next, a new selector for the result list will be created. By using the result list, we can finally check if the result count is bigger than zero and thus, if the search request was successful.
 
 ----
 private static final By selectorResultList = By.cssSelector("#res");
@@ -190,9 +190,9 @@ public String getTitle() {
 }
 ----
 
-The method `isLoaded()` differs from the same method in _GoogleSearchPage_, because this site is being loaded as a result from a previous action. That’s why we’ll have to use the method `getDriver().waitForPageLoaded()` to be certain, that the page was loaded completely. Afterwards we check if the current URL contains the term "search", as it only occurs on the result page. This way we can check if we’re on the right page.
+The method `isLoaded()` differs from the same method in _GoogleSearchPage_, because this site is being loaded as a result from a previous action. That’s why we’ll have to use the method `getDriver().waitForPageLoaded()` to be certain that the page was loaded completely. Afterwards we check if the current URL contains the term "search", as it only occurs on the result page. This way we can check if we’re on the right page.
 
-Another result of this page being loaded by another object, we don’t have to load any specific URL. We just add a BFLogger instance to print an error message if the page was not successfully loaded.
+Another result of this page being loaded by another object is that we don’t have to load any specific URL. We just add a BFLogger instance to print an error message if the page was not successfully loaded.
 
 As we don’t use the `getTitle()` method we simply return an empty String.
 
@@ -220,7 +220,7 @@ public class GoogleSearchTest {
 }
 ----
 
-Next up, we’ll create the test method, let’s call it `shouldResultReturn()`.
+Next, we’ll create the test method, let’s call it `shouldResultReturn()`.
 
 ----
 @Test
@@ -237,8 +237,8 @@ We can run the test by right clicking on the test method -> Run as -> JUnit test
 
 image::images/image70.png[]
 
-After starting the test, you’ll notice a browser window opening, resizing to given dimensions, opening Google, entering the query "Test" and submitting the form. After completing the test, you’ll see the test results on the right side of Eclipse. A green color indicator means that the test was successful, red means the test failed.
+After starting the test, you’ll notice a browser window opening, resizing to given dimensions, opening Google, entering the query "Test" and submitting the form. After completing the test, you’ll see the test results on the right side of Eclipse. Green color indicator means that the test was successful, red means the test failed.
 
 image::images/image71.png[]
 
-This walkthrough should’ve provided you with the basic understanding on how the framework can be used to create test cases.
+This walkthrough should’ve provided you with basic understanding on how the framework can be used to create test cases.
