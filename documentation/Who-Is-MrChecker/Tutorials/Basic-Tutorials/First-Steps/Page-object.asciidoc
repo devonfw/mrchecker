@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps
 == Page Object
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/

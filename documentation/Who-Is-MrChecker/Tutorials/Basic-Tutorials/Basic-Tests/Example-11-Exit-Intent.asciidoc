@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests
 image::images/example32.png[]
 
 This case shows how to perform mouse actions and test modal windows. 

@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Run on independent Operation Systems
 
 As _E2E Allure test framework_ is build on top of:

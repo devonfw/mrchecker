@@ -1,3 +1,4 @@
+:imagesdir: FAQ/How-to
 = How to: Change timeouts?
 
 If you would like to change timeouts - you don't have to change them globally.

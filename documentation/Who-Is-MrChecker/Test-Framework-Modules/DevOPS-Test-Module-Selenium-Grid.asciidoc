@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Selenium Grid
 
 == What is Selenium Grid

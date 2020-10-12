@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests
 This example shows how to select an element from the dropdown list. 
 
 image::images/example16.png[]

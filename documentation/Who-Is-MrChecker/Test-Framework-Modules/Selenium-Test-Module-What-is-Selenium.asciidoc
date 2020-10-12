@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = What is Selenium
 
 Selenium is a framework for testing browser applications. The test automation supports:

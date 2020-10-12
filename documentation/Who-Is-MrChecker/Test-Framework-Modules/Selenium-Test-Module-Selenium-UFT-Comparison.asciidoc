@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Selenium UFT Comparison
 
 [cols=5*,options=header]

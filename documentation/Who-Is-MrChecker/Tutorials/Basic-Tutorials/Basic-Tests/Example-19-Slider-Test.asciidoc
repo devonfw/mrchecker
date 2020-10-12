@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests
 image::images/example52.png[]
 
 This case shows how to move horizontal slider.

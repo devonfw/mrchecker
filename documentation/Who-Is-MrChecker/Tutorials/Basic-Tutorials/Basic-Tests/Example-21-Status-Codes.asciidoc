@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests
 image::images/example56.png[]
 
 This example shows how to process HTTP status codes returned by page

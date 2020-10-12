@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Basic Web elements
 
 This page will provide an overview of basic web elements.

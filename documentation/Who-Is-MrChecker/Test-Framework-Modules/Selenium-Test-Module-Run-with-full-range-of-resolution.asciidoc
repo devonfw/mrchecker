@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Run with full range of resolution
 
 image::images/image62.png[]

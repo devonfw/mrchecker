@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Allure Logger -> BFLogger
 
 In Allure E2E Test Framework you have ability to use and log any additional information crucial for:

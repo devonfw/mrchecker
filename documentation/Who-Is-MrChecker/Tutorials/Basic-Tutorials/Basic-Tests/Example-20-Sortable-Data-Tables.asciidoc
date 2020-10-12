@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests
 image::images/example54.png[]
 
 This example shows how to sort and read data from tables.
