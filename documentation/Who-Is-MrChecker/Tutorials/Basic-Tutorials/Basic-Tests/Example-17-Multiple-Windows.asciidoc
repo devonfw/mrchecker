@@ -47,7 +47,7 @@ public class MultipleWindowsPage extends BasePage {
 }
 ----
 
-You also need second page class for New Window Page. Implement only required methods.
+You also need a second page class for New Window Page. Implement only the required methods.
 
 ----
 public class NewWindowPage extends BasePage {
@@ -104,7 +104,7 @@ public class MultipleWindowsTest extends TheInternetBaseTest {
         newWindowPage = multipleWindowsPage.clickHereLink();
         
         logStep("Verify if 'New window page' is opened");
-        assertTrue("Unable to open new browser's window", newWindowPage.isLoaded());
+        assertTrue("Unable to open a new browser window", newWindowPage.isLoaded());
     }
 }
 ----

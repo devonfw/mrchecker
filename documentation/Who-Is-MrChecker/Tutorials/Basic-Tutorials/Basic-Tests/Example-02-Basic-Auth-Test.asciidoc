@@ -8,7 +8,7 @@ Steps:
 2. Click on Basic Auth link 
 3. Open pop-up login window 
 4. Enter valid username and password 
-5. Open next subpage and verify if the user logged successfully.
+5. Open next subpage and verify if the user logged in successfully.
 
 ===== Page Class
 
@@ -16,7 +16,7 @@ Create a page class which represents Basic Auth subpage after proper login.
 
 image::images/example4.png[]
 
-Override all required methods: 
+Override all the required methods: 
 
 ----
 public class BasicAuthPage extends BasePage {
@@ -46,7 +46,7 @@ public class BasicAuthPage extends BasePage {
  
 ----
 
-In order to verify a login, create a selector to access visible message.
+In order to verify a login, create a selector to access the visible message.
 
 ----
  private static final By selectorTextMessage = By.cssSelector("#content > div > p");
@@ -117,9 +117,9 @@ Static class Toolkit can perform basic window actions such as scrolling to a spe
 ----
 Thread.sleep(long millis) 
 ----
-Web drivers like Selenium perform actions much faster than the normal user. This may cause unexpected consequences like some elements may not be loaded before the driver wants to access them. To avoid this problem you can use Thread.sleep(long millis) to wait given time and let browser load wanted component. 
+Web drivers like Selenium perform actions much faster than the normal user. This may cause unexpected consequences e.g. some elements may not be loaded before the driver wants to access them. To avoid this problem you can use Thread.sleep(long millis) to wait given time and let browser load wanted component. 
 
-BEWARE: Using Thread.sleep(long millis) is not the recommended approach. Selenium driver gives methods to wait for a specified element to be enabled or visible with a timeout parameter. This is a more stable and effective way. Also, method waitForPageLoaded() could not solve that issue because it only waits for the ready state from the browser while some javascript actions might be performed after that. 
+BEWARE: Using Thread.sleep(long millis) is not the recommended approach. Selenium driver gives methods to wait for a specified element to be enabled or visible with a timeout parameter. This is a more stable and effective way. Also, method waitForPageLoaded() will not solve that issue because it only waits for the ready state from the browser while some javascript actions might be performed after that. 
 
 ==== Test Class 
 
@@ -187,5 +187,5 @@ Another test class method:
     }
  
 ----
-After running test class as JUnit test both test cases will be performed.
+After running test class as a JUnit test, both test cases will be performed.
 

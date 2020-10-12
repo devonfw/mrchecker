@@ -6,7 +6,7 @@ When you enter the correct credentials, you should see the next page:
 
 image::images/example38.png[]
 
-If user data is wrong, appropriate message appears:
+If user data is wrong, an appropriate message appears:
 
 image::images/example39.png[]
 
@@ -43,8 +43,8 @@ public class FormAuthenticationPage extends BasePage {
     /**
      * Sets user name to designated form's field.
      *
-     * @param username String representing user's name
-     * @return FormAuthenticationPage object with user name set to given one
+     * @param username String representing a user's name
+     * @return FormAuthenticationPage object with user name set to the given one
      */
     public FormAuthenticationPage setUsername(String username) {
         InputTextElement elementInputUsername = new InputTextElement(selectorInputUsername);
@@ -56,8 +56,8 @@ public class FormAuthenticationPage extends BasePage {
     /**
      * Sets user password to designated form's field.
      *
-     * @param userPassword String representing user's password
-     * @return FormAuthenticationPage object with user's password set to given one
+     * @param userPassword String representing a user's password
+     * @return FormAuthenticationPage object with user's password set to the given one
      */
     public FormAuthenticationPage setUserPassword(String userPassword) {
         InputTextElement elementInputPassword = new InputTextElement(selectorInputUserPassword);
@@ -69,7 +69,7 @@ public class FormAuthenticationPage extends BasePage {
     /**
      * Returns login message.
      *
-     * @return String object representing message returned after login operation is performed
+     * @return String object representing the message returned after login operation is performed
      */
     public String getLoginMessageText() {
         return new LabelElement(selectorLoginMessage).getText();
@@ -106,14 +106,14 @@ Use methods from this class to perform actions on text fields:
 
 Prepare six test cases: 
 
-1. Try to login with empty user data and check if the error message will appear 
-2. Try to login with empty username and valid password and check if the error message will appear 
-3. Try to login with a valid username and empty password and check if the error message will appear 
-4. Try to login with invalid username and invalid password and check if the error message will appear 
-5. Try to login with a valid username and valid password and check if success login message will appear, then log out 
-6. Try to login with a valid username and valid password and check if success login message will appear, then log out and check if success logout message is displayed 
+1. Try to login with empty user data and check if the error message appears 
+2. Try to login with empty username and valid password and check if the error message appears 
+3. Try to login with a valid username and empty password and check if the error message appears 
+4. Try to login with invalid username and invalid password and check if the error message appears 
+5. Try to login with a valid username and valid password and check if success login message appears, then log out 
+6. Try to login with a valid username and valid password and check if success login message appears, then log out and check if success logout message is displayed 
 
-Before all test: Open The Internet Main Page 
+Before all tests: Open The Internet Main Page 
 
 Before each case: Click on the Form Authentication link and open login page 
 

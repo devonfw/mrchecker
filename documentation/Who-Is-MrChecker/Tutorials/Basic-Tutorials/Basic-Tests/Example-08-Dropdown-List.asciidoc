@@ -6,7 +6,7 @@ Check in the developer mode how a Dropdown List's content has been organized.
 
 image::images/example17.png[]
 
-Notice, that the Dropdown Options have different attributes, such as "disabled" or "selected". 
+Notice that the Dropdown Options have different attributes, such as "disabled" or "selected". 
 
 Steps: 
 
@@ -68,7 +68,7 @@ public class DropdownPage extends BasePage {
 ----
 ===== DropdownListElement class 
 
-DropdownListElement is MrChecker's class, which gives methods for performing the dropdown list of actions: 
+DropdownListElement is MrChecker's class, which contains methods for performing the dropdown list of actions: 
 ----
 elementDropdownList() - returns DropdownListElement Object 
 ----
@@ -96,14 +96,14 @@ public class DropdownTest extends TheInternetBaseTest {
         logStep("Select first drodown option");
         dropdownPage.selectDropdownValueByIndex(1);
 
-        logStep("Verify if selected option text is equal to expected one");
+        logStep("Verify if selected option text is equal to the expected one");
         assertEquals("Selected value is different than expected", expectedFirstOptionValue,
                 dropdownPage.getSelectedDropdownValue());
 
         logStep("Select first drodown option");
         dropdownPage.selectDropdownValueByIndex(2);
 
-        logStep("Verify if selected option text is equal to expected one");
+        logStep("Verify if selected option text is equal to the expected one");
         assertEquals("Selected value is different than expected", expectedSecondOptionValue,
                 dropdownPage.getSelectedDropdownValue());
     }

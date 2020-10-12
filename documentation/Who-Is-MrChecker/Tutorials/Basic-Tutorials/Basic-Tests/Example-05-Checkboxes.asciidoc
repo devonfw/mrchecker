@@ -17,7 +17,7 @@ Steps:
 
 ===== Page Class 
 
-Because both checkboxes are in one form it's possible to locate them by one selector and then access each one by index. 
+Because both checkboxes are in one form, it's possible to locate them by one selector and then access each individual one by index. 
 
 image::images/example8.png[]
 
@@ -85,7 +85,7 @@ public class CheckboxesPage extends BasePage {
  
 ----
 ===== CheckBox 
-CheckBox class gives method to perform actions on checkboxes such as setting and unsetting or verifying if the specified box is checked.
+CheckBox class contains a method to perform actions on checkboxes such as setting and unsetting or verifying if the specified box is checked.
 Use method elementCheckbox(By selector) to create CheckBox Object. 
 
 ===== Test Class 
@@ -133,4 +133,4 @@ public class CheckboxesTest extends TheInternetBaseTest {
 }
  
 ----
-After running Test Class both @Test cases will be performed. Before each one overrode setUp method will be executed. 
+After running Test Class both @Test cases will be performed. Before each one, overrode setUp method will be executed. 

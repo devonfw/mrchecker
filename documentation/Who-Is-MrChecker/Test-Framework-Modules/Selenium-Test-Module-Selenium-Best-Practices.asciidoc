@@ -1,6 +1,6 @@
 = Selenium Best Practices
 
-The following table displays a few best practices that should be taken into concideration when developing Selenium test cases.
+The following table displays a few best practices that should be taken into consideration when developing Selenium test cases.
 
 [cols=2*,options=header]
 |===
@@ -15,7 +15,7 @@ The following table displays a few best practices that should be taken into conc
 |Cucumber can be used to create initial testcases for further decision making
 
 |Supporting multiple browsers
-|Test on multiple browsers (eventually in parallel) if the application is expected to support multiple environments
+|Test on multiple browsers (in parallel, if applicable) if the application is expected to support multiple environments
 
 |Test reporting
 |Make use of test reporting modules like Junit which is included in the framework
@@ -27,6 +27,6 @@ The following table displays a few best practices that should be taken into conc
 |Which tests should be created? Rule of thumb: 70% Unit test cases, 20% Integration test cases and 10% UI Test cases
 
 |Test data
-|Thoughts before actually developing tests and choosing tools: Where to get test data from, how to reset test data
+|Consider before actually developing tests and choosing tools: Where to get test data from, how to reset test data
 
 |===

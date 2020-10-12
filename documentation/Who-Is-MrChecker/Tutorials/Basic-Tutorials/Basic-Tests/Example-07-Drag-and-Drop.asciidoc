@@ -1,11 +1,11 @@
 This case shows how to move draggable elements on the page. 
 image::images/example13.png[]
 
-Try to move A to B position and see what happens. Also, open browser developer mode and see how the DOM is changing.  
+Try to move A to B position and see what happens. Also, open browser developer mode and see how the DOM changes.  
 
 image::images/example14.png[]
 
-Page can be easily broken. You can try to do so and check how the page structure changed in browser developer mode. 
+The page can easily be broken. You can try to do so and check how the page structure changed in browser developer mode. 
 
 image::images/example15.png[]
 
@@ -13,7 +13,7 @@ Steps:
 
 1. Open The Internet Main Page 
 2. Click Drag and Drop link and open subpage 
-3. Check if Drag and Drop message is visible 
+3. Check if the Drag and Drop message is visible 
 4. Check if element A is in container A and B in container B 
 5. Move element A to position B 
 6. Check if element A is in container B and B in container A 
@@ -114,9 +114,9 @@ public class DragAndDropPage extends BasePage {
 }
  
 ----
-Because since HTML5 normal Selenium drag-and-drop action stopped working it's necessary to execute Javascript which performs drag-and-drop. To do so create a JavascriptExecutor object, then read the script from a file drag_and_drop_helper.js and execute it with additional arguments using method executeScript(String script). 
+Since HTML5, normal Selenium drag-and-drop action stopped working, thus it's necessary to execute Javascript which performs the drag-and-drop. To do so, create a JavascriptExecutor object, then read the script from a file drag_and_drop_helper.js and execute it with additional arguments using method executeScript(String script). 
 
-Example drag-and-drop solution: 
+An example drag-and-drop solution: 
 
 ----
 
@@ -133,9 +133,9 @@ Example drag-and-drop solution:
      * .build()
      * .perform();
      * </code>
-     * had finished with no effect. For this reason, there is javaScript function used, to make sure that
+     * finishes with no effect. For this reason, there is javaScript function used, to make sure that
      * drag and drop operation will be successful.
-     * JavaScript function is stored under following path: 'src/test/resources/js/drag_and_drop_helper.js'.
+     * JavaScript function is stored under the following path: 'src/test/resources/js/drag_and_drop_helper.js'.
      * Original source of the script:
      * <a href="https://gist.github.com/rcorreia/2362544">drag_and_drop_helper</a>
      * </p>

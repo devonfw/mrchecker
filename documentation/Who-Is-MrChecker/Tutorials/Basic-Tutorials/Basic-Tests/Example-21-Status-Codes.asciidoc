@@ -2,12 +2,12 @@ image::images/example56.png[]
 
 This example shows how to process HTTP status codes returned by page
 
-When you click status code link, you will be redirected to the subpage which returns proper HTTP status code. In order to check what code was returned:
+When you click status code link, you will be redirected to the subpage which returns the proper HTTP status code. In order to check what code was returned:
 
 1. Open developer tools 
 2. Go to Network tab 
 3. Click request name 
-4. Find code number in Headers section 
+4. Find a code number in Headers section 
 
 image::images/example57.png[]
 
@@ -46,7 +46,7 @@ public class StatusCodesHomePage extends BasePage {
     /**
      * Verifies if given link is displayed.
      *
-     * @param selector Selector of given link
+     * @param selector Selector of the given link
      * @return true if link is displayed
      */
     public boolean isLinkCodeDisplayed(By selector) {
@@ -115,7 +115,7 @@ public class StatusCodesHomePage extends BasePage {
 }
 ----
 
-Also create page class for status codes subpages. In class constructor specify which code number should be returned. 
+Create a page class for status codes subpages as well. In the class constructor specify which code number should be returned. 
 
 ----
 public class StatusCodesCodePage extends BasePage {
@@ -169,11 +169,11 @@ public class StatusCodesCodePage extends BasePage {
      * Returns displayed code number.
      * <p>
      * Code number is retrieved from following text displayed on the page:<b>
-     * 'This page returned a *** status code.', where *** are representing code number to be
+     * 'This page returned a *** status code.', where *** represent the code number to be
      * returned.
      * </p>
      *
-     * @return String object representing displayed code number retrieved from specific sentence.
+     * @return String object representing the displayed code number retrieved from specific sentence.
      */
     public String getDisplayedCodeNumber() {
         return getDriver().findElementDynamic(selectorDisplayedText)
@@ -204,7 +204,7 @@ For each status code
 
 1. Click code link 
 2. Check if the page is loaded with an expected code number 
-3. Check if displayed code number equals expected number 
+3. Check if the displayed code number equals the expected number 
 4. Go back to Status Codes Home Page 
 
 ----
@@ -231,11 +231,11 @@ public class StatusCodeTest extends TheInternetBaseTest {
             logStep("Click link to " + code + " code");
             statusCodesCodePage = statusCodesHomePage.clickCodeLink(code);
 
-            logStep("Verify if proper web page corresponding to code is opened");
+            logStep("Verify if proper web page corresponding to the code is opened");
             assertTrue("Unable to open proper web page",
                     statusCodesCodePage.isLoadedWithStatusCode(code));
 
-            logStep("Verify if displayed code is equal to expected one");
+            logStep("Verify if the displayed code is equal to the expected one");
             assertEquals(code, statusCodesCodePage.getDisplayedCodeNumber());
 
             logStep("Click link to come back to 'Status Codes' page");

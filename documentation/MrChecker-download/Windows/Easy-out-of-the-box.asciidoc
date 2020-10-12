@@ -18,10 +18,10 @@ toc::[]
 = Easy out of the Box
 
 1. Click on the link https://capgemini.sharepoint.com/sites/E2ETesting-SummitDevonfwProductionLine/Shared%20Documents/General/MrChecker_Test_Framework_2_6_0.7z[Ready to use MrChecker_Test_Environment] and download the package
-2. Unzip downloaded MrChecker Test Framework to the folder C:\ on your PC - recommended tool: http://www.7-zip.org/download.html[7z] All necessary components, such as Eclipse, Java and Maven will be pre-installed for you. There is no need for additional installations.
+2. Unzip the downloaded MrChecker Test Framework into the folder C:\ on your PC - recommended tool: http://www.7-zip.org/download.html[7z] All the necessary components, such as Eclipse, Java and Maven will be pre-installed for you. There is no need for any additional installations.
 +
-*Note*: Please double check the place in which you have unzipped MrChecker_Test_Framework
-3. Go to folder C:\MrChecker_Test_Framework\ , in which Mr.Checker has been unzipped
+*Note*: Please double check the place into which you have unzipped MrChecker_Test_Framework
+3. Go to folder C:\MrChecker_Test_Framework\ , into which Mr.Checker has been unzipped
 +
 image::images/install_win01.png[]
 4. In order to run the program, double click on _start-eclipse-with-java.bat_

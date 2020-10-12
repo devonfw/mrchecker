@@ -23,7 +23,7 @@ toc::[]
 ----
 git checkout feature/Create-mobile-module-#213
 ----
-3. install and setup git checkout feature/Create-mobile-module-#213[Appium Server]
+3. Install and setup git checkout feature/Create-mobile-module-#213[Appium Server]
 
 4. Connect to local Device by Appium Server
 

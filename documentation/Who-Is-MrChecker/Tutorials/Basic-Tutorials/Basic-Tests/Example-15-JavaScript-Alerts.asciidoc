@@ -2,7 +2,7 @@ image::images/example43.png[]
 
 This case shows how to test pop-up JS alerts. 
 
-After clicking one of the buttons adequate alert should appear.
+After clicking one of the buttons, an adequate alert should appear.
 
 image::images/example44.png[]
 
