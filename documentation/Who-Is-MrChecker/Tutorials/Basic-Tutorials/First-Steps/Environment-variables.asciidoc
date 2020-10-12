@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps
 == Environment Variables
 
 In Page classes, when you load/start web, it is uncommon to save fixed main URL. 

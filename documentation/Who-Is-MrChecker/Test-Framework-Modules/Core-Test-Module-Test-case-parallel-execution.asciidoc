@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = What is "Parallel test execution" ?
 
 Parallel test execution means many _"Test Classes"_ can run simultaneously.

@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = How to make a virtual asset
 
 This can be done in four ways:

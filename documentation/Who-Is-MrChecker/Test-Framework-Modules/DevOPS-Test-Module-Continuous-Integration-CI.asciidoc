@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Continuous Integration
 
 Embrace quality with Continuous Integration while you produce test case(s).

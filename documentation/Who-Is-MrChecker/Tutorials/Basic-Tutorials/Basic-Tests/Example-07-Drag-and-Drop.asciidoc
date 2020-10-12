@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests
 This case shows how to move draggable elements on the page. 
 image::images/example13.png[]
 

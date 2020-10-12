@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Is it doable to keep pace in QA with today’s software agile approach?
 
 DevOps + Microservices + Shift left + Time to Market == *? Service virtualization ?*

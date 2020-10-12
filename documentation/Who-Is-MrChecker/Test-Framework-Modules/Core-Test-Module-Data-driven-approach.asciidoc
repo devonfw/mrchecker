@@ -1,3 +1,4 @@
+:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 = Data driven approach
 
 *Data driven approach* - External *data driven*
