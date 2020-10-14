@@ -1,4 +1,3 @@
-:imagesdir: Migration
 = Junit4 to Junit5 migration guide
 
 *mrchecker-core-module version 5.7.0.1* features the upgrade of Junit4 to Junit5. Consequently, the Junit4 features are now obsolete and current test projects require migration
