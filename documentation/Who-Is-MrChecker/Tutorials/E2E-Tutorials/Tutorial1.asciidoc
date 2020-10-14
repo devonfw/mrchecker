@@ -9,7 +9,6 @@ ifdef::env-github[]
 endif::[]
 
 toc::[]
-:imagesdir: Who-Is-MrChecker/Tutorials/E2E-Tutorials
 :idprefix:
 :idseparator: -
 :reproducible:

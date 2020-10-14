@@ -9,7 +9,6 @@ ifdef::env-github[]
 endif::[]
 
 toc::[]
-:imagesdir: Who-Is-MrChecker/Test-Framework-Modules
 :idprefix:
 :idseparator: -
 :reproducible:
