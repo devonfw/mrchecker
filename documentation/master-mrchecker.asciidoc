@@ -1,4 +1,4 @@
-= MrChecker - devon testing tool
+= MrChecker - devonfw testing tool
 
 == Who Is MrChecker
 
