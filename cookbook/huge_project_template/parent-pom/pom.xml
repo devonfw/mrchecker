@@ -1,0 +1,27 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.capgemini.mrchecker.hugeproject</groupId>
+	<artifactId>parent-pom</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<organization>
+		<name>Capgemini - Nearshore Test Center - Poland</name>
+		<url>http://nsc.capgemini.com/nearshoretestcenter</url>
+	</organization>
+
+	<developers>
+	</developers>
+	<licenses>
+	</licenses>
+
+	<properties>
+	</properties>
+
+	<dependencies>
+	</dependencies>
+
+	<build>
+	</build>
+	<profiles>
+	</profiles>
+</project>
