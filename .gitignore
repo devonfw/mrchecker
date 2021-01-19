@@ -57,3 +57,8 @@
 **/*.log
 **/*.sql
 **/*.sqlite
+
+
+**/docker/data/**/*
+**/docker/jenkins/**/*
+**/docker/db/**/*
