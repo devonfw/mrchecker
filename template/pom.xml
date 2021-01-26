@@ -12,7 +12,7 @@
     <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of
         web applications, native mobile apps, webservices and database.
     </description>
-    <url>https://github.com/devonfw/devonfw-testing</url>
+    <url>https://github.com/devonfw/mrchecker</url>
 
 
     <organization>
@@ -37,9 +37,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git://github.com/devonfw/devonfw-testing.git</connection>
-        <developerConnection>scm:git:ssh://github.com:devonfw/devonfw-testing.git</developerConnection>
-        <url>http://github.com/devonfw/devonfw-testing/tree/develop</url>
+        <connection>scm:git:git://github.com/devonfw-forge/mrchecker-source.git</connection>
+        <developerConnection>scm:git:ssh://github.com:devonfw-forge/mrchecker-source.git</developerConnection>
+        <url>https://github.com/devonfw-forge/mrchecker-source/tree/develop</url>
     </scm>
 
     <repositories>
