@@ -1,7 +1,7 @@
 ### Docker-compose
 The docker-compose file features:
 * jenkins (cicd server)
-* selenium hub + firefox + chrome + opera (environemnt for executing selenium test)
+* selenium hub + firefox + chrome + opera (environment for executing selenium test)
 * gitea (git hosting)
 
 
