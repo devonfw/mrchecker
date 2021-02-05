@@ -3,19 +3,23 @@
 MrChecker integrated with Model Base Testing
 -------------------
 This part of cookbook features a template for integration GraphWalker with MrChecker project.
-GraphWalker is an Model-Based testing tool. It reads models in the shape of directed graphs, and generates test paths from these graphs. Then the path would be provided to the MrChecker project to execute the test ([See more details](https://github.com/GraphWalker/graphwalker-project/wiki))
+
+GraphWalker is an Model-Based testing tool. It reads models in the shape of directed graphs and generates test paths from these graphs ([See more details](https://github.com/GraphWalker/graphwalker-project/wiki)).
+
+Then the path could be provided to the MrChecker to execute the test 
 
 **Model Based Testing (MBT)** - testing technique where software under test is checked against predictions made by a model (graph). 
 
-Usages:
-*	smoke test - one pass through the graph - quick verification of the whole process / application
-*	stability test - multiple passes through the graph - long run - verification of the environment stability
+Examples of the model: 
+*	Data Flow
+*	Control Flow
+*	Dependency Graphs
+*	Decision Tables
+*	State transition machines
 
-A model is a description of:
-*	system's behavior
-*	process flow
-*	data/information flow
-*	modules / application menu traversal
+Types of MBT:
+*	Offline / a priori: Generation of Test Suites before executing it. A test suite is nothing but a collection of test cases.
+*	Online / on-the-fly: Generation of Test Suites during test execution
 
 
 ## Setup manual
