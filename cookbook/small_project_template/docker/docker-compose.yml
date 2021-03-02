@@ -73,4 +73,4 @@ services:
       - POSTGRES_DB=gitea
       - POSTGRES_USER=gitea
     volumes:
-      - ./db/:/var/lib/mysql
+      - ./db/:/var/lib/postgresql/data
