@@ -21,7 +21,19 @@ This branch features a template for small (less than 3-5 jobs) project.
 	* Wait until jenkins image is downloaded and built, wait for selenium and gitea images.
 	* Go to `./jenkins/secrets/initialAdminOassword`
 	* Now when the stack is up and runing, from your PC go to `host:8888` which is default jenkins port and fill the form in with the value of of initial admin pass aquired in the previous step.
-	* Select to install sugested plugins
+	* Select to install sugested plugins.
+	* Jenkins agents will fail to boot and keep restarting.
+1. Jenkins agent config
+	* Connect agents
+		* Go to jenkins and on the left pane click on the `build executor status`
+		* Then click on the `New Node`
+		* Assign it a name (e.g. `agent1` ) and check `Permament Agent`
+		* Set remote root directory to `/var/jenkins`
+		* Then click on the node name you've created
+		* To get the secret go to `Nodes` and click on underlined node name. The secret will be long hexadecimal string after `-secret` or after `echo`
+		* Copy the secret and put it in `docker/docker-compose.yml` with the name
+		* Restart docker compose `docker-compose down` and `docker-compose up`. Wait some time after jenkins is avaiable. The agents should connect to it automatically.
+		* If you need more space either you can expand numbers of executors in Node config tab or copy paste the chunk with agent service in docker compose and create new one with distinctive name and secret(jenkins would not allow you to connect more than one agent with same secret and name)
 1. Gitea initial setup
 	* From your PC access `host:3000` which is default Gitea port.
 	* Select register. You should be prompted with `Initial Configuration` form.
@@ -44,15 +56,7 @@ This branch features a template for small (less than 3-5 jobs) project.
 1. Finishing actions
 	* Configure jenkins security <https://www.jenkins.io/doc/book/managing/security/>
 	* Adjust Jenkinsfile
-	* Connect agents
-		* Go to jenkins and on the left pane click on the `build executor status`
-		* Then click on the `New Node`
-		* Assign it a name and check `Permament Agent`
-		* Set remote root directory to `/var/jenkins`
-		* Then click on the node name you've created
-		* Copy the secret and put it in `docker/docker-compose.yml` with the name
-		* Restart docker compose `docker-compose down` and `docker-compose up`. Wait some time after jenkins is avaiable. The agents should connect to it automatically.
-		* If you need more space either you can expand numbers of executors in Node config tab or copy paste the chunk with agent service in docker compose and create new one with distinctive name and secret(jenkins would not allow you to connect more than one agent with same secret and name)
+	
 
 ### Hardware resources
 Below I just wanted to show you how I calculated the values, feel free to mix match and scale it.
