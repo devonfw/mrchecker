@@ -6,7 +6,7 @@ pipeline {
 
 	}
 	agent {
-		node { label "master" }
+		node {  }
 	}
 	options {
 		timestamps()
@@ -52,16 +52,17 @@ pipeline {
 	post{
 		always{
 			script{
-				UserID = "${currentBuild?.rawBuild?.getCause(hudson.model.Cause$UserIdCause)?.properties?.userId}"
-				if(!utils.isStartedByTimer()){
-					mail_receiver = "${UserID}@domain.com";
-				}else{
-					mail_receiver = null
-				}
-				if(mail_receiver){
-					emailext  mimeType: 'text/html', body: """Your job ${env.BUILD_URL} just finished.""", subject: "${subjectText}", to: "${mail_receivers}"
-					//maybe you should add some more meaningful values in the body
-				}
+				echo 'Post step'
+				// UserID = "${currentBuild?.rawBuild?.getCause(hudson.model.Cause$UserIdCause)?.properties?.userId}"
+				// if(!utils.isStartedByTimer()){
+				// 	mail_receiver = "${UserID}@domain.com";
+				// }else{
+				// 	mail_receiver = null
+				// }
+				// if(mail_receiver){
+				// 	emailext  mimeType: 'text/html', body: """Your job ${env.BUILD_URL} just finished.""", subject: "${subjectText}", to: "${mail_receivers}"
+				// 	//maybe you should add some more meaningful values in the body
+				// }
 			}
 		}
 	}
