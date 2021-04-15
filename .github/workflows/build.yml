@@ -15,6 +15,6 @@ jobs:
         run: |
           cd example
           mvn clean compile -DskipTests=true
-	  cd ..
+	        cd ..
           cd template
-	  mvn clean compile -DskipTests=true
+	        mvn clean compile -DskipTests=true
