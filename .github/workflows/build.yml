@@ -2,7 +2,6 @@ name: CI Build
 on: [push, pull_request]
 jobs:
   build:
-    if: ${{github.repository == 'devonfw/mrchecker'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -10,7 +9,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: '11'
+          java-version: '8'
       - name: Build project with Maven
         run: |
             cd example
