@@ -13,8 +13,9 @@ jobs:
           java-version: '11'
       - name: Build project with Maven
         run: |
-          cd example
-          mvn clean compile -DskipTests=true
-	        cd ..
-          cd template
-	        mvn clean compile -DskipTests=true
+            cd example
+            mvn clean compile -DskipTests=true
+            cd ..
+            cd template
+            mvn clean compile -DskipTests=true
+
