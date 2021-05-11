@@ -119,7 +119,7 @@ title_page:
   align: center
   logo:
       #image: image:C:/Capgemini/Devon-Guide/asciidoctor-devon-guide/images/devonfw.jpg[pdfwidth=50%]
-      image: image:./images/devonfw.png[pdfwidth=50%]
+      image: image:./theme/devonfw.png[pdfwidth=50%]
       top: 30%
   title:
    # top: 55%
@@ -316,7 +316,7 @@ footer:
     right:
       content: '{page-number}'
     left:
-      content: image:./images/devonfw-corner.png[width=80]
+      content: image:./theme/devonfw-corner.png[width=80]
     center:
       content: This documentation is licensed under the Creative Commons License (Attribution-NoDerivatives 4.0 International).
 
@@ -324,7 +324,7 @@ footer:
     right:
       content: '{page-number}'
     left:
-      content: image:./images/devonfw-corner.png[width=80]
+      content: image:./theme/devonfw-corner.png[width=80]
       #content: '{page-number} | {chapter-title}'
     center:
       content: This documentation is licensed under the Creative Commons License (Attribution-NoDerivatives 4.0 International).
@@ -343,7 +343,7 @@ header:
     center:
       content: Devonfw Guide v2.4.0
     left:
-      content: image:./images/devonfw-corner.png[width=80]
+      content: image:./theme/devonfw-corner.png[width=80]
     #right:
       #content: image:./images/devonfw-corner.png[width=80]
 
@@ -351,6 +351,6 @@ header:
     center:
       content: Devonfw Guide v2.4.0
     left:
-      content: image:./images/devonfw-corner.png[width=80]
+      content: image:./theme/devonfw-corner.png[width=80]
     #right:
       #content: image:./images/devonfw-corner.png[width=80]
