@@ -13,7 +13,7 @@ import io.restassured.specification.RequestSpecification;
 
 public abstract class MTSWebApiBasePage extends BasePageWebAPI {
 	protected static String		accessToken					= "";
-	protected String			serviceBaseUrs				= GetEnvironmentParam.MAY_THAI_STAR_API_URL.getValue();
+	protected String			serviceBaseUrs				= GetEnvironmentParam.MY_THAI_STAR_API_URL.getValue();
 	private static final String	REQUEST_TEMPLATE			= "http-mc-request.ftl";
 	private static final String	RESPONSE_TEMPLATE			= "http-mc-response.ftl";
 	public static final int		SERVER_RESPONSE_TIMEOUT_SEC	= 5;
