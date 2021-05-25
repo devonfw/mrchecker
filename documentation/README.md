@@ -7,3 +7,5 @@ To generate everything we should run:
 ```
 mvn clean package
 ```
+
+This command will build pdf document and HTML based documentation.
