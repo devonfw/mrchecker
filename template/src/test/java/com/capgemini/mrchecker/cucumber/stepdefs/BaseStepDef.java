@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.cucumber.stepdefs;
+package com.capgemini.mrchecker.cucumber.stepdefs;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
 

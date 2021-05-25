@@ -1,4 +1,4 @@
-echo "Running tests..."
+echo "Validating source files formatting..."
 cd ..
 mvn formatter:validate
 
