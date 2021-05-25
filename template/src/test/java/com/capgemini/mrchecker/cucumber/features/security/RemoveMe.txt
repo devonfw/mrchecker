@@ -1,1 +1,1 @@
-removeME
+This file is kept to make git track its source folder.
