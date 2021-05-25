@@ -351,7 +351,7 @@
                             </excludes>
                             <argLine>
                                 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                                -Xmx1024m -Xms1024m -XX:MaxPermSize=512m
+                                -Xmx1024m -Xms1024m
                                 -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
@@ -462,7 +462,7 @@
                             <failIfNoTests>false</failIfNoTests>
                             <argLine>
                                 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                                -Xmx1024m -Xms1024m -XX:MaxPermSize=512m
+                                -Xmx1024m -Xms1024m
                                 -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
