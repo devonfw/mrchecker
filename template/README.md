@@ -7,9 +7,9 @@ This repository contains a template for making MrChecker-based test projects and
 
 To use this template the following steps have to be followed:
 
-* Download the template.
+* Download the template (you can clone it via git or download a zip from [here](https://downgit.github.io/#/home?url=https:%2F%2Fgithub.com%2Fdevonfw%2Fmrchecker%2Ftree%2Fdevelop%2Ftemplate)).
 
-* Import it as a Maven project using an IDE like Eclipse or IntelliJ.
+* Import it as a Maven project using an IDE like IntelliJ or Eclipse.
 
 * Adjust pom.xml according to your needs.
 
