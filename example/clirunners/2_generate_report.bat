@@ -1,3 +1,3 @@
-echo starting allure server to display report
+  echo "Starting Allure server to display report..."
 cd ..
 mvn site allure:report
