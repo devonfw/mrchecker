@@ -30,7 +30,7 @@ _(To download JDK 8 from Oracle you have to have an account. It is recommended t
 +
 * *Variable name*: JAVA_HOME | *Variable value*: C:\Where_You’ve_Installed_Java
 +
-* *Variable name*: PATH | *Variable value*: %JAVA_HOME%/bin;%JAVA_HOME%\lib
+* *Variable name*: PATH | *Variable value*: %JAVA_HOME%\bin;%JAVA_HOME%\lib
 +
 image::images/install_win03.png[]
 
@@ -58,10 +58,12 @@ image::images/install_win04.png[]
 > mvn --version
 ----
 
-2. Eclipse IDE
-    * Download an unzip https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/3/eclipse-java-neon-3-win32-x86_64.zip[Eclipse]
-    * Download MrCheckerTestFramework https://github.com/devonfw/devonfw-testing/archive/develop.zip[source code]
-    * Import:
+2. IDE
+    * Download a most recent https://www.eclipse.org/downloads/packages/[Eclipse]
+    * Download a MrChecker Project https://downgit.github.io/#/home?url=https://github.com/devonfw/mrchecker/tree/develop/template[Template] to start a new project or Mrchecker Project https://downgit.github.io/#/home?url=https://github.com/devonfw/mrchecker/tree/develop/example[Example] to get better understanding what we are capable of.
+    * You should consider installing some usefull plugins such as: csvedit, cucumber editor.
+
+* Import:
 +
 image::images/install_win05.png[]
 +
