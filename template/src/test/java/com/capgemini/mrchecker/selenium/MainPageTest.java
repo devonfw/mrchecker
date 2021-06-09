@@ -11,7 +11,6 @@ public class MainPageTest extends BaseTest {
 	
 	@Test
 	public void test() {
-		
 		mainPage.load();
 		BFLogger.logInfo("test");
 	}
