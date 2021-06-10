@@ -9,7 +9,7 @@ To use the examples the following steps have to be followed:
 
 * Download the code (you can clone it via git or download a zip from [here](https://downgit.evecalm.com/#/home?url=https://github.com/devonfw/mrchecker/tree/develop/example)).
 
-* Import it as Maven project using and IDE like Eclipse or InteliJ.
+* Import it as Maven project using and IDE like Eclipse or IntelliJ.
 
 * Run example tests.
 
@@ -17,7 +17,7 @@ To use the examples the following steps have to be followed:
 
 #### Commad Line Interface runners
 
-* *clirunners:* A ready to use test runnig and reporting bat files.
+* *clirunners:* A ready to use test running and reporting bat files.
 
 #### Commons
 
@@ -35,7 +35,7 @@ To use the examples the following steps have to be followed:
 
 * *main/java/com.capgemini.mrchecker/<Module_name>:* Contains a page object template (MainPage.java) with the necessary methods.
 
-* *test/java/com.capgemini.mrchecker/<Module_name>:* Contains a test template (MainPageTest.java) with methods recommended to build a basic test.
+* *test/java/com.capgemini.mrchecker/<Module_name>:* Contains a test template (MainPageTest.java) with methods recommended building a basic test.
 
 
 #### Cucumber structure
