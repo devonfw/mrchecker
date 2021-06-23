@@ -16,8 +16,8 @@ toc::[]
 :listing-caption: Listing
 
 = My Thai Star application setup
-My Thai Star is a reference application for DevonFW so it was used extensively in majority of our examples. To make them run properly you definitely should set it up somewhere and configure environment.csv acordingly.
-You can get the app from it official repository here https://github.com/devonfw/my-thai-star.
+My Thai Star is a reference application for DevonFW so it was used extensively in majority of our examples. To make them run properly you definitely should set it up somewhere and configure environment.csv accordingly.
+You can get the app from its official repository here https://github.com/devonfw/my-thai-star.
 
 == Setting up My Thai Start app
 Most of the important informations are covered in https://github.com/devonfw/my-thai-star#deployment.
