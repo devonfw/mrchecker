@@ -22,8 +22,7 @@ import io.qameta.allure.Allure;
 public class BaseHook {
 	
 	/*
-	 * PLEASE DO NOT MODIFY THIS FILE.
-	 * For any Hook file, please create separate one
+	 * PLEASE DO NOT MODIFY THIS FILE. For any Hook file, please create separate one
 	 */
 	private final CucumberExtensionContext context;
 	
@@ -78,8 +77,8 @@ public class BaseHook {
 	}
 	
 	private static class CucumberExtensionContext implements ExtensionContext {
-		private String			testName;
-		private final BaseTest	testInstance;
+		private String testName;
+		private final BaseTest testInstance;
 		
 		private CucumberExtensionContext(BaseTest testInstance) {
 			this.testInstance = testInstance;

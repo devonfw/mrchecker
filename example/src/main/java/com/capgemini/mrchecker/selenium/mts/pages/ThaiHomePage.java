@@ -20,7 +20,7 @@ import io.qameta.allure.Step;
 public class ThaiHomePage extends MyThaiStarBasePage {
 	
 	private static final int	TIME_FOR_LOGOUT				= 5000;
-	private static final String	myThaiStarUrl				= GetEnvironmentParam.MAY_THAI_STAR_URL.getValue();
+	private static final String	myThaiStarUrl				= GetEnvironmentParam.MY_THAI_STAR_URL.getValue();
 	private static final By		selectorLoginButtonSearch	= By.name("login");
 	private static final By		selectorLogoutButtonSearch	= By.name("account");
 	private static final By		selectorLabelLoginSearch	= By.xpath("//span[@data-name='userNameLogged']");

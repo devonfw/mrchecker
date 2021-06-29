@@ -3,29 +3,22 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>template-app-under-test</artifactId>
+    <artifactId>your-artifact-id</artifactId>
     <groupId>com.capgemini.mrchecker</groupId>
-    <version>3.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>MrCheckerTestFramework - List of Integration Test for Application Under Test</name>
-    <description>MrChecker Test Framework is an automated testing framework for functional and non functional tests of
-        web applications, native mobile apps, webservices and database.
-    </description>
-    <url>https://github.com/devonfw/mrchecker</url>
 
+    <name>MrCheckerTestFramework Template</name>
+    <description>This is a template for yor test project</description>
 
-    <organization>
-        <name>Capgemini - Nearshore Test Center - Poland</name>
-        <url>http://nsc.capgemini.com/nearshoretestcenter</url>
-    </organization>
 
     <developers>
         <developer>
-            <name>Lukasz Stefaniszyn</name>
-            <email>lukasz.stefaniszyn@capgemini.com</email>
-            <organization>Capgemini - Nearshore Test Center - Poland</organization>
-            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+            <name>John Doe</name>
+            <email>john.doe@domain.com</email>
+            <organization>Domain</organization>
+            <organizationUrl>https://www.domain.com</organizationUrl>
         </developer>
     </developers>
 
@@ -61,10 +54,11 @@
 
 
     <properties>
+        <!-- Source encoding -->
         <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
 
-        <!-- Allure test framework modules -->
-        <mrchecker-core-module.version>5.7.0.1</mrchecker-core-module.version>
+        <!-- MrChecker modules modules -->
+        <mrchecker-core-module.version>5.7.0.3</mrchecker-core-module.version>
         <mrchecker-selenium-module.version>3.141.59.3</mrchecker-selenium-module.version>
         <mrchecker-security-module.version>1.2.2</mrchecker-security-module.version>
         <mrchecker-webapi-module.version>1.2.4</mrchecker-webapi-module.version>
@@ -81,9 +75,7 @@
         <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 
         <!-- Allure reporting -->
-        <allure-cli-runner.version>2.6.0
-        </allure-cli-runner.version> <!-- Url to download Allure report CLI https://bintray.com/qameta/generic/allure2 -->
-
+        <allure-cli-runner.version>2.13.9</allure-cli-runner.version>
         <aspectj.version>1.9.5</aspectj.version>
         <allure-junit5.version>2.13.3</allure-junit5.version>
         <allure-java-commons.version>2.13.3</allure-java-commons.version>
@@ -100,8 +92,6 @@
         <hamcrest.version>1.3</hamcrest.version>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
         <junit.platform.version>1.7.0</junit.platform.version>
-        <junit.vintage.version>5.7.0</junit.vintage.version>
-        <junit.params.version>5.7.0</junit.params.version>
         <mockito.version>1.8.5</mockito.version>
         <joda-time.version>2.9.9</joda-time.version>
         <commons-csv.version>1.1</commons-csv.version>
@@ -114,7 +104,6 @@
         <!-- Static analyze settings -->
         <formatter-maven-plugin.version>2.7.1</formatter-maven-plugin.version>
         <style_format.directory>${pom.basedir}/../resources/style_format</style_format.directory>
-
     </properties>
 
 
@@ -178,13 +167,6 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-runner</artifactId>
             <version>${junit.platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit.vintage.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -371,7 +353,7 @@
                             </excludes>
                             <argLine>
                                 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                                -Xmx1024m -Xms1024m -XX:MaxPermSize=512m
+                                -Xmx1024m -Xms1024m
                                 -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>
@@ -410,7 +392,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.6.1</version>
+                        <version>3.8.1</version>
                         <configuration>
                             <compilerArgument>-Xlint:deprecation</compilerArgument>
                             <showWarnings>false</showWarnings>
@@ -482,7 +464,7 @@
                             <failIfNoTests>false</failIfNoTests>
                             <argLine>
                                 -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-                                -Xmx1024m -Xms1024m -XX:MaxPermSize=512m
+                                -Xmx1024m -Xms1024m
                                 -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                             </argLine>
                             <properties>

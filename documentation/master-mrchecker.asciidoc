@@ -152,7 +152,7 @@ include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-08-Dropd
 
 include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-09-Dynamic-Content.asciidoc[leveloffset=4]
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-10-Dynamically-loaded-elemets.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-10-Dynamically-loaded-elements.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-11-Exit-Intent.asciidoc[leveloffset=4]
 
@@ -178,7 +178,7 @@ include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-21-Statu
 
 ==== First Steps
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Page-objects.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Page-object.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Environment-variables.asciidoc[leveloffset=4]
 

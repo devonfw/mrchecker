@@ -6,7 +6,7 @@ import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.exceptions.BFInputDataException;
 
 public enum GetEnvironmentParam {
-	MAY_THAI_STAR_URL;
+	MY_THAI_STAR_URL;
 	
 	public String getValue() {
 		

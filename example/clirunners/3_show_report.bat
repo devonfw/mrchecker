@@ -1,3 +1,3 @@
-echo launching default web browser to show test report
+echo "Launching the default web browser to show the test report..."
 cd ..
 mvn site allure:serve
