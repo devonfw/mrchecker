@@ -29,3 +29,5 @@ Most of the important informations are covered in https://github.com/devonfw/my-
 . Go to your project to set up envrionment.csv
  . The variables we are interested in are MY_THAI_STAR_URL and MY_THAI_STAR_API_URL
  . If you set up My Thai Star on different host adjust the values accordingly
+. The web aplication should be available using localhost:8081/restaurant
+. The web api should be avaulable using localhost:8081/api
