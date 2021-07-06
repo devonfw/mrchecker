@@ -23,7 +23,7 @@ It is an automated testing framework for functional testing of web applications,
 
 = Where does MrChecker apply?
 
-The main goal of MrChecker is to standardize the way we build BlackBox tests. It gives the possibility to have one common software standard in order to build Component, Integration and System tests.
+The aim of MrChecker is to achieve standardize way to build BlackBox tests. It provides the possibility to have one common software standard in order to build Component, Integration and System tests.
 
 A Test Engineer does not have access to the application source code in order to perform BlackBox tests, but they are able to attach their tests to any application interfaces, such as  - IP address - Domain Name - communication protocol - Command Line Interface.
 
