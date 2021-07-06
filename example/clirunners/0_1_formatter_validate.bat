@@ -1,3 +1,2 @@
 echo "Validating source files formatting..."
-cd ..
-mvn formatter:validate
+mvn -f ../pom.xml formatter:validate

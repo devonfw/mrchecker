@@ -1,3 +1,2 @@
-  echo "Starting Allure server to display report..."
-cd ..
-mvn site allure:report
+echo "Starting Allure server to display report..."
+mvn -f ../pom.xml site allure:report

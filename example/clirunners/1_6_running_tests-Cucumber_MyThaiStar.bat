@@ -1,4 +1,2 @@
-
 echo "Running MyThaiStar Cucumber tests..."
-cd ..
-mvn clean verify -Dcucumber.class=RunMts* -P cucumber -Dbrowser=firefox
+mvn -f ../pom.xml clean verify -Dcucumber.class=RunMts* -P cucumber -Dbrowser=firefox

@@ -1,3 +1,2 @@
 echo "Running tests..."
-cd ..
-mvn clean verify -Dbrowser=firefox
+mvn -f ../pom.xml clean verify -Dbrowser=firefox
