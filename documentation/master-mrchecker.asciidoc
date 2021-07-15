@@ -105,19 +105,15 @@ include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Jenkins-Plug
 include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[leveloffset=3]
 
 == MrChecker download
-
 === Windows
-
-include::MrChecker-download/Windows/Easy-out-of-the-box.asciidoc[leveloffset=3]
-
-include::MrChecker-download/Windows/Out-of-the-box-installation.asciidoc[leveloffset=3]
 
 include::MrChecker-download/Windows/Advanced-installation.asciidoc[leveloffset=3]
 
 === Mac
-
 include::MrChecker-download/Mac.asciidoc[leveloffset=3]
 
+=== My Thai Star
+include::MrChecker-download/MyThaiStar.asciidoc[leveloffset=3]
 == Tutorials
 
 In order to learn more about MrChecker structure, start from Project Organisation section and then check out our fantastic tutorials:

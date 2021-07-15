@@ -64,13 +64,6 @@ DevOps module supports a delivery model in which executors are made available to
 * Saving computing resources
 * Eliminating guessing on your infrastructure capacity needs
 * Not spending time on running and maintaining additional executors
-
-image::images/image10.png[]
-
-image::images/image11.png[]
-
-image::images/image12.png[]
-
 == How to build this DevOps module
 
 Once you have implemented the module, you can learn more about it here:
