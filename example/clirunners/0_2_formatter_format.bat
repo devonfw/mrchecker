@@ -1,3 +1,2 @@
 echo "Formatting the source code..."
-cd ..
-mvn formatter:format
+mvn -f ../pom.xml formatter:format

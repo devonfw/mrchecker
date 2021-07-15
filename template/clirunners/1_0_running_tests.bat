@@ -1,4 +1,3 @@
 echo "Running tests..."
-cd ..
-mvn clean verify
+mvn -f ../pom.xml clean verify
 

@@ -1,4 +1,3 @@
 echo "Compiling the test code..."
-cd ..
-mvn clean compile
+mvn -f ../pom.xml clean compile
 
