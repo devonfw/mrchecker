@@ -57,6 +57,13 @@
 **/*.sql
 **/*.sqlite
 
+
+# Do not push docker app data #
+###############################
+**/docker/data/**/*
+**/docker/jenkins/**/*
+**/docker/db/**/*
+
 # Keep template empty folders #
 ###############################
 template/src/main/java/com/capgemini/mrchecker/security/*

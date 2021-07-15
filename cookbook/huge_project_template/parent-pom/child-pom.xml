@@ -1,0 +1,18 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>my-huge-project-tests</artifactId>
+	<groupId>com.capgemini.mrchecker.hugeproject</groupId>
+	<version>1.0.0</version>
+
+	<packaging>jar</packaging>
+
+	<parent>
+		<artifactId>com.capgemini.mrchecker.hugeproject</artifactId>
+		<groupId>parent-pom</groupId>
+		<version>[0.0.1,2)</version>
+	</parent>
+	<properties>
+	</properties>
+	<dependencies>
+	</dependencies>
+</project>
