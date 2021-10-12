@@ -5,6 +5,9 @@ env:
     BUILD_USER_EMAIL:  ${{ secrets.BUILD_USER_EMAIL }}
 on:
     push:
+        paths:
+            - '**.asciidoc'
+            - '**.md'
         branches:
             - develop
 name: Sync Docs
