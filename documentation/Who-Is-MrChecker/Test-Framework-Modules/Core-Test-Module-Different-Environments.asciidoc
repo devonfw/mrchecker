@@ -20,7 +20,7 @@ toc::[]
 
 image::images/image080.png[]
 
-* *Quality assurance* or *QA* is a way of preventing mistakes or defects in manufactured products and avoiding problems when delivering solutions or services to customers which ISO 9000 defines as "part of quality management focused on providing confidence that quality requirements will be fulfilled".
+* *Quality assurance* or *QA* is a way of preventing mistakes or defects in the manufactured products and avoiding problems when delivering solutions or services to customers which ISO 9000 defines as "part of quality management focused on providing confidence that quality requirements will be fulfilled".
 
 * *System integration testing* or *SIT* is a high-level software testing process in which testers verify that all related systems maintain data integrity and can operate in coordination with other systems in the same environment. The testing process ensures that all sub-components are integrated successfully to provide expected results.
 
