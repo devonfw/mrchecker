@@ -19,7 +19,7 @@ toc::[]
 
 == Unit test
 
-A module is the smallest compilable unit of source code. It is often too small to be tested by the functional tests (black-box tests). However, it is the ideal candidate for white-box testing. White-box tests have to be performed as the first static tests (e.g. Lint and inspections), followed by dynamic tests in order to check boundaries, branches and paths. Usually, that kind of testing would require enabling stubs and special test tools. 
+A module is the smallest compilable unit of source code. It is often too small to be tested by the functional tests (black-box tests). However, it is the ideal candidate for white-box testing. White-box tests have to be performed as the first static tests (e.g. Lint and inspections), followed by dynamic tests in order to check boundaries, branches and paths. Usually, this kind of testing would require enabling stubs and special test tools. 
 
 == Component test
 
