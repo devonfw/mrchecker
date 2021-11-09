@@ -77,7 +77,7 @@ Check also:
 +
 https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Building-basic-Selenium-Test.asciidoc[My First Selenium Test]
 +
-https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Mobile-Test-ModuleMobile-Test-Module-How-to-use.asciidoc[How to use Mobile test Module]
+https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/Mobile-Test-Module-How-to-use.asciidoc[How to use Mobile test Module]
 +
 https://github.com/devonfw/devonfw-testing/blob/feature/Create-mobile-module-%23213/example/src/test/java/com/capgemini/mrchecker/mobile/simpleapp/SimpleAppTest.java[Example TestCase]
 +
