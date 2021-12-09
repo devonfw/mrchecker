@@ -17,7 +17,7 @@ toc::[]
 
 = How to use mobile test Module
 
-1. Install https://github.com/devonfw/devonfw-testing/blob/develop/documentation/MrChecker-download/Windows/Easy-out-of-the-box.asciidoc[IDE with MrChecker]
+1. Install https://github.com/devonfw/mrchecker/blob/feature/Create-mobile-module-%23213/documentation/MrChecker%20download/Windows/Easy-out-of-the-box.asciidoc[IDE with MrChecker]
 2. Switch branch to 'feature/Create-mobile-module-#213' - by default it is 'develop'
 
 ----
