@@ -22,7 +22,7 @@ In order to learn more about MrChecker structure, start from Project Organisatio
 == How to create a basic test in MrChecker
 
 === Example: Booking a table
-As an example to test we will use http://de-mucdevondepl01:8090/bookTable[MyThaiStar] booking page. +
+As an example to test we will use https://mts-devonfw-core.cloud.okteto.net/bookTable[MyThaiStar] booking page. +
 In order to book a table, do the following steps:
 
 1. Open MyThaiStar Book Table Page
@@ -52,12 +52,12 @@ public class BookTablePage extends BasePage {
     public boolean isLoaded() {
         getDriver().waitForPageLoaded(); //waits untli the page is loaded 
         return getDriver().getCurrentUrl()
-                .equals("http://de-mucdevondepl01:8090/bookTable"); //checks if current page address equals MyThaiStar booking page adress 
+                .equals("https://mts-devonfw-core.cloud.okteto.net/bookTable"); //checks if current page address equals MyThaiStar booking page adress 
     }
     
     @Override
     public void load() {
-        getDriver().get("http://de-mucdevondepl01:8090/bookTable"); //loads page under specified adress 
+        getDriver().get("https://mts-devonfw-core.cloud.okteto.net/bookTable"); //loads page under specified adress 
         getDriver().waitForPageLoaded(); //waits until the page is loaded
     }
     
