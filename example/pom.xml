@@ -117,7 +117,7 @@
 
         <!-- DB tools -->
         <jpa.version>2.2</jpa.version>
-        <hibernate-core.version>5.4.0.Final</hibernate-core.version>
+        <hibernate-core.version>5.4.24.Final</hibernate-core.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <byte-buddy.version>1.10.18</byte-buddy.version>
 
