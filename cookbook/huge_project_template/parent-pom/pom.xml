@@ -43,7 +43,7 @@
         <allure-maven.version>2.10.0</allure-maven.version>
         <allure-attachments.version>2.13.3</allure-attachments.version>
 
-        <jackson-databind.version>2.11.0</jackson-databind.version>
+        <jackson-databind.version>2.12.6.1</jackson-databind.version>
         <awaitality.version>3.1.6</awaitality.version>
 	</properties>
 
