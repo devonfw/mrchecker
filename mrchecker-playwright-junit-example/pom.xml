@@ -157,7 +157,7 @@
                             <!--                            junit.jupiter.execution.parallel.config.strategy=fixed-->
                             <!--                            junit.jupiter.execution.parallel.config.fixed.parallelism=${thread.count}-->
                             junit.jupiter.execution.parallel.config.strategy = custom
-                            junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.selenium.junit.CustomStrategy
+                            junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.playwright.junit.CustomStrategy
                             junit.jupiter.extensions.autodetection.enabled=true
                             cucumber.publish.quiet=true
                         </configurationParameters>
