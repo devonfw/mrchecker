@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.capgemini.mrchecker</groupId>
+        <artifactId>mrchecker-examples</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <developers>
+        <developer>
+            <name>Mariusz Kowalski</name>
+            <email>mariusz.kowalski@capgemini.com</email>
+            <organization>Capgemini - Nearshore Test Center - Poland</organization>
+            <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
+        </developer>
+    </developers>
+
+    <artifactId>mrchecker-playwright-junit-example</artifactId>
+
+    <properties>
+        <thread.count>1</thread.count>
+        <parallel.mode.default>same_thread</parallel.mode.default>
+        <parallel.mode.classes.default>concurrent</parallel.mode.classes.default>
+
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- MrChecker -->
+        <mrchecker.version>2023.03.20</mrchecker.version>
+
+        <!-- Maven -->
+        <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
+        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+
+        <!-- Allure reporting -->
+        <allure.version>2.21.0</allure.version>
+        <allure.results.directory>${project.basedir}/target/allure-results</allure.results.directory>
+        <allure.report.directory>${project.basedir}/target/allure-report</allure.report.directory>
+        <surefire.report.directory>${project.basedir}/target/surefire-reports</surefire.report.directory>
+        <allure-maven.version>2.12.0</allure-maven.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
+    </properties>
+
+    <dependencies>
+        <!-- Playwright module -->
+        <dependency>
+            <groupId>com.capgemini.mrchecker</groupId>
+            <artifactId>mrchecker-playwright-module</artifactId>
+            <version>${mrchecker.version}</version>
+        </dependency>
+
+        <!-- Need to have this to work with Allure-->
+        <dependency>
+            <!-- Test listener. Binds Junit exec to Allure annotation -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- CLEAN -->
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                    <configuration>
+                        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                        <filesets>
+                            <fileset>
+                                <directory>target</directory>
+                                <includes>
+                                    <include>**</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>classes</exclude>
+                                    <exclude>test-classes</exclude>
+                                </excludes>
+                            </fileset>
+                            <fileset>
+                                <directory>logs</directory>
+                                <followSymlinks>false</followSymlinks>
+                            </fileset>
+                            <fileset>
+                                <directory>${allure.report.directory}</directory>
+                            </fileset>
+                            <fileset>
+                                <directory>${allure.results.directory}</directory>
+                            </fileset>
+                            <fileset>
+                                <directory>${surefire.report.directory}</directory>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </plugin>
+                <!-- Maven report generator -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- COMPILE -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/cucumber/*.java</exclude>
+                    </excludes>
+                    <compilerArgument>-Xlint:deprecation</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <release>${maven.compiler.target}</release>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- EXECUTE TESTS -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                        -Xmx2048m -Xms1024m
+                        -Djdk.net.URLClassPath.disableClassPathURLCheck=true
+                        --add-opens java.base/java.lang=ALL-UNNAMED
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit5.AllureJunit5</value>
+                        </property>
+                        <configurationParameters>
+                            junit.jupiter.execution.parallel.enabled=true
+                            junit.jupiter.execution.parallel.mode.default=${parallel.mode.default}
+                            junit.jupiter.execution.parallel.mode.classes.default=${parallel.mode.classes.default}
+                            <!--                            junit.jupiter.execution.parallel.config.strategy=fixed-->
+                            <!--                            junit.jupiter.execution.parallel.config.fixed.parallelism=${thread.count}-->
+                            junit.jupiter.execution.parallel.config.strategy = custom
+                            junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.selenium.junit.CustomStrategy
+                            junit.jupiter.extensions.autodetection.enabled=true
+                            cucumber.publish.quiet=true
+                        </configurationParameters>
+                    </properties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- GENERATE ALLURE REPORT -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <reportTimeout>6000</reportTimeout>
+                    <serveTimeout>6000</serveTimeout>
+                    <resultsDirectory>${allure.results.directory}</resultsDirectory>
+                    <reportDirectory>${allure.report.directory}</reportDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
