@@ -27,6 +27,7 @@
     <modules>
         <module>mrchecker-selenium-junit-example</module>
         <module>mrchecker-playwright-junit-example</module>
+		<module>mrchecker-selenium-cucumber-example</module>
     </modules>
 
     <properties>

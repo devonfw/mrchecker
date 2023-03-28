@@ -18,7 +18,7 @@
         </developer>
     </developers>
 
-    <artifactId>mrchecker-selenium-junit-example</artifactId>
+    <artifactId>mrchecker-selenium-cucumber-example</artifactId>
 
     <properties>
         <thread.count>1</thread.count>
@@ -45,6 +45,10 @@
         <surefire.report.directory>${project.basedir}/target/surefire-reports</surefire.report.directory>
         <allure-maven.version>2.12.0</allure-maven.version>
         <aspectj.version>1.9.9.1</aspectj.version>
+
+        <!-- Cucumber settings-->
+        <cucumber.class>com.capgemini.mrchecker.selenium.example.test.CucumberTests</cucumber.class>
+        <cucumber.version>7.11.1</cucumber.version>
     </properties>
 
     <dependencies>
@@ -55,13 +59,35 @@
             <version>${mrchecker.version}</version>
         </dependency>
 
-        <!-- Need to have this to work with Allure-->
+        <!-- Allure Cucumber plugin used at cucumber.class -->
         <dependency>
-            <!-- Test listener. Binds Junit exec to Allure annotation -->
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit5</artifactId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>${allure.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.cucumber</groupId>
+                    <artifactId>gherkin</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Allure Test listener. Binds Junit exec to Allure annotation -->
+        <!-- It is needed to properly use all Allure features in the project -->
+        <!-- Allure JUnit4 listener works for Cucumber -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
             <version>${allure.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--CUCUMBER PICOCONTAINER -->
+        <!-- Used to store data between stepdefs -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
         </dependency>
     </dependencies>
 
@@ -137,7 +163,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>**/*.class</include>
+                        <include>${cucumber.class}</include>
                     </includes>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
@@ -147,8 +173,10 @@
                     </argLine>
                     <properties>
                         <property>
+                            <!-- Allure Test listener. Binds Junit exec to Allure annotation -->
+                            <!-- It is needed to properly use @Step and @Attachment Allure annotations in the project -->
                             <name>listener</name>
-                            <value>io.qameta.allure.junit5.AllureJunit5</value>
+                            <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
                         <configurationParameters>
                             junit.jupiter.execution.parallel.enabled=true
@@ -160,6 +188,13 @@
                             junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.selenium.junit.CustomStrategy
                             junit.jupiter.extensions.autodetection.enabled=true
                             cucumber.publish.quiet=true
+                            cucumber.execution.parallel.enabled=true
+                            <!--                            cucumber.execution.parallel.config.strategy=fixed-->
+                            <!--                            cucumber.execution.parallel.config.fixed.parallelism=${thread.count}-->
+                            cucumber.execution.parallel.config.strategy=custom
+                            cucumber.execution.parallel.config.custom.class=com.capgemini.mrchecker.selenium.junit.CustomStrategy
+                            cucumber.junit-platform.naming-strategy=long
+                            cucumber.ansi-colors.disabled=false
                         </configurationParameters>
                     </properties>
                 </configuration>
@@ -168,6 +203,11 @@
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
                         <version>${aspectj.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.cucumber</groupId>
+                        <artifactId>cucumber-junit-platform-engine</artifactId>
+                        <version>${cucumber.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
