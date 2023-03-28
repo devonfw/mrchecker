@@ -30,7 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- MrChecker -->
-        <mrchecker.version>2023.03.20</mrchecker.version>
+        <mrchecker.version>2023.03.28</mrchecker.version>
 
         <!-- Maven -->
         <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>

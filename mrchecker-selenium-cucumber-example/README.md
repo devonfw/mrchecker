@@ -15,12 +15,16 @@ You can use this project to start your own:
 
 ## Project settings
 
-| Setting    | Value    |
-|------------|----------|
-| Module     | Selenium |
-| Runner     | Cucumber |
-| Parallel   | Classes  |
-| Encryption | Yes      |
+| Setting    | Value     |
+|------------|-----------|
+| Module     | Selenium  |
+| Runner     | Cucumber  |
+| Parallel   | Scenarios |
+| Encryption | Yes       |
+
+* MrChecker will close WebDriver after each scenario even if they are in the same feature file. \
+  It is related with Cucumber approach to separate each scenario and miss of feature level events. \
+  More details [here](https://github.com/cucumber/cucumber-jvm/issues/2702)
 
 #### Selenium module specific settings
 
@@ -38,13 +42,13 @@ Please get familiar with the content of below-mentioned files:
 * *resources/settings.properties:* List of properties for each test module.
 
 * *resources/secretData:* File used to encrypt/decrypt sensitive data used during test execution. \
-For safety please do not keep this file in repository.
+  For safety please do not keep this file in repository.
 
 * *resources/environments/environments.csv:* List of variables with different values based of used test environment. \
-Some of them might be encrypted with password from secretData file.
+  Some of them might be encrypted with password from secretData file.
 
 * *test/resources/allure.properties:* Allure report properties
 
-* *test/resources/junit-platform.properties:* JUnit properties
+* *test/resources/junit-platform.properties:* JUnit and Cucumber properties
 
 * *pom.xml:* Maven project configuration

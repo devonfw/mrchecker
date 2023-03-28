@@ -14,9 +14,9 @@ public class DemoQALinksPage extends BasePageGUI {
         loadPage(url);
     }
 
-    public boolean isPageOpened(){
+    public boolean isPageOpened() {
         //check unique page element
-        if(isElementDisplayedNoException(selectorHomeLink)) {
+        if (isDisplayedHomeLink()) {
             //check URL
             String currentURL = getDriver().getCurrentUrl();
             return currentURL.equals(url);
@@ -25,7 +25,11 @@ public class DemoQALinksPage extends BasePageGUI {
     }
 
     @Step("Click Home link")
-    public void clickHomeLink(){
+    public void clickHomeLink() {
         WebElementUtils.clickIfVisible(selectorHomeLink, "Home link");
+    }
+
+    public boolean isDisplayedHomeLink() {
+        return isElementDisplayedNoException(selectorHomeLink);
     }
 }
