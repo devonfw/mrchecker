@@ -1,6 +1,5 @@
 package com.capgemini.mrchecker.selenium.example.test.hooks;
 
-import com.capgemini.mrchecker.selenium.example.base.BaseTestGUI;
 import com.capgemini.mrchecker.test.core.cucumber.BaseHook;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -9,10 +8,6 @@ import io.cucumber.java.Scenario;
 //Cucumber @Before/@After annotations can't be located inside extended class
 //You need to have them in the class inside the final project (not in MrChecker)
 public class BaseHookGUI extends BaseHook {
-    public BaseHookGUI() {
-        super(new BaseTestGUI());
-    }
-
     //Method executed before each test (scenario)
     //By default it executes setUp() method from BaseTestGUI
     //Integer minimum means it should be executed first even before other @Before methods
