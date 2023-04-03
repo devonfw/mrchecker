@@ -22,10 +22,6 @@ You can use this project to start your own:
 | Parallel   | Scenarios |
 | Encryption | Yes       |
 
-* MrChecker will close WebDriver after each scenario even if they are in the same feature file. \
-  It is related with Cucumber approach to separate each scenario and miss of feature level events. \
-  More details [here](https://github.com/cucumber/cucumber-jvm/issues/2702)
-
 #### Selenium module specific settings
 
 | Setting             | Value       |  
@@ -34,6 +30,11 @@ You can use this project to start your own:
 | Use page load()     | false       |  
 | Use page isLoaded() | false       | 
 | Element types       | Yes         |
+| Driver close level  | &ast; test  |
+
+&ast; MrChecker will close WebDriver after each scenario even if they are in the same feature file. \
+  It is related with Cucumber approach to separate each scenario and miss of feature level events. \
+  More details [here](https://github.com/cucumber/cucumber-jvm/issues/2702)
 
 #### Remarks
 

@@ -30,6 +30,7 @@ You can use this project to start your own:
 | Use page load()     | false       |  
 | Use page isLoaded() | false       | 
 | Element types       | Yes         |
+| Driver close level  | class       |
 
 #### Remarks
 
