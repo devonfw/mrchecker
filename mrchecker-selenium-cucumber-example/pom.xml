@@ -21,7 +21,7 @@
     <artifactId>mrchecker-selenium-cucumber-example</artifactId>
 
     <properties>
-        <thread.count>1</thread.count>
+        <thread.count>2</thread.count>
         <parallel.mode.default>same_thread</parallel.mode.default>
         <parallel.mode.classes.default>concurrent</parallel.mode.classes.default>
 
@@ -193,6 +193,10 @@
                             cucumber.ansi-colors.disabled=false
                         </configurationParameters>
                     </properties>
+                    <systemProperties>
+                        <!-- If -Dthread.count=X argument is not used then pom default value is passed to the project -->
+                        <thread.count>${thread.count}</thread.count>
+                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <dependency>
