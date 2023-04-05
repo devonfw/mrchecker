@@ -21,7 +21,7 @@
     <artifactId>mrchecker-playwright-junit-example</artifactId>
 
     <properties>
-        <thread.count>1</thread.count>
+        <thread.count>2</thread.count>
         <parallel.mode.default>same_thread</parallel.mode.default>
         <parallel.mode.classes.default>concurrent</parallel.mode.classes.default>
 
@@ -30,7 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- MrChecker -->
-        <mrchecker.version>2023.04.03</mrchecker.version>
+        <mrchecker.version>2023.04.04</mrchecker.version>
 
         <!-- Maven -->
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
@@ -154,14 +154,16 @@
                             junit.jupiter.execution.parallel.enabled=true
                             junit.jupiter.execution.parallel.mode.default=${parallel.mode.default}
                             junit.jupiter.execution.parallel.mode.classes.default=${parallel.mode.classes.default}
-                            <!--                            junit.jupiter.execution.parallel.config.strategy=fixed-->
-                            <!--                            junit.jupiter.execution.parallel.config.fixed.parallelism=${thread.count}-->
                             junit.jupiter.execution.parallel.config.strategy = custom
-                            junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.playwright.junit.CustomStrategy
+                            junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.test.core.junit.CustomStrategy
                             junit.jupiter.extensions.autodetection.enabled=true
                             cucumber.publish.quiet=true
                         </configurationParameters>
                     </properties>
+                    <systemProperties>
+                        <!-- If -Dthread.count=X argument is not used then pom default value is passed to the project -->
+                        <thread.count>${thread.count}</thread.count>
+                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <dependency>
