@@ -1,0 +1,4 @@
+VAR                 ,ENV1
+DEMO_QA_API_URL     ,https://demoqa.com
+EXAMPLE_API_USERNAME,testUser
+EXAMPLE_API_PASSWORD,ENC(zNL+sQvzY6N25nWN7hMYpPdvGoMSuFl5)
