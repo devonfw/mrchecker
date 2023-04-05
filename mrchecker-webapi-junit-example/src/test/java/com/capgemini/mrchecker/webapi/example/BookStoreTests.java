@@ -2,7 +2,6 @@ package com.capgemini.mrchecker.webapi.example;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -21,8 +20,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 
 public class BookStoreTests extends BaseTestWebAPI {
-	private static final BookStoreEndpointsController	bookStoreEndpointsController	= PageFactory.getPageInstance(BookStoreEndpointsController.class);
-	private static final AccountEndpointsController		accountEndpointsController		= PageFactory.getPageInstance(AccountEndpointsController.class);
+	private final BookStoreEndpointsController	bookStoreEndpointsController	= PageFactory.getPageInstance(BookStoreEndpointsController.class);
+	private final AccountEndpointsController	accountEndpointsController		= PageFactory.getPageInstance(AccountEndpointsController.class);
 	
 	private static String userId;
 	
@@ -34,11 +33,6 @@ public class BookStoreTests extends BaseTestWebAPI {
 	@Override
 	public void setUpTest() {
 		StepLogger.step("This is example step inside setUpTest()");
-	}
-	
-	@AfterAll
-	public static void cleanUpAfterAllTests() {
-		bookStoreEndpointsController.deleteBooksFromUserCollection(userId);
 	}
 	
 	// Allure annotations - will have impact on Allure report
@@ -102,5 +96,8 @@ public class BookStoreTests extends BaseTestWebAPI {
 		assertTrue(books.length > 0, "Book was not added to user's collection");
 		assertEquals(books[0].getIsbn(), bookISBN, "Incorrect ISBN");
 		StepLogger.info("Book with ISBN " + bookISBN + " was successfully added to collection");
+		
+		bookStoreEndpointsController.deleteBooksFromUserCollection(userId);
+		
 	}
 }

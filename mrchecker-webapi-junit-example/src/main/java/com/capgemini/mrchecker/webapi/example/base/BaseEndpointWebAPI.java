@@ -6,24 +6,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Map;
 
 import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import com.capgemini.mrchecker.webapi.core.BaseEndpoint;
 import com.capgemini.mrchecker.webapi.core.base.driver.DriverManager;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.http.Cookie;
 import io.restassured.response.ExtractableResponse;
 
-public class PerformApiAction {
-	private static Cookie	cookie;					// Remove if cookie not needed
+public abstract class BaseEndpointWebAPI extends BaseEndpoint {
 	private static String	bearerToken;			// Remove if token not needed
 	private static boolean	isVirtualized	= false;
 	private static String	virtualizedHost	= "";
-	
-	public PerformApiAction() {
-		
-	}
 	
 	public static void startVirtualizeService() {
 		if (!isVirtualized) {
@@ -37,10 +32,6 @@ public class PerformApiAction {
 		} else {
 			fail("Service cannot be started twice");
 		}
-	}
-	
-	public static Cookie getCookie() {
-		return cookie;
 	}
 	
 	public static String getToken() {

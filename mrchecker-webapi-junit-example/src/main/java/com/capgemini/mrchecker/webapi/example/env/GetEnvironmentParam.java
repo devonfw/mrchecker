@@ -8,14 +8,7 @@ import com.capgemini.mrchecker.test.core.exceptions.BFInputDataException;
 public enum GetEnvironmentParam {
 	// Reads the environment variable from /src/resources/environments/environment.csv
 	// Name of enum must be in line with cell name in /src/resources/environments/environment.csv
-	
-	DEMO_QA_URL,
 	DEMO_QA_API_URL,
-	DEMO_QA_LOGIN_URL,
-	DEMO_QA_FORM_URL,
-	DEMO_QA_LINKS_URL,
-	EXAMPLE_USER_LOGIN,
-	EXAMPLE_USER_PASSWORD,
 	EXAMPLE_API_USERNAME,
 	EXAMPLE_API_PASSWORD;
 	
