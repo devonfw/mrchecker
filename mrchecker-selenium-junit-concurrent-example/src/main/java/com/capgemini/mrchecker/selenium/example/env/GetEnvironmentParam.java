@@ -16,7 +16,7 @@ public enum GetEnvironmentParam {
     EXAMPLE_USER_LOGIN,
     EXAMPLE_USER_PASSWORD;
 
-    private String value;
+    private final String value;
 
     @Override
     public String toString() {
