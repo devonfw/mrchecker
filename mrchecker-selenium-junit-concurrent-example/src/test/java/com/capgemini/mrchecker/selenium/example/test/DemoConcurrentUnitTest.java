@@ -50,7 +50,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
         //verify elements visibility
         demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Username input is not visible");
-
     }
 
     @TmsLink("Test Management System ID")
@@ -64,7 +63,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
         //verify elements visibility
         demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedPasswordInput(), "Password input is not visible");
-
     }
 
     @TmsLink("Test Management System ID")
@@ -79,6 +77,5 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
         demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Login button is not visible");
     }
-
 
 }
