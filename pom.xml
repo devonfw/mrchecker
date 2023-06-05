@@ -29,6 +29,7 @@
         <module>mrchecker-playwright-junit-example</module>
 		<module>mrchecker-selenium-cucumber-example</module>
 		<module>mrchecker-webapi-junit-example</module>
+        <module>mrchecker-selenium-junit-concurrent-example</module>
     </modules>
 
     <properties>
