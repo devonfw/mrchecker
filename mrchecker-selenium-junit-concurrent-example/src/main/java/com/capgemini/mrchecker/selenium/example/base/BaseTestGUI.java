@@ -21,7 +21,7 @@ public abstract class BaseTestGUI extends BaseTest {
     // Helpful if there is a need to prepare common behavior - for example exceptions handling
     public final synchronized void setUp() {
         try {
-            setupLock.lock();
+            setupLock.lock();try {
             setUpTest();
         } catch (Throwable throwable) {
             throw new TestAbortedException("[PRE] " + throwable.getMessage(), throwable);
