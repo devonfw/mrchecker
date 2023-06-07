@@ -6,11 +6,18 @@ import com.capgemini.mrchecker.selenium.example.base.BaseTestGUI;
 import com.capgemini.mrchecker.selenium.example.page.DemoQALoginPage;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import io.qameta.allure.*;
+import org.joda.time.Seconds;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 //Multiple tests in single test class
@@ -24,6 +31,7 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @Step("[SETUP]")
     public void setUpTest() {
         StepLogger.step("This is example step inside setUpTest()");
+        demoQALoginPage.startPage();
     }
 
     @Override
@@ -44,7 +52,8 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #1")
     void demoQALoginPage_Visibility_test() {
         //verify elements visibility
-        demoQALoginPage.startPage();
+
+
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Username input is not visible");
     }
 
@@ -57,7 +66,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #2")
     void demoQALoginPage_Visibility_test2() {
         //verify elements visibility
-        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedPasswordInput(), "Password input is not visible");
     }
 
@@ -70,7 +78,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #3")
     void demoQALoginPage_Visibility_test3() {
         //verify elements visibility
-        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Login button is not visible");
     }
 

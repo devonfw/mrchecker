@@ -157,15 +157,11 @@
                         <configurationParameters>
                             junit.jupiter.execution.parallel.enabled=true
                             junit.jupiter.execution.parallel.mode.default=${parallel.mode.default}
-                            junit.jupiter.execution.parallel.mode.classes.default=${parallel.mode.classes.default}
+                            junit.jupiter.execution.parallel.mode.classes.default=concurrent
                             junit.jupiter.execution.parallel.config.strategy = custom
                             junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.test.core.junit.CustomStrategy
                             junit.jupiter.extensions.autodetection.enabled=true
-                            junit.jupiter.execution.parallel.enabled=${parallel-enabled}
-                            junit.jupiter.execution.parallel.config.strategy=fixed
-                            junit.jupiter.execution.parallel.config.fixed.parallelism=${thread-count}
-                            junit.jupiter.execution.parallel.config.fixed.max-pool-size=${thread-count}
-
+                            junit.jupiter.execution.parallel.config.dynamic.factor=${thread-count}
                             cucumber.publish.quiet=true
                         </configurationParameters>
                     </properties>
