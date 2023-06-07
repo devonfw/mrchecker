@@ -2,9 +2,9 @@ package com.capgemini.mrchecker.selenium.example.base;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import org.opentest4j.TestAbortedException;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
 
 public abstract class BaseTestGUI extends BaseTest {
     private static final Lock setupLock = new ReentrantLock();
@@ -21,7 +21,7 @@ public abstract class BaseTestGUI extends BaseTest {
     // Helpful if there is a need to prepare common behavior - for example exceptions handling
     public final synchronized void setUp() {
         try {
-            setupLock.lock();try {
+            setupLock.lock();
             setUpTest();
         } catch (Throwable throwable) {
             throw new TestAbortedException("[PRE] " + throwable.getMessage(), throwable);
@@ -35,7 +35,7 @@ public abstract class BaseTestGUI extends BaseTest {
     // Helpful if there is a need to prepare common behavior - for example exceptions handling
     public final synchronized void tearDown() {
         try {
-            teardownLock.lock();try {
+            teardownLock.lock();
             tearDownTest();
         } catch (Throwable throwable) {
             throw new TestAbortedException("[POST] " + throwable.getMessage(), throwable);
