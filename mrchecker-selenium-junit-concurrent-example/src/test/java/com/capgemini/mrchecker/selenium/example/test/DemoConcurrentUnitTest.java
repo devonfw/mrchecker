@@ -24,7 +24,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @Step("[SETUP]")
     public void setUpTest() {
         StepLogger.step("This is example step inside setUpTest()");
-        demoQALoginPage.startPage();
     }
 
     @Override
@@ -45,6 +44,7 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #1")
     void demoQALoginPage_Visibility_test() {
         //verify elements visibility
+        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Username input is not visible");
     }
 
@@ -57,6 +57,7 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #2")
     void demoQALoginPage_Visibility_test2() {
         //verify elements visibility
+        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedPasswordInput(), "Password input is not visible");
     }
 
@@ -69,6 +70,7 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #3")
     void demoQALoginPage_Visibility_test3() {
         //verify elements visibility
+        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Login button is not visible");
     }
 
