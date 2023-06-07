@@ -1,9 +1,8 @@
 package com.capgemini.mrchecker.selenium.example.test;
 
+import com.capgemini.mrchecker.selenium.core.newDrivers.DriverManager;
 import com.capgemini.mrchecker.selenium.core.utils.StepLogger;
 import com.capgemini.mrchecker.selenium.example.base.BaseTestGUI;
-import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
-import com.capgemini.mrchecker.selenium.example.page.DemoQALinksPage;
 import com.capgemini.mrchecker.selenium.example.page.DemoQALoginPage;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import io.qameta.allure.*;
@@ -12,14 +11,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 //Multiple tests in single test class
 @Execution(ExecutionMode.CONCURRENT)
 public class DemoConcurrentUnitTest extends BaseTestGUI {
     private final DemoQALoginPage demoQALoginPage = PageFactory.getPageInstance(DemoQALoginPage.class);
-    private final DemoQALinksPage demoQALinksPage = PageFactory.getPageInstance(DemoQALinksPage.class);
 
     @Override
     //Pre steps for all tests in this class
@@ -36,7 +33,7 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @Step("[TEARDOWN]")
     public void tearDownTest() {
         StepLogger.step("This is example step inside tearDownTest()");
-        demoQALinksPage.startPage();
+        DriverManager.closeDriver();
     }
 
     @TmsLink("Test Management System ID")
@@ -48,7 +45,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #1")
     void demoQALoginPage_Visibility_test() {
         //verify elements visibility
-        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Username input is not visible");
     }
 
@@ -61,7 +57,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #2")
     void demoQALoginPage_Visibility_test2() {
         //verify elements visibility
-        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedPasswordInput(), "Password input is not visible");
     }
 
@@ -74,7 +69,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #3")
     void demoQALoginPage_Visibility_test3() {
         //verify elements visibility
-        demoQALoginPage.startPage();
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Login button is not visible");
     }
 
