@@ -52,8 +52,6 @@ public class DemoConcurrentUnitTest extends BaseTestGUI {
     @DisplayName("Example test - Demo QA Login Page #1")
     void demoQALoginPage_Visibility_test() {
         //verify elements visibility
-
-
         assertTrue(demoQALoginPage.isDisplayedUsernameInput(), "Username input is not visible");
     }
 
