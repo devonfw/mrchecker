@@ -13,13 +13,15 @@ You can use this project to start your own:
 
 * Replace example classes and test data
 
+* Run tests with Maven using following command: clean test -Dthread.count=6
+
 ## Project settings
 
 | Setting    | Value    |
 |------------|----------|
 | Module     | Selenium |
 | Runner     | JUnit    |
-| Parallel   | Classes  |
+| Parallel   | Tests    |
 | Encryption | Yes      |
 
 #### Selenium module specific settings
