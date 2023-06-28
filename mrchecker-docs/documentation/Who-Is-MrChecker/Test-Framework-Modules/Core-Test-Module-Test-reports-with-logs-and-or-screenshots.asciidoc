@@ -85,11 +85,11 @@ A report is created under target folder in working directory. In this case: _mrc
 
 *NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
-image::images/image91.png[]
-
 image::images/image92.png[]
 
 image::images/image93.png[]
+
+image::images/image94.png[]
 
 === Generate report - Jenkins
 
