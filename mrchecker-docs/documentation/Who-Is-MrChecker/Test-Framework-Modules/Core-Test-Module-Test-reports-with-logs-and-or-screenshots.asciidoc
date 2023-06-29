@@ -65,7 +65,7 @@ System property allure.serve.timeout.
 
     mvn test allure:report -Dtest=TS_Tag1
 
-A report will be generated tо directory: target/site/allure-maven/index.html
+A report will be generated tо directory: target/allure-report/index.html
 
 *NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
@@ -78,6 +78,18 @@ A report is created here _allure-app-under-test\target\site\allure-report\index.
 image::images/image17.png[]
 
 image::images/image18.png[]
+
+=== Generate report - IntelliJ IDEA
+
+A report is created under target folder in working directory. In this case: _mrchecker-selenium-junit-example\target\allure-report\index.html_
+
+*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
+
+image::images/image92.png[]
+
+image::images/image93.png[]
+
+image::images/image94.png[]
 
 === Generate report - Jenkins
 
