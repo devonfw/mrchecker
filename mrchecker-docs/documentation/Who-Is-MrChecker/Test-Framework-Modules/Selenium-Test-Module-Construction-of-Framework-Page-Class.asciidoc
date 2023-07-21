@@ -75,7 +75,7 @@ As soon as you create the selector above, you can make use of it to initialize a
 WebElement someWebElement = getDriver().findElementDynamic(someWebElementSelector);
 ----
 
-*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend  `findDynamicElement()` or `findQuietlyElement().findDynamicElement()` allows waiting for dynamic elements, for example buttons that pop up.
+*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend  `findElementDynamic()` or `findQuietlyElement().findElementDynamic()` allows waiting for dynamic elements, for example buttons that pop up.
 
 == Creating a page method
 
