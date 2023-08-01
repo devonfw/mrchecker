@@ -109,7 +109,7 @@ To run test case with system environment, please use:
 
 
 == Eclipse Since mrchecker-core-module version 5.6.2.1*
-* Command Line
+Command Line
 
 ----
 mvn test site -Dgroups=RegistryPageTestTag -Denv=DEV
@@ -121,7 +121,7 @@ image::images/image086_new.png[]
 
 
 == EclipsePrior to mrchecker-core-module version 5.6.2.1*
-* Command Line
+Command Line
 
 ----
 mvn test site -Dtest=RegistryPageTest -Denv=DEV
