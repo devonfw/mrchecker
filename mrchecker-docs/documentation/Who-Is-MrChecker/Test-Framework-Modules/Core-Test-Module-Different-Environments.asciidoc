@@ -108,7 +108,7 @@ To run test case with system environment, please use:
 * *\<NameOfEnvironment\>* is taken as column name from file *mrchecker-app-under-test\src\test\resources\enviroments\environments.csv* 
 
 
-== Eclipse Since mrchecker-core-module version 5.6.2.1
+== Eclipse since mrchecker-core-module version 5.6.2.1
 Command Line
 
 ----
@@ -120,7 +120,7 @@ image::images/image085.png[]
 image::images/image086_new.png[]
 
 
-== EclipsePrior to mrchecker-core-module version 5.6.2.1
+== Eclipse prior to mrchecker-core-module version 5.6.2.1
 Command Line
 
 ----
