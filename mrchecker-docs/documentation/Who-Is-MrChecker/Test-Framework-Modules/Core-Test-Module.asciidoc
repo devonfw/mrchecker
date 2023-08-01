@@ -29,7 +29,6 @@ image::images/image1_new.png[]
 * https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-case-parallel-execution.asciidoc[Test case parallel execution]
 * https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[BDD - Gherkin - Cucumber approach]
 * https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[Run on independent Operating Systems]
-* https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[Externalize test environment (DEV, QA, SIT, PROD)]
 * https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[Encrypting sensitive data]
 
 == How to start?
