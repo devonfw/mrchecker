@@ -38,7 +38,7 @@ image::images/image2.png[]
     - Why we should use `findElementDynamic()` and `findElementQuietly()` instead of classic Selenium `findElement`
     - List of well-rounded groups of user friendly actions (`ElementButton`, `ElementCheckbox`, `ElementInput`, etc.)
     - Verification points of well-defined Page classes and Test classes
-* https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-different-browser-options.asciidoc[Run on different browsers: Chrome, Firefox, IE, Safari, Edge]
+* https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-different-browser-options.asciidoc[Run on different browsers: Chrome, Firefox, IE, Edge]
 * https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-on-different-browsers.asciidoc[Run with different browser options]
 * https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[Run with full range of resolution (mobile, desktop): Testing responsible Design Webpage]
 
