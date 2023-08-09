@@ -55,6 +55,8 @@ public void load() {
 }
 ----
 
+**NOTE:** methods load() and isLoaded() are called right after page object initialization. Keep that in mind when implementing test class.
+
 === BasePage method: pageTitle
 
 The `pageTitle()` method returns a String containing the page title.
@@ -66,16 +68,16 @@ To initialize web elements, a large variety of selectors can be used.
 We recommend creating  a private and constant field for every web element you’d like to represent in Java. Use the guide above to find the preferred selector and place it in the code below at "WEB_ELEMENT_SELECTOR".
 
 ----
-private static final By someWebElementSelector = By.CSS("WEB_ELEMENT_SELECTOR");
+private static final By someWebElementSelector = By.cssSelector("WEB_ELEMENT_SELECTOR");
 ----
 
 As soon as you create the selector above, you can make use of it to initialize a WebElement object.
 
 ----
-WebElement someWebElement = getDriver().findDynamicElement(someWebElementSelector);
+WebElement someWebElement = getDriver().findElementDynamic(someWebElementSelector);
 ----
 
-*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend  `findDynamicElement()` or `findQuietlyElement().findDynamicElement()` allows waiting for dynamic elements, for example buttons that pop up.
+*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend  `findElementDynamic()` or `findElementQuietly()` allows waiting for dynamic elements, for example buttons that pop up.
 
 == Creating a page method
 
