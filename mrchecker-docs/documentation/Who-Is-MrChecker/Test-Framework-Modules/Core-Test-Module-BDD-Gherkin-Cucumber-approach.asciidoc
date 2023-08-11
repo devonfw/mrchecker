@@ -60,6 +60,34 @@ Cucumber and Selenium are both open source tools with a large community, online 
 
 image::images/image41.png[]
 
+== Cucumber project structure
+
+===Example project structure
+
+image::images/cucumber_project_structure.jpg[]
+
+===Feature Files
+
+*Feature files* are core part of *BDD* approach with *Cucumber*. The idea behind them is to allow communication between everyone, even without technical skill.
+
+*Feature files* are written with *Gherkin*, which syntax is simple, trying to imitate plain english.
+
+This is the place for test scenarios, which are scripted chain of commands that drives the process.
+
+===Step definitions
+
+While *feature files* are simple lines describing actions, they have to be connected to a script that actually does the work.
+
+*Step definition file* is the place to code methods that are called by the appropriate *test step*.
+
+A good practice is to follow *Page Object Pattern* to keep your step definitions clean and expandable, you can find more information https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/#:~:text=Page%20Object%20is%20a%20Design,a%20page%20of%20your%20AUT.[here].
+
+===Test runner
+
+*Test runner* is used to create communication between *Feature files* and *Step definitions*, execute tests and report results.
+
+In test runner annotations you can edit each of mentioned above.
+
 == Tooling
 
 ==== Cucumber
