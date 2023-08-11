@@ -56,9 +56,9 @@ image::images/image082.png[]
 
 Some types of data you might want to store as environment settings are sensitive in nature (e.g. passwords). You might not want to store them (at least not in their plaintext form) in your repository. To be able to encrypt sensitive data you need to do following:
 
-* 1 Create a secret (long, random chain of characters) and store it under *mrchecker-app-under-test\src\resources\secretData.txt*. Example: `LhwbTm9V3FUbBO5Tt5PiTUEQrXGgWrDLCMthnzLKNy1zA5FVTFiTdHRQAyPRIGXmsAjPUPlJSoSLeSBM`
-* 2 Exclude the file from being checked into the git repository by adding it to *git.ignore*. You will need to pass the file over a different channel among your teammates.
-* 3 Encrypt the values before putting them into the *environments.csv* file by creating following script (put the script where your jasypt library resides, e.g. *C:\MrChecker_Test_Framework\m2\repository\org\jasypt\jasypt\1.9.2*):
+1. Create a secret (long, random chain of characters) and store it under *mrchecker-app-under-test\src\resources\secretData. Example: `LhwbTm9V3FUbBO5Tt5PiTUEQrXGgWrDLCMthnzLKNy1zA5FVTFiTdHRQAyPRIGXmsAjPUPlJSoSLeSBM`
+2. Exclude the file from being checked into the git repository by adding it to *git.ignore*. You will need to pass the file over a different channel among your teammates.
+3. Encrypt the values before putting them into the *environments.csv* file by creating following script (put the script where your jasypt library resides, e.g. *C:\MrChecker_Test_Framework\m2\repository\org\jasypt\jasypt\1.9.2*):
 
 ----
 @ECHO OFF
