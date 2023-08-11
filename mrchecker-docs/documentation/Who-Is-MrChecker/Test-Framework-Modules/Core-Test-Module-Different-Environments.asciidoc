@@ -81,7 +81,7 @@ set JAVA_EXECUTABLE="%JAVA_HOME%\bin\java"
 :execute
 %JAVA_EXECUTABLE% -classpath %EXEC_CLASSPATH% %EXECUTABLE_CLASS% %SCRIPT_NAME% %*
 ----
-* 4 Encrypt the values by calling
+4. Encrypt the values by calling
 
 ----
 .\encrypt.bat input=someinput password=secret
@@ -89,7 +89,7 @@ set JAVA_EXECUTABLE="%JAVA_HOME%\bin\java"
 
 image::images/image095.png[]
 
-* 5 Mark the value as encrypted by adding a prefix 'ENC(' and suffix ')' like: `ENC(JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD)`
+5. Mark the value as encrypted by adding a prefix 'ENC(' and suffix ')' like: `ENC(JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD)`
 
 image::images/image083.png[]
 
