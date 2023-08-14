@@ -108,7 +108,7 @@ To run test case with system environment, please use:
 * *\<NameOfEnvironment\>* is taken as column name from file *mrchecker-app-under-test\src\test\resources\environments\environments.csv* 
 
 
-== Eclipse since mrchecker-core-module version 5.6.2.1
+== Eclipse
 Command Line
 
 ----
@@ -118,16 +118,3 @@ mvn test site -Dgroups=RegistryPageTestTag -Denv=DEV
 
 image::images/image085.png[]
 image::images/image086_new.png[]
-
-
-== Eclipse prior to mrchecker-core-module version 5.6.2.1
-Command Line
-
-----
-mvn test site -Dtest=RegistryPageTest -Denv=DEV
-----
-
-
-image::images/image085.png[]
-image::images/image086.png[]
-
