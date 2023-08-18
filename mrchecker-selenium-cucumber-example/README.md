@@ -11,7 +11,12 @@ You can use this project to start your own:
 
 * Rename project (check also pom.xml values)
 
-* Replace example classes and test data
+* Replace example classes and test data&ast;
+
+&ast; Please keep in mind that MrChecker features are made as a Cucumber plugin. \
+Plugins order does matter and Allure report plugin should be always the last one or at least after MrChecker one since
+it will close test report when
+used.
 
 ## Project settings
 
@@ -33,8 +38,8 @@ You can use this project to start your own:
 | Driver close level  | &ast; test  |
 
 &ast; MrChecker will close WebDriver after each scenario even if they are in the same feature file. \
-  It is related with Cucumber approach to separate each scenario and miss of feature level events. \
-  More details [here](https://github.com/cucumber/cucumber-jvm/issues/2702)
+It is related with Cucumber approach to separate each scenario and miss of feature level events. \
+More details [here](https://github.com/cucumber/cucumber-jvm/issues/2702)
 
 #### Remarks
 
