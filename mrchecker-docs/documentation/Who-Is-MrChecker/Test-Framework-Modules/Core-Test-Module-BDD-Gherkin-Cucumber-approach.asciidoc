@@ -60,6 +60,27 @@ Cucumber and Selenium are both open source tools with a large community, online 
 
 image::images/image41.png[]
 
+=== IntelliJ IDE
+
+image::images/cucumber_IntelliJ_IDE.jpg[]
+
+Before running cucumber subproject you have to configure your IDE
+
+1. Mark mrchecker-selenium-cucumber-example/src/test/java as *Test Sources Root*
+
+2. Mark mrchecker-selenium-cucumber-example/src/test/resources as *Test Resources Root*
+
+3. Open *Edit Configurations*
+
+4. Make sure *Run* has the following command
++
+    mvn clean -P cucumber test site allure:report
++
+
+5. Edit *Working directory*
+
+6. Select mrchecker-selenium-cucumber-example as *Working directory*
+
 == Cucumber project structure
 
 ===Example project structure
