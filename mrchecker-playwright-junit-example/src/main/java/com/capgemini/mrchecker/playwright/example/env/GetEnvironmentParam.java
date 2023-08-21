@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.example.env;
+package com.capgemini.mrchecker.playwright.example.env;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.exceptions.BFInputDataException;

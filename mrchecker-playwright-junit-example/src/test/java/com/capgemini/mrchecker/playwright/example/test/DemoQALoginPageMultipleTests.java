@@ -1,10 +1,10 @@
-package com.capgemini.mrchecker.selenium.example.test;
+package com.capgemini.mrchecker.playwright.example.test;
 
 import com.capgemini.mrchecker.playwright.core.utils.StepLogger;
-import com.capgemini.mrchecker.selenium.example.base.BaseTestGUI;
-import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
-import com.capgemini.mrchecker.selenium.example.page.DemoQALinksPage;
-import com.capgemini.mrchecker.selenium.example.page.DemoQALoginPage;
+import com.capgemini.mrchecker.playwright.example.base.BaseTestGUI;
+import com.capgemini.mrchecker.playwright.example.env.GetEnvironmentParam;
+import com.capgemini.mrchecker.playwright.example.page.DemoQALinksPage;
+import com.capgemini.mrchecker.playwright.example.page.DemoQALoginPage;
 import com.capgemini.mrchecker.test.core.utils.PageFactory;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
