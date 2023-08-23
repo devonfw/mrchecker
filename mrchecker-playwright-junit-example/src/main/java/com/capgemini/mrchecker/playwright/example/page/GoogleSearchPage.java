@@ -9,18 +9,10 @@ public class GoogleSearchPage extends BasePageGUI {
 	// Selectors for web elements
 	private final String selectorGoogleSearchInput = "[type='search']";
 	private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
-	private final String selectorAcceptCookiesButton = "#L2AGLb";
 
 	// Navigate to the Google search page
 	public void startPage() {
 		loadPage(url);
-	}
-
-	// Accept cookies by clicking the button
-	public void acceptCookies() {
-		getDriver().currentPage()
-				.locator(selectorAcceptCookiesButton)
-				.click();
 	}
 
 	// Enter search query and submit the form

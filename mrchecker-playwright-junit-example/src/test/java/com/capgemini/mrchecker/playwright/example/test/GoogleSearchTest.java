@@ -26,9 +26,6 @@ public class GoogleSearchTest extends BaseTestGUI {
 
     @Test
     public void shouldFoundAtLeastOneResult_test() {
-        // Accept cookies
-        googleSearchPage.acceptCookies();
-
         // Enter "Test" and perform search
         googleSearchPage.enterGoogleSearchInput("Test");
 
