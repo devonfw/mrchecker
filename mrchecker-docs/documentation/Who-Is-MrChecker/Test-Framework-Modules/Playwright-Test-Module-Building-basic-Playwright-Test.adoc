@@ -46,15 +46,15 @@ so we need selectors for web elements required in our test case.
 In our example, we need two selectors: _Google Search Input_ and _Google Search Button_. These selectors will be implemented as fields.
 We can find them using the developer console in Google Chrome.
 
-
 ----
 private final String selectorGoogleSearchInput = "[type='search']";
 private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
 ----
 
 Since Google Search is the first page we want to launch, we implement the `startPage()` method. Inside the method we call `loadPlan()` from the _BasePageGUI_ class and pass the URL, which is defined as a global field.
+
 ----
- public void startPage() {
+public void startPage() {
         loadPage(url);
  }
 ----
@@ -66,6 +66,8 @@ public void enterGoogleSearchInput(String searchText) {
 }
 ----
 This page is ready to use; no further actions are needed.
+
+[source,java]
 ----
 public class GoogleSearchPage extends BasePageGUI {
 	// URL of the Google search page
@@ -109,6 +111,7 @@ We retrieve the current page using `getDriver().currentPage()` to work with the 
 We use waitForSelector with a timeout of 5 seconds to wait for the "searchResult" selector to appear on the page.
 The method then returns the count of elements matching the selector, indicating the number of search results.
 
+[source,java]
 ----
 public class GoogleResultPage extends BasePageGUI {
 	// Selector for search result items
@@ -138,6 +141,7 @@ To begin, we'll create a new class within the "googleSearch" package, which we p
 
 Since "GoogleSearchTest" is a test class, it should extend the BaseTestGUI class. Here is the code structure:
 
+[source,java]
 ----
 public class GoogleSearchTest extends BaseTestGUI {
     // Initialize page instances
