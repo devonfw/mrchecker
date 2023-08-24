@@ -1,0 +1,39 @@
+= Playwright Run Configurations: Browser Options and Resolutions
+
+When working with Playwright, you can customize your test execution by specifying browser options and resolutions. This allows you to achieve comprehensive testing across various browsers and screen sizes.
+
+== Running Tests on Different Browsers with Playwright
+
+To execute your Playwright tests on different browsers, follow these steps:
+
+1. Open the configuration settings for your test.
++
+image::images/pw-edit-configuration.png[]
++
+
+2. In the "Arguments" tab, specify the desired browser using a parameter.
+
+Use the -Dbrowser= argument, followed by the browser parameter name. Playwright supports the following browsers:
+
+* firefox
+* webkit
+* chrome
+
+For example: -Dbrowser="firefox"
+
+image::images/pw-arguments-tab.png[]
+
+By configuring your test with the appropriate browser parameter, you can seamlessly run Playwright tests on different browser platforms. This adaptability ensures comprehensive testing and consistent performance across diverse browser environments.
+
+== Customizing Browser Options
+
+To run a browser with specific options during runtime, use the -DbrowserOptions="<options>" argument. For instance:
+
+* Run with one parameter: -DbrowserOptions="headless"
+* Run with multiple parameters: -DbrowserOptions="headless;param1=value1;--testMe"
+
+These options are based on the capabilities supported by the browsers. Refer to the respective documentation for more details:
+
+* https://playwright.dev/docs/cli#browser-context-options[Playwright Browser Context Options]
+
+TIP: If you need to revert to the default settings, use the -ea argument.
