@@ -1,0 +1,118 @@
+= Page Class
+
+Page Object Models allow for the representation of a webpage as a Java Class. The class contains all required web elements like buttons, textfields, labels, etc. When initializing a new project, create a new package to store the Page Object Models in.
+
+== Initialization
+
+*Source folder*: _your-project/src/main/java_
+
+*Name*: `com.example.playwright.pages.YOUR_PROJECT`
+
+Classes being created inside of this new package have to extend the *BasePageGUI* class.
+
+The BasePageGUI class serves as a foundational component for Playwright-based web page handling, streamlining navigation, and interaction across your test suite.
+BasePageGUI class extends the BasePage class, enhancing it with Playwright-specific functionality.
+
+== Key Methods and Functions
+
+Let's explore the key methods and functions within the BasePageGUI class:
+
+* `pageTitle()`: Override this method to return the title of the current page. This is particularly useful for validation purposes.
+
+* `isLoaded()`: Override this method to determine whether the page has loaded successfully. Implement checks relevant to your application's behavior.
+
+* `load()`: Override this method to define the actions required to load the page. Include any necessary validations or interactions.
+
+* `loadPage(String url)`: Override this method to load a specific URL. This method extends the base loadPage() method, capturing a screenshot and logging the action using the Allure @Step annotation.
+
+== Usage Flexibility
+
+You are not required to use all the methods within the BasePageGUI class. Feel free to select and implement the methods that best suit your test case requirements.
+
+== Creating and Using Selectors
+
+* Define Selectors: Create selectors using CSS or other techniques. For example:
+----
+private final String selectorGoogleSearchInput = "[type='search']";
+----
+
+* Utilize Selectors: Use selectors in your page interactions. For instance:
+----
+getDriver().currentPage()
+    .locator(selectorGoogleSearchInput)
+    .fill(searchText);
+----
+You can create and manage selectors efficiently, tailoring them to your application's structure and needs.
+
+== Example: Page Interaction
+
+Here's an additional example of using selectors for interacting with elements on a Playwright page:
+
+[source,java]
+----
+public class MyPage extends BasePageGUI {
+
+    private final String pageUrl = "https://example.com";
+    private final String selectorSearchInput = "[type='search']";
+
+    @Override
+    public boolean isLoaded() {
+        return getDriver().currentPage().url().equals(pageUrl);
+    }
+
+    @Override
+    public void load() {
+        loadPage(pageUrl);
+    }
+
+    public void enterSearchInput(String query) {
+        getDriver().currentPage()
+                .locator(selectorSearchInput)
+                .fill(query);
+    }
+}
+----
+In this example, the MyPage class defines a selector for a search input field. The `enterSearchInput(String query)` method utilizes the selector to interact with the search input and fill it with the provided query.
+
+By leveraging the flexibility of BasePageGUI, creating selectors, and utilizing them in interactions, you can efficiently build and maintain your Playwright test suite.
+
+== Creating Page Variables with PageFactory: Structured Page Instances
+
+It's a good practice to create page variables using the PageFactory pattern. This pattern ensures structured and consistent access to page instances, enhancing maintainability and readability.
+
+=== PageFactory and Page Variables
+
+When creating instances of page classes, the PageFactory pattern is utilized. This approach simplifies the instantiation of pages and provides a central point for managing page objects.
+
+Here's an example of how to create a page variable using the PageFactory pattern in your Test class:
+
+----
+private final MyPage myPage = PageFactory.getPageInstance(MyPage.class);
+----
+
+In this example, the myPage variable is created, referencing an instance of the MyPage class. This pattern promotes code organization and allows you to easily access and interact with the page's elements and methods.
+
+=== Why Use PageFactory?
+
+The PageFactory pattern offers several benefits:
+
+* Code Reusability: By creating structured page instances, you can reuse the same instance across multiple test cases, ensuring consistent interactions with the page.
+
+* Centralization: All page instance creation is centralized within the PageFactory, making it easier to manage and maintain instances of different pages.
+
+* Clear Intent: Instantiating pages using PageFactory clearly communicates your intention to work with a specific page, improving code readability.
+
+=== Example Usage
+Consider the example usage of the myPage page variable:
+----
+@Test
+public void myPageTest() {
+    myPage.load();
+    assertTrue(myPage.isLoaded(), "MyPage failed to load");
+
+    myPage.enterSearchInput("Playwright");
+    // Additional test logic
+}
+----
+
+In this test, the myPage variable is used to load the page, validate its loading, and interact with the search query input field.
