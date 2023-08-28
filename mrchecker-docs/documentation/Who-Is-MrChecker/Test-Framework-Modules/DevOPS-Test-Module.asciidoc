@@ -40,8 +40,8 @@ image::images/image5.png[]
 
 == Continuous Integration (CI) and Continuous Delivery (CD)
 
-* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[Continuous Integration (CI)] - a procedure where quality gates validate test case creation process
-* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[Continuous Delivery (CD)] - a procedure where we include created test cases, validated against CI, as smoke/regression/security 
+* https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[Continuous Integration (CI)] - a procedure where quality gates validate test case creation process
+* https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc[Continuous Delivery (CD)] - a procedure where we include created test cases, validated against CI, as smoke/regression/security
 
 image::images/image6.png[]
 
@@ -68,4 +68,4 @@ DevOps module supports a delivery model in which executors are made available to
 
 Once you have implemented the module, you can learn more about it here:
 
-* https://github.com/devonfw/devonfw-testing/blob/develop/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[Docker commands]
+* https://github.com/devonfw/devonfw-testing/blob/develop/mrchecker-docs/documentation/Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[Docker commands]

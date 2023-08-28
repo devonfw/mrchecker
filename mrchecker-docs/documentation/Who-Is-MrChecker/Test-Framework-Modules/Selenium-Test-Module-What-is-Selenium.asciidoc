@@ -26,6 +26,10 @@ Selenium 2, also known as Selenium WebDriver, is designed to supply a well-desig
 +
 The major change in Selenium 3.0 is removing the original Selenium Core implementation and replacing it with one backed by WebDriver. There is now a W3C specification for browser automation, based on the Open Source WebDriver.
 +
+* *Selenium 4*
++
+A significant architectural update in Selenium 4 is W3C Standarization for the WebDriver API. It makes cross browser tests more stable and testing itself more reliable and efficient.
++
 * *Selenium Grid*
 +
 Selenium Grid allows the scaling of Selenium RC test cases, that must be run in multiple and potentially variable environments. The tests can be run in parallel on different remote machines.

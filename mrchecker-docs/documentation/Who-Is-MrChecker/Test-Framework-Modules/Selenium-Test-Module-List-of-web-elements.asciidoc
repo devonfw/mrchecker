@@ -40,6 +40,24 @@ image::images/image58.png[]
 
 |Combobox
 |`elementList()`
+
+|Image
+|`elementImage()`
+
+|Tooltip
+|`elementTooltip()`
+
+|Menu
+|`elementMenu()`
+
+|IFrame
+|`elementIFrame()`
+
+|Slider
+|`elementHorizontalSlider()`
+
+|Navbar
+|`elementNavigationBar()`
 |===
 
 Comparision how picking value from `checkbox` can be done:
@@ -51,7 +69,7 @@ Classic Selenium atomic actions
 
 ----
 List<WebElement> checkboxesList = getDriver()
-                .findElements(selectorHobby);
+                .findElementDynamics(selectorHobby);
 WebElement currentElement;
 for (int i = 0; i < checkboxesList.size(); i++) {
     currentElement = checkboxesList.get(i);

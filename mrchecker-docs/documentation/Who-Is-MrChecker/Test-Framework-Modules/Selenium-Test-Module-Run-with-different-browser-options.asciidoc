@@ -15,5 +15,5 @@ examples:
 
 List of options/capabilites supported by:
 
-* https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities[Selenium Grid]
+* https://www.selenium.dev/documentation/legacy/desired_capabilities/[Selenium Grid]
 * http://chromedriver.chromium.org/capabilities[Chrome Driver]

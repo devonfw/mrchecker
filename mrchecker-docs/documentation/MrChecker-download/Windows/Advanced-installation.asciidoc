@@ -60,8 +60,8 @@ image::images/install_win04.png[]
 
 2. IDE
     * Download a most recent https://www.eclipse.org/downloads/packages/[Eclipse]
-    * Download a MrChecker Project https://downgit.github.io/#/home?url=https://github.com/devonfw/mrchecker/tree/develop/template[Template] to start a new project or Mrchecker Project https://downgit.github.io/#/home?url=https://github.com/devonfw/mrchecker/tree/develop/example[Example] to get better understanding what we are capable of.
-    * You should consider installing some usefull plugins such as: csvedit, cucumber editor.
+    * Download one of MrChecker Project https://github.com/devonfw/mrchecker/tree/develop/[examples] to get better understanding what we are capable of.
+    * You should consider installing some useful plugins such as: csvedit, cucumber editor.
 
 * Import:
 +
