@@ -8,26 +8,55 @@ Page Object Models allow for the representation of a webpage as a Java Class. Th
 
 *Name*: `com.example.playwright.pages.YOUR_PROJECT`
 
-Classes being created inside of this new package have to extend the *BasePageGUI* class.
+Classes being created inside of this new package have to extend the *BasePage* class.
 
-The BasePageGUI class serves as a foundational component for Playwright-based web page handling, streamlining navigation, and interaction across your test suite.
-BasePageGUI class extends the BasePage class, enhancing it with Playwright-specific functionality.
+The *BasePage* class serves as a foundational component for Playwright-based web page handling, streamlining navigation, and interaction across your test suite.
 
 == Key Methods and Functions
 
-Let's explore the key methods and functions within the BasePageGUI class:
+In the Playwright framework, the `BasePage` class provides key methods that are fundamental for building effective page objects for your web application tests.
 
-* `pageTitle()`: Override this method to return the title of the current page. This is particularly useful for validation purposes.
+=== `pageTitle()`
 
-* `isLoaded()`: Override this method to determine whether the page has loaded successfully. Implement checks relevant to your application's behavior.
+Override the `pageTitle()` method in your page classes to return the expected title of the current page. This method is useful for validating that the correct page has loaded during your tests.
 
-* `load()`: Override this method to define the actions required to load the page. Include any necessary validations or interactions.
+For example:
 
-* `loadPage(String url)`: Override this method to load a specific URL. This method extends the base loadPage() method, capturing a screenshot and logging the action using the Allure @Step annotation.
+----
+@Override
+public String pageTitle() {
+    return "My Page Title"; // Replace with the actual page title
+}
+----
 
-== Usage Flexibility
+=== `isLoaded()`
 
-You are not required to use all the methods within the BasePageGUI class. Feel free to select and implement the methods that best suit your test case requirements.
+The `isLoaded()` method determines whether the page has loaded successfully. Implement checks relevant to your application's behavior within this method.
+
+For instance:
+
+----
+@Override
+public boolean isLoaded() {
+    return getDriver().currentPage().url().equals(pageUrl);
+}
+----
+
+=== `load()`
+
+Override the `load()` method to define the actions required to load the page. This method typically includes navigating to a specific URL, handling validations, and preparing the page for testing.
+
+For example:
+
+----
+@Override
+public void load() {
+    String pageUrl = "https://example.com";
+    loadPage(pageUrl);
+}
+----
+
+These main methods within the `BasePage` class play a crucial role in creating well-structured and maintainable page objects for your Playwright test suite.
 
 == Creating and Using Selectors
 
@@ -50,10 +79,14 @@ Here's an additional example of using selectors for interacting with elements on
 
 [source,java]
 ----
-public class MyPage extends BasePageGUI {
+public class MyPage extends BasePage {
 
-    private final String pageUrl = "https://example.com";
     private final String selectorSearchInput = "[type='search']";
+
+    @Override
+    public String pageTitle() {
+        return "My Page Title"; // Replace with the actual page title
+    }
 
     @Override
     public boolean isLoaded() {
@@ -62,6 +95,7 @@ public class MyPage extends BasePageGUI {
 
     @Override
     public void load() {
+        String pageUrl = "https://example.com";
         loadPage(pageUrl);
     }
 
@@ -74,45 +108,4 @@ public class MyPage extends BasePageGUI {
 ----
 In this example, the MyPage class defines a selector for a search input field. The `enterSearchInput(String query)` method utilizes the selector to interact with the search input and fill it with the provided query.
 
-By leveraging the flexibility of BasePageGUI, creating selectors, and utilizing them in interactions, you can efficiently build and maintain your Playwright test suite.
-
-== Creating Page Variables with PageFactory: Structured Page Instances
-
-It's a good practice to create page variables using the PageFactory pattern. This pattern ensures structured and consistent access to page instances, enhancing maintainability and readability.
-
-=== PageFactory and Page Variables
-
-When creating instances of page classes, the PageFactory pattern is utilized. This approach simplifies the instantiation of pages and provides a central point for managing page objects.
-
-Here's an example of how to create a page variable using the PageFactory pattern in your Test class:
-
-----
-private final MyPage myPage = PageFactory.getPageInstance(MyPage.class);
-----
-
-In this example, the myPage variable is created, referencing an instance of the MyPage class. This pattern promotes code organization and allows you to easily access and interact with the page's elements and methods.
-
-=== Why Use PageFactory?
-
-The PageFactory pattern offers several benefits:
-
-* Code Reusability: By creating structured page instances, you can reuse the same instance across multiple test cases, ensuring consistent interactions with the page.
-
-* Centralization: All page instance creation is centralized within the PageFactory, making it easier to manage and maintain instances of different pages.
-
-* Clear Intent: Instantiating pages using PageFactory clearly communicates your intention to work with a specific page, improving code readability.
-
-=== Example Usage
-Consider the example usage of the myPage page variable:
-----
-@Test
-public void myPageTest() {
-    myPage.load();
-    assertTrue(myPage.isLoaded(), "MyPage failed to load");
-
-    myPage.enterSearchInput("Playwright");
-    // Additional test logic
-}
-----
-
-In this test, the myPage variable is used to load the page, validate its loading, and interact with the search query input field.
+By leveraging the flexibility of BasePage, creating selectors, and utilizing them in interactions, you can efficiently build and maintain your Playwright test suite.

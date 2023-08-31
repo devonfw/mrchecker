@@ -1,11 +1,27 @@
 package com.capgemini.mrchecker.playwright.example.page;
 
+import com.capgemini.mrchecker.playwright.core.BasePage;
 import com.capgemini.mrchecker.playwright.example.base.BasePageGUI;
 import com.microsoft.playwright.Page;
 
-public class GoogleResultPage extends BasePageGUI {
+public class GoogleResultPage extends BasePage {
 	// Selector for search result items
 	private final String selectorSearchResult = "#search .v7W49e > div";
+
+	@Override
+	public String pageTitle() {
+		return null;
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return false;
+	}
+
+	@Override
+	public void load() {
+
+	}
 
 	// Retrieve the number of search results
 	public int getResultsNumber() {

@@ -1,17 +1,26 @@
 package com.capgemini.mrchecker.playwright.example.page;
 
-import com.capgemini.mrchecker.playwright.example.base.BasePageGUI;
+import com.capgemini.mrchecker.playwright.core.BasePage;
 import com.capgemini.mrchecker.playwright.example.env.GetEnvironmentParam;
 
-public class GoogleSearchPage extends BasePageGUI {
-	// URL of the Google search page
-	private final String url = GetEnvironmentParam.GOOGLE_URL.getValue();
+public class GoogleSearchPage extends BasePage {
 	// Selectors for web elements
 	private final String selectorGoogleSearchInput = "[type='search']";
 	private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
 
-	// Navigate to the Google search page
-	public void startPage() {
+	@Override
+	public String pageTitle() {
+		return null;
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return false;
+	}
+
+	@Override
+	public void load() {
+		String url = GetEnvironmentParam.GOOGLE_URL.getValue();
 		loadPage(url);
 	}
 

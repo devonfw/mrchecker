@@ -39,67 +39,60 @@ image::images/pw-main-googleSearch.png[]
 === GoogleSearchPage
 We need a new Page object to represent the Google Search page.
 The page class will be named "GoogleSearchPage" and located in the "com.example.playwright.pages.googleSearch" package.
-It should extend the _BasePageGUI_ class and contain the necessary selectors.
+It should extend the _BasePage_ class and contain the necessary selectors.
 
 The page class represents the Google homepage,
 so we need selectors for web elements required in our test case.
 In our example, we need two selectors: _Google Search Input_ and _Google Search Button_. These selectors will be implemented as fields.
 We can find them using the developer console in Google Chrome.
 
-----
-private final String selectorGoogleSearchInput = "[type='search']";
-private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
-----
-
-Since Google Search is the first page we want to launch, we implement the `startPage()` method. Inside the method we call `loadPlan()` from the _BasePageGUI_ class and pass the URL, which is defined as a global field.
-
-----
-public void startPage() {
-        loadPage(url);
- }
-----
-The main step on this page is to enter text into the search input field and click the "Google Search" button. We already have the necessary selectors, so we implement the method to interact with them, naming it 'enterGoogleSearchInput()'.
-----
-public void enterGoogleSearchInput(String searchText) {
-    getDriver().currentPage().locator(selectorGoogleSearchInput).fill(searchText);
-    getDriver().currentPage().locator(selectorGoogleSearchButton).click();
-}
-----
-This page is ready to use; no further actions are needed.
-
 [source,java]
 ----
-public class GoogleSearchPage extends BasePageGUI {
-	// URL of the Google search page
-	private final String url = GetEnvironmentParam.GOOGLE_URL.getValue();
-	// Selectors for web elements
-	private final String selectorGoogleSearchInput = "[type='search']";
-	private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
+package com.example.playwright.pages.googleSearch;
 
-	// Navigate to the Google search page
-	public void startPage() {
-		loadPage(url);
-	}
+import com.example.playwright.core.BasePage;
+import com.example.playwright.env.GetEnvironmentParam;
 
-	// Enter search query and submit the form
-	public void enterGoogleSearchInput(String searchText) {
-		// Fill the search input with the given text
-		getDriver().currentPage()
-				.locator(selectorGoogleSearchInput)
-				.fill(searchText);
+public class GoogleSearchPage extends BasePage {
+    // Selectors for web elements
+    private final String selectorGoogleSearchInput = "[type='search']";
+    private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
 
-		// Click the Google Search button
-		getDriver().currentPage()
-				.locator(selectorGoogleSearchButton)
-				.click();
-	}
+    @Override
+    public String pageTitle() {
+        return null;
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return false;
+    }
+
+    @Override
+    public void load() {
+        String url = GetEnvironmentParam.GOOGLE_URL.getValue();
+        loadPage(url);
+    }
+
+    // Enter search query and submit the form
+    public void enterGoogleSearchInput(String searchText) {
+        // Fill the search input with the given text
+        getDriver().currentPage()
+                .locator(selectorGoogleSearchInput)
+                .fill(searchText);
+
+        // Click the Google Search button
+        getDriver().currentPage()
+                .locator(selectorGoogleSearchButton)
+                .click();
+    }
 }
 ----
 
 === GoogleResultPage
 When we land on the Google Results page, we need a dedicated class to handle its elements and interactions. This class, named "GoogleResultPage," will be located in the "com.example.playwright.pages.googleSearch" package, just like the "GoogleSearchPage" class.
 
-Similar to the "GoogleSearchPage" class, this class extends the "BasePageGUI" class. It encapsulates the logic for interacting with elements on the Google Results page.
+Similar to the "GoogleSearchPage" class, this class extends the "BasePage" class. It encapsulates the logic for interacting with elements on the Google Results page.
 
 Let's break down the class components:
 
@@ -113,54 +106,82 @@ The method then returns the count of elements matching the selector, indicating 
 
 [source,java]
 ----
-public class GoogleResultPage extends BasePageGUI {
-	// Selector for search result items
-	private final String selectorSearchResult = "#search .v7W49e > div";
+package com.example.playwright.pages.googleSearch;
 
-	// Retrieve the number of search results
-	public int getResultsNumber() {
-		// Get the current page
-		Page currentPage = getDriver().currentPage();
+import com.example.playwright.core.BasePage;
+import com.microsoft.playwright.Page;
 
-		// Wait for the search result selector to appear
-		currentPage.waitForSelector(selectorSearchResult, new Page.WaitForSelectorOptions().setTimeout(5000));
+public class GoogleResultPage extends BasePage {
+    // Selector for search result items
+    private final String selectorSearchResult = "#search .v7W49e > div";
 
-		// Count the number of search result items
-		return currentPage.querySelectorAll(selectorSearchResult)
-				.size();
-	}
+    @Override
+    public String pageTitle() {
+        return null;
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return false;
+    }
+
+    @Override
+    public void load() {
+
+    }
+
+    // Retrieve the number of search results
+    public int getResultsNumber() {
+        // Get the current page
+        Page currentPage = getDriver().currentPage();
+
+        // Wait for the search result selector to appear
+        currentPage.waitForSelector(selectorSearchResult, new Page.WaitForSelectorOptions().setTimeout(5000));
+
+        // Count the number of search result items
+        return currentPage.querySelectorAll(selectorSearchResult)
+                .size();
+    }
 }
 ----
 
-== Creating the Test Class
+=== Creating the Test Class
 
 The test class will encompass the entire testing routine for the Google search functionality. Let's walk through the steps to create the test class, named "GoogleSearchTest."
 
 === GoogleSearchTest
 To begin, we'll create a new class within the "googleSearch" package, which we previously established. This class will reside under "src/test/java" and will be named "GoogleSearchTest."
 
-Since "GoogleSearchTest" is a test class, it should extend the BaseTestGUI class. Here is the code structure:
+Since "GoogleSearchTest" is a test class, it should extend the _BaseTest_ class. Here is the code structure:
 
 [source,java]
 ----
-public class GoogleSearchTest extends BaseTestGUI {
+package com.example.playwright.tests.googleSearch;
+
+import com.example.playwright.core.BaseTest;
+import com.example.playwright.pages.googleSearch.GoogleSearchPage;
+import com.example.playwright.pages.googleSearch.GoogleResultPage;
+import com.example.playwright.core.PageFactory;
+import org.junit.Test;
+
+public class GoogleSearchTest extends BaseTest {
     // Initialize page instances
     private final GoogleSearchPage googleSearchPage = PageFactory.getPageInstance(GoogleSearchPage.class);
     private final GoogleResultPage googleResultPage = PageFactory.getPageInstance(GoogleResultPage.class);
 
     @Override
-    public void tearDownTest() {
+    public void tearDown() {
         // Add any cleanup or finalization logic here
     }
 
     @Override
-    public void setUpTest() {
-        // Navigate to the Google Search page
-        googleSearchPage.startPage();
+    public void setUp() {
+         // Navigate to the Google Search page
+        googleSearchPage.load();
     }
 
     @Test
-    public void shouldFoundAtLeastOneResult_test() {
+    public void shouldFindAtLeastOneResult_test() {
         // Enter "Test" and perform search
         googleSearchPage.enterGoogleSearchInput("Test");
 
@@ -172,17 +193,18 @@ public class GoogleSearchTest extends BaseTestGUI {
 
 * Class Setup: We initialize two instances of the page classes using the `PageFactory.getPageInstance()` method. This approach follows the Page Object Model design pattern, making it easy to work with pages.
 
-* `setUpTest()` Method: This method is executed before each test case. In this case, it navigates to the Google Search page using `googleSearchPage.startPage()`;.
+* `setUp()` Method: This method is executed before each test case. In this case, it navigates to the Google Search page using `googleSearchPage.load()`;.
 
-* `shouldFoundAtLeastOneResult_test()` Method: This is the actual test method. It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
+* `shouldFindAtLeastOneResult_test()` Method: This is the actual test method. It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
+
 
 == Test Execution
 
 To run the test using JUnit in IntelliJ Idea, follow these steps:
 
-* Once you're within the "GoogleSearchTest" class, to run `shouldFoundAtLeastOneResult_test()` test method, right-click on it. A context menu will appear.
+* Once you're within the "GoogleSearchTest" class, to run `shouldFindAtLeastOneResult_test()` test method, right-click on it. A context menu will appear.
 
-** Choose "Run": From the context menu, select the option labeled "Run 'shouldFoundAtLeastOneResult_test'". This action triggers the execution of the test method you've selected.
+** Choose "Run": From the context menu, select the option labeled "Run 'shouldFindAtLeastOneResult_test'". This action triggers the execution of the test method you've selected.
 ** Press Ctrl + Shift + F10
 
 image::images/pw-runTest-Junit.png[]
@@ -192,4 +214,5 @@ A green color indicator signifies that the test passed successfully, while a red
 
 image::images/pw-runTest-green.png[]
 
-This walkthrough should’ve provided you with basic understanding on how the framework can be used to create test cases in Playwright.
+This walkthrough should’ve provided you with a basic understanding of how the framework can be used to create test cases in Playwright.
+
