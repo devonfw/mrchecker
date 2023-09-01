@@ -1,0 +1,32 @@
+[[DevOPS-Test-Module-Continuous-Delivery-CD.asciidoc]]
+= Continuous Delivery
+
+Continuous Delivery is a process closely related to CI, which is an automated way to push code changes to selected environments and improve quality during product release.
+
+In this subsection you will learn the basics of CD with MrChecker.
+
+image::images/image87.png[]
+
+[[devops-test-module-continuous-delivery-cd.asciidoc_overview]]
+== Overview
+
+CD from Jenkins point of view does not change a lot from Continuous Integration one.
+
+[[devops-test-module-continuous-delivery-cd.asciidoc_jenkins-overview]]
+== Jenkins Overview
+
+Use the same Jenkins settings for Jenkins CD setup as for link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[CI], please. The only difference is:
+
+* What type of test you will execute. Before, we have been choosing test case(s), now we will choose test suite(s)
+* Who will trigger the given Smoke/Integration/Performance job
+* What is the name of official branch. This branch ought always to use be used in every CD execution. It will be either *master* or *develop*.
+
+[[devops-test-module-continuous-delivery-cd.asciidoc_jenkins-for-smoke-tests]]
+=== Jenkins for Smoke Tests
+
+In the $TESTNAME variable, where we input the test name( https://github.com/devonfw/devonfw-testing/wiki/continuous-integration#initial-configuration[link] ), please input the name of a test suite assembled together of tests tagged as smoke tests -( https://github.com/devonfw/devonfw-testing/wiki/tags-and-test-suites[link] ) thus running all the smoke tests.
+
+[[devops-test-module-continuous-delivery-cd.asciidoc_jenkins-for-performance-tests]]
+=== Jenkins for Performance Tests
+
+Under construction - added when WebAPI module is included.
