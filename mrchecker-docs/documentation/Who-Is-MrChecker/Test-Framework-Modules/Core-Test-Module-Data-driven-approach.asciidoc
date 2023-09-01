@@ -16,8 +16,6 @@ Data as *part* of *test case*
 
 The different means to pass in parameters are shown below.
 
-*Since mrchecker-core-module version 5.6.2.1*
-
 Static methods are used to provide the parameters.
 
 === A method in the test class:
@@ -46,10 +44,6 @@ image::images/image30_new.png[]
 ----
 
 image::images/image32_new.png[]
-
-*Prior to mrchecker-core-module version 5.6.2.1*
-
-Parameters that are passed into tests using the `@Parameters` annotation must be _Object[]_s
 
 === In the annotation:
 
@@ -85,8 +79,6 @@ A separate class can be used to define parameters for the test. This test must c
 
 Data as *external file injected* in *test case*
 
-*Since mrchecker-core-module version 5.6.2.1*
-
 Tests use the annotation @CsvFileSource to inject CSVs file.
 
 ----
@@ -119,36 +111,6 @@ and Mapper implementation
 
 image::images/image38_new.png[]
 
-*Prior to mrchecker-core-module version 5.6.2.1*
-
-Tests use the annotation @FileParameters to inject CSVs file.
-
 ----
 @FileParameters("src/test/resources/datadriven/test.csv")
 ----
-
-A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma-separated list.
-
-=== Classic CSV
-
-image::images/image33.png[]
-
-and CSV file structure
-
-image::images/image34.png[]
-
-=== CSV with headers
-
-image::images/image35.png[]
-
-and CSV file structure
-
-image::images/image36.png[]
-
-=== CSV with specific column mapper
-
-image::images/image37.png[]
-
-and Mapper implementation
-
-image::images/image38.png[]
