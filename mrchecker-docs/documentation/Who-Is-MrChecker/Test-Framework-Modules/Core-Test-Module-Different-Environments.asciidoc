@@ -120,12 +120,10 @@ image::images/image084.png[]
 
 To run test case with system environment, please use:
 * *-Denv=\<NameOfEnvironment\>*
-* *\<NameOfEnvironment\>* is taken as column name from file *mrchecker-app-under-test\src\test\resources\enviroments\environments.csv* 
+* *\<NameOfEnvironment\>* is taken as column name from file *mrchecker-app-under-test\src\test\resources\enviroments\environments.csv*
 
 
-*Since mrchecker-core-module version 5.6.2.1*
-== Command Line
-
+Command Line:
 ----
 mvn test site -Dgroups=RegistryPageTestTag -Denv=DEV
 ----
@@ -134,17 +132,3 @@ mvn test site -Dgroups=RegistryPageTestTag -Denv=DEV
 
 image::images/image085.png[]
 image::images/image086_new.png[]
-
-
-*Prior to mrchecker-core-module version 5.6.2.1*
-== Command Line
-
-----
-mvn test site -Dtest=RegistryPageTest -Denv=DEV
-----
-
-== Eclipse
-
-image::images/image085.png[]
-image::images/image086.png[]
-
