@@ -1,19 +1,24 @@
+= Tutorial: Handling JavaScript Alerts
+
+== What you will learn
+
+In this tutorial, you will learn how to handle JavaScript alerts on a web page.
+We will demonstrate how to interact with different types of JavaScript alerts (alert, confirm, prompt) and verify the messages displayed in the alerts.
+
 image::images/example43.png[]
 
-This case shows how to test pop-up JS alerts. 
-
-After clicking one of the buttons, an adequate alert should appear.
+After clicking one of the buttons, an appropriate alert should appear.
 
 image::images/example44.png[]
 
-Performed action will be displayed under "Result" label. 
-
-In developer mode, you can view JavaScript which creates alerts.
+The performed action will be displayed under the "Result" label.
+In developer mode, you can view the JavaScript code responsible for creating alerts.
 
 image::images/example45.png[]
 
-===== Page Class
+== Page Class
 
+[source,java]
 ----
 public class JavaScriptAlertsPage extends BasePage {
 
@@ -109,24 +114,29 @@ public class JavaScriptAlertsPage extends BasePage {
 }
 ----
 
-====== alert()
+The `JavaScriptAlertsPage` class is responsible for interacting with the web page.
+It includes methods to check if the page is loaded, load the page, and perform actions related to JavaScript alerts.
+You can use this class to handle alerts, such as accepting, dismissing, and providing input.
+
+=== alert()
 
 Using `switchTo()` method you can change processed content. `switchTo().alert()` allows performing actions on appearing alerts such as accepting, dismissing or entering keys.
 
-===== Test Class
+== Test Class
 
-Before all tests: Open The Internet Main Page and go to JavaScript Alert page 
+* Before all tests: Open The Internet Main Page and go to JavaScript Alert page
 
-1. Click JS Alert button, accept alert and check if Result message returns performed an action 
-2. Click JS Confirm button, accept alert and check if Result message returns performed action 
-3. Click JS Confirm button, dismiss alert and check if Result message returns performed action 
-4. Click JS Prompt button, write random text, accept alert and check if Result message returns performed action with written text 
+1. Click JS Alert button, accept alert and check if Result message returns performed an action
+2. Click JS Confirm button, accept alert and check if Result message returns performed action
+3. Click JS Confirm button, dismiss alert and check if Result message returns performed action
+4. Click JS Prompt button, write random text, accept alert and check if Result message returns performed action with written text
 5. Click JS Prompt button, dismiss the alert and check if Result message returns performed action
 
-After each case: Refresh Page 
+* After each case: Refresh Page
 
-After all tests:  Navigate back to The Internet Main Page
+* After all tests: Navigate back to The Internet Main Page
 
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class JavaScriptAlertsTest extends TheInternetBaseTest {
@@ -230,3 +240,13 @@ public class JavaScriptAlertsTest extends TheInternetBaseTest {
 
 }
 ----
+
+The `JavaScriptAlertsTest` class defines the test steps.
+It opens the JavaScript Alerts page, interacts with various JavaScript alerts, and checks the displayed Result message.
+
+In the test methods, we perform actions on the alerts and verify the messages displayed in the Result section.
+
+== Conclusion
+
+In this tutorial, you have learned how to handle JavaScript alerts on a web page.
+You now have the skills to interact with different types of alerts and verify the messages they display.
