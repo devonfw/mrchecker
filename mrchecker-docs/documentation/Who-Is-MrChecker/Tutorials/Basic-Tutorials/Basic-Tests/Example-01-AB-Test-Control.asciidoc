@@ -1,20 +1,29 @@
+= Tutorial: Open Elemental Subpage from A/B Testing
+
+== What You Will Learn
+
+In this test case, you will learn how to navigate to a subpage and interact with links using Selenium WebDriver.
+Specifically, you will open the A/B Testing subpage, click an Elemental Selenium link that opens in a new tab, switch to the new tab, and check if the Elemental Selenium page is loaded successfully.
+
+== Example
+
 image::images/example1.png[]
 
-The goal of this test is to open A/B Test subpage and redirect to another website. 
+Steps:
 
-Steps: 
-
-1. Open The Internet Main Page 
-2. Click A/B Testing link and go to A/B Test subpage 
-3. Click Elemental Selenium link and open it in new tab 
-4. Switch to Elemental Selenium page and check if it's loaded 
+1. Open The Internet Main Page
+2. Click A/B Testing link and go to A/B Test subpage
+3. Click Elemental Selenium link and open it in new tab
+4. Switch to Elemental Selenium page and check if it's loaded
 
 image::images/example2.png[]
 
-===== Page Class 
+== Page Class
 
-Create a Page class for AB Testing page. Override all the required methods:
+Create a Page class for AB Testing page.
+Override all the required methods:
 
+[source,java]
 ----
  public class ABtestPage extends BasePage {
 
@@ -39,11 +48,12 @@ Create a Page class for AB Testing page. Override all the required methods:
     }
  } 
 ----
- 
-===== How to use Enum?
- 
-Similarly as in environmental variables case, create an enum for storing values of subURLs: 
- 
+
+== How to use Enum?
+
+Similarly as in environmental variables case, create an enum for storing values of subURLs:
+
+[source,java]
 ----
  public enum PageSubURLsProjectYEnum {
 
@@ -94,13 +104,11 @@ Similarly as in environmental variables case, create an enum for storing values 
      */
     private String subURL;
 
-    private PageSubURLsProjectYEnum(String subURL) {
+    PageSubURLsProjectYEnum(String subURL) {
         this.subURL = subURL;
     }
 
-    ;
-
-    private PageSubURLsProjectYEnum() {
+     PageSubURLsProjectYEnum() {
 
     }
 
@@ -111,25 +119,24 @@ Similarly as in environmental variables case, create an enum for storing values 
 
     public String getValue() {
         return subURL;
-    }
-
-}
+        }
+  }
 ----
 
-Instead of mapping data from an external file, you can store and access them directly from the enum class: 
+Instead of mapping data from an external file, you can store and access them directly from the enum class:
 
- PageSubURLsProjectYEnum.ABTEST.getValue()
- 
-==== Selector
- 
+`PageSubURLsProjectYEnum.ABTEST.getValue()`
+
+=== Selector
+
 In this test case you need selector for only one page element:
- 
+
   private static final By elementalSeleniumLinkSelector = By.cssSelector("div > div > a");
-  
-==== Page methods
- 
-You need two methods for performing page actions: 
- 
+
+=== Page methods
+
+You need two methods for performing page actions:
+
 ----
      /**
      * Clicks 'Elemental Selenium' link at the bottom of the page.
@@ -152,11 +159,14 @@ You need two methods for performing page actions:
                 .window(tabsList.get(1)); 
     }
 ----
- 
-==== Elemental Selenium Page Class
- 
-To return new Elemental Selenium Page object, implement its class. You only need to write basic methods to check if the page is loaded. There is no need to interact with objects on the site:
- 
+
+== Elemental Selenium Page Class
+
+To return new Elemental Selenium Page object, implement its class.
+You only need to write basic methods to check if the page is loaded.
+There is no need to interact with objects on the site:
+
+[source,java]
 ----
  public class ElementalSeleniumPage extends BasePage {
 
@@ -180,11 +190,13 @@ To return new Elemental Selenium Page object, implement its class. You only need
     }
 }
 ----
- 
-==== Test Class 
- 
-Create a Test class and write a @Test method to execute the scenario: 
- 
+
+== Test Class
+
+In the test class, you will create the `@BeforeClass` method to set up the test environment.
+Additionally, you will save the login credentials and the expected success message as class fields.
+
+[source,java]
 ----
  @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class ABtestingTest extends TheInternetBaseTest {
@@ -203,18 +215,18 @@ public class ABtestingTest extends TheInternetBaseTest {
         logStep("Verify if Elemental Selenium Page is opened"); 
         assertTrue("Unable to open Elemental Selenium page", elementalSeleniumPage.isLoaded()); 
     }
-
 }
 ----
 
-==== Assert
+=== Assert
 
-Asserts methods are used for creating test pass or fail conditions. The optional first parameter is a message which will be displayed in the test failure description. 
+Asserts methods are used for creating test pass or fail conditions.
+The optional first parameter is a message which will be displayed in the test failure description.
 
-* assertTrue(boolean condition) - test passes if condition returns true 
-* assertFalse(boolean condition) - test passes if condition returns false 
+* `assertTrue(boolean condition)` - test passes if condition returns true
+* `assertFalse(boolean condition)` - test passes if condition returns false
 
-Also, add the @BeforeClass method to open the tested page: 
+Also, add the @BeforeClass method to open the tested page:
 
 ----
  @BeforeClass
@@ -224,29 +236,33 @@ Also, add the @BeforeClass method to open the tested page:
         assertTrue("Unable to open ABTest page", abTestPage.isLoaded());
     }
 ----
- 
-@BeforeClass method executes only once before all other 
-@Test cases in the class. There is also a possibility to create a 
-@AfterClass method which is performed also once after all @Test cases. 
 
-You don't need to implement @setUp and @tearDown methods because they're already in TheInternetBaseTest class which you extend. 
+@BeforeClass method executes only once before all other @Test cases in the class.
+There is also a possibility to create a @AfterClass method which is performed also once after all @Test cases.
 
-==== Categories
+You don't need to implement @setUp and @tearDown methods because they're already in TheInternetBaseTest class which you extend.
 
-You can group tests in categories. It's useful when running many tests at once. Use this parameter: 
+=== Categories
+
+You can group tests in categories.
+It's useful when running many tests at once.
+Use this parameter:
 
  @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class }) 
- 
-Then create an interface representing each category. Example: 
 
+Then create an interface representing each category.
+Example:
+
+[source,java]
 ----
 public interface TestsSelenium {
     /* For test which are testing web pages considering UI (user interface) and using selenium webdriver */
 }
 ----
 
-To run a test from specified category create Test Suite class:  
+To run a test from specified category create Test Suite class:
 
+[source,java]
 ----
 @RunWith(WildcardPatternSuite.class) //search for test files under /src/test/java
 @IncludeCategories({ TestsChrome.class }) // search all test files with category TestsChrome.class
@@ -258,7 +274,13 @@ public class _TestSuiteChrome {
 }
 ----
 
-You can run a Test Suite as a JUnit test. 
+You can run a Test Suite as a JUnit test.
+
+== Conclusion
+
+In this tutorial, we explored how to navigate web pages, interact with links, and manage multiple tabs using Selenium WebDriver.
+You learned how to open the A/B Testing subpage, click an Elemental Selenium link that opens in a new tab, switch to the new tab, and verify if the Elemental Selenium page loaded successfully.
+
 
 
 

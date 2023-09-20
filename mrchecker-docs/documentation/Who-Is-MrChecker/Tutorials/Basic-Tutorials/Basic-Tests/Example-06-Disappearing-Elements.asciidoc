@@ -1,31 +1,43 @@
-This case will show how to test changing website content. 
+= Tutorial: Testing Changing Website Content
+
+== What You Will Learn
+
+In this tutorial, you will learn how to test changing website content.
+Specifically, you will observe the appearance and disappearance of elements on a web page after refreshing it multiple times.
+
+== Example
 
 image::images/example9.png[]
 
-After refreshing page (F5) a few times, a new element should appear: 
+After refreshing page (F5) a few times, a new element should appear:
 
 image::images/example10.png[]
-Then, after another couple of refreshes, it should disappear. 
 
-You can check in developer mode that Gallery element does not exist in HTML document either, until appearing on the page. The element is created by Javascript. 
+Then, after another couple of refreshes, it should disappear.
+
+You can check in developer mode that Gallery element does not exist in HTML document either, until appearing on the page.
+The element is created by Javascript.
 
 image::images/example11.png[]
 image::images/example12.png[]
 
-Steps: 
+Steps:
 
-1. Load The Internet Main Page 
-2. Click Disappearing Elements link and go to that subpage 
-3. Check if Menu Buttons exist on the page 
-4. Refresh the page until a new element appears 
-5. Check if Gallery Button exists 
-6. Check if the number of buttons equals the expected value 
-7. Refresh the page until an element disappears 
-8. Check if Gallery Button does not exist 
-9. Check if the number of buttons is smaller than before 
+1. Load The Internet Main Page
+2. Click Disappearing Elements link and go to that subpage
+3. Check if Menu Buttons exist on the page
+4. Refresh the page until a new element appears
+5. Check if Gallery Button exists
+6. Check if the number of buttons equals the expected value
+7. Refresh the page until an element disappears
+8. Check if Gallery Button does not exist
+9. Check if the number of buttons is smaller than before
 
-===== Page Class 
+== Page Class
 
+=== Disappearing Elements Page
+
+[source,java]
 ----
 public class DisappearingElementsPage extends BasePage {
 
@@ -107,14 +119,18 @@ public class DisappearingElementsPage extends BasePage {
     private boolean isMaxNumberOfAttemptsReached(int attemptNo, int maxNumberOfAttempts) {
         return attemptNo == maxNumberOfAttempts;
     }
-
 }
+----
 
----- 
+The `DisappearingElementsPage` class contains methods to interact with the Disappearing Elements page.
+It includes functionality to check if menu buttons exist on the page, refresh the page until a new element appears or disappears, and verify the visibility of the gallery button.
 
-findElementQuietly(By selector) works similar as findElementDynamics(By selector) but won't throw an exception if an element wasn't found. In this case, the searched WebElement will have a NULL value. 
+`findElementQuietly(By selector)` works similar as `findElementDynamics(By selector)` but won't throw an exception if an element wasn't found.
+In this case, the searched WebElement will have a NULL value.
 
-===== Test Class
+== Test Class
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class DisappearingElementsTest extends TheInternetBaseTest {
@@ -160,5 +176,14 @@ public class DisappearingElementsTest extends TheInternetBaseTest {
 }
  
 ----
-assertNull(Objetc object) - test passes if Object returns NULL 
-assertNotNull(Objetc object) - test passes if Object does not return NULL 
+
+`assertNull(Objetc object)` - test passes if Object returns NULL
+`assertNotNull(Objetc object)` - test passes if Object does not return NULL
+
+In the test method `shouldMenuButtonElementAppearAndDisappearAfterRefreshTest()`, the goal is to repeatedly refresh the page until the gallery button appears and disappears.
+The test then checks if the button's visible and the number of buttons on the page match the expected values.
+
+== Conclusion
+
+In this tutorial, you've learned how to test changing website content by observing the appearance and disappearance of elements on a web page.
+This testing technique can help ensure that the website's dynamic content behaves as expected.

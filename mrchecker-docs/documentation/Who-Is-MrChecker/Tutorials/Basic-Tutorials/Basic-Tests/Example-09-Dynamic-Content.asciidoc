@@ -1,20 +1,37 @@
-This case shows how to compare dynamic content. 
+= Tutorial: Comparing Dynamic Content
+
+This tutorial demonstrates how to compare dynamic content on a web page.
 
 image::images/example18.png[]
-Note that after site refresh, some of the content is different. You can see in the browser's developer mode how the text and image sources are being changed. 
+
+Note that after site refresh, some of the content is different.
+You can see in the browser's developer mode how the text and image sources are being changed.
 
 image::images/example19.png[]
 
-Steps: 
+== What You Will Learn
 
-1. Open The Internet Main Page 
-2. Click Dynamic Content link and load subpage 
-3. Save page images sources and descriptions before the refresh 
-4. Refresh page 
-5. Save page images sources and it's descriptions after refresh 
-6. Compare page content before and after refresh and verify if it's different 
+In this tutorial, you will learn:
 
-===== Page Class
+* How to interact with dynamic content on a web page.
+* How to save information (such as image sources and descriptions) from a web page.
+* How to refresh a web page using Selenium WebDriver.
+* How to compare content before and after a page refresh to check for differences.
+
+== Steps
+
+1. Open The Internet Main Page
+2. Click Dynamic Content link and load subpage
+3. Save page images sources and descriptions before the refresh
+4. Refresh page
+5. Save page images sources and it's descriptions after refresh
+6. Compare page content before and after refresh and verify if it's different
+
+== Page Class
+
+=== Dynamic Content Page
+
+[source,java]
 ----
 public class DynamicContentPage extends BasePage {
 
@@ -65,9 +82,16 @@ public class DynamicContentPage extends BasePage {
 }
  
 ----
-===== ListElements 
 
-ListElements is MrChecker collection which can store WebElement Objects. Constructing ListElements with cssSelector allows you to store every element on the page which fits  the selector. Example methods: 
+The `DynamicContentPage` class contains methods to interact with the Dynamic Content page.
+It includes functionality to retrieve descriptions and image links from the page.
+
+=== ListElements
+
+ListElements is MrChecker collection which can store WebElement Objects.
+Constructing ListElements with cssSelector allows you to store every element on the page which fits the selector.
+Example methods:
+
 ----
 getList() -  returns WebElements list,
 getTextList() - returns list of contents of each Element,
@@ -75,7 +99,9 @@ getSize() - returns number of stored Elements
 In getImageLinks() example it's shown how to get a list of specified Elements' attributes. 
 ----
 
-===== Test Class 
+== Test Class
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class DynamicContentTest extends TheInternetBaseTest {
@@ -137,4 +163,9 @@ public class DynamicContentTest extends TheInternetBaseTest {
 }
  
 ----
-In the test method, during differences verification, the goal is to compare every element from the first and second list and find first diversity. 
+
+In the test method, during differences verification, the goal is to compare every element from the first and second list and find first diversity.
+
+== Conclusion
+
+In this tutorial, you've learned how to interact with dynamic content on a web page, save information, refresh a web page, and compare content before and after a page refresh to identify differences.

@@ -1,24 +1,37 @@
-This example shows how to select an element from the dropdown list. 
+= Tutorial: Selecting an Element from a Dropdown List
+
+== What You Will Learn
+
+In this tutorial, you will learn:
+
+* How to interact with dropdown lists on a web page.
+* How to select options from a dropdown list.
+* How to verify the selected option.
+
+== Example
 
 image::images/example16.png[]
 
-Check in the developer mode how a Dropdown List's content has been organized. 
+Check in the developer mode how a Dropdown List's content has been organized.
 
 image::images/example17.png[]
 
-Notice that the Dropdown Options have different attributes, such as "disabled" or "selected". 
+Notice that the Dropdown Options have different attributes, such as "disabled" or "selected".
 
-Steps: 
+Steps:
 
-1. Open The Internet Main Page 
-2. Click the Dropdown link and go to the subpage 
-3. Select first dropdown Option 
-4. Check if Option 1 is selected 
-5. Select second dropdown Option 
+1. Open The Internet Main Page
+2. Click the Dropdown link and go to the subpage
+3. Select first dropdown Option
+4. Check if Option 1 is selected
+5. Select second dropdown Option
 6. Check if Option 2 is selected
 
-===== Page Class
+== Page Class
 
+=== Dropdown Page
+
+[source,java]
 ----
 public class DropdownPage extends BasePage {
 
@@ -66,14 +79,21 @@ public class DropdownPage extends BasePage {
 }
  
 ----
-===== DropdownListElement class 
 
-DropdownListElement is MrChecker's class, which contains methods for performing the dropdown list of actions: 
+The `DropdownPage` class contains methods to interact with the Dropdown page.
+It includes functionality to select dropdown options by index and retrieve the text value of the selected dropdown option.
+
+=== DropdownListElement class
+
+DropdownListElement is MrChecker's class, which contains methods for performing the dropdown list of actions:
+
 ----
 elementDropdownList() - returns DropdownListElement Object 
 ----
 
-===== Test Class
+== Test Class
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class DropdownTest extends TheInternetBaseTest {
@@ -107,6 +127,11 @@ public class DropdownTest extends TheInternetBaseTest {
         assertEquals("Selected value is different than expected", expectedSecondOptionValue,
                 dropdownPage.getSelectedDropdownValue());
     }
-
 }
 ----
+
+In the test method `shouldGetExpectedDropdownTextOptionAfterSelection()`, the goal is to select dropdown options by index and verify that the selected option text matches the expected value.
+
+== Conclusion
+
+In this tutorial, you've learned how to interact with dropdown lists on a web page, select options from a dropdown list, and verify the selected option.

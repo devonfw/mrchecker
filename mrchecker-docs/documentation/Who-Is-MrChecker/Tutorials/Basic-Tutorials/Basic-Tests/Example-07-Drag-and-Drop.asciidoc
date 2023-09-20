@@ -1,26 +1,43 @@
-This case shows how to move draggable elements on the page. 
+= Tutorial: Moving Draggable Elements on a Page
+
+== What You Will Learn
+
+In this tutorial, you will learn:
+
+* How to perform drag-and-drop operations on draggable elements.
+* How to interact with elements in different containers.
+* How to observe changes in the DOM while dragging elements.
+
+== Example
+
 image::images/example13.png[]
 
-Try to move A to B position and see what happens. Also, open browser developer mode and see how the DOM changes.  
+Try to move A to B position and see what happens.
+Also, open browser developer mode and see how the DOM changes.
 
 image::images/example14.png[]
 
-The page can easily be broken. You can try to do so and check how the page structure changed in browser developer mode. 
+The page can easily be broken.
+You can try to do so and check how the page structure changed in browser developer mode.
 
 image::images/example15.png[]
 
-Steps: 
+Steps:
 
-1. Open The Internet Main Page 
-2. Click Drag and Drop link and open subpage 
-3. Check if the Drag and Drop message is visible 
-4. Check if element A is in container A and B in container B 
-5. Move element A to position B 
-6. Check if element A is in container B and B in container A 
-7. Move element B to position A 
-8. Again check if element A is in container A and B in container B 
+1. Open The Internet Main Page
+2. Click Drag and Drop link and open subpage
+3. Check if the Drag and Drop message is visible
+4. Check if element A is in container A and B in container B
+5. Move element A to position B
+6. Check if element A is in container B and B in container A
+7. Move element B to position A
+8. Again check if element A is in container A and B in container B
 
-===== Page Class 
+== Page Class
+
+=== Drag and Drop Page
+
+[source,java]
 ----
 public class DragAndDropPage extends BasePage {
 
@@ -110,16 +127,20 @@ public class DragAndDropPage extends BasePage {
                 .equals(element))
             dragElement(source, destination);
     }
-
 }
- 
-----
-Since HTML5, normal Selenium drag-and-drop action stopped working, thus it's necessary to execute Javascript which performs the drag-and-drop. To do so, create a JavascriptExecutor object, then read the script from a file drag_and_drop_helper.js and execute it with additional arguments using method executeScript(String script). 
-
-An example drag-and-drop solution: 
-
 ----
 
+The `DragAndDropPage` class contains methods to interact with the Drag and Drop page.
+It includes functionality to check if the Drag and Drop message is visible, verify the placement of elements in containers, and perform drag-and-drop operations.
+
+=== JavascriptExecutor and Drag-and-Drop Helper
+
+Since HTML5, normal Selenium drag-and-drop action stopped working, thus it's necessary to execute Javascript which performs the drag-and-drop.
+To do so, create a JavascriptExecutor object, then read the script from a file drag_and_drop_helper.js and execute it with additional arguments using method executeScript(String script).
+
+An example drag-and-drop solution:
+
+----
     /**
      * Drags and drops given WebElement to it's destination location.
      * <p>
@@ -173,8 +194,10 @@ An example drag-and-drop solution:
     }
  
 ----
-Drag and Drop helper file: 
 
+Drag and Drop helper file:
+
+[source,js]
 ----
 (function( $ ) {
         $.fn.simulateDragDrop = function(options) {
@@ -231,7 +254,10 @@ Drag and Drop helper file:
 })(jQuery);
  
 ----
-===== Test Class
+
+== Test Class
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class DragAndDropTest extends TheInternetBaseTest {
@@ -274,6 +300,11 @@ public class DragAndDropTest extends TheInternetBaseTest {
         assertTrue("Element A doesn't exist in container A", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A));
         assertTrue("Element B doesn't exist in container B", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B));
     }
-
 }
----- 
+----
+
+In the test method `shouldDraggableElementBeMovedAndDropped()`, the goal is to move draggable elements between containers, observe changes in the DOM, and ensure that the elements are placed in their intended containers.
+
+== Conclusion
+
+In this tutorial, you've learned how to perform drag-and-drop operations on draggable elements, interact with elements in different containers, and observe changes in the DOM while moving elements.

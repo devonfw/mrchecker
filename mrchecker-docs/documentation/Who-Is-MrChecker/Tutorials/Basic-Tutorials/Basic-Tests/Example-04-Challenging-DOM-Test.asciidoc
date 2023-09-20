@@ -1,24 +1,34 @@
-This case goal is to find out how to create stable selectors. 
+= Tutorial: Creating Stable Selectors for Challenging DOM Elements
 
-In the browser's developer mode, you can see how the page is built. Notice, that buttons' IDs change after click and values in the table haven't got unique attributes, which might be helpful in order to find them. 
+== What You Will Learn
+
+In this tutorial, you will learn how to create stable selectors for web elements on a page.
+The goal is to identify elements even when they lack unique attributes or when those attributes change dynamically.
+You'll explore techniques for creating robust locators that rely on the HTML document structure and the element's position within the hierarchy.
+
+In the browser's developer mode, you can see how the page is built.
+Notice, that buttons' IDs change after click and values in the table haven't got unique attributes, which might be helpful in order to find them.
 
 image::images/example6.png[]
 
-===== DOM - Document Object Model 
+== DOM - Document Object Model
 
-HTML DOM is a model of the page created by the browser. The page could be represented as the tree of objects. Read more. 
+HTML DOM is a model of the page created by the browser.
+The page could be represented as the tree of objects.
+Read more.
 
-To create locators you can use element attributes such as id, class name etc. 
+To create locators you can use element attributes such as id, class name etc.
 
-It this case, since there are no unique attributes, the best approach is to use HTML document structure and identify page elements by their place in an object hierarchy.  
+It this case, since there are no unique attributes, the best approach is to use HTML document structure and identify page elements by their place in an object hierarchy.
 
+== Page Class
+
+[source,java]
 ----
-Page Class 
 public class ChallengingDomPage extends BasePage {
 
     private final By selectorTableRows   = By.cssSelector(".large-10 > table > tbody > tr"); 
-    private final By selectorFirstButton = By.cssSelector(".large-2.columns > .button:nth-
-            child(1)");
+    private final By selectorFirstButton = By.cssSelector(".large-2.columns > .button:nth-child(1)");
 
     @Override
     public boolean isLoaded() {
@@ -57,25 +67,31 @@ public class ChallengingDomPage extends BasePage {
                 .click();
         getDriver().waitForPageLoaded();
     }
-
 }
- 
 ----
-===== Jsoup Helper 
-Jsoup Helper is the tool which helps to parse HTML document and get searched values. This is especially useful when values are organized in a generic structure such as a table. 
 
-JsoupHelper.findTexts(By selector) - this method returns text content of a table as a list of Strings 
+The `ChallengingDomPage` class contains methods to interact with the Challenging DOM page.
+It provides functionality to retrieve table values and click buttons, all while dealing with dynamic changes in element attributes.
 
-===== Test Class 
-Steps: 
+=== Jsoup Helper
 
-1. Open The Internet Main Page 
-2. Click Challenging DOM link and go to Challenging DOM subpage 
-3. Get and save table values 
-4. Click the first button 
+Jsoup Helper is the tool which helps to parse HTML document and get searched values.
+This is especially useful when values are organized in a generic structure such as a table.
+
+`JsoupHelper.findTexts(By selector)` - this method returns text content of a table as a list of Strings
+
+== Test Class
+
+Steps:
+
+1. Open The Internet Main Page
+2. Click Challenging DOM link and go to Challenging DOM subpage
+3. Get and save table values
+4. Click the first button
 5. Get table values again
-6. Compare table values before and after button click 
+6. Compare table values before and after button click
 
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class ChallengingDomTest extends TheInternetBaseTest {
@@ -106,8 +122,13 @@ public class ChallengingDomTest extends TheInternetBaseTest {
         assertEquals("Values from table cells were changed after click", tableValuesBeforeClick, 
                 tableValuesAfterClick);
     }
-
 }
- 
 ----
-Because values in the table don't change, the test should pass if object locators are solid. 
+
+The `ChallengingDomTest` class contains a test method, `shouldValuesInTableCellsStayUnchangedAfterClick()`, which verifies that the values in table cells remain the same after clicking the first button.
+This test demonstrates the stability of object locators even when values in the table do not change.
+
+== Conclusion
+
+By following this example, you've learned how to create stable selectors for web elements, even in situations where attributes change dynamically.
+This skill is essential for robust and reliable test automation.

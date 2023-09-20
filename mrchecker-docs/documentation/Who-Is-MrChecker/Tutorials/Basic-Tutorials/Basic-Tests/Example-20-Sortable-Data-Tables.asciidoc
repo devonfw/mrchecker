@@ -1,13 +1,29 @@
+= Tutorial: Reading and Sorting Data from Tables
+
+This tutorial demonstrates how to read and sort data from tables on a web page.
+You can click on a column header to sort the data in ascending or descending order.
+The sorting is performed by JavaScript functions.
+
 image::images/example54.png[]
-
-This example shows how to sort and read data from tables.
-
-After clicking on a column header, the data will be sorted descending and after another click sorted ascending by selected attribute. Watch how both tables' content changes on page DOM. Sorting is performed by JavaScript functions.
 
 image::images/example55.png[]
 
-===== Page Class
+== What You Will Learn
 
+In this tutorial, you will learn:
+
+* How to interact with tables on a web page.
+* How to click on column headers to sort data in ascending and descending order.
+* How to read the class attribute of table columns to verify sorting.
+* How to retrieve column values from tables.
+* How to use `JsoupHelper` to find and extract text from HTML elements.
+* How to write test cases to validate sorting and data reading from tables.
+
+== Page Class
+
+=== Sortable Data Tables Page
+
+[source,java]
 ----
 public class SortableDataTablesPage extends BasePage {
 
@@ -102,34 +118,40 @@ public class SortableDataTablesPage extends BasePage {
 }
 ----
 
-====== Finding values
+The `SortableDataTablesPage` class is responsible for interacting with the web page containing sortable data tables.
+It includes methods to check if the page is loaded, load the page, sort columns in ascending and descending order, read column values, and more.
 
-Using proper selectors, save elements such as tables and their columns' headers as Web Element Lists. Afterwards, you can get the desired element finding it by index (e. g. table or column number). To get column values, use `JsoupHelper` and to check if the column is sorted get its class attribute.
+=== Finding values
 
-===== Test Class
+Using proper selectors, save elements such as tables and their columns' headers as Web Element Lists.
+Afterward, you can get the desired element finding it by index (e.g. table or column number).
+To get column values, use `JsoupHelper` and to check if the column is sorted get its class attribute.
 
-Before all tests: Open The Internet Main Page 
+== Test Class
 
-Before each case: Go to Sortable Data Tables Page 
+Before all tests: Open The Internet Main Page
 
-Case 1: 
+Before each case: Go to Sortable Data Tables Page
 
-1. Choose a random table 
-2. Sort first column "Last Name" in ascending order 
-3. Check if column header class contains "headerSortDown" 
-4. Save column content to the List 
-5. Create List copy and sort it 
-6. Compare sorted values and values from the table 
+Case 1:
 
-Case 2: 
+1. Choose a random table
+2. Sort first column "Last Name" in ascending order
+3. Check if column header class contains "headerSortDown"
+4. Save column content to the List
+5. Create List copy and sort it
+6. Compare sorted values and values from the table
 
-1. Choose a random table 
-2. Sort second column "First Name" in descending order 
-3. Check if column header class contains "headerSortUp" 
-4. Save column content to the List 
-5. Create List copy and sort it then reverse it 
-6. Compare reversed sorted values and values from the table 
+Case 2:
 
+1. Choose a random table
+2. Sort second column "First Name" in descending order
+3. Check if column header class contains "headerSortUp"
+4. Save column content to the List
+5. Create List copy and sort it then reverse it
+6. Compare reversed sorted values and values from the table
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class SortableDataTablesTest extends TheInternetBaseTest {
@@ -198,3 +220,9 @@ public class SortableDataTablesTest extends TheInternetBaseTest {
     }
 }
 ----
+
+== Conclusion
+
+In this tutorial, you've learned how to interact with sortable data tables on a web page.
+You can click on column headers to sort data in ascending and descending order and retrieve column values for validation.
+These skills are useful when working with web applications that display tabular data and require sorting and data verification.

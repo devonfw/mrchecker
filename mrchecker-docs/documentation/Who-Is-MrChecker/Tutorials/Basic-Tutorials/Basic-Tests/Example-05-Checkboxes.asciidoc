@@ -1,26 +1,36 @@
-In this example, you will learn how to test checkboxes on the page.
+= Tutorial: Testing Checkboxes on a Web Page
+
+== What You Will Learn
+
+In this example, you will learn how to test checkboxes on a web page.
+A checkbox is a simple web element that can be selected or unselected by clicking on it.
 
 image::images/example7.png[]
 
-A checkbox is a simple web element which can be selected or unselected by clicking on it. 
+A checkbox is a simple web element which can be selected or unselected by clicking on it.
 
-Steps: 
+== Case Steps
 
-1. Open The Internet Main Page 
-2. Click Checkboxes link and go to Checkboxes page 
-3. Test if the first checkbox is unchecked 
-4. Select the first checkbox 
-5. Test if the first checkbox is checked 
-6. Test if the second checkbox is checked 
-7. Unselect second checkbox 
-8. Test if the second checkbox is unchecked 
+Follow these steps to test the checkboxes:
 
-===== Page Class 
+1. Open The Internet Main Page.
+2. Click the Checkboxes link to go to the Checkboxes page.
+3. Test if the first checkbox is unchecked.
+4. Select the first checkbox.
+5. Test if the first checkbox is checked.
+6. Test if the second checkbox is checked.
+7. Unselect the second checkbox.
+8. Test if the second checkbox is unchecked.
 
-Because both checkboxes are in one form, it's possible to locate them by one selector and then access each individual one by index. 
+== Page Class
+
+Because both checkboxes are in one form, it's possible to locate them by one selector and then access each individual one by index.
 
 image::images/example8.png[]
 
+=== Checkboxes Page
+
+[source,java]
 ----
 public class CheckboxesPage extends BasePage {
 
@@ -84,12 +94,13 @@ public class CheckboxesPage extends BasePage {
 }
  
 ----
-===== CheckBox 
-CheckBox class contains a method to perform actions on checkboxes such as setting and unsetting or verifying if the specified box is checked.
-Use method elementCheckbox(By selector) to create CheckBox Object. 
 
-===== Test Class 
+The `CheckboxesPage` class contains methods to interact with the Checkboxes page.
+It provides functionality to check if the checkboxes form is visible, check if a checkbox is selected, and select/unselect checkboxes.
 
+== Test Class
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class CheckboxesTest extends TheInternetBaseTest {
@@ -129,8 +140,14 @@ public class CheckboxesTest extends TheInternetBaseTest {
         logStep("Verify if second checkbox is not selected");
         assertFalse("The checkbox is selected", checkboxesPage.isCheckboxSelected(1));
     }
-
 }
- 
 ----
-After running Test Class both @Test cases will be performed. Before each one, overrode setUp method will be executed. 
+
+The `CheckboxesTest` class contains two test methods.
+The first method, `shouldCheckboxBeSelectedAfterClick()`, verifies if the first checkbox is initially unselected, selects it, and then checks if it becomes selected.
+The second method, `shouldCheckboxBeUnselectedAfterClick()`, verifies if the second checkbox is initially selected, unselects it, and then checks if it becomes unselected.
+
+After running Test Class both @Test cases will be performed.
+Before each one, overrode setUp method will be executed.
+
+

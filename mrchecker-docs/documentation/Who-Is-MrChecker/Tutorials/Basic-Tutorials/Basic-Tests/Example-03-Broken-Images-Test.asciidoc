@@ -1,23 +1,31 @@
-This test goal is to check the dimensions of broken images on the subpage. 
+= Tutorial: Checking Dimensions of Broken Images
+
+== What You Will Learn
+
+In this test case, you will learn how to check the dimensions of broken images on a web page.
+You'll discover how to access and compare the dimensions of multiple images and verify that they match the expected values.
+
+== Example
 
 image::images/example5.png[]
 
-Steps: 
+Steps:
 
-1. Open The Internet Main Page 
-2. Click Broken Image link and go to Broken Image subpage 
-3. Get the 3 images' dimensions and compare them with expected values 
+1. Open The Internet Main Page
+2. Click Broken Image link and go to Broken Image subpage
+3. Get the 3 images' dimensions and compare them with expected values
 
-==== Page Class 
+== Page Class
 
-In this case, create an array of selectors to access images by index number:  
+In this case, create an array of selectors to access images by index number:
 
+[source,java]
 ----
 public class BrokenImagePage extends BasePage {
 
     private static final By[] selectorsImages = { By.cssSelector("div > img:nth-child(2)"),
             By.cssSelector("div > img:nth-child(3)"),
-            By.cssSelector("div > img:nth-child(4)") }; 
+            By.cssSelector("div > img:nth-child(4)") };
 
     @Override
     public boolean isLoaded() {
@@ -29,7 +37,7 @@ public class BrokenImagePage extends BasePage {
     @Override
     public void load() {
         BFLogger.logDebug("Load 'Broken Images' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + 
+        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
                 PageSubURLsProjectYEnum.BROKEN_IMAGES.getValue());
         getDriver().waitForPageLoaded();
     }
@@ -61,16 +69,20 @@ public class BrokenImagePage extends BasePage {
 
     private Dimension getImageDimension(int imageIndex) {
         return getDriver().findElementDynamic(selectorsImages[imageIndex])
-                .getSize(); 
+                .getSize();
     }
-
 }
- 
 ----
 
-==== Test Class 
-Create @Test and @BeforeClass methods. Save expected images' dimensions in class fields: 
+The `BrokenImagePage` class contains methods to interact with the Broken Image subpage.
+It provides functionality to get the height and width of each image, facilitating easy comparison with expected dimensions.
 
+== Test Class
+
+Create @Test and @BeforeClass methods.
+Save expected images' dimensions in class fields:
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class BrokenImagesTest extends TheInternetBaseTest {
@@ -94,14 +106,17 @@ public class BrokenImagesTest extends TheInternetBaseTest {
             logStep("Verify size of image with index: " + i);
             assertEquals("Height of image with index: " + i + " is incorrect", expectedHeight,
                    brokenImagePage.getImageHeight(i));
-            assertEquals("Width of image with index: " + i + " is incorrect", expectedWidth, 
+            assertEquals("Width of image with index: " + i + " is incorrect", expectedWidth,
                    brokenImagePage.getImageWidth(i));
         }
     }
-
 }
- 
 ----
-The test will pass if every image had the correct width and height. 
 
+The `BrokenImagesTest` class includes the `shouldImageSizesBeEqualToExpected()` test method, which iterates through the images, retrieves their dimensions, and compares them with the expected values.
+The test will pass only if each image matches the expected width and height.
 
+== Conclusion
+
+By following this example, you've learned how to check the dimensions of images on a web page, even when dealing with broken images or images without unique attributes.
+This skill is valuable for validating visual elements in your test automation.

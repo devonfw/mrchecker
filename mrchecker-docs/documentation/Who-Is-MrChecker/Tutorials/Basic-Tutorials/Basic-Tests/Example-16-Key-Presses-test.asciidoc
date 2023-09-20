@@ -1,13 +1,19 @@
+= Tutorial: Testing Key Pressing
+
+== What you will learn
+
+In this tutorial, you will learn how to test key pressing on a web page.
+We will demonstrate how to simulate pressing a keyboard key and verify the displayed message on the web page.
+
 image::images/example46.png[]
 
-This simple case shows how to test key pressing 
-
-This site uses JavaScript to read the key pressed and display its value. 
+The website uses JavaScript to read the key pressed and display its value.
 
 image::images/example47.png[]
 
-===== Page Class
+== Page Class
 
+[source,java]
 ----
 public class KeyPressesPage extends BasePage {
 
@@ -55,15 +61,20 @@ public class KeyPressesPage extends BasePage {
 }
 ----
 
-===== Test Class
+The `KeyPressesPage` class is responsible for interacting with the web page.
+It includes methods to check if the page is loaded, load the page, and simulate pressing a keyboard key.
+You can use this class to press keys and retrieve information about the pressed key.
 
-Steps: 
+== Test Class
 
-1. Open The Internet Main Page 
-2. Go to Key Presses site 
-3. Press a key 
-4. Check if a displayed message contains the pressed key 
+Steps:
 
+1. Open The Internet Main Page
+2. Go to Key Presses site
+3. Press a key
+4. Check if a displayed message contains the pressed key
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class KeyPressesTest extends TheInternetBaseTest {
@@ -92,3 +103,11 @@ public class KeyPressesTest extends TheInternetBaseTest {
     }
 }
 ----
+
+The `KeyPressesTest` class defines the test steps.
+It opens the Key Presses page, simulates pressing a keyboard key, and checks the displayed message on the web page.
+
+== Conclusion
+
+In this tutorial, you have learned how to test key pressing on a web page.
+You now have the skills to simulate keyboard key presses and validate the displayed information on the web page.

@@ -1,13 +1,25 @@
+= Tutorial: Manipulating a Horizontal Slider
+
+This tutorial demonstrates how to manipulate a horizontal slider.
+You can move the slider using a mouse or arrow keys, and the page displays the set value.
+
 image::images/example52.png[]
-
-This case shows how to move horizontal slider.
-
-You can move the slider by dragging it with a mouse or using arrow keys. The page uses a simple script to get slider position and display set value.
 
 image::images/example53.png[]
 
-===== Page Class
+== What You Will Learn
 
+In this tutorial, you will learn:
+
+* How to interact with a horizontal slider on a web page.
+* How to verify if a web element (in this case, a horizontal slider) is visible.
+* How to retrieve the start, middle, and end positions of a horizontal slider.
+* How to move the slider using both keyboard arrow keys and mouse dragging.
+* How to validate and correct the slider's position value.
+
+== Page Class
+
+[source,java]
 ----
 public class HorizontalSliderPage extends BasePage {
 
@@ -15,7 +27,7 @@ public class HorizontalSliderPage extends BasePage {
     private static final By sliderSelector           = By.cssSelector("input");
     private static final By valueSelector            = By.cssSelector("#range");
 
-    private HorizontalSliderElement horizontalSlider;
+    private final HorizontalSliderElement horizontalSlider;
 
     public HorizontalSliderPage() {
         horizontalSlider = getDriver().elementHorizontalSlider(selectorHorizontalSlider,
@@ -114,45 +126,51 @@ public class HorizontalSliderPage extends BasePage {
 }
 ----
 
-====== Horizontal Slider Element
+The `HorizontalSliderPage` class is responsible for interacting with the web page that contains the horizontal slider.
+It includes methods to check if the page is loaded, load the page, retrieve slider positions, set slider positions, and more.
 
-This class implements methods wich can perform actions on slider: 
+=== Horizontal Slider Element
 
-Create Slider Object using method: 
+This class implements methods wich can perform actions on slider:
 
-* `getDriver().elementHorizontalSlider(By sliderContainerSelector, By sliderSelector, By valueSelector, BigDecimal minRange, BigDecimal maxRange, BigDecimal step)` 
+Create Slider Object using method:
+
+* `getDriver().elementHorizontalSlider(By sliderContainerSelector, By sliderSelector, By valueSelector, BigDecimal minRange, BigDecimal maxRange, BigDecimal step)`
 
 And use:
 
 * `BigDecimal getMaxRange()`
 * `BigDecimal getMinRange()`
 * `BigDecimal getCurrentSliderValue()`
-* `setSliderPositionTo(BigDecimal position, int method)` - moves slider to a given position. If the position is not valid, it changes it to the nearest proper value. Second parameter determinates movement method: 0 - Keyboard, 1 - Mouse 
-* `BigDecimal verifyAndCorrectPositionValue(BigDecimal position)` - returns nearest correct position 
+* `setSliderPositionTo(BigDecimal position, int method)` - moves slider to a given position.
+If the position is not valid, it changes it to the nearest proper value.
+Second parameter determinates movement method: 0 - Keyboard, 1 - Mouse
+* `BigDecimal verifyAndCorrectPositionValue(BigDecimal position)` - returns nearest correct position
 
-===== Test Class
+== Test Class
 
-Before all tests: Open The Internet Main Page 
+Before all tests: Open The Internet Main Page
 
-Before each case: 
+Before each case:
 
-1. Go to Horizontal Slider Page 
-2. Check if the slider is visible 
+1. Go to Horizontal Slider Page
+2. Check if the slider is visible
 3. Save start, middle and end position
 
-Case 1 - Moving with the keyboard: 
+Case 1 - Moving with the keyboard:
 
-1. Move slider to start position, and check if the current position equals the beginning value 
-2. Move the slider to middle position, and check if the current position equals the middle value 
-3. Move slider to end position, and check if the current position equals the end value 
-4. Try to move slider before start position, and check if the current position equals the beginning value 
-5. Try to move slider after end position, and check if the current position equals the end value 
-6. Try to move the slider to an improperly defined position between start and middle, and check if the current position equals the corrected value 
-7. Try to move the slider to an improperly defined random position, and check if the current position equals the corrected value 
-8. Move the slider back to start position, and check if the current position equals the beginning value 
+1. Move slider to start position, and check if the current position equals the beginning value
+2. Move the slider to middle position, and check if the current position equals the middle value
+3. Move slider to end position, and check if the current position equals the end value
+4. Try to move slider before start position, and check if the current position equals the beginning value
+5. Try to move slider after end position, and check if the current position equals the end value
+6. Try to move the slider to an improperly defined position between start and middle, and check if the current position equals the corrected value
+7. Try to move the slider to an improperly defined random position, and check if the current position equals the corrected value
+8. Move the slider back to start position, and check if the current position equals the beginning value
 
 Case 2 - Moving with a mouse: Repeat each Case 1 step using a mouse instead of keyboard
 
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class SliderTest extends TheInternetBaseTest {
@@ -293,3 +311,8 @@ public class SliderTest extends TheInternetBaseTest {
     }
 }
 ----
+
+== Conclusion
+
+In this tutorial, you've learned how to manipulate a horizontal slider on a web page using both keyboard arrow keys and mouse dragging.
+This skill is useful when dealing with web applications that require user interaction with sliders or similar UI elements.

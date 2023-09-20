@@ -1,20 +1,26 @@
+= Tutorial: Processing HTTP Status Codes
+
+This tutorial demonstrates how to process HTTP status codes returned by a web page.
+When you click on a status code link, you will be redirected to a subpage that returns the corresponding HTTP status code.
+You can check the code number by inspecting the headers section in the developer tools.
+
 image::images/example56.png[]
-
-This example shows how to process HTTP status codes returned by page
-
-When you click status code link, you will be redirected to the subpage which returns the proper HTTP status code. In order to check what code was returned:
-
-1. Open developer tools 
-2. Go to Network tab 
-3. Click request name 
-4. Find a code number in Headers section 
 
 image::images/example57.png[]
 
-===== Page Class
+== What You Will Learn
 
-Add new methods to existing Status Codes Home Page Class
+In this tutorial, you will learn:
 
+* How to interact with status code links on a web page.
+* How to extract and verify HTTP status codes from responses.
+* How to write test cases to validate status code processing.
+
+== Page Class
+
+=== Status Codes Home Page
+
+[source,java]
 ----
 public class StatusCodesHomePage extends BasePage {
 
@@ -115,15 +121,21 @@ public class StatusCodesHomePage extends BasePage {
 }
 ----
 
-Create a page class for status codes subpages as well. In the class constructor specify which code number should be returned. 
+The `StatusCodesHomePage` class contains methods to interact with the Status Codes Home Page, including clicking on status code links, verifying if links are displayed, and navigating to code pages.
 
+Create a page class for status codes subpages as well.
+In the class constructor specify which code number should be returned.
+
+=== Status Codes Code Page Class
+
+[source,java]
 ----
-public class StatusCodesCodePage extends BasePage {
+@lombok.Getter public class StatusCodesCodePage extends BasePage {
 
     private static final By selectorDisplayedText   = By.cssSelector("#content > div > p");
     private static final By selectorLinkToCodesPage = By.cssSelector("#content > div > p > a");
 
-    private String codeNumber;
+    private final String codeNumber;
 
     public StatusCodesCodePage(String codeNumber) {
         this.codeNumber = codeNumber;
@@ -147,10 +159,6 @@ public class StatusCodesCodePage extends BasePage {
     @Override
     public String pageTitle() {
         return getActualPageTitle();
-    }
-
-    public String getCodeNumber() {
-        return codeNumber;
     }
 
     /**
@@ -194,19 +202,23 @@ public class StatusCodesCodePage extends BasePage {
 }
 ----
 
-===== Test Class
+The `StatusCodesCodePage` class represents subpages that return specific HTTP status codes.
+It includes methods to verify if a code page is loaded with an expected code number, extract the displayed code number, and navigate back to the Status Codes Home Page.
 
-Before all tests: Open The Internet Main Page, go to Status Codes page 
+== Test Class
 
-Steps: 
+Before all tests: Open The Internet Main Page, go to Status Codes page
 
-For each status code 
+Steps:
 
-1. Click code link 
-2. Check if the page is loaded with an expected code number 
-3. Check if the displayed code number equals the expected number 
-4. Go back to Status Codes Home Page 
+For each status code
 
+1. Click code link
+2. Check if the page is loaded with an expected code number
+3. Check if the displayed code number equals the expected number
+4. Go back to Status Codes Home Page
+
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class StatusCodeTest extends TheInternetBaseTest {
@@ -214,7 +226,7 @@ public class StatusCodeTest extends TheInternetBaseTest {
     private static StatusCodesHomePage statusCodesHomePage;
     private        StatusCodesCodePage statusCodesCodePage;
 
-    private String[] codes = { "200", "301", "404", "500" };
+    private final String[] codes = { "200", "301", "404", "500" };
 
     @BeforeClass
     public static void setUpBeforeClass() {
@@ -244,3 +256,9 @@ public class StatusCodeTest extends TheInternetBaseTest {
     }
 }
 ----
+
+== Conclusion
+
+In this tutorial, you've learned how to process HTTP status codes returned by web pages.
+You can click on status code links, inspect network requests using developer tools, and validate the returned status codes.
+This knowledge is valuable when testing web applications that rely on specific HTTP status codes for functionality.

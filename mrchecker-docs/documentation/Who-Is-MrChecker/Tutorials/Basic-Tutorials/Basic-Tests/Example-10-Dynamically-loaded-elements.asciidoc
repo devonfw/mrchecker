@@ -1,39 +1,66 @@
-This example shows how to test a page with dynamically loading content. Some elements don't load during page loading, but  during JavaScript execution. 
+= Tutorial: Dynamic Loading of Web Elements
+
+This tutorial demonstrates how to test a web page with dynamically loading content.
+Some elements don't load during the initial page load but are loaded via JavaScript execution.
+
+== What You Will Learn
+
+In this tutorial, you will learn:
+
+* How to interact with dynamically loading elements on a web page.
+* How to wait for elements to appear or disappear using WebDriverWait.
+* How to validate the visibility and attributes of elements.
+* How to simulate user actions like clicking buttons.
+* How to navigate back to the previous page.
+
+== Steps
 
 image::images/example23.png[]
-Go to Example 1: 
+
+Go to Example 1:
 
 image::images/example24.png[]
 
-Click "start" and see what happens: 
+Click "start" and see what happens:
 
 image::images/example25.png[]
 
-When loading ends, you should see the following message: 
+When loading ends, you should see the following message:
 
 image::images/example26.png[]
 
-In the developer mode, you can see that the element with the "Hello World!" message exists in page DOM but it's not displayed. However, the loading bar does not exist there - it's created by JavaScript. The script is also visible in developer mode: 
+In the developer mode, you can see that the element with the "Hello World!" message exists in page DOM, but it's not displayed.
+However, the loading bar does not exist there - it's created by JavaScript.
+The script is also visible in developer mode:
 
 image::images/example27.png[]
 
-After clicking the "Start" button, the element "Loading" is created by the script, and the "Start" button becomes invisible. When loading ends, "Hello World" message is  displayed and the loading bar is hidden. Follow the changes the in developer mode: 
+After clicking the "Start" button, the element "Loading" is created by the script, and the "Start" button becomes invisible.
+When loading ends, "Hello World" message is displayed and the loading bar is hidden.
+Follow the changes the in developer mode:
 
 image::images/example28.png[]
 
-Go to example 2: 
-From a user perspective, there is no difference in page functioning. However, in this case the element with the "Hello World!" message does not exist on the page before clicking "Start". It's created by the script. 
+Go to example 2:
+From a user perspective, there is no difference in page functioning.
+However, in this case the element with the "Hello World!" message does not exist on the page before clicking "Start".
+It's created by the script.
 
 image::images/example29.png[]
-After clicking "Start", the element with the loading bar is been created. 
+
+After clicking "Start", the element with the loading bar has been created.
 
 image::images/example30.png[]
 
-After a certain time, the loading bar becomes invisible, and then the script creates "Hello World!" element and displays it. 
+After a certain time, the loading bar becomes invisible, and then the script creates "Hello World!" element and displays it.
 
 image::images/example31.png[]
 
-===== Page Class
+== Page Class
+
+=== Dynamic Loading Page
+
+[source,java]
 ----
 public class DynamicLoadingPage extends BasePage {
 
@@ -145,31 +172,34 @@ public class DynamicLoadingPage extends BasePage {
         return getDriver().findElementDynamic(selectorExampleText)
                 .getText();
     }
-
 }
- 
 ----
 
-===== WebDriverWait 
-This class performs waiting for actions using Selenium Web Driver: 
+The `DynamicLoadingPage` class contains methods to interact with the Dynamic Loading page, such as clicking Example 1 and Example 2 links, checking the visibility of the "Start" button, and retrieving dynamic text after clicking "Start."
 
-* WebDriverWait(WebDriver driver, long timeOutInSeconds) - constructor, first parameter takes WebDriver, in a second you can specify a timeout in seconds. 
-FluentWait method: 
+=== WebDriverWait
 
-* until(Function<? super T, V> isTrue) - waits until condition function given as parameter returns expected value. If waiting time reaches timeout, it throws timeoutException. 
+This class performs waiting for actions using Selenium Web Driver:
 
-MrChecker implements various condition functions in the ExpectedConditions class : 
+* WebDriverWait(WebDriver driver, long timeOutInSeconds) - constructor, first parameter takes WebDriver, in a second you can specify a timeout in seconds.
+FluentWait method:
 
-* visibilityOfElementLocated(By selector) - returns WebElement if it's visible 
-* invisibilityOfElementLocated(By selector) - returns true if Element under given selector is invisible 
+* until(Function<? super T, V> isTrue) - waits until condition function given as parameter returns expected value.
+If waiting time reaches timeout, it throws timeoutException.
 
-WebDriver also has methods which wait for some conditions: 
+MrChecker implements various condition functions in the ExpectedConditions class :
+
+* visibilityOfElementLocated(By selector) - returns WebElement if it's visible
+* invisibilityOfElementLocated(By selector) - returns true if Element under given selector is invisible
+
+WebDriver also has methods which wait for some conditions:
 
 * waitForElement(By selector)
-* waitForElementVisible(By selector) 
-* waitUntilElementClickable(By selector) 
+* waitForElementVisible(By selector)
+* waitUntilElementClickable(By selector)
 
-It's possible to write your own condition function e.g.: 
+It's possible to write your own condition function e.g.:
+
 ----
   public static ExpectedCondition<Boolean> invisibilityOfElementLocated(final By locator) {
     return new ExpectedCondition<Boolean>() {
@@ -186,7 +216,9 @@ It's possible to write your own condition function e.g.:
     };
   }
 ----
-Or as a lambda expression: 
+
+Or as a lambda expression:
+
 ----
         WebDriverWait wait = new WebDriverWait(getDriver(), waitTime); 
         wait.until((WebDriver driver) -> {
@@ -200,29 +232,31 @@ Or as a lambda expression:
             }
         });
 ----
-===== Test Class 
 
-Case 1 steps: 
+== Test Class
 
-1. Open The Internet Main Page 
-2. Click Dynamic Loading link and go to a subpage with examples 
-3. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible 
-4. Click Example 1 link and load site 
-5. Verify if the "Start" button is visible 
-6. Click "Start" 
-7. Wait for the loading bar to disappear and check if the displayed message is as it should be 
-8. Go back to Dynamic Loading page 
+Case 1 steps:
 
-Case 2 steps: 
+1. Open The Internet Main Page
+2. Click Dynamic Loading link and go to a subpage with examples
+3. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible
+4. Click Example 1 link and load site
+5. Verify if the "Start" button is visible
+6. Click "Start"
+7. Wait for the loading bar to disappear and check if the displayed message is as it should be
+8. Go back to Dynamic Loading page
 
-1. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible 
-2. Click Example 2 link and load site 
-3. Verify if the "Start" button is visible 
-4. Click "Start" 
+Case 2 steps:
+
+1. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible
+2. Click Example 2 link and load site
+3. Verify if the "Start" button is visible
+4. Click "Start"
 5. Wait for the loading bar to disappear
-6. Wait for the message to appear and check if it is as it should be 
-7. Go back to Dynamic Loading page 
+6. Wait for the message to appear and check if it is as it should be
+7. Go back to Dynamic Loading page
 
+[source,java]
 ----
 @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
 public class DynamicLoadingTest extends TheInternetBaseTest {
@@ -249,7 +283,7 @@ public class DynamicLoadingTest extends TheInternetBaseTest {
     }
 
     @Test
-    public void shouldExampleTextBeDisplayedAterRunExampleOne() {
+    public void shouldExampleTextBeDisplayedAfterRunExampleOne() {
         logStep("Click Example 1 link");
         dynamicLoadingPage.clickExampleOneLink();
 
@@ -265,7 +299,7 @@ public class DynamicLoadingTest extends TheInternetBaseTest {
     }
 
     @Test
-    public void shouldExampleTextBeDisplayedAterRunExampleTwo() {
+    public void shouldExampleTextBeDisplayedAfterRunExampleTwo() {
         logStep("Click Example 2 link");
         dynamicLoadingPage.clickExampleTwoLink();
 
@@ -288,6 +322,14 @@ public class DynamicLoadingTest extends TheInternetBaseTest {
 
 }
 ----
-Perform both cases running Test Class as JUnit Test. 
 
-*WARNING:* In this example, there is a visible loading bar signalizing that content is loading.On many websites elements are created by scripts without clear communique. This may cause problems with test stability. When your tests aren't finding page elements, try to add wait functions with a short timeout.  
+Perform both cases running Test Class as JUnit Test.
+
+*WARNING:* In this example, there is a visible loading bar signalizing that content is loading.On many websites elements are created by scripts without clear communique.
+This may cause problems with test stability.
+When your tests aren't finding page elements, try to add wait functions with a short timeout.
+
+== Conclusion
+
+In this tutorial, you've learned how to handle dynamically loading web elements, validate their visibility, and perform user actions like clicking buttons.
+You've also seen how to navigate back to the previous page when needed.
