@@ -1,3 +1,20 @@
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
 = Overview
 
 With MrChecker you'll run or write a lot of tests and you'll need some way to read the results. Yes, you can use the default console output, but it's not a good solution, especially when you want something more readable.
