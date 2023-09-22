@@ -1,3 +1,9 @@
+= Overview
+
+With MrChecker you'll run or write a lot of tests and you'll need some way to read the results. Yes, you can use the default console output, but it's not a good solution, especially when you want something more readable.
+
+In this module you'll learn about Allure logger - how to find saved logs, how to use it and different types of logger. We'll also show you Allure reports, its pros, how to set it up and use it in your project.
+
 = Allure Logger -> BFLogger
 
 In Allure E2E Test Framework you have ability to use and log any additional information crucial for:
