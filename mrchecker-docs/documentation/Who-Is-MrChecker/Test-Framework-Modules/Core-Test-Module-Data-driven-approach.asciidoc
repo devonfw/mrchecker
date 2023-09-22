@@ -17,15 +17,11 @@ toc::[]
 
 = Data driven approach
 
-*Data driven approach* - External *data driven*
+*What is it?*
 
-*External data driven* - Data as external file injected in *test case*
+Data driven approach is a way of making decisions based on collected data. Using this strategy makes it easier to stay objective and get measureable outcomes.
 
-*Test case* - Categorize *functionality* and *severity*
-
-You can find more information about data driven  here and here
-
-There are a few ways to define parameters for tests.
+In this module we'll show a few methods how to use data driven approach in your project.
 
 = Internal Data driven approach
 
