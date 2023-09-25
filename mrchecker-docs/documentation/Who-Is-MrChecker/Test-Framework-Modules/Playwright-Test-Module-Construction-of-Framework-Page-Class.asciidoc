@@ -1,6 +1,8 @@
 = Page Class
 
-Page Object Models allow for the representation of a webpage as a Java Class. The class contains all required web elements like buttons, textfields, labels, etc. When initializing a new project, create a new package to store the Page Object Models in.
+Page Object Models allow for the representation of a webpage as a Java Class.
+The class contains all required web elements like buttons, textfields, labels, etc.
+When initializing a new project, create a new package to store the Page Object Models in.
 
 == Initialization
 
@@ -18,7 +20,8 @@ In the Playwright framework, the `BasePage` class provides key methods that are 
 
 === `pageTitle()`
 
-Override the `pageTitle()` method in your page classes to return the expected title of the current page. This method is useful for validating that the correct page has loaded during your tests.
+Override the `pageTitle()` method in your page classes to return the expected title of the current page.
+This method is useful for validating that the correct page has loaded during your tests.
 
 For example:
 
@@ -31,7 +34,8 @@ public String pageTitle() {
 
 === `isLoaded()`
 
-The `isLoaded()` method determines whether the page has loaded successfully. Implement checks relevant to your application's behavior within this method.
+The `isLoaded()` method determines whether the page has loaded successfully.
+Implement checks relevant to your application's behavior within this method.
 
 For instance:
 
@@ -44,7 +48,8 @@ public boolean isLoaded() {
 
 === `load()`
 
-Override the `load()` method to define the actions required to load the page. This method typically includes navigating to a specific URL, handling validations, and preparing the page for testing.
+Override the `load()` method to define the actions required to load the page.
+This method typically includes navigating to a specific URL, handling validations, and preparing the page for testing.
 
 For example:
 
@@ -60,17 +65,22 @@ These main methods within the `BasePage` class play a crucial role in creating w
 
 == Creating and Using Selectors
 
-* Define Selectors: Create selectors using CSS or other techniques. For example:
+* Define Selectors: Create selectors using CSS or other techniques.
+For example:
+
 ----
 private final String selectorGoogleSearchInput = "[type='search']";
 ----
 
-* Utilize Selectors: Use selectors in your page interactions. For instance:
+* Utilize Selectors: Use selectors in your page interactions.
+For instance:
+
 ----
 getDriver().currentPage()
     .locator(selectorGoogleSearchInput)
     .fill(searchText);
 ----
+
 You can create and manage selectors efficiently, tailoring them to your application's structure and needs.
 
 == Example: Page Interaction
@@ -106,6 +116,8 @@ public class MyPage extends BasePage {
     }
 }
 ----
-In this example, the MyPage class defines a selector for a search input field. The `enterSearchInput(String query)` method utilizes the selector to interact with the search input and fill it with the provided query.
+
+In this example, the MyPage class defines a selector for a search input field.
+The `enterSearchInput(String query)` method utilizes the selector to interact with the search input and fill it with the provided query.
 
 By leveraging the flexibility of BasePage, creating selectors, and utilizing them in interactions, you can efficiently build and maintain your Playwright test suite.

@@ -3,7 +3,9 @@ This page will guide you through the process of creating a test case. We'll crea
 
 == Test Procedure
 
-We aim to open the Google search engine, input a search query, and submit the form. We expect to see search results listed; otherwise, the test will fail. In summary, the testing process will be as follows:
+We aim to open the Google search engine, input a search query, and submit the form.
+We expect to see search results listed; otherwise, the test will fail.
+In summary, the testing process will be as follows:
 
 1. Open google.com.
 2. Enter the string "Test" into the search box.
@@ -37,13 +39,14 @@ image::images/pw-main-googleSearch.png[]
 == Creating the Page Classes
 
 === GoogleSearchPage
+
 We need a new Page object to represent the Google Search page.
 The page class will be named "GoogleSearchPage" and located in the "com.example.playwright.pages.googleSearch" package.
 It should extend the _BasePage_ class and contain the necessary selectors.
 
-The page class represents the Google homepage,
-so we need selectors for web elements required in our test case.
-In our example, we need two selectors: _Google Search Input_ and _Google Search Button_. These selectors will be implemented as fields.
+The page class represents the Google homepage, so we need selectors for web elements required in our test case.
+In our example, we need two selectors: _Google Search Input_ and _Google Search Button_.
+These selectors will be implemented as fields.
 We can find them using the developer console in Google Chrome.
 
 [source,java]
@@ -90,15 +93,19 @@ public class GoogleSearchPage extends BasePage {
 ----
 
 === GoogleResultPage
-When we land on the Google Results page, we need a dedicated class to handle its elements and interactions. This class, named "GoogleResultPage," will be located in the "com.example.playwright.pages.googleSearch" package, just like the "GoogleSearchPage" class.
 
-Similar to the "GoogleSearchPage" class, this class extends the "BasePage" class. It encapsulates the logic for interacting with elements on the Google Results page.
+When we land on the Google Results page, we need a dedicated class to handle its elements and interactions.
+This class, named "GoogleResultPage," will be located in the "com.example.playwright.pages.googleSearch" package, just like the "GoogleSearchPage" class.
+
+Similar to the "GoogleSearchPage" class, this class extends the "BasePage" class.
+It encapsulates the logic for interacting with elements on the Google Results page.
 
 Let's break down the class components:
 
 Selectors: We define a private field named _"selectorSearchResult"_ This selector is responsible for identifying the result items on the Google Results page.
 
-`getResultsNumber()`: This method retrieves the number of search results displayed on the page. Here's how it works:
+`getResultsNumber()`: This method retrieves the number of search results displayed on the page.
+Here's how it works:
 
 We retrieve the current page using `getDriver().currentPage()` to work with the active page.
 We use waitForSelector with a timeout of 5 seconds to wait for the "searchResult" selector to appear on the page.
@@ -147,12 +154,16 @@ public class GoogleResultPage extends BasePage {
 
 === Creating the Test Class
 
-The test class will encompass the entire testing routine for the Google search functionality. Let's walk through the steps to create the test class, named "GoogleSearchTest."
+The test class will encompass the entire testing routine for the Google search functionality.
+Let's walk through the steps to create the test class, named "GoogleSearchTest."
 
 === GoogleSearchTest
-To begin, we'll create a new class within the "googleSearch" package, which we previously established. This class will reside under "src/test/java" and will be named "GoogleSearchTest."
 
-Since "GoogleSearchTest" is a test class, it should extend the _BaseTest_ class. Here is the code structure:
+To begin, we'll create a new class within the "googleSearch" package, which we previously established.
+This class will reside under "src/test/java" and will be named "GoogleSearchTest."
+
+Since "GoogleSearchTest" is a test class, it should extend the _BaseTest_ class.
+Here is the code structure:
 
 [source,java]
 ----
@@ -191,20 +202,24 @@ public class GoogleSearchTest extends BaseTest {
 }
 ----
 
-* Class Setup: We initialize two instances of the page classes using the `PageFactory.getPageInstance()` method. This approach follows the Page Object Model design pattern, making it easy to work with pages.
+* Class Setup: We initialize two instances of the page classes using the `PageFactory.getPageInstance()` method.
+This approach follows the Page Object Model design pattern, making it easy to work with pages.
 
-* `setUp()` Method: This method is executed before each test case. In this case, it navigates to the Google Search page using `googleSearchPage.load()`;.
+* `setUp()` Method: This method is executed before each test case.
+In this case, it navigates to the Google Search page using `googleSearchPage.load()`;.
 
-* `shouldFindAtLeastOneResult_test()` Method: This is the actual test method. It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
-
+* `shouldFindAtLeastOneResult_test()` Method: This is the actual test method.
+It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
 
 == Test Execution
 
 To run the test using JUnit in IntelliJ Idea, follow these steps:
 
-* Once you're within the "GoogleSearchTest" class, to run `shouldFindAtLeastOneResult_test()` test method, right-click on it. A context menu will appear.
+* Once you're within the "GoogleSearchTest" class, to run `shouldFindAtLeastOneResult_test()` test method, right-click on it.
+A context menu will appear.
 
-** Choose "Run": From the context menu, select the option labeled "Run 'shouldFindAtLeastOneResult_test'". This action triggers the execution of the test method you've selected.
+** Choose "Run": From the context menu, select the option labeled "Run 'shouldFindAtLeastOneResult_test'".
+This action triggers the execution of the test method you've selected.
 ** Press Ctrl + Shift + F10
 
 image::images/pw-runTest-Junit.png[]

@@ -1,10 +1,12 @@
 = Selectors in Playwright
 
-Playwright offers a versatile selection of selectors to interact with elements on an HTML page, including CSS selectors and XPath expressions. This flexibility allows you to effectively target elements regardless of the preferred selector type.
+Playwright offers a versatile selection of selectors to interact with elements on an HTML page, including CSS selectors and XPath expressions.
+This flexibility allows you to effectively target elements regardless of the preferred selector type.
 
 === Using CSS Selectors
 
-CSS selectors are a common choice for selecting elements in Playwright. They can be based on element tags, classes, IDs, and other attributes.
+CSS selectors are a common choice for selecting elements in Playwright.
+They can be based on element tags, classes, IDs, and other attributes.
 
 [source,html]
 ----
@@ -33,7 +35,8 @@ For the given element, you can select it using:
 
 === Combining and Stacking Selectors
 
-You can further enhance your element targeting by combining selectors. For instance:
+You can further enhance your element targeting by combining selectors.
+For instance:
 
 [source,html]
 ----

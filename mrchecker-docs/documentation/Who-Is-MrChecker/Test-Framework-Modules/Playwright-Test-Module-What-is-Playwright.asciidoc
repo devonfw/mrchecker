@@ -1,6 +1,7 @@
 = Introducing Playwright: Empowering Browser Testing
 
-Playwright is a comprehensive and modern testing framework designed to empower browser application testing. Let's explore its features and capabilities.
+Playwright is a comprehensive and modern testing framework designed to empower browser application testing.
+Let's explore its features and capabilities.
 
 == Playwright's Toolkit
 
@@ -26,7 +27,8 @@ Playwright is a comprehensive and modern testing framework designed to empower b
 
 == Why Choose Playwright?
 
-Playwright stands out for its modernized architecture, robust APIs, and focus on efficient web application testing. Its key advantages include:
+Playwright stands out for its modernized architecture, robust APIs, and focus on efficient web application testing.
+Its key advantages include:
 
 * Modern Architecture: Playwright's architecture is designed to address the challenges of contemporary web application testing.
 
@@ -40,7 +42,9 @@ Playwright stands out for its modernized architecture, robust APIs, and focus on
 
 == Comparing Playwright and Selenium: A Closer Look
 
-Both Playwright and Selenium are robust testing frameworks for browser applications. However, they have distinct characteristics and strengths. Let's explore the key differences between the two.
+Both Playwright and Selenium are robust testing frameworks for browser applications.
+However, they have distinct characteristics and strengths.
+Let's explore the key differences between the two.
 
 [options="header"]
 |===
@@ -94,6 +98,7 @@ Both Playwright and Selenium are robust testing frameworks for browser applicati
 | TypeScript, JavaScript, Python, .NET, Java.
 | Python, Java, C#, Ruby, JavaScript.
 |===
+
 With these differences in mind, you can choose the framework that best suits your testing needs and objectives.
 
 For more information about Playwright refer to https://playwright.dev/[here].
