@@ -1,4 +1,21 @@
+:toc: macro
+
 = Construction of Framework Test Class
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 Constructing a Framework Test Class is a crucial step in building a well-organized and maintainable test suite.
 This section outlines the steps to create an effective test class.

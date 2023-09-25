@@ -1,4 +1,21 @@
+:toc: macro
+
 = E2E MrChecker Framework Playwright Module
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 Welcome to the documentation for the E2E MrChecker Framework's Playwright Module.
 This module provides comprehensive guidance on utilizing the Playwright library within the E2E MrChecker Framework for efficient and reliable end-to-end testing of web applications.

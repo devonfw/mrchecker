@@ -1,5 +1,24 @@
+:toc: macro
+
 = Sample Walkthrough
-This page will guide you through the process of creating a test case. We'll create a very simple test for the Google search engine.
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+This page will guide you through the process of creating a test case.
+We'll create a very simple test for the Google search engine.
 
 == Test Procedure
 

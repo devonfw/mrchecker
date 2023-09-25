@@ -1,4 +1,21 @@
+:toc: macro
+
 = Playwright Run Configurations: Browser Options and Resolutions
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 When working with Playwright, you can customize your test execution by specifying browser options and resolutions.
 This allows you to achieve comprehensive testing across various browsers and screen sizes.
