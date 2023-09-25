@@ -1,18 +1,14 @@
 = Data driven approach
 
-*Data driven approach* - External *data driven*
+Running tests based on hardcoded data might lead to false-positive outcomes and poor test coverage.
 
-*External data driven* - Data as external file injected in *test case*
+*Data driven approach* is the way to effectively use *External data* in order to improve this.
 
-*Test case* - Categorize *functionality* and *severity*
-
-You can find more information about data driven  here and here
-
-There are a few ways to define parameters for tests.
+In this module you will learn a few ways to define parameters for tests.
 
 = Internal Data driven approach
 
-Data as *part* of *test case*
+In this approach data is used as *part* of *test case*.
 
 The different means to pass in parameters are shown below.
 
@@ -34,7 +30,7 @@ Static methods are used to provide the parameters.
 @MethodSource("arrayStream")
 ----
 
-In the first case the arguments are directly mapped to the test method parameters. In the second case the array is passed as the argument. 
+In the first case the arguments are directly mapped to the test method parameters. In the second case the array is passed as the argument.
 
 image::images/image30_new.png[]
 
@@ -83,7 +79,9 @@ A separate class can be used to define parameters for the test. This test must c
 
 = External Data Driven
 
-Data as *external file injected* in *test case*
+In this approach data is used as *external file injected* in *test case*
+
+The different types of external files and how to handle them are shown below.
 
 *Since mrchecker-core-module version 5.6.2.1*
 
