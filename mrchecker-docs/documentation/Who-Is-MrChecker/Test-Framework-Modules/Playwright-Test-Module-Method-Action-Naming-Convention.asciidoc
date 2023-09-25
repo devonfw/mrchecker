@@ -1,14 +1,23 @@
 = Naming convention
 
-The main idea is to write a specific function for a given element. Create names using template: `actionElementNameElementType()`, and for a verifying function: `isElementNameElementTypePresent()` or `isElementNameElementTypeAction()` To get a value of another element attribute try using this schema: `getElementNameElementTypeAttributeName()`.
+The main idea is to write a specific function for a given element.
+Create names using template: `actionElementNameElementType()`, and for a verifying function: `isElementNameElementTypePresent()` or `isElementNameElementTypeAction()` To get a value of another element attribute try using this schema: `getElementNameElementTypeAttributeName()`.
 
-We have a few basic web elements. There are items for a form input, submit button, label. On a mage you can find button, checkbox, radio, dropdown list, tabs etc. On this element you can make an action: click, enter, submit, type, select, set, get, unset, expand, mouser over. You may also check a present element on a page.
+We have a few basic web elements.
+There are items for a form input, submit button, label.
+On a mage you can find button, checkbox, radio, dropdown list, tabs etc.
+On this element you can make an action: click, enter, submit, type, select, set, get, unset, expand, mouser over.
+You may also check a present element on a page.
 
-*Important*: Visible and Present are not the same. First one means that a user sees this element. Present action means that element is in a HTML code but is not visible for a user (a css display attribute is set to none).
+*Important*: Visible and Present are not the same.
+First one means that a user sees this element.
+Present action means that element is in a HTML code but is not visible for a user (a css display attribute is set to none).
 
 == Naming convention to create functions in page package
 
-Using this keyword you may create compilation of names. This method should be public. Every other method created onside this method should be private.
+Using this keyword you may create compilation of names.
+This method should be public.
+Every other method created onside this method should be private.
 
 [cols=3*,options=header]
 |===
@@ -143,7 +152,7 @@ Using this keyword you may create compilation of names. This method should be pu
 
 |
 |is (contain)
-|`selectSortComboboxContain(name)`
+|`isSortComboboxContain(name)`
 
 |Element Attribute
 |get
