@@ -19,7 +19,7 @@ toc::[]
 
 == Overview
 
-In this document we'll show you sample test calsses and how should you set them up.
+In this document we'll show you sample test classes and how should you set them up.
 
 The following image gives a general overview of a test class "lifecycle".
 
