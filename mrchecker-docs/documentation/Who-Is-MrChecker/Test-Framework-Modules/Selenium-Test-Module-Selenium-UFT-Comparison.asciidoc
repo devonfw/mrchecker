@@ -1,13 +1,13 @@
 = Selenium UFT Comparison
 
-[cols=5*,options=header]
+[cols=6*,options=header]
 |===
-
 |Subject
 |HP UFT
 |HP LeanFT
 |Selenium
 |Selenium IDE
+|Playwright
 
 |Language
 |VBScript
@@ -15,36 +15,42 @@
 |Supports several languages.
 Java
 |Javascript
+|Multiple programming languages
 
 |Learning curve
 |Based on VBScript which is relatively easy to learn
 |Less intuitive, more coding knowledge necessary
 |Less intuitive, more coding skills necessary
 |Record/playback possible. Generated code difficult to maintain
+|Moderate learning curve
 
-|*Project type*
-|*Traditional*
-|*Agile*
-|*Agile*
-|*Agile*
+|Project type
+|Traditional
+|Agile
+|Agile
+|Agile
+|Agile
 
-|*User oriented*
-|*More Tester*
-|*More Developer*
-|*More Developer*
-|*More Tester*
+|User oriented
+|More Tester
+|More Developer
+|More Developer
+|More Tester
+|Balanced
 
 |Object recognition
 |Test object identification and storage in object repository
 |Same as UFT
 |With Firebug
 |Same as SE
+|Advanced element selectors
 
 |Customizations
-|Only the available standard. No custimization 
+|Only the available standard. No customization
 |Same as UFT
 |Lots of customizations possible
-|Fewer then SE
+|Fewer than SE
+|Highly customizable
 
 |Framework
 |Needed.
@@ -53,30 +59,35 @@ Exists in ATaaS
 |Needed.
 Integration with Fitnesse, Cucumber, Gauche
 |No Framework. Limited capabilities of the tool.
+|Framework support available
 
 |Operating System support
 |Runs on Windows
 |Runs on Windows
 |Multiple OS support. With Grid: testing on multiple devices at same time
 |Plugin for Firefox
+|Cross-platform support
 
-|*Application coverage*
-|*Many*
-|*Many*
-|*Web only*
-|*Web only*
+|Application coverage
+|Many
+|Many
+|Web only
+|Web only
+|Web only
 
 |Multiple browsers
 |In UFT 12.5 available
 |In 12.5 available
 |Multiple tests in multiple browser windows at once and faster support for new browser versions
 |Multiple tests in multiple browser windows at once and faster support for new browser versions
+|Multiple browser support
 
 |System Load
 |High system load (RAM & CPU usage)
 |Lower load than HP UFT?
 |Lower load than HP UFT
 |Lower load than HP UFT
+|Moderate system load
 
 |ALM integration
 |With HP ALM – full integration
@@ -84,49 +95,50 @@ Integration with Fitnesse, Cucumber, Gauche
 |Jira, Jenkins
 Not with ALM tool
 |Same as SE
+|Integration with various tools
 
 |Integration with other tools
 |A lot can be built, but many are already covered.
 |More than UFT.
 |Freeware and can be integrated with different open source tools
 |Freeware and can be integrated with different open source tools
+|Integration capabilities
 
 |Addins
 |Add-ins necessary to access all capabilities of the tool – license related
 |Same as UFT
 |See integration with other tools
 |See integration with other tools
+|No specific add-ins needed
 
 |Reporting
 |Complete, link to ALM
 |Same as UFT
 |No native mechanism for generating reports, but multiple plugins available for reporting
 |No native mechanism for generating reports, but multiple plugins available for reporting
+|Reporting plugins available
 
 |Support
 |HP full support
 |Same as UFT
 |Limited support as it is open source
 |Limited support as it is open source
+|Community and limited support
 
-|*License costs*
-|*About 17K – Capgemini price 5K.*
-*Included in the S2 service charge*
-|*Same price as HP UFT*
-|*Free*
-|*Free*
-*limited functionality (no iterations / conditional statements)*
+|License costs
+|About 17K – Capgemini price 5K.
+Included in the S2 service charge
+|Same price as HP UFT
+|Free
+|Free
+Limited functionality (no iterations / conditional statements)
+|Free and open-source
 
 |iVAL Service
 |ATaaS
-|Not in a S2 service
-|Not in a S2 service
-|Not in a S2 service
+|Not in an S2 service
+|Not in an S2 service
+|Not in an S2 service
+|Not in an S2 service
 
 |===
-
-Bold for key differentiators.
-
-Projects also choose an available resource and the knowledge of that resource.
-
-Both: Framework determines the quality of automation. Needs to be set up by someone with experience with the tool

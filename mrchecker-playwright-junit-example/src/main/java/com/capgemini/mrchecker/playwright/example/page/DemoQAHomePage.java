@@ -1,7 +1,7 @@
-package com.capgemini.mrchecker.selenium.example.page;
+package com.capgemini.mrchecker.playwright.example.page;
 
-import com.capgemini.mrchecker.selenium.example.base.BasePageGUI;
-import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
+import com.capgemini.mrchecker.playwright.example.base.BasePageGUI;
+import com.capgemini.mrchecker.playwright.example.env.GetEnvironmentParam;
 
 public class DemoQAHomePage extends BasePageGUI {
     private final String url = GetEnvironmentParam.DEMO_QA_URL.getValue();

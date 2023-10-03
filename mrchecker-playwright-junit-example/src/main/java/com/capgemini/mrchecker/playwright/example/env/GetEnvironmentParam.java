@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.example.env;
+package com.capgemini.mrchecker.playwright.example.env;
 
 import com.capgemini.mrchecker.test.core.BaseTest;
 import com.capgemini.mrchecker.test.core.exceptions.BFInputDataException;
@@ -14,7 +14,8 @@ public enum GetEnvironmentParam {
     DEMO_QA_FORM_URL,
     DEMO_QA_LINKS_URL,
     EXAMPLE_USER_LOGIN,
-    EXAMPLE_USER_PASSWORD;
+    EXAMPLE_USER_PASSWORD,
+    GOOGLE_URL;
 
     private String value;
 
