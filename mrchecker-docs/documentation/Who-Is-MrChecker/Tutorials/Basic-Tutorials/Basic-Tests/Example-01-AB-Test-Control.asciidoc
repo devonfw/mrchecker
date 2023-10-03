@@ -51,7 +51,7 @@ Override all the required methods:
 
 == How to use Enum?
 
-Similarly as in environmental variables case, create an enum for storing values of subURLs:
+Similarly, as in environmental variables case, create an enum for storing values of subURLs:
 
 [source,java]
 ----
@@ -129,7 +129,7 @@ Instead of mapping data from an external file, you can store and access them dir
 
 === Selector
 
-In this test case you need selector for only one page element:
+In this test case you need selector for only one-page element:
 
   private static final By elementalSeleniumLinkSelector = By.cssSelector("div > div > a");
 

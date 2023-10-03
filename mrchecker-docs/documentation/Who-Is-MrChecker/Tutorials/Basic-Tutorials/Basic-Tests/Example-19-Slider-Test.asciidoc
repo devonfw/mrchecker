@@ -131,7 +131,7 @@ It includes methods to check if the page is loaded, load the page, retrieve slid
 
 === Horizontal Slider Element
 
-This class implements methods wich can perform actions on slider:
+This class implements methods which can perform actions on slider:
 
 Create Slider Object using method:
 
@@ -144,7 +144,7 @@ And use:
 * `BigDecimal getCurrentSliderValue()`
 * `setSliderPositionTo(BigDecimal position, int method)` - moves slider to a given position.
 If the position is not valid, it changes it to the nearest proper value.
-Second parameter determinates movement method: 0 - Keyboard, 1 - Mouse
+Second parameter determinate movement method: 0 - Keyboard, 1 - Mouse
 * `BigDecimal verifyAndCorrectPositionValue(BigDecimal position)` - returns nearest correct position
 
 == Test Class

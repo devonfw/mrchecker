@@ -32,7 +32,6 @@ Override all the required methods:
 public class BasicAuthPage extends BasePage {
 
     public BasicAuthPage() {
-
     }
 
     public BasicAuthPage(String login, String password) {
@@ -160,7 +159,7 @@ public class BasicAuthTest extends TheInternetBaseTest {
     private final String message  = "Congratulations! You must have the proper credentials.";
 
     @Test
-    public void shouldUserLogInWithValidCredentials() throws InterruptedException, AWTException {
+    public void shouldUserLogInWithValidCredentials() {
         basicAuthPage = shouldTheInternetPageBeOpened().clickBasicAuthLink(); 
 
         logStep("Enter login and password");

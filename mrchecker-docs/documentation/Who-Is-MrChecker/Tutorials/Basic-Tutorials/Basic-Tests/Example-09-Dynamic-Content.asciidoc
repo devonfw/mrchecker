@@ -123,7 +123,7 @@ public class DynamicContentTest extends TheInternetBaseTest {
         List<String> descriptionsBeforeRefresh = dynamicContentPage.getDescriptions();
         List<String> imagesBeforeRefresh = dynamicContentPage.getImageLinks();
 
-        logStep("Refres page");
+        logStep("Refresh page");
         dynamicContentPage.refreshPage();
         assertTrue("The Dynamic Content page hasn't been refreshed", dynamicContentPage.isLoaded());
 

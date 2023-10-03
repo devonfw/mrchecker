@@ -80,8 +80,8 @@ public class FileDownloadPage extends BasePage {
     private String getNameOfDownloadFile() {
         String urlToDownload = getDriver().findElementDynamic(selectorSomeFileTxt)
                 .getAttribute("href");
-        String[] urlHierachy = urlToDownload.split("/");
-        return urlHierachy[urlHierachy.length - 1];
+        String[] urlHierarchy = urlToDownload.split("/");
+        return urlHierachy[urlHierarchy.length - 1];
     }
 }
 ----
@@ -112,7 +112,7 @@ public class FileDownloadTest extends TheInternetBaseTest {
     }
 
     @Test
-    public void shouldfileBeDownloaded() {
+    public void shouldFileBeDownloaded() {
 
         logStep("Download the some-file.txt");
         File downloadedFile = fileDownloadPage.downloadTextFile();

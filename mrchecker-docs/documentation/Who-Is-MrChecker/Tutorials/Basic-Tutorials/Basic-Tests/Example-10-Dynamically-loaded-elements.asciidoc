@@ -325,7 +325,7 @@ public class DynamicLoadingTest extends TheInternetBaseTest {
 
 Perform both cases running Test Class as JUnit Test.
 
-*WARNING:* In this example, there is a visible loading bar signalizing that content is loading.On many websites elements are created by scripts without clear communique.
+*WARNING:* In this example, there is a visible loading bar signalizing that content is loading.On many websites elements are created by scripts without clear communication.
 This may cause problems with test stability.
 When your tests aren't finding page elements, try to add wait functions with a short timeout.
 

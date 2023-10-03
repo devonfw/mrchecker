@@ -58,7 +58,7 @@ public class DropdownPage extends BasePage {
     }
 
     /**
-     * Selects doropdown's value by given index.
+     * Selects dropdown`s value by given index.
      *
      * @param index Index of option to be selected
      */
@@ -68,9 +68,9 @@ public class DropdownPage extends BasePage {
     }
 
     /**
-     * Returns text value of first selected dropdown's option.
+     * Returns text value of first selected dropdown`s option.
      *
-     * @return String object representing value of dropdown's option
+     * @return String object representing value of dropdown`s option
      */
     public String getSelectedDropdownValue() {
         return getDriver().elementDropdownList(dropdownListSelector)
@@ -113,14 +113,14 @@ public class DropdownTest extends TheInternetBaseTest {
     @Test
     public void shouldGetExpectedDropdownTextOptionAfterSelection() {
 
-        logStep("Select first drodown option");
+        logStep("Select first dropdown option");
         dropdownPage.selectDropdownValueByIndex(1);
 
         logStep("Verify if selected option text is equal to the expected one");
         assertEquals("Selected value is different than expected", expectedFirstOptionValue,
                 dropdownPage.getSelectedDropdownValue());
 
-        logStep("Select first drodown option");
+        logStep("Select second dropdown option");
         dropdownPage.selectDropdownValueByIndex(2);
 
         logStep("Verify if selected option text is equal to the expected one");

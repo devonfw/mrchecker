@@ -38,7 +38,7 @@ public class ExitIntentPage extends BasePage {
 
     private static final String MODAL_WINDOW_HIDDEN           = "display: none;";
     private static final String MODAL_WINDOW_DISPLAYED        = "display: block;";
-    private static final String MODAL_WINDOW_STYLE_ATTRIBUTTE = "style";
+    private static final String MODAL_WINDOW_STYLE_ATTRIBUTE  = "style";
 
     private static final By selectorModalWindow            = By.cssSelector("div#ouibounce-modal");
     private static final By selectorExitIntentText         = By.cssSelector("div#content h3");
@@ -82,7 +82,7 @@ public class ExitIntentPage extends BasePage {
      */
     public boolean isModalWindowHidden() {
         return getDriver().findElementDynamic(selectorModalWindow)
-                .getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
+                .getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTE)
                 .equals(MODAL_WINDOW_HIDDEN);
     }
 
@@ -93,7 +93,7 @@ public class ExitIntentPage extends BasePage {
      */
     public boolean isModalWindowVisible() {
         return getDriver().findElementDynamic(selectorModalWindow)
-                .getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
+                .getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTE)
                 .equals(MODAL_WINDOW_DISPLAYED);
     }
 
@@ -164,7 +164,7 @@ The `ExitIntentPage` class contains methods to interact with the Exit Intent pag
 
 Elements on pages have attributes like "id", "class", "name", "style" etc.
 In order to check them, use method `getAttribute(String name)`.
-In this case attribute "style" determinates if the element is displayed.
+In this case attribute "style" determinate if the element is displayed.
 
 === Robot
 

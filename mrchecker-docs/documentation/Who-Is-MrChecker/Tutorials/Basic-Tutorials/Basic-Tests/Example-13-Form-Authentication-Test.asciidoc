@@ -62,10 +62,10 @@ public class FormAuthenticationPage extends BasePage {
     }
 
     /**
-     * Sets user name to designated form's field.
+     * Sets username to designated form's field.
      *
      * @param username String representing a user's name
-     * @return FormAuthenticationPage object with user name set to the given one
+     * @return FormAuthenticationPage object with username set to the given one
      */
     public FormAuthenticationPage setUsername(String username) {
         InputTextElement elementInputUsername = new InputTextElement(selectorInputUsername);
@@ -129,12 +129,12 @@ Use methods from this class to perform actions on text fields:
 
 Prepare six test cases:
 
-1. Try to login with empty user data and check if the error message appears
-2. Try to login with empty username and valid password and check if the error message appears
-3. Try to login with a valid username and empty password and check if the error message appears
-4. Try to login with invalid username and invalid password and check if the error message appears
-5. Try to login with a valid username and valid password and check if success login message appears, then log out
-6. Try to login with a valid username and valid password and check if success login message appears, then log out and check if success logout message is displayed
+1. Try to log in with empty user data and check if the error message appears
+2. Try to log in with empty username and valid password and check if the error message appears
+3. Try to log in with a valid username and empty password and check if the error message appears
+4. Try to log in with invalid username and invalid password and check if the error message appears
+5. Try to log in with a valid username and valid password and check if success login message appears, then log out
+6. Try to log in with a valid username and valid password and check if success login message appears, then log out and check if success logout message is displayed
 
 * Before all tests: Open The Internet Main Page
 
@@ -234,7 +234,7 @@ public class FormAuthenticationTest extends TheInternetBaseTest {
     }
 
     @Test
-    public void shouldUserLogOutAfterProperLogInAndClickLogoutButon() {
+    public void shouldUserLogOutAfterProperLogInAndClickLogoutButton() {
         logStep("Log user with valid username and valid password");
         formAuthenticationPage.setUsername(validUsername)
                 .setUserPassword(validPassword)
@@ -243,7 +243,7 @@ public class FormAuthenticationTest extends TheInternetBaseTest {
                 formAuthenticationPage.getLoginMessageText());
         logStep("Log out user");
         formAuthenticationPage.clickLogoutButton();
-        assertEquals("User cannot log out after prper log in", logoutMessage,
+        assertEquals("User cannot log out after proper log in", logoutMessage,
                 formAuthenticationPage.getLoginMessageText());
     }
 
