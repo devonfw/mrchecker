@@ -39,7 +39,7 @@
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
 
         <!-- Allure reporting -->
-        <allure.version>2.21.0</allure.version>
+        <allure.version>2.23.0</allure.version>
         <allure.results.directory>${project.basedir}/target/allure-results</allure.results.directory>
         <allure.report.directory>${project.basedir}/target/allure-report</allure.report.directory>
         <surefire.report.directory>${project.basedir}/target/surefire-reports</surefire.report.directory>
@@ -48,7 +48,7 @@
 
         <!-- Cucumber settings-->
         <cucumber.class>com.capgemini.mrchecker.selenium.example.test.CucumberTests</cucumber.class>
-        <cucumber.version>7.11.2</cucumber.version>
+        <cucumber.version>7.13.0</cucumber.version>
     </properties>
 
     <dependencies>

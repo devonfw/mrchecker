@@ -16,8 +16,6 @@ toc::[]
 :listing-caption: Listing
 == Overview
 
-//*Cucumber / Selenium*
-
 Business and IT don’t always understand each other. Very often misunderstandings between business and IT result in the costly failure of IT projects. With this in mind, Behaviour Driven Development(BDD) was created as an agile methodology that support human collaboration between business and IT.
 
 In this section you will learn how to use Cucumber/Selenium in your project with MrChecker.
@@ -185,8 +183,6 @@ Before running cucumber subproject you have to configure your IDE
 5. Edit *Working directory*
 
 6. Select mrchecker-selenium-cucumber-example as *Working directory*
-
-
 
 === Reporting test results
 
