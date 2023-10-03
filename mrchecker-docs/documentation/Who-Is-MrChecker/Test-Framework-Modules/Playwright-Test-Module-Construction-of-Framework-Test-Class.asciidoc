@@ -1,0 +1,85 @@
+:toc: macro
+
+= Construction of Framework Test Class
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+Constructing a Framework Test Class is a crucial step in building a well-organized and maintainable test suite.
+This section outlines the steps to create an effective test class.
+
+== Key Elements in Framework Test Class
+
+When creating a Framework Test Class, consider the following key elements:
+
+* Initialize Page Instances: Begin by initializing the necessary page instances using the PageFactory pattern.
+This ensures that you have structured access to page elements and methods.
+
+* `setUp()`: Override this method to set up the initial environment for your test.
+This could involve tasks such as navigating to specific pages, initializing page instances, and other pre-test actions.
+
+* `tearDown()`: Override this method to perform cleanup or finalization tasks after the test execution.
+Actions like closing the browser, logging out, or resetting application state can be included here.
+
+* Test Methods with `@Test` Annotation: Define individual test methods within the class, each representing a specific test case scenario.
+Use the `@Test` annotation to mark these methods as test cases.
+
+== Utilizing `BaseTest`
+
+To streamline your test execution and enhance consistency, utilize the `BaseTest` class, which offers standardized pre-test setup (`setUp()`) and post-test cleanup (`tearDown()`) methods.
+It provides a clear structure for managing your tests and handling exceptions.
+
+Incorporate the following components from the `BaseTest` class:
+
+* Each test `tearDown()` method should be defined in your subclass as `tearDown()`.
+
+* Each test `setUp()` method should be defined in your subclass as `setUp()`.
+
+* The general `setUp()` method manages pre-test behavior, handles exceptions, and indicates "skipped" tests on Allure reports in case of pre-test failures.
+
+* The general `tearDown()` method handles post-test behavior, exceptions, and marks tests as "skipped" on Allure reports in case of post-test failures.
+
+== Example Framework Test Class
+
+Here's an example of a Framework Test Class that adheres to the principles discussed above:
+
+[source,java]
+----
+public class MyFrameworkTest extends BaseTest {
+
+    // Initialize page instances using PageFactory
+    private final MyPage myPage = PageFactory.getPageInstance(MyPage.class);
+
+    @Override
+    public void tearDown() {
+        // Add any cleanup or finalization logic here
+    }
+
+    @Override
+    public void setUp() {
+        // Perform initial setup for the test
+        myPage.load();
+    }
+
+    @Test
+    public void performSearchTest() {
+        myPage.enterSearchInput("Playwright");
+        // Additional test logic
+    }
+}
+----
+
+By creating a structured Framework Test Class, you establish a consistent approach to test execution, organized test scenarios, and standardized pre- and post-test behaviors.
+This framework enhances maintainability and readability of your Playwright test suite.

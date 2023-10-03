@@ -1,4 +1,4 @@
-package com.capgemini.mrchecker.selenium.example.base;
+package com.capgemini.mrchecker.playwright.example.base;
 
 
 import com.capgemini.mrchecker.playwright.core.BasePage;
