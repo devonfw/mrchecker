@@ -28,8 +28,6 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cu
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[leveloffset=4]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=4]
-
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=4]
 
 === Selenium Module
