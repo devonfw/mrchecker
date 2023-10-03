@@ -155,10 +155,6 @@ image::images/feature_file_tag_showcase.jpg[]
 
 * Run cucumber tests and generate Allure report. Please use this for Jenkins execution. Report is saved under _./target/site_.
 +
-    mvn clean -P cucumber test site
-+
-* Run and generate report
-+
     mvn clean -P cucumber test site allure:report
 +
 * Run cucumber tests, generate Allure report and start standalone report server
