@@ -16,8 +16,6 @@ toc::[]
 :listing-caption: Listing
 == Overview
 
-//*Cucumber / Selenium*
-
 Business and IT don’t always understand each other. Very often misunderstandings between business and IT result in the costly failure of IT projects. With this in mind, Behaviour Driven Development(BDD) was created as an agile methodology that support human collaboration between business and IT.
 
 In this section you will learn how to use Cucumber/Selenium in your project with MrChecker.
@@ -186,8 +184,6 @@ Before running cucumber subproject you have to configure your IDE
 
 6. Select mrchecker-selenium-cucumber-example as *Working directory*
 
-
-
 === Reporting test results
 
 Cucumber can report results in several formats, using formatter plugins.
@@ -195,7 +191,7 @@ Not supported option by Shared Services: The output from Cucumber can be used to
 
 image::images/image43.png[]
 
-== HOW IS Cucumber / Selenium USED AT Capgemini?
+== How is Cucumber / Selenium used at Capgemini?
 
 === Tool deployment
 
