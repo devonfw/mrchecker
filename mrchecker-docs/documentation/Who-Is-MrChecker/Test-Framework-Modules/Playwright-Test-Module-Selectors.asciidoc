@@ -1,0 +1,89 @@
+:toc: macro
+
+= Selectors in Playwright
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+Playwright offers a versatile selection of selectors to interact with elements on an HTML page, including CSS selectors and XPath expressions.
+This flexibility allows you to effectively target elements regardless of the preferred selector type.
+
+== Using CSS Selectors
+
+CSS selectors are a common choice for selecting elements in Playwright.
+They can be based on element tags, classes, IDs, and other attributes.
+
+[source,html]
+----
+<p class='myText' id='123'>
+----
+
+With CSS selectors, you can target the above element using:
+
+* The HTML element tag: p
+* The class attribute preceded by .: .myText
+* The ID attribute preceded by #: #123
+
+== Using XPath Expressions
+
+Playwright also supports XPath expressions, providing an alternative way to locate elements.
+
+[source,html]
+----
+<a href='https://ns.nl/example.html'>
+----
+
+For the given element, you can select it using:
+
+* The entire attribute value with CSS-like syntax: a[href='https://ns.nl/example.html']
+* An equivalent XPath expression: //a[@href='https://ns.nl/example.html']
+
+== Combining and Stacking Selectors
+
+You can further enhance your element targeting by combining selectors.
+For instance:
+
+[source,html]
+----
+<div id='1'>
+    <a href='ns.nl'></a>
+</div>
+<div id='2'>
+    <a href='nsinternational.nl'></a>
+</div>
+----
+
+In this example, to select the link element to nsinternational.nl, you can use both CSS and XPath:
+
+* CSS Selector: #2 a
+* XPath Expression: //*[@id='2']/a
+
+== Best Practices
+
+Regardless of selector type, consider these practices:
+
+* Prioritize Readability: Choose selectors that are easy to read and maintain.
+* Use Semantic Classes and IDs: Leverage meaningful class and ID attributes for clearer targeting.
+* Avoid Over-specificity: Aim for selectors that remain effective even as the page structure evolves.
+* Regularly Validate Selectors: Test your selectors against varying scenarios to ensure reliability.
+
+== Additional Resources
+
+For a comprehensive reference on both CSS and XPath selectors, refer to the following resources:
+
+* CSS Selectors: link:https://www.w3schools.com/cssref/css_selectors.asp[W3Schools]
+* XPath Expressions: link:https://www.w3schools.com/xml/xpath_intro.asp[W3Schools]
+
+With Playwright's adaptable selector options, you can confidently target and interact with elements, maximizing the effectiveness of your automated tests.

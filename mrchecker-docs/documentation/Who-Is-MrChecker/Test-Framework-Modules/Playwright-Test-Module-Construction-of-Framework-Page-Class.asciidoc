@@ -1,0 +1,140 @@
+:toc: macro
+
+= Page Class
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+Page Object Models allow for the representation of a webpage as a Java Class.
+The class contains all required web elements like buttons, textfields, labels, etc.
+When initializing a new project, create a new package to store the Page Object Models in.
+
+== Initialization
+
+*Source folder*: _your-project/src/main/java_
+
+*Name*: `com.example.playwright.pages.YOUR_PROJECT`
+
+Classes being created inside of this new package have to extend the *BasePage* class.
+
+The *BasePage* class serves as a foundational component for Playwright-based web page handling, streamlining navigation, and interaction across your test suite.
+
+== Key Methods and Functions
+
+In the Playwright framework, the `BasePage` class provides key methods that are fundamental for building effective page objects for your web application tests.
+
+=== `pageTitle()`
+
+Override the `pageTitle()` method in your page classes to return the expected title of the current page.
+This method is useful for validating that the correct page has loaded during your tests.
+
+For example:
+
+----
+@Override
+public String pageTitle() {
+    return "My Page Title"; // Replace with the actual page title
+}
+----
+
+=== `isLoaded()`
+
+The `isLoaded()` method determines whether the page has loaded successfully.
+Implement checks relevant to your application's behavior within this method.
+
+For instance:
+
+----
+@Override
+public boolean isLoaded() {
+    return getDriver().currentPage().url().equals(pageUrl);
+}
+----
+
+=== `load()`
+
+Override the `load()` method to define the actions required to load the page.
+This method typically includes navigating to a specific URL, handling validations, and preparing the page for testing.
+
+For example:
+
+----
+@Override
+public void load() {
+    String pageUrl = "https://example.com";
+    loadPage(pageUrl);
+}
+----
+
+These main methods within the `BasePage` class play a crucial role in creating well-structured and maintainable page objects for your Playwright test suite.
+
+== Creating and Using Selectors
+
+* Define Selectors: Create selectors using CSS or other techniques.
+For example:
+
+----
+private final String selectorGoogleSearchInput = "[type='search']";
+----
+
+* Utilize Selectors: Use selectors in your page interactions.
+For instance:
+
+----
+getDriver().currentPage()
+    .locator(selectorGoogleSearchInput)
+    .fill(searchText);
+----
+
+You can create and manage selectors efficiently, tailoring them to your application's structure and needs.
+
+== Example: Page Interaction
+
+Here's an additional example of using selectors for interacting with elements on a Playwright page:
+
+[source,java]
+----
+public class MyPage extends BasePage {
+
+    private final String selectorSearchInput = "[type='search']";
+
+    @Override
+    public String pageTitle() {
+        return "My Page Title"; // Replace with the actual page title
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return getDriver().currentPage().url().equals(pageUrl);
+    }
+
+    @Override
+    public void load() {
+        String pageUrl = "https://example.com";
+        loadPage(pageUrl);
+    }
+
+    public void enterSearchInput(String query) {
+        getDriver().currentPage()
+                .locator(selectorSearchInput)
+                .fill(query);
+    }
+}
+----
+
+In this example, the MyPage class defines a selector for a search input field.
+The `enterSearchInput(String query)` method utilizes the selector to interact with the search input and fill it with the provided query.
+
+By leveraging the flexibility of BasePage, creating selectors, and utilizing them in interactions, you can efficiently build and maintain your Playwright test suite.
