@@ -30,7 +30,7 @@ Our CI & CD processes are divided into a few separate files: Jenkins_node.groovy
 * Execute unit tests
 * Execute integration tests
 * Deploy artifacts to a local repository
-* Deploy artifacts to an external repository (nexus/arifactory)
+* Deploy artifacts to an external repository (nexus/artifactory)
 
 Not all the steps must be present in the Jenkins files. This should be configured for particular job requirements.
 
@@ -71,7 +71,7 @@ Execute integration tests with mvn surefire test and publish reports in junit an
 
 Archive artifacts as a jar file in the local repository
 
-=== Stage ”Deploy – nexu repo”
+=== Stage ”Deploy – nexus repo”
 
 Deploy to the external repository with maven release deploy command with credentials stored in Jenkins machine. Additional files:
 
