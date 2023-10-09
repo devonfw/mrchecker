@@ -1,10 +1,10 @@
-package com.capgemini.mrchecker.selenium.example.page;
+package com.capgemini.mrchecker.playwright.example.page;
 
 import com.capgemini.mrchecker.playwright.core.newDrivers.elementType.Button;
 import com.capgemini.mrchecker.playwright.core.newDrivers.elementType.InputTextElement;
 import com.capgemini.mrchecker.playwright.core.newDrivers.elementType.LabelElement;
-import com.capgemini.mrchecker.selenium.example.base.BasePageGUI;
-import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
+import com.capgemini.mrchecker.playwright.example.base.BasePageGUI;
+import com.capgemini.mrchecker.playwright.example.env.GetEnvironmentParam;
 import io.qameta.allure.Step;
 
 public class DemoQALoginPage extends BasePageGUI {
