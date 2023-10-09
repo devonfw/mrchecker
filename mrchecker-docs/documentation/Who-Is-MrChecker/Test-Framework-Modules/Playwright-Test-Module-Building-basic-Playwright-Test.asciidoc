@@ -64,7 +64,7 @@ The page class will be named "GoogleSearchPage" and located in the "com.example.
 It should extend the _BasePage_ class and contain the necessary selectors.
 
 The page class represents the Google homepage, so we need selectors for web elements required in our test case.
-<<<<<<< HEAD In our example, we need four selectors: _Cookies Window_, _Accept Cookies Button_, _Google Search Input_ and _Google Search Button_.
+In our example, we need four selectors: _Cookies Window_, _Accept Cookies Button_, _Google Search Input_ and _Google Search Button_.
 These selectors will be implemented as fields.
 We can find them using the developer console in Google Chrome.
 
@@ -75,13 +75,6 @@ To ensure the stability of our tests, we will implement two methods:
 If the window is visible, it returns true; otherwise, it returns false.
 
 * clickAcceptCookiesButton(): This method clicks the "Accept Cookies" button to dismiss the window.
-
-=======
-In our example, we need two selectors: _Google Search Input_ and _Google Search Button_.
-These selectors will be implemented as fields.
-We can find them using the developer console in Google Chrome.
-
->>>>>>> develop
 
 [source,java]
 ----
@@ -261,11 +254,7 @@ public class GoogleSearchTest extends BaseTest {
 This approach follows the Page Object Model design pattern, making it easy to work with pages.
 
 * `setUp()` Method: This method is executed before each test case.
-<<<<<<< HEAD In this case, it navigates to the Google Search page using  `googleSearchPage.load()` and handles the acceptance of cookies (if the Cookies Window is displayed).
-=======
-
-In this case, it navigates to the Google Search page using `googleSearchPage.load()`;.
->>>>>>> develop
+In this case, it navigates to the Google Search page using  `googleSearchPage.load()` and handles the acceptance of cookies (if the Cookies Window is displayed).
 
 * `shouldFindAtLeastOneResult_test()` Method: This is the actual test method.
 It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
