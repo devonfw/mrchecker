@@ -21,7 +21,6 @@
 
     <artifactId>mrchecker-webapi-junit-example</artifactId>
 
-
     <properties>
         <thread.count>10</thread.count>
         <parallel.mode.default>concurrent</parallel.mode.default>
@@ -32,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- MrChecker -->
-        <mrchecker.version>2023.10.04</mrchecker.version>
+        <mrchecker.version>2023.10.10</mrchecker.version>
 
         <!-- Maven -->
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
