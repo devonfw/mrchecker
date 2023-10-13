@@ -23,7 +23,7 @@ In this document we'll show you sample test classes and how should you set them 
 
 The following image gives a general overview of a test class "lifecycle".
 
-image::images/image52.png[]
+image::images/image52_new.png[]
 
 More information on the methods and annotations used in this image can be found in the following chapter.
 
