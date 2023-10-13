@@ -71,11 +71,15 @@ The tearDown methods executes after the test. It allows the clean up of the test
 
 The `@Test` annotation indicates that the following method is a test method.
 
-Additionally, there are two annotations that can help preparing and disassembling the test class: `@BeforeClass` and `@AfterClass`.
+The `@ParameterizedTest` annotation indicates that the following method is a test method. Such methods are inherited unless they are overridden.
 
-`@BeforeClass` will execute the following method once at the beginning, before running any test method. Compared to the setUp() method provided by the BaseTest class, this annotation will only run once, instead of before every single test method. The advantage here: things like login can be set up in `@BeforeClass`, as they can often be very time consuming. Logging in on a webapplication once and afterwards running all the test methods is more efficient than logging in before every test method, especially if they are being executed on the same page.
+The `@Tag` is used to declare tags for filtering tests.
 
-`@AfterClass` will execute after the last test method. Just like `@BeforeClass` this method will only run once, in contrary to the `tearDown()` method.
+The `@DisplayName` declares a custom name for a test or a method (not inherited).
+
+The `@BeforeAll` denotes that the annotated method should be executed before all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class.
+
+The `@AfterAll` denotes that the annotated method should be executed after all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class.
 
 Initialize a new test method by using the `@Test` annotation.
 
@@ -91,16 +95,6 @@ This method will interact with a page object in order to test it.
 === Sample Setup
 
 ----
-@BeforeClass
-public static void setUpBeforeClass() throws Exception {
-	BFLogger.logInfo("[Step1] Login as Account Administrator");
-}
-
-@AfterClass
-public static void tearDownAfterClass() throws Exception {
-	BFLogger.logInfo("[Step4] Logout");
-}
-
 @Override
 public void setUp() {
 	BFLogger.logInfo("Open home page before each test");
@@ -109,6 +103,16 @@ public void setUp() {
 @Override
 public void tearDown() {
 	BFLogger.logInfo("Clean all data updated while executing each test");
+}
+
+@BeforeAll
+public static void setUpClass() {
+	TEST_EXECUTION_OBSERVER.addObserver(testObserver);
+}
+
+@AfterAll
+public static void teardown() {
+	throw new RuntimeException();
 }
 
 @Test
