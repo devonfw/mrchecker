@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Open Elemental Subpage from A/B Testing
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == What You Will Learn
 
@@ -18,44 +35,59 @@ Steps:
 
 image::images/example2.png[]
 
-== Page Class
+== Environment Configuration
 
-Create a Page class for AB Testing page.
-Override all the required methods:
+For proper execution of tests, you need to configure the test environment using the `environments.csv` file.
+
+The `environments.csv` file should contain configurations for variables like URLs.
+Here's an example of how the `environments.csv` file might look:
+
+[source,csv]
+----
+VAR                         , ENV1
+THE_INTERNET_HEROKUAPP_URL  , https://the-internet.herokuapp.com/
+ELEMENTAL_SELENIUM_URL      , https://elementalselenium.com/
+----
+
+The `GetEnvironmentParam` enum provides access to these configurations.
+Here's the enum:
 
 [source,java]
 ----
- public class ABtestPage extends BasePage {
+public enum GetEnvironmentParam {
+    // Reads the environment variable from /src/resources/environments/environment.csv
+    // Name of the enum must be in line with the cell name in /src/resources/environments/environment.csv
+    THE_INTERNET_HEROKUAPP_URL,
+    ELEMENTAL_SELENIUM_URL;
+
+    private String value;
 
     @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded(); 
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.ABTEST.getValue()); 
+    public String toString() {
+        return getValue();
     }
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'A/B Test Control' page."); 
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.ABTEST.getValue()); 
-        getDriver().waitForPageLoaded(); 
+    public String getValue() {
+        if (null == this.value) {
+            if (Objects.isNull(BaseTest.getEnvironmentService())) {
+                throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
+            }
+            this.value = BaseTest.getEnvironmentService()
+                    .getValue(this.name())
+                    .trim();
+        }
+        return this.value;
     }
-
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle(); 
-    }
- } 
+}
 ----
 
-== How to use Enum?
+=== SubURLs enum
 
 Similarly, as in environmental variables case, create an enum for storing values of subURLs:
 
 [source,java]
 ----
- public enum PageSubURLsProjectYEnum {
+ public enum PageSubURLsEnum {
 
     BASIC_AUTH("basic_auth"),
     NEW_WINDOW("windows/new"),
@@ -104,11 +136,11 @@ Similarly, as in environmental variables case, create an enum for storing values
      */
     private String subURL;
 
-    PageSubURLsProjectYEnum(String subURL) {
+    PageSubURLsEnum(String subURL) {
         this.subURL = subURL;
     }
 
-     PageSubURLsProjectYEnum() {
+     PageSubURLsEnum() {
 
     }
 
@@ -125,63 +157,78 @@ Similarly, as in environmental variables case, create an enum for storing values
 
 Instead of mapping data from an external file, you can store and access them directly from the enum class:
 
-`PageSubURLsProjectYEnum.ABTEST.getValue()`
+`PageSubURLsEnum.ABTEST.getValue()`
 
-=== Selector
+== Page Classes
 
-In this test case you need selector for only one-page element:
+=== A/B Test Page
 
-  private static final By elementalSeleniumLinkSelector = By.cssSelector("div > div > a");
-
-=== Page methods
-
-You need two methods for performing page actions:
-
-----
-     /**
-     * Clicks 'Elemental Selenium' link at the bottom of the page.
-     *
-     * @return ElementalSeleniumPage object.
-     */
-    public ElementalSeleniumPage clickElementalSeleniumLink() {
-        getDriver().findElementDynamic(elementalSeleniumLinkSelector)
-                .click();  
-        getDriver().waitForPageLoaded();  
-        return new ElementalSeleniumPage();  
-    }
-
-    /**
-     * Switches window to the next one - different than the current.
-     */
-    public void switchToNextTab() {
-        ArrayList<String> tabsList = new ArrayList<String>(getDriver().getWindowHandles()); 
-        getDriver().switchTo() 
-                .window(tabsList.get(1)); 
-    }
-----
-
-== Elemental Selenium Page Class
-
-To return new Elemental Selenium Page object, implement its class.
-You only need to write basic methods to check if the page is loaded.
-There is no need to interact with objects on the site:
+Create a Page class for the A/B Testing page.
+This page class represents the A/B Testing page and provides methods to interact with it.
 
 [source,java]
 ----
- public class ElementalSeleniumPage extends BasePage {
+ public class ABTestPage extends BasePage {
+    private static final By selectorElementalSeleniumLink = By.cssSelector("div > div > a");
 
     @Override
     public boolean isLoaded() {
         getDriver().waitForPageLoaded();
         return getDriver().getCurrentUrl()
-                .contains(GetEnvironmentParam.ELEMENTAL_SELENIUM_PAGE.getValue());
+                .contains(PageSubURLsEnum.ABTEST.getValue());
     }
 
     @Override
     public void load() {
-        BFLogger.logDebug("Load 'Elemental Selenium' page.");
-        getDriver().get(GetEnvironmentParam.ELEMENTAL_SELENIUM_PAGE.getValue());
+        BFLogger.logDebug("Load 'A/B Test Control' page.");
+        getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+                PageSubURLsEnum.ABTEST.getValue());
         getDriver().waitForPageLoaded();
+    }
+
+    @Override
+    public String pageTitle() {
+        return getActualPageTitle();
+    }
+
+    /**
+     * Clicks 'Elemental Selenium' link at the bottom of the page.
+     */
+    public void clickElementalSeleniumLink() {
+        getDriver().findElementDynamic(selectorElementalSeleniumLink)
+                .click();
+        getDriver().waitForPageLoaded();
+    }
+
+    /**
+     * Switches window to the next one - different from the current.
+     */
+    public void switchToNextTab() {
+        ArrayList<String> tabsList = new ArrayList<>(getDriver().getWindowHandles());
+        getDriver().switchTo()
+                .window(tabsList.get(1));
+    }
+}
+----
+
+=== Elemental Selenium Page Class
+
+Create a Page class for the Elemental Selenium page.
+This page class represents the Elemental Selenium subpage and provides methods to interact with it.
+
+[source,java]
+----
+ public class ElementalSeleniumPage extends BasePage {
+    @Override
+    public boolean isLoaded() {
+        getDriver().waitForPageLoaded();
+        return getDriver().getCurrentUrl()
+                .contains(GetEnvironmentParam.ELEMENTAL_SELENIUM_URL.getValue());
+    }
+
+    @Override
+    public void load() {
+
     }
 
     @Override
@@ -193,88 +240,30 @@ There is no need to interact with objects on the site:
 
 == Test Class
 
-In the test class, you will create the `@BeforeClass` method to set up the test environment.
-Additionally, you will save the login credentials and the expected success message as class fields.
+Create a test class tailored for the A/B Testing scenario.
+This class contains methods and assertions, ensuring a detailed test execution process.
+
+`shouldOpenElementalSeleniumPageWhenClickElementalSeleniumLink()` - A test case method that performs a series of steps and asserts the expected outcome.
 
 [source,java]
 ----
- @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class ABtestingTest extends TheInternetBaseTest {
-
-    private static ABtestPage abTestPage;
+ class ABTest extends BaseTest {
+    private final ABTestPage abTestPage = PageFactory.getPageInstance(ABTestPage.class);
+    private final ElementalSeleniumPage elementalSeleniumPage = PageFactory.getPageInstance(ElementalSeleniumPage.class);
 
     @Test
-    public void shouldOpenElementalSeleniumPageWhenClickElementalSeleniumLink() {
+    void shouldOpenElementalSeleniumPageWhenClickElementalSeleniumLink() {
+        BFLogger.logInfo("Click Elemental Selenium link");
+        abTestPage.clickElementalSeleniumLink();
 
-        logStep("Click Elemental Selenium link"); 
-        ElementalSeleniumPage elementalSeleniumPage = abTestPage.clickElementalSeleniumLink(); 
+        BFLogger.logInfo("Switch browser's tab to newly opened one");
+        abTestPage.switchToNextTab();
 
-        logStep("Switch browser's tab to newly opened one"); 
-        abTestPage.switchToNextTab(); 
-
-        logStep("Verify if Elemental Selenium Page is opened"); 
-        assertTrue("Unable to open Elemental Selenium page", elementalSeleniumPage.isLoaded()); 
+        BFLogger.logInfo("Verify if Elemental Selenium Page is opened");
+        assertTrue(elementalSeleniumPage.isLoaded(), "Unable to open Elemental Selenium page");
     }
 }
 ----
-
-=== Assert
-
-Asserts methods are used for creating test pass or fail conditions.
-The optional first parameter is a message which will be displayed in the test failure description.
-
-* `assertTrue(boolean condition)` - test passes if condition returns true
-* `assertFalse(boolean condition)` - test passes if condition returns false
-
-Also, add the @BeforeClass method to open the tested page:
-
-----
- @BeforeClass
-    public static void setUpBeforeClass() {
-        abTestPage = shouldTheInternetPageBeOpened().clickABtestingLink(); 
-        logStep("Verify if ABTest page is opened"); 
-        assertTrue("Unable to open ABTest page", abTestPage.isLoaded());
-    }
-----
-
-@BeforeClass method executes only once before all other @Test cases in the class.
-There is also a possibility to create a @AfterClass method which is performed also once after all @Test cases.
-
-You don't need to implement @setUp and @tearDown methods because they're already in TheInternetBaseTest class which you extend.
-
-=== Categories
-
-You can group tests in categories.
-It's useful when running many tests at once.
-Use this parameter:
-
- @Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class }) 
-
-Then create an interface representing each category.
-Example:
-
-[source,java]
-----
-public interface TestsSelenium {
-    /* For test which are testing web pages considering UI (user interface) and using selenium webdriver */
-}
-----
-
-To run a test from specified category create Test Suite class:
-
-[source,java]
-----
-@RunWith(WildcardPatternSuite.class) //search for test files under /src/test/java
-@IncludeCategories({ TestsChrome.class }) // search all test files with category TestsChrome.class
-@ExcludeCategories({ TestsLocal.class, TestsNONParallel.class }) //exclude all test files with category TestsLocal.class and TestsNONParallel.class 
-@SuiteClasses({ "../**/*Test.class" }) //search only test files, where file name ends with <anyChar/s>Test.class 
-
-public class _TestSuiteChrome {
-
-}
-----
-
-You can run a Test Suite as a JUnit test.
 
 == Conclusion
 
