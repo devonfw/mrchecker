@@ -11,9 +11,8 @@ image::images/example5.png[]
 
 Steps:
 
-1. Open The Internet Main Page
-2. Click Broken Image link and go to Broken Image subpage
-3. Get the 3 images' dimensions and compare them with expected values
+1. Open Broken Image subpage on The Internet Main Page
+2. Get the 3 images' dimensions and compare them with expected values
 
 == Page Class
 
@@ -22,55 +21,56 @@ In this case, create an array of selectors to access images by index number:
 [source,java]
 ----
 public class BrokenImagePage extends BasePage {
+	private static final By[] selectorsImages = { By.cssSelector("div > img:nth-child(2)"),
+					By.cssSelector("div > img:nth-child(3)"),
+					By.cssSelector("div > img:nth-child(4)") };
 
-    private static final By[] selectorsImages = { By.cssSelector("div > img:nth-child(2)"),
-            By.cssSelector("div > img:nth-child(3)"),
-            By.cssSelector("div > img:nth-child(4)") };
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.BROKEN_IMAGES.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.BROKEN_IMAGES.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Broken Images' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.BROKEN_IMAGES.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Broken Images' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.BROKEN_IMAGES.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Returns an image height in pixels.
+	 *
+	 * @param imageIndex
+	 *            An index of given image.
+	 * @return Height of an image in pixels.
+	 */
+	public int getImageHeight(int imageIndex) {
+		return getImageDimension(imageIndex).getHeight();
+	}
 
-    /**
-     * Returns an image height in pixels.
-     *
-     * @param imageIndex An index of given image.
-     * @return Height of an image in pixels.
-     */
-    public int getImageHeight(int imageIndex) {
-        return getImageDimension(imageIndex).getHeight();
-    }
+	/**
+	 * Returns an image width in pixels.
+	 *
+	 * @param imageIndex
+	 *            An index of given image.
+	 * @return Width of an image in pixels.
+	 */
+	public int getImageWidth(int imageIndex) {
+		return getImageDimension(imageIndex).getWidth();
+	}
 
-    /**
-     * Returns an image width in pixels.
-     *
-     * @param imageIndex An index of given image.
-     * @return Width of an image in pixels.
-     */
-    public int getImageWidth(int imageIndex) {
-        return getImageDimension(imageIndex).getWidth();
-    }
-
-    private Dimension getImageDimension(int imageIndex) {
-        return getDriver().findElementDynamic(selectorsImages[imageIndex])
-                .getSize();
-    }
+	private Dimension getImageDimension(int imageIndex) {
+		return getDriver().findElementDynamic(selectorsImages[imageIndex])
+				.getSize();
+	}
 }
 ----
 
@@ -79,37 +79,34 @@ It provides functionality to get the height and width of each image, facilitatin
 
 == Test Class
 
-Create @Test and @BeforeClass methods.
+Create @Test and @Before methods.
 Save expected images' dimensions in class fields:
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class BrokenImagesTest extends TheInternetBaseTest {
+public class BrokenImagesTest extends BaseTest {
+	private final BrokenImagePage brokenImagePage = PageFactory.getPageInstance(BrokenImagePage.class);
 
-    private static BrokenImagePage brokenImagePage;
+	private final int	expectedHeight	= 90;
+	private final int	expectedWidth	= 120;
 
-    private final int expectedHeight = 90;
-    private final int expectedWidth  = 120;
+	@Before
+	public void setUp() {
+		brokenImagePage.load();
+		BFLogger.logInfo("Verify if Broken Image page is opened");
+		assertTrue(brokenImagePage.isLoaded(), "Unable to open Broken Image page");
+	}
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        brokenImagePage = shouldTheInternetPageBeOpened().clickBrokenImageLink();
-
-        logStep("Verify if Broken Image page is opened");
-        assertTrue("Unable to open Broken Image page", brokenImagePage.isLoaded());
-    }
-
-    @Test
-    public void shouldImageSizesBeEqualToExpected() {
-        for (int i = 0; i < 3; i++) {
-            logStep("Verify size of image with index: " + i);
-            assertEquals("Height of image with index: " + i + " is incorrect", expectedHeight,
-                   brokenImagePage.getImageHeight(i));
-            assertEquals("Width of image with index: " + i + " is incorrect", expectedWidth,
-                   brokenImagePage.getImageWidth(i));
-        }
-    }
+	@Test
+	public void shouldImageSizesBeEqualToExpected() {
+		for (int i = 0; i < 3; ++i) {
+			BFLogger.logInfo("Verify size of image with index: " + i);
+			assertEquals(expectedHeight,
+					brokenImagePage.getImageHeight(i), "Height of image with index: " + i + " is incorrect");
+			assertEquals(expectedWidth,
+					brokenImagePage.getImageWidth(i), "Width of image with index: " + i + " is incorrect");
+		}
+	}
 }
 ----
 
