@@ -26,47 +26,46 @@ It this case, since there are no unique attributes, the best approach is to use 
 [source,java]
 ----
 public class ChallengingDomPage extends BasePage {
+	private final By	selectorTableRows	= By.cssSelector(".large-10 > table > tbody > tr");
+	private final By	selectorFirstButton	= By.cssSelector(".large-2.columns > .button:nth-child(1)");
 
-    private final By selectorTableRows   = By.cssSelector(".large-10 > table > tbody > tr"); 
-    private final By selectorFirstButton = By.cssSelector(".large-2.columns > .button:nth-child(1)");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Challenging DOM' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Challenging DOM' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.CHALLENGING_DOM.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Returns table text content as a list of String objects.
+	 *
+	 * @return A list of table values.
+	 */
+	public List<String> getTableValues() {
+		return JsoupHelper.findTexts(selectorTableRows);
+	}
 
-    /**
-     * Returns table text content as a list of String objects.
-     *
-     * @return A list of table values.
-     */
-    public List<String> getTableValues() {
-        return JsoupHelper.findTexts(selectorTableRows); 
-    }
-
-    /**
-     * Clicks top button on the page from available button set.
-     */
-    public void clickFirstButton() {
-        getDriver().elementButton(selectorFirstButton)
-                .click();
-        getDriver().waitForPageLoaded();
-    }
+	/**
+	 * Clicks top button on the page from available button set.
+	 */
+	public void clickFirstButton() {
+		getDriver().elementButton(selectorFirstButton)
+				.click();
+		getDriver().waitForPageLoaded();
+	}
 }
 ----
 
@@ -84,8 +83,7 @@ This is especially useful when values are organized in a generic structure such 
 
 Steps:
 
-1. Open The Internet Main Page
-2. Click Challenging DOM link and go to Challenging DOM subpage
+1. Open Challenging DOM subpage on The Internet Main Page
 3. Get and save table values
 4. Click the first button
 5. Get table values again
@@ -93,35 +91,31 @@ Steps:
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class ChallengingDomTest extends TheInternetBaseTest {
+public class ChallengingDomTest extends BaseTest {
+	private final ChallengingDomPage challengingDomPage = PageFactory.getPageInstance(ChallengingDomPage.class);
 
-    private static ChallengingDomPage challengingDomPage;
+	@Before
+	public void setUp() {
+		challengingDomPage.load();
+		BFLogger.logInfo("Verify if Challenging Dom page is opened");
+		assertTrue(challengingDomPage.isLoaded(), "Unable to open Challenging Dom page");
+	}
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        challengingDomPage = shouldTheInternetPageBeOpened().clickChallengingDomLink();
+	@Test
+	public void shouldValuesInTableCellsStayUnchangedAfterClick() {
+		BFLogger.logInfo("Get table values (before click any button)");
+		List<String> tableValuesBeforeClick = challengingDomPage.getTableValues();
 
-        logStep("Verify if Challenging Dom page is opened");
-        assertTrue("Unable to open Challenging Dom page", challengingDomPage.isLoaded());
-    }
+		BFLogger.logInfo("Click first button");
+		challengingDomPage.clickFirstButton();
 
-    @Test
-    public void shouldValuesInTableCellsStayUnchangedAfterClick() {
+		BFLogger.logInfo("Get table values (after click first button)");
+		List<String> tableValuesAfterClick = challengingDomPage.getTableValues();
 
-        logStep("Get table values (before click any button)");
-        List<String> tableValuesBeforeClick = challengingDomPage.getTableValues();
-
-        logStep("Click first button");
-        challengingDomPage.clickFirstButton();
-
-        logStep("Get table values (after click first button)");
-        List<String> tableValuesAfterClick = challengingDomPage.getTableValues();
-
-        logStep("Verify equality of table values before and after click");
-        assertEquals("Values from table cells were changed after click", tableValuesBeforeClick, 
-                tableValuesAfterClick);
-    }
+		BFLogger.logInfo("Verify equality of table values before and after click");
+		assertEquals(tableValuesBeforeClick,
+				tableValuesAfterClick, "Values from table cells were changed after click");
+	}
 }
 ----
 
