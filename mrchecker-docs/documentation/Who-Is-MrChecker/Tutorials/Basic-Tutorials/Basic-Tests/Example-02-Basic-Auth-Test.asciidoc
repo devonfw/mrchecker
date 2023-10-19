@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: User Authentication with Valid Credentials
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == What You Will Learn
 
@@ -30,39 +47,36 @@ Override all the required methods:
 [source,java]
 ----
 public class BasicAuthPage extends BasePage {
-
-    public BasicAuthPage() {
-    }
-
-    public BasicAuthPage(String login, String password) {
-        this.enterLoginAndPasswordByUrl(login, password);
-    }
-
     @Override
-    public boolean isLoaded() {
-        return true;
-    }
+	public boolean isLoaded() {
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.BASIC_AUTH.getValue());
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("load");
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Basic Auth' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.BASIC_AUTH.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 }
 ----
 
-The `BasicAuthPage` class will include methods to retrieve the displayed message, which is used to verify a successful login, and a method to enter login and password into the pop-up login window.
+Here, the isLoaded method checks if the current URL contains the subpage URL for Basic Auth, ensuring that the correct page is loaded.
+The load method navigates to the Basic Auth page's URL and waits for the page to be fully loaded.
+The pageTitle method retrieves the actual page title.
 
-In order to verify a login, create a selector to access the visible message.
+To verify a successful login, we create a selector to access the visible message, and we have a method to retrieve the message's text:
+
+ private static final By selectorTextMessage = By.cssSelector("#content > div > p");
 
 ----
- private static final By selectorTextMessage = By.cssSelector("#content > div > p");
-Then create a method to get message value: 
-
 /**     
 *       Returns message displayed by system after user's log in.     
 *      @return String object representing message displayed by system after user's log in     
@@ -78,45 +92,52 @@ Also, create a method to access the pop-up login window and enter user credentia
 
 ----
     /**
-     * Authenticates user using standard simple authentication popup.
-     *
-     * @param login    User's login
-     * @param password User's password
-     * @throws AWTException
-     * @throws InterruptedException
-     */
-    public void enterLoginAndPassword(String login, String password) throws AWTException, InterruptedException {
-        Robot rb = new Robot(); 
+	 * Authenticates user using standard simple authentication popup.
+	 *
+	 * @param login
+	 *            User's login
+	 * @param password
+	 *            User's password
+	 */
+	public void enterLoginAndPassword(String login, String password) {
+		try {
+			Robot rb = new Robot();
 
-        Thread.sleep(2000);  
+			Thread.sleep(2000);
 
-        StringSelection username = new StringSelection(login); 
-        Toolkit.getDefaultToolkit()
-                .getSystemClipboard()
-                .setContents(username, null); 
-        rb.keyPress(KeyEvent.VK_CONTROL); 
-        rb.keyPress(KeyEvent.VK_V);  
-        rb.keyRelease(KeyEvent.VK_V); 
-        rb.keyRelease(KeyEvent.VK_CONTROL);  
+			StringSelection username = new StringSelection(login);
+			Toolkit.getDefaultToolkit()
+					.getSystemClipboard()
+					.setContents(username, null);
+			rb.keyPress(KeyEvent.VK_CONTROL);
+			rb.keyPress(KeyEvent.VK_V);
+			rb.keyRelease(KeyEvent.VK_V);
+			rb.keyRelease(KeyEvent.VK_CONTROL);
 
-        rb.keyPress(KeyEvent.VK_TAB);  
-        rb.keyRelease(KeyEvent.VK_TAB); 
-        Thread.sleep(2000); 
+			rb.keyPress(KeyEvent.VK_TAB);
+			rb.keyRelease(KeyEvent.VK_TAB);
+			Thread.sleep(2000);
 
-        StringSelection pwd = new StringSelection(password); 
-        Toolkit.getDefaultToolkit()
-                .getSystemClipboard()
-                .setContents(pwd, null); 
-        rb.keyPress(KeyEvent.VK_CONTROL);  
-        rb.keyPress(KeyEvent.VK_V);  
-        rb.keyRelease(KeyEvent.VK_V); 
-        rb.keyRelease(KeyEvent.VK_CONTROL); 
+			StringSelection pwd = new StringSelection(password);
+			Toolkit.getDefaultToolkit()
+					.getSystemClipboard()
+					.setContents(pwd, null);
+			rb.keyPress(KeyEvent.VK_CONTROL);
+			rb.keyPress(KeyEvent.VK_V);
+			rb.keyRelease(KeyEvent.VK_V);
+			rb.keyRelease(KeyEvent.VK_CONTROL);
 
-        rb.keyPress(KeyEvent.VK_ENTER);  
-        rb.keyRelease(KeyEvent.VK_ENTER); 
-        Thread.sleep(2000);  
-    }
- 
+			rb.keyPress(KeyEvent.VK_ENTER);
+			rb.keyRelease(KeyEvent.VK_ENTER);
+			Thread.sleep(2000);
+		} catch (AWTException e) {
+			BFLogger.logError("AWTException: An AWTException occurred.");
+			e.printStackTrace(); // You can replace this with appropriate error handling
+		} catch (InterruptedException e) {
+			BFLogger.logError("InterruptedException: An InterruptedException occurred.");
+			e.printStackTrace(); // You can replace this with appropriate error handling
+		}
+	}
 ----
 
 === Robot class
@@ -144,46 +165,51 @@ Also, method waitForPageLoaded() will not solve that issue because it only waits
 
 == Test Class
 
-Create a Test class and write a @Test method to execute the scenario.
+In the test class, we use the BasicAuthPage to perform test scenarios.
+It includes the shouldUserLogInWithValidCredentials() test method that verifies a successful login with valid credentials.
 Save parameters as class fields:
 
 [source,java]
 ----
-@Category({ TestsLocal.class, TestsNONParallel.class })
-public class BasicAuthTest extends TheInternetBaseTest {
+public class BasicAuthTest extends BaseTest {
+	private final BasicAuthPage basicAuthPage = PageFactory.getPageInstance(BasicAuthPage.class);
 
-    private static BasicAuthPage basicAuthPage;
+	private final String	login		= "admin";
+	private final String	password	= "admin";
+	private final String	message		= "Congratulations! You must have the proper credentials.";
 
-    private final String login    = "admin";
-    private final String password = "admin";
-    private final String message  = "Congratulations! You must have the proper credentials.";
+	@Override
+	public void setUp() {
+		BFLogger.logInfo("Setting up the test...");
+		basicAuthPage.load();
+		assertTrue(basicAuthPage.isLoaded(), "Basic Auth page is not loaded");
+		BFLogger.logInfo("Test setup completed.");
+	}
 
-    @Test
-    public void shouldUserLogInWithValidCredentials() {
-        basicAuthPage = shouldTheInternetPageBeOpened().clickBasicAuthLink(); 
+	@Override
+	public void tearDown() {
+		BFLogger.logInfo("Tearing down the test...");
+		DriverManager.closeDriver();
+		BFLogger.logInfo("Test teardown completed.");
+	}
 
-        logStep("Enter login and password");
-        basicAuthPage.enterLoginAndPassword(login, password); 
+	@Test
+	public void shouldUserLogInWithValidCredentials() {
+		BFLogger.logInfo("Enter login and password");
+		basicAuthPage.enterLoginAndPassword(login, password);
 
-        logStep("Verify if user logged in successfully"); 
-        assertEquals("Unable to login user with valid credentials", message,
-            basicAuthPage.getMessageValue()); 
-    }
-
-    @Override
-    public void tearDown() {
-        logStep("Navigate back to The-Internet page");
-        theInternetPage.load(); 
-    }
+		BFLogger.logInfo("Verify if user logged in successfully");
+		assertEquals(message,
+				basicAuthPage.getMessageValue(), "Unable to login user with valid credentials");
+	}
 }
- 
 ----
 
-`assertEquals(Object expected, Object actual)` - test passes if parameters are equal .
+`assertEquals(Object expected, Object actual)` - test passes if parameters are equal.
 
 The `BasicAuthTest` class includes the `shouldUserLogInWithValidCredentials()` test method, which clicks the Basic Auth link, enters the login credentials, and verifies a successful login by comparing the displayed message with the expected message.
 
-== Alternative scenario:
+== Alternative scenario to log in
 
 There is also a possibility to log in with credentials as a part of URL: http://login:password@the-internet.herokuapp.com/basic_auth
 
@@ -200,7 +226,6 @@ Another page class method:
         getDriver().get("http://" + login + ":" + password + "@" + "the-internet.herokuapp.com/" +
             PageSubURLsProjectYEnum.BASIC_AUTH.getValue());
     }
- 
 ----
 
 Another test class method:
@@ -215,7 +240,6 @@ Another test class method:
         assertEquals("Unable to login user with valid credentials", message, 
             basicAuthPage.getMessageValue());
     }
- 
 ----
 
 After running test class as a JUnit test, both test cases will be performed.
