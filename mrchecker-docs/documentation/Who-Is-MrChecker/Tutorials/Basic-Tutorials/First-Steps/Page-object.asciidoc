@@ -1,19 +1,42 @@
-== Page Object
+:toc: macro
 
-Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
+= Page Object
 
-At first, create an Object to represent The Internet Main Page:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== Introduction
+
+In the realm of automated testing, a *Page Object* is a design pattern that represents a web page as an object within your test automation framework.
+The primary purpose of a Page Object is to encapsulate the structure and behavior of a web page, providing a clean and reusable abstraction for interacting with the user interface.
+In the context of the MrChecker framework, creating robust Page Objects is fundamental to building maintainable and scalable automation scripts.
+Let's start by creating a Page Object for "The Internet" website: http://the-internet.herokuapp.com/
+
+At first, create class to represent The Internet Main Page:
 
 ----
 public class TheInternetPage extends BasePage
 ----
 
-Each class which extends BasePage class must override three methods: 
+Each class which extends BasePage class must override three methods:
 
-* `public boolean isLoaded()` - returns true if the page is loaded and false if not 
-* `public void load()` - loads the page 
-* `public String pageTitle()` - returns page title 
+* `public boolean isLoaded()` - returns true if the page is loaded and false if not
+* `public void load()` - loads the page
+* `public String pageTitle()` - returns page title
 
+[source,java]
 ----
 public class TheInternetPage extends BasePage {
 
@@ -34,6 +57,58 @@ public class TheInternetPage extends BasePage {
     @Override
     public String pageTitle() {
         return getActualPageTitle();
+    }
+}
+----
+
+== Override Methods:
+
+isLoaded(): This method returns true if the page is loaded and false otherwise.
+It verifies that the current URL matches the expected URL for "The Internet" main page.
+
+load(): The load method navigates the browser to the URL of "The Internet" main page and waits for the page to be fully loaded.
+
+pageTitle(): This method returns the actual title of the loaded page.
+
+Logging Statements:
+
+Incorporated logging statements (using BFLogger.logDebug) to provide visibility into the page loading process.
+This aids in debugging and understanding the execution flow.
+
+== Extending Page Object Functionality
+
+One of the strengths of Page Objects in MrChecker is their extensibility.
+Beyond representing webpages, you can enhance their functionality by adding custom methods.
+This not only keeps your Page Objects modular but also allows you to create a more expressive and powerful automation framework.
+
+Example: Adding a Custom Method
+
+[source,java]
+----
+// Inside TheInternetPage class
+public class TheInternetPage extends BasePage {
+
+    // ... existing methods ...
+
+    public void additionalMethod() {
+        // Your custom logic here
+        BFLogger.logDebug("Executing additional method in 'The Internet' page class.");
+    }
+}
+----
+
+== Using Custom Methods in Another Class
+
+In your test class, you can then create an instance of the TheInternetPage class and leverage the added custom method:
+
+[source,java]
+----
+// In another class
+public class YourTestClass {
+    private final TheInternetPage theInternetPage = getPageInstance(TheInternetPage.class);
+
+    public void exampleMethod() {
+        theInternetPage.additionalMethod(); // You can use the custom method in 'TheInternetPage'
     }
 }
 ----

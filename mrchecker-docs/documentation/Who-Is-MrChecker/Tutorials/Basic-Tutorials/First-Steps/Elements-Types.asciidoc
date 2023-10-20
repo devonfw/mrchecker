@@ -1,22 +1,82 @@
-== Elements types
+:toc: macro
 
-MrChecker includes Object types for various elements existing on webpages such as Button, TextBox etc. There is also WebElement class and `getDriver().findElementDynamic(By selector)` method for creating webpage objects dynamically and performing basic actions: 
+= Elements Types
 
-Instead of using static types you can use:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+== Introduction
+
+In MrChecker, various object types represent elements on webpages, such as Button, TextBox, etc.
+Additionally, the WebElement class and getDriver().findElementDynamic(By selector) method enable the dynamic creation of webpage objects and the execution of basic actions.
+To demonstrate, we'll be using example from https://the-internet.herokuapp.com/, using the following selector:
 
 ----
-    public TyposPage clickTyposLink() {
-        WebElement checkboxesLink = getDriver().findElementDynamic(checkboxesLinkSelector); 
-        checkboxesLink.click(); 
-        return new TyposPage();
+	private static final By	typosLinkSelector = By.cssSelector("[href='\/typos']");
+----
+
+Instead of using static types, consider the following examples:
+
+== Example 1: Clicking a Link
+
+----
+    public void clickTyposLink() {
+        WebElement typosLink = getDriver().findElementDynamic(typosLinkSelector);
+        typosLink.click();
     }
 ----
 
-Or perform actions without creating a variable: 
+== Example 2: Clicking a Link without Creating a Variable
 
 ----
-    public TyposPage clickTyposLink() {
-        getDriver().findElementDynamic(checkboxesLinkSelector).click(); 
-        return new TyposPage();
+    public void clickTyposLink() {
+        getDriver().findElementDynamic(typosLinkSelector).click();
     }
 ----
+
+== When is it a good idea to use variables
+
+While using variables to store web elements can enhance code readability and provide flexibility, there are scenarios where not using variables might be more appropriate.
+Let's explore when to use variables and when to opt for a more concise approach:
+
+*Benefits of Using Variables:*
+
+* Readability:
+
+Storing a web element in a variable with a descriptive name enhances the readability of your code.
+It makes the purpose of the element clear and easy to understand.
+
+* Reusability:
+
+If the same element is used across multiple methods or scenarios, storing it in a variable promotes code reuse.
+Changes to the element location or behavior can be made in one place, reducing redundancy.
+
+* Method Chaining:
+
+Using variables allows you to perform multiple actions on the same element in a readable manner.
+For example, you can chain methods on the stored element, such as .click(), .sendKeys(), or .getText().
+
+*When to Avoid Using Variables:*
+
+* Single Use Elements:
+
+If an element is only used once in a method and its usage is straightforward, not storing it in a variable might lead to more concise code.
+
+* Code Conciseness:
+
+For simple actions on an element, such as clicking or interacting with it in a single line, not using a variable can result in more concise and clear code.
+
+* Limited Scope:
+
+If an element's scope is limited to a small section of the code, using a variable might not provide significant benefits.

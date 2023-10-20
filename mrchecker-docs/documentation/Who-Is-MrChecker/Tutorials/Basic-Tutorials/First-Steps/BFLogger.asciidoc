@@ -1,9 +1,84 @@
-== BFLogger
+:toc: macro
 
-BFLogger is a default MrChecker logging tool. Use it to communicate important information from test execution. There are three basic logging methods: 
+= BFLogger
 
-* `logInfo(String message)` - used for test steps 
-* `logDebug(String message)` - used for non-official information, either during the test build process or in Page Object files 
-* `logError(String message)` - used to emphasize critical information 
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
-Logs will be visible in the console and in the log file under path: MrChecker_Test_Framework\workspace\project-folder\logs 
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== Introduction
+
+BFLogger is a default MrChecker logging tool.
+Use it to communicate important information from test execution.
+There are three basic logging methods:
+
+* `logInfo(String message)` - used for test steps
+* `logDebug(String message)` - used for non-official information, either during the test build process or in Page Object files
+* `logError(String message)` - used to emphasize critical information
+
+== Example usages
+
+To illustrate the practical application of BFLogger methods, the following examples showcase how each logging method can be effectively employed in a testing scenario.
+These examples serve as a guide to help you understand when and how to use each logging method within your test scripts.
+
+----
+BFLogger.logInfo("Executing Step 1: Login to the application");
+BFLogger.logDebug("Navigating to the specified URL");
+BFLogger.logError("Failed to locate the submit button on the login page");
+----
+
+Here's an example with code snippet for better understanding:
+
+[source,java]
+----
+public class ExampleTestClass {
+
+    // Assume BFLogger instance is available in this class
+    private static final BFLogger logger = new BFLogger();
+
+    public void exampleMethod() {
+        // Example 1: Logging Test Steps
+        logger.logInfo("Executing Step 1: Login to the application");
+        performLogin();
+
+        // Example 2: Logging Debug Information
+        logger.logDebug("Navigating to the specified URL");
+        navigateToURL("http://example.com");
+
+        // Example 3: Logging Errors
+        try {
+            locateSubmitButton(); // Simulating an operation that might throw an exception
+        } catch (Exception e) {
+            logger.logError("Failed to locate the submit button on the login page", e);
+        }
+    }
+
+    private void performLogin() {
+        // Your login logic here
+    }
+
+    private void navigateToURL(String url) {
+        // Your navigation logic here
+    }
+
+    private void locateSubmitButton() throws Exception {
+        // Simulating an operation that might throw an exception (e.g., element not found)
+        throw new Exception("Submit button not found");
+    }
+}
+----
+
+== Output
+
+Logs will be visible in the console and in the log file under path: MrChecker_Test_Framework\workspace\project-folder\logs
