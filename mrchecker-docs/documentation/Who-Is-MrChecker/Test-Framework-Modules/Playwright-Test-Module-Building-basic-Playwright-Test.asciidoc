@@ -64,9 +64,17 @@ The page class will be named "GoogleSearchPage" and located in the "com.example.
 It should extend the _BasePage_ class and contain the necessary selectors.
 
 The page class represents the Google homepage, so we need selectors for web elements required in our test case.
-In our example, we need two selectors: _Google Search Input_ and _Google Search Button_.
+In our example, we need four selectors: _Cookies Window_, _Accept Cookies Button_, _Google Search Input_ and _Google Search Button_.
 These selectors will be implemented as fields.
 We can find them using the developer console in Google Chrome.
+
+In our testing process, we encounter situations where a Cookies Window may randomly appear on the Google Search page.
+To ensure the stability of our tests, we will implement two methods:
+
+* isCookiesWindowDisplayed(): This method checks if the Cookies Window is currently displayed on the page.
+If the window is visible, it returns true; otherwise, it returns false.
+
+* clickAcceptCookiesButton(): This method clicks the "Accept Cookies" button to dismiss the window.
 
 [source,java]
 ----
@@ -76,38 +84,54 @@ import com.example.playwright.core.BasePage;
 import com.example.playwright.env.GetEnvironmentParam;
 
 public class GoogleSearchPage extends BasePage {
-    // Selectors for web elements
-    private final String selectorGoogleSearchInput = "[type='search']";
-    private final String selectorGoogleSearchButton = "[class='FPdoLc lJ9FBc'] .gNO89b";
+	// Selectors for web elements
+	private final String	selectorCookiesWindow		= "div.dbsFrd";
+	private final String	selectorAcceptCookiesButton	= "button#L2AGLb";
+	private final String	selectorGoogleSearchInput	= "[type='search']";
+	private final String	selectorGoogleSearchButton	= "[class='FPdoLc lJ9FBc'] .gNO89b";
 
-    @Override
-    public String pageTitle() {
-        return null;
-    }
+	@Override
+	public String pageTitle() {
+		return null;
+	}
 
-    @Override
-    public boolean isLoaded() {
-        return false;
-    }
+	@Override
+	public boolean isLoaded() {
+		return false;
+	}
 
-    @Override
-    public void load() {
-        String url = GetEnvironmentParam.GOOGLE_URL.getValue();
-        loadPage(url);
-    }
+	@Override
+	public void load() {
+		String url = GetEnvironmentParam.GOOGLE_URL.getValue();
+		loadPage(url);
+	}
 
-    // Enter search query and submit the form
-    public void enterGoogleSearchInput(String searchText) {
-        // Fill the search input with the given text
-        getDriver().currentPage()
-                .locator(selectorGoogleSearchInput)
-                .fill(searchText);
+	// Check if the Cookies Window is displayed
+	public boolean isCookiesWindowDisplayed() {
+		return getDriver().currentPage()
+				.locator(selectorCookiesWindow)
+				.isVisible();
+	}
 
-        // Click the Google Search button
-        getDriver().currentPage()
-                .locator(selectorGoogleSearchButton)
-                .click();
-    }
+	// Click the "Accept Cookies" button
+	public void clickAcceptCookiesButton() {
+		getDriver().currentPage()
+				.locator(selectorAcceptCookiesButton)
+				.click();
+	}
+
+	// Enter search query and submit the form
+	public void enterGoogleSearchInput(String searchText) {
+		// Fill the search input with the given text
+		getDriver().currentPage()
+				.locator(selectorGoogleSearchInput)
+				.fill(searchText);
+
+		// Click the Google Search button
+		getDriver().currentPage()
+				.locator(selectorGoogleSearchButton)
+				.click();
+	}
 }
 ----
 
@@ -206,8 +230,13 @@ public class GoogleSearchTest extends BaseTest {
 
     @Override
     public void setUp() {
-         // Navigate to the Google Search page
+        // Navigate to the Google Search page
         googleSearchPage.load();
+
+        // Accept cookies, if Cookies Window displayed
+        if (googleSearchPage.isCookiesWindowDisplayed()) {
+            googleSearchPage.clickAcceptCookiesButton();
+        }
     }
 
     @Test
@@ -225,7 +254,7 @@ public class GoogleSearchTest extends BaseTest {
 This approach follows the Page Object Model design pattern, making it easy to work with pages.
 
 * `setUp()` Method: This method is executed before each test case.
-In this case, it navigates to the Google Search page using `googleSearchPage.load()`;.
+In this case, it navigates to the Google Search page using  `googleSearchPage.load()` and handles the acceptance of cookies (if the Cookies Window is displayed).
 
 * `shouldFindAtLeastOneResult_test()` Method: This is the actual test method.
 It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
