@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Selecting an Element from a Dropdown List
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == What You Will Learn
 
@@ -20,12 +37,11 @@ Notice that the Dropdown Options have different attributes, such as "disabled" o
 
 Steps:
 
-1. Open The Internet Main Page
-2. Click the Dropdown link and go to the subpage
-3. Select first dropdown Option
-4. Check if Option 1 is selected
-5. Select second dropdown Option
-6. Check if Option 2 is selected
+1. Open Dropdown subpage on The Internet Main Page
+2. Select first dropdown Option
+3. Check if Option 1 is selected
+4. Select second dropdown Option
+5. Check if Option 2 is selected
 
 == Page Class
 
@@ -34,50 +50,49 @@ Steps:
 [source,java]
 ----
 public class DropdownPage extends BasePage {
+	private final By dropdownListSelector = By.cssSelector("#dropdown");
 
-    private static final By dropdownListSelector = By.cssSelector("#dropdown");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.DROPDOWN.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.DROPDOWN.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Dropdown List' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.DROPDOWN.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Dropdown List' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.DROPDOWN.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Selects dropdown`s value by given index.
+	 *
+	 * @param index
+	 *            Index of option to be selected
+	 */
+	public void selectDropdownValueByIndex(int index) {
+		getDriver().elementDropdownList(dropdownListSelector)
+				.selectDropdownByIndex(index);
+	}
 
-    /**
-     * Selects dropdown`s value by given index.
-     *
-     * @param index Index of option to be selected
-     */
-    public void selectDropdownValueByIndex(int index) {
-        getDriver().elementDropdownList(dropdownListSelector)
-                .selectDropdownByIndex(index);
-    }
-
-    /**
-     * Returns text value of first selected dropdown`s option.
-     *
-     * @return String object representing value of dropdown`s option
-     */
-    public String getSelectedDropdownValue() {
-        return getDriver().elementDropdownList(dropdownListSelector)
-                .getFirstSelectedOptionText();
-    }
+	/**
+	 * Returns text value of first selected dropdown`s option.
+	 *
+	 * @return String object representing value of dropdown`s option
+	 */
+	public String getSelectedDropdownValue() {
+		return getDriver().elementDropdownList(dropdownListSelector)
+				.getFirstSelectedOptionText();
+	}
 }
- 
 ----
 
 The `DropdownPage` class contains methods to interact with the Dropdown page.
@@ -95,38 +110,35 @@ elementDropdownList() - returns DropdownListElement Object
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DropdownTest extends TheInternetBaseTest {
+public class DropdownTest extends BaseTest {
+	private final DropdownPage dropdownPage = PageFactory.getPageInstance(DropdownPage.class);
 
-    private static final String expectedFirstOptionValue  = "Option 1";
-    private static final String expectedSecondOptionValue = "Option 2";
-    private static DropdownPage dropdownPage;
+	private final String	expectedFirstOptionValue	= "Option 1";
+	private final String	expectedSecondOptionValue	= "Option 2";
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        dropdownPage = shouldTheInternetPageBeOpened().clickDropdownLink();
+	@Override
+	public void setUp() {
+		dropdownPage.load();
+		BFLogger.logInfo("Verify if Dropdown page is opened");
+		assertTrue(dropdownPage.isLoaded(), "Unable to open Dropdown page");
+	}
 
-        logStep("Verify if Dropdown page is opened");
-        assertTrue("Unable to open Dropdown page", dropdownPage.isLoaded());
-    }
+	@Test
+	public void shouldGetExpectedDropdownTextOptionAfterSelection() {
+		BFLogger.logInfo("Select first dropdown option");
+		dropdownPage.selectDropdownValueByIndex(1);
 
-    @Test
-    public void shouldGetExpectedDropdownTextOptionAfterSelection() {
+		BFLogger.logInfo("Verify if selected option text is equal to the expected one");
+		assertEquals(expectedFirstOptionValue, dropdownPage.getSelectedDropdownValue(),
+				"Selected value is different than expected");
 
-        logStep("Select first dropdown option");
-        dropdownPage.selectDropdownValueByIndex(1);
+		BFLogger.logInfo("Select second dropdown option");
+		dropdownPage.selectDropdownValueByIndex(2);
 
-        logStep("Verify if selected option text is equal to the expected one");
-        assertEquals("Selected value is different than expected", expectedFirstOptionValue,
-                dropdownPage.getSelectedDropdownValue());
-
-        logStep("Select second dropdown option");
-        dropdownPage.selectDropdownValueByIndex(2);
-
-        logStep("Verify if selected option text is equal to the expected one");
-        assertEquals("Selected value is different than expected", expectedSecondOptionValue,
-                dropdownPage.getSelectedDropdownValue());
-    }
+		BFLogger.logInfo("Verify if selected option text is equal to the expected one");
+		assertEquals(expectedSecondOptionValue,
+				dropdownPage.getSelectedDropdownValue(), "Selected value is different than expected");
+	}
 }
 ----
 

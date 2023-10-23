@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Manipulating a Horizontal Slider
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 This tutorial demonstrates how to manipulate a horizontal slider.
 You can move the slider using a mouse or arrow keys, and the page displays the set value.
@@ -22,107 +39,106 @@ In this tutorial, you will learn:
 [source,java]
 ----
 public class HorizontalSliderPage extends BasePage {
+	private final By	selectorHorizontalSlider	= By.cssSelector("div.sliderContainer");
+	private final By	sliderSelector				= By.cssSelector("input");
+	private final By	valueSelector				= By.cssSelector("#range");
 
-    private static final By selectorHorizontalSlider = By.cssSelector("div.sliderContainer");
-    private static final By sliderSelector           = By.cssSelector("input");
-    private static final By valueSelector            = By.cssSelector("#range");
+	private final HorizontalSliderElement horizontalSlider;
 
-    private final HorizontalSliderElement horizontalSlider;
+	public HorizontalSliderPage() {
+		horizontalSlider = getDriver().elementHorizontalSlider(selectorHorizontalSlider,
+				sliderSelector, valueSelector, BigDecimal.ZERO, new BigDecimal(5),
+				new BigDecimal("0.5"));
+	}
 
-    public HorizontalSliderPage() {
-        horizontalSlider = getDriver().elementHorizontalSlider(selectorHorizontalSlider,
-                sliderSelector, valueSelector, BigDecimal.ZERO, new BigDecimal(5),
-                new BigDecimal(0.5));
-    }
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.HORIZONTAL_SLIDER.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.HORIZONTAL_SLIDER.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Horizontal Slider' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.HORIZONTAL_SLIDER.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Horizontal Slider' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.HORIZONTAL_SLIDER.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Validates if WebElement representing horizontal slider is visible on the page.
+	 *
+	 * @return true if horizontal slider is visible, false otherwise.
+	 */
+	public boolean isElementHorizontalSliderVisible() {
+		return getDriver().elementHorizontalSlider(selectorHorizontalSlider)
+				.isDisplayed();
+	}
 
-    /**
-     * Validates if WebElement representing horizontal slider is visible on the page.
-     *
-     * @return true if horizontal slider is visible, false otherwise.
-     */
-    public boolean isElementHorizontalSliderVisible() {
-        return getDriver().elementHorizontalSlider(selectorHorizontalSlider)
-                .isDisplayed();
-    }
+	/**
+	 * Returns the value of slider's start position.
+	 *
+	 * @return BigDecimal representing the lowest possible value of slider.
+	 */
+	public BigDecimal getStartPosition() {
+		return horizontalSlider.getMinRange();
+	}
 
-    /**
-     * Returns the value of slider's start position.
-     *
-     * @return BigDecimal representing the lowest possible value of slider.
-     */
-    public BigDecimal getStartPosition() {
-        return horizontalSlider.getMinRange();
-    }
+	/**
+	 * Returns the value of slider's middle position.
+	 *
+	 * @return BigDecimal representing the average value between start and end position.
+	 */
+	public BigDecimal getMiddlePosition() {
+		return horizontalSlider.getMaxRange()
+				.subtract(horizontalSlider.getMinRange())
+				.divide(new BigDecimal(2));
+	}
 
-    /**
-     * Returns the value of slider's middle position.
-     *
-     * @return BigDecimal representing the average value between start and end position.
-     */
-    public BigDecimal getMiddlePosition() {
-        return horizontalSlider.getMaxRange()
-                .subtract(horizontalSlider.getMinRange())
-                .divide(new BigDecimal(2));
-    }
+	/**
+	 * Returns the value of slider's end position.
+	 *
+	 * @return BigDecimal representing the highest possible value of slider.
+	 */
+	public BigDecimal getEndPosition() {
+		return horizontalSlider.getMaxRange();
+	}
 
-    /**
-     * Returns the value of slider's end position.
-     *
-     * @return BigDecimal representing the highest possible value of slider.
-     */
-    public BigDecimal getEndPosition() {
-        return horizontalSlider.getMaxRange();
-    }
+	/**
+	 * Returns current value of slider's position.
+	 *
+	 * @return BigDecimal representing current value of slider.
+	 */
+	public BigDecimal getCurrentPosition() {
+		return horizontalSlider.getCurrentSliderValue();
+	}
 
-    /**
-     * Returns current value of slider's position.
-     *
-     * @return BigDecimal representing current value of slider.
-     */
-    public BigDecimal getCurrentPosition() {
-        return horizontalSlider.getCurrentSliderValue();
-    }
+	/**
+	 * Sets horizontal slider to a given position using one of the available methods: using keyboard
+	 * or using mouse move.
+	 *
+	 * @param position
+	 * @param method
+	 */
+	public void setSliderPositionTo(BigDecimal position, int method) {
+		horizontalSlider.setSliderPositionTo(position, method);
+	}
 
-    /**
-     * Sets horizontal slider to a given position using one of the available methods: using keyboard
-     * or using mouse move.
-     *
-     * @param position
-     * @param method
-     */
-    public void setSliderPositionTo(BigDecimal position, int method) {
-        horizontalSlider.setSliderPositionTo(position, method);
-    }
-
-    /**
-     * Verifies the correctness of the given position value and rounds it when necessary.
-     *
-     * @param position
-     * @return Correct value of horizontal slider's position.
-     */
-    public BigDecimal verifyAndCorrectPositionValue(BigDecimal position) {
-        return horizontalSlider.verifyAndCorrectPositionValue(position);
-    }
+	/**
+	 * Verifies the correctness of the given position value and rounds it when necessary.
+	 *
+	 * @param position
+	 * @return Correct value of horizontal slider's position.
+	 */
+	public BigDecimal verifyAndCorrectPositionValue(BigDecimal position) {
+		return horizontalSlider.verifyAndCorrectPositionValue(position);
+	}
 }
 ----
 
@@ -149,11 +165,9 @@ Second parameter determinate movement method: 0 - Keyboard, 1 - Mouse
 
 == Test Class
 
-Before all tests: Open The Internet Main Page
-
 Before each case:
 
-1. Go to Horizontal Slider Page
+1. Open Horizontal Slider subpage on The Internet Main Page
 2. Check if the slider is visible
 3. Save start, middle and end position
 
@@ -172,143 +186,130 @@ Case 2 - Moving with a mouse: Repeat each Case 1 step using a mouse instead of k
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class SliderTest extends TheInternetBaseTest {
+public class HorizontalSliderTest extends BaseTest {
+	private final HorizontalSliderPage horizontalSliderPage = PageFactory.getPageInstance(HorizontalSliderPage.class);
 
-    private static HorizontalSliderPage horizontalSliderPage;
+	private BigDecimal	startPosition;
+	private BigDecimal	middlePosition;
+	private BigDecimal	endPosition;
 
-    BigDecimal startPosition;
-    BigDecimal middlePosition;
-    BigDecimal endPosition;
+	@Override
+	public void setUp() {
+		horizontalSliderPage.load();
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        logStep("Open the Url http://the-internet.herokuapp.com/");
-        theInternetPage = new TheInternetPage();
-        theInternetPage.load();
+		BFLogger.logInfo("Verify if Horizontal Slider page is opened");
+		assertTrue(horizontalSliderPage.isLoaded(), "Unable to load Horizontal Slider page");
 
-        logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-        assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
-    }
+		BFLogger.logInfo("Verify if horizontal slider element is visible");
+		assertTrue(horizontalSliderPage.isElementHorizontalSliderVisible(),
+				"Horizontal slider is not visible");
 
-    @Override
-    public void setUp() {
-        logStep("Click Horizontal Slider link");
-        horizontalSliderPage = theInternetPage.clickHorizontalSliderLink();
+		startPosition = horizontalSliderPage.getStartPosition();
+		middlePosition = horizontalSliderPage.getMiddlePosition();
+		endPosition = horizontalSliderPage.getEndPosition();
+	}
 
-        logStep("Verify if Horizontal Slider page is opened");
-        assertTrue("Unable to load Horizontal Slider page", horizontalSliderPage.isLoaded());
+	@Test
+	public void shouldHorizontalSliderMoveWhenKeyboardArrowButtonsArePressed() {
+		BigDecimal position;
+		BFLogger.logInfo("Move slider to start position: " + startPosition);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
+		assertEquals(startPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        logStep("Verify if horizontal slider element is visible");
-        assertTrue("Horizontal slider is not visible",
-                horizontalSliderPage.isElementHorizontalSliderVisible());
+		BFLogger.logInfo("Move slider to middle position: " + middlePosition);
+		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.KEYBOARD);
+		assertEquals(horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition),
+				horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        startPosition = horizontalSliderPage.getStartPosition();
-        middlePosition = horizontalSliderPage.getMiddlePosition();
-        endPosition = horizontalSliderPage.getEndPosition();
-    }
+		BFLogger.logInfo("Move slider to end position: " + endPosition);
+		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.KEYBOARD);
+		assertEquals(endPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-    @Test
-    public void shouldHorizontalSliderMoveWhenKeyboardArrowButtonsArePressed() {
-        BigDecimal position;
-        logStep("Move slider to start position: " + startPosition);
-        horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position", startPosition,
-                horizontalSliderPage.getCurrentPosition());
+		position = startPosition.subtract(BigDecimal.ONE);
+		BFLogger.logInfo("Move slider to position before start position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
+		assertEquals(startPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        logStep("Move slider to middle position: " + middlePosition);
-        horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position",
-                horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition),
-                horizontalSliderPage.getCurrentPosition());
+		position = endPosition.add(BigDecimal.ONE);
+		BFLogger.logInfo("Move slider to position after end position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
+		assertEquals(endPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        logStep("Move slider to end position: " + endPosition);
-        horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position", endPosition,
-                horizontalSliderPage.getCurrentPosition());
+		position = middlePosition.divide(new BigDecimal(2));
+		BFLogger.logInfo("Move slider to improperly defined position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
+		assertEquals(horizontalSliderPage.verifyAndCorrectPositionValue(position),
+				horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        position = startPosition.subtract(BigDecimal.ONE);
-        logStep("Move slider to position before start position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position", startPosition,
-                horizontalSliderPage.getCurrentPosition());
+		position = new BigDecimal(new BigInteger("233234"), 5);
+		BFLogger.logInfo("Move slider to improperly defined random position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
+		assertEquals(horizontalSliderPage.verifyAndCorrectPositionValue(position),
+				horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        position = endPosition.add(BigDecimal.ONE);
-        logStep("Move slider to position after end position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position", endPosition,
-                horizontalSliderPage.getCurrentPosition());
+		BFLogger.logInfo("Move slider back to start position: " + startPosition);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
+		assertEquals(startPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
+	}
 
-        position = middlePosition.divide(new BigDecimal(2));
-        logStep("Move slider to improperly defined position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position",
-                horizontalSliderPage.verifyAndCorrectPositionValue(position),
-                horizontalSliderPage.getCurrentPosition());
+	@Test
+	public void shouldHorizontalSliderMoveWhenMouseButtonIsPressedAndMouseIsMoving() {
+		BigDecimal position;
+		BFLogger.logInfo("Move slider to start position: " + startPosition);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
+		assertEquals(startPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        position = new BigDecimal(new BigInteger("233234"), 5);
-        logStep("Move slider to improperly defined random position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position",
-                horizontalSliderPage.verifyAndCorrectPositionValue(position),         
-                horizontalSliderPage.getCurrentPosition());
+		BFLogger.logInfo("Move slider to middle position: " + middlePosition);
+		horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.MOUSE);
+		assertEquals(horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition),
+				horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        logStep("Move slider back to start position: " + startPosition);
-        horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.KEYBOARD);
-        assertEquals("Fail to set horizontal sliders position", startPosition, 
-                horizontalSliderPage.getCurrentPosition());
-    }
+		BFLogger.logInfo("Move slider to end position: " + endPosition);
+		horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.MOUSE);
+		assertEquals(endPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-    @Test
-    public void shouldHorizontalSliderMoveWhenMouseButtonIsPressedAndMouseIsMoving() {
-        BigDecimal position;
-        logStep("Move slider to start position: " + startPosition);
-        horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position", startPosition,
-                horizontalSliderPage.getCurrentPosition());
+		position = startPosition.subtract(BigDecimal.ONE);
+		BFLogger.logInfo("Move slider to position before start position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
+		assertEquals(startPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        logStep("Move slider to middle position: " + middlePosition);
-        horizontalSliderPage.setSliderPositionTo(middlePosition, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position",
-                horizontalSliderPage.verifyAndCorrectPositionValue(middlePosition),
-                horizontalSliderPage.getCurrentPosition());
+		position = endPosition.add(BigDecimal.ONE);
+		BFLogger.logInfo("Move slider to position after end position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
+		assertEquals(endPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        logStep("Move slider to end position: " + endPosition);
-        horizontalSliderPage.setSliderPositionTo(endPosition, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position", endPosition,
-                horizontalSliderPage.getCurrentPosition());
+		position = middlePosition.divide(new BigDecimal(2));
+		BFLogger.logInfo("Move slider to improperly defined position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
+		assertEquals(horizontalSliderPage.verifyAndCorrectPositionValue(position),
+				horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        position = startPosition.subtract(BigDecimal.ONE);
-        logStep("Move slider to position before start position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position", startPosition,
-                horizontalSliderPage.getCurrentPosition());
+		position = new BigDecimal(new BigInteger("212348"), 5);
+		BFLogger.logInfo("Move slider to improperly defined random position: " + position);
+		horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
+		assertEquals(horizontalSliderPage.verifyAndCorrectPositionValue(position),
+				horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
 
-        position = endPosition.add(BigDecimal.ONE);
-        logStep("Move slider to position after end position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position", endPosition,
-                horizontalSliderPage.getCurrentPosition());
-
-        position = middlePosition.divide(new BigDecimal(2));
-        logStep("Move slider to improperly defined position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position",
-                horizontalSliderPage.verifyAndCorrectPositionValue(position),
-                horizontalSliderPage.getCurrentPosition());
-
-        position = new BigDecimal(new BigInteger("212348"), 5);
-        logStep("Move slider to improperly defined random position: " + position);
-        horizontalSliderPage.setSliderPositionTo(position, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position", 
-                horizontalSliderPage.verifyAndCorrectPositionValue(position),
-                horizontalSliderPage.getCurrentPosition());
-
-        logStep("Move slider back to start position: " + startPosition);
-        horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
-        assertEquals("Fail to set horizontal sliders position", startPosition, 
-                horizontalSliderPage.getCurrentPosition());
-    }
+		BFLogger.logInfo("Move slider back to start position: " + startPosition);
+		horizontalSliderPage.setSliderPositionTo(startPosition, HorizontalSliderElement.MOUSE);
+		assertEquals(startPosition, horizontalSliderPage.getCurrentPosition(),
+				"Fail to set horizontal sliders position");
+	}
 }
 ----
 

@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Creating Stable Selectors for Challenging DOM Elements
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == What You Will Learn
 
@@ -94,7 +111,7 @@ Steps:
 public class ChallengingDomTest extends BaseTest {
 	private final ChallengingDomPage challengingDomPage = PageFactory.getPageInstance(ChallengingDomPage.class);
 
-	@Before
+	@Override
 	public void setUp() {
 		challengingDomPage.load();
 		BFLogger.logInfo("Verify if Challenging Dom page is opened");

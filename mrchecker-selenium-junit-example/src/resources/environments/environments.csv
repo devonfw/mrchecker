@@ -2,6 +2,8 @@ VAR                              , ENV1
 DEMO_QA_LOGIN_URL                , https://demoqa.com/login
 DEMO_QA_FORM_URL                 , https://demoqa.com/automation-practice-form
 DEMO_QA_LINKS_URL                , https://demoqa.com/links
+DEMO_QA_BROWSER_WINDOWS_URL      , https://demoqa.com/browser-windows
+DEMO_QA_SAMPLE_URL               , https://demoqa.com/sample
 DEMO_QA_URL                      , https://demoqa.com/
 EXAMPLE_USER_LOGIN               , example.login@domain.com
 EXAMPLE_USER_PASSWORD            , ENC(4oqbZ0ooHKaOPX1UD3hGB1bpNkmLVaeC)

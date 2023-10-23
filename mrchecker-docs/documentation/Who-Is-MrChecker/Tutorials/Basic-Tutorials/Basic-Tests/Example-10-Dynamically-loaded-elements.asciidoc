@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Dynamic Loading of Web Elements
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 This tutorial demonstrates how to test a web page with dynamically loading content.
 Some elements don't load during the initial page load but are loaded via JavaScript execution.
@@ -63,115 +80,112 @@ image::images/example31.png[]
 [source,java]
 ----
 public class DynamicLoadingPage extends BasePage {
+	private final By	selectorExampleOneLink		= By.cssSelector("a[href*='dynamic_loading/1']");
+	private final By	selectorExampleTwoLink		= By.cssSelector("a[href*='dynamic_loading/2']");
+	private final By	selectorDynamicLoadingText	= By.cssSelector("div#content h3");
+	private final By	selectorStartButton			= By.cssSelector("div#start button");
+	private final By	selectorLoadingBar			= By.cssSelector("div#loading");
+	private final By	selectorExampleText			= By.cssSelector("div#finish h4");
 
-    private static final By selectorExampleOneLink     =
-            By.cssSelector("a[href*='dynamic_loading/1']");
-    private static final By selectorExampleTwoLink     =
-            By.cssSelector("a[href*='dynamic_loading/2']");
-    private static final By selectorDynamicLoadingText = By.cssSelector("div#content h3");
-    private static final By selectorStartButton        = By.cssSelector("div#start button");
-    private static final By selectorLoadingBar         = By.cssSelector("div#loading");
-    private static final By selectorExampleText        = By.cssSelector("div#finish h4");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.DYNAMIC_LOADING.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.DYNAMIC_LOADING.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Dynamically Loaded Page Elements' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.DYNAMIC_LOADING.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Dynamically Loaded Page Elements' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.DYNAMIC_LOADING.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Returns information if dynamic loading message is visible or not.
+	 *
+	 * @return true if dynamic loading message was found on web page.
+	 */
+	public boolean isDynamicLoadingMessageVisible() {
+		return getDriver().findElementDynamic(selectorDynamicLoadingText)
+				.isDisplayed();
+	}
 
-    /**
-     * Returns information if dynamic loading message is visible or not.
-     *
-     * @return true if dynamic loading message was found on web page.
-     */
-    public boolean isDynamicLoadingMessageVisible() {
-        return getDriver().findElementDynamic(selectorDynamicLoadingText)
-                .isDisplayed();
-    }
+	/**
+	 * Clicks Example 1 link.
+	 */
+	public void clickExampleOneLink() {
+		getDriver().findElementDynamic(selectorExampleOneLink)
+				.click();
+	}
 
-    /**
-     * Clicks Example 1 link.
-     */
-    public void clickExampleOneLink() {
-        getDriver().findElementDynamic(selectorExampleOneLink)
-                .click();
-    }
+	/**
+	 * Clicks Example 2 link.
+	 */
+	public void clickExampleTwoLink() {
+		getDriver().findElementDynamic(selectorExampleTwoLink)
+				.click();
+	}
 
-    /**
-     * Clicks Example 2 link.
-     */
-    public void clickExampleTwoLink() {
-        getDriver().findElementDynamic(selectorExampleTwoLink)
-                .click();
-    }
+	/**
+	 * Returns information if Start button is visible or not.
+	 *
+	 * @return true if Start button was found on web page.
+	 */
+	public boolean isStartButtonVisible() {
+		return getDriver().findElementDynamic(selectorStartButton)
+				.isDisplayed();
+	}
 
-    /**
-     * Returns information if Start button is visible or not.
-     *
-     * @return true if Start button was found on web page.
-     */
-    public boolean isStartButtonVisible() {
-        return getDriver().findElementDynamic(selectorStartButton)
-                .isDisplayed();
-    }
+	/**
+	 * Clicks Start button.
+	 */
+	public void clickStartButton() {
+		getDriver().findElementDynamic(selectorStartButton)
+				.click();
+	}
 
-    /**
-     * Clicks Start button.
-     */
-    public void clickStartButton() {
-        getDriver().findElementDynamic(selectorStartButton)
-                .click();
-    }
+	/**
+	 * Waits until WebElement representing waiting bar disappears and returns example text.
+	 *
+	 * @param waitTime
+	 *            The amount of seconds designated for waiting until waiting bar disappears.
+	 * @return String representing example's text.
+	 */
+	public String getExampleOneDynamicText(int waitTime) {
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
+		wait.until(
+				ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
+		return getDriver().findElementDynamic(selectorExampleText)
+				.getText();
+	}
 
-    /**
-     * Waits until WebElement representing waiting bar disappears and returns example text.
-     *
-     * @param waitTime The amount of time designated for waiting until waiting bar disappears.
-     * @return String representing example's text.
-     */
-    public String getExampleOneDynamicText(int waitTime) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
-        wait.until((Function<? super WebDriver, Boolean>)
-                ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
-        return getDriver().findElementDynamic(selectorExampleText)
-                .getText();
-    }
-
-    /**
-     * Returns example text.
-     * <p>
-     * Waits until WebElement representing waiting bar disappear. Then waits until example text 
-     * shows up.
-     * And after that returns example text.
-     * </p>
-     *
-     * @param waitTime The amount of time designated for waiting until waiting bar disappears and
-     * example text shows.
-     * @return String representing example's text.
-     */
-    public String getExampleTwoDynamicText(int waitTime) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), waitTime);
-        wait.until((Function<? super WebDriver, Boolean>)
-                ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
-        wait.until((Function<? super WebDriver, WebElement>)
-                ExpectedConditions.visibilityOfElementLocated(selectorExampleText));
-        return getDriver().findElementDynamic(selectorExampleText)
-                .getText();
-    }
+	/**
+	 * Returns example text.
+	 * <p>
+	 * Waits until WebElement representing waiting bar disappear. Then waits until example text
+	 * shows up.
+	 * And after that returns example text.
+	 * </p>
+	 *
+	 * @param waitTime
+	 *            The amount of seconds designated for waiting until waiting bar disappears and
+	 *            example text shows.
+	 * @return String representing example's text.
+	 */
+	public String getExampleTwoDynamicText(int waitTime) {
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(selectorLoadingBar));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(selectorExampleText));
+		return getDriver().findElementDynamic(selectorExampleText)
+				.getText();
+	}
 }
 ----
 
@@ -181,7 +195,31 @@ The `DynamicLoadingPage` class contains methods to interact with the Dynamic Loa
 
 This class performs waiting for actions using Selenium Web Driver:
 
-* WebDriverWait(WebDriver driver, long timeOutInSeconds) - constructor, first parameter takes WebDriver, in a second you can specify a timeout in seconds.
+* WebDriverWait(WebDriver driver, Duration timeout) - constructor, first parameter takes WebDriver, second parameter allows you to specify a timeout duration.
+This duration defines the maximum amount of time that the wait operation will continue, waiting for the expected condition to be met.
+
+Here's how to use it:
+
+----
+// Create a WebDriverWait instance with a timeout of 10 seconds
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+----
+
+In this example, a `WebDriverWait` instance named `wait` is created with a timeout of 10 seconds.
+This means that if the expected condition is not met within 10 seconds, a `TimeoutException` will be thrown, and the wait operation will terminate.
+
+By setting an appropriate timeout duration, you can balance between allowing enough time for elements to appear or conditions to be met and not waiting excessively long in case of unexpected issues.
+It's essential to choose a timeout duration that suits your specific test scenarios and the expected behavior of the web elements you are interacting with.
+
+By providing a more precise duration, you can ensure that your tests wait for the right amount of time, optimizing test efficiency and reliability.
+
+[WARNING]
+====
+Setting excessively long timeouts may slow down your test execution and might hide potential issues with your web application's performance.
+Conversely, overly short timeouts can lead to false test failures.
+It's crucial to find the right balance in timeout settings.
+====
+
 FluentWait method:
 
 * until(Function<? super T, V> isTrue) - waits until condition function given as parameter returns expected value.
@@ -220,7 +258,7 @@ It's possible to write your own condition function e.g.:
 Or as a lambda expression:
 
 ----
-        WebDriverWait wait = new WebDriverWait(getDriver(), waitTime); 
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitTime));
         wait.until((WebDriver driver) -> {
             try {
                 return !(driver.findElement(selectorExampleText)
@@ -235,91 +273,75 @@ Or as a lambda expression:
 
 == Test Class
 
-Case 1 steps:
+*First case steps:*
 
-1. Open The Internet Main Page
-2. Click Dynamic Loading link and go to a subpage with examples
-3. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible
-4. Click Example 1 link and load site
-5. Verify if the "Start" button is visible
-6. Click "Start"
-7. Wait for the loading bar to disappear and check if the displayed message is as it should be
-8. Go back to Dynamic Loading page
+1. Open Dynamic Loading subpage on The Internet Main Page
+2. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible
+3. Click Example 1 link and load site
+4. Verify if the "Start" button is visible
+5. Click "Start"
+6. Wait for the loading bar to disappear and check if the displayed message is as it should be
 
-Case 2 steps:
+*Second case steps:*
 
-1. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible
-2. Click Example 2 link and load site
-3. Verify if the "Start" button is visible
-4. Click "Start"
-5. Wait for the loading bar to disappear
-6. Wait for the message to appear and check if it is as it should be
-7. Go back to Dynamic Loading page
+1. Open Dynamic Loading subpage on The Internet Main Page
+2. Check if the page is loaded and "Dynamically Loaded Page Elements" header is visible
+3. Click Example 2 link and load site
+4. Verify if the "Start" button is visible
+5. Click "Start"
+6. Wait for the loading bar to disappear
+7. Wait for the message to appear and check if it is as it should be
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DynamicLoadingTest extends TheInternetBaseTest {
+public class DynamicLoadingTest extends BaseTest {
+	private final DynamicLoadingPage dynamicLoadingPage = PageFactory.getPageInstance(DynamicLoadingPage.class);
 
-    private static final int    EXAMPLE_WAITING_TIME = 30;
-    private static final String EXAMPLE_TEXT         = "Hello World!";
+	private final int		EXAMPLE_WAITING_TIME	= 30;
+	private final String	EXAMPLE_TEXT			= "Hello World!";
 
-    private static DynamicLoadingPage dynamicLoadingPage;
+	@Override
+	public void setUp() {
+		dynamicLoadingPage.load();
+		BFLogger.logInfo("Verify if Dynamic Loading page is opened");
+		assertTrue(dynamicLoadingPage.isLoaded(), "Unable to open Dynamic Loading page");
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        dynamicLoadingPage = shouldTheInternetPageBeOpened().clickDynamicLoadingLink();
-    }
+		BFLogger.logInfo("Verify if dynamic loading message is visible");
+		assertTrue(dynamicLoadingPage.isDynamicLoadingMessageVisible(),
+				"Dynamic loading message is invisible");
+	}
 
-    @Override
-    public void setUp() {
+	@Test
+	public void shouldExampleTextBeDisplayedAfterRunExampleOne() {
+		BFLogger.logInfo("Click Example 1 link");
+		dynamicLoadingPage.clickExampleOneLink();
 
-        logStep("Verify if Dynamic Loading page is opened");
-        assertTrue("Unable to open Dynamic Loading page", dynamicLoadingPage.isLoaded());
+		BFLogger.logInfo("Verify if Example 1 link opened content");
+		assertTrue(dynamicLoadingPage.isStartButtonVisible(), "Fail to load Example 1 content");
 
-        logStep("Verify if dynamic loading message is visible");
-        assertTrue("Dynamic loading message is invisible",
-                dynamicLoadingPage.isDynamicLoadingMessageVisible());
-    }
+		BFLogger.logInfo("Click Start button");
+		dynamicLoadingPage.clickStartButton();
 
-    @Test
-    public void shouldExampleTextBeDisplayedAfterRunExampleOne() {
-        logStep("Click Example 1 link");
-        dynamicLoadingPage.clickExampleOneLink();
+		BFLogger.logInfo("Verify if expected text is displayed on the screen");
+		assertEquals(EXAMPLE_TEXT, dynamicLoadingPage.getExampleOneDynamicText(EXAMPLE_WAITING_TIME),
+				"Fail to display example text");
+	}
 
-        logStep("Verify if Example 1 link opened content");
-        assertTrue("Fail to load Example 1 content", dynamicLoadingPage.isStartButtonVisible());
+	@Test
+	public void shouldExampleTextBeDisplayedAfterRunExampleTwo() {
+		BFLogger.logInfo("Click Example 2 link");
+		dynamicLoadingPage.clickExampleTwoLink();
 
-        logStep("Click Start button");
-        dynamicLoadingPage.clickStartButton();
+		BFLogger.logInfo("Verify if Example 2 link opened content");
+		assertTrue(dynamicLoadingPage.isStartButtonVisible(), "Fail to load Example 2 content");
 
-        logStep("Verify if expected text is displayed on the screen");
-        assertEquals("Fail to display example text", EXAMPLE_TEXT,
-                dynamicLoadingPage.getExampleOneDynamicText(EXAMPLE_WAITING_TIME));
-    }
+		BFLogger.logInfo("Click Start button");
+		dynamicLoadingPage.clickStartButton();
 
-    @Test
-    public void shouldExampleTextBeDisplayedAfterRunExampleTwo() {
-        logStep("Click Example 2 link");
-        dynamicLoadingPage.clickExampleTwoLink();
-
-        logStep("Verify if Example 2 link opened content");
-        assertTrue("Fail to load Example 2 content", dynamicLoadingPage.isStartButtonVisible());
-
-        logStep("Click Start button");
-        dynamicLoadingPage.clickStartButton();
-
-        logStep("Verify if expected text is displayed on the screen");
-        assertEquals("Fail to display example text", EXAMPLE_TEXT,
-                dynamicLoadingPage.getExampleTwoDynamicText(EXAMPLE_WAITING_TIME));
-    }
-
-    @Override
-    public void tearDown() {
-        logStep("Click back to reset Dynamic Loading page");
-        BasePage.navigateBack();
-    }
-
+		BFLogger.logInfo("Verify if expected text is displayed on the screen");
+		assertEquals(EXAMPLE_TEXT,
+				dynamicLoadingPage.getExampleTwoDynamicText(EXAMPLE_WAITING_TIME), "Fail to display example text");
+	}
 }
 ----
 

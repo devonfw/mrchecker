@@ -1,133 +1,142 @@
-= Tutorial: Operating on Multiple Browser Tabs
+= Tutorial: Operating on Multiple Browser Windows
 
-== What you will learn
+== What You Will Learn
 
 In this tutorial, you will learn how to:
 
-- Interact with web pages to open a new browser tab.
-- Handle multiple browser tabs while automating web tests.
-- Check if a new web page has successfully opened in a new tab.
+- Interact with web pages to open a new browser window.
+- Handle multiple browser windows while automating web tests.
+- Check if a new web page has successfully opened in a new window.
 
-This simple example demonstrates how to operate on multiple browser tabs.
-When you click the link, a new website will be opened in the second tab.
+This simple example demonstrates how to operate on multiple browser windows.
+When you click the link, a new website will be opened in a new browser window.
 
-image::images/example48.png[]
+image::images/example58.png[]
 
-image::images/example49.png[]
+image::images/example59.png[]
 
 == Page Class
 
+=== DemoQABrowserWindowsPage
+
 [source,java]
 ----
-public class MultipleWindowsPage extends BasePage {
-    
-    private final static By selectorLink = By.cssSelector("#content > div > a");
-    
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.WINDOW.getValue());
-    }
-    
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Opening a new window' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.WINDOW.getValue());
-        getDriver().waitForPageLoaded();
-    }
-    
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
-    
-    /**
-     * Clicks 'click here' link.
-     *
-     * @return NewWindowPage object
-     */
-    public NewWindowPage clickHereLink() {
-        getDriver().findElementDynamic(selectorLink)
-                .click();
-        getDriver().waitForPageLoaded();
-        return new NewWindowPage();
-    }   
+public class DemoQABrowserWindowsPage extends BasePage {
+  private final By selectorNewWindowButton = By.cssSelector("#windowButton");
+
+  @Override
+  public boolean isLoaded() {
+    getDriver().waitForPageLoaded();
+    return getDriver().getCurrentUrl()
+      .contains(GetEnvironmentParam.DEMO_QA_BROWSER_WINDOWS_URL.getValue());
+  }
+
+  @Override
+  public void load() {
+    BFLogger.logDebug("Load 'Browser Windows' page.");
+    getDriver().get(GetEnvironmentParam.DEMO_QA_BROWSER_WINDOWS_URL.getValue());
+    getDriver().waitForPageLoaded();
+  }
+
+  @Override
+  public String pageTitle() {
+    return getActualPageTitle();
+  }
+
+  /**
+   * Clicks 'New Window' button.
+   */
+  public void clickNewWindowButton() {
+    getDriver().findElementDynamic(selectorNewWindowButton)
+      .click();
+    getDriver().waitForPageLoaded();
+  }
 }
 ----
 
-The `MultipleWindowsPage` class is responsible for interacting with the web page.
-It includes methods to check if the page is loaded, load the page, and click a link that opens a new website in a new browser tab.
+The `DemoQABrowserWindowsPage` class is designed to interact with the web page.
+It includes methods to verify if the page is loaded, load the page, and click a link that opens a new website in a new browser window.
 
-Additionally, there is a `NewWindowPage` class for handling the new tab, which implements the required methods.
+Additionally, there is a `NewWindowPage` class for handling the new window, which implements the necessary methods.
 
 [source,java]
 ----
 public class NewWindowPage extends BasePage {
-    
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
-    }
-    
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'New window' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.NEW_WINDOW.getValue());
-        getDriver().waitForPageLoaded();
-    }
-    
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+  @Override
+  public boolean isLoaded() {
+    // Get a list of open windows.
+    List<String> windows = new ArrayList<>(getDriver().getWindowHandles());
+
+    // Switch to the most recently opened window.
+    getDriver()
+      .switchTo()
+      .window(windows.get(windows.size() - 1));
+
+    // Maximize the current window for an optimal view.
+    getDriver()
+      .manage()
+      .window()
+      .maximize();
+
+    // Wait for the page to load completely (not shown here).
+    getDriver().waitForPageLoaded();
+
+    // Check if the current page's URL contains the specified pattern.
+    return getDriver().getCurrentUrl()
+      .contains(GetEnvironmentParam.DEMO_QA_SAMPLE_URL.getValue());
+  }
+
+  @Override
+  public void load() {
+    BFLogger.logDebug("Load 'New Sample Window' page.");
+    getDriver().get(GetEnvironmentParam.DEMO_QA_SAMPLE_URL.getValue());
+    getDriver().waitForPageLoaded();
+  }
+
+  @Override
+  public String pageTitle() {
+    return getActualPageTitle();
+  }
 }
 ----
 
-The `NewWindowPage` class is used to handle the new browser tab that opens when the link is clicked.
+The `NewWindowPage` class is used to manage the new browser window that opens when the link is clicked.
 It includes methods to check if the page is loaded and load the page.
 
 == Test Class
 
 Steps:
 
-1. Open The Internet Main Page
-2. Go to Multiple Windows Page
-3. Click the link
-4. Check if a new page is opened in the second tab
+1. Open Browser Windows subpage on DemoQA Browser Windows Page
+2. Click the "New Window" button
+3. Check if a new Sample page is opened in the second window
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class MultipleWindowsTest extends TheInternetBaseTest {
-    
-    private static MultipleWindowsPage    multipleWindowsPage;
-    private static NewWindowPage        newWindowPage;
-    
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        multipleWindowsPage = shouldTheInternetPageBeOpened().clickmultipleWindowsLink();
-        
-        logStep("Verify if Multiple Windows page is opened");
-        assertTrue("Unable to open Multiple Windows page", multipleWindowsPage.isLoaded());
-    }
-    
-    @Test
-    public void verifyIfNewBrowserWindowOpen() {
-        logStep("Click 'Click here' link");
-        newWindowPage = multipleWindowsPage.clickHereLink();
-        
-        logStep("Verify if 'New window page' is opened");
-        assertTrue("Unable to open a new browser window", newWindowPage.isLoaded());
-    }
+public class MultipleWindowsTest extends BaseTest {
+  private final DemoQABrowserWindowsPage demoQABrowserWindowsPage = PageFactory.getPageInstance(DemoQABrowserWindowsPage.class);
+  private final NewWindowPage newWindowPage = PageFactory.getPageInstance(NewWindowPage.class);
+
+  @Override
+  public void setUp() {
+    demoQABrowserWindowsPage.load();
+
+    BFLogger.logInfo("Verify if Multiple Windows page is opened");
+    assertTrue(demoQABrowserWindowsPage.isLoaded(), "Unable to open Multiple Windows page");
+  }
+
+  @Test
+  public void verifyIfNewBrowserWindowOpens() {
+    BFLogger.logInfo("Click 'New Window' button");
+    demoQABrowserWindowsPage.clickNewWindowButton();
+
+    BFLogger.logInfo("Verify if 'New window page' is opened");
+    assertTrue(newWindowPage.isLoaded(), "Unable to open a new browser window");
+  }
 }
 ----
 
 == Conclusion
 
-In this tutorial, you've learned how to interact with web pages to open a new browser tab, handle multiple browser tabs while automating web tests, and verify if a new web page has successfully opened in a new tab.
-This skill is valuable for testing scenarios where multiple tabs or windows are involved in web applications.
+In this tutorial, you've learned how to interact with web pages to open a new browser window, manage multiple browser windows while automating web tests, and verify if a new web page has successfully opened in a new window.
+This skill is valuable for testing scenarios that involve multiple windows in web applications.

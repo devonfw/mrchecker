@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Checking Dimensions of Broken Images
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == What You Will Learn
 
@@ -79,7 +96,7 @@ It provides functionality to get the height and width of each image, facilitatin
 
 == Test Class
 
-Create @Test and @Before methods.
+Create @Test and @BeforeEach methods.
 Save expected images' dimensions in class fields:
 
 [source,java]
@@ -90,7 +107,7 @@ public class BrokenImagesTest extends BaseTest {
 	private final int	expectedHeight	= 90;
 	private final int	expectedWidth	= 120;
 
-	@Before
+	@Override
 	public void setUp() {
 		brokenImagePage.load();
 		BFLogger.logInfo("Verify if Broken Image page is opened");

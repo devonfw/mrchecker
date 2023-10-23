@@ -30,11 +30,10 @@ In this test case, the goal is to pass username and password authorization and l
 
 Steps:
 
-1. Open The Internet Main Page
-2. Click on Basic Auth link
-3. Open pop-up login window
-4. Enter valid username and password
-5. Open next subpage and verify if the user logged in successfully.
+1. Open Basic Auth subpage on The Internet Main Page
+2. Open pop-up login window
+3. Enter valid username and password
+4. Open next subpage and verify if the user logged in successfully.
 
 == Page Class
 

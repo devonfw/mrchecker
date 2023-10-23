@@ -1,8 +1,25 @@
+:toc: macro
+
 = Tutorial: Form Authentication
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 image::images/example37.png[]
 
-In this tutorial, we will perform various login and logout scenarios on a web application.
+In this tutorial, we will perform various login scenarios on a web application.
 We will utilize the FormAuthenticationPage class, which provides methods to interact with the authentication page elements.
 Through a series of test cases, we will verify that the authentication process functions correctly.
 
@@ -35,80 +52,82 @@ The image above shows how the page looks after a failed login attempt.
 [source,java]
 ----
 public class FormAuthenticationPage extends BasePage {
+	private final By	selectorInputUsername		= By.cssSelector("#username");
+	private final By	selectorInputUserPassword	= By.cssSelector("#password");
+	private final By	selectorLoginMessage		= By.cssSelector("#flash");
+	private final By	selectorLoginButton			= By.cssSelector("#login > button > i");
+	private final By	selectorLogoutButton		= By.cssSelector("#content > div > a ");
 
-    private final static By selectorInputUsername     = By.cssSelector("#username");
-    private final static By selectorInputUserPassword = By.cssSelector("#password");
-    private final static By selectorLoginMessage      = By.cssSelector("#flash");
-    private final static By selectorLoginButton       = By.cssSelector("#login > button > i");
-    private final static By selectorLogoutButton      = By.cssSelector("#content > div > a ");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.LOGIN.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.LOGIN.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Login Page' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue()
+				+ PageSubURLsProjectYEnum.LOGIN.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Login Page' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.LOGIN.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Sets username to designated form's field.
+	 *
+	 * @param username
+	 *            String representing a user's name
+	 * @return FormAuthenticationPage object with username set to the given one
+	 */
+	public FormAuthenticationPage setUsername(String username) {
+		InputTextElement elementInputUsername = new InputTextElement(selectorInputUsername);
+		elementInputUsername.clearInputText();
+		elementInputUsername.setInputText(username);
+		return this;
+	}
 
-    /**
-     * Sets username to designated form's field.
-     *
-     * @param username String representing a user's name
-     * @return FormAuthenticationPage object with username set to the given one
-     */
-    public FormAuthenticationPage setUsername(String username) {
-        InputTextElement elementInputUsername = new InputTextElement(selectorInputUsername);
-        elementInputUsername.clearInputText();
-        elementInputUsername.setInputText(username);
-        return this;
-    }
+	/**
+	 * Sets user password to designated form's field.
+	 *
+	 * @param userPassword
+	 *            String representing a user's password
+	 * @return FormAuthenticationPage object with user's password set to the given one
+	 */
+	public FormAuthenticationPage setUserPassword(String userPassword) {
+		InputTextElement elementInputPassword = new InputTextElement(selectorInputUserPassword);
+		elementInputPassword.clearInputText();
+		elementInputPassword.setInputText(userPassword);
+		return this;
+	}
 
-    /**
-     * Sets user password to designated form's field.
-     *
-     * @param userPassword String representing a user's password
-     * @return FormAuthenticationPage object with user's password set to the given one
-     */
-    public FormAuthenticationPage setUserPassword(String userPassword) {
-        InputTextElement elementInputPassword = new InputTextElement(selectorInputUserPassword);
-        elementInputPassword.clearInputText();
-        elementInputPassword.setInputText(userPassword);
-        return this;
-    }
+	/**
+	 * Returns login message.
+	 *
+	 * @return String object representing the message returned after login operation is performed
+	 */
+	public String getLoginMessageText() {
+		return new LabelElement(selectorLoginMessage).getText();
+	}
 
-    /**
-     * Returns login message.
-     *
-     * @return String object representing the message returned after login operation is performed
-     */
-    public String getLoginMessageText() {
-        return new LabelElement(selectorLoginMessage).getText();
-    }
+	/**
+	 * Clicks 'Login' button.
+	 */
+	public void clickLoginButton() {
+		new Button(selectorLoginButton).click();
+	}
 
-    /**
-     * Clicks 'Login' button.
-     */
-    public void clickLoginButton() {
-        new Button(selectorLoginButton).click();
-    }
-
-    /**
-     * Clicks 'Logout' button.
-     */
-    public void clickLogoutButton() {
-        new Button(selectorLogoutButton).click();
-    }
+	/**
+	 * Clicks 'Logout' button.
+	 */
+	public void clickLogoutButton() {
+		new Button(selectorLogoutButton).click();
+	}
 }
 ----
 
@@ -136,122 +155,99 @@ Prepare six test cases:
 5. Try to log in with a valid username and valid password and check if success login message appears, then log out
 6. Try to log in with a valid username and valid password and check if success login message appears, then log out and check if success logout message is displayed
 
-* Before all tests: Open The Internet Main Page
-
-* Before each case: Click on the Form Authentication link and open login page
-
-* After each case: Go back to The Internet Main Page
+* Before each case: Open the Form Authentication Page
 
 [source,java]
 ----
-@Category({ TestsLocal.class, TestsNONParallel.class })
-public class FormAuthenticationTest extends TheInternetBaseTest {
+public class FormAuthenticationTest extends BaseTest {
+	private final FormAuthenticationPage formAuthenticationPage = PageFactory.getPageInstance(FormAuthenticationPage.class);
 
-    private static FormAuthenticationPage formAuthenticationPage;
+	private final String	errorUsernameMessage	= "Your username is invalid!\n" + "×";
+	private final String	errorPasswordMessage	= "Your password is invalid!\n" + "×";
+	private final String	loginMessage			= "You logged into a secure area!\n" + "×";
+	private final String	logoutMessage			= "You logged out of the secure area!\n" + "×";
+	private final String	emptyUsername			= "";
+	private final String	emptyUserPassword		= "";
+	private final String	validUsername			= "tomsmith";
+	private final String	validPassword			= "SuperSecretPassword!";
+	private final String	randomUsername			= UUID.randomUUID()
+			.toString();
+	private final String	randomUserPassword		= UUID.randomUUID()
+			.toString();
 
-    private String errorUsernameMessage = "Your username is invalid!\n" + "×";
-    private String errorPasswordMessage = "Your password is invalid!\n" + "×";
-    private String loginMessage         = "You logged into a secure area!\n" + "×";
-    private String logoutMessage        = "You logged out of the secure area!\n" + "×";
-    private String emptyUsername        = "";
-    private String emptyUserPassword    = "";
-    private String validUsername        = "tomsmith";
-    private String validPassword        = "SuperSecretPassword!";
-    private final String randomUsername       = UUID.randomUUID()
-            .toString();
-    private final String randomUserPassword   = UUID.randomUUID()
-            .toString();
+	@Override
+	public void setUp() {
+		formAuthenticationPage.load();
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        logStep("Open the Url http://the-internet.herokuapp.com/");
-        theInternetPage = new TheInternetPage();
-        theInternetPage.load();
+		BFLogger.logInfo("Verify if Form Authentication Page is opened");
+		assertTrue(formAuthenticationPage.isLoaded(), "Form Authentication Page was not open");
+	}
 
-        logStep("Verify if Url http://the-internet.herokuapp.com/ is opened");
-        assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
-    }
+	@Test
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithEmptyData() {
+		BFLogger.logInfo("Log user with empty username and password");
+		formAuthenticationPage.setUsername(emptyUsername)
+				.setUserPassword(emptyUserPassword)
+				.clickLoginButton();
+		assertEquals(errorUsernameMessage, formAuthenticationPage.getLoginMessageText(),
+				"Unexpectedly user logged in with empty data");
+	}
 
-    @Override
-    public void setUp() {
-        logStep("Click subpage link");
-        formAuthenticationPage = theInternetPage.clickFormAuthenticationLink();
+	@Test
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithEmptyUsernameAndValidPassword() {
+		BFLogger.logInfo("Log user with empty username and valid password");
+		formAuthenticationPage.setUsername(emptyUsername)
+				.setUserPassword(validPassword)
+				.clickLoginButton();
+		assertEquals(errorUsernameMessage, formAuthenticationPage.getLoginMessageText(),
+				"Unexpectedly user logged in with empty username");
+	}
 
-        logStep("Verify if subpage is opened");
-        assertTrue("The Internet subpage: FormAuthenticationPage was not open", formAuthenticationPage.isLoaded());
-    }
+	@Test
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithValidUsernameAndEmptyPassword() {
+		BFLogger.logInfo("Log user with valid username and empty password");
+		formAuthenticationPage.setUsername(validUsername)
+				.setUserPassword(emptyUserPassword)
+				.clickLoginButton();
+		assertEquals(errorPasswordMessage, formAuthenticationPage.getLoginMessageText(),
+				"Unexpectedly user logged in with empty password");
+	}
 
-    @Test
-    public void shouldErrorMessageBeDisplayedWhenUserLogsWithEmptyData() {
-        logStep("Log user with empty username and password");
-        formAuthenticationPage.setUsername(emptyUsername)
-                .setUserPassword(emptyUserPassword)
-                .clickLoginButton();
-        assertEquals("Unexpectedly user logged in with empty data", errorUsernameMessage,
-                formAuthenticationPage.getLoginMessageText());
-    }
+	@Test
+	public void shouldErrorMessageBeDisplayedWhenUserLogsWithInvalidUsernameAndInvalidPassword() {
+		BFLogger.logInfo("Log user with invalid username and invalid password");
+		formAuthenticationPage.setUsername(randomUsername)
+				.setUserPassword(randomUserPassword)
+				.clickLoginButton();
+		assertEquals(errorUsernameMessage, formAuthenticationPage.getLoginMessageText(),
+				"Unexpectedly user logged in with random credentials");
+	}
 
-    @Test
-    public void shouldErrorMessageBeDisplayedWhenUserLogsWithEmptyUsernameAndValidPassword() {
-        logStep("Log user with empty username and valid password");
-        formAuthenticationPage.setUsername(emptyUsername)
-                .setUserPassword(validPassword)
-                .clickLoginButton();
-        assertEquals("Unexpectedly user logged in with empty username", errorUsernameMessage,
-                formAuthenticationPage.getLoginMessageText());
-    }
+	@Test
+	public void shouldUserLogInWithValidCredentials() {
+		BFLogger.logInfo("Log user with valid username and valid password");
+		formAuthenticationPage.setUsername(validUsername)
+				.setUserPassword(validPassword)
+				.clickLoginButton();
+		assertEquals(loginMessage, formAuthenticationPage.getLoginMessageText(),
+				"Unable to login user with valid credentials");
+		BFLogger.logInfo("Log out user");
+		formAuthenticationPage.clickLogoutButton();
+	}
 
-    @Test
-    public void shouldErrorMessageBeDisplayedWhenUserLogsWithValidUsernameAndEmptyPassword() {
-        logStep("Log user with valid username and empty password");
-        formAuthenticationPage.setUsername(validUsername)
-                .setUserPassword(emptyUserPassword)
-                .clickLoginButton();
-        assertEquals("Unexpectedly user logged in with empty password", errorPasswordMessage,
-                formAuthenticationPage.getLoginMessageText());
-    }
-
-    @Test
-    public void shouldErrorMessageBeDisplayedWhenUserLogsWithInvalidUsernameAndInvalidPassword() {
-        logStep("Log user with invalid username and invalid password");
-        formAuthenticationPage.setUsername(randomUsername)
-                .setUserPassword(randomUserPassword)
-                .clickLoginButton();
-        assertEquals("Unexpectedly user logged in with random credentials", errorUsernameMessage,
-                formAuthenticationPage.getLoginMessageText());
-    }
-
-    @Test
-    public void shouldUserLogInWithValidCredentials() {
-        logStep("Log user with valid username and valid password");
-        formAuthenticationPage.setUsername(validUsername)
-                .setUserPassword(validPassword)
-                .clickLoginButton();
-        assertEquals("Unable to login user with valid credentials", loginMessage,
-                formAuthenticationPage.getLoginMessageText());
-        logStep("Log out user");
-        formAuthenticationPage.clickLogoutButton();
-    }
-
-    @Test
-    public void shouldUserLogOutAfterProperLogInAndClickLogoutButton() {
-        logStep("Log user with valid username and valid password");
-        formAuthenticationPage.setUsername(validUsername)
-                .setUserPassword(validPassword)
-                .clickLoginButton();
-        assertEquals("Unable to login user with valid credentials", loginMessage,
-                formAuthenticationPage.getLoginMessageText());
-        logStep("Log out user");
-        formAuthenticationPage.clickLogoutButton();
-        assertEquals("User cannot log out after proper log in", logoutMessage,
-                formAuthenticationPage.getLoginMessageText());
-    }
-
-    @Override
-    public void tearDown() {
-        logStep("Navigate back to The-Internet page");
-        theInternetPage.load();
-    }
+	@Test
+	public void shouldUserLogOutAfterProperLogInAndClickLogoutButton() {
+		BFLogger.logInfo("Log user with valid username and valid password");
+		formAuthenticationPage.setUsername(validUsername)
+				.setUserPassword(validPassword)
+				.clickLoginButton();
+		assertEquals(loginMessage, formAuthenticationPage.getLoginMessageText(),
+				"Unable to login user with valid credentials");
+		BFLogger.logInfo("Log out user");
+		formAuthenticationPage.clickLogoutButton();
+		assertEquals(logoutMessage, formAuthenticationPage.getLoginMessageText(),
+				"User cannot log out after proper log in");
+	}
 }
 ----
 

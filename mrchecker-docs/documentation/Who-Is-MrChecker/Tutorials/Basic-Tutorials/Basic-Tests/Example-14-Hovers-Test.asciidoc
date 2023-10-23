@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Automating Dynamic Elements
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == What you will learn
 
@@ -21,54 +38,54 @@ image::images/example42.png[]
 [source,java]
 ----
 public class HoversPage extends BasePage {
+	private final By	selectorImages	= By.cssSelector("div.figure > img");
+	private final By	selectorNames	= By.cssSelector("div.figcaption h5");
 
-    private final static By selectorImages = By.cssSelector("div.figure > img");
-    private final static By selectorNames  = By.cssSelector("div.figcaption h5");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.HOVERS.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.HOVERS.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Hovers' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.HOVERS.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Hovers' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.HOVERS.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Moves mouse pointer over an image with given index.
+	 *
+	 * @param index
+	 *            An index of the picture, where mouse pointer should be moved
+	 */
+	public void hoverOverAvatar(int index) {
+		WebElement avatarImage = getDriver().findElementDynamics(selectorImages)
+				.get(index);
+		getAction().moveToElement(avatarImage)
+				.perform();
+	}
 
-    /**
-     * Moves mouse pointer over an image with given index.
-     *
-     * @param index An index of the picture, where mouse pointer should be moved
-     */
-    public void hoverOverAvatar(int index) {
-        Actions action = new Actions(getDriver());
-        WebElement avatarImage = getDriver().findElementDynamics(selectorImages)
-                .get(index);
-        action.moveToElement(avatarImage)
-                .perform();
-    }
-
-    /**
-     * Returns the information displayed under a picture with given index.
-     *
-     * @param index An index of the picture, where the information should be read
-     * @return String object representing picture's information
-     */
-    public String getAvatarsInformation(int index) {
-        return getDriver().findElementDynamics(selectorNames)
-                .get(index)
-                .getText();
-    }
+	/**
+	 * Returns the information displayed under a picture with given index.
+	 *
+	 * @param index
+	 *            An index of the picture, where the information should be read
+	 * @return String object representing picture's information
+	 */
+	public String getAvatarsInformation(int index) {
+		return getDriver().findElementDynamics(selectorNames)
+				.get(index)
+				.getText();
+	}
 }
 ----
 
@@ -84,35 +101,32 @@ Action or actions series will be performed after calling `perform()` method.
 
 Steps:
 
-1. Open The Internet Main Page
-2. Go to Hovers page
-3. Move mouse over random image
-4. Check if displayed text is equal to expected.
+1. Open Hovers subpage on The Internet Main Page
+2. Move mouse over random image
+3. Check if displayed text is equal to expected.
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class HoversTest extends TheInternetBaseTest {
-    
-    private static HoversPage    hoversPage;
-    private final String[] names = { "name: user1", "name: user2", "name: user3" };
-    
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        hoversPage = shouldTheInternetPageBeOpened().clickHoversLink();
-        
-        logStep("Verify if Hovers page is opened");
-        assertTrue("Unable to open Hovers page", hoversPage.isLoaded());
-    }
-    
-    @Test
-    public void shouldProperInformationBeDisplayedWhenMousePointerHoveredOverRandomElement() {
-        logStep("Hover mouse pointer over random element");
-        int randomIndex = new Random().nextInt(names.length);
-        hoversPage.hoverOverAvatar(randomIndex);
-        assertEquals("Picture's information is different than expected", names[randomIndex],
-                hoversPage.getAvatarsInformation(randomIndex));
-    }   
+public class HoversTest extends BaseTest {
+	private final HoversPage	hoversPage	= PageFactory.getPageInstance(HoversPage.class);
+	private final String[]		names		= { "name: user1", "name: user2", "name: user3" };
+
+	@Override
+	public void setUp() {
+		hoversPage.load();
+		BFLogger.logInfo("Verify if Hovers page is opened");
+		assertTrue(hoversPage.isLoaded(), "Unable to open Hovers page");
+	}
+
+	@Test
+	public void shouldProperInformationBeDisplayedWhenMousePointerHoveredOverRandomElement() {
+		int randomIndex = new Random().nextInt(names.length);
+
+		BFLogger.logInfo("Hover mouse pointer over random element");
+		hoversPage.hoverOverAvatar(randomIndex);
+		assertEquals(names[randomIndex], hoversPage.getAvatarsInformation(randomIndex),
+				"Picture's information is different than expected");
+	}
 }
 ----
 

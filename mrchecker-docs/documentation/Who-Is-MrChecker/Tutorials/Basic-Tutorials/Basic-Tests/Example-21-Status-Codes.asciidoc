@@ -1,4 +1,21 @@
+:toc: macro
+
 = Tutorial: Processing HTTP Status Codes
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 This tutorial demonstrates how to process HTTP status codes returned by a web page.
 When you click on a status code link, you will be redirected to a subpage that returns the corresponding HTTP status code.
@@ -23,101 +40,40 @@ In this tutorial, you will learn:
 [source,java]
 ----
 public class StatusCodesHomePage extends BasePage {
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue());
+	}
 
-    private static final By selectorLink200Code = By.linkText("200");
-    private static final By selectorLink301Code = By.linkText("301");
-    private static final By selectorLink404Code = By.linkText("404");
-    private static final By selectorLink500Code = By.linkText("500");
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Status Codes' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.STATUS_CODES.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue());
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Status Codes' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.STATUS_CODES.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	/**
+	 * Clicks code link according to given code number.
+	 *
+	 * @param code
+	 *            Given code
+	 */
+	public void clickCodeLink(String code) {
+		clickCodeLink(By.linkText(code));
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
-
-    /**
-     * Verifies if given link is displayed.
-     *
-     * @param selector Selector of the given link
-     * @return true if link is displayed
-     */
-    public boolean isLinkCodeDisplayed(By selector) {
-        return getDriver().findElementDynamic(selector)
-                .isDisplayed();
-
-    }
-
-    /**
-     * Clicks '200' link.
-     *
-     * @return StatusCodesCodePage object
-     */
-    public StatusCodesCodePage clickCode200Link() {
-        return clickCodeLink(selectorLink200Code);
-    }
-
-    /**
-     * Clicks '301' link.
-     *
-     * @return StatusCodesCodePage object
-     */
-    public StatusCodesCodePage clickCode301Link() {
-        return clickCodeLink(selectorLink301Code);
-    }
-
-    /**
-     * Clicks '404' link.
-     *
-     * @return StatusCodesCodePage object
-     */
-    public StatusCodesCodePage clickCode404Link() {
-        return clickCodeLink(selectorLink404Code);
-    }
-
-    /**
-     * Clicks '500' link.
-     *
-     * @return StatusCodesCodePage object
-     */
-    public StatusCodesCodePage clickCode500Link() {
-        return clickCodeLink(selectorLink500Code);
-    }
-
-    /**
-     * Clicks code link according to given code number.
-     *
-     * @param code Given code
-     * @return StatusCodesCodePage object
-     */
-    public StatusCodesCodePage clickCodeLink(String code) {
-        return clickCodeLink(By.linkText(code));
-    }
-
-    private StatusCodesCodePage clickCodeLink(By selector) {
-        String codeNumber = getCodeNumberToCheck(selector);
-        getDriver().findElementDynamic(selector)
-                .click();
-        return new StatusCodesCodePage(codeNumber);
-    }
-
-    private String getCodeNumberToCheck(By selector) {
-        return getDriver().findElementDynamic(selector)
-                .getText();
-    }
+	private void clickCodeLink(By selector) {
+		getDriver().findElementDynamic(selector)
+				.click();
+	}
 }
 ----
 
@@ -130,75 +86,64 @@ In the class constructor specify which code number should be returned.
 
 [source,java]
 ----
-@lombok.Getter public class StatusCodesCodePage extends BasePage {
+public class StatusCodesCodePage extends BasePage {
+	private final By	selectorDisplayedText	= By.cssSelector("#content > div > p");
+	private final By	selectorLinkToCodesPage	= By.cssSelector("#content > div > p > a");
 
-    private static final By selectorDisplayedText   = By.cssSelector("#content > div > p");
-    private static final By selectorLinkToCodesPage = By.cssSelector("#content > div > p > a");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue() + '/');
+	}
 
-    private final String codeNumber;
+	@Override
+	public void load() {
+	}
 
-    public StatusCodesCodePage(String codeNumber) {
-        this.codeNumber = codeNumber;
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue() + '/');
-    }
+	/**
+	 * Verifies if page is loaded with given code number.
+	 *
+	 * @param codeNumber
+	 *            Expected code number
+	 * @return true if expected code number is loaded with web page
+	 */
+	public boolean isLoadedWithStatusCode(String codeNumber) {
+		return getDriver().getCurrentUrl()
+				.equals(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+						PageSubURLsProjectYEnum.STATUS_CODES.getValue() + "/" + codeNumber);
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Status Codes' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.STATUS_CODES.getValue() + '/' + codeNumber);
-        getDriver().waitForPageLoaded();
-    }
+	/**
+	 * Returns displayed code number.
+	 * <p>
+	 * Code number is retrieved from following text displayed on the page:<b>
+	 * 'This page returned a *** status code.', where *** represent the code number to be
+	 * returned.
+	 * </p>
+	 *
+	 * @return String object representing the displayed code number retrieved from specific sentence.
+	 */
+	public String getDisplayedCodeNumber() {
+		return getDriver().findElementDynamic(selectorDisplayedText)
+				.getText()
+				.substring(21, 24);
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
-
-    /**
-     * Verifies if page is loaded with given code number.
-     *
-     * @param codeNumber Expected code number
-     * @return true if expected code number is loaded with web page
-     */
-    public boolean isLoadedWithStatusCode(String codeNumber) {
-        return getDriver().getCurrentUrl()
-                .equals(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.STATUS_CODES.getValue() + "/" + codeNumber);
-    }
-
-    /**
-     * Returns displayed code number.
-     * <p>
-     * Code number is retrieved from following text displayed on the page:<b>
-     * 'This page returned a *** status code.', where *** represent the code number to be
-     * returned.
-     * </p>
-     *
-     * @return String object representing the displayed code number retrieved from specific sentence.
-     */
-    public String getDisplayedCodeNumber() {
-        return getDriver().findElementDynamic(selectorDisplayedText)
-                .getText()
-                .substring(21, 24);
-    }
-
-    /**
-     * Clicks link to return to 'Code Page'.
-     *
-     * @return StatusCodesHomePage object
-     */
-    public StatusCodesHomePage clickLinkToCodePage() {
-        getDriver().findElementDynamic(selectorLinkToCodesPage)
-                .click();
-        return new StatusCodesHomePage();
-    }
+	/**
+	 * Clicks link to return to 'Code Page'.
+	 *
+	 * @return StatusCodesHomePage object
+	 */
+	public void clickLinkToCodePage() {
+		getDriver().findElementDynamic(selectorLinkToCodesPage)
+				.click();
+	}
 }
 ----
 
@@ -207,7 +152,7 @@ It includes methods to verify if a code page is loaded with an expected code num
 
 == Test Class
 
-Before all tests: Open The Internet Main Page, go to Status Codes page
+Before test: Open Status Codes subpage on The Main Internet Page
 
 Steps:
 
@@ -220,40 +165,36 @@ For each status code
 
 [source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class StatusCodeTest extends TheInternetBaseTest {
+public class StatusCodeTest extends BaseTest {
+	private final String[]				codes				= { "200", "301", "404", "500" };
+	private final StatusCodesHomePage	statusCodesHomePage	= PageFactory.getPageInstance(StatusCodesHomePage.class);
+	private final StatusCodesCodePage	statusCodesCodePage	= PageFactory.getPageInstance(StatusCodesCodePage.class);
 
-    private static StatusCodesHomePage statusCodesHomePage;
-    private        StatusCodesCodePage statusCodesCodePage;
+	@Override
+	public void setUp() {
+		statusCodesHomePage.load();
+		BFLogger.logInfo("Verify if Status Codes Home page is opened");
+		assertTrue(statusCodesHomePage.isLoaded(), "Unable to open Status Codes Home page");
+	}
 
-    private final String[] codes = { "200", "301", "404", "500" };
+	@Test
+	public void shouldProperCodeBeDisplayedAfterClickCodeLink() {
+		for (String code : codes) {
+			BFLogger.logInfo("Click link to " + code + " code");
+			statusCodesHomePage.clickCodeLink(code);
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        statusCodesHomePage = shouldTheInternetPageBeOpened().clickStatusCodesLink();
+			BFLogger.logInfo("Verify if proper web page corresponding to the code is opened");
+			assertTrue(statusCodesCodePage.isLoadedWithStatusCode(code),
+					"Unable to open proper web page");
 
-        logStep("Verify if Status Codes Home page is opened");
-        assertTrue("Unable to open Status Codes Home page", statusCodesHomePage.isLoaded());
-    }
+			BFLogger.logInfo("Verify if the displayed code is equal to the expected one");
+			assertEquals(code, statusCodesCodePage.getDisplayedCodeNumber(),
+					"Wrong code has been displayed");
 
-    @Test
-    public void shouldProperCodeBeDisplayedAfterClickCodeLink() {
-
-        for (String code : codes) {
-            logStep("Click link to " + code + " code");
-            statusCodesCodePage = statusCodesHomePage.clickCodeLink(code);
-
-            logStep("Verify if proper web page corresponding to the code is opened");
-            assertTrue("Unable to open proper web page",
-                    statusCodesCodePage.isLoadedWithStatusCode(code));
-
-            logStep("Verify if the displayed code is equal to the expected one");
-            assertEquals(code, statusCodesCodePage.getDisplayedCodeNumber());
-
-            logStep("Click link to come back to 'Status Codes' page");
-            statusCodesCodePage.clickLinkToCodePage();
-        }
-    }
+			BFLogger.logInfo("Click link to come back to 'Status Codes' page");
+			statusCodesCodePage.clickLinkToCodePage();
+		}
+	}
 }
 ----
 
