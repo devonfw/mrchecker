@@ -263,32 +263,32 @@ def properties = [
           PROJECT_HOME                                   : 'app_home_folder',
 
           //WIREMOCK
-          WIREMOCK_CREDENTIALS                           : 'vc2crptXXXXXXn',
+          WIREMOCK_CREDENTIALS                           : 'todo',
           WIREMOCK_USERNAME                              : 'wiremock',
-          WIREMOCK_ADDRESS                               : 'http://vc2crptXXXXXXn.xxx.com:8080',
-          WIREMOCK_IP_ADDRESS                            : '10.196.67.XXX',
+          WIREMOCK_ADDRESS                               : 'http://WIREMOCK_ADDRESS:8080',
+          WIREMOCK_IP_ADDRESS                            : 'WIREMOCK_IP_ADDRESS',
           WIREMOCK_CONTAINER_NAME                        : 'wiremock',
           APPLICATION_DIRECTORY_WIREMOCK                 : 'repo',
 
           //GIT
-          GIT_CREDENTIALS                                : 'e47742cc-bb66-4321-2341-a2342er24f2',
+          GIT_CREDENTIALS                                : 'todo',
           GIT_BRANCH                                     : 'develop',
-          GIT_SSH                                        : 'ssh://git@stash.xxx.com/app/app.git'
-          GIT_HTTPS                                      : 'HTTPS://git@stash.xxx.com/app/app.git',
+          GIT_SSH                                        : 'ssh://git@GIT_SSH/app/app.git'
+          GIT_HTTPS                                      : 'HTTPS://git@GIT_HTTPS/app/app.git',
 
-          STASH_CREDENTIALS                              : 'e47742cc-bb66-4321-2341-a2342er24f2',
+          STASH_CREDENTIALS                              : 'todo',
 
 
           //DOCKER
-          ARTIFACTORY_USER_CREDENTIALS                   : 'e47742cc-bb66-4321-2341-a2342er24f2',
-          SEETEST_DOCKER_IMAGE                           : 'docker.xxx.com/project/images/app:v1-8.3',
+          ARTIFACTORY_USER_CREDENTIALS                   : 'todo',
+          SEETEST_DOCKER_IMAGE                           : 'SEETEST_DOCKER_IMAGE/project/images/app:v1-8.3',
 
           //SEETEST_DOCKER_IMAGE
           SEETEST_APPLICATION_FOLDER                     : 'seetest_dir',
           SEETEST_PROJECT_HOME                           : 'Automated Scripts',
-          SEETEST_GIT_SSH                                : 'ssh://git@stash.xxx.com/pr/seetest_automation_cucumber.git'
+          SEETEST_GIT_SSH                                : 'ssh://git@SEETEST_GIT_SSH/pr/seetest_automation_cucumber.git'
           SEETEST_GIT_BRANCH                             : 'develop',
-          SEETEST_GRID_USER_CREDENTIALS                  : 'e47742cc-bb66-4321-2341-a2342er24f2',
+          SEETEST_GRID_USER_CREDENTIALS                  : 'todo',
           SEETEST_CUCUMBER_TAG                           : '@Virtualization',
           SEETEST_CLOUD_NAME                             : 'Core Group',
           SEETEST_IOS_VERSION                            : '11',
@@ -571,13 +571,13 @@ def properties = [
           ...
 
           //Docker
-          ARTIFACTORY_USER_CREDENTIALS                  : 'ba2e4f46-56f1-4467-ae97-17b356d6s643',
-          SEETEST_DOCKER_IMAGE                          : 'docker.XXX.com/app/base-images/seetest:v1-8.3',
+          ARTIFACTORY_USER_CREDENTIALS                  : 'todo',
+          SEETEST_DOCKER_IMAGE                          : 'SEETEST_DOCKER_IMAGE/app/base-images/seetest:v1-8.3',
 
           //SeeTest
           SEETEST_APPLICATION_FOLDER                    : 'seetest_dit',
           SEETEST_PROJECT_HOME                          : 'Automated_Scripts',
-          SEETEST_GIT_SSH                               : 'ssh://stash.xxx.com/app/seetest_automation_cucumber.git',
+          SEETEST_GIT_SSH                               : 'ssh://SEETEST_GIT_SSH/app/seetest_automation_cucumber.git',
           SEETEST_GIT_BRANCH                            : 'develop',
 
           ...
