@@ -2,7 +2,7 @@
 
 == Who Is MrChecker
 
-include::home.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker.asciidoc[leveloffset=3]
 
 include::benefits.asciidoc[leveloffset=3]
 
@@ -149,7 +149,7 @@ How to install?
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
-include::Who-Is-MrChecker/Tutorials/Project-Organisation.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Tutorials/Project-Organization.asciidoc[leveloffset=3]
 
 === Basic Tutorials
 
