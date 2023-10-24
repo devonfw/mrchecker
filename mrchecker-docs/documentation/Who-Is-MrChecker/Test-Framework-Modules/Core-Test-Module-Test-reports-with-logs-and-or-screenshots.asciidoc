@@ -58,7 +58,7 @@ Console output:
 
 image::images/image14.png[]
 
-= Allure Reports
+== Allure Reports
 
 image::images/image15.png[]
 

@@ -4,4 +4,4 @@ DEMO_QA_FORM_URL                 , https://demoqa.com/automation-practice-form
 DEMO_QA_LINKS_URL                , https://demoqa.com/links
 DEMO_QA_URL                      , https://demoqa.com/
 EXAMPLE_USER_LOGIN               , example.login@domain.com
-EXAMPLE_USER_PASSWORD            , ENC(4oqbZ0ooHKaOPX1UD3hGB1bpNkmLVaeC)
+EXAMPLE_USER_PASSWORD            ,

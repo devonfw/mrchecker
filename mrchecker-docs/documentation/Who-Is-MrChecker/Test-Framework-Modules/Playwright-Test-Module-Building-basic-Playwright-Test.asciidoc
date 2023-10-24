@@ -1,0 +1,281 @@
+:toc: macro
+
+= Sample Walkthrough
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+This page will guide you through the process of creating a test case.
+We'll create a very simple test for the Google search engine.
+
+== Test Procedure
+
+We aim to open the Google search engine, input a search query, and submit the form.
+We expect to see search results listed; otherwise, the test will fail.
+In summary, the testing process will be as follows:
+
+1. Open google.com.
+2. Enter the string "Test" into the search box.
+3. Click "Google Search" button".
+4. Check if at least one result appears.
+
+== Creating New Packages
+
+We need two new packages: one for new page classes and the other for our test classes.
+
+=== Creating a Package for Test Classes
+
+Open IntelliJ IDEA and use the "Project Explorer" on the left to navigate to:
+
+*Your project* → src/test/java → com.example.playwright → tests
+
+Right-click on "tests," then click "New" → "Package." Name the new package "com.example.playwright.tests.googleSearch."
+
+image::images/pw-tests-googleSearch.png[]
+
+=== Creating a Package for Page Classes
+
+Navigate to:
+
+*Your project* → src/main/java → com.example.playwright → pages
+
+Right-click on "pages," then click "New" → "Package." Name the new package "com.example.playwright.pages.googleSearch."
+
+image::images/pw-main-googleSearch.png[]
+
+== Creating the Page Classes
+
+=== GoogleSearchPage
+
+We need a new Page object to represent the Google Search page.
+The page class will be named "GoogleSearchPage" and located in the "com.example.playwright.pages.googleSearch" package.
+It should extend the _BasePage_ class and contain the necessary selectors.
+
+The page class represents the Google homepage, so we need selectors for web elements required in our test case.
+In our example, we need four selectors: _Cookies Window_, _Accept Cookies Button_, _Google Search Input_ and _Google Search Button_.
+These selectors will be implemented as fields.
+We can find them using the developer console in Google Chrome.
+
+In our testing process, we encounter situations where a Cookies Window may randomly appear on the Google Search page.
+To ensure the stability of our tests, we will implement two methods:
+
+* isCookiesWindowDisplayed(): This method checks if the Cookies Window is currently displayed on the page.
+If the window is visible, it returns true; otherwise, it returns false.
+
+* clickAcceptCookiesButton(): This method clicks the "Accept Cookies" button to dismiss the window.
+
+[source,java]
+----
+package com.example.playwright.pages.googleSearch;
+
+import com.example.playwright.core.BasePage;
+import com.example.playwright.env.GetEnvironmentParam;
+
+public class GoogleSearchPage extends BasePage {
+	// Selectors for web elements
+	private final String	selectorCookiesWindow		= "div.dbsFrd";
+	private final String	selectorAcceptCookiesButton	= "button#L2AGLb";
+	private final String	selectorGoogleSearchInput	= "[type='search']";
+	private final String	selectorGoogleSearchButton	= "[class='FPdoLc lJ9FBc'] .gNO89b";
+
+	@Override
+	public String pageTitle() {
+		return null;
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return false;
+	}
+
+	@Override
+	public void load() {
+		String url = GetEnvironmentParam.GOOGLE_URL.getValue();
+		loadPage(url);
+	}
+
+	// Check if the Cookies Window is displayed
+	public boolean isCookiesWindowDisplayed() {
+		return getDriver().currentPage()
+				.locator(selectorCookiesWindow)
+				.isVisible();
+	}
+
+	// Click the "Accept Cookies" button
+	public void clickAcceptCookiesButton() {
+		getDriver().currentPage()
+				.locator(selectorAcceptCookiesButton)
+				.click();
+	}
+
+	// Enter search query and submit the form
+	public void enterGoogleSearchInput(String searchText) {
+		// Fill the search input with the given text
+		getDriver().currentPage()
+				.locator(selectorGoogleSearchInput)
+				.fill(searchText);
+
+		// Click the Google Search button
+		getDriver().currentPage()
+				.locator(selectorGoogleSearchButton)
+				.click();
+	}
+}
+----
+
+=== GoogleResultPage
+
+When we land on the Google Results page, we need a dedicated class to handle its elements and interactions.
+This class, named "GoogleResultPage," will be located in the "com.example.playwright.pages.googleSearch" package, just like the "GoogleSearchPage" class.
+
+Similar to the "GoogleSearchPage" class, this class extends the "BasePage" class.
+It encapsulates the logic for interacting with elements on the Google Results page.
+
+Let's break down the class components:
+
+Selectors: We define a private field named _"selectorSearchResult"_ This selector is responsible for identifying the result items on the Google Results page.
+
+`getResultsNumber()`: This method retrieves the number of search results displayed on the page.
+Here's how it works:
+
+We retrieve the current page using `getDriver().currentPage()` to work with the active page.
+We use waitForSelector with a timeout of 5 seconds to wait for the "searchResult" selector to appear on the page.
+The method then returns the count of elements matching the selector, indicating the number of search results.
+
+[source,java]
+----
+package com.example.playwright.pages.googleSearch;
+
+import com.example.playwright.core.BasePage;
+import com.microsoft.playwright.Page;
+
+public class GoogleResultPage extends BasePage {
+    // Selector for search result items
+    private final String selectorSearchResult = "#search .v7W49e > div";
+
+    @Override
+    public String pageTitle() {
+        return null;
+    }
+
+    @Override
+    public boolean isLoaded() {
+        return false;
+    }
+
+    @Override
+    public void load() {
+
+    }
+
+    // Retrieve the number of search results
+    public int getResultsNumber() {
+        // Get the current page
+        Page currentPage = getDriver().currentPage();
+
+        // Wait for the search result selector to appear
+        currentPage.waitForSelector(selectorSearchResult, new Page.WaitForSelectorOptions().setTimeout(5000));
+
+        // Count the number of search result items
+        return currentPage.querySelectorAll(selectorSearchResult)
+                .size();
+    }
+}
+----
+
+=== Creating the Test Class
+
+The test class will encompass the entire testing routine for the Google search functionality.
+Let's walk through the steps to create the test class, named "GoogleSearchTest."
+
+=== GoogleSearchTest
+
+To begin, we'll create a new class within the "googleSearch" package, which we previously established.
+This class will reside under "src/test/java" and will be named "GoogleSearchTest."
+
+Since "GoogleSearchTest" is a test class, it should extend the _BaseTest_ class.
+Here is the code structure:
+
+[source,java]
+----
+package com.example.playwright.tests.googleSearch;
+
+import com.example.playwright.core.BaseTest;
+import com.example.playwright.pages.googleSearch.GoogleSearchPage;
+import com.example.playwright.pages.googleSearch.GoogleResultPage;
+import com.example.playwright.core.PageFactory;
+import org.junit.Test;
+
+public class GoogleSearchTest extends BaseTest {
+    // Initialize page instances
+    private final GoogleSearchPage googleSearchPage = PageFactory.getPageInstance(GoogleSearchPage.class);
+    private final GoogleResultPage googleResultPage = PageFactory.getPageInstance(GoogleResultPage.class);
+
+    @Override
+    public void tearDown() {
+        // Add any cleanup or finalization logic here
+    }
+
+    @Override
+    public void setUp() {
+        // Navigate to the Google Search page
+        googleSearchPage.load();
+
+        // Accept cookies, if Cookies Window displayed
+        if (googleSearchPage.isCookiesWindowDisplayed()) {
+            googleSearchPage.clickAcceptCookiesButton();
+        }
+    }
+
+    @Test
+    public void shouldFindAtLeastOneResult_test() {
+        // Enter "Test" and perform search
+        googleSearchPage.enterGoogleSearchInput("Test");
+
+        // Assert that at least one search result is found
+        assertTrue(googleResultPage.getResultsNumber() > 0, "No results found");
+    }
+}
+----
+
+* Class Setup: We initialize two instances of the page classes using the `PageFactory.getPageInstance()` method.
+This approach follows the Page Object Model design pattern, making it easy to work with pages.
+
+* `setUp()` Method: This method is executed before each test case.
+In this case, it navigates to the Google Search page using  `googleSearchPage.load()` and handles the acceptance of cookies (if the Cookies Window is displayed).
+
+* `shouldFindAtLeastOneResult_test()` Method: This is the actual test method.
+It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
+
+== Test Execution
+
+To run the test using JUnit in IntelliJ Idea, follow these steps:
+
+* Once you're within the "GoogleSearchTest" class, to run `shouldFindAtLeastOneResult_test()` test method, right-click on it.
+A context menu will appear.
+
+** Choose "Run": From the context menu, select the option labeled "Run 'shouldFindAtLeastOneResult_test'".
+This action triggers the execution of the test method you've selected.
+** Press Ctrl + Shift + F10
+
+image::images/pw-runTest-Junit.png[]
+
+* After the test execution completes, IntelliJ IDEA will display the test results in the "Run" tool window located at the bottom of the IDE interface.
+A green color indicator signifies that the test passed successfully, while a red color indicator indicates that the test encountered failures.
+
+image::images/pw-runTest-green.png[]
+
+This walkthrough should’ve provided you with a basic understanding of how the framework can be used to create test cases in Playwright.
+

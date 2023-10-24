@@ -1,0 +1,68 @@
+= The Internet Base Test
+
+== Introduction
+
+In this section, we'll create an example test class using the knowledge introduced in earlier sections of the framework documentation.
+The example test class follows MrChecker conventions and includes essential setup and teardown methods.
+These methods will be annotated with @Override tag.
+The primary goal of this example test class is to serve as a template for crafting new test classes within your MrChecker test suite.
+
+== Test Class
+
+Create Test class and override methods:
+
+* `public void setUp()` - executes before each test
+* `public void tearDown()` - executes after each test
+
+The @Override annotation is applied to these methods to explicitly indicate that they are meant to override methods with the same signatures defined in 'BaseTest'.
+
+[source,java]
+----
+import org.junit.After;
+import org.junit.Before;
+import static org.junit.Assert.assertTrue;
+
+public class TheInternetBaseTest extends BaseTest {
+
+    protected static TheInternetPage theInternetPage;
+
+    @Override
+    public void setUp() {
+        // Additional setup steps if needed
+    }
+
+    @Override
+    public void tearDown() {
+        logStep("Navigate back to The-Internet page");
+        BasePage.navigateBack();
+    }
+
+    protected static int step = 0;
+
+    /**
+     * Logs a test step including a step number calculated individually for each test.
+     *
+     * @param message Text message representing step description.
+     */
+    public static void logStep(String message) {
+        BFLogger.logInfo("Step " + ++step + ": " + message);
+    }
+
+    /**
+     * Performs operations required for verifying if The Internet Page is properly opened.
+     *
+     * @return TheInternetPage
+     */
+    public static void testShouldTheInternetPageBeOpened() {
+        logStep("Open the URL http://the-internet.herokuapp.com/");
+        theInternetPage = new TheInternetPage();
+        theInternetPage.load();
+
+        logStep("Verify if the URL http://the-internet.herokuapp.com/ is opened");
+        assertTrue("Unable to load The Internet Page", theInternetPage.isLoaded());
+    }
+}
+----
+
+This Test class can't be launched because it doesn't contain any @Test methods.
+It's been created only for supporting other Test classes.

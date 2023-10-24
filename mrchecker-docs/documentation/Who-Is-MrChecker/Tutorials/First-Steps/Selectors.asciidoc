@@ -1,0 +1,394 @@
+:toc: macro
+
+= Selectors
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== Introduction
+
+In the realm of test automation, selectors play a pivotal role in identifying and interacting with elements on a webpage.
+A selector is essentially a mechanism that instructs the automation framework on how to locate a specific element within the HTML structure of a web page.
+The accurate and efficient use of selectors is fundamental to building robust and maintainable automated test scripts.
+We can mainly make selectors in two ways, one being by 'CSS Selectors' and the other one by 'XPath'.
+
+== Creating selectors (By.cssSelector)
+
+Create a selector for every interactable element on a webpage using By type.
+Find elements and it's attributes using browser developer mode (F12).
+
+image::images/image2.png[]
+
+https://the-internet.herokuapp.com/
+
+Here's an example of creating selector for the first button on the list below 'Avaliable examples', the 'A/B Testing' button.
+The structure of website is presented as follows:
+
+----
+<style>
+  <h1 class="heading">Welcome to the-internet</h1>
+  <h2>Available Examples</h2>
+  <ul>
+    <li><a href='/abtest'>A/B Testing</a></li>
+  </ul>
+</style>
+----
+
+To select the anchor element within the list item that has an href attribute equal to '/abtest', you can use the following CSS selector:
+
+// CSS selector for the anchor element with a specific href attribute
+----
+By.cssSelector("ul li a[href='/abtest']")
+----
+
+This selector breaks down as follows:
+
+*ul:* Selects the unordered list. +
+*li:* Selects the list item within the unordered list. +
+*a:* Selects the anchor element within the list item. +
+*[href='/abtest']:* Selects the anchor element with an href attribute equal to '/abtest'. +
+
+This selector is designed to be specific, targeting the 'A/B Testing' link within the provided HTML structure.
+For more in-depth guide about CSS selectors, you can use designated guides, for example:
+https://www.w3schools.com/cssref/css_selectors.php
+
+== Other CSS Selector examples
+
+Below you can see list of other selectors for elements on https://the-internet.herokuapp.com/
+
+----
+private static final By abTestLinkSelector               = By.cssSelector("li >
+            a[href*='abtest']");
+    private static final By basicAuthLinkSelector            = By.cssSelector("li >
+            a[href*='basic_auth']");
+    private static final By brokenImageLinkSelector          = By.cssSelector("li >
+            a[href*='broken_images']");
+    private static final By challengingDomLinkSelector       = By.cssSelector("li >
+            a[href*='challenging_dom']");
+    private static final By checkboxesLinkSelector           = By.cssSelector("li >
+            a[href*='checkboxes']");
+    private static final By contextMenuLinkSelector          = By.cssSelector("li >
+            a[href*='context_menu']");
+    private static final By disappearingElementsLinkSelector = By.cssSelector("li >
+            a[href*='disappearing_elements']");
+    private static final By dragAndDropLinkSelector          = By.cssSelector("li >
+            a[href*='drag_and_drop']");
+    private static final By dropdownLinkSelector             = By.cssSelector("li >
+            a[href*='dropdown']");
+    private static final By dynamicContentLinkSelector       = By.cssSelector("li >
+            a[href*='dynamic_content']");
+    private static final By dynamicControlsLinkSelector      = By.cssSelector("li >
+            a[href*='dynamic_controls']");
+    private static final By dynamicLoadingLinkSelector       = By.cssSelector("li >
+            a[href*='dynamic_loading']");
+    private static final By exitIntentLinkSelector           = By.cssSelector("li >
+            a[href*='exit_intent']");
+    private static final By fileDownloadLinkSelector         = By.cssSelector("li >
+            a[href$='download']");
+    private static final By fileUploadLinkSelector           = By.cssSelector("li >
+           a[href*='upload']");
+    private static final By floatingMenuLinkSelector         = By.cssSelector("li >
+           a[href*='floating_menu']");
+    private static final By forgotPasswordLinkSelector       = By.cssSelector("li >
+           a[href*='forgot_password']");
+    private static final By formAuthenticationLinkSelector   = By.cssSelector("li >
+           a[href*='login']");
+    private static final By framesLinkSelector               = By.cssSelector("li >
+           a[href*='frames']");
+    private static final By geolocationLinkSelector          = By.cssSelector("li >
+           a[href*='geolocation']");
+    private static final By horizontalSliderLinkSelector     = By.cssSelector("li >
+           a[href*='horizontal_slider']");
+    private static final By hoversLinkSelector               = By.cssSelector("li >
+           a[href*='hovers']");
+    private static final By infiniteScrollLinkSelector       = By.cssSelector("li >
+           a[href*='infinite_scroll']");
+    private static final By javaScriptAlertLinkSelector      = By.cssSelector("li >
+           a[href*='javascript_alerts']");
+    private static final By javaScriptErrorLinkSelector      = By.cssSelector("li >
+           a[href*='javascript_error']");
+    private static final By jQueryUIMenuLinkSelector         = By.cssSelector("li >
+           a[href*='jqueryui/menu']");
+    private static final By keyPressesLinkSelector           = By.cssSelector("li >
+           a[href*='key_presses']");
+    private static final By largeAndDeepDOMLinkSelector      = By.cssSelector("li >
+           a[href*='large']");
+    private static final By multipleWindowsLinkSelector      = By.cssSelector("li >
+           a[href*='windows']");
+    private static final By nestedFramesLinkSelector         = By.cssSelector("li >
+           a[href*='nested_frames']");
+    private static final By notificationMessagesLinkSelector = By.cssSelector("li >
+           a[href*='notification_message']");
+    private static final By redirectLinkSelector             = By.cssSelector("li >
+           a[href*='redirector']");
+    private static final By secureFileDownloadLinkSelector   = By.cssSelector("li >
+           a[href*='download_secure']");
+    private static final By shiftingContentLinkSelector      = By.cssSelector("li >
+           a[href*='shifting_content']");
+    private static final By slowResourcesLinkSelector        = By.cssSelector("li >
+           a[href*='slow']");
+    private static final By sortableDataTablesLinkSelector   = By.cssSelector("li >
+           a[href*='tables']");
+    private static final By statusCodesLinkSelector          = By.cssSelector("li >
+           a[href*='status_codes']");
+    private static final By typosLinkSelector                = By.cssSelector("li >
+           a[href*='typos']");
+    private static final By wYSIWYGEditorLinkSelector        = By.cssSelector("li >
+           a[href*='tinymce']");
+----
+
+== Creating selectors (XPath)
+
+XPath is a query language used to navigate and select elements in XML and HTML documents.
+In the context of test automation, XPath plays a crucial role in identifying and interacting with elements on webpages.
+It can be used along with css Selectors.
+If the HTML structure is intricate, and CSS selectors become too convoluted or impractical, XPath can offer a more concise and expressive solution.
+In cases where elements lack clear identifiers like IDs or classes, XPath can be instrumental in creating specific and accurate selections.
+Once again we'll use the same example we used in case of CSS Selectors.
+
+----
+<style>
+  <h1 class="heading">Welcome to the-internet</h1>
+  <h2>Available Examples</h2>
+  <ul>
+    <li><a href='/abtest'>A/B Testing</a></li>
+  </ul>
+</style>
+----
+
+This time the selector will be created via XPath:
+
+----
+By.xpath("//ul/li/a[@href='/abtest']")
+----
+
+This XPath breakdown is as follows:
+
+*//ul:* Selects any unordered list anywhere in the HTML structure. +
+*/li:* Selects the list item directly under the unordered list. +
+*/a:* Selects the anchor element directly under the list item. +
+*[@href='/abtest']:* Filters for the anchor element with an href attribute equal to '/abtest'. +
+
+As with the CSS selector example, this XPath is designed to be specific and targets the 'A/B Testing' link within the provided HTML structure.
+For more in-depth guide about XPath, you can use designated guides, for example: https://www.zenrows.com/blog/xpath-web-scraping#conclusion
+
+== Implement methods
+
+To use these selectors effectively, implement methods in your Page Object class.
+The methods perform actions on page elements, such as clicking links to redirect to different subpages.
+Below are listed examples of such methods that interact with buttons on the website:
+
+----
+public ABtestPage clickABtestingLink() {
+        new Button(abTestLinkSelector).click();
+        return new ABtestPage();
+    }
+
+    public BasicAuthPage clickBasicAuthLink() {
+        getDriver().waitForPageLoaded();
+        WebElement link = getDriver().findElementDynamic(basicAuthLinkSelector);
+        JavascriptExecutor executor = (JavascriptExecutor) getDriver();
+        executor.executeScript("var elem=arguments[0]; setTimeout(function() {elem.click();}, 100)",
+                link);
+        return new BasicAuthPage();
+    }
+
+    public BrokenImagePage clickBrokenImageLink() {
+        new Button(brokenImageLinkSelector).click();
+        return new BrokenImagePage();
+    }
+
+    public ChallengingDomPage clickChallengingDomLink() {
+        new Button(challengingDomLinkSelector).click();
+        return new ChallengingDomPage();
+    }
+
+    public CheckboxesPage clickCheckboxesLink() {
+        new Button(checkboxesLinkSelector).click();
+        return new CheckboxesPage();
+    }
+
+    public ContextMenuPage clickContextMenuLink() {
+        new Button(contextMenuLinkSelector).click();
+        return new ContextMenuPage();
+    }
+
+    public DisappearingElementsPage clickDisappearingElementsLink() {
+        new Button(disappearingElementsLinkSelector).click();
+        return new DisappearingElementsPage();
+    }
+
+    public DragAndDropPage clickDragAndDropLink() {
+        new Button(dragAndDropLinkSelector).click();
+        return new DragAndDropPage();
+    }
+
+    public DropdownPage clickDropdownLink() {
+        new Button(dropdownLinkSelector).click();
+        return new DropdownPage();
+    }
+
+    public DynamicContentPage clickDynamicContentLink() {
+        new Button(dynamicContentLinkSelector).click();
+        return new DynamicContentPage();
+    }
+
+    public DynamicControlsPage clickDynamicControlsLink() {
+        new Button(dynamicControlsLinkSelector).click();
+        return new DynamicControlsPage();
+    }
+
+    public DynamicLoadingPage clickDynamicLoadingLink() {
+        new Button(dynamicLoadingLinkSelector).click();
+        return new DynamicLoadingPage();
+    }
+
+    public ExitIntentPage clickExitIntentLink() {
+        new Button(exitIntentLinkSelector).click();
+        return new ExitIntentPage();
+    }
+
+    public FileDownloadPage clickFileDownloadLink() {
+        new Button(fileDownloadLinkSelector).click();
+        return new FileDownloadPage();
+    }
+
+    public FileUploadPage clickFileUploadLink() {
+        new Button(fileUploadLinkSelector).click();
+        return new FileUploadPage();
+    }
+
+    public FloatingMenuPage clickFloatingMenuLink() {
+        new Button(floatingMenuLinkSelector).click();
+        return new FloatingMenuPage();
+    }
+
+    public ForgotPasswordPage clickForgotPasswordLink() {
+        new Button(forgotPasswordLinkSelector).click();
+        return new ForgotPasswordPage();
+    }
+
+    public FormAuthenticationPage clickFormAuthenticationLink() {
+        new Button(formAuthenticationLinkSelector).click();
+        return new FormAuthenticationPage();
+    }
+
+    public FramesPage clickFramesLink() {
+        new Button(framesLinkSelector).click();
+        return new FramesPage();
+    }
+
+    public GeolocationPage clickGeolocationLink() {
+        new Button(geolocationLinkSelector).click();
+        return new GeolocationPage();
+    }
+
+    public HorizontalSliderPage clickHorizontalSliderLink() {
+        new Button(horizontalSliderLinkSelector).click();
+        return new HorizontalSliderPage();
+    }
+
+    public HoversPage clickHoversLink() {
+        new Button(hoversLinkSelector).click();
+        return new HoversPage();
+    }
+
+    public InfiniteScrollPage clickInfiniteScrollLink() {
+        new Button(infiniteScrollLinkSelector).click();
+        return new InfiniteScrollPage();
+    }
+
+    public JavaScriptAlertsPage clickJavaScriptAlertLink() {
+        new Button(javaScriptAlertLinkSelector).click();
+        return new JavaScriptAlertsPage();
+    }
+
+    public JavaScriptErrorPage clickJavaScriptErrorLink() {
+        new Button(javaScriptErrorLinkSelector).click();
+        return new JavaScriptErrorPage();
+    }
+
+    public JQueryUIMenuPage clickJQueryUIMenuLink() {
+        new Button(jQueryUIMenuLinkSelector).click();
+        return new JQueryUIMenuPage();
+    }
+
+    public KeyPressesPage clickKeyPressesLink() {
+        new Button(keyPressesLinkSelector).click();
+        return new KeyPressesPage();
+    }
+
+    public LargeAndDeepDOMPage clickLargeAndDeepDOMLink() {
+        new Button(largeAndDeepDOMLinkSelector).click();
+        return new LargeAndDeepDOMPage();
+    }
+
+    public MultipleWindowsPage clickmultipleWindowsLink() {
+        new Button(multipleWindowsLinkSelector).click();
+        return new MultipleWindowsPage();
+    }
+
+    public NestedFramesPage clickNestedFramesLink() {
+        new Button(nestedFramesLinkSelector).click();
+        return new NestedFramesPage();
+    }
+
+    public NotificationMessagesPage clickNotificationMessagesLink() {
+        new Button(notificationMessagesLinkSelector).click();
+        return new NotificationMessagesPage();
+    }
+
+    public RedirectLinkPage clickRedirectLink() {
+        new Button(redirectLinkSelector).click();
+        return new RedirectLinkPage();
+    }
+
+    public SecureFileDownloadPage clickSecureFileDownloadLink() {
+        new Button(secureFileDownloadLinkSelector).click();
+        return new SecureFileDownloadPage();
+    }
+
+    public ShiftingContentPage clickShiftingContentLink() {
+        new Button(shiftingContentLinkSelector).click();
+        return new ShiftingContentPage();
+    }
+
+    public SlowResourcesPage clickSlowResourcesLink() {
+        new Button(slowResourcesLinkSelector).click();
+        return new SlowResourcesPage();
+    }
+
+    public SortableDataTablesPage clickSortableDataTablesLink() {
+        new Button(sortableDataTablesLinkSelector).click();
+        return new SortableDataTablesPage();
+    }
+
+    public StatusCodesHomePage clickStatusCodesLink() {
+        new Button(statusCodesLinkSelector).click();
+        return new StatusCodesHomePage();
+    }
+
+    public TyposPage clickTyposLink() {
+        new Button(typosLinkSelector).click();
+        return new TyposPage();
+    }
+
+    public WYSIWYGEditorPage clickWYSIWYGEditorLink() {
+        new Button(wYSIWYGEditorLinkSelector).click();
+        return new WYSIWYGEditorPage();
+    }
+----
+
+These methods create a Button object for every link on The Internet Page and click it to redirect on a different subpage. 

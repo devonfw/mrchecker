@@ -26,7 +26,7 @@ image::images/image080.png[]
 
 * *Development* or *Dev* testing is performed by the software developer or engineer during the construction phase of the software development life-cycle. Rather than replace traditional QA focuses, it augments it. Development testing aims to eliminate construction errors before code is promoted to QA; this strategy is intended to increase the quality of the resulting software as well as the efficiency of the overall development and QA process. 
 
-* *Prod* If the customer accepts the product, it is deployed to a *production* environment, making it available to all users of the system.
+* *Prod* if the customer accepts the product, it is deployed to a *production* environment, making it available to all users of the system.
 
 image::images/image051.png[]
 
@@ -46,7 +46,7 @@ image::images/image081.png[]
 
 == External file with variable values 
 
-Dynamic variable values are stored under  *mrchecker-app-under-test\src\resources\enviroments\environments.csv*. 
+Dynamic variable values are stored under  *mrchecker-app-under-test\src\resources\environments\environments.csv*. 
 
 **NOTE:** As environments.csv is a comma-separated file, please be careful while editing and then save it under Excel. 
 
@@ -56,9 +56,9 @@ image::images/image082.png[]
 
 Some types of data you might want to store as environment settings are sensitive in nature (e.g. passwords). You might not want to store them (at least not in their plaintext form) in your repository. To be able to encrypt sensitive data you need to do following:
 
-1. Create a secret (long, random chain of characters) and store it under *mrchecker-app-under-test\src\resources\secretData.txt*. Example: `LhwbTm9V3FUbBO5Tt5PiTUEQrXGgWrDLCMthnzLKNy1zA5FVTFiTdHRQAyPRIGXmsAjPUPlJSoSLeSBM`
-2. Exclude the file from being checked into the git repository by adding it to *git.ignore*. You will need to pass the file over a different channel among your teammates.
-3. Encrypt the values before putting them into the *environments.csv* file by creating following script (put the script where your jasypt library resides, e.g. *C:\MrChecker_Test_Framework\m2\repository\org\jasypt\jasypt\1.9.2*):
+* Create a secret (long, random chain of characters) and store it under *mrchecker-app-under-test\src\resources\secretData. Example: `LhwbTm9V3FUbBO5Tt5PiTUEQrXGgWrDLCMthnzLKNy1zA5FVTFiTdHRQAyPRIGXmsAjPUPlJSoSLeSBM`
+* Exclude the file from being checked into the git repository by adding it to *git.ignore*. You will need to pass the file over a different channel among your teammates.
+* Encrypt the values before putting them into the *environments.csv* file by creating following script (put the script where your jasypt library resides, e.g. *C:\MrChecker_Test_Framework\m2\repository\org\jasypt\jasypt\1.9.2*):
 
 ----
 @ECHO OFF
@@ -81,30 +81,15 @@ set JAVA_EXECUTABLE="%JAVA_HOME%\bin\java"
 :execute
 %JAVA_EXECUTABLE% -classpath %EXEC_CLASSPATH% %EXECUTABLE_CLASS% %SCRIPT_NAME% %*
 ----
-4. Encrypt the values by calling
+* Encrypt the values by calling
 
 ----
 .\encrypt.bat input=someinput password=secret
-
-----ENVIRONMENT-----------------
-
-Runtime: Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 25.111-b14
-
-
-
-----ARGUMENTS-------------------
-
-input: someinput
-password: secret
-
-
-
-----OUTPUT----------------------
-
-JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD
 ----
 
-5. Mark the value as encrypted by adding a prefix 'ENC(' and suffix ')' like: `ENC(JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD)`
+image::images/image095.png[]
+
+* Mark the value as encrypted by adding a prefix 'ENC(' and suffix ')' like: `ENC(JN3nOFol2GMZoUxR5z2wI2qdipcNH1UD)`
 
 image::images/image083.png[]
 
@@ -128,7 +113,6 @@ Command Line:
 mvn test site -Dgroups=RegistryPageTestTag -Denv=DEV
 ----
 
-== Eclipse
 
 image::images/image085.png[]
 image::images/image086_new.png[]

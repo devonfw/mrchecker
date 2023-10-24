@@ -14,18 +14,19 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-
 = Data driven approach
 
-*What is it?*
+Running tests based on hardcoded data might lead to false-positive outcomes and poor test coverage.
 
-Data driven approach is a way of making decisions based on collected data. Using this strategy makes it easier to stay objective and get measureable outcomes.
+*Data driven approach* is the way to effectively use *External data* in order to improve this.
+
+Data driven approach is also a way of making decisions based on collected data. Using this strategy makes it easier to stay objective and get measureable outcomes.
 
 In this module we'll show a few methods how to use data driven approach in your project.
 
 = Internal Data driven approach
 
-Data as *part* of *test case*
+In this approach data is used as *part* of *test case*.
 
 The different means to pass in parameters are shown below.
 
@@ -45,7 +46,7 @@ Static methods are used to provide the parameters.
 @MethodSource("arrayStream")
 ----
 
-In the first case the arguments are directly mapped to the test method parameters. In the second case the array is passed as the argument. 
+In the first case the arguments are directly mapped to the test method parameters. In the second case the array is passed as the argument.
 
 image::images/image30_new.png[]
 
@@ -90,7 +91,9 @@ A separate class can be used to define parameters for the test. This test must c
 
 = External Data Driven
 
-Data as *external file injected* in *test case*
+In this approach data is used as *external file injected* in *test case*
+
+The different types of external files and how to handle them are shown below.
 
 Tests use the annotation @CsvFileSource to inject CSVs file.
 

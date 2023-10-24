@@ -1,232 +1,249 @@
+:toc: macro
+
+= Tutorial: Handling JavaScript Alerts
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== What you will learn
+
+In this tutorial, you will learn how to handle JavaScript alerts on a web page.
+We will demonstrate how to interact with different types of JavaScript alerts (confirm, prompt) and verify the messages displayed in the alerts.
+
 image::images/example43.png[]
 
-This case shows how to test pop-up JS alerts. 
-
-After clicking one of the buttons, an adequate alert should appear.
+After clicking one of the buttons, an appropriate alert should appear.
 
 image::images/example44.png[]
 
-Performed action will be displayed under "Result" label. 
-
-In developer mode, you can view JavaScript which creates alerts.
+The performed action will be displayed under the "Result" label.
+In developer mode, you can view the JavaScript code responsible for creating alerts.
 
 image::images/example45.png[]
 
-===== Page Class
+== Page Class
 
+[source,java]
 ----
 public class JavaScriptAlertsPage extends BasePage {
+	private final By	selectorAlertButton		= By.cssSelector("button[onclick*=jsAlert]");
+	private final By	selectorConfirmButton	= By.cssSelector("button[onclick*=jsConfirm]");
+	private final By	selectorPromptButton	= By.cssSelector("button[onclick*=jsPrompt]");
+	private final By	resultLabelSelector		= By.cssSelector("p#result");
 
-    private static final By selectorAlertButton   = By.cssSelector("button[onclick*=jsAlert]");
-    private static final By selectorConfirmButton = By.cssSelector("button[onclick*=jsConfirm]");
-    private static final By selectorPromptButton  = By.cssSelector("button[onclick*=jsPrompt]");
-    private static final By resultLabelSelector   = By.cssSelector("p#result");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'JavaScript Alerts' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'JavaScript Alerts' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.JAVASCRIPT_ALERTS.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Clicks 'JS alert' button.
+	 */
+	public void clickAlertButton() {
+		new Button(selectorAlertButton).click();
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.alertIsPresent());
+	}
 
-    /**
-     * Clicks 'JS alert' button.
-     */
-    public void clickAlertButton() {
-        new Button(selectorAlertButton).click();
-        WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-        wait.until(ExpectedConditions.alertIsPresent());
-    }
+	/**
+	 * Clicks 'JS confirm' button.
+	 */
+	public void clickConfirmButton() {
+		new Button(selectorConfirmButton).click();
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.alertIsPresent());
+	}
 
-    /**
-     * Clicks 'JS confirm' button.
-     */
-    public void clickConfirmButton() {
-        new Button(selectorConfirmButton).click();
-        WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-        wait.until(ExpectedConditions.alertIsPresent());
-    }
+	/**
+	 * Clicks 'JS prompt' button.
+	 */
+	public void clickPromptButton() {
+		new Button(selectorPromptButton).click();
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.alertIsPresent());
+	}
 
-    /**
-     * Clicks 'JS prompt' button.
-     */
-    public void clickPromptButton() {
-        new Button(selectorPromptButton).click();
-        WebDriverWait wait = new WebDriverWait(getDriver(), 2);
-        wait.until(ExpectedConditions.alertIsPresent());
-    }
+	/**
+	 * Returns message displayed by popup.
+	 *
+	 * @return String object representing message displayed by popup
+	 */
+	public String readResultLabel() {
+		return new LabelElement(resultLabelSelector).getText();
+	}
 
-    /**
-     * Returns message displayed by popup.
-     *
-     * @return String object representing message displayed by popup
-     */
-    public String readResultLabel() {
-        return new LabelElement(resultLabelSelector).getText();
-    }
+	/**
+	 * Clicks alert's 'OK' button.
+	 */
+	public void clickAlertAccept() {
+		getDriver().switchTo()
+				.alert()
+				.accept();
+	}
 
-    /**
-     * Clicks alert's 'OK' button.
-     */
-    public void clickAlertAccept() {
-        getDriver().switchTo()
-                .alert()
-                .accept();
-    }
+	/**
+	 * Clicks alert's 'Cancel' button.
+	 */
+	public void clickAlertDismiss() {
+		getDriver().switchTo()
+				.alert()
+				.dismiss();
+	}
 
-    /**
-     * Clicks alert's 'Cancel' button.
-     */
-    public void clickAlertDismiss() {
-        getDriver().switchTo()
-                .alert()
-                .dismiss();
-    }
-
-    /**
-     * Types text into alert's text field.
-     *
-     * @param text String object sent into alert's text field
-     */
-    public void writeTextInAlert(String text) {
-        getDriver().switchTo()
-                .alert()
-                .sendKeys(text);
-    }
+	/**
+	 * Types text into alert's text field.
+	 *
+	 * @param text
+	 *            String object sent into alert's text field
+	 */
+	public void writeTextInAlert(String text) {
+		getDriver().switchTo()
+				.alert()
+				.sendKeys(text);
+	}
 }
 ----
 
-====== alert()
+The `JavaScriptAlertsPage` class is responsible for interacting with the web page.
+It includes methods to check if the page is loaded, load the page, and perform actions related to JavaScript alerts.
+You can use this class to handle alerts, such as accepting, dismissing, and providing input.
+
+=== alert()
 
 Using `switchTo()` method you can change processed content. `switchTo().alert()` allows performing actions on appearing alerts such as accepting, dismissing or entering keys.
 
-===== Test Class
+== Test Class
 
-Before all tests: Open The Internet Main Page and go to JavaScript Alert page 
+* Before each test: Open JavaScript Alert subpage on The Internet Main Page
 
-1. Click JS Alert button, accept alert and check if Result message returns performed an action 
-2. Click JS Confirm button, accept alert and check if Result message returns performed action 
-3. Click JS Confirm button, dismiss alert and check if Result message returns performed action 
-4. Click JS Prompt button, write random text, accept alert and check if Result message returns performed action with written text 
+1. Click JS Alert button, accept alert and check if Result message returns performed an action
+2. Click JS Confirm button, accept alert and check if Result message returns performed action
+3. Click JS Confirm button, dismiss alert and check if Result message returns performed action
+4. Click JS Prompt button, write random text, accept alert and check if Result message returns performed action with written text
 5. Click JS Prompt button, dismiss the alert and check if Result message returns performed action
 
-After each case: Refresh Page 
-
-After all tests:  Navigate back to The Internet Main Page
-
+[source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class JavaScriptAlertsTest extends TheInternetBaseTest {
+public class JavaScriptAlertsTest extends BaseTest {
+	private final JavaScriptAlertsPage javaScriptAlertsPage = PageFactory.getPageInstance(JavaScriptAlertsPage.class);
 
-    private static JavaScriptAlertsPage javaScriptAlertsPage;
+	private final String	jsAlertConfirmMessage	= "You successfully clicked an alert";
+	private final String	jsConfirmConfirmMessage	= "You clicked: Ok";
+	private final String	jsConfirmCancelMessage	= "You clicked: Cancel";
+	private final String	jsPromptConfirmMessage	= "You entered: ";
+	private final String	jsPromptCancelMessage	= "You entered: null";
+	private final String	randomString			= "random";
 
-    private final String jsAlertCofirmMessage    = "You successfuly clicked an alert";
-    private final String jsConfirmConfirmMessage = "You clicked: Ok";
-    private final String jsConfirmCancelMessage  = "You clicked: Cancel";
-    private final String jsPromptConfirmMessage  = "You entered: ";
-    private final String jsPromptCancelMessage   = "You entered: null";
-    private final String randomString            = "random";
+	@Override
+	public void setUp() {
+		javaScriptAlertsPage.load();
+		BFLogger.logInfo("Verify if JavaScript Alerts page is opened");
+		assertTrue(javaScriptAlertsPage.isLoaded(), "Unable to open JavaScript Alerts page");
+	}
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        javaScriptAlertsPage = shouldTheInternetPageBeOpened().clickJavaScriptAlertLink();
+	@Test
+	public void shouldJSAlertCloseWithProperMessageAfterPressOkButton() {
+		BFLogger.logInfo("Click Alert button");
+		javaScriptAlertsPage.clickAlertButton();
 
-        logStep("Verify if JavaScript Alerts page is opened");
-        assertTrue("Unable to open JavaScript Alerts page", javaScriptAlertsPage.isLoaded());
-    }
+		BFLogger.logInfo("Click 'OK' button on alert");
+		javaScriptAlertsPage.clickAlertAccept();
 
-    @AfterClass
-    public static void tearDownAfterClass() {
-        logStep("Navigate back to The-Internet page");
-        BasePage.navigateBack();
-    }
+		BFLogger.logInfo("Verify returned message");
+		assertEquals(jsAlertConfirmMessage, javaScriptAlertsPage.readResultLabel(),
+				"Incorrect message returned after click");
+	}
 
-    @Test
-    public void shouldJSAlertCloseWithProperMessageAfterPressOkButton() {
-        logStep("Click Alert button");
-        javaScriptAlertsPage.clickAlertButton();
+	@Test
+	public void shouldJSConfirmCloseWithProperMessageAfterPressOkButton() {
+		BFLogger.logInfo("Click Confirm button");
+		javaScriptAlertsPage.clickConfirmButton();
 
-        logStep("Click 'OK' button on alert");
-        javaScriptAlertsPage.clickAlertAccept();
+		BFLogger.logInfo("Click 'OK' button on alert");
+		javaScriptAlertsPage.clickAlertAccept();
 
-        logStep("Verify returned message");
-        assertEquals("Incorrect message returned after click",
-                jsAlertCofirmMessage, javaScriptAlertsPage.readResultLabel());
-    }
+		BFLogger.logInfo("Verify returned message");
+		assertEquals(jsConfirmConfirmMessage, javaScriptAlertsPage.readResultLabel(),
+				"Incorrect message returned after click");
+	}
 
-    @Test
-    public void shouldJSConfirmCloseWithProperMessageAfterPressOkButton() {
-        logStep("Click Confirm button");
-        javaScriptAlertsPage.clickConfirmButton();
+	@Test
+	public void shouldJSConfirmCloseWithProperMessageAfterPressCancelButton() {
+		BFLogger.logInfo("Click Confirm button");
+		javaScriptAlertsPage.clickConfirmButton();
 
-        logStep("Click 'OK' button on alert");
-        javaScriptAlertsPage.clickAlertAccept();
+		BFLogger.logInfo("Click 'Cancel' button on alert");
+		javaScriptAlertsPage.clickAlertDismiss();
 
-        logStep("Verify returned message");
-        assertEquals("Incorrect message returned after click",
-                jsConfirmConfirmMessage, javaScriptAlertsPage.readResultLabel());
-    }
+		BFLogger.logInfo("Verify returned message");
+		assertEquals(jsConfirmCancelMessage, javaScriptAlertsPage.readResultLabel(),
+				"Incorrect message returned after click");
+	}
 
-    @Test
-    public void shouldJSConfirmCloseWithProperMessageAfterPressCancelButton() {
-        logStep("Click Confirm button");
-        javaScriptAlertsPage.clickConfirmButton();
+	@Test
+	public void shouldJSPromptCloseWithProperMessageAfterPressOKButton() {
+		BFLogger.logInfo("Click Prompt button");
+		javaScriptAlertsPage.clickPromptButton();
 
-        logStep("Click 'Cancel' button on alert");
-        javaScriptAlertsPage.clickAlertDismiss();
+		BFLogger.logInfo("Insert text to alert: " + randomString);
+		javaScriptAlertsPage.writeTextInAlert(randomString);
 
-        logStep("Verify returned message");
-        assertEquals("Incorrect message returned after click",
-                jsConfirmCancelMessage, javaScriptAlertsPage.readResultLabel());
-    }
+		BFLogger.logInfo("Click 'OK' button on alert");
+		javaScriptAlertsPage.clickAlertAccept();
 
-    @Test
-    public void shouldJSPromptCloseWithProperMessageAfterPressOKButton() {
-        logStep("Click Prompt button");
-        javaScriptAlertsPage.clickPromptButton();
+		BFLogger.logInfo("Verify returned message");
+		assertEquals(jsPromptConfirmMessage + randomString, javaScriptAlertsPage.readResultLabel(),
+				"Incorrect message returned after click");
+	}
 
-        logStep("Insert text to alert: " + randomString);
-        javaScriptAlertsPage.writeTextInAlert(randomString);
+	@Test
+	public void shouldJSPromptCloseWithProperMessageAfterPressCancelButton() {
+		BFLogger.logInfo("Click Prompt button");
+		javaScriptAlertsPage.clickPromptButton();
 
-        logStep("Click 'OK' button on alert");
-        javaScriptAlertsPage.clickAlertAccept();
+		BFLogger.logInfo("Click 'Cancel' button on alert");
+		javaScriptAlertsPage.clickAlertDismiss();
 
-        logStep("Verify returned message");
-        assertEquals("Incorrect message returned after click",
-                jsPromptConfirmMessage + randomString, javaScriptAlertsPage.readResultLabel());
-    }
-
-    @Test
-    public void shouldJSPromptCloseWithProperMessageAfterPressCancelButton() {
-        logStep("Click Prompt button");
-        javaScriptAlertsPage.clickPromptButton();
-
-        logStep("Click 'Cancel' button on alert");
-        javaScriptAlertsPage.clickAlertDismiss();
-
-        logStep("Verify returned message");
-        assertEquals("Incorrect message returned after click",
-                jsPromptCancelMessage, javaScriptAlertsPage.readResultLabel());
-    }
-
-    @Override
-    public void tearDown() {
-        logStep("Refresh JavaScriptAlersPage");
-        javaScriptAlertsPage.refreshPage();
-    }
-
+		BFLogger.logInfo("Verify returned message");
+		assertEquals(jsPromptCancelMessage, javaScriptAlertsPage.readResultLabel(),
+				"Incorrect message returned after click");
+	}
 }
 ----
+
+The `JavaScriptAlertsTest` class defines the test steps.
+It opens the JavaScript Alerts page, interacts with various JavaScript alerts, and checks the displayed Result message.
+
+In the test methods, we perform actions on the alerts and verify the messages displayed in the Result section.
+
+== Conclusion
+
+In this tutorial, you have learned how to handle JavaScript alerts on a web page.
+You now have the skills to interact with different types of alerts and verify the messages they display.
