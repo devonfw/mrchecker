@@ -10,7 +10,7 @@ include::Who-Is-MrChecker/Test-Stages.asciidoc[leveloffset=3]
 
 == Test Framework Modules
 
-In this section, it is possible to find all the information regarding the main modules of MrChecker: 
+In this section, it is possible to find all the information regarding the main modules of MrChecker:
 
 === Core Test Module
 
@@ -30,11 +30,31 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-indepen
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=4]
 
+=== Playwright Module
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-What-is-Playwright.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Construction-of-Framework-Test-Class.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Building-basic-Playwright-Test.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Method-Action-Naming-Convention.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Selectors.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Run-Configurations.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Best-Practises.asciidoc[leveloffset=4]
+
 === Selenium Module
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[leveloffset=4]
-
-=== Selenium Structure
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=4]
 
@@ -43,8 +63,6 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-We
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=4]
-
-=== Framework Features
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=4]
 
@@ -59,6 +77,10 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-d
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-Best-Practices.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Method-action-naming-convention.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Building-basic-Selenium-Test.asciidoc[leveloffset=4]
 
 === Web API Module
 
@@ -103,22 +125,27 @@ include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Jenkins-Plug
 include::Who-Is-MrChecker/Test-Framework-Modules/DevOPS-Test-Module-Docker-commands.asciidoc[leveloffset=4]
 
 == MrChecker download
+
 === Windows
 
 include::MrChecker-download/Windows/Advanced-installation.asciidoc[leveloffset=4]
 
 === Mac
+
 include::MrChecker-download/Mac.asciidoc[leveloffset=4]
 
 === My Thai Star
+
 include::MrChecker-download/MyThaiStar.asciidoc[leveloffset=4]
+
 == Tutorials
 
 In order to learn more about MrChecker structure, start from Project Organisation section and then check out our fantastic tutorials:
 
 This tutorial will guide you through the series of test which perform basic actions on webpages using MrChecker.
 
-Make sure you already have MrChecker Test Framework installed on your PC. How to install?
+Make sure you already have MrChecker Test Framework installed on your PC.
+How to install?
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
@@ -170,7 +197,7 @@ include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-20-Sorta
 
 include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-21-Status-Codes.asciidoc[leveloffset=5]
 
-==== First Steps
+=== First Steps
 
 include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Page-object.asciidoc[leveloffset=5]
 
@@ -186,7 +213,7 @@ include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/BFLogger.asciido
 
 === E2E Tutorials
 
-include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/Tutorial1[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/Tutorial1.asciidoc[leveloffset=4]
 
 == Migration from JUnit4 to JUnit5
 
@@ -216,4 +243,4 @@ include::FAQ/How-to/Start-a-browser.asciidoc[leveloffset=4]
 
 include::FAQ/Installation-problems/Chromedriver-version.asciidoc[leveloffset=4]
 
-include::FAQ/Installation-problems/My-browser-opens-up[leveloffset=4]
+include::FAQ/Installation-problems/My-browser-opens-up.asciidoc[leveloffset=4]
