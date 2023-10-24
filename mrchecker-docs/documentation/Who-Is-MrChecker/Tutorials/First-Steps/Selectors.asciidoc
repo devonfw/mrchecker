@@ -1,10 +1,72 @@
-== Selectors
+:toc: macro
 
-=== Create selectors
+= Selectors
 
-Create a selector for every interactable element on a webpage using By type. Find elements and it's attributes using browser developer mode (F12).
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== Introduction
+
+In the realm of test automation, selectors play a pivotal role in identifying and interacting with elements on a webpage.
+A selector is essentially a mechanism that instructs the automation framework on how to locate a specific element within the HTML structure of a web page.
+The accurate and efficient use of selectors is fundamental to building robust and maintainable automated test scripts.
+We can mainly make selectors in two ways, one being by 'CSS Selectors' and the other one by 'XPath'.
+
+== Creating selectors (By.cssSelector)
+
+Create a selector for every interactable element on a webpage using By type.
+Find elements and it's attributes using browser developer mode (F12).
 
 image::images/image2.png[]
+
+https://the-internet.herokuapp.com/
+
+Here's an example of creating selector for the first button on the list below 'Avaliable examples', the 'A/B Testing' button.
+The structure of website is presented as follows:
+
+----
+<style>
+  <h1 class="heading">Welcome to the-internet</h1>
+  <h2>Available Examples</h2>
+  <ul>
+    <li><a href='/abtest'>A/B Testing</a></li>
+  </ul>
+</style>
+----
+
+To select the anchor element within the list item that has an href attribute equal to '/abtest', you can use the following CSS selector:
+
+// CSS selector for the anchor element with a specific href attribute
+----
+By.cssSelector("ul li a[href='/abtest']")
+----
+
+This selector breaks down as follows:
+
+*ul:* Selects the unordered list. +
+*li:* Selects the list item within the unordered list. +
+*a:* Selects the anchor element within the list item. +
+*[href='/abtest']:* Selects the anchor element with an href attribute equal to '/abtest'. +
+
+This selector is designed to be specific, targeting the 'A/B Testing' link within the provided HTML structure.
+For more in-depth guide about CSS selectors, you can use designated guides, for example:
+https://www.w3schools.com/cssref/css_selectors.php
+
+== Other CSS Selector examples
+
+Below you can see list of other selectors for elements on https://the-internet.herokuapp.com/
 
 ----
 private static final By abTestLinkSelector               = By.cssSelector("li >
@@ -87,9 +149,46 @@ private static final By abTestLinkSelector               = By.cssSelector("li >
            a[href*='tinymce']");
 ----
 
-=== Implement methods
+== Creating selectors (XPath)
 
-Then use these selectors to create Objects and perform actions on page elements: 
+XPath is a query language used to navigate and select elements in XML and HTML documents.
+In the context of test automation, XPath plays a crucial role in identifying and interacting with elements on webpages.
+It can be used along with css Selectors.
+If the HTML structure is intricate, and CSS selectors become too convoluted or impractical, XPath can offer a more concise and expressive solution.
+In cases where elements lack clear identifiers like IDs or classes, XPath can be instrumental in creating specific and accurate selections.
+Once again we'll use the same example we used in case of CSS Selectors.
+
+----
+<style>
+  <h1 class="heading">Welcome to the-internet</h1>
+  <h2>Available Examples</h2>
+  <ul>
+    <li><a href='/abtest'>A/B Testing</a></li>
+  </ul>
+</style>
+----
+
+This time the selector will be created via XPath:
+
+----
+By.xpath("//ul/li/a[@href='/abtest']")
+----
+
+This XPath breakdown is as follows:
+
+*//ul:* Selects any unordered list anywhere in the HTML structure. +
+*/li:* Selects the list item directly under the unordered list. +
+*/a:* Selects the anchor element directly under the list item. +
+*[@href='/abtest']:* Filters for the anchor element with an href attribute equal to '/abtest'. +
+
+As with the CSS selector example, this XPath is designed to be specific and targets the 'A/B Testing' link within the provided HTML structure.
+For more in-depth guide about XPath, you can use designated guides, for example: https://www.zenrows.com/blog/xpath-web-scraping#conclusion
+
+== Implement methods
+
+To use these selectors effectively, implement methods in your Page Object class.
+The methods perform actions on page elements, such as clicking links to redirect to different subpages.
+Below are listed examples of such methods that interact with buttons on the website:
 
 ----
 public ABtestPage clickABtestingLink() {
