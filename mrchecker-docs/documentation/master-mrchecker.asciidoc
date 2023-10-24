@@ -199,17 +199,17 @@ include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/Basic-Tests/Example-21-Statu
 
 === First Steps
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Page-object.asciidoc[leveloffset=5]
+include::Who-Is-MrChecker/Tutorials/First-Steps/Page-object.asciidoc[leveloffset=5]
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Environment-variables.asciidoc[leveloffset=5]
+include::Who-Is-MrChecker/Tutorials/First-Steps/Environment-variables.asciidoc[leveloffset=5]
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Selectors.asciidoc[leveloffset=5]
+include::Who-Is-MrChecker/Tutorials/First-Steps/Selectors.asciidoc[leveloffset=5]
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/Elements-Types.asciidoc[leveloffset=5]
+include::Who-Is-MrChecker/Tutorials/First-Steps/Elements-Types.asciidoc[leveloffset=5]
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/The-Internet-Base-Test.asciidoc[leveloffset=5]
+include::Who-Is-MrChecker/Tutorials/First-Steps/The-Internet-Base-Test.asciidoc[leveloffset=5]
 
-include::Who-Is-MrChecker/Tutorials/Basic-Tutorials/First-Steps/BFLogger.asciidoc[leveloffset=5]
+include::Who-Is-MrChecker/Tutorials/First-Steps/BFLogger.asciidoc[leveloffset=5]
 
 === E2E Tutorials
 

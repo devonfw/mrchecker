@@ -1,0 +1,78 @@
+:toc: macro
+
+= Environment Variables
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== Introduction
+
+Rather than hardcoding static URLs in your Page classes, adopting dynamic variables enhances flexibility and adaptability to changes in the application's environment.
+This section introduces the practice of utilizing external environment variables, stored in a structured CSV file, to dynamically configure key parameters in your automation framework.
+This approach ensurers easier maintenance, as if there are changes in website URLs, you'll have to make a change only in one place instead of all the Page classes.
+
+In Page classes, instead of hardcoding the main URL, it is common practice to use dynamic variables.
+Instead of _hardcoded_ main URL variable, you build your Page class with a dynamic variable.
+
+== How to create / update system environment
+
+Dynamic variable values are stored under path _\src\resources\enviroments\environments.csv_.
+
+image::images/image1.png[]
+
+By default, the environment takes value from DEV column.
+
+=== Access to the external file variables
+
+Create a class _GetEnvironmentParam_ to map values from an external file with Page class:
+
+[source,java]
+----
+public enum GetEnvironmentParam {
+
+    // Name if enum must be in line with cell name in /src/resources/environments/environment.csv
+    WWW_FONT_URL,
+    TOOLS_QA,
+    WEB_SERVICE,
+    THE_INTERNET_MAIN_PAGE,
+    ELEMENTAL_SELENIUM_PAGE;
+
+    public String getValue() {
+
+        if (null == BaseTest.getEnvironmentService()) {
+            throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
+        }
+
+        return BaseTest.getEnvironmentService()
+                .getValue(this.name());
+
+    }
+
+    @Override
+    public String toString() {
+
+        return this.getValue();
+
+    }
+}
+----
+
+When you add a new row to _environments.csv_ also add a new variable to _GetEnvironmentParam_ class.
+
+In Page class access environmental variable using this method:
+
+----
+GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue(); 
+----

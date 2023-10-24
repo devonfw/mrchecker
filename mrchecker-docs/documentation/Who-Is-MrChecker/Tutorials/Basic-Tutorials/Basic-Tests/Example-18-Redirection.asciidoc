@@ -1,116 +1,144 @@
+:toc: macro
+
+= Tutorial: Handling Redirecting Links
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+
+This simple example demonstrates how to handle redirecting links.
+When you click on the link, you will be redirected to the Status Codes Page.
+
 image::images/example50.png[]
-
-This simple case shows how to approach redirecting links.
-
-After clicking on the link, you will be redirected to Status Codes Page.
 
 image::images/example51.png[]
 
-===== Page Class
+== What You Will Learn
 
-====== Redirect Link Page
+In this tutorial, you will learn:
 
+* How to interact with web pages that contain redirecting links.
+* How to create page classes to encapsulate page-specific functionality.
+* How to verify if the redirected page has loaded successfully.
+
+== Page Class
+
+=== Redirect Link Page
+
+[source,java]
 ----
 public class RedirectLinkPage extends BasePage {
+	private final By selectorRedirectHere = By.cssSelector("a#redirect");
 
-    private static final By selectorRedirectHere = By.cssSelector("a#redirect");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.REDIRECT.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.REDIRECT.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Redirection' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.REDIRECT.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Redirection' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.REDIRECT.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
-
-    /**
-     * Clicks 'Redirect here' link.
-     *
-     * @return StatusCodesHomePage object
-     */
-    public StatusCodesHomePage clickRedirectHereLink() {
-        new Button(selectorRedirectHere).click();
-        return new StatusCodesHomePage();
-    }
+	/**
+	 * Clicks 'Redirect here' link.
+	 */
+	public void clickRedirectHereLink() {
+		new Button(selectorRedirectHere).click();
+	}
 }
 ----
 
-====== Status Codes Page
+The `RedirectLinkPage` class is responsible for interacting with the web page.
+It includes methods to check if the page is loaded, load the page, and click a link that triggers a redirection to the Status Codes Page.
 
+Additionally, there is a `StatusCodesHomePage` class for handling the redirected page.
+
+=== Status Codes Home Page
+
+[source,java]
 ----
 public class StatusCodesHomePage extends BasePage {
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue());
+	}
 
-    private static final By selectorLink200Code = By.linkText("200");
-    private static final By selectorLink301Code = By.linkText("301");
-    private static final By selectorLink404Code = By.linkText("404");
-    private static final By selectorLink500Code = By.linkText("500");
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Status Codes' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.STATUS_CODES.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.STATUS_CODES.getValue());
-    }
-
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Status Codes' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.STATUS_CODES.getValue());
-        getDriver().waitForPageLoaded();
-    }
-
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 }
 ----
 
-===== Test Class
+The `StatusCodesHomePage` class is used to handle the redirected page.
+It includes methods to check if the page is loaded and load the page.
 
-Steps: 
+== Test Class
 
-1. Open The Internet Main Page 
-2. Go to Redirection Page 
-3. Click the link 
-4. Check if Status Codes Page is loaded 
+Steps:
 
+1. Open Redirection subpage on The Internet Main Page
+2. Click the link
+3. Check if Status Codes Page is loaded
+
+[source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class RedirectLinkTest extends TheInternetBaseTest {
+public class RedirectLinkTest extends BaseTest {
+	private final RedirectLinkPage		redirectLinkPage	= PageFactory.getPageInstance(RedirectLinkPage.class);
+	private final StatusCodesHomePage	statusCodesHomePage	= PageFactory.getPageInstance(StatusCodesHomePage.class);
 
-    private static RedirectLinkPage    redirectLinkPage;
-    private static StatusCodesHomePage statusCodesHomePage;
+	@Override
+	public void setUp() {
+		redirectLinkPage.load();
+		BFLogger.logInfo("Verify if Redirect Link page is opened");
+		assertTrue(redirectLinkPage.isLoaded(), "Unable to open Redirect Link page");
+	}
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        redirectLinkPage = shouldTheInternetPageBeOpened().clickRedirectLink();
+	@Test
+	public void shouldUserBeRedirectedToStatusCodePage() {
+		BFLogger.logInfo("Click 'Redirect here' link");
+		redirectLinkPage.clickRedirectHereLink();
 
-        logStep("Verify if Redirect Link page is opened");
-        assertTrue("Unable to open Redirect Link page", redirectLinkPage.isLoaded());
-    }
-
-    @Test
-    public void shouldUserBeRedirectedToStatusCodePage() {
-        logStep("Click 'Redirect here' link");
-        statusCodesHomePage = redirectLinkPage.clickRedirectHereLink();
-
-        logStep("Verify redirection to Status Code page");
-        assertTrue("User hasn't been redirected to the expected website",
-                statusCodesHomePage.isLoaded());
-    }
+		BFLogger.logInfo("Verify redirection to Status Code page");
+		assertTrue(statusCodesHomePage.isLoaded(), "User hasn't been redirected to the expected website");
+	}
 }
 ----
+
+== Conclusion
+
+In this tutorial, you've learned how to handle redirecting links on web pages.
+This skill is valuable when dealing with web applications that use redirection for various purposes, such as navigation or authentication.

@@ -1,0 +1,172 @@
+:toc: macro
+
+= Environment Configuration
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== Introduction
+
+Before delving into the tutorials, it is essential to set up the test environment.
+This documentation outlines the initial step of configuring the environment using the `environments.csv` file and demonstrates how to access crucial configurations through enumerations.
+
+== Configuring the environments.csv file
+
+The `environments.csv` file serves as the foundation for your test environment setup.
+It contains configurations for essential variables like URLs, which are pivotal for test execution.
+Below is an example structure for the `environments.csv` file:
+
+[source,csv]
+----
+VAR                         , ENV1
+DEMO_QA_BROWSER_WINDOWS_URL      , https://demoqa.com/browser-windows
+DEMO_QA_SAMPLE_URL               , https://demoqa.com/sample
+THE_INTERNET_HEROKUAPP_URL       , https://the-internet.herokuapp.com/
+ELEMENTAL_SELENIUM_URL           , https://elementalselenium.com/
+----
+
+In this example, we've defined four variables and assigned them corresponding values (URLs).
+These variables are fundamental to configuring your test environment.
+
+== Enumerations for Accessing Configurations
+
+To facilitate access to configurations stored in the `environments.csv` file, we employ enumerations.
+Specifically, the `GetEnvironmentParam` enum is designed to provide convenient access to these configurations.
+Here's an overview of the `GetEnvironmentParam` enum:
+
+[source,java]
+----
+public enum GetEnvironmentParam {
+    // Reads the environment variable from /src/resources/environments/environment.csv
+    // Name of the enum must be in line with the cell name in /src/resources/environments/environment.csv
+	DEMO_QA_BROWSER_WINDOWS_URL,
+	DEMO_QA_SAMPLE_URL,
+	THE_INTERNET_HEROKUAPP_URL,
+	ELEMENTAL_SELENIUM_URL;
+
+    private String value;
+
+    @Override
+    public String toString() {
+        return getValue();
+    }
+
+    public String getValue() {
+        if (null == this.value) {
+            if (Objects.isNull(BaseTest.getEnvironmentService())) {
+                throw new BFInputDataException("Environment Parameters class wasn't initialized properly");
+            }
+            this.value = BaseTest.getEnvironmentService()
+                    .getValue(this.name())
+                    .trim();
+        }
+        return this.value;
+    }
+}
+----
+
+The `GetEnvironmentParam` enum makes it easy to retrieve values from the `environments.csv` file, ensuring that your tests have access to the necessary configuration data.
+
+== Simplifying URL Access
+
+To streamline the process of accessing URLs, you can use the `PageSubURLsEnum` enum.
+This enum provides a straightforward way to access various sub-URLs used in your test environment.
+For example:
+
+----
+PageSubURLsEnum.ABTEST.getValue()
+----
+
+This allows you to directly access the URL associated with the "ABTEST" sub-URL, making your test scripts more concise and readable.
+
+With the right environment configuration and the use of enumerations, your testing process becomes more efficient and manageable.
+This documentation will guide you through the essential steps to set up and access these configurations effectively as the first step before commencing the tutorials.
+
+== SubURLs enum
+
+In addition to environmental variables, an enum for storing values of sub-URLs is available.
+The `PageSubURLsEnum` enum is designed for this purpose.
+Here's a listing of the available sub-URLs:
+
+[source,java]
+----
+ public enum PageSubURLsEnum {
+    BASIC_AUTH("basic_auth"),
+    NEW_WINDOW("windows/new"),
+    WINDOW("windows"),
+    CHECKBOX("checkboxes"),
+    CONTEXT_MENU("context_menu"),
+    KEY_PRESS("key_presses"),
+    DYNAMIC_CONTENT("dynamic_content"),
+    HOVERS("hovers"),
+    SORTABLE_DATA_TABLES("tables"),
+    REDIRECT("redirector"),
+    JAVASCRIPT_ALERTS("javascript_alerts"),
+    CHALLENGING_DOM("challenging_dom"),
+    STATUS_CODES("status_codes"),
+    LOGIN("login"),
+    ABTEST("abtest"),
+    BROKEN_IMAGES("broken_images"),
+    DROPDOWN("dropdown"),
+    HORIZONTAL_SLIDER("horizontal_slider"),
+    DOWNLOAD("download"),
+    FORGOT_PASSWORD("forgot_password"),
+    FORGOT_PASSWORD_EMAIL_SENT("email_sent"),
+    EXIT_INTENT("exit_intent"),
+    DYNAMIC_LOADING("dynamic_loading"),
+    DISAPPEARING_ELEMENTS("disappearing_elements"),
+    DRAG_AND_DROP("drag_and_drop"),
+    DYNAMIC_CONTROLS("dynamic_controls"),
+    UPLOAD("upload"),
+    FLOATING_MENU("floating_menu"),
+    FRAMES("frames"),
+    GEOLOCATION("geolocation"),
+    INFINITE_SCROLL("infinite_scroll"),
+    JQUERY_UI("jqueryui/menu"),
+    JAVASCRIPT_ERROR("javascript_error"),
+    LARGE_AND_DEEP_DOM("large"),
+    NESTED_FRAMES("nested_frames"),
+    NOTIFICATION_MESSAGE("notification_message"),
+    DOWNLOAD_SECURE("download_secure"),
+    SHIFTING_CONTENT("shifting_content"),
+    SLOW_RESOURCES("slow"),
+    TYPOS("typos"),
+    WYSIWYGEDITOR("tinymce");
+
+    /*
+     * Sub URLs are used as real locations in the test environment
+     */
+    private String subURL;
+
+    PageSubURLsEnum(String subURL) {
+        this.subURL = subURL;
+    }
+
+     PageSubURLsEnum() {
+
+    }
+
+    @Override
+    public String toString() {
+        return getValue();
+    }
+
+    public String getValue() {
+        return subURL;
+    }
+}
+----
+
+These sub-URLs are used as real locations in the test environment, simplifying navigation within your tests.
