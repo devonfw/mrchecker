@@ -36,51 +36,37 @@ Starting a new project, a new package should be created.
 
 Test classes have to extend the `BaseTest` class.
 
+[source,java]
 ----
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+
 public class DemoTest extends BaseTest {
 
-	@Override
-	public void setUp() {
+    @BeforeEach
+    public void setUp() {
+        // This method will be executed before each test.
+    }
 
-	}
-
-	@Override
-	public void tearDown() {
-
-	}
+    @AfterEach
+    public void tearDown() {
+        // The tearDown method executes after each test.
+        // It allows the cleanup of the testing environment.
+    }
 }
 ----
-
-=== BasePage method: setUp
-
-This method will be executed before the test.
-It allows objects to be instantiated, e.g. Page objects.
-
-----
-@Override
-public void setUp() {
-	someTestPage = new SomeTestPage();
-}
-----
-
-=== BasePage method: tearDown
-
-The tearDown methods executes after the test.
-It allows the cleanup of the testing environment.
 
 === Annotations
 
-The `@Test` annotation indicates that the following method is a test method.
+In JUnit 5, you should use `@Test` to indicate that a method is a test method, `@BeforeAll` and `@AfterAll` for setup and teardown at the class level, and `@BeforeEach` and `@AfterEach` for setup and teardown at the method level.
 
-Additionally, there are two annotations that can help preparing and disassembling the test class: `@BeforeClass` and `@AfterClass`.
+`@Test` annotation still indicates that the following method is a test method.
 
-`@BeforeClass` will execute the following method once at the beginning, before running any test method.
-Compared to the setUp() method provided by the BaseTest class, this annotation will only run once, instead of before every single test method.
-The advantage here: things like login can be set up in `@BeforeClass`, as they can often be very time-consuming.
-Logging in on a web application once and afterward running all the test methods is more efficient than logging in before every test method, especially if they are being executed on the same page.
+`@BeforeAll` and `@AfterAll` are used for setup and teardown at the class level.
+These methods should be static and should be declared in a class annotated with `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` to ensure they run only once for the entire test class.
 
-`@AfterClass` will execute after the last test method.
-Just like `@BeforeClass` this method will only run once, in contrary to the `tearDown()` method.
+`@BeforeEach` and `@AfterEach` are used for setup and teardown at the method level.
+They run before and after each test method.
 
 Initialize a new test method by using the `@Test` annotation.
 
@@ -95,37 +81,40 @@ This method will interact with a page object in order to test it.
 
 === Sample Setup
 
+[source,java]
 ----
-@BeforeClass
-public static void setUpBeforeClass() throws Exception {
-	BFLogger.logInfo("[Step1] Login as Account Administrator");
-}
+public class DemoTest extends BaseTest {
 
-@AfterClass
-public static void tearDownAfterClass() throws Exception {
-	BFLogger.logInfo("[Step4] Logout");
-}
+    @BeforeAll
+    public static void setUpBeforeClass() throws Exception {
+	    BFLogger.logInfo("[Step1] Login as Account Administrator");
+    }
 
-@Override
-public void setUp() {
-	BFLogger.logInfo("Open home page before each test");
-}
+    @AfterAll
+    public static void tearDownAfterClass() throws Exception {
+	    BFLogger.logInfo("[Step4] Logout");
+    }
 
-@Override
-public void tearDown() {
-	BFLogger.logInfo("Clean all data updated while executing each test");
-}
+    @Override
+    public void setUp() {
+	    BFLogger.logInfo("Open home page before each test");
+    }
 
-@Test
-public void test1() {
-	BFLogger.logInfo("[Step2] Filter by \"Creation Date\" - Descending");
-	BFLogger.logInfo("[Step3] Set $1 for first 10 Users in column \"Invoice to pay\"");
+    @Override
+    public void tearDown() {
+	    BFLogger.logInfo("Clean all data updated while executing each test");
+    }
 
-}
+    @Test
+    public void test1() {
+	    BFLogger.logInfo("[Step2] Filter by \"Creation Date\" - Descending");
+	    BFLogger.logInfo("[Step3] Set $1 for first 10 Users in column \"Invoice to pay\"");
+    }
 
-@Test
-public void test2() {
-	BFLogger.logInfo("[Step2] Filter by \"Invoice to pay\" - Ascending");
-	BFLogger.logInfo("[Step3] Set $100 for first 10 Users in column \"Invoice to pay\"");
+    @Test
+    public void test2() {
+	    BFLogger.logInfo("[Step2] Filter by \"Invoice to pay\" - Ascending");
+	    BFLogger.logInfo("[Step3] Set $100 for first 10 Users in column \"Invoice to pay\"");
+    }
 }
 ----
