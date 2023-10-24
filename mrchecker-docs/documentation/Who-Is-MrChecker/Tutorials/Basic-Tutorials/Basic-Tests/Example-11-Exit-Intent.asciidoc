@@ -1,222 +1,261 @@
-image::images/example32.png[]
+:toc: macro
 
-This case shows how to perform mouse actions and test modal windows. 
+= Tutorial: Mouse Actions and Modal Windows
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+This tutorial demonstrates how to perform mouse actions and test modal windows.
+
+image::images/example32.png[]
 
 After you move the mouse cursor out of the website, you should see a new window appearing:
 
 image::images/example33.png[]
 
-Check in the browser's developer mode if this window exists in Page DOM 
+Check in the browser's developer mode if this window exists in Page DOM
 
 image::images/example34.png[]
 
-Before you move the mouse out, the window exists, but it's not displayed. 
+Before you move the mouse out, the window exists, but it's not displayed.
 
-When the mouse is moved, JavaScript changes display attribute. It also hides window after clicking "Close". 
+When the mouse is moved, JavaScript changes display attribute.
+It also hides window after clicking "Close".
 
 image::images/example35.png[]
 
-===== Page Class
+== What You Will Learn
 
+In this tutorial, you will learn:
+
+* How to simulate mouse movements out of the viewport.
+* How to use the Robot class for mouse actions.
+* How to manage timeouts in WebDriver.
+* How to test the visibility and attributes of modal windows.
+
+== Page Class
+
+=== Exit Intent Page
+
+[source,java]
 ----
 public class ExitIntentPage extends BasePage {
+	private static final String	MODAL_WINDOW_HIDDEN				= "display: none;";
+	private static final String	MODAL_WINDOW_DISPLAYED			= "display: block;";
+	private static final String	MODAL_WINDOW_STYLE_ATTRIBUTE	= "style";
 
-    private static final String MODAL_WINDOW_HIDDEN           = "display: none;";
-    private static final String MODAL_WINDOW_DISPLAYED        = "display: block;";
-    private static final String MODAL_WINDOW_STYLE_ATTRIBUTTE = "style";
+	private final By	selectorModalWindow				= By.cssSelector("div#ouibounce-modal");
+	private final By	selectorExitIntentText			= By.cssSelector("div#content h3");
+	private final By	selectorModalWindowTitle		= By.cssSelector("h3");
+	private final By	selectorModalWindowCloseButton	= By.cssSelector("div.modal-footer > p");
 
-    private static final By selectorModalWindow            = By.cssSelector("div#ouibounce-modal");
-    private static final By selectorExitIntentText         = By.cssSelector("div#content h3");
-    private static final By selectorModalWindowTitle       = By.cssSelector("h3");
-    private static final By selectorModalWindowCloseButton = By.cssSelector("div.modal-footer > p");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.EXIT_INTENT.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.EXIT_INTENT.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Exit Intent' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.EXIT_INTENT.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Exit Intent' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.EXIT_INTENT.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Returns information if exit intent message is visible or not.
+	 *
+	 * @return true if exit intent message was found on web page.
+	 */
+	public boolean isIntentMessageVisible() {
+		return getDriver().findElementDynamic(selectorExitIntentText)
+				.isDisplayed();
+	}
 
-    /**
-     * Returns information if exit intent message is visible or not.
-     *
-     * @return true if exit intent message was found on web page.
-     */
-    public boolean isIntentMessageVisible() {
-        return getDriver().findElementDynamic(selectorExitIntentText)
-                .isDisplayed();
-    }
+	/**
+	 * Returns information if modal window is hidden.
+	 *
+	 * @return true if modal window is hidden.
+	 */
+	public boolean isModalWindowHidden() {
+		return getDriver().findElementDynamic(selectorModalWindow)
+				.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTE)
+				.equals(MODAL_WINDOW_HIDDEN);
+	}
 
-    /**
-     * Returns information if modal window is hidden.
-     *
-     * @return true if modal window is hidden.
-     */
-    public boolean isModalWindowHidden() {
-        return getDriver().findElementDynamic(selectorModalWindow)
-                .getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
-                .equals(MODAL_WINDOW_HIDDEN);
-    }
+	/**
+	 * Returns information if modal window is showed on web page.
+	 *
+	 * @return true if modal window is displayed.
+	 */
+	public boolean isModalWindowVisible() {
+		return getDriver().findElementDynamic(selectorModalWindow)
+				.getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTE)
+				.equals(MODAL_WINDOW_DISPLAYED);
+	}
 
-    /**
-     * Returns information if modal window is showed on web page.
-     *
-     * @return true if modal window is displayed.
-     */
-    public boolean isModalWindowVisible() {
-        return getDriver().findElementDynamic(selectorModalWindow)
-                .getAttribute(MODAL_WINDOW_STYLE_ATTRIBUTTE)
-                .equals(MODAL_WINDOW_DISPLAYED);
-    }
+	/**
+	 * Returns information if modal window title is shown and correct.
+	 *
+	 * @param expectedValue
+	 *            String representing expected value of modal window's title.
+	 * @return true if modal window's title is equal to expected value.
+	 */
+	public boolean verifyModalWindowTitle(String expectedValue) {
+		return getDriver().elementLabel(new ByChained(selectorModalWindow,
+				selectorModalWindowTitle))
+				.getText()
+				.equals(expectedValue);
+	}
 
-    /**
-     * Returns information if modal window title is shown and correct.
-     *
-     * @param expectedValue String representing expected value of modal window's title.
-     * @return true if modal window's title is equal to expected value.
-     */
-    public boolean verifyModalWindowTitle(String expectedValue) {
-        return getDriver().elementLabel(new ByChained(selectorModalWindow,
-                selectorModalWindowTitle))
-                .getText()
-                .equals(expectedValue);
-    }
+	/**
+	 * Closes modal window by pressing 'close' button.
+	 */
+	public void closeModalWindow() {
+		getDriver().elementButton(new ByChained(selectorModalWindow,
+				selectorModalWindowCloseButton))
+				.click();
+	}
 
-    /**
-     * Closes modal window by pressing 'close' button.
-     */
-    public void closeModalWindow() {
-        getDriver().elementButton(new ByChained(selectorModalWindow,
-                selectorModalWindowCloseButton))
-                .click();
-    }
+	/**
+	 * Moves mouse pointer to the top middle of screen, then to the centre of screen and
+	 * again to the top.
+	 * <p>
+	 * This move simulates leaving the viewport and encourages the modal to show up. There is
+	 * java.awt.Robot used
+	 * to move mouse pointer out of the viewport. There are timeouts used to let the browser detect
+	 * mouse move.
+	 * </p>
+	 *
+	 * @see java.awt.Robot
+	 */
+	public void moveMouseOutOfViewport() {
+		Robot robot;
+		Dimension screenSize = getDriver().manage()
+				.window()
+				.getSize();
+		int halfWidth = new BigDecimal(screenSize.getWidth() / 2).intValue();
+		int halfHeight = new BigDecimal(screenSize.getHeight() / 2).intValue();
 
-    /**
-     * Moves mouse pointer to the top middle of screen, then to the centre of screen and
-     * again to the top.
-     * <p>
-     * This move simulates leaving the viewport and encourages the modal to show up. There is
-     * java.awt.Robot used
-     * to move mouse pointer out of the viewport. There are timeouts used to let the browser detect
-     * mouse move.
-     * </p>
-     *
-     * @see java.awt.Robot
-     */
-    public void moveMouseOutOfViewport() {
-        Robot robot;
-        Dimension screenSize = getDriver().manage()
-                .window()
-                .getSize();
-        int halfWidth = new BigDecimal(screenSize.getWidth() / 2).intValue();
-        int halfHeight = new BigDecimal(screenSize.getHeight() / 2).intValue();
-
-        try {
-            robot = new Robot();
-            robot.mouseMove(halfWidth, 1);
-            getDriver().manage()
-                    .timeouts()
-                    .implicitlyWait(1, TimeUnit.SECONDS);
-            robot.mouseMove(halfWidth, halfHeight);
-            getDriver().manage()
-                    .timeouts()
-                    .implicitlyWait(1, TimeUnit.SECONDS);
-            robot.mouseMove(halfWidth, 1);
-        } catch (AWTException e) {
-            BFLogger.logError("Unable to connect with remote mouse");
-            e.printStackTrace();
-        }
-    }
+		try {
+			robot = new Robot();
+			robot.mouseMove(halfWidth, 1);
+			getDriver().manage()
+					.timeouts()
+					.implicitlyWait(1, TimeUnit.SECONDS);
+			robot.mouseMove(halfWidth, halfHeight);
+			getDriver().manage()
+					.timeouts()
+					.implicitlyWait(1, TimeUnit.SECONDS);
+			robot.mouseMove(halfWidth, 1);
+		} catch (AWTException e) {
+			BFLogger.logError("Unable to connect with remote mouse");
+			e.printStackTrace();
+		}
+	}
 }
 ----
 
-===== Attributes 
+The `ExitIntentPage` class contains methods to interact with the Exit Intent page, such as checking the visibility of the exit intent message, verifying the state of the modal window (hidden or visible), and simulating mouse movements out of the viewport.
 
-Elements on pages have attributes like "id", "class", "name", "style" etc. In order to check them, use method `getAttribute(String name)`. In this case attribute "style" determinates if the element is displayed. 
+=== Attributes
 
-===== Robot
+Elements on pages have attributes like "id", "class", "name", "style" etc.
+In order to check them, use method `getAttribute(String name)`.
+In this case attribute "style" determinate if the element is displayed.
 
-Robot class can perform mouse movement. Method `mouseMove(int x, int y)` moves the remote mouse to given coordinates. 
+=== Robot
 
-===== Manage Timeouts 
+Robot class can perform mouse movement.
+Method `mouseMove(int x, int y)` moves the remote mouse to given coordinates.
 
-`manage().timeouts()` methods allows you to change WebDriver timeouts values such as: 
+=== Manage Timeouts
+
+`manage().timeouts()` methods allows you to change WebDriver timeouts values such as:
 
 * `pageLoadTimeout(long time, TimeUnit unit)` - the amount of time to wait for a page to load before throwing an exception
-* `setScriptTimeout(long time, TimeUnit unit)` - the amount of time to wait for finish execution of a script before throwing an exception 
-* `implicitlyWait(long time, TimeUnit unit)` - the amount of time the driver should wait when searching for an element if it is not immediately present. After that time, it throws an exception. 
+* `setScriptTimeout(long time, TimeUnit unit)` - the amount of time to wait for finish execution of a script before throwing an exception
+* `implicitlyWait(long time, TimeUnit unit)` - the amount of time the driver should wait when searching for an element if it is not immediately present.
+After that time, it throws an exception.
 
 Changing timeouts can improve test stability but can also make them run slower.
 
-===== Test Class
+== Test Class
 
-Steps: 
+Steps:
 
-1. Open The Internet Main Page 
-2. Click Exit Intent link and load subpage 
-3. Check if the page is loaded and "Exit Intent" message is visible 
-4. Verify if Modal Window is hidden 
-5. Move mouse out of the viewport 
-6. Check if Modal Window is visible 
-7. Verify if Modal Window title is correct 
-8. Click 'close' button 
-9. Again verify if Modal Window is hidden
+1. Open Exit Intent subpage on The Internet Main Page
+2. Check if the page is loaded and "Exit Intent" message is visible
+3. Verify if Modal Window is hidden
+4. Move mouse out of the viewport
+5. Check if Modal Window is visible
+6. Verify if Modal Window title is correct
+7. Click 'close' button
+8. Again verify if Modal Window is hidden
 
+[source,java]
 ----
-@Category({ TestsLocal.class, TestsNONParallel.class })
-public class ExitIntentTest extends TheInternetBaseTest {
+public class ExitIntentTest extends BaseTest {
+	private final ExitIntentPage	exitIntentPage		= PageFactory.getPageInstance(ExitIntentPage.class);
 
-    private static final String MODAL_WINDOW_TITLE = "This is a modal window";
+	private static final String		MODAL_WINDOW_TITLE	= "This is a modal window";
 
-    private static ExitIntentPage exitIntentPage;
+	@Override
+	public void setUp() {
+		exitIntentPage.load();
+		BFLogger.logInfo("Verify if Exit Intent page is opened");
+		assertTrue(exitIntentPage.isLoaded(), "Unable to open Exit Intent page");
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        exitIntentPage = shouldTheInternetPageBeOpened().clickExitIntentLink();
+		BFLogger.logInfo("Verify if exit intent message is visible");
+		assertTrue(exitIntentPage.isIntentMessageVisible(), "Exit intent message is not visible");
+	}
 
-        logStep("Verify if Exit Intent page is opened");
-        assertTrue("Unable to open Exit Intent page", exitIntentPage.isLoaded());
+	@Test
+	public void shouldModalWindowAppearWhenMouseMovedOutOfViewportTest() {
+		BFLogger.logInfo("Verify if modal window is hidden");
+		assertTrue(exitIntentPage.isModalWindowHidden(), "Fail to hide modal window");
 
-        logStep("Verify if exit intent message is visible");
-        assertTrue("Exit intent message is not visible", exitIntentPage.isIntentMessageVisible());
-    }
+		BFLogger.logInfo("Move mouse pointer out of viewport");
+		exitIntentPage.moveMouseOutOfViewport();
 
-    @Test
-    public void shouldModalWindowAppearWhenMouseMovedOutOfViewportTest() {
+		BFLogger.logInfo("Verify if modal window showed up");
+		assertTrue(exitIntentPage.isModalWindowVisible(), "Fail to show up modal window");
 
-        logStep("Verify if modal window is hidden");
-        assertTrue("Fail to hide modal window", exitIntentPage.isModalWindowHidden());
+		BFLogger.logInfo("Verify if modal window title displays properly");
+		assertTrue(exitIntentPage.verifyModalWindowTitle(MODAL_WINDOW_TITLE.toUpperCase()),
+				"Fail to display modal window's title");
 
-        logStep("Move mouse pointer out of viewport");
-        exitIntentPage.moveMouseOutOfViewport();
+		BFLogger.logInfo("Close modal window");
+		exitIntentPage.closeModalWindow();
 
-        logStep("Verify if modal window showed up");
-        assertTrue("Fail to show up modal window", exitIntentPage.isModalWindowVisible());
-
-        logStep("Verify if modal window title displays properly");
-        assertTrue("Fail to display modal window's title",
-                exitIntentPage.verifyModalWindowTitle(MODAL_WINDOW_TITLE.toUpperCase()));
-
-        logStep("Close modal window");
-        exitIntentPage.closeModalWindow();
-
-        logStep("Verify if modal window is hidden again");
-        assertTrue("Fail to hide modal window", exitIntentPage.isModalWindowHidden());
-    }
+		BFLogger.logInfo("Verify if modal window is hidden again");
+		assertTrue(exitIntentPage.isModalWindowHidden(), "Fail to hide modal window");
+	}
 }
 ----
 
 *Remember not to move mouse manually during test execution.*
+
+== Conclusion
+
+In this tutorial, you've learned how to perform mouse actions and test modal windows in a web application.
+You can simulate mouse movements, manage timeouts, and validate element attributes to ensure that modal windows behave as expected.

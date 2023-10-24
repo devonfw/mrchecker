@@ -1,120 +1,150 @@
+:toc: macro
+
+= Tutorial: Download file
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== What you will learn
+
+In this tutorial, you will learn how to download a file from a web page and then verify if the downloaded file exists on your computer.
+
 image::images/example36.png[]
 
-This example shows how to check if file downloads properly.
+After clicking on one of these links, a specific file should be downloaded to your computer.
 
-After clicking on one of these links, a specific file should be downloaded to your computer. 
+== Test steps:
 
-Steps: 
+1. Open File Download subpage on The Internet Main Page
+2. Click on "some-file.txt" download link and download file
+3. Check if the file exists in the appropriate folder
+4. Delete the file
+5. Check if the file doesn't exist in the folder
 
-1. Open The Internet Main Page 
-2. Click on the File Download link and open subpage 
-3. Click on "some-file.txt" download link and download file 
-4. Check if the file exists in the appropriate folder 
-5. Delete the file 
-6. Check if the file doesn't exist in the folder 
+== Page Class
 
-===== Page Class
-
+[source,java]
 ----
 public class FileDownloadPage extends BasePage {
+	private final By selectorSomeFileTxt = By.cssSelector("a[href*=some-file]");
 
-    private static final By selectorSomeFileTxt = By.cssSelector("a[href*=some-file]");
+	private final String DOWNLOAD_DIR = System.getProperty("java.io.tmpdir");
 
-    private final String DOWNLOAD_DIR = System.getProperty("java.io.tmpdir");
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.DOWNLOAD.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.DOWNLOAD.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'File Downloader' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() +
+				PageSubURLsProjectYEnum.DOWNLOAD.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'File Downloader' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() +
-                PageSubURLsProjectYEnum.DOWNLOAD.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Verifies if the chosen file is already downloaded and if not, downloads it .
+	 * Throws RuntimeException otherwise.
+	 *
+	 * @return Downloaded file
+	 */
+	public File downloadTextFile() {
+		String nameOfDownloadFile = getNameOfDownloadFile();
+		File fileToDownload = new File(DOWNLOAD_DIR + nameOfDownloadFile);
 
-    /**
-     * Verifies if the chosen file is already downloaded and if not, downloads it . 
-     * Throws RuntimeException otherwise.
-     *
-     * @return Downloaded file
-     */
-    public File downloadTextFile() {
-        String nameOfDownloadFile = getNameOfDownloadFile();
-        File fileToDownload = new File(DOWNLOAD_DIR + nameOfDownloadFile);
+		if (fileToDownload.exists()) {
+			throw new RuntimeException("The file that you want to download already exists. "
+					+ "Please remove it manually. Path to the file: " + fileToDownload.getPath());
+		}
 
-        if (fileToDownload.exists()) {
-            throw new RuntimeException("The file that you want to download already exists. "
-                    + "Please remove it manually. Path to the file: " + fileToDownload.getPath());
-        }
+		getDriver().elementButton(selectorSomeFileTxt)
+				.click();
 
-        getDriver().elementButton(selectorSomeFileTxt)
-                .click();
+		waitForFileDownload(2000, fileToDownload);
+		return fileToDownload;
+	}
 
-        waitForFileDownload(2000, fileToDownload);
-        return fileToDownload;
-    }
+	private void waitForFileDownload(int totalTimeoutInMillis, File expectedFile) {
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
+				.withTimeout(Duration.ofMillis(totalTimeoutInMillis))
+				.pollingEvery(Duration.ofMillis(200));
 
-    private void waitForFileDownload(int totalTimeoutInMillis, File expectedFile) {
-        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
-                .withTimeout(totalTimeoutInMillis, TimeUnit.MILLISECONDS)
-                .pollingEvery(200, TimeUnit.MILLISECONDS);
+		wait.until((WebDriver wd) -> expectedFile.exists());
+	}
 
-        wait.until((WebDriver wd) -> expectedFile.exists());
-    }
-
-    private String getNameOfDownloadFile() {
-        String urlToDownload = getDriver().findElementDynamic(selectorSomeFileTxt)
-                .getAttribute("href");
-        String[] urlHierachy = urlToDownload.split("/");
-        return urlHierachy[urlHierachy.length - 1];
-    }
+	private String getNameOfDownloadFile() {
+		String urlToDownload = getDriver().findElementDynamic(selectorSomeFileTxt)
+				.getAttribute("href");
+		String[] urlHierarchy = urlToDownload.split("/");
+		return urlHierarchy[urlHierarchy.length - 1];
+	}
 }
 ----
 
-Use FluentWait class and create an expected condition using a lambda expression to wait until the file downloads. 
+The `FileDownloadPage` class is responsible for interacting with the web page.
+It includes methods to check if the page is loaded, load the page, and perform actions such as clicking the download link for "some-file.txt".
 
-To perform operations on files, use java File class. To get a file name, find it in download URL.
+Use FluentWait class and create an expected condition using a lambda expression to wait until the file downloads.
 
-===== Test Class
+To perform operations on files, use java File class.
+To get a file name, find it in download URL.
 
+== Test Class
+
+[source,java]
 ----
-@Category({ TestsLocal.class, TestsNONParallel.class })
-public class FileDownloadTest extends TheInternetBaseTest {
+public class FileDownloadTest extends BaseTest {
+	private final FileDownloadPage fileDownloadPage = PageFactory.getPageInstance(FileDownloadPage.class);
 
-    private static FileDownloadPage fileDownloadPage;
+	@Override
+	public void setUp() {
+		fileDownloadPage.load();
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        fileDownloadPage = shouldTheInternetPageBeOpened().clickFileDownloadLink();
+		BFLogger.logInfo("Verify if File Download page is opened");
+		assertTrue(fileDownloadPage.isLoaded(), "Unable to open File Download page");
+	}
 
-        logStep("Verify if File Download page is opened");
-        assertTrue("Unable to open File Download page", fileDownloadPage.isLoaded());
-    }
+	@Test
+	public void shouldFileBeDownloaded() {
+		BFLogger.logInfo("Download the some-file.txt");
+		File downloadedFile = fileDownloadPage.downloadTextFile();
 
-    @Test
-    public void shouldfileBeDownloaded() {
+		BFLogger.logInfo("Verify if downloaded file exists");
+		assertTrue(downloadedFile.exists(), "Downloaded file does not exist");
 
-        logStep("Download the some-file.txt");
-        File downloadedFile = fileDownloadPage.downloadTextFile();
+		BFLogger.logInfo("Remove downloaded file");
+		downloadedFile.delete();
 
-        logStep("Verify if downloaded file exists");
-        assertTrue("Downloaded file does not exist", downloadedFile.exists());
-
-        logStep("Remove downloaded file");
-        downloadedFile.delete();
-
-        logStep("Verify if downloaded file has been removed");
-        assertFalse("Downloaded file still exists", downloadedFile.exists());
-    }
+		BFLogger.logInfo("Verify if downloaded file has been removed");
+		assertFalse(downloadedFile.exists(), "Downloaded file still exists");
+	}
 }
 ----
+
+The FileDownloadTest class defines the test steps.
+It opens the File Download page, downloads the "some-file.txt" file, and verifies its existence.
+
+== Conclusion
+
+In this tutorial, you have learned how to download a file from a web page and verify its existence on your computer.
+This knowledge allows you to automate file download and verification processes, ensuring the integrity of downloaded files in your testing scenarios.

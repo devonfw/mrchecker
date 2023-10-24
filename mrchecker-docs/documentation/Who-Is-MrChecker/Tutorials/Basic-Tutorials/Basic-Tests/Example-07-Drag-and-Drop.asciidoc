@@ -1,129 +1,171 @@
-This case shows how to move draggable elements on the page. 
+:toc: macro
+
+= Tutorial: Moving Draggable Elements on a Page
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+== What You Will Learn
+
+In this tutorial, you will learn:
+
+* How to perform drag-and-drop operations on draggable elements.
+* How to interact with elements in different containers.
+* How to observe changes in the DOM while dragging elements.
+
+== Example
+
 image::images/example13.png[]
 
-Try to move A to B position and see what happens. Also, open browser developer mode and see how the DOM changes.  
+Try to move A to B position and see what happens.
+Also, open browser developer mode and see how the DOM changes.
 
 image::images/example14.png[]
 
-The page can easily be broken. You can try to do so and check how the page structure changed in browser developer mode. 
+The page can easily be broken.
+You can try to do so and check how the page structure changed in browser developer mode.
 
 image::images/example15.png[]
 
-Steps: 
+Steps:
 
-1. Open The Internet Main Page 
-2. Click Drag and Drop link and open subpage 
-3. Check if the Drag and Drop message is visible 
-4. Check if element A is in container A and B in container B 
-5. Move element A to position B 
-6. Check if element A is in container B and B in container A 
-7. Move element B to position A 
-8. Again check if element A is in container A and B in container B 
+1. Open Drag and Drop subpage on The Internet Main Page
+2. Check if the Drag and Drop message is visible
+3. Check if element A is in container A and B in container B
+4. Move element A to position B
+5. Check if element A is in container B and B in container A
+6. Move element B to position A
+7. Again check if element A is in container A and B in container B
 
-===== Page Class 
+== Page Class
+
+=== Drag and Drop Page
+
+[source,java]
 ----
 public class DragAndDropPage extends BasePage {
+	private static final By	selectorDragAndDropText		= By.cssSelector("div#content h3");
+	private static final By	selectorAElementContainer	= By.cssSelector("div#column-a");
+	private static final By	selectorBElementContainer	= By.cssSelector("div#column-b");
+	private static final By	selectorDescriptionElement	= By.cssSelector("header");
 
-    private static final By selectorDragAndDropText    = By.cssSelector("div#content h3");
-    private static final By selectorAElementContainer  = By.cssSelector("div#column-a");
-    private static final By selectorBElementContainer  = By.cssSelector("div#column-b");
-    private static final By selectorDescriptionElement = By.cssSelector("header");
+	private static final String dndHelperPath = "src/test/resources/js/drag_and_drop_helper.js";
 
-    private static final String dndHelperPath = "src/test/resources/js/drag_and_drop_helper.js";
+	@Override
+	public boolean isLoaded() {
+		getDriver().waitForPageLoaded();
+		return getDriver().getCurrentUrl()
+				.contains(PageSubURLsProjectYEnum.DRAG_AND_DROP.getValue());
+	}
 
-    @Override
-    public boolean isLoaded() {
-        getDriver().waitForPageLoaded();
-        return getDriver().getCurrentUrl()
-                .contains(PageSubURLsProjectYEnum.DRAG_AND_DROP.getValue());
-    }
+	@Override
+	public void load() {
+		BFLogger.logDebug("Load 'Drag and Drop' page.");
+		getDriver().get(GetEnvironmentParam.THE_INTERNET_HEROKUAPP_URL.getValue() + PageSubURLsProjectYEnum.DRAG_AND_DROP.getValue());
+		getDriver().waitForPageLoaded();
+	}
 
-    @Override
-    public void load() {
-        BFLogger.logDebug("Load 'Drag and Drop' page.");
-        getDriver().get(GetEnvironmentParam.THE_INTERNET_MAIN_PAGE.getValue() + PageSubURLsProjectYEnum.DRAG_AND_DROP.getValue());
-        getDriver().waitForPageLoaded();
-    }
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
 
-    @Override
-    public String pageTitle() {
-        return getActualPageTitle();
-    }
+	/**
+	 * Returns information if drag and drop message is visible or not.
+	 *
+	 * @return true if exit drag and drop message was found on web page.
+	 */
+	public boolean isDragAndDropMessageVisible() {
+		return getDriver().findElementDynamic(selectorDragAndDropText)
+				.isDisplayed();
+	}
 
-    /**
-     * Returns information if drag and drop message is visible or not.
-     *
-     * @return true if exit drag and drop message was found on web page.
-     */
-    public boolean isDragAndDropMessageVisible() {
-        return getDriver().findElementDynamic(selectorDragAndDropText)
-                .isDisplayed();
-    }
+	/**
+	 * Verifies if specified element is placed in designated container.
+	 *
+	 * @param element
+	 *            WebElement to be verified.
+	 * @return true if element described as A exists in container A or element B exists in container B, false otherwise.
+	 */
+	public boolean isElementPlacedInCorrectContainer(String element) {
+		return getDescriptionElement(findElementByDescription(element)).getText()
+				.equals(element);
+	}
 
-    /**
-     * Verifies if specified element is placed in designated container.
-     *
-     * @param element WebElement to be verified.
-     * @return true if element described as A exists in container A or element B exists in container B, false otherwise.
-     */
-    public boolean isElementPlacedInCorrectContainer(String element) {
-        return getDescriptionElement(findElementByDescription(element)).getText()
-                .equals(element);
-    }
+	private WebElement findElementByDescription(String element) {
+		WebElement result;
+		switch (element) {
+			case "A":
+				result = getContainerElement(selectorAElementContainer);
+				break;
+			case "B":
+				result = getContainerElement(selectorBElementContainer);
+				break;
+			default:
+				result = null;
+				BFLogger.logDebug("Chosen element doesn't exist on web page");
+		}
+		return result;
+	}
 
-    private WebElement findElementByDescription(String element) {
-        WebElement result;
-        switch (element) {
-            case "A":
-                result = getContainerElement(selectorAElementContainer);
-                break;
-            case "B":
-                result = getContainerElement(selectorBElementContainer);
-                break;
-            default:
-                result = null;
-                BFLogger.logDebug("Chosen element doesn't exist on web page");
-        }
-        return result;
-    }
+	private WebElement getContainerElement(By container) {
+		return getDriver().findElementDynamic(container);
+	}
 
-    private WebElement getContainerElement(By container) {
-        return getDriver().findElementDynamic(container);
-    }
+	private WebElement getDescriptionElement(WebElement container) {
+		return container.findElement(selectorDescriptionElement);
+	}
 
-    private WebElement getDescriptionElement(WebElement container) {
-        return container.findElement(selectorDescriptionElement);
-    }
-
-    /**
-     * Drags element to designated container and drops it.
-     *
-     * @param element         String describing WebElement expected to be dragged.
-     * @param from            String describing WebElement representing container of element expected to be dragged.
-     * @param destinationDesc String describing WebElement representing destination container where other element will be dragged.
-     */
-    public void dragElementToPosition(String element, String from, String destinationDesc) {
-        WebElement source = findElementByDescription(from);
-        WebElement description = getDescriptionElement(source);
-        WebElement destination = findElementByDescription(destinationDesc);
-        if (description.getText()
-                .equals(element))
-            dragElement(source, destination);
-    }
-
+	/**
+	 * Drags element to designated container and drops it.
+	 *
+	 * @param element
+	 *            String describing WebElement expected to be dragged.
+	 * @param from
+	 *            String describing WebElement representing container of element expected to be dragged.
+	 * @param destinationDesc
+	 *            String describing WebElement representing destination container where other element will be dragged.
+	 */
+	public void dragElementToPosition(String element, String from, String destinationDesc) {
+		WebElement source = findElementByDescription(from);
+		WebElement description = getDescriptionElement(source);
+		WebElement destination = findElementByDescription(destinationDesc);
+		if (description.getText()
+				.equals(element))
+			getAction().dragAndDrop(source, destination)
+					.build()
+					.perform();
+	}
 }
- 
-----
-Since HTML5, normal Selenium drag-and-drop action stopped working, thus it's necessary to execute Javascript which performs the drag-and-drop. To do so, create a JavascriptExecutor object, then read the script from a file drag_and_drop_helper.js and execute it with additional arguments using method executeScript(String script). 
-
-An example drag-and-drop solution: 
-
 ----
 
+The `DragAndDropPage` class contains methods to interact with the Drag and Drop page.
+It includes functionality to check if the Drag and Drop message is visible, verify the placement of elements in containers, and perform drag-and-drop operations.
+
+=== JavascriptExecutor and Drag-and-Drop Helper
+
+Since HTML5, normal Selenium drag-and-drop action may not work as expected, thus it's necessary to execute Javascript which performs the drag-and-drop.
+If you are facing this issue, create a JavascriptExecutor object, then read the script from a file drag_and_drop_helper.js and execute it with additional arguments using method executeScript(String script).
+
+An example drag-and-drop solution:
+
+----
     /**
      * Drags and drops given WebElement to it's destination location.
      * <p>
-     * Since HTML5 all Selenium Actions performing drag and drop operations stopped working as expected, e.g.
+     * Since HTML5 all Selenium Actions performing drag and drop operations may not work as expected, e.g.
      * original implementation, which was:
      * <code>
      * BasePage.getAction()
@@ -173,8 +215,10 @@ An example drag-and-drop solution:
     }
  
 ----
-Drag and Drop helper file: 
 
+Drag and Drop helper file:
+
+[source,js]
 ----
 (function( $ ) {
         $.fn.simulateDragDrop = function(options) {
@@ -231,49 +275,54 @@ Drag and Drop helper file:
 })(jQuery);
  
 ----
-===== Test Class
+
+== Test Class
+
+[source,java]
 ----
-@Category({ TestsSelenium.class, TestsChrome.class, TestsFirefox.class, TestsIE.class })
-public class DragAndDropTest extends TheInternetBaseTest {
+public class DragAndDropTest extends BaseTest {
+	private final DragAndDropPage dragAndDropPage = PageFactory.getPageInstance(DragAndDropPage.class);
 
-    private static final String ELEMENT_A   = "A";
-    private static final String CONTAINER_A = "A";
-    private static final String ELEMENT_B   = "B";
-    private static final String CONTAINER_B = "B";
+	private final String	ELEMENT_A	= "A";
+	private final String	CONTAINER_A	= "A";
+	private final String	ELEMENT_B	= "B";
+	private final String	CONTAINER_B	= "B";
 
-    private static DragAndDropPage dragAndDropPage;
+	@Override
+	public void setUp() {
+		dragAndDropPage.load();
+		BFLogger.logInfo("Verify if Drag And Drop page is opened");
+		assertTrue(dragAndDropPage.isLoaded(), "Unable to open Drag And Drop page");
 
-    @BeforeClass
-    public static void setUpBeforeClass() {
-        dragAndDropPage = shouldTheInternetPageBeOpened().clickDragAndDropLink();
+		BFLogger.logInfo("Verify if Drag And Drop message is visible");
+		assertTrue(dragAndDropPage.isDragAndDropMessageVisible(), "Drag And Drop message is not visible");
+	}
 
-        logStep("Verify if Drag And Drop page is opened");
-        assertTrue("Unable to open Drag And Drop page", dragAndDropPage.isLoaded());
+	@Test
+	public void shouldDraggableElementBeMovedAndDropped() {
+		BFLogger.logInfo("Verify if elements are placed in proper containers");
+		assertTrue(dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A), "Element A doesn't exist in container A");
+		assertTrue(dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B), "Element B doesn't exist in container B");
 
-        logStep("Verify if Drag And Drop message is visible");
-        assertTrue("Drag And Drop message is not visible", dragAndDropPage.isDragAndDropMessageVisible());
-    }
+		BFLogger.logInfo("Step 7: Drag and drop element A into container B");
+		dragAndDropPage.dragElementToPosition(ELEMENT_A, CONTAINER_A, CONTAINER_B);
 
-    @Test
-    public void shouldDraggableElementBeMovedAndDropped() {
-        logStep("Verify if elements are placed in proper containers");
-        assertTrue("Element A doesn't exist in container A", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A));
-        assertTrue("Element B doesn't exist in container B", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B));
+		BFLogger.logInfo("Step 8: Verify if elements are placed in improper containers");
+		assertFalse(dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A), "Element A doesn't exist in container B");
+		assertFalse(dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B), "Element B doesn't exist in container A");
 
-        logStep("Step 7: Drag and drop element A into container B");
-        dragAndDropPage.dragElementToPosition(ELEMENT_A, CONTAINER_A, CONTAINER_B);
+		BFLogger.logInfo("Drag and drop element B back into container B");
+		dragAndDropPage.dragElementToPosition(ELEMENT_A, CONTAINER_B, CONTAINER_A);
 
-        logStep("Step 8: Verify if elements are placed in improper containers");
-        assertFalse("Element A doesn't exist in container B", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A));
-        assertFalse("Element B doesn't exist in container A", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B));
-
-        logStep("Drag and drop element B back into container B");
-        dragAndDropPage.dragElementToPosition(ELEMENT_A, CONTAINER_B, CONTAINER_A);
-
-        logStep("Verify if elements are placed in proper containers");
-        assertTrue("Element A doesn't exist in container A", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A));
-        assertTrue("Element B doesn't exist in container B", dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B));
-    }
-
+		BFLogger.logInfo("Verify if elements are placed in proper containers");
+		assertTrue(dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_A), "Element A doesn't exist in container A");
+		assertTrue(dragAndDropPage.isElementPlacedInCorrectContainer(ELEMENT_B), "Element B doesn't exist in container B");
+	}
 }
----- 
+----
+
+In the test method `shouldDraggableElementBeMovedAndDropped()`, the goal is to move draggable elements between containers, observe changes in the DOM, and ensure that the elements are placed in their intended containers.
+
+== Conclusion
+
+In this tutorial, you've learned how to perform drag-and-drop operations on draggable elements, interact with elements in different containers, and observe changes in the DOM while moving elements.
