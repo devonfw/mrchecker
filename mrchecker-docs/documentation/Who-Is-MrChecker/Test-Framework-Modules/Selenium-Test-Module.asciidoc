@@ -1,5 +1,7 @@
 :toc: macro
 
+= Selenium Test Module
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,8 +16,6 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-
-= Selenium Test Module
 
 == What is MrChecker E2E Selenium Test Module
 

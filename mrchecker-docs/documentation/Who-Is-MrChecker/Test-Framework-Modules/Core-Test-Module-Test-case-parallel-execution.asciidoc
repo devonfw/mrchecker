@@ -6,15 +6,15 @@ _"Test Class"_, as this is a Junit Test class, it can have one or more test case
 
 image::images/image39.png[]
 
-= How many parallel test classes can run simultaneously?
+== How many parallel test classes can run simultaneously?
 
 *Since mrchecker-core-module version 5.6.2.1*
 
-JUnit5 supports parallelism natively. The feature is configured using a property file located at `src\test\resources\junit-platform.properties`.
+JUnit5 supports parallelism natively.
+The feature is configured using a property file located at `src\test\resources\junit-platform.properties`.
 As per default configuration, concurrent test execution is set to run test classes in parallel using the thread count equal to a number of your CPUs.
 
 image::images/image39a.png[]
-
 
 Visit https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-parallel-execution[JUnit5 site] to learn more about parallel test execution.
 

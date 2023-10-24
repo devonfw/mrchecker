@@ -1,5 +1,6 @@
-
 :toc: macro
+
+= Standalone Test Module
 
 ifdef::env-github[]
 :tip-caption: :bulb:
@@ -15,6 +16,5 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-= Standalone Test Module
 
 The inspiring content will be here soon.

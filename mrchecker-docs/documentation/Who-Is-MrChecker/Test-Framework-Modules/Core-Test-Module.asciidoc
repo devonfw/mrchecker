@@ -1,5 +1,7 @@
 :toc: macro
 
+= Core Test Module
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,8 +16,6 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-
-= Core Test Module
 
 == What is Core Test Module
 

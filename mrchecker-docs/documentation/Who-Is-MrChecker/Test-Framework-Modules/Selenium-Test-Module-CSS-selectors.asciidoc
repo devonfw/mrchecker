@@ -1,3 +1,22 @@
+:toc: macro
+
+= CSS Selectors
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
 A css selector is used to select elements from an HTML page.
 
 Selection by element tag, class or id are the most common selectors.
@@ -22,9 +41,11 @@ When a class or an id attribute is not sufficient to identify an element, other 
 <a href='https://ns.nl/example.html'>
 ----
 
-This can be selected by using the entire value: "a[href='https://ns.nl/example.html'\]". For selecting links starting with, containing, ending with see the list below.
+This can be selected by using the entire value: "a[href='https://ns.nl/example.html'\]".
+For selecting links starting with, containing, ending with see the list below.
 
 == Using sub-elements
+
 The css selectors can be stacked, by appending them:
 
 ----
@@ -36,8 +57,13 @@ In the example above, the link element to nsinternational can be obtained with: 
 
 == When possible avoid
 
-* Using paths of commonly used HTML elements within the containers (HTML: div). This will cause failures when a container is added, a common occurrence during development, e.g. "div div p". Use class or id instead, if those are not available, request them to be added in the production code.
-* Magic order numbers. It is possible to get the second text element in its parent container by using the selector "p:nth-child(2)". If the items are representing different items, ask the developer to add specific attributes. It is also possible to request all items, with a selector similar to ".myList li", and iterate through them later.
+* Using paths of commonly used HTML elements within the containers (HTML: div).
+This will cause failures when a container is added, a common occurrence during development, e.g. "div div p".
+Use class or id instead, if those are not available, request them to be added in the production code.
+* Magic order numbers.
+It is possible to get the second text element in its parent container by using the selector "p:nth-child(2)".
+If the items are representing different items, ask the developer to add specific attributes.
+It is also possible to request all items, with a selector similar to ".myList li", and iterate through them later.
 
 == List
 

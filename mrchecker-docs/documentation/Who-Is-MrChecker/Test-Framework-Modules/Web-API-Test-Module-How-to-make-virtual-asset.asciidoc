@@ -1,4 +1,21 @@
+:toc: macro
+
 = How to make a virtual asset
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing= Web API Test Module
 
 This can be done in four ways:
 
@@ -11,21 +28,25 @@ This can be done in four ways:
 
 Full article here http://wiremock.org/docs/record-playback/[Wiremock record-playback].
 
-First, start an instance of http://wiremock.org/docs/running-standalone[WireMock running standalone]. Once that’s running, visit the recorder UI page at http://localhost:8080/__admin/recorder (assuming you started WireMock on the default port of 8080).
+First, start an instance of http://wiremock.org/docs/running-standalone[WireMock running standalone].
+Once that’s running, visit the recorder UI page at http://localhost:8080/__admin/recorder (assuming you started WireMock on the default port of 8080).
 
 image::images/image77.png[]
 
-Enter the URL you wish to record from in the target URL field and click the Record button. You can use http://example.mocklab.io to try it out.
+Enter the URL you wish to record from in the target URL field and click the Record button.
+You can use http://example.mocklab.io to try it out.
 
-Now you need to make a request through WireMock to the target API so that it can be recorded. If you’re using the example URL, you can generate a request using curl:
+Now you need to make a request through WireMock to the target API so that it can be recorded.
+If you’re using the example URL, you can generate a request using curl:
 
     $ curl http://localhost:8080/recordables/123
 
-Now click stop. You should see a message indicating that one stub was captured.
+Now click stop.
+You should see a message indicating that one stub was captured.
 
 You should also see that a file has been created called something like _recordables_123-40a93c4a-d378-4e07-8321-6158d5dbcb29.json_ under the mappings directory created when WireMock started up, and that a new mapping has appeared at http://localhost:8080/__admin/mappings.
 
-Requesting the same URL again (possibly disabling your wifi first if you want a firm proof) will now serve the recorded result:
+Requesting the same URL again (possibly disabling your Wi-Fi first if you want a firm proof) will now serve the recorded result:
 
 ----
 $ curl http://localhost:8080/recordables/123
@@ -116,6 +137,7 @@ Source link to http://wiremock.org/docs/stubbing/[How to create Stub].
 
 StubREST_Builder.java
 
+[source,java]
 ----
 public class StubREST_Builder {
 
@@ -142,7 +164,7 @@ public class StubREST_Builder {
     public static class StubBuilder {
 
         // required parameters
-        private String endpointURI;
+        private final String endpointURI;
 
         // optional parameters
         private int     statusCode  = 200;

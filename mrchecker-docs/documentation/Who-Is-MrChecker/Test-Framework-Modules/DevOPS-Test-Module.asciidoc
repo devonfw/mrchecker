@@ -1,5 +1,7 @@
 :toc: macro
 
+= DevOPS Test Module
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,7 +16,6 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-= DevOPS Test Module
 
 == What does DevOps mean for us?
 
@@ -30,7 +31,8 @@ Using E2E MrChecker Test Framework it is possible to cover the majority of these
 
 For QA engineers, it is essential to take care of the product code quality.
 
-Therefore, we have to understand, that a *test case is also code which has to be validated* against quality gates. As a result, we must *test our developed test case* like it is done during standard Software Delivery Life Cycle.
+Therefore, we have to understand, that a *test case is also code which has to be validated* against quality gates.
+As a result, we must *test our developed test case* like it is done during standard Software Delivery Life Cycle.
 
 == Well rounded test case production process
 
@@ -51,20 +53,23 @@ image::images/image7.png[]
 
 == What will you gain with our DevOps module
 
-The CI procedure has been divided into transparent modules. This solution makes configuration and maintenance very easy because everyone is able to manage versions and customize the configuration independently for each module. A separate security module ensures the protection of your credentials and assigned access roles regardless of changes in other modules.
+The CI procedure has been divided into transparent modules.
+This solution makes configuration and maintenance very easy because everyone is able to manage versions and customize the configuration independently for each module.
+A separate security module ensures the protection of your credentials and assigned access roles regardless of changes in other modules.
 
 image::images/image8.png[]
 
-Your CI process will be matched to the current project. You can easily go back to the previous configuration, test a new one or move a selected one to other projects.
+Your CI process will be matched to the current project.
+You can easily go back to the previous configuration, test a new one or move a selected one to other projects.
 
 image::images/image9.png[]
 
-DevOps module supports a delivery model in which executors are made available to the user as needed. It has such advantages as:
+DevOps module supports a delivery model in which executors are made available to the user as needed.
+It has such advantages as:
 
 * Saving computing resources
 * Eliminating guessing on your infrastructure capacity needs
-* Not spending time on running and maintaining additional executors
-== How to build this DevOps module
+* Not spending time on running and maintaining additional executors == How to build this DevOps module
 
 Once you have implemented the module, you can learn more about it here:
 

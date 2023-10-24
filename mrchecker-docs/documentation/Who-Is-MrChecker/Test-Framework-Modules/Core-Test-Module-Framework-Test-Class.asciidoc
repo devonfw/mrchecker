@@ -1,4 +1,21 @@
+:toc: macro
+
 = Test Class
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 
 == Overview
 
@@ -10,7 +27,8 @@ More information on the methods and annotations used in this image can be found 
 
 == Methods and annotations
 
-The actual tests that will be executed are located in the so-called Test Classes. Starting a new project, a new package should be created.
+The actual tests that will be executed are located in the so-called Test Classes.
+Starting a new project, a new package should be created.
 
 *Source folder*: _mrchecker-app-under-test/src/test/java_
 
@@ -35,7 +53,8 @@ public class DemoTest extends BaseTest {
 
 === BasePage method: setUp
 
-This method will be executed before the test. It allows objects to be instantiated, e.g. Page objects.
+This method will be executed before the test.
+It allows objects to be instantiated, e.g. Page objects.
 
 ----
 @Override
@@ -46,7 +65,8 @@ public void setUp() {
 
 === BasePage method: tearDown
 
-The tearDown methods executes after the test. It allows the clean up of the testing environment.
+The tearDown methods executes after the test.
+It allows the cleanup of the testing environment.
 
 === Annotations
 
@@ -54,9 +74,13 @@ The `@Test` annotation indicates that the following method is a test method.
 
 Additionally, there are two annotations that can help preparing and disassembling the test class: `@BeforeClass` and `@AfterClass`.
 
-`@BeforeClass` will execute the following method once at the beginning, before running any test method. Compared to the setUp() method provided by the BaseTest class, this annotation will only run once, instead of before every single test method. The advantage here: things like login can be set up in `@BeforeClass`, as they can often be very time consuming. Logging in on a webapplication once and afterwards running all the test methods is more efficient than logging in before every test method, especially if they are being executed on the same page.
+`@BeforeClass` will execute the following method once at the beginning, before running any test method.
+Compared to the setUp() method provided by the BaseTest class, this annotation will only run once, instead of before every single test method.
+The advantage here: things like login can be set up in `@BeforeClass`, as they can often be very time-consuming.
+Logging in on a web application once and afterward running all the test methods is more efficient than logging in before every test method, especially if they are being executed on the same page.
 
-`@AfterClass` will execute after the last test method. Just like `@BeforeClass` this method will only run once, in contrary to the `tearDown()` method.
+`@AfterClass` will execute after the last test method.
+Just like `@BeforeClass` this method will only run once, in contrary to the `tearDown()` method.
 
 Initialize a new test method by using the `@Test` annotation.
 

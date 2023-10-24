@@ -1,5 +1,7 @@
 :toc: macro
 
+= Data driven approach
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,7 +16,6 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-= Data driven approach
 
 Running tests based on hardcoded data might lead to false-positive outcomes and poor test coverage.
 
@@ -22,7 +23,7 @@ Running tests based on hardcoded data might lead to false-positive outcomes and 
 
 In this module you will learn a few ways to define parameters for tests.
 
-= Internal Data driven approach
+== Internal Data driven approach
 
 In this approach data is used as *part* of *test case*.
 
@@ -46,7 +47,8 @@ Static methods are used to provide the parameters.
 @MethodSource("arrayStream")
 ----
 
-In the first case the arguments are directly mapped to the test method parameters. In the second case the array is passed as the argument.
+In the first case the arguments are directly mapped to the test method parameters.
+In the second case the array is passed as the argument.
 
 image::images/image30_new.png[]
 
@@ -71,7 +73,8 @@ Parameters that are passed into tests using the `@Parameters` annotation must be
 
 image::images/image30.png[]
 
-The parameters must be primitive objects such as integers, strings, or booleans. Each set of parameters is contained within a single string and will be parsed to their correct values as defined by the test method’s signature.
+The parameters must be primitive objects such as integers, strings, or booleans.
+Each set of parameters is contained within a single string and will be parsed to their correct values as defined by the test method’s signature.
 
 === In a method named in the annotation:
 
@@ -81,7 +84,8 @@ The parameters must be primitive objects such as integers, strings, or booleans.
 
 image::images/image31.png[]
 
-A separate method can be defined and referred to for parameters. This method must return an `Object[]` and can contain normal objects.
+A separate method can be defined and referred to for parameters.
+This method must return an `Object[]` and can contain normal objects.
 
 === In a class:
 
@@ -91,9 +95,11 @@ A separate method can be defined and referred to for parameters. This method mus
 
 image::images/image32.png[]
 
-A separate class can be used to define parameters for the test. This test must contain at least one static method that returns an Object[], and its name must be prefixed with provide. The class could also contain multiple methods that provide parameters to the test, as long as they also meet the required criteria.
+A separate class can be used to define parameters for the test.
+This test must contain at least one static method that returns an Object[], and its name must be prefixed with provide.
+The class could also contain multiple methods that provide parameters to the test, as long as they also meet the required criteria.
 
-= External Data Driven
+== External Data Driven
 
 In this approach data is used as *external file injected* in *test case*
 
@@ -107,7 +113,8 @@ Tests use the annotation @CsvFileSource to inject CSVs file.
 @CsvFileSource(resources = "/datadriven/test.csv", numLinesToSkip = 1)
 ----
 
-A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma-separated list.
+A CSV can also be used to contain the parameters for the tests.
+It is pretty simple to set up, as it’s just a comma-separated list.
 
 === Classic CSV
 
@@ -141,7 +148,8 @@ Tests use the annotation @FileParameters to inject CSVs file.
 @FileParameters("src/test/resources/datadriven/test.csv")
 ----
 
-A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma-separated list.
+A CSV can also be used to contain the parameters for the tests.
+It is pretty simple to set up, as it’s just a comma-separated list.
 
 === Classic CSV
 

@@ -1,5 +1,7 @@
 :toc: macro
 
+= Selenium Grid
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,7 +16,6 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-= Selenium Grid
 
 == What is Selenium Grid
 
@@ -28,7 +29,9 @@ Selenium Grid allows running web/mobile browsers test cases to fulfill basic fac
 
 image::images/image88.png[]
 
-On a daily basis, a test automation engineer uses their local environments for test case execution/development. However, a created browser test case has to be able to run on any  infrastructure. Selenium Grid enables this portability.
+On a daily basis, a test automation engineer uses their local environments for test case execution/development.
+However, a created browser test case has to be able to run on any infrastructure.
+Selenium Grid enables this portability.
 
 == Selenium Grid Structure
 
@@ -38,10 +41,11 @@ Full documentation of Selenium Grid can be found https://github.com/SeleniumHQ/s
 
 'Vanilla flavour' Selenium Grid is based on two, not very complicated ingredients:
 
-1. *Selenium Hub* - as one machine, accepting connections to grid from test cases executors. It also plays a managerial role in connection to/from Selenium Nodes
+1. *Selenium Hub* - as one machine, accepting connections to grid from test cases executors.
+It also plays a managerial role in connection to/from Selenium Nodes
 2. *Selenium Node* - from one to many machines, where on each machine a browser used during test case execution is installed.
 
-== How to setup
+== How to set up
 
 There are two options of Selenium Grid setup:
 
