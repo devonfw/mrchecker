@@ -1,3 +1,26 @@
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= Overview
+
+With MrChecker you'll run or write a lot of tests and you'll need some way to read the results. Yes, you can use the default console output, but it's not a good solution, especially when you want something more readable.
+
+In this module you'll learn about Allure logger - how to find saved logs, how to use it and different types of logger. We'll also show you Allure reports, its pros, how to set it up and use it in your project.
+
 = Allure Logger -> BFLogger
 
 In Allure E2E Test Framework you have ability to use and log any additional information crucial for:
@@ -43,27 +66,15 @@ Allure is a tool designed for test reports.
 
 === Generate report - command line
 
-You can generate a report using one of the following commands:
-
-*Since mrchecker-core-module version 5.6.2.1:*
+You can generate a report using one of the following command:
 
 	mvn test allure:serve -Dgroups=TestsTag1
-
-*Prior to mrchecker-core-module version 5.6.2.1:*
-
-    mvn test allure:serve -Dtest=TS_Tag1
 
 A report will be generated into temp folder. Web server with results will start. You can additionally configure the server timeout. The default value is "3600" (one hour).
 
 System property allure.serve.timeout.
 
-*Since mrchecker-core-module version 5.6.2.1:*
-
 	mvn test allure:report -Dgroups=TestsTag1
-
-*Prior to mrchecker-core-module version 5.6.2.1:*
-
-    mvn test allure:report -Dtest=TS_Tag1
 
 A report will be generated tо directory: target/allure-report/index.html
 

@@ -14,6 +14,7 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
+
 == Overview
 
 Business and IT don’t always understand each other. Very often misunderstandings between business and IT result in the costly failure of IT projects. With this in mind, Behaviour Driven Development(BDD) was created as an agile methodology that support human collaboration between business and IT.

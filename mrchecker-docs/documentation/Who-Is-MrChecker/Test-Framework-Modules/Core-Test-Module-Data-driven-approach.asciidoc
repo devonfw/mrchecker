@@ -20,15 +20,15 @@ Running tests based on hardcoded data might lead to false-positive outcomes and 
 
 *Data driven approach* is the way to effectively use *External data* in order to improve this.
 
-In this module you will learn a few ways to define parameters for tests.
+Data driven approach is also a way of making decisions based on collected data. Using this strategy makes it easier to stay objective and get measureable outcomes.
+
+In this module we'll show a few methods how to use data driven approach in your project.
 
 = Internal Data driven approach
 
 In this approach data is used as *part* of *test case*.
 
 The different means to pass in parameters are shown below.
-
-*Since mrchecker-core-module version 5.6.2.1*
 
 Static methods are used to provide the parameters.
 
@@ -58,10 +58,6 @@ image::images/image30_new.png[]
 ----
 
 image::images/image32_new.png[]
-
-*Prior to mrchecker-core-module version 5.6.2.1*
-
-Parameters that are passed into tests using the `@Parameters` annotation must be _Object[]_s
 
 === In the annotation:
 
@@ -99,8 +95,6 @@ In this approach data is used as *external file injected* in *test case*
 
 The different types of external files and how to handle them are shown below.
 
-*Since mrchecker-core-module version 5.6.2.1*
-
 Tests use the annotation @CsvFileSource to inject CSVs file.
 
 ----
@@ -133,36 +127,6 @@ and Mapper implementation
 
 image::images/image38_new.png[]
 
-*Prior to mrchecker-core-module version 5.6.2.1*
-
-Tests use the annotation @FileParameters to inject CSVs file.
-
 ----
 @FileParameters("src/test/resources/datadriven/test.csv")
 ----
-
-A CSV can also be used to contain the parameters for the tests. It is pretty simple to set up, as it’s just a comma-separated list.
-
-=== Classic CSV
-
-image::images/image33.png[]
-
-and CSV file structure
-
-image::images/image34.png[]
-
-=== CSV with headers
-
-image::images/image35.png[]
-
-and CSV file structure
-
-image::images/image36.png[]
-
-=== CSV with specific column mapper
-
-image::images/image37.png[]
-
-and Mapper implementation
-
-image::images/image38.png[]
