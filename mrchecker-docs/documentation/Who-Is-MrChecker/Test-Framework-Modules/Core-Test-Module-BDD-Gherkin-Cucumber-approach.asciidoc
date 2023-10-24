@@ -1,6 +1,6 @@
 :toc: macro
 
-== Overview
+= Overview
 
 ifdef::env-github[]
 :tip-caption: :bulb:
@@ -23,7 +23,7 @@ With this in mind, Behaviour Driven Development(BDD) was created as an agile met
 
 In this section you will learn how to use Cucumber/Selenium in your project with MrChecker.
 
-==== Cucumber
+== Cucumber
 
 Cucumber is a tool that supports BDD approach.
 It uses executable specifications to encourage a close collaboration.
@@ -43,7 +43,7 @@ See https://cucumber.io/docs for all Cucumber implementations and framework impl
 
 Also, IDEs such as Intellij offer several plugins for Cucumber support.
 
-==== Selenium
+== Selenium
 
 Selenium automates browsers and is used for automating web applications for testing purposes.
 It offers testers and developers full access to the properties of objects and the underlying tests, via a scripting environment and integrated debugging options.
