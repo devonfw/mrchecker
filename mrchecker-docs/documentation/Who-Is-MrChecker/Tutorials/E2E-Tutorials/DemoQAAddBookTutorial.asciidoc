@@ -23,23 +23,24 @@ toc::[]
 As an example to test, we will perform actions on the https://demoqa.com/ website to add a book to the collection.
 Follow these steps:
 
-* Open DemoQA Login Page
-
+1. Open DemoQA Login Page
++
 image::images/demoqa-login.png[]
++
 
-* Log in with valid credentials
-* Navigate to the Book Store
-
+2. Log in with valid credentials
+3. Navigate to the Book Store
++
 image::images/demoqa-goToBookStore.png[]
-
-* Select a book ("Git Pocket Guide") and add it to the collection
-
++
+4. Select a book ("Git Pocket Guide") and add it to the collection
++
 image::images/demoqa-gitPocketGuide.png[]
-
++
 image::images/demoqa-addToYourCollection.png[]
-
-* Verify that the book is added to the user's profile
-
++
+5. Verify that the book is added to the user's profile
++
 image::images/demoqa-profilePage.png[]
 
 You can go through these steps manually and double-check the result.

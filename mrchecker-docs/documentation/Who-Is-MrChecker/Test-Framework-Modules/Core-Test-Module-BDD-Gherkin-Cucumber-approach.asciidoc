@@ -17,7 +17,7 @@ toc::[]
 :source-highlighter: rouge
 :listing-caption: Listing
 
-Business and IT doesn't always understand each other.
+Business and IT don`t always understand each other.
 Very often misunderstandings between business and IT result in the costly failure of IT projects.
 With this in mind, Behaviour Driven Development(BDD) was created as an agile methodology that support human collaboration between business and IT.
 
@@ -163,7 +163,7 @@ Tags can be used to group features based on all kinds of categories.
 Cucumber can include or exclude tests with certain tags when running the tests.
 
 Here is Feature File example, where each part has tags, that help you access them as you need.
-You can learn more about tags link:Core-Test-Module-test-groups-tags.asciidoc[here]
+You can learn more about tags link:Core-Test-Module-Test-Groups-Tags.asciidoc[here]
 
 image::images/feature_file_tag_showcase.jpg[]
 

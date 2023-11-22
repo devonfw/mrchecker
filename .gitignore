@@ -1,6 +1,6 @@
 *.idea/
 *.allure/
-*/target/
+**/target/
 */lib/
 */logs/
 *.iml

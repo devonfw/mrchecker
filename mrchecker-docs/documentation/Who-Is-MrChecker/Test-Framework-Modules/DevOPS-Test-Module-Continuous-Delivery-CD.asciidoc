@@ -41,7 +41,7 @@ It will be either *master* or *develop*.
 
 === Jenkins for Smoke Tests
 
-In the $TESTNAME variable, where we input the test name( link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc#initial-configuration[check initial configuration] ), please input the name of a test suite assembled together of tests tagged as smoke tests - thus running all the smoke tests( link:Core-Test-Module-test-groups-tags.asciidoc[learn more about tags] ).
+In the $TESTNAME variable, where we input the test name( link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc#initial-configuration[check initial configuration] ), please input the name of a test suite assembled together of tests tagged as smoke tests - thus running all the smoke tests( link:Core-Test-Module-Test-Groups-Tags.asciidoc[learn more about tags] ).
 
 === Jenkins for Performance Tests
 

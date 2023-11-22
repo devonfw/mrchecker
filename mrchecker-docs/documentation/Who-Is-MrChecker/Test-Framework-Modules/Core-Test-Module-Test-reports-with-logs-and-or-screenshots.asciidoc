@@ -1,6 +1,6 @@
 :toc: macro
 
-= Allure Logger -> BFLogger
+= Overview
 
 ifdef::env-github[]
 :tip-caption: :bulb:
@@ -17,6 +17,12 @@ toc::[]
 :source-highlighter: rouge
 :listing-caption: Listing
 
+With MrChecker you'll run or write a lot of tests, and you'll need some way to read the results. Yes, you can use the default console output, but it's not a good solution, especially when you want something more readable.
+
+In this module you'll learn about Allure logger - how to find saved logs, how to use it and different types of logger. We'll also show you Allure reports, its pros, how to set it up and use it in your project.
+
+== Allure Logger -> BFLogger
+
 In Allure E2E Test Framework you have ability to use and log any additional information crucial for:
 
 * test steps
@@ -32,7 +38,7 @@ The places they are saved:
 1. In test folder _C:\Allure_Test_Framework\allure-app-under-test\logs_
 2. In every Allure Test report, logs are always embedded as an attachment, according to test run.
 
-== How to use logger:
+== How to use logger
 
 * Start typing
 +
@@ -40,7 +46,7 @@ The places they are saved:
 
 * Then type . (dot)
 
-== Type of logger:
+== Types of logger
 
 * `BFLogger.logInfo("Your text")` - used for test steps
 * `BFLogger.logDebug("Your text")` - used for non-official information, either during test build process or in Page Object files
@@ -60,44 +66,25 @@ Allure is a tool designed for test reports.
 
 === Generate report - command line
 
-You can generate a report using one of the following commands:
-
-*Since mrchecker-core-module version 5.6.2.1:*
+You can generate a report using one of the following command:
 
 	mvn test allure:serve -Dgroups=TestsTag1
 
-*Prior to mrchecker-core-module version 5.6.2.1:*
-
-    mvn test allure:serve -Dtest=TS_Tag1
-
-A report will be generated into temp folder.
-Web server with results will start.
-You can additionally configure the server timeout.
-The default value is "3600" (one hour).
+A report will be generated into temp folder. Web server with results will start. You can additionally configure the server timeout. The default value is "3600" (one hour).
 
 System property allure.serve.timeout.
 
-*Since mrchecker-core-module version 5.6.2.1:*
-
 	mvn test allure:report -Dgroups=TestsTag1
-
-*Prior to mrchecker-core-module version 5.6.2.1:*
-
-    mvn test allure:report -Dtest=TS_Tag1
 
 A report will be generated tо directory: target/allure-report/index.html
 
-*NOTE*: Please open _index.html_ file under Firefox.
-Chrome has some limitations to presenting dynamic content.
-If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
+*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
 === Generate report - Eclipse
 
 A report is created here _allure-app-under-test\target\site\allure-report\index.html_
 
-*NOTE*: Please open _index.html_ file under Firefox.
-Chrome has some limitations to presenting dynamic content.
-If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
+*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
 image::images/image17.png[]
 
@@ -105,12 +92,9 @@ image::images/image18.png[]
 
 === Generate report - IntelliJ IDEA
 
-A report is created under target folder in working directory.
-In this case: _mrchecker-selenium-junit-example\target\allure-report\index.html_
+A report is created under target folder in working directory. In this case: _mrchecker-selenium-junit-example\target\allure-report\index.html_
 
-*NOTE*: Please open _index.html_ file under Firefox.
-Chrome has some limitations to presenting dynamic content.
-If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
+*NOTE*: Please open _index.html_ file under Firefox. Chrome has some limitations to presenting dynamic content. If you want to open a report with a Chromium based Web Browser, you need to launch it first with `--allow-file-access-from-files` argument.
 
 image::images/image92.png[]
 
@@ -120,8 +104,7 @@ image::images/image94.png[]
 
 === Generate report - Jenkins
 
-In our case, we'll use the Allure Jenkins plugin.
-When integrating Allure in a Jenkins job configuration, we'll have direct access to the build's test report.
+In our case, we'll use the Allure Jenkins plugin. When integrating Allure in a Jenkins job configuration, we'll have direct access to the build's test report.
 
 image::images/image19.png[]
 
@@ -139,20 +122,15 @@ image::images/image20.png[]
 The Dashboard provides a graphical overview on how many test cases were successful, failed or broken.
 
 * *Passed* means, that the test case was executed successfully.
-* *Broken* means, that there were mistakes, usually inside the test method or test class.
-As tests are being treated as code, broken code has to be expected, resulting in occasionally broken test results.
+* *Broken* means, that there were mistakes, usually inside the test method or test class. As tests are being treated as code, broken code has to be expected, resulting in occasionally broken test results.
 * *Failed* means that an assertion failed.
 
 == Defects
 
-The defects tab lists out all the defects that occurred, and also descriptions thereof.
-Clicking on a list item displays the test case which resulted in an error.
-Clicking on a test case allows the user to have a look at the test case steps, as well as Log files or Screenshots of the failure.
+The defects tab lists out all the defects that occurred, and also descriptions thereof. Clicking on a list item displays the test case which resulted in an error. Clicking on a test case allows the user to have a look at the test case steps, as well as Log files or Screenshots of the failure.
 
 == Graph
 
-The graph page includes a pie chart of all tests, showing their result status (failed, passed, etc.).
-Another graph allows insight into the time elapsed during the tests.
-This is a very useful information to find and eliminate possible bottlenecks in test implementations.
+The graph page includes a pie chart of all tests, showing their result status (failed, passed, etc.). Another graph allows insight into the time elapsed during the tests. This is a very useful information to find and eliminate possible bottlenecks in test implementations.
 
 image::images/image21.png[]

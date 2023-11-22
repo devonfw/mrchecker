@@ -24,12 +24,12 @@ image::images/image1_new.png[]
 == Core Test Module Functions
 
 * link:Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[Test reports with logs and/or screenshots]
-* link:Core-Test-Module-test-groups-tags.asciidoc[Test groups/tags]
+* link:Core-Test-Module-Test-Groups-Tags.asciidoc[Test groups/tags]
 * link:Core-Test-Module-Data-driven-approach.asciidoc[Data driven approach]
 * link:Core-Test-Module-Test-case-parallel-execution.asciidoc[Test case parallel execution]
 * link:Core-Test-Module-BDD-Gherkin-Cucumber-approach.asciidoc[BDD - Gherkin - Cucumber approach]
 * link:Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[Run on independent Operating Systems]
-* link:Core-Test-Module-Different-Environments.asciidoc[Encrypting sensitive data]
+* link:Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[Externalize test environment (DEV, QA, PROD)]
 
 == How to start?
 

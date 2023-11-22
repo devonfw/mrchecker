@@ -19,16 +19,17 @@ toc::[]
 
 == Overview
 
+In this document we'll show you sample test classes and how should you set them up.
+
 The following image gives a general overview of a test class "lifecycle".
 
-image::images/image52.png[]
+image::images/image52_new.png[]
 
 More information on the methods and annotations used in this image can be found in the following chapter.
 
 == Methods and annotations
 
-The actual tests that will be executed are located in the so-called Test Classes.
-Starting a new project, a new package should be created.
+The actual tests that will be executed are located in the so-called Test Classes. Starting a new project, a new package should be created.
 
 *Source folder*: _mrchecker-app-under-test/src/test/java_
 
@@ -38,35 +39,52 @@ Test classes have to extend the `BaseTest` class.
 
 [source,java]
 ----
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
-
 public class DemoTest extends BaseTest {
 
-    @BeforeEach
-    public void setUp() {
-        // This method will be executed before each test.
-    }
+	@Override
+	public void setUp() {
 
-    @AfterEach
-    public void tearDown() {
-        // The tearDown method executes after each test.
-        // It allows the cleanup of the testing environment.
-    }
+	}
+
+	@Override
+	public void tearDown() {
+
+	}
 }
 ----
 
+=== BasePage method: setUp
+
+This method will be executed before the test. It allows objects to be instantiated, e.g. Page objects.
+
+----
+@Override
+public void setUp() {
+	someTestPage = new SomeTestPage();
+}
+----
+
+=== BasePage method: tearDown
+
+The tearDown methods executes after the test. It allows the clean up of the testing environment.
+
 === Annotations
 
-In JUnit 5, you should use `@Test` to indicate that a method is a test method, `@BeforeAll` and `@AfterAll` for setup and teardown at the class level, and `@BeforeEach` and `@AfterEach` for setup and teardown at the method level.
+The `@Test` annotation indicates that the following method is a test method.
 
-`@Test` annotation still indicates that the following method is a test method.
+The `@ParameterizedTest` annotation indicates that the following method is a test method. Such methods are inherited unless they are overridden.
 
-`@BeforeAll` and `@AfterAll` are used for setup and teardown at the class level.
-These methods should be static and should be declared in a class annotated with `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` to ensure they run only once for the entire test class.
+The `@Tag` is used to declare tags for filtering tests.
 
-`@BeforeEach` and `@AfterEach` are used for setup and teardown at the method level.
-They run before and after each test method.
+The `@DisplayName` declares a custom name for a test or a method (not inherited).
+
+The `@BeforeAll` denotes that the annotated method should be executed before all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class.
+
+The `@AfterAll` denotes that the annotated method should be executed after all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class.
+
+The `@BeforeEach` denotes that the annotated method should be executed before each @Test, @RepeatedTest, @ParameterizedTest, or @TestFactory method in the current class.
+
+The `@AfterEach` denotes that the annotated method should be executed after each @Test, @RepeatedTest, @ParameterizedTest, or @TestFactory method in the current class.
 
 Initialize a new test method by using the `@Test` annotation.
 
@@ -83,17 +101,7 @@ This method will interact with a page object in order to test it.
 
 [source,java]
 ----
-public class DemoTest extends BaseTest {
-
-    @BeforeAll
-    public static void setUpBeforeClass() throws Exception {
-	    BFLogger.logInfo("[Step1] Login as Account Administrator");
-    }
-
-    @AfterAll
-    public static void tearDownAfterClass() throws Exception {
-	    BFLogger.logInfo("[Step4] Logout");
-    }
+public class SampleTest extends BaseTest {
 
     @Override
     public void setUp() {
@@ -105,16 +113,46 @@ public class DemoTest extends BaseTest {
 	    BFLogger.logInfo("Clean all data updated while executing each test");
     }
 
+    @BeforeAll
+    public static void setUpClass() {
+	    SAMPLE_OBSERVER.addObserver(testObserver);
+    }
+
+    @BeforeEach
+    public void setUp() {
+        throw new RuntimeException();
+    }
+
     @Test
     public void test1() {
 	    BFLogger.logInfo("[Step2] Filter by \"Creation Date\" - Descending");
 	    BFLogger.logInfo("[Step3] Set $1 for first 10 Users in column \"Invoice to pay\"");
     }
 
+    @AfterEach
+    public void teardown() {
+        throw new RuntimeException();
+    }
+
+    @BeforeEach
+    public void setUp() {
+        throw new RuntimeException();
+    }
+
     @Test
     public void test2() {
 	    BFLogger.logInfo("[Step2] Filter by \"Invoice to pay\" - Ascending");
 	    BFLogger.logInfo("[Step3] Set $100 for first 10 Users in column \"Invoice to pay\"");
+    }
+
+    @AfterEach
+    public void teardown() {
+        throw new RuntimeException();
+    }
+
+    @AfterAll
+    public static void teardown() {
+	    throw new RuntimeException();
     }
 }
 ----

@@ -18,7 +18,7 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module.asciidoc[level
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=4]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-test-groups-tags.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-Groups-Tags.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=4]
 
@@ -28,7 +28,7 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cu
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[leveloffset=4]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=4]
 
 === Playwright Module
 
@@ -213,7 +213,7 @@ include::Who-Is-MrChecker/Tutorials/First-Steps/BFLogger.asciidoc[leveloffset=5]
 
 === E2E Tutorials
 
-include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/Tutorial1.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/DemoQAAddBookTutorial.asciidoc[leveloffset=4]
 
 == Migration from JUnit4 to JUnit5
 
