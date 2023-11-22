@@ -1,0 +1,9 @@
+In order to learn more about MrChecker structure, start from link:../../Project-Organization.asciidoc[Project Organisation] section and then check out our fantastic tutorials:
+
+This tutorial will guide you through the series of test which perform basic actions on webpages using MrChecker.
+
+Make sure you already have MrChecker Test Framework installed on your PC.
+
+In most cases your Product Under Test will be the following website: http://the-internet.herokuapp.com/
+
+Exceptionally in link:Example-17-Multiple-Windows.asciidoc[*this example*] your Product Under Test will be https://demoqa.com/

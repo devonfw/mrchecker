@@ -33,7 +33,7 @@ image::images/image2.png[]
 
 https://the-internet.herokuapp.com/
 
-Here's an example of creating selector for the first button on the list below 'Avaliable examples', the 'A/B Testing' button.
+Here's an example of creating selector for the first button on the list below 'Available examples', the 'A/B Testing' button.
 The structure of website is presented as follows:
 
 ----
@@ -46,7 +46,7 @@ The structure of website is presented as follows:
 </style>
 ----
 
-To select the anchor element within the list item that has an href attribute equal to '/abtest', you can use the following CSS selector:
+To select the anchor element within the list item that has a href attribute equal to '/abtest', you can use the following CSS selector:
 
 // CSS selector for the anchor element with a specific href attribute
 ----
@@ -58,7 +58,7 @@ This selector breaks down as follows:
 *ul:* Selects the unordered list. +
 *li:* Selects the list item within the unordered list. +
 *a:* Selects the anchor element within the list item. +
-*[href='/abtest']:* Selects the anchor element with an href attribute equal to '/abtest'. +
+*[href='/abtest']:* Selects the anchor element with a href attribute equal to '/abtest'. +
 
 This selector is designed to be specific, targeting the 'A/B Testing' link within the provided HTML structure.
 For more in-depth guide about CSS selectors, you can use designated guides, for example:
@@ -179,7 +179,7 @@ This XPath breakdown is as follows:
 *//ul:* Selects any unordered list anywhere in the HTML structure. +
 */li:* Selects the list item directly under the unordered list. +
 */a:* Selects the anchor element directly under the list item. +
-*[@href='/abtest']:* Filters for the anchor element with an href attribute equal to '/abtest'. +
+*[@href='/abtest']:* Filters for the anchor element with a href attribute equal to '/abtest'. +
 
 As with the CSS selector example, this XPath is designed to be specific and targets the 'A/B Testing' link within the provided HTML structure.
 For more in-depth guide about XPath, you can use designated guides, for example: https://www.zenrows.com/blog/xpath-web-scraping#conclusion

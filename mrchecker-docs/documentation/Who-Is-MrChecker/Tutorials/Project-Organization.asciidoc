@@ -41,19 +41,19 @@ Then you can import the project to the workspace and create new packages and cla
 
 * Create a package for page classes
 
- Open Eclipse 
- Use the "Project Explorer" on the left
- Navigate to [your-project] → src/main/java → com.capgemini.mrchecker → selenium
- Right-click on "selenium"
- Click on "New" → New Package
- Name the new package "com.capgemini.mrchecker.selenium.pages.[your-product-name]"
+- Open Eclipse
+- Use the "Project Explorer" on the left
+- Navigate to [your-project] → src/main/java → com.capgemini.mrchecker → selenium
+- Right-click on "selenium"
+- Click on "New" → New Package
+- Name the new package "com.capgemini.mrchecker.selenium.pages.[your-product-name]"
 
 * Create a package for test classes
 
- Navigate to [your-project] → src/test/java → com.capgemini.mrchecker → selenium
- Right click on "selenium"
- Click on "New" → New Package 
- Name the new package "com.capgemini.mrchecker.selenium.tests.[your-product-name]"
+- Navigate to [your-project] → src/test/java → com.capgemini.mrchecker → selenium
+- Right click on "selenium"
+- Click on "New" → New Package
+- Name the new package "com.capgemini.mrchecker.selenium.tests.[your-product-name]"
 
 Example:
 
@@ -61,9 +61,9 @@ image::images/9.png[]
 
 == Creating new Page Classes
 
- Navigate to: [your-project] → src/main/java → com.capgemini.mrchecker → selenium.pages.[your-product-name]
- Click on "New" → New Class
- Enter the name "YourPage"
+- Navigate to: [your-project] → src/main/java → com.capgemini.mrchecker → selenium.pages.[your-product-name]
+- Click on "New" → New Class
+- Enter the name "YourPage"
 
 Every Page Class should extend BasePage class.
 Import all necessary packages and override all required methods:
@@ -97,9 +97,9 @@ Example:
 
 == Creating new Test Classes
 
- Navigate to  [your-project] → src/test/java → com.capgemini.mrchecker → selenium.tests.[your-product-name] 
- Click on "New" → New Class
- Enter the name "YourCaseTest" 
+- Navigate to  [your-project] → src/test/java → com.capgemini.mrchecker → selenium.tests.[your-product-name]
+- Click on "New" → New Class
+- Enter the name "YourCaseTest"
 
 Test classes should extend BaseTest class, import all necessary packages and override all required methods:
 
