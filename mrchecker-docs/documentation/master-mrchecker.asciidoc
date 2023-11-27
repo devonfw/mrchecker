@@ -134,10 +134,6 @@ include::MrChecker-download/Windows/Advanced-installation.asciidoc[leveloffset=4
 
 include::MrChecker-download/Mac.asciidoc[leveloffset=4]
 
-=== My Thai Star
-
-include::MrChecker-download/MyThaiStar.asciidoc[leveloffset=4]
-
 == Tutorials
 
 In order to learn more about MrChecker structure, start from Project Organisation section and then check out our fantastic tutorials:
@@ -227,7 +223,6 @@ Here you can find the most frequently asked questions regarding working with MrC
 
 === Common problems
 
-include::FAQ/Common-problems/I-cannot-find.asciidoc[leveloffset=4]
 
 include::FAQ/Common-problems/It-is-possible.asciidoc[leveloffset=4]
 

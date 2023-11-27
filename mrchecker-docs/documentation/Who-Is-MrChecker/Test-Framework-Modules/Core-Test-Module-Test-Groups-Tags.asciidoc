@@ -1,0 +1,101 @@
+:toc: macro
+
+= Why join Test Cases in groups - Test Suites
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+image::images/image22.png[]
+
+== Regression Suite:
+
+Regression testing is a type of https://en.wikipedia.org/wiki/Software_testing[software testing] which verifies that software which was previously developed and tested still performs the same way after it was changed or interfaced with another software.
+
+* https://en.wikipedia.org/wiki/Smoke_testing[Smoke]
+* Business vital functionalities
+* Full scope of test cases
+
+=== https://www.rainforestqa.com/blog/2016-06-27-what-is-functional-testing[Functional Suite]:
+
+* Smoke
+* Business function A
+* Business function B
+
+=== https://en.wikipedia.org/wiki/Single_responsibility_principle[Single Responsibility Unit]:
+
+* Single page
+* Specific test case
+
+== How to build a Test Suite based on tags
+
+=== Structure of the Test Suite
+
+image::images/image23_new.png[]
+
+Where:
+
+* `@RunWith(JUnitPlatform.class)` - use Junit5 runner
+* `@IncludeTags({"TestsTag1"})` - search all test files with the tag `"TestsTag1"`
+* `@ExcludeTags({"TagToExclude"})` - exclude test files with the tag `"TagToExclude"`
+* `@SelectPackages("com.capgemini.mrchecker.core.groupTestCases.testCases")` - search only test files in `"com.capgemini.mrchecker.core.groupTestCases.testCases"` package
+* `public class TS_Tag1` - the name of the Test Suite is "TS_Tag1"
+
+Most commonly used filters to build a Test Suite are ones using:
+
+* `@IncludeTags({ })`
+* `@ExcludeTags({ })`
+
+Example:
+
+1. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ })` -> will execute all test cases with the tag `TestsTag1`
+2. `@IncludeTags({ "TestsTag1" }) , @ExcludeTags({ "SlowTest" })` -> will execute all test cases with tag `"TestsTag1"`, although it will exclude from this list the test cases with the tag `"SlowTest"`
+3. `@IncludeTags({ }) , @ExcludeTags({ "SlowTest" })` -> It will exclude test cases with the tag `"SlowTest"`
+
+=== Structure of Test Case
+
+image::images/image24_new.png[]
+
+Where:
+
+* `@TestsTag1, @TestsSmoke, @TestsSelenium` - list of tags assigned to this test case - `"TestsTag1, TestsSmoke, TestSelenium"` annotations
+* `public class FristTest_tag1_Test` - the name of the test case is `"FirstTest_tag1_Test"`
+
+=== Structure of Tags / Categories
+
+Tag name: `TestsTag1` annotation
+
+image::images/image25_new.png[]
+
+Tag name: `TestsSmoke` annotation
+
+image::images/image26_new.png[]
+
+Tag name: `TestSelenium` annotation
+
+image::images/image27_new.png[]
+
+== How to run Test Suite
+
+To run a Test Suite you perform the same steps as you do to run a test case
+
+_Command line_
+
+JUnit5 disallows running suite classes from maven. Use -Dgroups=Tag1,Tag2 and -DexcludeGroups=Tag4,Tag5 to create test suites in maven.
+
+	mvn test site -Dgroups=TestsTag1
+
+_Eclipse_
+
+image::images/image28.png[]

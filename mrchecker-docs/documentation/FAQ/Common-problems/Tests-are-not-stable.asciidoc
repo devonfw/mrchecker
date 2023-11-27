@@ -14,7 +14,3 @@ Furthermore, if the page displays visible loading bars or spinners, create Fluen
 
 Notice that by increasing timeouts you may improve stability but too long waiting time makes tests run slower. 
 
-Learn more from tutorials: +
-https://capgemini.sharepoint.com/sites/Mr-Checker/SitePages/Example-10--Dynamicly-Loading-Elements.aspx[Example 10: Dynamically loaded Elements] +
-https://capgemini.sharepoint.com/sites/Mr-Checker/SitePages/Example-11--Exit-intent.aspx[Example 11: Exit intent] +
-https://capgemini.sharepoint.com/sites/Mr-Checker/SitePages/Example-12-.aspx[Example 12: File download test] 
