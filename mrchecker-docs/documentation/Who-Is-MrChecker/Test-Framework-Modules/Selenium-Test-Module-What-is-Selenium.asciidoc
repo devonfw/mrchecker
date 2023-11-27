@@ -12,7 +12,7 @@ The Selenium testing framework consists of multiple tools:
 
 * *Selenium IDE*
 +
-The Selenium Integrated Development Environment is a prototyping tool for building test scripts. It is a Firefox Plugin and provides an easy-to-use interface for developing test cases. Additionally, Selenium IDE contains a recording feature, that allows the user to record user inputs that can be automatically re-executed in future.
+The Selenium Integrated Development Environment is a prototyping tool for building test scripts. It is a Firefox Plugin and provides an easy-to-use interface for developing test cases. Additionally, Selenium IDE contains a recording feature, that allows the user to record user inputs that can be automatically re-executed in the future.
 +
 * *Selenium 1*
 +
@@ -28,7 +28,7 @@ The major change in Selenium 3.0 is removing the original Selenium Core implemen
 +
 * *Selenium 4*
 +
-A significant architectural update in Selenium 4 is W3C Standarization for the WebDriver API. It makes cross browser tests more stable and testing itself more reliable and efficient.
+A significant architectural update in Selenium 4 is W3C Standardization for the WebDriver API. It makes cross browser tests more stable and testing itself more reliable and efficient.
 +
 * *Selenium Grid*
 +

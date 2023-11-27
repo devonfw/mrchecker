@@ -1,5 +1,7 @@
 :toc: macro
 
+= What is Docker
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,11 +16,10 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-= What is Docker
 
 Docker is an open source software platform to create, deploy and manage virtualized application containers on a common operating system (OS), with an ecosystem of allied tools.
 
-= Where do we use Docker
+== Where do we use Docker
 
 DevOps module consists of Docker images
 
@@ -29,9 +30,11 @@ DevOps module consists of Docker images
 
 in addition, each new node is also based on Docker
 
-= Exploring basic Docker options
+== Exploring basic Docker options
 
-Let’s show some of the most important commands that are needed when working with our DevOps module based on the Docker platform. Each command given below should be preceded by a sudo call by default. If you don’t want to use `sudo` command create a Unix group called docker and add a user to it.
+Let’s show some of the most important commands that are needed when working with our DevOps module based on the Docker platform.
+Each command given below should be preceded by a sudo call by default.
+If you don’t want to use `sudo` command create a Unix group called docker and add a user to it.
 
 ----
 $ sudo groupadd docker
@@ -96,7 +99,8 @@ $ docker pull jenkins/jenkins:2.73.1
 
 == Push the image or a repository to a registry
 
-Pushing new image takes place in two steps. First save the image by adding container ID to the commit command and next use push:
+Pushing new image takes place in two steps.
+First save the image by adding container ID to the commit command and next use push:
 
 ----
 # docker push [OPTIONS] NAME[:TAG]
@@ -153,45 +157,45 @@ $ docker rmi jenkins/jenkins:latest
 $ docker exec vc_jenkins_jobs sh -c "chmod 755 config.xml"
 ----
 
-= Advanced commands
+== Advanced commands
 
-== Remove dangling images
+=== Remove dangling images
 
 ----
 $ docker rmi $(docker images -f dangling=true -q) 
 ----
 
-== Remove all images
+=== Remove all images
 
 ----
 $ docker rmi $(docker images -a -q) 
 ----
 
-== Removing images according to a pattern
+=== Removing images according to a pattern
 
 ----
 $ docker images | grep "pattern" | awk '{print $2}' | xargs docker rm 
 ----
 
-== Remove all exited containers
+=== Remove all exited containers
 
 ----
 $ docker rm $(docker ps -a -f status=exited -q) 
 ----
 
-== Remove all stopped containers
+=== Remove all stopped containers
 
 ----
 $ docker rm $(docker ps --no-trunc -aq) 
 ----
 
-== Remove containers according to a pattern
+=== Remove containers according to a pattern
 
 ----
 $ docker ps -a | grep "pattern" | awk '{print $1}' | xargs docker rmi 
 ----
 
-== Remove dangling volumes
+=== Remove dangling volumes
 
 ----
 $ docker volume rm $(docker volume ls -f dangling=true -q) 

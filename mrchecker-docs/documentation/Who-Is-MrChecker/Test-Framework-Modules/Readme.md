@@ -4,6 +4,7 @@ In this section, it is possible to find all information regarding the main modul
 
 * Core Test Module
 * Selenium Test Module
+* Playwright Test Module
 * WebAPI Test Module
 * Security Test Module
 * Database Test Module

@@ -1,4 +1,21 @@
+:toc: macro
+
 = Plug in service virtualization
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing= Web API Test Module
 
 == Classic application structure
 
@@ -14,7 +31,8 @@ This is a quite common application structure, where we have any of the following
 
 image::images/image75.png[]
 
-This classic application is quite fragile for development and/or test process. Especially so, if the component (WebAPI) connected to the Application Under Test is:
+This classic application is quite fragile for development and/or test process.
+Especially so, if the component (WebAPI) connected to the Application Under Test is:
 
 * Not yet completed
 * Still evolving
@@ -26,11 +44,15 @@ This classic application is quite fragile for development and/or test process. E
 
 You can find the full list of such "classic application structure" limitations here https://github.com/devonfw/devonfw-testing/wiki/What-is-service-virtualization[What-is-service-virtualization].
 
-*Service virtualization is the key solution to address such a list of impediments. *
+*Service virtualization is the key solution to address such a list of impediments.*
 
-For simplicity, AUT connects to other components by TCP/IP protocol. Therefore AUT has an IP address and port number where given components operate. _To plug in virtualization server, the author of AUT ought to switch IP and port to "proxy server" instead of real endpoint component (WebAPI)_ . Finally, "proxy server" maps requests come from AUT with either virtual assets or real endpoint component (WebAPI). How do maps work in such a "proxy server"? Have a look here https://github.com/devonfw/devonfw-testing/wiki/How-to-make-virtual-asset[How-to-make-virtual-asset]
+For simplicity, AUT connects to other components by TCP/IP protocol.
+Therefore, AUT has an IP address and port number where given components operate.
+_To plug in virtualization server, the author of AUT ought to switch IP and port to "proxy server" instead of real endpoint component (WebAPI)_ . Finally, "proxy server" maps requests come from AUT with either virtual assets or real endpoint component (WebAPI).
+How do maps work in such a "proxy server"?
+Have a look here https://github.com/devonfw/devonfw-testing/wiki/How-to-make-virtual-asset[How-to-make-virtual-asset]
 
-Therefore AUT is build either with:
+Therefore, AUT is build either with:
 
 * switchable property file acquired on startup
 

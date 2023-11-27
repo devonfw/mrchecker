@@ -1,4 +1,4 @@
-= Run on independent Operation Systems
+= Run on independent Operating Systems
 
 As _E2E Allure test framework_ is build on top of:
 

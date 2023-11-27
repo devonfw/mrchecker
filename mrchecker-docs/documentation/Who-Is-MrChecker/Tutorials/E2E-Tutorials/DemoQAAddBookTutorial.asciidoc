@@ -1,0 +1,681 @@
+:toc: macro
+
+= How to create a basic test in MrChecker
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+
+== Example: Adding a book to the collection on DemoQA
+
+As an example to test, we will perform actions on the https://demoqa.com/ website to add a book to the collection.
+Follow these steps:
+
+1. Open DemoQA Login Page
++
+image::images/demoqa-login.png[]
++
+
+2. Log in with valid credentials
+3. Navigate to the Book Store
++
+image::images/demoqa-goToBookStore.png[]
++
+4. Select a book ("Git Pocket Guide") and add it to the collection
++
+image::images/demoqa-gitPocketGuide.png[]
++
+image::images/demoqa-addToYourCollection.png[]
++
+5. Verify that the book is added to the user's profile
++
+image::images/demoqa-profilePage.png[]
+
+You can go through these steps manually and double-check the result.
+
+=== How to prepare a test
+
+In this section, we'll guide you through the process of preparing a test for adding a book to the collection on DemoQA.
+This involves creating classes for different pages of the application and defining methods to interact with the elements on those pages.
+
+==== 1. Create DemoQALoginPage class
+
+To start, create the `DemoQALoginPage` class, which represents the DemoQA login page.
+This class contains methods to interact with login elements, such as filling in the username and password, and clicking the login button.
+
+Selectors:
+
+* `selectorUsernameInput`: Represents the username input field.
+* `selectorPasswordInput`: Represents the password input field.
+* `selectorLoginButton`: Represents the login button.
+
+Methods:
+
+- `fillUsername(String username)`: Fills in the username input field.
+- `fillPassword(String password)`: Fills in the password input field.
+- `clickLoginButton()`: Clicks the login button.
+
+These methods are essential for authenticating a user into the application.
+
+[source,java]
+----
+package com.capgemini.mrchecker.selenium.example.page;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.openqa.selenium.By;
+
+import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
+import com.capgemini.mrchecker.test.core.utils.StepLogger;
+
+import io.qameta.allure.Step;
+
+public class DemoQALoginPage extends BasePage {
+// Selectors to interact with web elements
+private final By	selectorUsernameInput	= By.id("userName");
+private final By	selectorPasswordInput	= By.id("password");
+private final By	selectorLoginButton		= By.id("login");
+
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return getDriver().getCurrentUrl()
+				.contains("/login");
+	}
+
+	@Override
+	public void load() {
+		String url = GetEnvironmentParam.DEMO_QA_LOGIN_URL.getValue();
+		loadPage(url);
+	}
+
+	@Step("Fill username: {username}")
+	public void fillUsername(String username) {
+		assertTrue(isElementDisplayed(selectorUsernameInput), "Username input is not displayed");
+		getDriver().findElementDynamic(selectorUsernameInput)
+				.sendKeys(username);
+		StepLogger.info("Filled username: " + username);
+	}
+
+	@Step("Fill password")
+	public void fillPassword(String password) {
+		assertTrue(isElementDisplayed(selectorPasswordInput), "Password input is not displayed");
+		getDriver().findElementDynamic(selectorPasswordInput)
+				.sendKeys(password);
+		StepLogger.info("Filled password");
+	}
+
+	@Step("Click login button")
+	public void clickLoginButton() {
+		assertTrue(isElementDisplayed(selectorLoginButton), "Login button is not displayed");
+		getDriver().findElementDynamic(selectorLoginButton)
+				.click();
+		StepLogger.info("Clicked login button");
+	}
+}
+----
+
+==== 2. Create DemoQABookStorePage class
+
+Next, create the `DemoQABookStorePage` class, representing the DemoQA Book Store page.
+This class contains methods to interact with book-related elements, such as clicking on a book name.
+
+Selectors:
+
+- `selectorBookName`: Represents the book names on the Book Store page.
+
+Methods:
+
+- `clickBookName(String bookName)`: Clicks on a book with the specified name.
+
+This class enables navigation and interaction with the available books in the Book Store.
+
+[source,java]
+-----
+package com.capgemini.mrchecker.selenium.example.page;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.test.core.utils.StepLogger;
+
+import io.qameta.allure.Step;
+
+public class DemoQABookStorePage extends BasePage {
+	private final By selectorBookName = By.cssSelector("div.action-buttons a");
+
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return getDriver().getCurrentUrl()
+				.contains("/books");
+	}
+
+	@Override
+	public void load() {
+		// Not implemented as the page is not loaded via a URL
+		StepLogger.info("Load method is not implemented as the page is not loaded via a URL");
+	}
+
+	@Step("Click on the book with name: {bookName}")
+	public void clickBookName(String bookName) {
+		List<WebElement> bookNames = getDriver().findElementDynamics(selectorBookName);
+		assertFalse(bookNames.isEmpty(), "No book names found");
+
+		// Using stream to filter and click on the book with the specified name
+		bookNames.stream()
+				.filter(element -> element.getText()
+						.equals(bookName))
+				.findFirst()
+				.ifPresentOrElse(
+						WebElement::click,
+						() -> fail("Book with name " + bookName + " not found"));
+
+		StepLogger.info("Clicked on the book with name: " + bookName);
+	}
+}
+-----
+
+==== 3. Create DemoQABookStoreDetailsPage class
+
+Now, create the `DemoQABookStoreDetailsPage` class, responsible for handling interactions on the details page of a book in the DemoQA Book Store.
+
+Selectors:
+
+- `selectorBookTitleText`: Represents the title of the book.
+- `selectorAddToYourCollectionButton`: Represents the "Add to Your Collection" button.
+
+Methods:
+
+- `getBookTitle()`: Retrieves the title of the book.
+- `clickAddToYourCollectionButton()`: Clicks the "Add to Your Collection" button.
+
+This class facilitates adding a selected book to the user's collection.
+
+[source,java]
+----
+package com.capgemini.mrchecker.selenium.example.page;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.test.core.utils.StepLogger;
+
+import io.qameta.allure.Step;
+
+public class DemoQABookStoreDetailsPage extends BasePage {
+	// Selectors to interact with web elements
+	private final By	selectorBookTitleText				= By.cssSelector("#title-wrapper label#userName-value");
+	private final By	selectorAddToYourCollectionButton	= By.cssSelector("div[class='text-right fullButton'] button");
+
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return getDriver().getCurrentUrl()
+				.contains("/books?book=");
+	}
+
+	@Override
+	public void load() {
+		// Not implemented as the page is not loaded via a URL
+		StepLogger.info("Load method is not implemented as the page is not loaded via a URL");
+	}
+
+	// Get the book title displayed on the page
+	public String getBookTitle() {
+		assertTrue(isElementDisplayed(selectorBookTitleText), "Book Title element is not displayed");
+		return getDriver().findElementDynamic(selectorBookTitleText)
+				.getText();
+	}
+
+	@Step("Click the 'Add to Your Collection' button")
+	public void clickAddToYourCollectionButton() {
+		WebElement addToYourCollectionButtonEl = getDriver().findElementDynamic(selectorAddToYourCollectionButton);
+		assertTrue(isElementDisplayed(selectorAddToYourCollectionButton), "Add To Your Collection button is not displayed");
+
+		scrollToElement(addToYourCollectionButtonEl);
+		addToYourCollectionButtonEl.click();
+		StepLogger.info("'Add to Your Collection' button clicked");
+	}
+
+	// Function to scroll to a specific element using JavascriptExecutor
+	private void scrollToElement(WebElement element) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
+	}
+
+	// Wait for the alert to be present
+	private void waitForTheAlertToBePresent() {
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5)); // 5 seconds timeout
+		wait.until(ExpectedConditions.alertIsPresent());
+	}
+
+	// Get the text of the alert displayed on the page
+	public String getAlertText() {
+		waitForTheAlertToBePresent();
+		return getDriver().switchTo()
+				.alert()
+				.getText();
+	}
+
+	@Step("Click the 'OK' button on the alert")
+	public void clickAlertAccept() {
+		getDriver().switchTo()
+				.alert()
+				.accept();
+		StepLogger.info("Clicked 'OK' on the alert");
+	}
+}
+----
+
+==== 4. Create DemoQANavigationPage class
+
+Create the `DemoQANavigationPage` class, representing the navigation page in the DemoQA application.
+
+Selectors:
+
+- `selectorMenuSubOption`: Represents the sub-options in the navigation menu.
+
+Methods:
+
+- `clickSubOption(String optionName)`: Clicks on a specified sub-option.
+
+This class allows navigation to different sections of the application.
+
+[source,java]
+----
+package com.capgemini.mrchecker.selenium.example.page;
+
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.test.core.utils.StepLogger;
+
+import io.qameta.allure.Step;
+
+public class DemoQANavigationPage extends BasePage {
+	private final By selectorMenuSubOption = By.cssSelector("div[class*='show'] span.text");
+
+	@Override
+	public String pageTitle() {
+		// Return null or implement based on your actual page structure
+		return null;
+	}
+
+	@Override
+	public boolean isLoaded() {
+		// Return false or implement based on your actual page structure
+		return false;
+	}
+
+	@Override
+	public void load() {
+		// Not implemented as the page is not loaded via a URL
+		StepLogger.info("Load method is not implemented as the page is not loaded via a URL");
+	}
+
+	@Step("Click on the sub-option: {optionName}")
+	public void clickSubOption(String optionName) {
+		List<WebElement> subOptions = getDriver().findElementDynamics(selectorMenuSubOption);
+		// Using stream to filter and click on the sub-option with the specified name
+		subOptions.stream()
+				.filter(element -> element.getText()
+						.equals(optionName))
+				.findFirst()
+				.ifPresentOrElse(
+						WebElement::click,
+						() -> fail("SubOption with name " + optionName + " not found"));
+		StepLogger.info("Clicked on the sub-option: " + optionName);
+	}
+
+}
+----
+
+==== 5. Create DemoQAProfilePage class
+
+Create the `DemoQAProfilePage` class, representing the user's profile page in the DemoQA application.
+
+Selectors:
+
+- `selectorGoToBookStoreButton`: Represents the "Go-To Book Store" button.
+- `selectorDeleteAllBooksButton`: Represents the "Delete All Books" button.
+- `selectorTableBookName`: Represents the book names in the profile table.
+- `selectorModalWindow`: Represents the modal window for delete confirmation.
+- `selectorDeleteAllBooksOkButton`: Represents the "OK" button in the delete confirmation modal.
+
+Methods:
+
+- `clickGoToBookStoreButton()`: Clicks the "Go-To Book Store" button.
+- `clickDeleteAllBooksButton()`: Clicks the "Delete All Books" button.
+- `isModalWindowDisplayed()`: Checks if the delete confirmation modal is displayed.
+- `clickDeleteAllBooksOkButton()`: Clicks the "OK" button in the delete confirmation modal.
+- `getBookNamesInTable()`: Retrieves the list of book names from the profile table.
+
+This class provides methods for navigating to the book store, managing the user's book collection, and verifying book deletion.
+
+[source,java]
+----
+package com.capgemini.mrchecker.selenium.example.page;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
+import com.capgemini.mrchecker.test.core.logger.BFLogger;
+import io.qameta.allure.Step;
+
+public class DemoQAProfilePage extends BasePage {
+	// Selectors to interact with web elements
+	private final By	selectorGoToBookStoreButton		= By.id("gotoStore");
+	private final By	selectorDeleteAllBooksButton	= By.xpath("//div[@class='text-right button di']/button[text()='Delete All Books']");
+	private final By	selectorTableBookName			= By.cssSelector("span[id^='see-book'] a");
+
+	private final By	selectorModalWindow				= By.cssSelector("div.modal-content");
+	private final By	selectorDeleteAllBooksOkButton	= By.cssSelector("button#closeSmallModal-ok");
+
+	@Override
+	public String pageTitle() {
+		return getActualPageTitle();
+	}
+
+	@Override
+	public boolean isLoaded() {
+		return getDriver().getCurrentUrl()
+				.contains("/profile");
+	}
+
+	@Override
+	public void load() {
+		String url = GetEnvironmentParam.DEMO_QA_PROFILE_URL.getValue();
+		loadPage(url);
+		BFLogger.logInfo("Loaded DemoQA Profile Page");
+	}
+
+	@Step("Click Go To Book Store button")
+	public void clickGoToBookStoreButton() {
+		WebElement goToBookStoreButtonEl = getDriver().findElementDynamic(selectorGoToBookStoreButton);
+		assertTrue(goToBookStoreButtonEl.isDisplayed(), "Go To Book Store button is not displayed");
+
+		scrollToElement(goToBookStoreButtonEl);
+		goToBookStoreButtonEl.click();
+		BFLogger.logInfo("Clicked Go To Book Store button");
+	}
+
+	@Step("Click Delete All Books button")
+	public void clickDeleteAllBooksButton() {
+		WebElement deleteAllBooksButtonEl = getDriver().findElementDynamic(selectorDeleteAllBooksButton);
+		assertTrue(deleteAllBooksButtonEl.isDisplayed(), "Delete All Books button is not displayed");
+
+		scrollToElement(deleteAllBooksButtonEl);
+		deleteAllBooksButtonEl.click();
+		BFLogger.logInfo("Clicked Delete All Books button");
+	}
+
+	// Check if the modal window is displayed
+	public boolean isModalWindowDisplayed() {
+		return isElementDisplayed(selectorModalWindow);
+	}
+
+	@Step("Click Delete All Books OK button")
+	public void clickDeleteAllBooksOkButton() {
+		WebElement deleteAllBooksButtonOkEl = getDriver().findElementDynamic(selectorDeleteAllBooksOkButton);
+		assertTrue(deleteAllBooksButtonOkEl.isDisplayed(), "Delete All Books OK button is not displayed");
+
+		deleteAllBooksButtonOkEl.click();
+		BFLogger.logInfo("Clicked Delete All Books OK button");
+	}
+
+	// Get the list of book names from the table
+	public List<String> getBookNamesInTable() {
+		return getDriver().findElementDynamics(selectorTableBookName)
+				.stream()
+				.map(WebElement::getText)
+				.collect(Collectors.toList());
+	}
+
+	// Function to scroll to a specific element using JavascriptExecutor
+	private void scrollToElement(WebElement element) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) getDriver();
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
+	}
+
+	// Wait for the alert to be present
+	private void waitForTheAlertToBePresent() {
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5)); // 5 seconds timeout
+		wait.until(ExpectedConditions.alertIsPresent());
+	}
+
+	// Get the text of the alert
+	public String getAlertText() {
+		waitForTheAlertToBePresent();
+		return getDriver().switchTo()
+				.alert()
+				.getText();
+	}
+}
+----
+
+==== 6. Create BookStore_AddBook test class
+
+Now that we have our page classes set up, let's create the test class `BookStore_AddBook`.
+This class will orchestrate the test scenario by using methods from the page classes.
+It involves logging in, navigating to the book store, selecting a book, adding it to the collection, and verifying the addition to the user's profile.
+
+Test Class Description:
+
+- The `BookStore_AddBook` test class extends `BaseTest` and includes setup and teardown methods.
+The setup method loads the DemoQA login page, and the teardown method deletes all books if any were added during the test.
+- The test class initializes instances of various page classes (`DemoQALoginPage`, `DemoQAProfilePage`, `DemoQABookStorePage`, `DemoQABookStoreDetailsPage`, `DemoQANavigationPage`) to interact with different parts of the application.
+- User credentials and book information are configured as class variables.
+- The test method `bookStore_AddBook_test()` orchestrates the complete test scenario, calling methods from page classes to perform the required actions.
+- All steps are wrapped in `@Step` annotations for improved test reporting.
+
+[source,java]
+----
+package com.capgemini.mrchecker.selenium.example.test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
+import com.capgemini.mrchecker.selenium.example.page.*;
+import com.capgemini.mrchecker.test.core.BaseTest;
+import com.capgemini.mrchecker.test.core.utils.PageFactory;
+import com.capgemini.mrchecker.test.core.utils.StepLogger;
+
+import io.qameta.allure.Step;
+
+public class BookStore_AddBook extends BaseTest {
+	// Page instances
+	private final DemoQALoginPage				demoQALoginPage				= PageFactory.getPageInstance(DemoQALoginPage.class);
+	private final DemoQAProfilePage				demoQAProfilePage			= PageFactory.getPageInstance(DemoQAProfilePage.class);
+	private final DemoQABookStorePage			demoQABookStorePage			= PageFactory.getPageInstance(DemoQABookStorePage.class);
+	private final DemoQABookStoreDetailsPage	demoQABookStoreDetailsPage	= PageFactory.getPageInstance(DemoQABookStoreDetailsPage.class);
+	private final DemoQANavigationPage			demoQANavigationPage		= PageFactory.getPageInstance(DemoQANavigationPage.class);
+
+	// User credentials and book information
+	private final String	userLogin		= GetEnvironmentParam.EXAMPLE_USER_LOGIN.getValue();
+	private final String	userPassword	= GetEnvironmentParam.EXAMPLE_USER_PASSWORD.getValue();
+
+	// Name of book we want to add in test
+	private final String	bookName	= "Git Pocket Guide";
+	private boolean			isBookAdded	= false;
+
+	// Setup method to load the login page
+	@Override
+	public void setUp() {
+		demoQALoginPage.load();
+		assertTrue(demoQALoginPage.isLoaded(), "DemoQA Login Page is not loaded");
+		StepLogger.info("Setup complete: Loaded DemoQA Login Page");
+	}
+
+	// Teardown method to delete all books if any were added during the test
+	@Override
+	public void tearDown() {
+		if (isBookAdded) {
+			deleteAllBooks();
+		}
+		StepLogger.info("Teardown complete");
+	}
+
+	// Test method for the actual test scenario
+	@Test
+	void bookStore_AddBook_test() {
+		logInToStore();
+		navigateToBookStore();
+		selectBookAndAddToCollection();
+		verifyBookAddedToProfile();
+	}
+
+	@Step("Log in to the application")
+	private void logInToStore() {
+		demoQALoginPage.fillUsername(userLogin);
+		demoQALoginPage.fillPassword(userPassword);
+		demoQALoginPage.clickLoginButton();
+		StepLogger.info("Logged in to the application");
+	}
+
+	@Step("Navigate to the book store")
+	private void navigateToBookStore() {
+		demoQAProfilePage.clickGoToBookStoreButton();
+		assertTrue(demoQABookStorePage.isLoaded(), "Book Store Page is not loaded");
+		StepLogger.info("Navigated to the book store");
+	}
+
+	@Step("Select a book and add it to the collection")
+	private void selectBookAndAddToCollection() {
+		demoQABookStorePage.clickBookName("Git Pocket Guide");
+		assertTrue(demoQABookStoreDetailsPage.isLoaded(), "Book Store Details Page is not loaded");
+		assertEquals(bookName, demoQABookStoreDetailsPage.getBookTitle(),
+				"Book Title is different on the Book Store Details Page");
+		demoQABookStoreDetailsPage.clickAddToYourCollectionButton();
+		assertEquals("Book added to your collection.", demoQABookStoreDetailsPage.getAlertText(),
+				"Wrong alert message after adding it to your collection list");
+		isBookAdded = true;
+		demoQABookStoreDetailsPage.clickAlertAccept();
+		StepLogger.info("Book selected and added to the collection");
+	}
+
+	@Step("Verify that the book is added to the profile")
+	private void verifyBookAddedToProfile() {
+		demoQANavigationPage.clickSubOption("Profile");
+		assertTrue(demoQAProfilePage.getBookNamesInTable()
+				.contains(bookName),
+				"Book " + bookName + " is not in the Books Profile table");
+		StepLogger.info("Book successfully added to the profile");
+	}
+
+	@Step("Delete all books from the profile")
+	private void deleteAllBooks() {
+		goToProfileAndDeleteBooks();
+		verifyDeletionAlert();
+		StepLogger.info("All books deleted from the profile");
+	}
+
+	@Step("Navigate to the profile and click the delete all books button")
+	private void goToProfileAndDeleteBooks() {
+		demoQAProfilePage.load();
+		assertTrue(demoQAProfilePage.isLoaded(), "DemoQA Profile Page is not loaded");
+		demoQAProfilePage.clickDeleteAllBooksButton();
+		StepLogger.info("Navigated to the profile and clicked delete all books button");
+	}
+
+	@Step("Verify the deletion alert")
+	private void verifyDeletionAlert() {
+		assertTrue(demoQAProfilePage.isModalWindowDisplayed(), "Delete All Books Modal Window is not displayed");
+		demoQAProfilePage.clickDeleteAllBooksOkButton();
+		assertEquals("All Books deleted.", demoQAProfilePage.getAlertText(),
+				"Wrong alert message after deleting all books");
+		StepLogger.info("Deletion alert verified");
+	}
+}
+----
+
+==== 8. Run the test
+
+To run the test using JUnit in IntelliJ Idea, follow these steps:
+
+* Once you're within the "BookStore_AddBook" class, to run `bookStore_AddBook_test()` test method, right-click on it.
+A context menu will appear.
+
+** Choose "Run": From the context menu, select the option labeled "Run 'BookStore_AddBook'".
+This action triggers the execution of the test method you've selected.
+** Press Ctrl + Shift + F10
+
+image::images/JUnit-run-test.png[]
+
+== Summary
+
+In this tutorial, we've outlined a step-by-step guide on creating an automated test using the MrChecker testing framework.
+The focus was on interacting with the DemoQA application, specifically adding a book to the user's collection.
+Key elements of the tutorial include:
+
+- **Test Scenario:** The tutorial walks through the process of creating a test that logs in, navigates to the book store, adds a specific book to the collection, and verifies its presence on the user's profile.
+
+- **Page Classes:** We created several page classes (`DemoQALoginPage`, `DemoQAProfilePage`, `DemoQABookStorePage`, `DemoQABookStoreDetailsPage`, `DemoQANavigationPage`) to encapsulate the functionality and selectors related to different parts of the DemoQA application.
+
+- **Selectors and Methods:** The tutorial emphasizes the importance of selectors in identifying web elements and how encapsulating them within page classes promotes modularity and maintainability.
+Methods in page classes perform specific actions, enhancing the readability of the test class.
+
+- **Test Class:** The `BookStore_AddBook` test class orchestrates the entire test scenario, using methods from page classes.
+It includes setup and teardown methods, ensuring a clean test environment.
+
+- **Execution:** The tutorial provides guidance on running the test using JUnit in IntelliJ IDEA, showcasing the practical application of the created test class.
+
+This tutorial serves as a foundation for creating automated tests with MrChecker, offering insights into best practices for structuring tests, utilizing page classes, and maintaining a modular and readable test suite.

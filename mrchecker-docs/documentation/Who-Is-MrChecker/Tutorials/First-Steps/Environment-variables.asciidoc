@@ -28,7 +28,7 @@ Instead of _hardcoded_ main URL variable, you build your Page class with a dynam
 
 == How to create / update system environment
 
-Dynamic variable values are stored under path _\src\resources\enviroments\environments.csv_.
+Dynamic variable values are stored under path _\src\resources\environments\environments.csv_.
 
 image::images/image1.png[]
 

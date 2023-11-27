@@ -1,5 +1,7 @@
 :toc: macro
 
+= Overview
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -15,32 +17,42 @@ toc::[]
 :source-highlighter: rouge
 :listing-caption: Listing
 
-== Overview
-
-Business and IT don’t always understand each other. Very often misunderstandings between business and IT result in the costly failure of IT projects. With this in mind, Behaviour Driven Development(BDD) was created as an agile methodology that support human collaboration between business and IT.
+Business and IT don`t always understand each other.
+Very often misunderstandings between business and IT result in the costly failure of IT projects.
+With this in mind, Behaviour Driven Development(BDD) was created as an agile methodology that support human collaboration between business and IT.
 
 In this section you will learn how to use Cucumber/Selenium in your project with MrChecker.
 
-==== Cucumber
+== Cucumber
 
-Cucumber is a tool that supports BDD approach. It uses executable specifications to encourage a close collaboration. This helps teams to keep the business goal in mind at all times. With Cucumber you can merge specification and test documentation into one cohesive whole, allowing your team to maintain one single source of truth. Because these executable specifications are automatically tested by Cucumber, your single source of truth is always up-to-date.
+Cucumber is a tool that supports BDD approach.
+It uses executable specifications to encourage a close collaboration.
+This helps teams to keep the business goal in mind at all times.
+With Cucumber, you can merge specification and test documentation into one cohesive whole, allowing your team to maintain one single source of truth.
+Because these executable specifications are automatically tested by Cucumber, your single source of truth is always up-to-date.
 
 image::images/image40.png[]
 
-Cucumber supports testers when designing test cases. To automate these test cases, several languages can be used. Cucumber also works well with Browser Automation tools such as Selenium Webdriver.
+Cucumber supports testers when designing test cases.
+To automate these test cases, several languages can be used.
+Cucumber also works well with Browser Automation tools such as Selenium Webdriver.
 
-Cucumber supports over a dozen different software platforms. Every Cucumber implementation provides the same overall functionality, but they also have their own installation procedure and platform-specific functionality. See https://cucumber.io/docs for all Cucumber implementations and framework implementations.
+Cucumber supports over a dozen different software platforms.
+Every Cucumber implementation provides the same overall functionality, but they also have their own installation procedure and platform-specific functionality.
+See https://cucumber.io/docs for all Cucumber implementations and framework implementations.
 
 Also, IDEs such as Intellij offer several plugins for Cucumber support.
 
-==== Selenium
+== Selenium
 
-Selenium automates browsers and is used for automating web applications for testing purposes. It offers testers and developers full access to the properties of objects and the underlying tests, via a scripting environment and integrated debugging options.
+Selenium automates browsers and is used for automating web applications for testing purposes.
+It offers testers and developers full access to the properties of objects and the underlying tests, via a scripting environment and integrated debugging options.
 
-Selenium consists of many parts. If you want to create robust, browser-based regression automation suites and tests, Selenium Webdriver is most appropriate it helps you scale and distribute scripts across many environments.
+Selenium consists of many parts.
+If you want to create robust, browser-based regression automation suites and tests, Selenium Webdriver is most appropriate it helps you scale and distribute scripts across many environments.
 
-Selenium has the support of some of the largest browser vendors who have taken (or are taking) steps to make Selenium a native part of their browser. It is also the core technology in countless other browser automation tools, APIs and frameworks.
-
+Selenium has the support of some of the largest browser vendors who have taken (or are taking) steps to make Selenium a native part of their browser.
+It is also the core technology in countless other browser automation tools, APIs and frameworks.
 
 === Strengths
 
@@ -50,17 +62,21 @@ Those familiar with Behavior Driven Development (BDD) recognize Cucumber as an e
 
 ==== All in one place
 
-With Cucumber / Selenium you can automate at the UI level. Automation at the unit or API level can also be implemented using Cucumber. This means all tests, regardless of the level at which they are implemented, can be implemented in one tool.
+With Cucumber / Selenium you can automate at the UI level.
+Automation at the unit or API level can also be implemented using Cucumber.
+This means all tests, regardless of the level at which they are implemented, can be implemented in one tool.
 
 ==== Maintainable test scripts
 
-Many teams seem to prefer UI level automation, despite huge cost of maintaining UI level tests compared to the cost of maintaining API or unit tests. To lessen the maintenance of UI testing, when designing UI level functional tests, you can try describing the test and the automation at three levels: business rule, UI workflow, technical implementation.
+Many teams seem to prefer UI level automation, despite huge cost of maintaining UI level tests compared to the cost of maintaining API or unit tests.
+To lessen the maintenance of UI testing, when designing UI level functional tests, you can try describing the test and the automation at three levels: business rule, UI workflow, technical implementation.
 
 When using Cucumber combined with Selenium, you can implement these three levels for better maintenance.
 
 ==== Early start
 
-Executable specifications can and should be written before the functionality is implemented. By starting early, teams get most return on investment from their test automation.
+Executable specifications can and should be written before the functionality is implemented.
+By starting early, teams get most return on investment from their test automation.
 
 ==== Supported by a large community
 
@@ -74,13 +90,15 @@ image::images/cucumber_project_structure.jpg[]
 
 === Feature Files
 
-*Feature files* are core part of *BDD* approach with *Cucumber*. The idea behind them is to allow communication between everyone, even without technical skill.
+*Feature files* are core part of *BDD* approach with *Cucumber*.
+The idea behind them is to allow communication between everyone, even without technical skill.
 
 *Feature files* are written with *Gherkin*, which syntax is simple, trying to imitate plain english.
 
 This is the place for test scenarios, which are scripted chain of commands that drives the process.
 
-Test automation in Cucumber starts with writing a feature file. A feature normally consists of several (test)scenarios and each scenario consists of several steps.
+Test automation in Cucumber starts with writing a feature file.
+A feature normally consists of several (test)scenarios and each scenario consists of several steps.
 
 Here is an example of single scenario in feature file:
 
@@ -99,7 +117,8 @@ Feature: Login page example from Demo QA
     Then Verify that output label has proper text
 ----
 
-Above example shows a feature “Login page example from Demo QA” with one scenario “Use example login credentials”. The scenario consists of four steps each starting with a key word (Given, And, When, Then).
+Above example shows a feature “Login page example from Demo QA” with one scenario “Use example login credentials”.
+The scenario consists of four steps each starting with a key word (Given, And, When, Then).
 
 As shown in the example below, Data tables can be used to execute a scenario with different inputs.
 
@@ -113,7 +132,8 @@ While *feature files* are simple lines describing actions, they have to be conne
 
 A good practice is to follow *Page Object Pattern* to keep your step definitions clean and expandable, you can find more information https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/#:~:text=Page%20Object%20is%20a%20Design,a%20page%20of%20your%20AUT[here].
 
-Here is example implementation of step in Java. Note that it starts with @When annotation followed by exact string that connects code with step in feature file.
+Here is example implementation of step in Java.
+Note that it starts with @When annotation followed by exact string that connects code with step in feature file.
 
 ----
     @When("Enter example login credentials")
@@ -127,7 +147,6 @@ Here is example implementation of step in Java. Note that it starts with @When a
     }
 ----
 
-
 === Test runner
 
 *Test runner* is used to create communication between *Feature files* and *Step definitions*, execute tests and report results.
@@ -136,23 +155,25 @@ In test runner annotations you can edit each of mentioned above.
 
 You can find Test Runner, used in MrChecker example https://github.com/devonfw/mrchecker/blob/develop/mrchecker-selenium-cucumber-example/src/test/java/com/capgemini/mrchecker/selenium/example/test/CucumberTests.java[here]
 
-
 === Organizing tests
 
 Feature files are placed in a directory structure and together form a feature tree.
 
-Tags can be used to group features based on all kinds of categories. Cucumber can include or exclude tests with certain tags when running the tests.
+Tags can be used to group features based on all kinds of categories.
+Cucumber can include or exclude tests with certain tags when running the tests.
 
-Here is Feature File example, where each part has tags, that help you access them as you need. You can learn more about tags link:Core-Test-Module-test-groups-tags.asciidoc[here]
+Here is Feature File example, where each part has tags, that help you access them as you need.
+You can learn more about tags link:Core-Test-Module-Test-Groups-Tags.asciidoc[here]
 
 image::images/feature_file_tag_showcase.jpg[]
-
 
 == How to run cucumber tests in Mr.Checker
 
 === Command line / Jenkins
 
-* Run cucumber tests and generate Allure report. Please use this for Jenkins execution. Report is saved under _./target/site_.
+* Run cucumber tests and generate Allure report.
+Please use this for Jenkins execution.
+Report is saved under _./target/site_.
 +
     mvn clean -P cucumber test site allure:report
 +
@@ -188,7 +209,7 @@ Before running cucumber subproject you have to configure your IDE
 === Reporting test results
 
 Cucumber can report results in several formats, using formatter plugins.
-Not supported option by Shared Services: The output from Cucumber can be used to present test results in Jenkins or Hudson depending of the preference of the project.
+Not supported option by Shared Services: The output from Cucumber can be used to present test results in Jenkins or Hudson depending on the preference of the project.
 
 image::images/image43.png[]
 
@@ -196,7 +217,9 @@ image::images/image43.png[]
 
 === Tool deployment
 
-Cucumber and Selenium are chosen as one of Capgemini’s test automation industrial tools. We support the Java implementation of Cucumber and Selenium Webdriver. We can help with creating Cucumber, Selenium projects in Eclipse and IntelliJ.
+Cucumber and Selenium are chosen as one of Capgemini’s test automation industrial tools.
+We support the Java implementation of Cucumber and Selenium Webdriver.
+We can help with creating Cucumber, Selenium projects in Eclipse and IntelliJ.
 
 === Application in ATaaS (Automated Testing as a Service)
 

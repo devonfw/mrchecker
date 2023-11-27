@@ -1,6 +1,25 @@
+:toc: macro
+
 = Page Class
 
-Page Object Models allow for the representation of a webpage as a Java Class. The class contains all required web elements like buttons, textfields, labels, etc. When initializing a new project, create a new package to store the Page Object Models in.
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+Page Object Models allow for the representation of a webpage as a Java Class.
+The class contains all required web elements like buttons, text fields, labels, etc.
+When initializing a new project, create a new package to store the Page Object Models in.
 
 == Initialization
 
@@ -8,7 +27,8 @@ Page Object Models allow for the representation of a webpage as a Java Class. Th
 
 *Name*: `com.example.selenium.pages.YOUR_PROJECT`
 
-Classes being created inside of this new package have to extend the *BasePage* class. As a result, a few abstract methods from *BasePage* have to be implemented.
+Classes being created inside of this new package have to extend the *BasePage* class.
+As a result, a few abstract methods from *BasePage* have to be implemented.
 
 ----
 public class DemoPage extends BasePage {
@@ -34,7 +54,9 @@ The example above demonstrates a minimum valid Page Object class with all requir
 
 === BasePage method: isLoaded
 
-The inherited method `isLoaded()` can be used to check if the current Page Object Model has been loaded correctly. There are multiple ways to verify a correctly loaded page. One example would be to compare the actual page title with the expected page title.
+The inherited method `isLoaded()` can be used to check if the current Page Object Model has been loaded correctly.
+There are multiple ways to verify a correctly loaded page.
+One example would be to compare the actual page title with the expected page title.
 
 ----
 public boolean isLoaded() {
@@ -55,7 +77,8 @@ public void load() {
 }
 ----
 
-**NOTE:** methods load() and isLoaded() are called right after page object initialization. Keep that in mind when implementing test class.
+**NOTE:** methods load() and isLoaded() are called right after page object initialization.
+Keep that in mind when implementing test class.
 
 === BasePage method: pageTitle
 
@@ -65,7 +88,8 @@ The `pageTitle()` method returns a String containing the page title.
 
 To initialize web elements, a large variety of selectors can be used.
 
-We recommend creating  a private and constant field for every web element you’d like to represent in Java. Use the guide above to find the preferred selector and place it in the code below at "WEB_ELEMENT_SELECTOR".
+We recommend creating a private and constant field for every web element you’d like to represent in Java.
+Use the guide above to find the preferred selector and place it in the code below at "WEB_ELEMENT_SELECTOR".
 
 ----
 private static final By someWebElementSelector = By.cssSelector("WEB_ELEMENT_SELECTOR");
@@ -77,7 +101,8 @@ As soon as you create the selector above, you can make use of it to initialize a
 WebElement someWebElement = getDriver().findElementDynamic(someWebElementSelector);
 ----
 
-*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements. However, using this framework we recommend  `findElementDynamic()` or `findElementQuietly()` allows waiting for dynamic elements, for example buttons that pop up.
+*Note*: The examples displayed in the _cssSelector.docx_ file use the Selenium method `driver.findElement()` to find elements.
+However, using this framework we recommend  `findElementDynamic()` or `findElementQuietly()` allows waiting for dynamic elements, for example buttons that pop up.
 
 == Creating a page method
 

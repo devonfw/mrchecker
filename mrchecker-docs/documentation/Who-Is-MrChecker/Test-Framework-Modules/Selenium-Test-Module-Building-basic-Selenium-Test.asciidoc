@@ -1,84 +1,94 @@
+:toc: macro
+
 = Sample Walkthrough
 
-This page will walk you through the process of creating a test case. We’ll create a very simple test for the Google search engine.
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+
+This page will guide you through the process of creating a test case for Selenium WebDriver.
+We'll create a simple test for the Google search engine using Selenium.
 
 == Test Procedure
 
-We would like to open the Google search engine, enter some search query and afterwards submit the form. We hope to see some results being listed, otherwise the test will fail. Summarized, the testing process would look like this.
+We aim to open the Google search engine, input a search query, and submit the form.
+We expect to see search results listed; otherwise, the test will fail.
+In summary, the testing process will be as follows:
 
-1. Open google.com
-2. Enter the string "Test" into the searchbox
-3. Submit the form
-4. Get the results and check if the result list is empty
+1. Open google.com.
+2. Enter the string "Test" into the search box.
+3. Click the "Google Search" button.
+4. Check if at least one result appears.
 
-== Creating new packages
+== Creating New Packages
 
-We will need two new packages, one for the new page classes, the other for our test classes.
+We need two new packages: one for new page classes and the other for our test classes.
 
-=== Creating package for test classes
+=== Creating a Package for Test Classes
 
-Open Eclipse, use the "Project Explorer" on the left to navigate to
+In your project structure, navigate to:
 
-mrchecker-app-under-test → src/test/java -> com.example -> selenium.tests -> tests
+*Your project* → src/test/java → com.example.selenium → tests
 
-Right click on "tests", click on "New" -> New Package. We’ll name the new package "com.example.selenium.tests.googleSearch".
+Create a new package named "com.example.selenium.tests.googleSearch."
 
-image::images/image65.png[]
+=== Creating a Package for Page Classes
 
-=== Creating package for page classes
+Navigate to:
 
-Navigate to
+*Your project* → src/main/java → com.example.selenium → pages
 
-mrchecker-app-under-test -> src/main/java -> com.example -> selenium -> pages
+Create a new package named "com.example.selenium.pages.googleSearch."
 
-Right click on "pages", click on "New" -> New Package. The new package will be called "com.example.selenium.pages.googleSearch".
+== Creating the Page Classes
 
-image::images/image66.png[]
+=== GoogleSearchPage
 
-== Creating the test class
+We need a Page Object class to represent the Google Search page.
+The page class will be named "GoogleSearchPage" and located in the "com.example.selenium.pages.googleSearch" package.
+It should contain the necessary selectors.
 
-The test class will contain the entire testing-routine. At first, we’ll create a new class inside our newly created "googleSearch" package (under src/test/java) and call it "GoogleSearchTest".
+The page class represents the Google homepage, so we need selectors for web elements required in our test case.
+In our example, we need selectors for the "Cookies Window," "Accept Cookies Button," "Google Search Input," and "Google Search Button." These selectors will be implemented as fields.
 
-image::images/image67.png[]
+To ensure the stability of our tests, we'll implement two methods:
 
-As "GoogleSearchTest" is a test class, it has to extend the _BaseTest_ class. You may have to import some required packages and afterwards include a few required methods.
+* `isCookiesWindowDisplayed()`: This method checks if the Cookies Window is currently displayed on the page.
+If the window is visible, it returns true; otherwise, it returns false.
 
+* `clickAcceptCookiesButton()`: This method clicks the "Accept Cookies" button to dismiss the window.
+
+[source,java]
 ----
-public class GoogleSearchTest extends BaseTest {
+package com.example.selenium.pages.googleSearch;
 
-	@Override
-	public void setUp() {
+import org.openqa.selenium.By;
+import com.capgemini.mrchecker.selenium.core.BasePage;
+import com.capgemini.mrchecker.selenium.example.env.GetEnvironmentParam;
 
-	}
-
-	@Override
-	public void tearDown() {
-
-	}
-}
-----
-
-Now, we’ll need a new Page object, which will represent the Google Search page. The page class will be named "GoogleSearchPage".
-
-----
-private GoogleSearchPage googleSearchPage;
-
-@Override
-public void setUp() {
-	googleSearchPage = new GoogleSearchPage();
-}
-----
-
-== Creating the GoogleSearchPage class
-
-We have created a new field for the GoogleSearchPage class and instantiated an object in the setUp() method. As this class doesn’t exist yet, we’ll have to create it inside the googleSearch page class package.
-
-image::images/image68.png[]
-
-We extend the BasePage class with GoogleSearchPage, import all necessary packages and include all the required methods.
-
-----
 public class GoogleSearchPage extends BasePage {
+	// Selectors for web elements
+	private final By	selectorCookiesWindow		= By.cssSelector("div.dbsFrd");
+	private final By	selectorAcceptCookiesButton	= By.cssSelector("button#L2AGLb");
+	private final By	selectorGoogleSearchInput	= By.cssSelector("[type='search']");
+	private final By	selectorGoogleSearchButton	= By.cssSelector("[class='FPdoLc lJ9FBc'] .gNO89b");
+
+	@Override
+	public String pageTitle() {
+		return null;
+	}
 
 	@Override
 	public boolean isLoaded() {
@@ -87,158 +97,165 @@ public class GoogleSearchPage extends BasePage {
 
 	@Override
 	public void load() {
-
+		String url = GetEnvironmentParam.GOOGLE_URL.getValue();
+		loadPage(url);
 	}
+
+	// Check if the Cookies Window is displayed
+	public boolean isCookiesWindowDisplayed() {
+		return getDriver().findElementDynamic(selectorCookiesWindow)
+				.isDisplayed();
+	}
+
+	// Click the "Accept Cookies" button
+	public void clickAcceptCookiesButton() {
+		getDriver().findElementDynamic(selectorAcceptCookiesButton)
+				.click();
+	}
+
+	// Enter search query and submit the form
+	public void enterGoogleSearchInput(String searchText) {
+		// Fill the search input with the given text
+		getDriver().findElementDynamic(selectorGoogleSearchInput)
+				.sendKeys(searchText);
+
+		// Click the Google Search button
+		getDriver().findElementDynamic(selectorGoogleSearchButton)
+				.click();
+	}
+}
+----
+
+=== GoogleResultPage
+
+When we land on the Google Results page, we need a dedicated class to handle its elements and interactions.
+This class, named "GoogleResultPage," will be located in the "com.example.selenium.pages.googleSearch" package, just like the "GoogleSearchPage" class.
+
+Similar to the "GoogleSearchPage" class, this class extends the "BasePage" class and encapsulates the logic for interacting with elements on the Google Results page.
+
+Let's break down the class components:
+
+Selectors: We define a private field named "selectorSearchResult." This selector is responsible for identifying the result items on the Google Results page.
+
+`getResultsNumber()`: This method retrieves the number of search results displayed on the page.
+Here's how it works:
+
+We use the selector "selectorSearchResult" to locate all the search result items on the page.
+We then return the count of elements found, indicating the number of search results.
+
+[source,java]
+----
+package com.example.selenium.pages.googleSearch;
+
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import com.capgemini.mrchecker.selenium.core.BasePage;
+
+public class GoogleResultPage extends BasePage {
+	// Selector for search result items
+	private final By selectorSearchResult = By.cssSelector("#search .v7W49e > div");
 
 	@Override
 	public String pageTitle() {
-		return "";
-	}
-}
-----
-
-As this page class represents the Google homepage, we have to set up selectors for web elements required in our test case. In our example we have to create a selector for the search bar which we’ll interact with. The selector will be implemented as a field.
-
-----
-private static final By selectorGoogleSearchInput = By.css(#lst-ib);
-----
-
-The input field’s id _#lst-ib_ was found by using the developer console in Google Chrome.
-
-This selector can be used to create a WebElement object of said search bar. Therefore, we’ll create a new method and call it "enterGoogleSearchInput".
-
-----
-public GoogleResultPage enterGoogleSearchInput(String searchText) {
-	WebElement googleSearchInput = getDriver().findDynamicElement(selectorGoogleSearchInput);
-	googleSearchInput.sendKeys(searchText);
-	googleSearchInput.submit();
-
-	return new GoogleResultPage();
-}
-----
-
-As you can see, we return another page object that wasn’t yet created. This step is required, as the results that we would like to check are on another Google Page. This means we’ll have to create another page class, which will be shown later.
-
-Finally, the empty methods inherited from the BasePage class have to be filled:
-
-----
-@Override
-public boolean isLoaded() {
-	if(getDriver().getTitle().equals(pageTitle())) {
-		return true;
-	}
-	return false;
-}
-
-@Override
-public void load() {
-	getDriver().get("http://google.com");
-}
-
-@Override
-public String pageTitle() {
-	return "Google";
-}
-----
-
-The method `isLoaded()` checks if the page was loaded by comparing the actual title with the expected title provided by the method `pageTitle()`. The `load()` method simply loads a given URL, in this case _http://google.com_.
-
-The completion of these methods finalizes our _GoogleSearchPage_ class. We still have to create the _GoogleResultPage_ class mentioned before. This page will deal with the elements on the Google search result page.
-
-== Creating the GoogleResultPage class
-
-By right-clicking on the "pages" package, we’ll navigate to "new" -> "Class" to create a new class.
-
-image::images/image69.png[]
-
-The _GoogleResultPage_ class also has to extend _BasePage_ and include all required methods. Next, a new selector for the result list will be created. By using the result list, we can finally check if the result count is bigger than zero and thus, if the search request was successful.
-
-----
-private static final By selectorResultList = By.cssSelector("#res");
-----
-
-We’ll use this selector inside a new getter-method, which will return all ListElements.
-
-----
-public ListElements getResultList() {
-	return getDriver().elementList(selectorResultList);
-}
-----
-
-This method will allow the testcase to simply get the result list and afterwards check if the list is empty or not.
-
-Finally, we have to complete all inherited methods.
-
-----
-@Override
-public boolean isLoaded() {
-	getDriver().waitForPageLoaded();
-	if(getDriver().getCurrentUrl().contains("search")) {
-		return true;
-	}
-	return false;
-}
-
-@Override
-public void load() {
-	BFLogger.logError("Google result page was not loaded.");
-}
-
-@Override
-public String getTitle() {
-	return "";
-}
-----
-
-The method `isLoaded()` differs from the same method in _GoogleSearchPage_, because this site is being loaded as a result from a previous action. That’s why we’ll have to use the method `getDriver().waitForPageLoaded()` to be certain that the page was loaded completely. Afterwards we check if the current URL contains the term "search", as it only occurs on the result page. This way we can check if we’re on the right page.
-
-Another result of this page being loaded by another object is that we don’t have to load any specific URL. We just add a BFLogger instance to print an error message if the page was not successfully loaded.
-
-As we don’t use the `getTitle()` method we simply return an empty String.
-
-Finally, all required page classes are complete and we can finalize the test class.
-
-== Finalizing the test class
-
-At this point, our GoogleSearchTest class looks like this:
-
-----
-public class GoogleSearchTest {
-
-	private GoogleSearchPage googleSearchPage;
-
-
-	@Override
-	public void setUp() {
-		googleSearchPage = new GoogleSearchPage();
+		return null;
 	}
 
 	@Override
-	public void tearDown() {
+	public boolean isLoaded() {
+		return false;
+	}
 
+	@Override
+	public void load() {
+	}
+
+	// Retrieve the number of search results
+	public int getResultsNumber() {
+		// Find all search result items
+		List<WebElement> searchResultItems = getDriver().findElementDynamics(selectorSearchResult);
+		return searchResultItems.size();
 	}
 }
 ----
 
-Next, we’ll create the test method, let’s call it `shouldResultReturn()`.
+== Creating the Test Class
 
+The test class will encompass the entire testing routine for the Google search functionality.
+Let's create the test class named "GoogleSearchTest."
+
+=== GoogleSearchTest
+
+Create a new class within the "googleSearch" package, which we previously established.
+This class will reside under "src/test/java" and be named "GoogleSearchTest."
+
+Since "GoogleSearchTest" is a test class, it should extend the "BaseTest" class.
+Here's the code structure:
+
+[source,java]
 ----
-@Test
-public void shouldResultReturn() {
-	GoogleResultPage googleResultPage = googleSearchPage.enterGoogleSearchInput("Test");
-	ListElements results = googleResultPage.getResultList();
-	assertTrue("Number of results equals 0", results.getSize() > 0);
+package com.example.selenium.tests.googleSearch;
+
+import com.example.selenium.core.BaseTest;
+import com.example.selenium.pages.googleSearch.GoogleSearchPage;
+import com.example.selenium.pages.googleSearch.GoogleResultPage;
+import com.example.selenium.core.PageFactory;
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+
+public class GoogleSearchTest extends BaseTest {
+    // Initialize page instances using PageFactory
+    private final GoogleSearchPage googleSearchPage = PageFactory.getPageInstance(GoogleSearchPage.class);
+    private final GoogleResultPage googleResultPage = PageFactory.getPageInstance(GoogleResultPage.class);
+
+    @Override
+    public void tearDown() {
+        // Add any cleanup or finalization logic here
+    }
+
+    @Override
+    public void setUp() {
+        // Navigate to the Google Search page
+        googleSearchPage.load();
+
+        // Accept cookies, if Cookies Window displayed
+        if (googleSearchPage.isCookiesWindowDisplayed()) {
+            googleSearchPage.clickAcceptCookiesButton();
+        }
+    }
+
+    @Test
+    public void shouldFindAtLeastOneResult_test() {
+        // Enter "Test" and perform search
+        googleSearchPage.enterGoogleSearchInput("Test");
+
+        // Assert that at least one search result is found
+        assertTrue(googleResultPage.getResultsNumber() > 0);
+    }
 }
 ----
 
-Code explanation: At first, we will run the `enterGoogleSearchInput()` method on the _GoogleSearchPage_ with the parameter "Test" to search for this exact string on Google. As this method returns a _GoogleResultPage_ object, we will store this in the local variable `googleResultPage`. Afterwards, we get the result list by utilizing the getter method that we created before. Finally, we create an assertion: We expect the list size to be bigger than zero, meaning that the google search query was successful as we received results. If this assertion is wrong, a message will be printed out, stating that the number of results equals zero.
+* Class Setup: We initialize two instances of the page classes using the `PageFactory.getPageInstance()` method.
+This approach follows the Page Object Model design pattern, making it easy to work with pages.
 
-We can run the test by right clicking on the test method -> Run as -> JUnit test.
+* `setUp()` Method: This method is executed before each test case.
+In this case, it navigates to the Google Search page using  `googleSearchPage.load()` and handles the acceptance of cookies (if the Cookies Window is displayed).
 
-image::images/image70.png[]
+* `shouldFindAtLeastOneResult_test()` Method: This is the actual test method.
+It starts by entering the search query "Test" and then asserting that there is at least one search result on the Google Results page using assertTrue.
 
-After starting the test, you’ll notice a browser window opening, resizing to given dimensions, opening Google, entering the query "Test" and submitting the form. After completing the test, you’ll see the test results on the right side of Eclipse. Green color indicator means that the test was successful, red means the test failed.
+== Test Execution
 
-image::images/image71.png[]
+To run the test using JUnit in IntelliJ Idea, follow these steps:
 
-This walkthrough should’ve provided you with basic understanding on how the framework can be used to create test cases.
+* Once you're within the "GoogleSearchTest" class, to run `shouldFindAtLeastOneResult_test()` test method, right-click on it.
+A context menu will appear.
+
+** Choose "Run": From the context menu, select the option labeled "Run 'shouldFindAtLeastOneResult_test'".
+This action triggers the execution of the test method you've selected.
+** Press Ctrl + Shift + F10
+
+* After the test execution completes, IntelliJ IDEA will display the test results in the "Run" tool window located at the bottom of the IDE interface.
+A green color indicator signifies that the test passed successfully, while a red color indicator indicates that the test encountered failures.
+
+This walkthrough should’ve provided you with a basic understanding of how the framework can be used to create test cases in Selenium.

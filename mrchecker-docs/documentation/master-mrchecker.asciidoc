@@ -2,7 +2,7 @@
 
 == Who Is MrChecker
 
-include::home.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker.asciidoc[leveloffset=3]
 
 include::benefits.asciidoc[leveloffset=3]
 
@@ -18,7 +18,7 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module.asciidoc[level
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-reports-with-logs-and-or-screenshots.asciidoc[leveloffset=4]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-test-groups-tags.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Test-Groups-Tags.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Data-driven-approach.asciidoc[leveloffset=4]
 
@@ -28,13 +28,33 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-BDD-Gherkin-Cu
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Run-on-independent-Operating-Systems.asciidoc[leveloffset=4]
 
-include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Different-Environments.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Test-Framework-Modules/Core-Test-Module-Externalize-test-environment-DEV-QA-SIT-PROD.asciidoc[leveloffset=4]
+
+=== Playwright Module
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-What-is-Playwright.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Construction-of-Framework-Test-Class.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Building-basic-Playwright-Test.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Method-Action-Naming-Convention.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Selectors.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Run-Configurations.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Playwright-Test-Module-Best-Practises.asciidoc[leveloffset=4]
 
 === Selenium Module
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module.asciidoc[leveloffset=4]
-
-=== Selenium Structure
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Selenium.asciidoc[leveloffset=4]
 
@@ -43,8 +63,6 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-We
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-What-is-Page-Object-Model-Pattern.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-List-of-web-elements.asciidoc[leveloffset=4]
-
-=== Framework Features
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Construction-of-Framework-Page-Class.asciidoc[leveloffset=4]
 
@@ -59,6 +77,10 @@ include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-d
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Run-with-full-range-of-resolution.asciidoc[leveloffset=4]
 
 include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Selenium-Best-Practices.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Method-action-naming-convention.asciidoc[leveloffset=4]
+
+include::Who-Is-MrChecker/Test-Framework-Modules/Selenium-Test-Module-Building-basic-Selenium-Test.asciidoc[leveloffset=4]
 
 === Web API Module
 
@@ -127,7 +149,7 @@ How to install?
 
 Your Product Under Test will be the following website: http://the-internet.herokuapp.com/
 
-include::Who-Is-MrChecker/Tutorials/Project-Organisation.asciidoc[leveloffset=3]
+include::Who-Is-MrChecker/Tutorials/Project-Organization.asciidoc[leveloffset=3]
 
 === Basic Tutorials
 
@@ -191,7 +213,7 @@ include::Who-Is-MrChecker/Tutorials/First-Steps/BFLogger.asciidoc[leveloffset=5]
 
 === E2E Tutorials
 
-include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/Tutorial1.asciidoc[leveloffset=4]
+include::Who-Is-MrChecker/Tutorials/E2E-Tutorials/DemoQAAddBookTutorial.asciidoc[leveloffset=4]
 
 == Migration from JUnit4 to JUnit5
 

@@ -1,5 +1,7 @@
 :toc: macro
 
+= Overview
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -15,18 +17,16 @@ toc::[]
 :source-highlighter: rouge
 :listing-caption: Listing
 
-= Overview
-
-With MrChecker you'll run or write a lot of tests and you'll need some way to read the results. Yes, you can use the default console output, but it's not a good solution, especially when you want something more readable.
+With MrChecker you'll run or write a lot of tests, and you'll need some way to read the results. Yes, you can use the default console output, but it's not a good solution, especially when you want something more readable.
 
 In this module you'll learn about Allure logger - how to find saved logs, how to use it and different types of logger. We'll also show you Allure reports, its pros, how to set it up and use it in your project.
 
-= Allure Logger -> BFLogger
+== Allure Logger -> BFLogger
 
 In Allure E2E Test Framework you have ability to use and log any additional information crucial for:
 
 * test steps
-* test exection
+* test execution
 * page object actions, and many more.
 
 == Where to find saved logs
@@ -38,7 +38,7 @@ The places they are saved:
 1. In test folder _C:\Allure_Test_Framework\allure-app-under-test\logs_
 2. In every Allure Test report, logs are always embedded as an attachment, according to test run.
 
-== How to use logger:
+== How to use logger
 
 * Start typing
 +
@@ -46,10 +46,10 @@ The places they are saved:
 
 * Then type . (dot)
 
-== Type of logger:
+== Types of logger
 
 * `BFLogger.logInfo("Your text")` - used for test steps
-* `BFLogger.logDebug("Your text")` - used for non official information, either during test build process or in Page Object files
+* `BFLogger.logDebug("Your text")` - used for non-official information, either during test build process or in Page Object files
 * `BFLogger.logError("Your text")` - used to emphasize critical information
 
 image::images/image13.png[]
@@ -113,7 +113,7 @@ There are several ways to access the Allure Test Reports:
 * Using the "Allure Report" button on the left navigation bar or center of the general job overview
 * Using the "Allure Report" button on the left navigation bar or center of a specific build overview
 
-Afterwards you'll be greeted with either the general Allure Dashboard (showing the newest build) or the Allure Dashboard for a specific (older) build.
+Afterward you'll be greeted with either the general Allure Dashboard (showing the newest build) or the Allure Dashboard for a specific (older) build.
 
 == Allure dashboard
 
@@ -122,7 +122,7 @@ image::images/image20.png[]
 The Dashboard provides a graphical overview on how many test cases were successful, failed or broken.
 
 * *Passed* means, that the test case was executed successfully.
-* *Broken* means, that there were mistakes, usually inside of the test method or test class. As tests are being treated as code, broken code has to be expected, resulting in occasionally broken test results.
+* *Broken* means, that there were mistakes, usually inside the test method or test class. As tests are being treated as code, broken code has to be expected, resulting in occasionally broken test results.
 * *Failed* means that an assertion failed.
 
 == Defects

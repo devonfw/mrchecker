@@ -1,5 +1,7 @@
 :toc: macro
 
+= Continuous Delivery
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -14,7 +16,6 @@ toc::[]
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
-= Continuous Delivery
 
 Continuous Delivery is a process closely related to CI, which is an automated way to push code changes to selected environments and improve quality during product release.
 
@@ -28,15 +29,19 @@ CD from Jenkins point of view does not change a lot from Continuous Integration 
 
 == Jenkins Overview
 
-Use the same Jenkins settings for Jenkins CD setup as for link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[CI], please. The only difference is:
+Use the same Jenkins settings for Jenkins CD setup as for link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc[CI], please.
+The only difference is:
 
-* What type of test you will execute. Before, we have been choosing test case(s), now we will choose test suite(s)
+* What type of test you will execute.
+Before, we have been choosing test case(s), now we will choose test suite(s)
 * Who will trigger the given Smoke/Integration/Performance job
-* What is the name of official branch. This branch ought always to use be used in every CD execution. It will be either *master* or *develop*.
+* What is the name of official branch.
+This branch ought always to use be used in every CD execution.
+It will be either *master* or *develop*.
 
 === Jenkins for Smoke Tests
 
-In the $TESTNAME variable, where we input the test name( link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc#initial-configuration[check initial configuration] ), please input the name of a test suite assembled together of tests tagged as smoke tests - thus running all the smoke tests( link:Core-Test-Module-test-groups-tags.asciidoc[learn more about tags] ).
+In the $TESTNAME variable, where we input the test name( link:DevOPS-Test-Module-Continuous-Integration-CI.asciidoc#initial-configuration[check initial configuration] ), please input the name of a test suite assembled together of tests tagged as smoke tests - thus running all the smoke tests( link:Core-Test-Module-Test-Groups-Tags.asciidoc[learn more about tags] ).
 
 === Jenkins for Performance Tests
 

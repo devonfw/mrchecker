@@ -60,7 +60,7 @@ image::images/image58.png[]
 |`elementNavigationBar()`
 |===
 
-Comparision how picking value from `checkbox` can be done:
+Comparison how picking value from `checkbox` can be done:
 
 * by classic Selenium atomic actions
 * by our enhanced Selenium wrapper

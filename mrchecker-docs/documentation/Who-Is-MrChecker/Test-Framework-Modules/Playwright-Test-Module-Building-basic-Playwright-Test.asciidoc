@@ -195,7 +195,7 @@ public class GoogleResultPage extends BasePage {
 }
 ----
 
-=== Creating the Test Class
+== Creating the Test Class
 
 The test class will encompass the entire testing routine for the Google search functionality.
 Let's walk through the steps to create the test class, named "GoogleSearchTest."
