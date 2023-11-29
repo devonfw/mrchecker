@@ -1,0 +1,38 @@
+
+pipeline {
+	parameters{
+		booleanParam(name: 'IS_SNAPSHOT',defaultValue: true, description: 'If checked the parent pom will be deployed as a snapshot')
+	}
+	agent {
+		node { label "master" }
+	}
+	options {
+		timestamps()
+	}
+	stages{
+		stage('Deploy'){
+			steps{
+				script{
+					def POM_VERSION = readMavenPom().getVersion()
+					def nexusBaseRepositoryUrl              = "https://yourproject.com/nexus3/repository/"
+        			def nexusSnapshotRepositoryId			= "Snapshots"
+        			def nexusReleaseRepositoryId    		= "Release"
+        			def nexusSnapshotRepository             = "snapshots"
+        			def nexusReleaseRepository              = "releases"
+
+
+        			def nexusRepositoryId = nexusSnapshotRepositoryId
+        			def nexusRepoitory = nexusSnapshotRepository
+        			def nexusRepositoryURL = "${nexusBaseRepositoryUrl}${nexusReleaseRepository}"
+        			if (IS_SNAPSHOT!='true'){
+        				nexusRepositoryId = nexusReleaseRepositoryId
+        				nexusRepoitory = nexusReleaseRepository
+        				def nexusRepositoryURL = "${nexusBaseRepositoryUrl}${nexusSnapshotRepository}"
+        				POM_VERSION += '-SNAPSHOT'
+        			}
+
+        			sh"mvn org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1:deploy-file -Dversion=${POM_VERSION} -DrepositoryId=${nexusRepositoryId} -Durl=${nexusRepositoryURL}"
+				}
+			}
+		}
+}
