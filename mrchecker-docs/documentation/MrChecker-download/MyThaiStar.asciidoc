@@ -1,0 +1,33 @@
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= My Thai Star application setup
+My Thai Star is a reference application for DevonFW so it was used extensively in majority of our examples. To make them run properly you definitely should set it up somewhere and configure environment.csv accordingly.
+You can get the app from its official repository here https://github.com/devonfw/my-thai-star.
+
+== Setting up My Thai Start app
+Most of the important informations are covered in https://github.com/devonfw/my-thai-star#deployment.
+
+.The quick summary would be:
+. Get the machine with docker and docker-compose
+. Download the repository
+. Run docker-compose up
+. Go to your project to set up envrionment.csv
+ . The variables we are interested in are MY_THAI_STAR_URL and MY_THAI_STAR_API_URL
+ . If you set up My Thai Star application on different host adjust the values accordingly
+. The web aplication should be available using localhost:8081/restaurant
+. The web api should be avaulable using localhost:8081/api
