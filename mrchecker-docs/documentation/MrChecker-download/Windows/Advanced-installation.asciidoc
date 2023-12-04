@@ -17,8 +17,8 @@ toc::[]
 :source-highlighter: rouge
 :listing-caption: Listing
 
-
 == Java installation
+
 There is one important pre-requisite for Mr Checker installation - Java has to be installed on the computer and an environmental variable has to be set in order to obtain optimal functioning of the framework.
 
 1. Install Java 11 JDK 64bit
@@ -40,40 +40,95 @@ image::images/install_win03.png[]
 ----
 
 == Other components installation
+
 Install each component separately, or update the existing ones on your PC.
 
 1. Maven 3.5 or higher
-    * https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.0/apache-maven-3.5.0-bin.zip[Download Maven]
-    * Unzip Maven in following location C:\maven
-    * Set Windows Local Environment
-        - *Variable name*: M2_HOME | *Variable value*: C:\maven\apache-maven-3.5.0
-        - *Variable name*: PATH | *Variable value*: %M2_HOME%\bin
+* https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.0/apache-maven-3.5.0-bin.zip[Download Maven]
+* Unzip Maven in following location C:\maven
+* Set Windows Local Environment
+- *Variable name*: M2_HOME | *Variable value*: C:\maven\apache-maven-3.5.0
+- *Variable name*: PATH | *Variable value*: %M2_HOME%\bin
 +
 image::images/install_win04.png[]
 +
-    * Verify it in the command line:
+* Verify it in the command line:
 +
 ----
 > mvn --version
 ----
 
 2. IDE
-    * Download a most recent https://www.eclipse.org/downloads/packages/[Eclipse]
-    * Download one of MrChecker Project https://github.com/devonfw/mrchecker/tree/develop/[examples] to get better understanding what we are capable of.
-    * You should consider installing some useful plugins such as: csvedit, cucumber editor.
+* Download a most recent https://www.jetbrains.com/idea/download/?section=windows/[IntelliJ IDEA]
+* Download one of MrChecker Project https://github.com/devonfw/mrchecker/tree/develop/[examples] to get better understanding what we are capable of.
+* You should consider installing some useful plugins such as: csvedit, cucumber editor.
 
-* Import:
+=== Import project
+
+To import a MrChecker project into IntelliJ IDEA, follow these steps:
+
+1. Open IntelliJ IDEA and select "File" -> "Open" from the menu.
 +
-image::images/install_win05.png[]
+image::images/intellij_1.png[]
 +
-    * Projects from folders
+2. Navigate to the project path and select the root folder of the MrChecker project.
+Click "OK" to proceed.
 +
-image::images/install_win06.png[]
+image::images/intellij_2.png[]
 +
-    * Open already created projects:
+
+Your MrChecker project is now ready for development.
 +
-image::images/install_win07.png[]
+image::images/intellij_3.png[]
+
+=== Project from Existing Sources
+
+To create a new standalone MrChecker project and customize its configuration using example you have to follow this process:
+
+==== Initial Step: Choose Example and Move to a Separate Folder
+
+1. Open your file explorer and navigate to the location of the MrChecker examples.
+
+2. Choose one of the examples that you want to use as a template for your new project.
+
+3. Create a new folder for your project and move the selected example into this folder.
+
+When you have the example in the separated folder, which you want to use as the project template you can move to the following steps:
+
+1. Open IntelliJ IDEA and go to "File" -> "New" -> "Project from Existing Sources"
 +
-    * Update project structure - _ALT_ + _F5_
+image::images/intellij_4.png[]
 +
-image::images/install_win08.png[]
+
+2. Navigate to the folder containing your example project and click "OK."
++
+image::images/intellij_5.png[]
++
+
+3. Select "Import project from external model" and choose "Maven." Click "Create"
++
+image::images/intellij_6.png[]
++
+
+4. After importing, open the `pom.xml` file in the new project.
++
+
+4.1. Remove `<parent>` tag
++
+4.2. Replace `your.new.groupId`, `your-new-artifactId`, `your-new-version`, `Your New Developer Name`, `your.new.email@example.com`, `Your New Organization`, and `http://your.new.organization.url` with the updated values.
++
+----
+    <groupId>your.new.groupId</groupId>
+    <artifactId>your-new-artifactId</artifactId>
+    <version>your-new-version</version>
+
+    <developers>
+        <developer>
+            <name>Your New Developer Name</name>
+            <email>your.new.email@example.com</email>
+            <organization>Your New Organization</organization>
+            <organizationUrl>http://your.new.organization.url</organizationUrl>
+        </developer>
+    </developers>
+----
+

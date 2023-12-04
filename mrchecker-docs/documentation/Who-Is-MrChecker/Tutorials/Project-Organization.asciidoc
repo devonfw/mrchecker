@@ -1,63 +1,93 @@
 = Project organization
 
-== Importing projects 
+== Import project
 
-Every MrChecker project should be imported as a Maven Project.
+To import a MrChecker project into IntelliJ IDEA, follow these steps:
 
-Example from Eclipse IDE:
+1. Open IntelliJ IDEA and select "File" -> "Open" from the menu.
++
+image::images/intellij_1.png[]
++
+2. Navigate to the project path and select the root folder of the MrChecker project.
+Click "OK" to proceed.
++
+image::images/intellij_2.png[]
++
 
-image::images/1.png[]
+Your MrChecker project is now ready for development.
++
+image::images/intellij_3.png[]
 
-image::images/2.png[]
+== Use example as project template
 
-Enter the project path and select projects to import.
+To create a new standalone MrChecker project and customize its configuration using example you have to follow this process:
 
-image::images/3.png[]
+=== Initial Step: Choose Example and Move to a Separate Folder
 
-When the import is finished, update the project structure - ALT + F5
+1. Open your file explorer and navigate to the location of the MrChecker examples.
 
-image::images/4.png[]
+2. Choose one of the examples that you want to use as a template for your new project.
 
-== Exporting projects
+3. Create a new folder for your project and move the selected example into this folder.
 
-In order to create a new standalone MrChecker project, you can use template-app-under-test and export it to the new folder:
+When you have the example in the separated folder, which you want to use as the project template you can move to the following steps:
 
-image::images/6.png[]
+1. Open IntelliJ IDEA and go to "File" -> "New" -> "Project from Existing Sources"
++
+image::images/intellij_4.png[]
++
 
-Create a new folder for the project and enter its path.
-Select project and files to export:
+2. Navigate to the folder containing your example project and click "OK."
++
+image::images/intellij_5.png[]
++
 
-image::images/7.png[]
+3. Select "Import project from external model" and choose "Maven." Click "Create"
++
+image::images/intellij_6.png[]
++
 
-Change project name and other properties, if necessary, in pom.xml file:
+4. After importing, open the `pom.xml` file in the new project.
++
 
-image::images/8.png[]
+4.1. Remove `<parent>` tag
++
+4.2. Replace `your.new.groupId`, `your-new-artifactId`, `your-new-version`, `Your New Developer Name`, `your.new.email@example.com`, `Your New Organization`, and `http://your.new.organization.url` with the updated values.
++
+----
+    <groupId>your.new.groupId</groupId>
+    <artifactId>your-new-artifactId</artifactId>
+    <version>your-new-version</version>
 
-Then you can import the project to the workspace and create new packages and classes.
+    <developers>
+        <developer>
+            <name>Your New Developer Name</name>
+            <email>your.new.email@example.com</email>
+            <organization>Your New Organization</organization>
+            <organizationUrl>http://your.new.organization.url</organizationUrl>
+        </developer>
+    </developers>
+----
 
-== Creating new packages
+== Creating New Packages
 
-1. You will need two new packages: one for the new page classes, the other one for test classes:
+To organize your MrChecker project, you will need two new packages: one for the new page classes and the other for test classes.
 
-* Create a package for page classes
+* Create a package for page classes:
 
-- Open Eclipse
-- Use the "Project Explorer" on the left
-- Navigate to [your-project] → src/main/java → com.capgemini.mrchecker → selenium
-- Right-click on "selenium"
-- Click on "New" → New Package
-- Name the new package "com.capgemini.mrchecker.selenium.pages.[your-product-name]"
+- Open IntelliJ IDEA.
+- Use the "Project" tool window on the left.
+- Navigate to [your-project] -> src -> main -> java -> com.capgemini.mrchecker -> selenium.
+- Right-click on "selenium."
+- Choose "New" -> "Package."
+- Name the new package "com.capgemini.mrchecker.selenium.pages.[your-product-name]."
 
-* Create a package for test classes
+* Create a package for test classes:
 
-- Navigate to [your-project] → src/test/java → com.capgemini.mrchecker → selenium
-- Right click on "selenium"
-- Click on "New" → New Package
-- Name the new package "com.capgemini.mrchecker.selenium.tests.[your-product-name]"
-
-Example:
-
-image::images/9.png[]
+- Navigate to [your-project] -> src -> test -> java -> com.capgemini.mrchecker -> selenium.
+- Right-click on "selenium."
+- Choose "New" -> "Package."
+- Name the new package "com.capgemini.mrchecker.selenium.tests.[your-product-name]."
 
 == Creating new Page Classes
 
