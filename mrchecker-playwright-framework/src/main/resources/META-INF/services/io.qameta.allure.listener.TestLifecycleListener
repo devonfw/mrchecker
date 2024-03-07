@@ -1,0 +1,5 @@
+com.capgemini.framework.allure.listeners.AllureKnownBug
+com.capgemini.framework.allure.listeners.AllureToXray
+com.capgemini.framework.allure.listeners.AllureAsserJFailStep
+com.capgemini.framework.allure.listeners.AllureStepsNumbering
+

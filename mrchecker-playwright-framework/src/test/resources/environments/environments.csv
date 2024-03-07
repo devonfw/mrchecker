@@ -1,0 +1,10 @@
+VAR                              , ENV1,ENV2
+DEMO_QA_LOGIN_URL                , https://demoqa.com/login,   https://demoqa.com/login
+DEMO_QA_FORM_URL                 , https://demoqa.com/automation-practice-form,https://env2.demoqa.com/automation-practice-form
+DEMO_QA_LINKS_URL                , https://demoqa.com/links , https://env2.demoqa.com/links
+DEMO_QA_URL                      , https://demoqa.com/,  https://env2.demoqa.com/
+DEMO_QA_USER_LOGIN               , user1, user2
+DEMO_QA_USER_PASSWORD            , pass1, ENC(XyxQ4vSnXoIjH9H20JhwQQ==)
+DEMO_QA_ADMIN_LOGIN               , admin1, admin2
+DEMO_QA_ADMIN_PASSWORD            , adminpass1, adminpass2
+

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Known bugs",
+    "matchedStatuses": [
+      "skipped",
+      "failed"
+    ],
+    "messageRegex": "^(.*\\[KNOWN BUG\\].*)*$"
+  },
+  {
+    "name": "Timeout",
+    "matchedStatuses": [
+      "broken"
+    ],
+    "traceRegex": ".*com.microsoft.playwright.TimeoutError.*"
+  }
+]

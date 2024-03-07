@@ -1,0 +1,89 @@
+Action,Data,Expected Result
+"Go in stepper to step ""STEP1""",,"In part ""Selbstzertifizierungsbericht"" the following texts and options are shown:
+* <text> Ist die Änderung selbstzertifizierungsrelevant 
+und wird in einem Selbstzertifizierungsbericht durch den Fachbereich nachgewiesen?
+ * <radio button> Nein - der Umfang ist nicht selbstzertifizierungsrelevant .
+ * <radio button> Ja - der Umfang wird mit folgender ID-Field nachgewiesen:
+
+By default none of the radio buttons is set.
+The texts are correct."
+"Click on radio button ""Ja - der Umfang wird mit folgender ID-Field nachgewiesen:""",,"The element can be selected.
+Only the radio button for this element is set.
+Following elements expand:
+
+* <field> ""ID-Field""
+* <text> Erfordert die Änderung eine Anpassung des Selbstzertifizierungsberichts?
+* <radio button> Nein - der Bericht ist weiterhin gültig.
+* <radio button> Ja - der alte Bericht mit der folgenden ID-Field wird ersetzt:
+
+Field ""ID-Field"" does NOT show a green frame with a green hook.
+By default none of the radio buttons is set.
+The texts are correct."
+"Fill textbox ""ID-Field"" with a blank.",,"The blank can be entered.
+Field ""ID-Field"" does NOT show a green frame with a green hook."
+"Fill textbox ""ID-Field"" with 20 alphanumeric characters.",,"20 characters can be entered.
+Field ""ID-Field"" shows a green frame with a green hook."
+"Fill textbox ""ID-Field"" with >20 alphanumeric characters.",,"More than 20 characters cannot be entered.
+Field ""ID-Field"" shows a green frame with a green hook."
+"Click on radio button ""Ja - der alte Bericht mit der folgenden ID-Field wird ersetzt:""",,"The element can be selected.
+The radio button for this element is set.
+Following elements expand:
+
+* <field> ""ID-Field""
+* <text> Erfordert die Änderung einen neuen Nachweis?
+* <radio button> Nein - das Schmetterlingsblatt ist in dem neuen Bericht enthalten.
+* <radio button> Ja - der neue Nachweis ist im neuen Bericht enthalten.
+
+Field ""ID-Field"" does NOT show a green frame with a green hook.
+By default none of the radio buttons is set.
+The texts are correct."
+"Fill 2nd textbox ""ID-Field"" with a blank.",,"The blank can be entered.
+Field ""ID-Field"" does NOT show a green frame with a green hook."
+"Fill 2nd textbox ""ID-Field"" with 20 alphanumeric characters.",,"20 characters can be entered.
+Field ""ID-Field"" shows a green frame with a green hook."
+"Fill 2nd textbox ""ID-Field"" with >20 alphanumeric characters.",,"More than 20 characters cannot be entered.
+Field ""ID-Field"" shows a green frame with a green hook."
+"Click on radio button ""Nein - das Schmetterlingsblatt ist in dem neuen Bericht enthalten.""",,"The element can be selected.
+The radio button for this element is set."
+"Click on radio button ""Ja - der neue Nachweis ist im neuen Bericht enthalten.""",,"The element can be selected.
+The radio button for this element is set."
+"Click on radio button ""Nein - der Bericht ist weiterhin gültig.""",,"The element can be selected.
+The radio button for this element is set.
+
+The 2nd field ""ID-Field"" and the text and elements below disappear."
+"Click on radio button ""Ja - der alte Bericht mit der folgenden ID-Field wird ersetzt:""",,"The element can be selected.
+The radio button for this element is set.
+Following elements expand:
+
+* <field> ""ID-Field""
+* <text> Erfordert die Änderung einen neuen Nachweis?
+* <radio button> Nein - das Schmetterlingsblatt ist in dem neuen Bericht enthalten.
+* <radio button> Ja - der neue Nachweis ist im neuen Bericht enthalten.
+
+Field ""ID-Field"" does NOT show a green frame with a green hook.
+By default none of the radio buttons is set."
+"Click on radio button ""Nein - der Umfang ist nicht selbstzertifizierungsrelevant.""",,"The element can be selected.
+The radio button for this element is set.
+
+The field ""ID-Field"" and the text and elements below disappear."
+"Click on radio button ""Ja - der Umfang wird im Selbstzertifizierungsbericht mit folgender ID-Field nachgewiesen:""",,"The element can be selected.
+Only the radio button for this element is set.
+Following elements expand:
+
+* <field> ""ID-Field""
+* <text> Erfordert die Änderung eine Anpassung des Selbstzertifizierungsberichts?
+* <radio button> Nein - der Bericht ist weiterhin gültig.
+* <radio button> Ja - der alte Bericht mit der folgenden ID-Field wird ersetzt:
+
+Field ""ID-Field"" does NOT show a green frame with a green hook.
+By default none of the radio buttons is set.
+The texts are correct."
+"Fill textbox ""ID-Field"" with some text",e.g. ID-Field 42,"The text can be entered.
+Field ""ID-Field"" shows a green frame with a green hook"
+"Click on radio button ""Nein - der Bericht ist weiterhin gültig.""",,"The element can be selected.
+The radio button for this element is set."
+"METHOD from *hell* SG-TLNR DDFGÖJJ HHHHywG ""ZGhh"" kkkk",,"METHOD from *hell* SG-TLNR
+	DDFGÖJJ HHHHywG ""ZGhh"" kkkk"
+"METHOD from *hell* SG-TLNR DDFGÖJJ HHHHywG ""ZGhh"" kkkk",,"METHOD from *hell* SG-TLNR DDFGÖJJ HHHHywG ""ZGhh"" kkkk"
+"METHOD from *hell* SG-TLNR DDFGÖJJ HHHHywG ""ZGhh"" kkkk",,"METHOD from *hell* SG-TLNR DDFGÖJJ HHHHywG ""ZGhh"" kkkk"
+"METHOD from *hell* SG-TLNR & DDFGÖJJ ??? HHHHywG ""ZGhh"" kkkk",,"METHOD from *hell* SG-TLNR & DDFGÖJJ HHHHywG ""ZGhh"" kkkk"
