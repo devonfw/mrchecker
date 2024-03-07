@@ -3,26 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.capgemini.mrchecker</groupId>
-        <artifactId>mrchecker-examples</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
 
     <developers>
         <developer>
-            <name>Mariusz Kowalski</name>
-            <email>mariusz.kowalski@capgemini.com</email>
+            <name>Klaudia Nowak</name>
+            <email>klaudia.nowak@capgemini.com</email>
             <organization>Capgemini - Nearshore Test Center - Poland</organization>
             <organizationUrl>http://nsc.capgemini.com/nearshoretestcenter</organizationUrl>
         </developer>
     </developers>
 
-    <artifactId>mrchecker-playwright-junit-example</artifactId>
+    <groupId>com.capgemini.mrchecker</groupId>
+    <artifactId>mrchecker-webapi-junit-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>MrChecker Examples WebAPI JUnit</name>
 
     <properties>
-        <thread.count>2</thread.count>
-        <parallel.mode.default>same_thread</parallel.mode.default>
+        <thread.count>10</thread.count>
+        <parallel.mode.default>concurrent</parallel.mode.default>
         <parallel.mode.classes.default>concurrent</parallel.mode.classes.default>
 
         <maven.compiler.source>11</maven.compiler.source>
@@ -45,13 +43,17 @@
         <surefire.report.directory>${project.basedir}/target/surefire-reports</surefire.report.directory>
         <allure-maven.version>2.12.0</allure-maven.version>
         <aspectj.version>1.9.20.1</aspectj.version>
+        <lombok.version>1.18.26</lombok.version>
+
+        <jackson.version>2.15.2</jackson.version>
+
     </properties>
 
     <dependencies>
-        <!-- Playwright module -->
+        <!-- Selenium module -->
         <dependency>
             <groupId>com.capgemini.mrchecker</groupId>
-            <artifactId>mrchecker-playwright-module</artifactId>
+            <artifactId>mrchecker-webapi-module</artifactId>
             <version>${mrchecker.version}</version>
         </dependency>
 
@@ -63,6 +65,20 @@
             <version>${allure.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -154,6 +170,8 @@
                             junit.jupiter.execution.parallel.enabled=true
                             junit.jupiter.execution.parallel.mode.default=${parallel.mode.default}
                             junit.jupiter.execution.parallel.mode.classes.default=${parallel.mode.classes.default}
+                            <!--                            junit.jupiter.execution.parallel.config.strategy=fixed-->
+                            <!--                            junit.jupiter.execution.parallel.config.fixed.parallelism=${thread.count}-->
                             junit.jupiter.execution.parallel.config.strategy = custom
                             junit.jupiter.execution.parallel.config.custom.class=com.capgemini.mrchecker.test.core.junit.CustomStrategy
                             junit.jupiter.extensions.autodetection.enabled=true
@@ -189,4 +207,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
