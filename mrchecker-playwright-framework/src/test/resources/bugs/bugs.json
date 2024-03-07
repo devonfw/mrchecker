@@ -1,0 +1,19 @@
+[
+  {
+    "issue": "ISSUE-ID",
+    "issueStatus": "ISSUE-STATUS",
+    "message": "MESSAGE PART",
+    "tests": [
+      "TEST-ID",
+      "TEST-ID2"
+    ]
+  },
+  {
+    "issue": "BUG_1",
+    "issueStatus": "KNOWN BUG",
+    "message": "This is known bug text putted in",
+    "tests": [
+      "JIRA-0"
+    ]
+  }
+]
