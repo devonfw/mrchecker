@@ -55,7 +55,7 @@
         <jasyp.version>1.9.3</jasyp.version>
         <apache-csv.version>1.10.0</apache-csv.version>
         <assertj-core.version>3.25.2</assertj-core.version>
-        <json-path.version>2.8.0</json-path.version>
+        <json-path.version>2.9.0</json-path.version>
         <config.version>1.4.3</config.version>
         <awaitility.version>4.2.0</awaitility.version>
     </properties>
