@@ -38,8 +38,10 @@ public class DemoQARegistrationFormPage {
 	public void startPage() {
 		Page page = getPage();
 		ActionGui.navigate(url, PAGE_LOADING_TIMEOUT);
-		page.getByLabel("Consent", new Page.GetByLabelOptions().setExact(true))
-				.click();
+		
+		if (getPage().getByLabel("Consent", new Page.GetByLabelOptions().setExact(true)).isVisible()) {
+			getPage().getByLabel("Consent", new Page.GetByLabelOptions().setExact(true)).click();
+		}
 		initLocatorsForNewBrowserContext();
 	}
 	
