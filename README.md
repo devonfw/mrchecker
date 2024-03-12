@@ -2,11 +2,11 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdevonfw%2Fdevonfw-testing.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdevonfw%2Fdevonfw-testing?ref=badge_shield) 
 [![Maven Central](https://img.shields.io/maven-central/v/com.capgemini.mrchecker/mrchecker-core-module)](https://mvnrepository.com/artifact/com.capgemini.mrchecker)
 
-Mr. Checker philosophy examples projects
+Mr. Checker methodology examples projects
 -------------------
 
 This repository includes:
-* Playwright based test automation framework created according to Mr. Checker philosophy
+* Playwright based test automation framework created according to Mr. Checker methodology
 * Examples to prepare tests using Mr. Checker (modules version)
 
 ## The evolution of Mr. Checker from project-specific to a broader vision
@@ -19,9 +19,9 @@ This repository includes:
 
   Through practical use, consistent and effective patterns emerged, paving the way for a more standardized approach.
 
-* **Foundation for a Philosophy**
+* **Foundation for a Methodology**
 
-  Leveraging the identified patterns, a robust and consistent methodology was established, forming the core of the Mr. Checker philosophy that guides our automation practices.
+  Leveraging the identified patterns, robust and consistent methods and procedures were established, forming the core of the Mr. Checker Methodology that guides our automation practices.
 
 
 ## Mr. Checker: Game-Changing Method
