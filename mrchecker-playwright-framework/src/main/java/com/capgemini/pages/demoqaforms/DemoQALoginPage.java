@@ -9,6 +9,7 @@ import com.microsoft.playwright.options.AriaRole;
 import io.qameta.allure.Step;
 
 import static com.capgemini.framework.playwright.PlaywrightFactory.getPage;
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class DemoQALoginPage{
 	protected final      ActionGui actionGui            = new ActionGui();
@@ -39,8 +40,10 @@ public class DemoQALoginPage{
 		initLocatorsForNewBrowserContext();
 		getPage().navigate(url, new Page.NavigateOptions().setTimeout(PAGE_LOADING_TIMEOUT));
 		getPage().onLoad(p -> AllureStepLogger.step("Page loaded!"));
-		getPage().getByLabel("Consent", new Page.GetByLabelOptions().setExact(true))
-				.click();
+		if (getPage().getByLabel("Consent", new Page.GetByLabelOptions().setExact(true)).isVisible()) {
+			getPage().getByLabel("Consent", new Page.GetByLabelOptions().setExact(true)).click();
+		}
+		assertThat(getPage().getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Login").setExact(true))).isVisible();
 
 	}
 	
