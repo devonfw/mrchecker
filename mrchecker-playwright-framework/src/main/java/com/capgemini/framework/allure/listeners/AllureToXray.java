@@ -124,9 +124,17 @@ public class AllureToXray implements TestLifecycleListener {
         var stepList = result.getSteps();
         var attachmentList = new ArrayList<Attachment>();
 
+        
         for (var step : stepList) {
             attachmentList.addAll(step.getAttachments());
+            //Two levels of Step hierarchie, if you need more, add here more
+            for (var stepInsideStep : step.getSteps()) {
+                attachmentList.addAll(step.getAttachments());
+            }
         }
+        //Attachment without steps
+        attachmentList.addAll(result.getAttachments());
+        
         var evidenceList = new ArrayList<JSONObject>();
         Logger.logInfo("attachments: " + attachmentList.size());
 
@@ -135,23 +143,34 @@ public class AllureToXray implements TestLifecycleListener {
                 var filename = PATH_ALLURE_RESULTS + attachment.getSource();
                 Logger.logInfo("filename=" + filename);
                 var fileAttachment = encodeFileToBase64Binary(filename);
-
+               
                 if (fileAttachment != null) {
                     JSONObject evidence = new JSONObject();
-                    var value = attachment.getName()
-                            .replace(" ", "_")
-                            .replace("/", "_") + ".html";
-                    evidence.put("filename", value);
-                    evidence.put("contentType", "text/html");
-                    evidence.put("data", fileAttachment);
-
+                    if (attachment.getName().contains("txt")) {
+                        var value = attachment.getName()
+                                .replace(" ", "_")
+                                .replace("/", "_") +".html";
+                        evidence.put("filename", value);
+                        evidence.put("contentType", "text/html");
+                        evidence.put("data", fileAttachment);
+                    } else {
+         
+                        var value = attachment.getName()
+                                .replace(" ", "_")
+                                .replace("/", "_") + ".jpg";
+                        
+                        evidence.put("filename", "screenshot.jpg");
+                        evidence.put("contentType", "image/jpg");
+                        evidence.put("data", fileAttachment);
+                    }
                     evidenceList.add(evidence);
                 }
             }
         }
+        
         return evidenceList;
     }
-
+    
     private String getXrayTestKey(TestResult result) {
         return result.getLinks().stream()
                 .filter(link -> link.getType().equals(ResultsUtils.TMS_LINK_TYPE))
