@@ -10,11 +10,11 @@ It is based on
   * taken from https://github.com/devonfw-forge/mrchecker-source
   * and good practices from projects (Małgorzata Dzienia, Michał Carło, Dariusz Czajkiewicz, and others)
 
-This project template was created January 2024. It is new, first projects will use it soon. Please give feedback what to add & change to: malgorzata.dzienia@capgemini.com 
+This project template was created January 2024. Please give feedback what to add & change to: malgorzata.dzienia@capgemini.com 
 
 ## Test development:
 Before you start with playwright:
-
+* Run the script to install it: ./batch/install_playwright.bat . if you have issues to run this script from IntelliJ, please run it from windows console.
 * Please check how **codegen** cen help you with test development: https://playwright.dev/java/docs/codegen
   * See the batch how to start it in batch/run_codegen.bat
   * during test development put in your test getPage().pause() to start codegen from this place.
