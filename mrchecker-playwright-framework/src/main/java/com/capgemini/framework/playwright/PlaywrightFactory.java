@@ -53,20 +53,19 @@ public abstract class PlaywrightFactory {
 		
 		if (!isNull(browserOptions)) {
 			options = browserOptions;
-		}
-		else {
+		} else {
 			
-		    options = new Browser.NewContextOptions();
+			options = new Browser.NewContextOptions();
 		}
 		
 		options.setViewportSize(PlaywrightConfig.browserWidth, PlaywrightConfig.browserHeight)
-				.setRecordVideoSize(PlaywrightConfig.browserWidth, PlaywrightConfig.browserHeight)
 				.setIgnoreHTTPSErrors(PlaywrightConfig.ignoreHttpsErrors);
 		
 		if (PlaywrightConfig.videoRecording) {
-			options.setRecordVideoDir(Paths.get("target/videos/"));
+			options.setRecordVideoSize(PlaywrightConfig.browserWidth, PlaywrightConfig.browserHeight)
+					.setRecordVideoDir(Paths.get("target/videos/"));
 		}
-
+		
 		tlBrowserContext.set(tlBrowser.get()
 				.newContext(options));
 		
@@ -172,6 +171,12 @@ public abstract class PlaywrightFactory {
 		if (isNull(tlBrowserContext.get())) {
 			return;
 		}
+		Path existingVideoFile = null;
+		if (PlaywrightConfig.videoRecording) {
+			existingVideoFile = tlPage.get()
+					.video()
+					.path();
+		}
 		AllureStepLogger.makeScreenshot("Final Screenshot", true);
 		
 		if (PlaywrightConfig.tracing) {
@@ -179,19 +184,16 @@ public abstract class PlaywrightFactory {
 				tlBrowserContext.get()
 						.tracing()
 						.stop(new Tracing.StopOptions().setPath(Paths.get("target/traces/trace-" + testClassName + ".zip")));
-				tlBrowserContext.get()
-						.close();
+				
 			} catch (PlaywrightException e) {
 				Logger.logInfo("For failed test tracing is closed automatically, but our tlBrowserContext variables not");
-			} finally {
-				tlBrowserContext.remove();
 			}
 		}
+		tlBrowserContext.get()
+				.close();
+		tlBrowserContext.remove();
 		
 		if (PlaywrightConfig.videoRecording) {
-			var existingVideoFile = tlPage.get()
-					.video()
-					.path();
 			try {
 				Files.move(existingVideoFile, existingVideoFile.resolveSibling(testClassName + ".webm"), REPLACE_EXISTING);
 			} catch (IOException e) {
