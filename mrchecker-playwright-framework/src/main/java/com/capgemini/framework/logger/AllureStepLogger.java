@@ -26,6 +26,8 @@ import static java.nio.file.StandardOpenOption.APPEND;
 public final class AllureStepLogger {
 	private static final String TEMP_PATH = System.getProperty("java.io.tmpdir");
 	private static final String pattern = "https://jiraLink.com/jira/browse/";
+	public static final String KEYWORD_CHECK = "[Check] ";
+
 	private AllureStepLogger() {
 	}
 	
@@ -34,7 +36,7 @@ public final class AllureStepLogger {
 		Logger.logInfo("[INFO] " + info);
 	}
 	
-	@Step("[Check] {check}")
+	@Step(KEYWORD_CHECK +"{check}")
 	public static synchronized void check(String check) {
 		Logger.logInfo("[INFO] " + check);
 	}
