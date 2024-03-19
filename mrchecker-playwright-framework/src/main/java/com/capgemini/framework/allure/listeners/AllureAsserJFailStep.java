@@ -10,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 /**
  * @author mdzienia This listener is helping to make steps red in case assertJ will fail with message defined in assertThat().as().withFailMessage() This listener is checking the last step of allure
  * 		step and compares it with failure message, then set on status failed
@@ -23,6 +25,10 @@ public class AllureAsserJFailStep implements TestLifecycleListener {
 	@Override
 	public void beforeTestWrite(TestResult testResult) {
 		Logger.logInfo("AllureAsserJFailStep");
+		
+		if (isNull(testResult.getStatusDetails()) || isNull((testResult.getStatusDetails().getMessage()))){
+			return;
+		}
 		String currentErrorMessage = testResult.getStatusDetails().getMessage();
 		String failedMessage = StringUtils.substringBetween(currentErrorMessage.replace(KNOWN_BUG_PREFIX, ""), "[", "]");
 		String assertMessage = AllureStepLogger.KEYWORD_CHECK + failedMessage;
