@@ -1,0 +1,47 @@
+name: Test execution
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v1.43.0-jammy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+          maven-version: '3.8.1'
+
+      - name: Install git
+        run: apt-get -y update && apt-get install -y git-lfs
+
+      - name: Install tests
+        run: mvn install -DskipTests --no-transfer-progress
+
+      - name: Run auth
+        run:  mvn test -Dtest="AuthenticateWithOTP" -Dincludes="**" -Dheadless=true
+        env:
+          SECRET_DATA: ${{ secrets.SECRET_DATA }}
+
+      - name: Run tests
+        run:  mvn test -Dtest="LoginWithStoredSession*" -Dincludes="**" -Dheadless=true
+        env:
+          SECRET_DATA: ${{ secrets.SECRET_DATA }}
+          
+      - name: Generate Allure report
+        run: mvn allure:report
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: allure-report
+          publish_dir: ./target/allure-report
