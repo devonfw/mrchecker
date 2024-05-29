@@ -25,17 +25,17 @@ jobs:
       - name: Install git
         run: apt-get -y update && apt-get install -y git-lfs
 
-      - name: Select framework folder
-        run: cd mrchecker-playwright-framework
-
       - name: Install tests
         run: mvn install -DskipTests --no-transfer-progress
+        working-directory: ./mrchecker-playwright-framework
 
       - name: Run tests
         run:  mvn test -Dheadless=true
+        working-directory: ./mrchecker-playwright-framework
 
       - name: Generate Allure report
         run: mvn allure:report
+        working-directory: ./mrchecker-playwright-framework
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v4
@@ -43,4 +43,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: allure-report
-          publish_dir: ./target/allure-report
+          publish_dir: ./mrchecker-playwright-framework/target/allure-report
