@@ -1,13 +1,16 @@
 name: Test execution
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths:
+      - mrchecker-playwright-framework/**
 
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright/java:v1.43.0-jammy
+      image: mcr.microsoft.com/playwright/java:v1.44.0-jammy
 
     steps:
       - uses: actions/checkout@v4
@@ -22,19 +25,15 @@ jobs:
       - name: Install git
         run: apt-get -y update && apt-get install -y git-lfs
 
+      - name: Select framework folder
+        run: cd mrchecker-playwright-framework
+
       - name: Install tests
         run: mvn install -DskipTests --no-transfer-progress
 
-      - name: Run auth
-        run:  mvn test -Dtest="AuthenticateWithOTP" -Dincludes="**" -Dheadless=true
-        env:
-          SECRET_DATA: ${{ secrets.SECRET_DATA }}
-
       - name: Run tests
-        run:  mvn test -Dtest="LoginWithStoredSession*" -Dincludes="**" -Dheadless=true
-        env:
-          SECRET_DATA: ${{ secrets.SECRET_DATA }}
-          
+        run:  mvn test -Dheadless=true
+
       - name: Generate Allure report
         run: mvn allure:report
 
