@@ -25,6 +25,7 @@ import static com.capgemini.framework.playwright.PlaywrightFactory.getPage;
  */
 
 @Epic(PrjEpics.DEMO_QA)
+@Feature("GUI Monkey Tests")
 public class MonkeyTests extends BaseTest {
 	
 	private final DemoQALoginPage demoQALoginPage    = new DemoQALoginPage();
@@ -41,12 +42,9 @@ public class MonkeyTests extends BaseTest {
 	
 	}
 	@TmsLink("Test Management System ID")
-	@Feature("GUI")
-	@Description("Monkey test description")
-	//JUnit annotations
 	@Test
 	@Tag(Status.REVIEW)
-	void MonkeyTest_fill_form_test() throws IOException {
+	void demoQALoginPageMonkeyTest_fill_form_test() throws IOException {
 		GremlinsHelper gremlinsHelper = new GremlinsHelper();
 		GremlinsHelper.setupGremlinsScript(getPage());
 		GremlinsHelper.startGremlinHordeWithGremlinTypes(getPage(), List.of("clicker", "formFiller", "typer"));
@@ -54,11 +52,10 @@ public class MonkeyTests extends BaseTest {
 	
 	@Test
 	@Tag(Status.REVIEW)
-	void MonkeyTest_test() throws IOException {
+	void demoQALoginPageMonkeyTest_test() throws IOException {
 		GremlinsHelper gremlinsHelper = new GremlinsHelper();
 		GremlinsHelper.setupGremlinsScript(getPage());
 		GremlinsHelper.startGremlinHorde(getPage());
-		
 	}
 }
 
