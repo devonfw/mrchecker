@@ -1,0 +1,46 @@
+name: Test execution
+
+on:
+  push:
+    paths:
+      - mrchecker-playwright-framework/**
+
+jobs:
+  test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v1.44.0-jammy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+          maven-version: '3.8.1'
+
+      - name: Install git
+        run: apt-get -y update && apt-get install -y git-lfs
+
+      - name: Install tests
+        run: mvn install -DskipTests --no-transfer-progress
+        working-directory: ./mrchecker-playwright-framework
+
+      - name: Run tests
+        run:  mvn test -Dheadless=true
+        working-directory: ./mrchecker-playwright-framework
+
+      - name: Generate Allure report
+        run: mvn allure:report
+        working-directory: ./mrchecker-playwright-framework
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: allure-report
+          publish_dir: ./mrchecker-playwright-framework/target/allure-report

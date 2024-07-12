@@ -34,7 +34,7 @@
         <thread.count>3</thread.count>
         <env>ENV1</env>
         <!-- PLAYWRIGHT -->
-        <playwright.verion>1.42.0</playwright.verion>
+        <playwright.verion>1.44.0</playwright.verion>
 
         <!-- JUNIT -->
         <junit.version>5.10.1</junit.version>
