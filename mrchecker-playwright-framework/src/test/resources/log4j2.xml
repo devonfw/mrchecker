@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Appenders>
+        <RollingFile name="RollingFile" fileName="target/logs/app.log"
+                     filePattern="target/logs/app-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+
+        <!-- Default Fallback in Case logFilename is Missing -->
         <Routing name="RoutingApp">
-            <Routes pattern="$${ctx:threadName}">
+            <Routes pattern="$${sys:logFilename:-default_log}">
                 <Route>
-                    <File fileName="target/logs/${ctx:threadName}.log"
-                          name="${ctx:threadName}">
+                    <File fileName="target/logs/${sys:logFilename:-default_log}.log"
+                          name="${sys:logFilename:-default_log}">
                         <PatternLayout>
                             <Pattern>%d{yyyy-MM-dd 'at' HH:mm:ss z} %LL - %m%n</Pattern>
                         </PatternLayout>
@@ -13,11 +24,12 @@
                 </Route>
             </Routes>
         </Routing>
+
         <Routing name="RoutingAppENV">
-            <Routes pattern="$${ctx:threadName}">
+            <Routes pattern="$${sys:logFilename:-default_log}">
                 <Route>
-                    <File fileName="target/logs/${ctx:threadName}_env.log"
-                          name="${ctx:threadName}_env">
+                    <File fileName="target/logs/${sys:logFilename:-default_log}_env.log"
+                          name="${sys:logFilename:-default_log}_env">
                         <ThresholdFilter level="DEBUG" onMatch="DENY" onMismatch="ACCEPT"/>
                         <PatternLayout>
                             <Pattern>%d{yyyy-MM-dd 'at' HH:mm:ss z} %LL - %m%n</Pattern>
@@ -26,28 +38,28 @@
                 </Route>
             </Routes>
         </Routing>
+
         <Console name="MyConsole" target="SYSTEM_OUT" follow="true">
             <PatternLayout disableAnsi="false">
-                <!-- Old pattern without colors -->
-                <!-- <Pattern>%d{yyyy-MM-dd 'at' HH:mm:ss z} [%t] %LL - %m%n</Pattern> -->
                 <Pattern>%d{yyyy-MM-dd 'at' HH:mm:ss z} [%t] %highlight{%LL}{FATAL=red, ERROR=red, WARN=yellow,
                     INFO=green, DEBUG=blue, TRACE=black} - %m%n
                 </Pattern>
             </PatternLayout>
         </Console>
+
         <Async name="MyAsync">
             <AppenderRef ref="MyConsole"/>
         </Async>
     </Appenders>
+
     <Loggers>
         <Root level="ALL" additivity="false">
             <AppenderRef ref="MyAsync"/>
             <AppenderRef ref="RoutingAppENV"/>
             <AppenderRef ref="RoutingApp"/>
         </Root>
-        <!-- Disable netty debug spam -->
         <Logger name="io.netty" level="info" additivity="true">
-            <appender-ref ref="MyConsole"/>
+            <AppenderRef ref="MyConsole"/>
         </Logger>
     </Loggers>
 </Configuration>

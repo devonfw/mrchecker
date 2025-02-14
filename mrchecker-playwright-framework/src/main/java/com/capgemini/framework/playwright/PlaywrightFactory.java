@@ -98,11 +98,16 @@ public abstract class PlaywrightFactory {
 			tlBrowserType.set(tlPlaywright.get()
 					.firefox());
 		}
+		if (tlBrowserType.get() == null) {
+			tlBrowserType.set(Playwright.create().chromium());
+		}
 		tlBrowser.set(tlBrowserType.get()
-				.launch(new BrowserType.LaunchOptions().setChannel(PlaywrightConfig.browser)
-						.setHeadless(PlaywrightConfig.headless)
-						.setSlowMo(PlaywrightConfig.slowMo)));
-		
+				.launch(new BrowserType.LaunchOptions()
+						.setChannel(PlaywrightConfig.browser == null ? "chromium" : PlaywrightConfig.browser)
+						.setHeadless(PlaywrightConfig.headless != null && PlaywrightConfig.headless)
+						.setSlowMo(PlaywrightConfig.slowMo == null ? 0 : PlaywrightConfig.slowMo)));
+
+
 	}
 	
 	public static void initAPIRequestContext() {
