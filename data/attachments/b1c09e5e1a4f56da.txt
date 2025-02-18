@@ -1,4 +1,0 @@
-gremlins.createHorde({
-        species:[gremlins.species.clicker(), gremlins.species.formFiller(), gremlins.species.typer()]
-     })
-    .unleash();
