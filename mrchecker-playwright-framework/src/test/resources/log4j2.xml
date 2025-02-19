@@ -11,7 +11,6 @@
             </Policies>
         </RollingFile>
 
-        <!-- Default Fallback in Case logFilename is Missing -->
         <Routing name="RoutingApp">
             <Routes pattern="$${sys:logFilename:-default_log}">
                 <Route>
@@ -53,13 +52,10 @@
     </Appenders>
 
     <Loggers>
-        <Root level="ALL" additivity="false">
+        <Root level="INFO" additivity="false">
             <AppenderRef ref="MyAsync"/>
             <AppenderRef ref="RoutingAppENV"/>
             <AppenderRef ref="RoutingApp"/>
         </Root>
-        <Logger name="io.netty" level="info" additivity="true">
-            <AppenderRef ref="MyConsole"/>
-        </Logger>
     </Loggers>
 </Configuration>

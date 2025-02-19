@@ -1,6 +1,5 @@
 package com.capgemini.infrastructure.resources;
 
-import com.capgemini.framework.logger.LoggerInstance;
 import com.capgemini.infrastructure.Configuration;
 import com.capgemini.infrastructure.network.TestNetwork;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
@@ -15,8 +14,6 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     private final Network network = TestNetwork.getInstance().getNetwork();
     private RawmindWebContainer rawmindWebContainer = null;
 
-    LoggerInstance logger = new LoggerInstance();
-
     @Override
     public Map<String, String> start() {
         var conf = new HashMap<String, String>();
@@ -27,11 +24,28 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     }
 
     private void startWebServer() {
-        if (!isContainerRunning(Configuration.MY_WEB_APP) || rawmindWebContainer == null) { // Only start if it's NOT running
+        var isContainerRunning = isContainerRunning(Configuration.MY_WEB_APP);
+        if (!isContainerRunning || rawmindWebContainer == null) { // Only start if it's NOT running
             rawmindWebContainer = new RawmindWebContainer(network);
             rawmindWebContainer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP));
             rawmindWebContainer.start();
         }
+//        if(isContainerRunning && rawmindWebContainer == null){
+//           rawmindWebContainer = new RawmindWebContainer(network,DockerClientFactory.instance().client().listContainersCmd()
+//                    .withShowAll(true)
+//                    .exec()
+//                    .stream()
+//                    .filter(container -> container.getNames()[0].contains(Configuration.MY_WEB_APP)).findFirst().get());
+//        }
+//
+//        Container container = dockerClient.listContainersCmd().exec().get(0);
+//
+//        RawmindWebContainer rawmindContainer = new RawmindWebContainer();
+//        rawmindContainer.setId(container.getId());
+//        rawmindContainer.setName(container.getNames()[0]); // Assuming name exists
+//        rawmindContainer.setImage(container.getImage());
+//// Add more fields if necessary
+
     }
 
     private boolean isContainerRunning(String containerName) {

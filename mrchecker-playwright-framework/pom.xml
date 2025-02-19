@@ -55,6 +55,7 @@
         <allure.report.directory>${project.basedir}/target</allure.report.directory>
 
         <!-- Logger -->
+        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
         <log4j.version>2.23.1</log4j.version>
         <slf4j.version>1.7.30</slf4j.version>
         <json-simple.version>1.1.1</json-simple.version>
@@ -100,8 +101,14 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
-            <version>3.18.3</version>
+            <version>${quarkus.platform.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -156,6 +163,12 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -333,6 +346,10 @@
                         --add-opens java.base/java.lang=ALL-UNNAMED
                     </argLine>
                     <argLine>-Dquarkus.configuration.ignore-unknown=true</argLine>
+                    <argLine>-Djava.util.logging.manager=org.jboss.logmanager.LogManager</argLine>
+                    <systemPropertyVariables>
+                        <junit.platform.configuration.file>src/test/resources/junit-platform.properties</junit.platform.configuration.file>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -341,6 +358,14 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M9</version>
+                <configuration>
+                    <argLine>-Djava.util.logging.manager=org.jboss.logmanager.LogManager</argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>

@@ -1,6 +1,5 @@
 package com.capgemini.infrastructure.resources;
 
-import com.capgemini.framework.logger.LoggerInstance;
 import com.capgemini.infrastructure.Configuration;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
@@ -17,8 +16,6 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
     private static final String NETWORK_ALIAS = "rawmind";
     private static final int APP_PORT = 8080;
 
-    LoggerInstance logger = new LoggerInstance();
-
     public RawmindWebContainer(Network network) {
         super(DockerImageName.parse("rawmind/web-test"));
 
@@ -34,7 +31,7 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
                 )
         ));
         withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP));
-        logger.logInfo("RawmindWebContainer starting...");
+        logger().info("RawmindWebContainer starting...");
     }
 
     public String getUrl() {
