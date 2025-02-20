@@ -13,14 +13,32 @@ import java.util.Map;
 public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     private final Network network = TestNetwork.getInstance().getNetwork();
     private RawmindWebContainer rawmindWebContainer = null;
+    private MyMockServer myMockServer = null;
 
     @Override
     public Map<String, String> start() {
         var conf = new HashMap<String, String>();
 
+        startMockServer();
+        startMockClient();
         startWebServer();
         conf.put("webAppUrl", rawmindWebContainer.getUrl());
         return conf;
+    }
+
+    private void startMockServer() {
+        if(myMockServer == null || !isContainerRunning(Configuration.MY_MOCK_NAME)) {
+            myMockServer = new MyMockServer(network);
+            myMockServer.start();
+            if (!myMockServer.getContainerName().contains(Configuration.MY_MOCK_NAME)) {
+                myMockServer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_MOCK_NAME));
+            }
+        }
+        Configuration.getInstance().setMyMockServer(myMockServer);
+    }
+
+    private void startMockClient() {
+        MyMockServerClient.getInstance().startMockClient();
     }
 
     private void startWebServer() {

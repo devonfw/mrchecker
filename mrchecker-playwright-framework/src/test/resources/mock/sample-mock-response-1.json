@@ -1,0 +1,10 @@
+{
+  "source": "MySystem",
+  "transportMode": "AIR",
+  "totalPackages": 1000,
+  "commercialValue": {
+    "cost": 200,
+    "currency": "USD"
+  },
+  "isCancelled": false
+}

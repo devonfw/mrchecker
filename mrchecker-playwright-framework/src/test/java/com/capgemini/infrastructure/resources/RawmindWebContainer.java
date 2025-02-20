@@ -19,7 +19,7 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
     public RawmindWebContainer(Network network) {
         super(DockerImageName.parse("rawmind/web-test"));
 
-        withReuse(true);
+        withReuse(Configuration.DEBUG);
         withNetwork(network)
                 .withNetworkAliases(NETWORK_ALIAS)
                 .withExposedPorts(APP_PORT)
