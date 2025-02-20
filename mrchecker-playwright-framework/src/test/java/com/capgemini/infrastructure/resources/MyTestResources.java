@@ -24,28 +24,14 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     }
 
     private void startWebServer() {
-        var isContainerRunning = isContainerRunning(Configuration.MY_WEB_APP);
-        if (!isContainerRunning || rawmindWebContainer == null) { // Only start if it's NOT running
+        if (rawmindWebContainer == null || !isContainerRunning(Configuration.MY_WEB_APP)) {
             rawmindWebContainer = new RawmindWebContainer(network);
-            rawmindWebContainer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP));
             rawmindWebContainer.start();
+            if (!rawmindWebContainer.getContainerName().contains(Configuration.MY_WEB_APP)) {
+                rawmindWebContainer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP));
+            }
         }
-//        if(isContainerRunning && rawmindWebContainer == null){
-//           rawmindWebContainer = new RawmindWebContainer(network,DockerClientFactory.instance().client().listContainersCmd()
-//                    .withShowAll(true)
-//                    .exec()
-//                    .stream()
-//                    .filter(container -> container.getNames()[0].contains(Configuration.MY_WEB_APP)).findFirst().get());
-//        }
-//
-//        Container container = dockerClient.listContainersCmd().exec().get(0);
-//
-//        RawmindWebContainer rawmindContainer = new RawmindWebContainer();
-//        rawmindContainer.setId(container.getId());
-//        rawmindContainer.setName(container.getNames()[0]); // Assuming name exists
-//        rawmindContainer.setImage(container.getImage());
-//// Add more fields if necessary
-
+        Configuration.getInstance().setMyWebAppUrl(rawmindWebContainer.getUrl());
     }
 
     private boolean isContainerRunning(String containerName) {
@@ -56,14 +42,12 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
                 .anyMatch(container -> container.getNames()[0].contains(containerName));
     }
 
-
     @Override
     public void stop() {
         if (!Configuration.DEBUG) {
             stopContainer(rawmindWebContainer);
         }
     }
-
 
     private void stopContainer(GenericContainer container) {
         if (container != null) {
