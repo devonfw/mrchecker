@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyTestResources implements QuarkusTestResourceLifecycleManager {
-    private final Network network = TestNetwork.getInstance().getNetwork();
+//    private final Network network = TestNetwork.getInstance().getNetwork();
+    private final Network network = TestNetwork.createReusableNetwork();
     private RawmindWebContainer rawmindWebContainer = null;
     private MyMockServer myMockServer = null;
 
@@ -27,9 +28,13 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     }
 
     private void startMockServer() {
-        if(myMockServer == null || !isContainerRunning(Configuration.MY_MOCK_NAME)) {
+        if (myMockServer == null || !isContainerRunning(Configuration.MY_MOCK_NAME)) {
+//        if(myMockServer == null || !isContainerRunning(Configuration.MY_MOCK_NAME)) {
             myMockServer = new MyMockServer(network);
-            myMockServer.start();
+//            myMockServer.start();
+            if (!myMockServer.isRunning()) {
+                myMockServer.start();
+            }
             if (!myMockServer.getContainerName().contains(Configuration.MY_MOCK_NAME)) {
                 myMockServer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_MOCK_NAME));
             }
@@ -42,11 +47,13 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     }
 
     private void startWebServer() {
-        if (rawmindWebContainer == null || !isContainerRunning(Configuration.MY_WEB_APP)) {
+        if (rawmindWebContainer == null || !isContainerRunning(Configuration.MY_WEB_APP_NAME)) {
             rawmindWebContainer = new RawmindWebContainer(network);
-            rawmindWebContainer.start();
-            if (!rawmindWebContainer.getContainerName().contains(Configuration.MY_WEB_APP)) {
-                rawmindWebContainer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP));
+            if (!rawmindWebContainer.isRunning()) {
+                rawmindWebContainer.start();
+            }
+            if (!rawmindWebContainer.getContainerName().contains(Configuration.MY_WEB_APP_NAME)) {
+                rawmindWebContainer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP_NAME));
             }
         }
         Configuration.getInstance().setMyWebAppUrl(rawmindWebContainer.getUrl());

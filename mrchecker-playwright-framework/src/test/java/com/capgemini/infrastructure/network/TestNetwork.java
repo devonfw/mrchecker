@@ -1,45 +1,45 @@
 package com.capgemini.infrastructure.network;
 
-import com.github.dockerjava.api.command.CreateNetworkResponse;
+import com.capgemini.infrastructure.Configuration;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.Network;
+import org.testcontainers.utility.TestcontainersConfiguration;
 
 public class TestNetwork {
-    public static final String TEST_NETWORK = "test-network";
-    private static volatile TestNetwork instance = null;
-    private static final Object lock = new Object();
-    private Network network = null;
-
-    public static TestNetwork getInstance() {
-        if (instance == null) {
-            synchronized (lock) {
-                if (instance == null) {
-                    instance = new TestNetwork();
-                    instance.network = getOrCreateNetwork();
-                }
-            }
+    public static Network createReusableNetwork() {
+        var name = Configuration.MY_TEST_NETWORK_NAME;
+        if (!TestcontainersConfiguration.getInstance().environmentSupportsReuse()) {
+            return Network.newNetwork();
         }
-        return instance;
-    }
+        String id = DockerClientFactory.instance().client().listNetworksCmd().exec().stream()
+                .filter(network -> network.getName().equals(name)
+                        && network.getLabels().equals(DockerClientFactory.DEFAULT_LABELS))
+                .map(com.github.dockerjava.api.model.Network::getId)
+                .findFirst()
+                .orElseGet(() -> DockerClientFactory.instance().client().createNetworkCmd()
+                        .withName(name)
+                        .withCheckDuplicate(true)
+                        .withLabels(DockerClientFactory.DEFAULT_LABELS)
+                        .exec().getId());
 
-    private static Network getOrCreateNetwork() {
-        var dockerClient = DockerClientFactory.instance().client();
-        var existingNetworks = dockerClient.listNetworksCmd().exec();
-
-        for (var network : existingNetworks) {
-            if (TEST_NETWORK.equals(network.getName())) {
-                return Network.builder().id(network.getId()).build();
+        return new Network() {
+            @Override
+            public Statement apply(Statement base, Description description) {
+                return base;
             }
-        }
 
-        var createNetworkCmd = dockerClient.createNetworkCmd()
-                .withName(TEST_NETWORK)
-                .withCheckDuplicate(true);
-        return Network.builder().id(((CreateNetworkResponse) createNetworkCmd.exec()).getId()).build();
-    }
+            @Override
+            public String getId() {
+                return id;
+            }
 
-    public Network getNetwork() {
-        return network;
+            @Override
+            public void close() {
+                // never close
+            }
+        };
     }
 }
 

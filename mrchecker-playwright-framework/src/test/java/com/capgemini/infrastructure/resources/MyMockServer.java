@@ -17,6 +17,8 @@ public class MyMockServer extends MockServerContainer {
         withReuse(Configuration.DEBUG);
         withNetwork(network)
                 .withNetworkAliases(NETWORK_ALIAS)
+                .withNetworkMode(Configuration.MY_TEST_NETWORK_NAME)
+                .withLabel("reuse-id", Configuration.MY_MOCK_NAME)
                 .withExposedPorts(1080)
                 .withStartupTimeout(Duration.ofMinutes(2));
         withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_MOCK_NAME));

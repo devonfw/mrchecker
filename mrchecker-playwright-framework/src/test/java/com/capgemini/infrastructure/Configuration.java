@@ -9,7 +9,8 @@ public class Configuration {
     private static Configuration instance = null;
     private static final Config CONFIG = ConfigProvider.getConfig();
 
-    public static final String MY_WEB_APP = "my-web-app";
+    public static final String MY_TEST_NETWORK_NAME = "test-network";
+    public static final String MY_WEB_APP_NAME = "my-web-app";
     public static final String MY_MOCK_NAME = "my-mock";
     public static final boolean DEBUG = CONFIG.getOptionalValue("testcontainers.mode.debug", Boolean.class).orElse(false);
 

@@ -22,6 +22,8 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
         withReuse(Configuration.DEBUG);
         withNetwork(network)
                 .withNetworkAliases(NETWORK_ALIAS)
+                .withNetworkMode(Configuration.MY_TEST_NETWORK_NAME)
+                .withLabel("reuse-id", Configuration.MY_WEB_APP_NAME)
                 .withExposedPorts(APP_PORT)
                 .waitingFor(Wait.forLogMessage(".*Running web-test service.*", 1))
                 .withStartupTimeout(java.time.Duration.ofSeconds(20));
@@ -30,7 +32,7 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
                         new PortBinding(Ports.Binding.bindPort(APP_PORT), new ExposedPort(APP_PORT))
                 )
         ));
-        withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP));
+        withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP_NAME));
         logger().info("RawmindWebContainer starting...");
     }
 
