@@ -1,3 +1,4 @@
 "Category","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
-"Test defects","0","31","0","0","0"
-"Timeout","0","7","0","0","0"
+"Known bugs","1","0","0","0","0"
+"Test defects","0","27","0","0","0"
+"Timeout","0","3","0","0","0"
