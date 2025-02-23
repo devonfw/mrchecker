@@ -1,0 +1,10 @@
+{
+  "source": "MySystem-2",
+  "transportMode": "Land",
+  "totalPackages": 2000,
+  "commercialValue": {
+    "cost": 400,
+    "currency": "USD"
+  },
+  "isCancelled": true
+}

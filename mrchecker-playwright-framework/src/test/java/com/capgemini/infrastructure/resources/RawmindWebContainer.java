@@ -11,6 +11,7 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
     private static final String NETWORK_ALIAS = "rawmind";
@@ -27,12 +28,8 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
                 .withExposedPorts(APP_PORT)
                 .waitingFor(Wait.forLogMessage(".*Running web-test service.*", 1))
                 .withStartupTimeout(java.time.Duration.ofSeconds(20));
-        withCreateContainerCmdModifier(cmd -> cmd.withHostConfig(
-                new HostConfig().withPortBindings(
-                        new PortBinding(Ports.Binding.bindPort(APP_PORT), new ExposedPort(APP_PORT))
-                )
-        ));
         withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP_NAME));
+        setPortBindings(Arrays.asList("8080:8080"));
         logger().info("RawmindWebContainer starting...");
     }
 

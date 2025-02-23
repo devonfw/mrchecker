@@ -36,30 +36,20 @@ public class MyMockServerClient {
             mockServerClient = new MockServerClient(mockServer.getHost(), mockServer.getServerPort());
 
             // Add rule by file
+            // http://localhost:1080/mockserver/dashboard
             // http://localhost:1080/my-api/sample-1
-            /*
-            {
-"source": "MySystem",
-"transportMode": "AIR",
-"totalPackages": 1000,
-"commercialValue": {
-"cost": 200,
-"currency": "USD"
-},
-"isCancelled": false
-}
-             */
             addRule("/my-api/sample-1", "sample-mock-response-1.json");
+            addRule("/my-api/sample-2", "sample-mock-response-2.json");
 
             // Add conditional rule
-            addRuleConditionTxt("/cst/integration/api/createRequestV3", "20220415-43872", Map.of(
-                    "AI24000595", "20220415-66666",
-                    "BY24001263", "20220415-66666"
+            // http://localhost:1080/my-api/sample-text-1
+            addRuleConditionTxt("/my-api/sample-text-1", "First sample response", Map.of(
+                    "Key-string-in-the-body-1", "Second sample response",
+                    "Key-string-in-the-body-2", "Third sample response"
             ));
 
             // Add text response
-            addRuleTxt("/cst/integration/api/closeRequest", "CST request closed");
-            addRuleTxt("/cst/integration/api/proceedNextStep", "CST request proceeded to the next step");
+            addRuleTxt("/my-api/sample-text-4", "Fourth sample response");
 
             logger.info("Mock URL: {}:{}", mockServer.getHost(), mockServer.getServerPort());
         } catch (Exception e) {
