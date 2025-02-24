@@ -16,8 +16,8 @@ public class TestContainersDemoPage {
 
     public String clickButtonAndReturnText() {
         log.info(Configuration.getInstance().getMyWebAppUrl());
+
         getPage().navigate(Configuration.getInstance().getMyWebAppUrl(), new Page.NavigateOptions().setTimeout(PAGE_LOADING_TIMEOUT));
-//        getPage().navigate("http://localhost:8080", new Page.NavigateOptions().setTimeout(PAGE_LOADING_TIMEOUT));
         getPage().onLoad(p -> AllureStepLogger.step("Page loaded!"));
         getPage().getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Show request details")).click();
 
