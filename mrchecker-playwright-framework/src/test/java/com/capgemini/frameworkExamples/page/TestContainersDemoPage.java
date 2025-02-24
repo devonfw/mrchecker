@@ -1,7 +1,7 @@
 package com.capgemini.frameworkExamples.page;
 
 import com.capgemini.framework.logger.AllureStepLogger;
-import com.capgemini.infrastructure.Configuration;
+import com.capgemini.framework.playwright.infrastructure.Configuration;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import org.slf4j.Logger;

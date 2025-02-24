@@ -1,6 +1,6 @@
-package com.capgemini.infrastructure.resources;
+package com.capgemini.framework.playwright.infrastructure.resources.containers;
 
-import com.capgemini.infrastructure.Configuration;
+import com.capgemini.framework.playwright.infrastructure.Configuration;
 import org.mockserver.client.MockServerClient;
 import org.mockserver.matchers.TimeToLive;
 import org.mockserver.matchers.Times;
@@ -32,11 +32,11 @@ public class MyMockServerClient {
     }
 
     public void startMockClient() {
+        // Dashboard link: http://localhost:1080/mockserver/dashboard
         try {
             mockServerClient = new MockServerClient(mockServer.getHost(), mockServer.getServerPort());
 
-            // Add rule by file
-            // http://localhost:1080/mockserver/dashboard
+            // Add rule by file with response
             // http://localhost:1080/my-api/sample-1
             addRule("/my-api/sample-1", "sample-mock-response-1.json");
             addRule("/my-api/sample-2", "sample-mock-response-2.json");
@@ -49,6 +49,7 @@ public class MyMockServerClient {
             ));
 
             // Add text response
+            // http://localhost:1080/my-api/sample-text-4
             addRuleTxt("/my-api/sample-text-4", "Fourth sample response");
 
             logger.info("Mock URL: {}:{}", mockServer.getHost(), mockServer.getServerPort());

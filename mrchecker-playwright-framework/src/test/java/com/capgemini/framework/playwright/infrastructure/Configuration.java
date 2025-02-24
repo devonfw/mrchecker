@@ -1,6 +1,6 @@
-package com.capgemini.infrastructure;
+package com.capgemini.framework.playwright.infrastructure;
 
-import com.capgemini.infrastructure.resources.MyMockServer;
+import com.capgemini.framework.playwright.infrastructure.resources.containers.MyMockServer;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;

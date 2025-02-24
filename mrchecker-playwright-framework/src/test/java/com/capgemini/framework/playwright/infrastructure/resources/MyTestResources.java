@@ -1,7 +1,10 @@
-package com.capgemini.infrastructure.resources;
+package com.capgemini.framework.playwright.infrastructure.resources;
 
-import com.capgemini.infrastructure.Configuration;
-import com.capgemini.infrastructure.network.TestNetwork;
+import com.capgemini.framework.playwright.infrastructure.Configuration;
+import com.capgemini.framework.playwright.infrastructure.network.TestNetwork;
+import com.capgemini.framework.playwright.infrastructure.resources.containers.MyMockServer;
+import com.capgemini.framework.playwright.infrastructure.resources.containers.MyMockServerClient;
+import com.capgemini.framework.playwright.infrastructure.resources.containers.RawmindWebContainer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.GenericContainer;
@@ -11,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyTestResources implements QuarkusTestResourceLifecycleManager {
-    //    private final Network network = TestNetwork.getInstance().getNetwork();
     private final Network network = TestNetwork.createReusableNetwork();
     private RawmindWebContainer rawmindWebContainer = null;
     private MyMockServer myMockServer = null;
@@ -28,14 +30,12 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     }
 
     private void startMockServer() {
-        if (myMockServer == null || !isContainerRunning(Configuration.MY_MOCK_NAME)) {
+        if (myMockServer == null || isContainerNotRunning(Configuration.MY_MOCK_NAME)) {
             myMockServer = new MyMockServer(network);
             if (!myMockServer.isRunning()) {
                 myMockServer.start();
             }
-            if (!myMockServer.getContainerName().contains(Configuration.MY_MOCK_NAME)) {
-                myMockServer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_MOCK_NAME));
-            }
+            renameContainerIfNeeded(myMockServer, Configuration.MY_MOCK_NAME);
         }
         Configuration.getInstance().setMyMockServer(myMockServer);
     }
@@ -45,24 +45,28 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
     }
 
     private void startWebServer() {
-        if (rawmindWebContainer == null || !isContainerRunning(Configuration.MY_WEB_APP_NAME)) {
+        if (rawmindWebContainer == null || isContainerNotRunning(Configuration.MY_WEB_APP_NAME)) {
             rawmindWebContainer = new RawmindWebContainer(network);
             if (!rawmindWebContainer.isRunning()) {
                 rawmindWebContainer.start();
             }
-            if (!rawmindWebContainer.getContainerName().contains(Configuration.MY_WEB_APP_NAME)) {
-                rawmindWebContainer.withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP_NAME));
-            }
+            renameContainerIfNeeded(rawmindWebContainer, Configuration.MY_WEB_APP_NAME);
         }
         Configuration.getInstance().setMyWebAppUrl(rawmindWebContainer.getUrl());
     }
 
-    private boolean isContainerRunning(String containerName) {
+    private void renameContainerIfNeeded(GenericContainer<?> container, String containerName) {
+        if (container.getContainerName().contains(containerName)) {
+            container.withCreateContainerCmdModifier(cmd -> cmd.withName(containerName));
+        }
+    }
+
+    private boolean isContainerNotRunning(String containerName) {
         return DockerClientFactory.instance().client().listContainersCmd()
                 .withShowAll(true)
                 .exec()
                 .stream()
-                .anyMatch(container -> container.getNames()[0].contains(containerName));
+                .noneMatch(container -> container.getNames()[0].contains(containerName));
     }
 
     @Override
@@ -73,7 +77,7 @@ public class MyTestResources implements QuarkusTestResourceLifecycleManager {
         }
     }
 
-    private void stopContainer(GenericContainer container) {
+    private void stopContainer(GenericContainer<?> container) {
         if (container != null) {
             container.stop();
         }

@@ -1,7 +1,7 @@
 package com.capgemini.frameworkExamples;
 
 import com.capgemini.framework.enums.PrjEpics;
-import com.capgemini.framework.playwright.containers.BaseContainersTest;
+import com.capgemini.framework.playwright.base.BaseContainersTest;
 import com.capgemini.framework.tags.Status;
 import com.capgemini.frameworkExamples.page.TestContainersDemoPage;
 import io.qameta.allure.Description;
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.TestInstance;
 @QuarkusTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DemoWebContainersTest extends BaseContainersTest {
-    private TestContainersDemoPage testContainersDemoPage = new TestContainersDemoPage();
+    private final TestContainersDemoPage testContainersDemoPage = new TestContainersDemoPage();
 
     @TmsLink("Test Management System ID")
     @Epic(PrjEpics.EXAMPLES)

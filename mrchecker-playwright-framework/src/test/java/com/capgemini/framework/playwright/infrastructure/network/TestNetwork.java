@@ -1,6 +1,6 @@
-package com.capgemini.infrastructure.network;
+package com.capgemini.framework.playwright.infrastructure.network;
 
-import com.capgemini.infrastructure.Configuration;
+import com.capgemini.framework.playwright.infrastructure.Configuration;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 import org.testcontainers.DockerClientFactory;

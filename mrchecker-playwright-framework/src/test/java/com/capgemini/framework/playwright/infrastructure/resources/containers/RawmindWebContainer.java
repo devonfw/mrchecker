@@ -1,10 +1,6 @@
-package com.capgemini.infrastructure.resources;
+package com.capgemini.framework.playwright.infrastructure.resources.containers;
 
-import com.capgemini.infrastructure.Configuration;
-import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.HostConfig;
-import com.github.dockerjava.api.model.PortBinding;
-import com.github.dockerjava.api.model.Ports;
+import com.capgemini.framework.playwright.infrastructure.Configuration;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.wait.strategy.Wait;
@@ -29,7 +25,7 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
                 .waitingFor(Wait.forLogMessage(".*Running web-test service.*", 1))
                 .withStartupTimeout(java.time.Duration.ofSeconds(20));
         withCreateContainerCmdModifier(cmd -> cmd.withName(Configuration.MY_WEB_APP_NAME));
-        setPortBindings(Arrays.asList("8080:8080"));
+        setPortBindings(Arrays.asList(APP_PORT+":"+APP_PORT));
         logger().info("RawmindWebContainer starting...");
     }
 
@@ -42,6 +38,7 @@ public class RawmindWebContainer extends GenericContainer<RawmindWebContainer> {
         if (reusable) {
             var aliases = new ArrayList<String>();
             aliases.add(NETWORK_ALIAS);
+            aliases.add(Configuration.MY_WEB_APP_NAME);
             this.setNetworkAliases(aliases);
         }
         return (RawmindWebContainer) super.withReuse(reusable);

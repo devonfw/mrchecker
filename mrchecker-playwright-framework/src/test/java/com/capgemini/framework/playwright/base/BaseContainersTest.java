@@ -1,7 +1,7 @@
-package com.capgemini.framework.playwright.containers;
+package com.capgemini.framework.playwright.base;
 
 import com.capgemini.framework.playwright.BaseTest;
-import com.capgemini.infrastructure.resources.MyTestResources;
+import com.capgemini.framework.playwright.infrastructure.resources.MyTestResources;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
