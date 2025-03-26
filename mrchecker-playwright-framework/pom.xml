@@ -28,17 +28,24 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven.compiler.plugin>3.11.0</maven.compiler.plugin>
-        <maven.surefire.plugin>3.2.2</maven.surefire.plugin>
+        <maven.compiler.plugin>3.13.0</maven.compiler.plugin>
+        <maven.surefire.plugin>3.5.2</maven.surefire.plugin>
+
+        <!-- QUARKUS -->
+        <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+        <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+        <quarkus.platform.version>3.18.3</quarkus.platform.version>
+
+        <testcontainers.reuse.enable>true</testcontainers.reuse.enable>
 
         <thread.count>3</thread.count>
         <env>ENV1</env>
         <!-- PLAYWRIGHT -->
-        <playwright.verion>1.45.0</playwright.verion>
+        <playwright.version>1.45.0</playwright.version>
 
         <!-- JUNIT -->
         <junit.version>5.10.3</junit.version>
-        <junit.platform.version>1.10.1</junit.platform.version>
+        <junit.platform.version>1.10.5</junit.platform.version>
         <junit.toolbox.version>2.4</junit.toolbox.version>
         <aspectj.version>1.9.20.1</aspectj.version>
 
@@ -48,6 +55,7 @@
         <allure.report.directory>${project.basedir}/target</allure.report.directory>
 
         <!-- Logger -->
+        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
         <log4j.version>2.23.1</log4j.version>
         <slf4j.version>1.7.30</slf4j.version>
         <json-simple.version>1.1.1</json-simple.version>
@@ -58,13 +66,105 @@
         <json-path.version>2.9.0</json-path.version>
         <config.version>1.4.3</config.version>
         <awaitility.version>4.2.1</awaitility.version>
+        <playwright.version>1.45.0</playwright.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>central1</id>
+            <name>Central Repository</name>
+            <url>https://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${quarkus.platform.group-id}</groupId>
+                <artifactId>${quarkus.platform.artifact-id}</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-test-common</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5</artifactId>
+            <version>${quarkus.platform.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-arc</artifactId>
+            <version>3.18.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service-annotations</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>1.20.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>1.20.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mockserver</artifactId>
+            <version>1.20.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-client-java</artifactId>
+            <version>5.15.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+            <version>3.1</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
-            <version>${playwright.verion}</version>
+            <version>${playwright.version}</version>
         </dependency>
 
         <dependency>
@@ -72,6 +172,12 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -213,6 +319,22 @@
         </testResources>
         <plugins>
             <plugin>
+                <groupId>${quarkus.platform.group-id}</groupId>
+                <artifactId>quarkus-maven-plugin</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>generate-code</goal>
+                            <goal>generate-code-tests</goal>
+                            <goal>native-image-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin}</version>
@@ -232,6 +354,11 @@
                         -Djdk.net.URLClassPath.disableClassPathURLCheck=true
                         --add-opens java.base/java.lang=ALL-UNNAMED
                     </argLine>
+                    <argLine>-Dquarkus.configuration.ignore-unknown=true</argLine>
+                    <argLine>-Djava.util.logging.manager=org.jboss.logmanager.LogManager</argLine>
+                    <systemPropertyVariables>
+                        <junit.platform.configuration.file>src/test/resources/junit-platform.properties</junit.platform.configuration.file>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -240,6 +367,14 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M9</version>
+                <configuration>
+                    <argLine>-Djava.util.logging.manager=org.jboss.logmanager.LogManager</argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>

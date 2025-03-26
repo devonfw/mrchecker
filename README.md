@@ -39,7 +39,16 @@ This repository includes:
   Easy adoption, ready-to-use assets, skilled workforce, years of collective experience, skilled architects
 
 
-
+## Mr. Checker Test Containers support
+***Docker environment is needed to run TestContainers***
+* Running tests with Test Containers requires:
+  * Adding container to resources in **MyTestResources** class
+  ![img.png](mrchecker-playwright-framework/README/images/my-container-resources-class.png)
+  * Extending test with the **BaseContainersTest**
+* Using Mock server
+  * Mock server starts as part of TestContainers tests 
+  * Mocking server rules can be set in the **MyMockServerClient** class
+    * Examples included in the **MyMockServerClient** class
 
 
 
