@@ -62,7 +62,7 @@
         <datafaker.version>2.3.0</datafaker.version>
         <jasyp.version>1.9.3</jasyp.version>
         <apache-csv.version>1.10.0</apache-csv.version>
-        <assertj-core.version>3.26.3</assertj-core.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
         <json-path.version>2.9.0</json-path.version>
         <config.version>1.4.3</config.version>
         <awaitility.version>4.2.1</awaitility.version>
